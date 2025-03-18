@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody3D
 
 var direction
@@ -18,10 +19,10 @@ const CROUCH_SPEED = 3
 
 #camera bob
 const BOB_FREQ = 2.4
-const BOB_AMP = 0.08
+const BOB_AMP = 0.04
 
 const GUN_BOB_FREQ = 2.4
-const GUN_BOB_AMP = 0.06
+const GUN_BOB_AMP = 0.04
 var t_bob = 0.0
 
 var gravity = 18
@@ -42,12 +43,15 @@ func _input(event: InputEvent) -> void:
 		camera.rotate_x(-event.relative.y * MOUSE_SENS)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-70),deg_to_rad(70))
 	
-	if event.is_action_pressed("attack_primary"):
+	if event.is_action_pressed("attack_primary") && can_shoot:
+		can_shoot = false
 		weapon.animation_player.play("hold_right")
 		weapon_world.animation_player.play("hold_right")
 	if event.is_action_released("attack_primary"):
 		weapon.animation_player.play("swing_right")
 		weapon_world.animation_player.play("swing_right")
+		await weapon_world.animation_player.animation_finished
+		can_shoot = true
 		
 
 func _process(delta: float) -> void:

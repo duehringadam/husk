@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://crwpbskjjllht"]
+[gd_scene load_steps=44 format=3 uid="uid://crwpbskjjllht"]
 
 [ext_resource type="Script" uid="uid://bi6bcf1evx4ur" path="res://Player/player.gd" id="1_t2vdx"]
 [ext_resource type="Script" uid="uid://b3yihwhs36do6" path="res://Player/States/statemachine.gd" id="2_7a7qp"]
@@ -22,6 +22,11 @@
 [ext_resource type="AudioStream" uid="uid://bkoo0dovg888a" path="res://sfx/jute-dh-steps/jute-dh-steps/stepdirt_6.wav" id="17_8mwp6"]
 [ext_resource type="AudioStream" uid="uid://cqptw22pmofy7" path="res://sfx/jute-dh-steps/jute-dh-steps/stepdirt_7.wav" id="18_qemgg"]
 [ext_resource type="AudioStream" uid="uid://c64kea7efbe3v" path="res://sfx/jute-dh-steps/jute-dh-steps/stepdirt_8.wav" id="19_8viyr"]
+[ext_resource type="Script" uid="uid://bh51mi6cbu7iw" path="res://Player/user_interface.gd" id="22_8viyr"]
+[ext_resource type="StyleBox" uid="uid://bkasfcxtv0jxl" path="res://fonts/dialogue_gradient_fade.tres" id="23_sm0op"]
+[ext_resource type="Theme" uid="uid://duc0j73rblgge" path="res://fonts/text_theme.tres" id="24_76lrf"]
+[ext_resource type="Script" uid="uid://bs2pkx3tfve5x" path="res://Player/dialogue.gd" id="25_efx54"]
+[ext_resource type="Script" uid="uid://sj3mml8ulasu" path="res://Player/crosshair.gd" id="26_sm0op"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tvulw"]
 radius = 0.375
@@ -156,6 +161,60 @@ stream_5 = ExtResource("17_8mwp6")
 stream_6 = ExtResource("18_qemgg")
 stream_7 = ExtResource("19_8viyr")
 
+[sub_resource type="Animation" id="Animation_8viyr"]
+resource_name = "dialogue_Show"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_sm0op"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_76lrf"]
+resource_name = "dialogue_hide"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_76lrf"]
+_data = {
+&"RESET": SubResource("Animation_sm0op"),
+&"dialogue_Show": SubResource("Animation_8viyr"),
+&"dialogue_hide": SubResource("Animation_76lrf")
+}
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7emwf"]
 shader = ExtResource("11_7emwf")
 shader_parameter/fog_color = Color(1, 1, 1, 1)
@@ -279,9 +338,12 @@ bus = &"SFX"
 
 [node name="userInterface" type="Control" parent="UILayer"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("22_8viyr")
 
 [node name="Label" type="Label" parent="UILayer/userInterface"]
 unique_name_in_owner = true
@@ -289,6 +351,103 @@ visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="DialogueContainer" type="PanelContainer" parent="UILayer/userInterface"]
+visible = false
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+theme_override_styles/panel = ExtResource("23_sm0op")
+
+[node name="DialogueMargin" type="MarginContainer" parent="UILayer/userInterface/DialogueContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Dialogue" type="RichTextLabel" parent="UILayer/userInterface/DialogueContainer/DialogueMargin"]
+layout_mode = 2
+theme = ExtResource("24_76lrf")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+bbcode_enabled = true
+text = "test test test"
+horizontal_alignment = 1
+visible_characters = 0
+visible_characters_behavior = 1
+visible_ratio = 0.0
+script = ExtResource("25_efx54")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UILayer/userInterface/DialogueContainer"]
+libraries = {
+&"": SubResource("AnimationLibrary_76lrf")
+}
+
+[node name="uiMargin" type="MarginContainer" parent="UILayer/userInterface"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="crosshair" type="CenterContainer" parent="UILayer/userInterface" node_paths=PackedStringArray("RETICLE_LINES", "PLAYER_CONTROLLER")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -0.5
+offset_right = 0.5
+offset_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("26_sm0op")
+RETICLE_LINES = [NodePath("top"), NodePath("right"), NodePath("bottom"), NodePath("left")]
+PLAYER_CONTROLLER = NodePath("../../..")
+
+[node name="top" type="Line2D" parent="UILayer/userInterface/crosshair"]
+points = PackedVector2Array(0, -5, 0, -15)
+width = 2.0
+
+[node name="right" type="Line2D" parent="UILayer/userInterface/crosshair"]
+points = PackedVector2Array(5, 0, 15, 0)
+width = 2.0
+
+[node name="bottom" type="Line2D" parent="UILayer/userInterface/crosshair"]
+points = PackedVector2Array(0, 5, 0, 15)
+width = 2.0
+
+[node name="left" type="Line2D" parent="UILayer/userInterface/crosshair"]
+points = PackedVector2Array(-5, 0, -15, 0)
+width = 2.0
+
+[node name="interactprompt" type="RichTextLabel" parent="UILayer"]
+visible = false
+custom_minimum_size = Vector2(100, 10)
+offset_left = 590.0
+offset_top = 408.0
+offset_right = 690.0
+offset_bottom = 491.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("24_76lrf")
+bbcode_enabled = true
+text = "test test"
 
 [node name="dither" type="ColorRect" parent="UILayer"]
 material = SubResource("ShaderMaterial_7emwf")
