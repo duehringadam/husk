@@ -1,0 +1,51 @@
+[gd_scene load_steps=10 format=3 uid="uid://b2rt3bxhgjwgd"]
+
+[ext_resource type="Script" uid="uid://df27yo6esc0lt" path="res://addons/beehave/nodes/beehave_tree.gd" id="1_fu8ay"]
+[ext_resource type="Script" uid="uid://smg2xw2t0edh" path="res://addons/beehave/nodes/composites/selector.gd" id="2_f6p6j"]
+[ext_resource type="Script" uid="uid://bedtxiwg0qd8n" path="res://addons/beehave/nodes/composites/sequence.gd" id="3_l3mfq"]
+[ext_resource type="Script" uid="uid://brr0wkxrdhg16" path="res://enemies/isclose.gd" id="4_mtn24"]
+[ext_resource type="Script" uid="uid://du1jnwvlj0oai" path="res://enemies/chase.gd" id="5_lid3o"]
+[ext_resource type="Script" uid="uid://b6fr251hwt0o0" path="res://alert_condition.gd" id="6_2phmt"]
+[ext_resource type="Script" uid="uid://c8i6448kggujx" path="res://enemies/idle.gd" id="6_yxbor"]
+[ext_resource type="Script" uid="uid://wrjkfv1yg1ad" path="res://alerted.gd" id="7_0sev1"]
+[ext_resource type="Script" uid="uid://bdkogcl07ubu1" path="res://idle_condition.gd" id="8_eqwsn"]
+
+[node name="BeehaveTree" type="Node" node_paths=PackedStringArray("blackboard", "actor")]
+script = ExtResource("1_fu8ay")
+blackboard = NodePath("@Node@21863")
+actor = NodePath("")
+
+[node name="SelectorComposite" type="Node" parent="."]
+script = ExtResource("2_f6p6j")
+
+[node name="alert" type="Node" parent="SelectorComposite"]
+script = ExtResource("3_l3mfq")
+
+[node name="alertCondition" type="Node" parent="SelectorComposite/alert"]
+script = ExtResource("6_2phmt")
+
+[node name="alertAction" type="Node" parent="SelectorComposite/alert"]
+script = ExtResource("7_0sev1")
+
+[node name="chase" type="Node" parent="SelectorComposite"]
+script = ExtResource("3_l3mfq")
+
+[node name="isClose" type="Node" parent="SelectorComposite/chase"]
+script = ExtResource("4_mtn24")
+
+[node name="Chase" type="Node" parent="SelectorComposite/chase"]
+script = ExtResource("5_lid3o")
+
+[node name="idle" type="Node" parent="SelectorComposite"]
+script = ExtResource("3_l3mfq")
+
+[node name="idleCondition" type="Node" parent="SelectorComposite/idle"]
+script = ExtResource("8_eqwsn")
+
+[node name="Idle" type="Node" parent="SelectorComposite/idle"]
+script = ExtResource("6_yxbor")
+
+[connection signal="signal_pass" from="." to="SelectorComposite/alert/alertAction" method="_on_beehave_tree_signal_pass"]
+[connection signal="signal_pass" from="." to="SelectorComposite/chase/Chase" method="_on_beehave_tree_signal_pass"]
+[connection signal="signal_pass" from="." to="SelectorComposite/idle/Idle" method="_on_beehave_tree_signal_pass"]
+[connection signal="target_reached" from="." to="SelectorComposite/alert/alertAction" method="_on_beehave_tree_target_reached"]

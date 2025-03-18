@@ -1,0 +1,18 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://dlmtxs0c66hj3"]
+
+[ext_resource type="Texture2D" uid="uid://br7bfxcxh60df" path="res://demo/assets/textures/rock030_alb_ht.png" id="1_j5sdo"]
+[ext_resource type="Texture2D" uid="uid://cr72kjil43vgj" path="res://demo/assets/textures/rock030_nrm_rgh.png" id="2_yyurh"]
+
+[resource]
+shading_mode = 2
+albedo_color = Color(0.455212, 0.432679, 0.394305, 1)
+albedo_texture = ExtResource("1_j5sdo")
+roughness_texture = ExtResource("2_yyurh")
+rim_enabled = true
+ao_enabled = true
+ao_light_affect = 0.88
+heightmap_scale = -16.0
+heightmap_texture = ExtResource("2_yyurh")
+uv1_scale = Vector3(4, 4, 4)
+uv1_triplanar_sharpness = 6.06286
+texture_filter = 5

@@ -1,0 +1,53 @@
+[gd_scene load_steps=11 format=3 uid="uid://bm0fuhxtfedhw"]
+
+[ext_resource type="Script" path="res://Player/character_body_3d.gd" id="1_t2vdx"]
+[ext_resource type="Script" path="res://Player/States/statemachine.gd" id="2_7a7qp"]
+[ext_resource type="Script" path="res://Player/idlePlayerState.gd" id="3_841m4"]
+[ext_resource type="Script" path="res://Player/walkingPlayerState.gd" id="4_fqfeh"]
+[ext_resource type="Script" path="res://Player/sprintingPlayerState.gd" id="5_5kr7g"]
+[ext_resource type="Script" path="res://Player/crouchingPlayerState.gd" id="6_b2402"]
+[ext_resource type="Script" path="res://Player/jumpingPlayerState.gd" id="7_gsrmw"]
+[ext_resource type="Script" path="res://Player/fallingPlayerState.gd" id="8_d032x"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tvulw"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_npvy2"]
+
+[node name="player" type="CharacterBody3D"]
+script = ExtResource("1_t2vdx")
+
+[node name="hitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01437, 0)
+shape = SubResource("CapsuleShape3D_tvulw")
+
+[node name="head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.59547, 0)
+
+[node name="Camera3D" type="Camera3D" parent="head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00930202, 0)
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="head"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03598, 0)
+shape = SubResource("SphereShape3D_npvy2")
+
+[node name="stateMachine" type="Node" parent="."]
+script = ExtResource("2_7a7qp")
+
+[node name="idlePlayerState" type="Node" parent="stateMachine"]
+script = ExtResource("3_841m4")
+
+[node name="walkingPlayerState" type="Node" parent="stateMachine"]
+script = ExtResource("4_fqfeh")
+
+[node name="sprintingPlayerState" type="Node" parent="stateMachine"]
+script = ExtResource("5_5kr7g")
+
+[node name="crouchingPlayerState" type="Node" parent="stateMachine"]
+script = ExtResource("6_b2402")
+
+[node name="jumpingPlayerState" type="Node" parent="stateMachine"]
+script = ExtResource("7_gsrmw")
+
+[node name="fallingPlayerState" type="Node" parent="stateMachine"]
+script = ExtResource("8_d032x")

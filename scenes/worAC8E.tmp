@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://xdej0aou65bb"]
+
+[ext_resource type="PackedScene" uid="uid://bm0fuhxtfedhw" path="res://Player/player.tscn" id="1_aobmq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_acrl5"]
+albedo_color = Color(0.341176, 0, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_urqgb"]
+material = SubResource("StandardMaterial3D_acrl5")
+size = Vector2(50, 50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hakfu"]
+points = PackedVector3Array(25, 25, 0, 25, -25, 0, -25, 25, 0, -25, -25, 0)
+
+[node name="world" type="Node3D"]
+
+[node name="player" parent="." instance=ExtResource("1_aobmq")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.00218169, 0.999998, 0, -0.999998, -0.00218169, 0, 0, 0)
+mesh = SubResource("QuadMesh_urqgb")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_hakfu")

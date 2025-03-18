@@ -1,0 +1,19 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://bb4x6ngu7gqrx"]
+
+[ext_resource type="Texture2D" uid="uid://qwqgw5gnny7h" path="res://scenes/gravestones/grave_stones(1)_0.jpg" id="1_4lnsw"]
+[ext_resource type="Texture2D" uid="uid://epwyo6vt3opx" path="res://scenes/gravestones/grave_stones(1)_1.png" id="2_g5m4j"]
+[ext_resource type="Texture2D" uid="uid://byby6pcrmuo47" path="res://scenes/gravestones/grave_stones(1)_2.png" id="3_soain"]
+
+[resource]
+resource_name = "Graves"
+cull_mode = 2
+albedo_texture = ExtResource("1_4lnsw")
+metallic = 1.0
+metallic_texture = ExtResource("2_g5m4j")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("2_g5m4j")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("3_soain")
+ao_enabled = true
+ao_texture = ExtResource("2_g5m4j")

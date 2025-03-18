@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://cytve7ikjdrnc"]
+
+[ext_resource type="ArrayMesh" uid="uid://cfkdvaeho4dwj" path="res://scenes/gravestones/headstone_4.res" id="1_je6mn"]
+[ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="2_wrnjr"]
+[ext_resource type="Texture2D" uid="uid://qwqgw5gnny7h" path="res://scenes/gravestones/grave_stones(1)_0.jpg" id="3_7k056"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_je6mn"]
+render_priority = 0
+shader = ExtResource("2_wrnjr")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("3_7k056")
+shader_parameter/albedo_texture_as_primary_color = true
+shader_parameter/mix_factor = 1.0
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_wrnjr"]
+points = PackedVector3Array(-68.4344, 350.835, -4849.9, 82.2151, -46.6743, -4464.01, 68.4566, 351.194, -4494.05, -82.3613, -46.6743, -4464.01, 77.536, -87.1655, -4868.5, -77.536, -86.615, -4868.13, 68.3604, 350.989, -4850.09, -68.4202, 496.628, -4640.33, 68.2476, 496.516, -4704.04, -68.5305, 351.04, -4494.23, 77.536, -87.1655, -4475.85, -82.3613, -46.6743, -4880.33, 82.2151, -46.6743, -4880.33, -77.536, -86.615, -4476.22, 68.3133, 496.796, -4640.31, -68.3553, 496.351, -4704.02)
+
+[node name="headstone_1" type="StaticBody3D"]
+transform = Transform3D(0.002, 0, 0, 0, 0.002, 0, 0, 0, 0.002, 0, 0, 0.687554)
+collision_layer = 2
+collision_mask = 5
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.1828, 0, 3981.56)
+mesh = ExtResource("1_je6mn")
+surface_material_override/0 = SubResource("ShaderMaterial_je6mn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.1828, 0, 3981.56)
+shape = SubResource("ConvexPolygonShape3D_wrnjr")

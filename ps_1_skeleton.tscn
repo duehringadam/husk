@@ -1,0 +1,74 @@
+[gd_scene load_steps=5 format=3 uid="uid://dt454e2tpugp8"]
+
+[ext_resource type="PackedScene" uid="uid://bclv1cnmfa1w1" path="res://scenes/PS1 Dark Fantasy Horror Game Assets (by Stark Crafts)/PS1 Dark Fantasy Horror Game Assets (by Stark Crafts)/PS1_Skull/PS1_Skeleton.fbx" id="1_plu4s"]
+[ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="2_rwhqy"]
+[ext_resource type="Texture2D" uid="uid://cb2nj2lxqd5me" path="res://scenes/PS1 Dark Fantasy Horror Game Assets (by Stark Crafts)/PS1 Dark Fantasy Horror Game Assets (by Stark Crafts)/PS1_Skull/ps1_skeleton_256x256_transp.png" id="3_0ilrb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y3p0j"]
+render_priority = 0
+shader = ExtResource("2_rwhqy")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("3_0ilrb")
+shader_parameter/albedo_texture_as_primary_color = true
+shader_parameter/mix_factor = 1.0
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+
+[node name="PS1_Skeleton" instance=ExtResource("1_plu4s")]
+
+[node name="Skeleton3D" parent="Skeleton" index="0"]
+bones/1/position = Vector3(0, 0.00977792, -2.6707e-10)
+bones/1/rotation = Quaternion(-0.113433, 1.1844e-07, -1.35223e-08, 0.993546)
+bones/1/scale = Vector3(1, 1, 1)
+bones/2/position = Vector3(7.14224e-18, 0.0134973, 2.68066e-10)
+bones/2/rotation = Quaternion(0.0515416, 1.68978e-14, 1.22885e-08, 0.998671)
+bones/2/scale = Vector3(1, 1, 1)
+bones/3/position = Vector3(8.01404e-18, 0.010875, -2.43485e-10)
+bones/3/rotation = Quaternion(0.0581113, 1.14547e-14, 1.38548e-08, 0.99831)
+bones/3/scale = Vector3(1, 1, 1)
+bones/4/position = Vector3(-1.78297e-16, 0.00767031, 3.23442e-10)
+bones/4/rotation = Quaternion(0.032183, 1.1108e-16, 7.67303e-09, 0.999482)
+bones/4/scale = Vector3(1, 1, 1)
+bones/5/position = Vector3(0.00402595, 0.0090459, -5.54283e-05)
+bones/5/rotation = Quaternion(-0.00352597, -0.00124513, -0.74015, 0.672432)
+bones/5/scale = Vector3(1, 1, 1)
+bones/6/position = Vector3(-1.35258e-09, 0.00477988, 1.70427e-10)
+bones/6/rotation = Quaternion(-0.0602918, 0.027053, -0.563907, 0.82319)
+bones/6/scale = Vector3(1, 1, 1)
+bones/7/position = Vector3(2.39466e-11, 0.0151831, 1.2007e-10)
+bones/7/rotation = Quaternion(0.170889, 0.000533605, 0.00067709, 0.98529)
+bones/7/scale = Vector3(1, 1, 1)
+bones/8/position = Vector3(2.97062e-09, 0.0167992, -2.24124e-09)
+bones/8/rotation = Quaternion(0.0224315, -0.0417799, -0.148516, 0.987772)
+bones/8/scale = Vector3(1, 1, 1)
+bones/9/position = Vector3(-0.00402595, 0.0090459, -5.54301e-05)
+bones/9/rotation = Quaternion(-0.00352615, 0.00124497, 0.74015, 0.672432)
+bones/9/scale = Vector3(1, 1, 1)
+bones/10/position = Vector3(1.41974e-09, 0.00477988, 5.56887e-11)
+bones/10/rotation = Quaternion(-0.0602918, -0.027053, 0.563907, 0.82319)
+bones/10/scale = Vector3(1, 1, 1)
+bones/11/position = Vector3(-1.63427e-09, 0.0151831, -3.95592e-11)
+bones/11/rotation = Quaternion(0.170889, -0.000533602, -0.00067706, 0.98529)
+bones/11/scale = Vector3(1, 1, 1)
+bones/12/position = Vector3(-3.32295e-10, 0.0167992, -1.5373e-09)
+bones/12/rotation = Quaternion(0.0224315, 0.0417799, 0.148516, 0.987772)
+bones/12/scale = Vector3(1, 1, 1)
+bones/13/position = Vector3(0.00749781, 0.000885649, -8.34375e-05)
+bones/13/rotation = Quaternion(0.701902, -0.0194343, 0.706838, 0.0856466)
+bones/13/scale = Vector3(0.999994, 1, 0.999998)
+bones/14/position = Vector3(-3.17827e-11, 0.021329, -7.41932e-10)
+bones/14/rotation = Quaternion(0.0654476, -1.26895e-07, -7.42387e-08, 0.997856)
+bones/14/scale = Vector3(1, 1, 1)
+bones/15/position = Vector3(-0.00749781, 0.000885649, -8.34375e-05)
+bones/15/rotation = Quaternion(-0.701902, -0.0194343, 0.706838, -0.0856466)
+bones/15/scale = Vector3(0.999994, 1, 0.999998)
+bones/16/position = Vector3(3.17827e-11, 0.021329, -7.41932e-10)
+bones/16/rotation = Quaternion(0.0654476, 1.26895e-07, 7.42387e-08, 0.997856)
+bones/16/scale = Vector3(1, 1, 1)
+
+[node name="ps1_skeleton" parent="Skeleton/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_y3p0j")

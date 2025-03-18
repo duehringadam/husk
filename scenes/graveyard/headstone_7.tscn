@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://bx0enav7xwb6t"]
+
+[ext_resource type="ArrayMesh" uid="uid://ds5wbeowywqbx" path="res://scenes/gravestones/headstone_7.res" id="1_wrwnj"]
+[ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="2_gxr6o"]
+[ext_resource type="Texture2D" uid="uid://qwqgw5gnny7h" path="res://scenes/gravestones/grave_stones(1)_0.jpg" id="3_ynhvv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wrwnj"]
+render_priority = 0
+shader = ExtResource("2_gxr6o")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("3_ynhvv")
+shader_parameter/albedo_texture_as_primary_color = true
+shader_parameter/mix_factor = 1.0
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_gxr6o"]
+points = PackedVector3Array(28.2269, 1113.67, -2246.29, -115.518, -53.7152, -2390.01, -115.295, -52.6181, -2158.75, 115.739, -52.6174, -2389.79, 127.302, 85.9268, -2147.19, -87.7233, 1024.02, -2362.22, -87.7233, 1024.02, -2186.32, 88.168, 1024.02, -2362.22, 88.168, 1024.02, -2186.32, -126.857, 85.9268, -2401.35, 127.302, 85.9268, -2401.35, -126.857, 85.9268, -2147.19, 115.516, -51.519, -2158.98, -27.7972, 1114.5, -2302.29, -68.1688, 1043.5, -2186.32, 88.168, 1043.5, -2342.69, -87.7233, 1043.5, -2205.85, 68.6134, 1043.5, -2362.22, 28.249, 1114.15, -2302.27, -126.857, 105.399, -2381.79, 127.302, 105.399, -2166.74, -107.303, 105.399, -2401.35, 107.747, 105.399, -2147.19, -27.7758, 1114.05, -2246.27, 88.168, 1043.5, -2205.85, 68.6134, 1043.5, -2186.32, -87.7233, 1043.5, -2342.69, -68.1688, 1043.5, -2362.22, 107.747, 105.399, -2401.35, -107.303, 105.399, -2147.19, 127.302, 105.399, -2381.79, -126.857, 105.399, -2166.74)
+
+[node name="headstone_1" type="StaticBody3D"]
+transform = Transform3D(0.002, 0, 0, 0, 0.002, 0, 0, 0, 0.002, 0, 0, 0.687554)
+collision_layer = 2
+collision_mask = 5
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.1828, 0, 1577.4)
+mesh = ExtResource("1_wrwnj")
+surface_material_override/0 = SubResource("ShaderMaterial_wrwnj")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.1828, 0, 1577.4)
+shape = SubResource("ConvexPolygonShape3D_gxr6o")

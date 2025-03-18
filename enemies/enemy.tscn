@@ -1,0 +1,94 @@
+[gd_scene load_steps=15 format=3 uid="uid://dkjuf3xiygm1v"]
+
+[ext_resource type="Script" uid="uid://d0tidycuhkfer" path="res://enemies/enemy.gd" id="1_uj7h1"]
+[ext_resource type="Script" uid="uid://df27yo6esc0lt" path="res://addons/beehave/nodes/beehave_tree.gd" id="2_28xqf"]
+[ext_resource type="Script" uid="uid://smg2xw2t0edh" path="res://addons/beehave/nodes/composites/selector.gd" id="3_g67el"]
+[ext_resource type="Script" uid="uid://bedtxiwg0qd8n" path="res://addons/beehave/nodes/composites/sequence.gd" id="4_ccbdt"]
+[ext_resource type="Script" uid="uid://b6fr251hwt0o0" path="res://alert_condition.gd" id="5_mgey2"]
+[ext_resource type="Script" uid="uid://wrjkfv1yg1ad" path="res://alerted.gd" id="6_cjbay"]
+[ext_resource type="Script" uid="uid://brr0wkxrdhg16" path="res://enemies/isclose.gd" id="7_0h01o"]
+[ext_resource type="Script" uid="uid://du1jnwvlj0oai" path="res://enemies/chase.gd" id="8_8cidi"]
+[ext_resource type="Script" uid="uid://bdkogcl07ubu1" path="res://idle_condition.gd" id="9_grymm"]
+[ext_resource type="Script" uid="uid://c8i6448kggujx" path="res://enemies/idle.gd" id="10_ymuxt"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_yggaa"]
+points = PackedVector3Array(-0.000195742, 1, -0.000195742, 0.194988, -1, -0.980814, -0.000195742, -1, -1, -0.195184, -1, -0.980814, -0.382733, -1, -0.924041, -0.555599, -1, -0.831637, -0.707126, -1, -0.707126, -0.831637, -1, -0.555599, -0.924041, -1, -0.382733, -0.980814, -1, -0.195184, -1, -1, -0.000195742, -0.980814, -1, 0.194988, -0.924041, -1, 0.382537, -0.831637, -1, 0.555403, -0.707126, -1, 0.70693, -0.555599, -1, 0.831441, -0.382733, -1, 0.923845, -0.195184, -1, 0.980619, -0.000195742, -1, 1, 0.194988, -1, 0.980619, 0.382537, -1, 0.923845, 0.555403, -1, 0.831441, 0.70693, -1, 0.70693, 0.831441, -1, 0.555403, 0.923845, -1, 0.382537, 0.980619, -1, 0.194988, 1, -1, -0.000195742, 0.980619, -1, -0.195184, 0.923845, -1, -0.382733, 0.831441, -1, -0.555599, 0.70693, -1, -0.707126, 0.555403, -1, -0.831637, 0.382537, -1, -0.924041)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2eln6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fnhdm"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_jrx20"]
+material = SubResource("StandardMaterial3D_fnhdm")
+
+[node name="enemy" type="CharacterBody3D" groups=["Enemies"]]
+script = ExtResource("1_uj7h1")
+
+[node name="LOSArea" type="Area3D" parent="."]
+transform = Transform3D(-0.999848, 0, 0.0174525, 0, 1, 0, -0.0174525, 0, -0.999848, 0, 0, 0)
+
+[node name="lineOfSight" type="CollisionShape3D" parent="LOSArea"]
+transform = Transform3D(10, 0, 0, 0, -4.37114e-07, 10, 0, -10, -4.37114e-07, -0.0105737, 1.53167, 10.3036)
+shape = SubResource("ConvexPolygonShape3D_yggaa")
+
+[node name="visionRayCast" type="RayCast3D" parent="LOSArea"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5285, 0)
+target_position = Vector3(0, 0, -30)
+collide_with_areas = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_2eln6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = SubResource("CapsuleMesh_jrx20")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+target_desired_distance = 2.0
+path_height_offset = 0.1
+avoidance_enabled = true
+
+[node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
+script = ExtResource("2_28xqf")
+blackboard = NodePath("@Node@22414")
+actor = NodePath("..")
+
+[node name="SelectorComposite" type="Node" parent="BeehaveTree"]
+script = ExtResource("3_g67el")
+
+[node name="alert" type="Node" parent="BeehaveTree/SelectorComposite"]
+script = ExtResource("4_ccbdt")
+
+[node name="alertCondition" type="Node" parent="BeehaveTree/SelectorComposite/alert"]
+script = ExtResource("5_mgey2")
+
+[node name="alertAction" type="Node" parent="BeehaveTree/SelectorComposite/alert"]
+script = ExtResource("6_cjbay")
+
+[node name="chase" type="Node" parent="BeehaveTree/SelectorComposite"]
+script = ExtResource("4_ccbdt")
+
+[node name="isClose" type="Node" parent="BeehaveTree/SelectorComposite/chase"]
+script = ExtResource("7_0h01o")
+
+[node name="Chase" type="Node" parent="BeehaveTree/SelectorComposite/chase"]
+script = ExtResource("8_8cidi")
+
+[node name="idle" type="Node" parent="BeehaveTree/SelectorComposite"]
+script = ExtResource("4_ccbdt")
+
+[node name="idleCondition" type="Node" parent="BeehaveTree/SelectorComposite/idle"]
+script = ExtResource("9_grymm")
+
+[node name="Idle" type="Node" parent="BeehaveTree/SelectorComposite/idle"]
+script = ExtResource("10_ymuxt")
+
+[node name="visionTimer" type="Timer" parent="."]
+wait_time = 0.25
+autostart = true
+
+[connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
+[connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
+[connection signal="velocity_computed" from="NavigationAgent3D" to="BeehaveTree" method="_on_navigation_agent_3d_velocity_computed"]
+[connection signal="timeout" from="visionTimer" to="." method="_on_vision_timer_timeout"]

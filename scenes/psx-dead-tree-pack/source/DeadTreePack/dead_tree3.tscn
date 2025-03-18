@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://dgcf20fy0j5u4"]
+
+[ext_resource type="ArrayMesh" uid="uid://cl76b4yvaba2c" path="res://scenes/psx-dead-tree-pack/source/DeadTreePack/tree3.res" id="1_ar06o"]
+[ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="2_lejmv"]
+[ext_resource type="Texture2D" uid="uid://beu63dt44eixd" path="res://scenes/psx-dead-tree-pack/source/DeadTreePack/Bark1M.jpg" id="3_fjqr7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t811t"]
+render_priority = 0
+shader = ExtResource("2_lejmv")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("3_fjqr7")
+shader_parameter/albedo_texture_as_primary_color = true
+shader_parameter/mix_factor = 1.0
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_lejmv"]
+points = PackedVector3Array(-0.0196913, 0.00837324, -0.012996, 0.02815, -0.0131427, 0.140096, 0.02815, -0.015531, 0.140096, -0.048396, -0.0107544, 0.111369, 0.0114037, 0.0418659, 0.0994253, 0.0114037, -0.015531, -0.012996, 0.0185817, 0.0107686, -0.012996, 0.00422562, -0.029896, 0.101823, -0.010123, -0.015531, -0.012996, -0.0316497, 0.0107686, 0.116164, -0.010123, 0.0203359, -0.012996, -0.00773282, 0.00360363, 0.135301, 0.0137939, 0.0418659, 0.0898346, 0.0137939, -0.029896, 0.0922473, 0.0185817, -0.00836606, -0.012996, 0.00901349, 0.0203359, -0.012996, -0.0172936, -0.0107544, -0.012996, -0.00534263, -0.0179334, -0.012996, -0.0316497, 0.0107686, 0.104206, -0.048396, -0.0107544, 0.106603, -0.0172936, 0.0131569, -0.012996, 0.00422562, -0.029896, 0.0946449, 0.0114037, 0.0418659, 0.0898346, 0.0257523, -0.015531, 0.140096, 0.0137939, 0.0179406, -0.012996, 0.02815, -0.015531, 0.135301, -0.0196913, 0.00120828, -0.012996, -0.00773282, 0.00120828, 0.135301, -0.000554761, -0.0179334, -0.012996, -0.00534263, 0.00360363, 0.135301, 0.02815, -0.0131427, 0.135301, 0.0137939, -0.029896, 0.0970276)
+
+[node name="StaticBody3D" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(50, 0, 0, 0, -2.18557e-06, 50, 0, -50, -2.18557e-06, 0, 0, 0)
+mesh = ExtResource("1_ar06o")
+surface_material_override/0 = SubResource("ShaderMaterial_t811t")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(50, 0, 0, 0, -2.18557e-06, 50, 0, -50, -2.18557e-06, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_lejmv")

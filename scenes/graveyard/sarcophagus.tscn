@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://bbucbis3cat5f"]
+
+[ext_resource type="ArrayMesh" uid="uid://jb5c3h5nr7gv" path="res://scenes/gravestones/sarcophagus.res" id="1_dses5"]
+[ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="2_o4p6o"]
+[ext_resource type="Texture2D" uid="uid://qwqgw5gnny7h" path="res://scenes/gravestones/grave_stones(1)_0.jpg" id="3_leebx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6p5hy"]
+render_priority = 0
+shader = ExtResource("2_o4p6o")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("3_leebx")
+shader_parameter/albedo_texture_as_primary_color = true
+shader_parameter/mix_factor = 1.0
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_nr2dp"]
+points = PackedVector3Array(326.157, 256.358, -6278.44, -386.635, -105.97, -6483.74, -368.147, -97.3074, -6130.01, 386.635, -105.97, -6483.74, -326.081, 256.358, -6326.72, 386.635, -69.7516, -6121.34, -338.192, 111.413, -6145.57, 335.953, 98.3569, -6453.12, -335.881, 98.3569, -6453.12, 338.268, 111.413, -6145.57, 368.147, -97.3074, -6130.01, -386.635, -69.7516, -6121.34, 326.157, 256.358, -6326.72, -326.081, 256.358, -6278.44, -386.635, -69.7516, -6483.74, 386.635, -69.7516, -6483.74)
+
+[node name="sarcophagus" type="StaticBody3D"]
+transform = Transform3D(0.002, 0, 0, 0, 0.002, 0, 0, 0, 0.002, 0, 0, 0.687554)
+collision_layer = 2
+collision_mask = 5
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -31.1828, 0, 18554.7)
+mesh = ExtResource("1_dses5")
+surface_material_override/0 = SubResource("ShaderMaterial_6p5hy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -31.1828, 0, 18554.7)
+shape = SubResource("ConvexPolygonShape3D_nr2dp")

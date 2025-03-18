@@ -1,0 +1,312 @@
+[gd_scene load_steps=27 format=3 uid="uid://wbbu81bn30xc"]
+
+[ext_resource type="Script" uid="uid://dtuv0q76720mr" path="res://weapon_scene.gd" id="1_3bige"]
+[ext_resource type="ArrayMesh" uid="uid://dqb5es2uomja" path="res://Player/weapon/EXECUTIONER_SWORD [PSX STYLE]/EXECUTIONER_SWORD [PSX STYLE]/[EXECUTIONER SWORD]/executionersword.obj" id="2_5d4qa"]
+[ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="3_jkoxj"]
+[ext_resource type="Texture2D" uid="uid://ye522if8rao5" path="res://Player/weapon/EXECUTIONER_SWORD [PSX STYLE]/EXECUTIONER_SWORD [PSX STYLE]/[EXECUTIONER SWORD]/bladetex.png" id="4_ar37g"]
+[ext_resource type="Texture2D" uid="uid://bi0mt4da7xjhx" path="res://Player/weapon/EXECUTIONER_SWORD [PSX STYLE]/EXECUTIONER_SWORD [PSX STYLE]/[EXECUTIONER SWORD]/metaltexguard.png" id="5_ab26s"]
+[ext_resource type="Texture2D" uid="uid://c64vcybe248jp" path="res://Player/weapon/EXECUTIONER_SWORD [PSX STYLE]/EXECUTIONER_SWORD [PSX STYLE]/[EXECUTIONER SWORD]/metaltexxtra.png" id="6_r87k0"]
+[ext_resource type="Texture2D" uid="uid://d24w7b1jm25tk" path="res://Player/weapon/EXECUTIONER_SWORD [PSX STYLE]/EXECUTIONER_SWORD [PSX STYLE]/[EXECUTIONER SWORD]/leathertexgrip.png" id="7_0o31y"]
+[ext_resource type="Texture2D" uid="uid://d3ylii31yumu5" path="res://Player/weapon/EXECUTIONER_SWORD [PSX STYLE]/EXECUTIONER_SWORD [PSX STYLE]/[EXECUTIONER SWORD]/brasstexrings.png" id="8_mqvla"]
+[ext_resource type="Texture2D" uid="uid://dwunoqydmv42q" path="res://Player/weapon/EXECUTIONER_SWORD [PSX STYLE]/EXECUTIONER_SWORD [PSX STYLE]/[EXECUTIONER SWORD]/metaltexpommel.png" id="9_drejy"]
+[ext_resource type="AudioStream" uid="uid://bjlhqucjq20c" path="res://sfx/sword-sound-260274.mp3" id="10_6fyjw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7e2dh"]
+render_priority = 0
+shader = ExtResource("3_jkoxj")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("4_ar37g")
+shader_parameter/albedo_texture_as_primary_color = true
+shader_parameter/mix_factor = 1.0
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5yrxi"]
+render_priority = 0
+shader = ExtResource("3_jkoxj")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("5_ab26s")
+shader_parameter/albedo_texture_as_primary_color = true
+shader_parameter/mix_factor = 1.0
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ysmu5"]
+render_priority = 0
+shader = ExtResource("3_jkoxj")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("5_ab26s")
+shader_parameter/albedo_texture_as_primary_color = true
+shader_parameter/mix_factor = 1.0
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_da8hw"]
+render_priority = 0
+shader = ExtResource("3_jkoxj")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("6_r87k0")
+shader_parameter/albedo_texture_as_primary_color = true
+shader_parameter/mix_factor = 1.0
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w1fqq"]
+render_priority = 0
+shader = ExtResource("3_jkoxj")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("6_r87k0")
+shader_parameter/albedo_texture_as_primary_color = true
+shader_parameter/mix_factor = 1.0
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ui2p7"]
+render_priority = 0
+shader = ExtResource("3_jkoxj")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("7_0o31y")
+shader_parameter/albedo_texture_as_primary_color = true
+shader_parameter/mix_factor = 1.0
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l6bnc"]
+render_priority = 0
+shader = ExtResource("3_jkoxj")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("7_0o31y")
+shader_parameter/albedo_texture_as_primary_color = true
+shader_parameter/mix_factor = 1.0
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yl3nb"]
+render_priority = 0
+shader = ExtResource("3_jkoxj")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("8_mqvla")
+shader_parameter/albedo_texture_as_primary_color = true
+shader_parameter/mix_factor = 1.0
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n71pd"]
+render_priority = 0
+shader = ExtResource("3_jkoxj")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("8_mqvla")
+shader_parameter/albedo_texture_as_primary_color = true
+shader_parameter/mix_factor = 1.0
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1q180"]
+render_priority = 0
+shader = ExtResource("3_jkoxj")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("9_drejy")
+shader_parameter/albedo_texture_as_primary_color = true
+shader_parameter/mix_factor = 1.0
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_33koy"]
+render_priority = 0
+shader = ExtResource("3_jkoxj")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("9_drejy")
+shader_parameter/albedo_texture_as_primary_color = true
+shader_parameter/mix_factor = 1.0
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_byu5a"]
+render_priority = 0
+shader = ExtResource("3_jkoxj")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("9_drejy")
+shader_parameter/albedo_texture_as_primary_color = true
+shader_parameter/mix_factor = 1.0
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+
+[sub_resource type="Animation" id="Animation_q24d8"]
+resource_name = "swing_right"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.233333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.164207, 0.0714557, 0), Vector3(-1.101, -0.06, -0.13), Vector3(-1.2265, -0.08501, -0.139183), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.233333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.260909, -0.328715), Vector3(0.0314159, 2.51327, -1.51669), Vector3(0.033635, 2.61496, -1.52827), Vector3(0, 0, 0)]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("swing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.284495,
+"start_offset": 0.180411,
+"stream": ExtResource("10_6fyjw")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
+
+[sub_resource type="Animation" id="Animation_6cmx2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_j5syt"]
+resource_name = "hold_right"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.164207, 0.0714557, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.260909, -0.328715)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ff8w7"]
+_data = {
+&"RESET": SubResource("Animation_6cmx2"),
+&"hold_right": SubResource("Animation_j5syt"),
+&"swing_right": SubResource("Animation_q24d8")
+}
+
+[node name="sword_viewmodel" type="Node3D"]
+script = ExtResource("1_3bige")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, 0, 0, 0)
+mesh = ExtResource("2_5d4qa")
+surface_material_override/0 = SubResource("ShaderMaterial_7e2dh")
+surface_material_override/1 = SubResource("ShaderMaterial_5yrxi")
+surface_material_override/2 = SubResource("ShaderMaterial_ysmu5")
+surface_material_override/3 = SubResource("ShaderMaterial_da8hw")
+surface_material_override/4 = SubResource("ShaderMaterial_w1fqq")
+surface_material_override/5 = SubResource("ShaderMaterial_ui2p7")
+surface_material_override/6 = SubResource("ShaderMaterial_l6bnc")
+surface_material_override/7 = SubResource("ShaderMaterial_yl3nb")
+surface_material_override/8 = SubResource("ShaderMaterial_n71pd")
+surface_material_override/9 = SubResource("ShaderMaterial_1q180")
+surface_material_override/10 = SubResource("ShaderMaterial_33koy")
+surface_material_override/11 = SubResource("ShaderMaterial_byu5a")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ff8w7")
+}
+
+[node name="swing" type="AudioStreamPlayer3D" parent="."]
+volume_db = -12.0

@@ -1,0 +1,49 @@
+[gd_scene load_steps=10 format=3 uid="uid://ckth8y4hb482i"]
+
+[ext_resource type="ArrayMesh" uid="uid://d3ybhp61njxkh" path="res://scenes/gravestones/headstone_8.res" id="1_qpgvm"]
+[ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="2_cdtvc"]
+[ext_resource type="Texture2D" uid="uid://qwqgw5gnny7h" path="res://scenes/gravestones/grave_stones(1)_0.jpg" id="3_c0xgi"]
+[ext_resource type="PackedScene" uid="uid://cytve7ikjdrnc" path="res://scenes/graveyard/headstone_4.tscn" id="4_tsnxe"]
+[ext_resource type="PackedScene" uid="uid://bx0enav7xwb6t" path="res://scenes/graveyard/headstone_7.tscn" id="5_v65us"]
+[ext_resource type="PackedScene" uid="uid://bs3mj2xqror26" path="res://scenes/graveyard/headstone_1.tscn" id="6_cank2"]
+[ext_resource type="PackedScene" uid="uid://qvj7c0v73iro" path="res://scenes/graveyard/headstone_5.tscn" id="7_80gup"]
+[ext_resource type="PackedScene" uid="uid://cehkr5wurwefe" path="res://scenes/graveyard/headstone_6.tscn" id="8_6g76o"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_av7fg"]
+render_priority = 0
+shader = ExtResource("2_cdtvc")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("3_c0xgi")
+shader_parameter/albedo_texture_as_primary_color = true
+shader_parameter/mix_factor = 1.0
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+
+[node name="headstone_1" type="StaticBody3D"]
+transform = Transform3D(0.002, 0, 0, 0, 0.002, 0, 0, 0, 0.002, 0, 0, 0.687554)
+collision_layer = 2
+collision_mask = 5
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.1828, 0, 1577.4)
+mesh = ExtResource("1_qpgvm")
+surface_material_override/0 = SubResource("ShaderMaterial_av7fg")
+
+[node name="headstone_1" parent="." instance=ExtResource("4_tsnxe")]
+transform = Transform3D(0.883913, 0, 0.467652, 0.110552, 0.971656, -0.208954, -0.454397, 0.236397, 0.858859, 404.143, -76.6452, 1118.1)
+
+[node name="headstone_2" parent="." instance=ExtResource("5_v65us")]
+transform = Transform3D(0.98435, 0.176226, 0, -0.176226, 0.98435, 0, 0, 0, 1, 274.034, -88.1481, 541.854)
+
+[node name="headstone_3" parent="." instance=ExtResource("6_cank2")]
+transform = Transform3D(0.812758, 0.355776, -0.461354, -0.309404, 0.934571, 0.17563, 0.493653, 0, 0.869659, -24.4076, 0.000119209, 864.87)
+
+[node name="headstone_4" parent="." instance=ExtResource("7_80gup")]
+transform = Transform3D(0.707489, 0, -0.706724, 0, 1, 0, 0.706724, 0, 0.707489, -740.658, 0, 178.839)
+
+[node name="headstone_5" parent="." instance=ExtResource("8_6g76o")]
+transform = Transform3D(0.748391, -0.430133, 0.504872, 0.35658, 0.902766, 0.240552, -0.559251, 0, 0.828999, 154.684, 150.802, 828.012)

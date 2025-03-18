@@ -1,0 +1,301 @@
+[gd_scene load_steps=35 format=3 uid="uid://crwpbskjjllht"]
+
+[ext_resource type="Script" uid="uid://bi6bcf1evx4ur" path="res://Player/player.gd" id="1_t2vdx"]
+[ext_resource type="Script" uid="uid://b3yihwhs36do6" path="res://Player/States/statemachine.gd" id="2_7a7qp"]
+[ext_resource type="PackedScene" uid="uid://c10yndd1w41ng" path="res://sword_world_model.tscn" id="2_hshwv"]
+[ext_resource type="Script" uid="uid://c00yuda8yv1rm" path="res://Player/States/idlePlayerState.gd" id="3_841m4"]
+[ext_resource type="Script" uid="uid://cvlafrfonwbet" path="res://Player/States/walkingPlayerState.gd" id="4_fqfeh"]
+[ext_resource type="Script" uid="uid://vy0c7th4phgh" path="res://Player/States/sprintingPlayerState.gd" id="5_5kr7g"]
+[ext_resource type="Script" uid="uid://dby6vdcgpp7pl" path="res://Player/States/leaningPlayerState.gd" id="5_v6lau"]
+[ext_resource type="Script" uid="uid://04q1kycsbd3e" path="res://Player/States/crouchingPlayerState.gd" id="6_b2402"]
+[ext_resource type="Script" uid="uid://do22my2l07iw8" path="res://Player/States/leaning_right_player_state.gd" id="6_d4l27"]
+[ext_resource type="Script" uid="uid://c0igns5ruyseu" path="res://Player/States/jumpingPlayerState.gd" id="7_gsrmw"]
+[ext_resource type="Script" uid="uid://3xygyavglg41" path="res://Player/States/fallingPlayerState.gd" id="8_d032x"]
+[ext_resource type="Shader" uid="uid://bk3lh0w1onrpq" path="res://shaders/ursc_1.3.0/addons/ursc/canvas_item/dithering.gdshader" id="11_7emwf"]
+[ext_resource type="PackedScene" uid="uid://wbbu81bn30xc" path="res://sword_viewmodel.tscn" id="11_apopc"]
+[ext_resource type="Texture2D" uid="uid://dpk2gn2elqcr3" path="res://AllSkyFree/Skyboxes/AllSkyFree_Sky_OvercastLow_Equirect.png" id="11_n471f"]
+[ext_resource type="AudioStream" uid="uid://jgru6x0534if" path="res://sfx/jute-dh-steps/jute-dh-steps/stepdirt_1.wav" id="12_o28un"]
+[ext_resource type="AudioStream" uid="uid://bqja0ky1x67vd" path="res://sfx/jute-dh-steps/jute-dh-steps/stepdirt_2.wav" id="13_n471f"]
+[ext_resource type="AudioStream" uid="uid://7vv20hgqqcxk" path="res://sfx/jute-dh-steps/jute-dh-steps/stepdirt_3.wav" id="14_7emwf"]
+[ext_resource type="AudioStream" uid="uid://bge0h5kq5rdrj" path="res://sfx/jute-dh-steps/jute-dh-steps/stepdirt_4.wav" id="15_hshwv"]
+[ext_resource type="AudioStream" uid="uid://cyxllvh7hmhts" path="res://sfx/jute-dh-steps/jute-dh-steps/stepdirt_5.wav" id="16_gpjlu"]
+[ext_resource type="AudioStream" uid="uid://bkoo0dovg888a" path="res://sfx/jute-dh-steps/jute-dh-steps/stepdirt_6.wav" id="17_8mwp6"]
+[ext_resource type="AudioStream" uid="uid://cqptw22pmofy7" path="res://sfx/jute-dh-steps/jute-dh-steps/stepdirt_7.wav" id="18_qemgg"]
+[ext_resource type="AudioStream" uid="uid://c64kea7efbe3v" path="res://sfx/jute-dh-steps/jute-dh-steps/stepdirt_8.wav" id="19_8viyr"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tvulw"]
+radius = 0.375
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_npvy2"]
+radius = 0.25
+
+[sub_resource type="Animation" id="Animation_sjg43"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hitbox:shape:height")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hitbox:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.75, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("head:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.29565, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("head/Camera3D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.00930202, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4snmk"]
+resource_name = "crouch"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hitbox:shape:height")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hitbox:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.75, 0), Vector3(0, 0.25, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("head:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1.29565, 0), Vector3(0, 0.5, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_idr3j"]
+_data = {
+&"RESET": SubResource("Animation_sjg43"),
+&"crouch": SubResource("Animation_4snmk")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hshwv"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_7emwf"]
+panorama = ExtResource("11_n471f")
+energy_multiplier = 2.0
+
+[sub_resource type="Sky" id="Sky_hshwv"]
+sky_material = SubResource("PanoramaSkyMaterial_7emwf")
+
+[sub_resource type="Environment" id="Environment_o28un"]
+background_mode = 2
+background_color = Color(0.821789, 0.821789, 0.821789, 1)
+background_energy_multiplier = 1.12
+sky = SubResource("Sky_hshwv")
+
+[sub_resource type="World3D" id="World3D_n471f"]
+environment = SubResource("Environment_o28un")
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_sm0op"]
+shuffle = true
+fade_time = 0.0
+stream_count = 8
+stream_0 = ExtResource("12_o28un")
+stream_1 = ExtResource("13_n471f")
+stream_2 = ExtResource("14_7emwf")
+stream_3 = ExtResource("15_hshwv")
+stream_4 = ExtResource("16_gpjlu")
+stream_5 = ExtResource("17_8mwp6")
+stream_6 = ExtResource("18_qemgg")
+stream_7 = ExtResource("19_8viyr")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7emwf"]
+shader = ExtResource("11_7emwf")
+shader_parameter/fog_color = Color(1, 1, 1, 1)
+shader_parameter/resolution_downsampling = 1.0
+shader_parameter/bit_depth = 16.0
+
+[node name="player" type="CharacterBody3D"]
+collision_mask = 3
+script = ExtResource("1_t2vdx")
+
+[node name="hitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+shape = SubResource("CapsuleShape3D_tvulw")
+
+[node name="head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.29565, 0)
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="head"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.70418, 0)
+shape = SubResource("SphereShape3D_npvy2")
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="Camera3D" type="Camera3D" parent="head"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00930202, 0)
+fov = 70.0
+
+[node name="sword_world_model" parent="head/Camera3D" node_paths=PackedStringArray("player_lookat_ray") instance=ExtResource("2_hshwv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.723067, 0, -1.30375)
+player_lookat_ray = NodePath("../look_at_ray")
+
+[node name="RayCast3D" type="RayCast3D" parent="head/Camera3D"]
+transform = Transform3D(0.564477, 0.825444, -0.00293898, 1.67303e-10, -0.00356046, -0.999994, -0.825449, 0.564474, -0.0020098, 0, 0, 0)
+collision_mask = 6
+collide_with_areas = true
+
+[node name="RayCast3D2" type="RayCast3D" parent="head/Camera3D"]
+transform = Transform3D(0.550452, -0.834862, 0.00297251, 3.28176e-10, -0.00356046, -0.999994, 0.834867, 0.550448, -0.00195986, 0, 0, 0)
+collision_mask = 6
+collide_with_areas = true
+
+[node name="look_at_ray" type="RayCast3D" parent="head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00919533, 0)
+target_position = Vector3(0, 0, -2.5)
+collision_mask = 6
+
+[node name="stateMachine" type="Node" parent="." node_paths=PackedStringArray("CURRENT_STATE")]
+script = ExtResource("2_7a7qp")
+CURRENT_STATE = NodePath("idlePlayerState")
+
+[node name="idlePlayerState" type="Node" parent="stateMachine"]
+script = ExtResource("3_841m4")
+
+[node name="walkingPlayerState" type="Node" parent="stateMachine"]
+script = ExtResource("4_fqfeh")
+
+[node name="leaningPlayerState" type="Node" parent="stateMachine"]
+script = ExtResource("5_v6lau")
+
+[node name="leaningRightPlayerState" type="Node" parent="stateMachine"]
+script = ExtResource("6_d4l27")
+
+[node name="sprintingPlayerState" type="Node" parent="stateMachine"]
+script = ExtResource("5_5kr7g")
+
+[node name="crouchingPlayerState" type="Node" parent="stateMachine"]
+script = ExtResource("6_b2402")
+
+[node name="jumpingPlayerState" type="Node" parent="stateMachine"]
+script = ExtResource("7_gsrmw")
+
+[node name="fallingPlayerState" type="Node" parent="stateMachine"]
+script = ExtResource("8_d032x")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_idr3j")
+}
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+material = SubResource("ShaderMaterial_hshwv")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+world_3d = SubResource("World3D_n471f")
+transparent_bg = true
+handle_input_locally = false
+audio_listener_enable_2d = true
+audio_listener_enable_3d = true
+size = Vector2i(1280, 720)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00171711, 1.30519, 0.0021373)
+cull_mask = 1048574
+
+[node name="weapon_viewport" parent="SubViewportContainer/SubViewport/Camera3D" node_paths=PackedStringArray("player_lookat_ray") instance=ExtResource("11_apopc")]
+unique_name_in_owner = true
+transform = Transform3D(0.961684, 0.186662, 0.200802, -0.200802, 0.978233, 0.052336, -0.186662, -0.0906522, 0.978233, 0.828, -0.0564511, -1.106)
+player_lookat_ray = NodePath("../../../../head/Camera3D/look_at_ray")
+
+[node name="MeshInstance3D" parent="SubViewportContainer/SubViewport/Camera3D/weapon_viewport" index="0"]
+layers = 3
+
+[node name="walk" type="AudioStreamPlayer3D" parent="SubViewportContainer/SubViewport/Camera3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00171711, -1.07993, -0.0021373)
+stream = SubResource("AudioStreamPlaylist_sm0op")
+volume_db = -30.0
+bus = &"SFX"
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="userInterface" type="Control" parent="UILayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="UILayer/userInterface"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="dither" type="ColorRect" parent="UILayer"]
+material = SubResource("ShaderMaterial_7emwf")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[editable path="SubViewportContainer/SubViewport/Camera3D/weapon_viewport"]
