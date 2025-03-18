@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=3 uid="uid://c74s3lrg2xrxn"]
+
+[ext_resource type="PackedScene" uid="uid://cncdnf1humyeh" path="res://scenes/ps1_psx_knight.glb" id="1_itplb"]
+[ext_resource type="Script" uid="uid://dev2jkq263i1q" path="res://knight.gd" id="2_633bp"]
+[ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="3_smgdd"]
+[ext_resource type="Texture2D" uid="uid://d3hf1olvks6w6" path="res://scenes/ps1_psx_knight_0.png" id="4_j1ka6"]
+[ext_resource type="Texture2D" uid="uid://vsb1yucfscvf" path="res://scenes/ps1_psx_knight_1.png" id="5_oc3hp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xl6iw"]
+render_priority = 0
+shader = ExtResource("3_smgdd")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("4_j1ka6")
+shader_parameter/albedo_texture_as_primary_color = true
+shader_parameter/mix_factor = 1.0
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ey8th"]
+render_priority = 0
+shader = ExtResource("3_smgdd")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("5_oc3hp")
+shader_parameter/albedo_texture_as_primary_color = true
+shader_parameter/mix_factor = 1.0
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+
+[node name="Sketchfab_Scene" instance=ExtResource("1_itplb")]
+script = ExtResource("2_633bp")
+
+[node name="Skeleton3D" parent="." index="0"]
+bones/6/position = Vector3(3.58712, 3.80782, -92.7014)
+bones/6/rotation = Quaternion(-0.798664, 0.0253731, -0.0759854, 0.596421)
+bones/7/rotation = Quaternion(0.0312989, -0.0119616, 0.012278, 0.999363)
+bones/9/rotation = Quaternion(0.143257, -0.00326517, 0.0232487, 0.989407)
+bones/11/rotation = Quaternion(0.0479799, -0.0292865, 0.0359337, 0.997772)
+bones/13/rotation = Quaternion(0.623415, 0.404702, -0.469044, 0.477041)
+bones/14/rotation = Quaternion(0.420204, 0.0974231, 0.111921, 0.895216)
+bones/15/rotation = Quaternion(0.00397731, -0.0351477, 0.151179, 0.987873)
+bones/21/rotation = Quaternion(0.151902, -0.0452355, 0.964693, -0.210349)
+bones/22/rotation = Quaternion(-0.126381, 0.0500307, 0.024224, 0.990423)
+bones/23/rotation = Quaternion(0.542459, -0.0404145, -0.098464, 0.833312)
+bones/26/rotation = Quaternion(-0.0317911, -0.1196, 0.991022, -0.0506112)
+bones/27/rotation = Quaternion(-0.153519, 0.086859, 0.0232775, 0.984046)
+bones/28/rotation = Quaternion(0.608875, -0.0258649, -0.0633484, 0.79031)
+
+[node name="Object_7" parent="Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_xl6iw")
+
+[node name="Object_9" parent="Skeleton3D" index="1"]
+surface_material_override/0 = SubResource("ShaderMaterial_ey8th")
+
+[node name="neck" type="Marker3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0373441, 1.47719, 0)
