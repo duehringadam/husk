@@ -19,4 +19,5 @@ func _input(event: InputEvent) -> void:
 
 func _on_body_exited(body: Node3D) -> void:
 	if body is Player:
+		interactable = false
 		SignalBus.dialogue_close.emit()

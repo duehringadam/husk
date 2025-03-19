@@ -11,15 +11,16 @@ var tween: Tween = null
 
 @onready var dialoguetimer: Timer = $"../dialoguetimer"
 @onready var user_interface: Control = $"../../.."
-@onready var skiptimer: Timer = $"../skiptimer"
 
 
 func dialogue(_dialogue_text: Array, _duration: float, _dialogue_sound: AudioStream, _dialogue_position: Vector3):
+	idx = 0
 	dialogue_text = _dialogue_text
 	dialogue_position = _dialogue_position
 	dialogue_sound = _dialogue_sound
 	duration = _duration
 	dialogue_display()
+	print(_dialogue_text)
 
 func _process(delta: float) -> void:
 	if new_dialogue:

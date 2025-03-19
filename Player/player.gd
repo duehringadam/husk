@@ -15,6 +15,7 @@ const CROUCH_SPEED = 3
 @onready var camera: Camera3D = %Camera3D
 @onready var weapon: Node3D = %weapon_viewport
 @onready var weapon_world: Node3D = $head/Camera3D/sword_world_model
+@onready var lantern: MeshInstance3D = $SubViewportContainer/SubViewport/Camera3D/lantern
 
 
 #camera bob
@@ -23,6 +24,10 @@ const BOB_AMP = 0.04
 
 const GUN_BOB_FREQ = 2.4
 const GUN_BOB_AMP = 0.04
+
+const LANTERN_BOB_FREQ = 2.4
+const LANTERN_BOB_AMP = 0.02
+
 var t_bob = 0.0
 
 var gravity = 18
@@ -82,6 +87,7 @@ func update_input(delta) ->void:
 			velocity.x = direction.x * SPEED
 			velocity.z = direction.z * SPEED
 			weapon.rotation_degrees.z = lerp(weapon.rotation_degrees.z, clampf(weapon.rotation_degrees.z+velocity.z,-14,-6),delta * 7.0)
+			lantern.rotation_degrees.z = lerp(weapon.rotation_degrees.z, clampf(weapon.rotation_degrees.z+velocity.z,-14,-6),delta * 3.5)
 			t_bob += delta * velocity.length() * float(is_on_floor())
 			camera.transform.origin = _headbob(t_bob)
 			weapon.transform.origin = _gunbob(t_bob)
@@ -89,9 +95,11 @@ func update_input(delta) ->void:
 			velocity.x = lerp(velocity.x, direction.x * SPEED, delta * 7.0)
 			velocity.z = lerp(velocity.z, direction.z * SPEED, delta * 7.0)
 			weapon.rotation_degrees.z = lerp(weapon.rotation_degrees.z, clampf(weapon.rotation_degrees.z+velocity.z,-14,-6),delta * 7.0)
+			lantern.rotation_degrees.z = lerp(weapon.rotation_degrees.z, clampf(weapon.rotation_degrees.z+velocity.z,-14,-6),delta * 3.5)
 			t_bob += delta * velocity.length() * float(is_on_floor())
 			camera.transform.origin = _headbob(t_bob)
 			weapon.transform.origin = _gunbob(t_bob)
+			lantern.transform.origin = _offhandbob(t_bob)
 			
 		if input_dir.x > 0:
 			head.rotation.z = lerp_angle(head.rotation.z, deg_to_rad(-1), 0.05)
@@ -118,4 +126,9 @@ func _headbob(time) -> Vector3:
 func _gunbob(time) -> Vector3:
 	var pos = Vector3(0.8,0-.3,-1.1)
 	pos.y += sin(time * GUN_BOB_FREQ) * GUN_BOB_AMP
+	return pos
+
+func _offhandbob(time) -> Vector3:
+	var pos = Vector3(-0.47,-0.6,-0.7)
+	pos.y += sin(time * LANTERN_BOB_FREQ) * LANTERN_BOB_AMP
 	return pos
