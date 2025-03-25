@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dkjuf3xiygm1v"]
+[gd_scene load_steps=13 format=3 uid="uid://dkjuf3xiygm1v"]
 
 [ext_resource type="Script" uid="uid://d0tidycuhkfer" path="res://enemies/enemy.gd" id="1_uj7h1"]
 [ext_resource type="Script" uid="uid://df27yo6esc0lt" path="res://addons/beehave/nodes/beehave_tree.gd" id="2_28xqf"]
@@ -15,11 +15,6 @@
 points = PackedVector3Array(-0.000195742, 1, -0.000195742, 0.194988, -1, -0.980814, -0.000195742, -1, -1, -0.195184, -1, -0.980814, -0.382733, -1, -0.924041, -0.555599, -1, -0.831637, -0.707126, -1, -0.707126, -0.831637, -1, -0.555599, -0.924041, -1, -0.382733, -0.980814, -1, -0.195184, -1, -1, -0.000195742, -0.980814, -1, 0.194988, -0.924041, -1, 0.382537, -0.831637, -1, 0.555403, -0.707126, -1, 0.70693, -0.555599, -1, 0.831441, -0.382733, -1, 0.923845, -0.195184, -1, 0.980619, -0.000195742, -1, 1, 0.194988, -1, 0.980619, 0.382537, -1, 0.923845, 0.555403, -1, 0.831441, 0.70693, -1, 0.70693, 0.831441, -1, 0.555403, 0.923845, -1, 0.382537, 0.980619, -1, 0.194988, 1, -1, -0.000195742, 0.980619, -1, -0.195184, 0.923845, -1, -0.382733, 0.831441, -1, -0.555599, 0.70693, -1, -0.707126, 0.555403, -1, -0.831637, 0.382537, -1, -0.924041)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2eln6"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fnhdm"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_jrx20"]
-material = SubResource("StandardMaterial3D_fnhdm")
 
 [node name="enemy" type="CharacterBody3D" groups=["Enemies"]]
 script = ExtResource("1_uj7h1")
@@ -41,9 +36,6 @@ collide_with_areas = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_2eln6")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
-mesh = SubResource("CapsuleMesh_jrx20")
-
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 target_desired_distance = 2.0
 path_height_offset = 0.1
@@ -51,7 +43,7 @@ avoidance_enabled = true
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("2_28xqf")
-blackboard = NodePath("@Node@22420")
+blackboard = NodePath("@Node@22419")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="BeehaveTree"]

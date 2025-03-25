@@ -2,13 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://nta3sef6c2el" path="res://demo/assets/models/RockB.glb" id="1_2nhli"]
 [ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="2_eh0bi"]
-[ext_resource type="Texture2D" uid="uid://cm6rt7x7xfiey" path="res://examples/Rock020_2K-JPG/Rock020_2K-JPG_Color.jpg" id="3_6hbew"]
+[ext_resource type="Texture2D" uid="uid://br7bfxcxh60df" path="res://demo/assets/textures/rock030_alb_ht.png" id="3_eh0bi"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j3wlv"]
 render_priority = 0
 shader = ExtResource("2_eh0bi")
 shader_parameter/albedo_color = Color(1, 1, 1, 1)
-shader_parameter/albedo_texture = ExtResource("3_6hbew")
+shader_parameter/albedo_texture = ExtResource("3_eh0bi")
 shader_parameter/albedo_texture_as_primary_color = true
 shader_parameter/mix_factor = 1.0
 shader_parameter/texture_lod_halve_distance_override = 0.0

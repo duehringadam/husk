@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://crwpbskjjllht"]
+[gd_scene load_steps=57 format=3 uid="uid://crwpbskjjllht"]
 
 [ext_resource type="Script" uid="uid://bi6bcf1evx4ur" path="res://Player/player.gd" id="1_t2vdx"]
 [ext_resource type="Script" uid="uid://b3yihwhs36do6" path="res://Player/States/statemachine.gd" id="2_7a7qp"]
@@ -11,21 +11,23 @@
 [ext_resource type="Script" uid="uid://do22my2l07iw8" path="res://Player/States/leaning_right_player_state.gd" id="6_d4l27"]
 [ext_resource type="Script" uid="uid://c0igns5ruyseu" path="res://Player/States/jumpingPlayerState.gd" id="7_gsrmw"]
 [ext_resource type="Script" uid="uid://3xygyavglg41" path="res://Player/States/fallingPlayerState.gd" id="8_d032x"]
-[ext_resource type="Shader" uid="uid://bk3lh0w1onrpq" path="res://shaders/ursc_1.3.0/addons/ursc/canvas_item/dithering.gdshader" id="11_7emwf"]
 [ext_resource type="PackedScene" uid="uid://wbbu81bn30xc" path="res://sword_viewmodel.tscn" id="11_apopc"]
 [ext_resource type="Texture2D" uid="uid://dpk2gn2elqcr3" path="res://AllSkyFree/Skyboxes/AllSkyFree_Sky_OvercastLow_Equirect.png" id="11_n471f"]
 [ext_resource type="AudioStream" uid="uid://jgru6x0534if" path="res://sfx/jute-dh-steps/jute-dh-steps/stepdirt_1.wav" id="12_o28un"]
 [ext_resource type="AudioStream" uid="uid://bqja0ky1x67vd" path="res://sfx/jute-dh-steps/jute-dh-steps/stepdirt_2.wav" id="13_n471f"]
 [ext_resource type="AudioStream" uid="uid://7vv20hgqqcxk" path="res://sfx/jute-dh-steps/jute-dh-steps/stepdirt_3.wav" id="14_7emwf"]
-[ext_resource type="PackedScene" uid="uid://2slbcbwd3que" path="res://Player/weapon/lantern.tscn" id="14_76lrf"]
 [ext_resource type="AudioStream" uid="uid://bge0h5kq5rdrj" path="res://sfx/jute-dh-steps/jute-dh-steps/stepdirt_4.wav" id="15_hshwv"]
 [ext_resource type="AudioStream" uid="uid://cyxllvh7hmhts" path="res://sfx/jute-dh-steps/jute-dh-steps/stepdirt_5.wav" id="16_gpjlu"]
 [ext_resource type="AudioStream" uid="uid://bkoo0dovg888a" path="res://sfx/jute-dh-steps/jute-dh-steps/stepdirt_6.wav" id="17_8mwp6"]
 [ext_resource type="AudioStream" uid="uid://cqptw22pmofy7" path="res://sfx/jute-dh-steps/jute-dh-steps/stepdirt_7.wav" id="18_qemgg"]
 [ext_resource type="AudioStream" uid="uid://c64kea7efbe3v" path="res://sfx/jute-dh-steps/jute-dh-steps/stepdirt_8.wav" id="19_8viyr"]
 [ext_resource type="Script" uid="uid://bh51mi6cbu7iw" path="res://Player/user_interface.gd" id="22_8viyr"]
+[ext_resource type="PackedScene" uid="uid://c2aqip4556h1x" path="res://scenes/Assets - PS1 Dungeon Pack/Assets - PS1 Dungeon Pack/Props/Torch_Wood.fbx" id="22_efx54"]
+[ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="23_bbimk"]
+[ext_resource type="Texture2D" uid="uid://cprle3s6dj3sq" path="res://scenes/smoke-12.png" id="23_efx54"]
 [ext_resource type="StyleBox" uid="uid://bkasfcxtv0jxl" path="res://fonts/dialogue_gradient_fade.tres" id="23_sm0op"]
 [ext_resource type="Theme" uid="uid://duc0j73rblgge" path="res://fonts/text_theme.tres" id="24_76lrf"]
+[ext_resource type="Texture2D" uid="uid://cgybn76xy26fr" path="res://scenes/Assets - PS1 Dungeon Pack/Assets - PS1 Dungeon Pack/Props/Torch_Metal_0.png" id="24_m0h3t"]
 [ext_resource type="Script" uid="uid://bs2pkx3tfve5x" path="res://Player/dialogue.gd" id="25_efx54"]
 [ext_resource type="Script" uid="uid://sj3mml8ulasu" path="res://Player/crosshair.gd" id="26_sm0op"]
 
@@ -162,6 +164,113 @@ stream_5 = ExtResource("17_8mwp6")
 stream_6 = ExtResource("18_qemgg")
 stream_7 = ExtResource("19_8viyr")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i4o1l"]
+render_priority = 0
+shader = ExtResource("23_bbimk")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("24_m0h3t")
+shader_parameter/albedo_texture_as_primary_color = true
+shader_parameter/mix_factor = 1.0
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+
+[sub_resource type="Curve" id="Curve_bbimk"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_n78cu"]
+curve = SubResource("Curve_bbimk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m0h3t"]
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 0.05
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, 1, 0)
+gravity = Vector3(0, 4.9, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = -2.23517e-06
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_n78cu")
+turbulence_enabled = true
+turbulence_noise_speed = Vector3(0, 1, 0)
+turbulence_influence_min = 0.0
+turbulence_influence_max = 0.01
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xgy6y"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_color = Color(1, 0.565882, 0.404504, 1)
+albedo_texture = ExtResource("23_efx54")
+emission = Color(1, 0.329412, 0, 1)
+emission_energy_multiplier = 0.0
+emission_texture = ExtResource("23_efx54")
+subsurf_scatter_strength = 1.0
+subsurf_scatter_texture = ExtResource("23_efx54")
+backlight_texture = ExtResource("23_efx54")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+point_size = 128.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_i4o1l"]
+material = SubResource("StandardMaterial3D_xgy6y")
+size = Vector2(0.1, 0.1)
+
+[sub_resource type="Curve" id="Curve_755ss"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.865169), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_kcpaj"]
+curve = SubResource("Curve_755ss")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bbimk"]
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 0.05
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, 1, 0)
+gravity = Vector3(0, 0.613, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = -2.23517e-06
+scale_min = 0.01
+scale_max = 0.1
+scale_curve = SubResource("CurveTexture_kcpaj")
+turbulence_enabled = true
+turbulence_noise_speed = Vector3(0, 1, 0)
+turbulence_influence_min = 0.0
+turbulence_influence_max = 0.114
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bbimk"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.92089, 0.571856, 0, 1)
+emission = Color(1, 0.329412, 0, 1)
+emission_energy_multiplier = 0.0
+emission_texture = ExtResource("23_efx54")
+subsurf_scatter_strength = 1.0
+subsurf_scatter_texture = ExtResource("23_efx54")
+backlight_texture = ExtResource("23_efx54")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+point_size = 128.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_m0h3t"]
+material = SubResource("StandardMaterial3D_bbimk")
+size = Vector2(0.1, 0.1)
+
 [sub_resource type="Animation" id="Animation_sm0op"]
 length = 0.001
 tracks/0/type = "value"
@@ -216,12 +325,6 @@ _data = {
 &"dialogue_hide": SubResource("Animation_76lrf")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7emwf"]
-shader = ExtResource("11_7emwf")
-shader_parameter/fog_color = Color(0, 0, 0, 1)
-shader_parameter/resolution_downsampling = 1.0
-shader_parameter/bit_depth = 32.0
-
 [node name="player" type="CharacterBody3D"]
 collision_mask = 3
 script = ExtResource("1_t2vdx")
@@ -245,17 +348,13 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00930202, 0)
 fov = 70.0
 
-[node name="SpotLight3D" type="SpotLight3D" parent="head/Camera3D"]
-transform = Transform3D(0.994722, 9.54773e-09, -0.102602, -9.31323e-09, 1, 2.76464e-09, 0.102602, -1.79449e-09, 0.994722, -0.381361, -0.155397, -0.884445)
+[node name="OmniLight3D" type="OmniLight3D" parent="head/Camera3D"]
+transform = Transform3D(0.912179, 0.185672, -0.365316, -0.0986075, 0.964723, 0.244103, 0.397752, -0.186642, 0.898308, 0.111175, 0.386002, 0.0429684)
 layers = 3
-light_color = Color(0.999999, 0.98714, 0.54779, 1)
-light_indirect_energy = 2.285
-light_volumetric_fog_energy = 2.803
-light_size = 1.0
-light_specular = 0.617
+light_color = Color(0.999999, 0.77326, 0.44272, 1)
+light_volumetric_fog_energy = 0.0
 shadow_enabled = true
-spot_range = 25.0
-spot_angle = 83.1
+omni_range = 4096.0
 
 [node name="sword_world_model" parent="head/Camera3D" node_paths=PackedStringArray("player_lookat_ray") instance=ExtResource("2_hshwv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.723067, 0, -1.30375)
@@ -340,16 +439,43 @@ player_lookat_ray = NodePath("../../../../head/Camera3D/look_at_ray")
 [node name="MeshInstance3D" parent="SubViewportContainer/SubViewport/Camera3D/weapon_viewport" index="0"]
 layers = 3
 
-[node name="lantern" parent="SubViewportContainer/SubViewport/Camera3D" instance=ExtResource("14_76lrf")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.568333, -0.610106, -0.772536)
-layers = 3
-
 [node name="walk" type="AudioStreamPlayer3D" parent="SubViewportContainer/SubViewport/Camera3D"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00171711, -1.07993, -0.0021373)
 stream = SubResource("AudioStreamPlaylist_sm0op")
 volume_db = -30.0
 bus = &"SFX"
+
+[node name="Torch_Wood" parent="SubViewportContainer/SubViewport/Camera3D" instance=ExtResource("22_efx54")]
+transform = Transform3D(0.912179, 0.185672, -0.365316, -0.0986075, 0.964723, 0.244103, 0.397752, -0.186642, 0.898308, -0.80158, -0.606447, -0.750911)
+
+[node name="TorchWood" parent="SubViewportContainer/SubViewport/Camera3D/Torch_Wood" index="0"]
+layers = 3
+surface_material_override/0 = SubResource("ShaderMaterial_i4o1l")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/Camera3D/Torch_Wood"]
+transform = Transform3D(1, 5.96046e-08, 1.19209e-07, 2.98023e-08, 1, -5.96046e-08, -1.19209e-07, 5.96046e-08, 1, 0.243698, 0.515592, -0.122712)
+layers = 3
+light_color = Color(1, 0.784314, 0.403922, 1)
+light_energy = 2.0
+light_volumetric_fog_energy = 0.0
+shadow_enabled = true
+omni_range = 2.0
+
+[node name="GPUParticles3D3" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/Camera3D/Torch_Wood"]
+transform = Transform3D(0.0355073, -0.187386, -0.981645, -0.332651, 0.924036, -0.188421, 0.942382, 0.333235, -0.0295242, -0.0114824, 0.363907, -0.00434875)
+layers = 3
+amount = 64
+process_material = SubResource("ParticleProcessMaterial_m0h3t")
+draw_pass_1 = SubResource("QuadMesh_i4o1l")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/Camera3D/Torch_Wood"]
+transform = Transform3D(1, -9.68575e-08, 2.98023e-07, 7.45058e-09, 1, -1.19209e-07, -2.98023e-08, 1.49012e-08, 1, -0.0114822, 0.363907, -0.00434875)
+layers = 3
+amount = 64
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_bbimk")
+draw_pass_1 = SubResource("QuadMesh_m0h3t")
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 
@@ -428,7 +554,6 @@ theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 40
 
 [node name="crosshair" type="CenterContainer" parent="UILayer/userInterface" node_paths=PackedStringArray("RETICLE_LINES", "PLAYER_CONTROLLER")]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -474,14 +599,7 @@ theme = ExtResource("24_76lrf")
 bbcode_enabled = true
 text = "test test"
 
-[node name="dither" type="ColorRect" parent="UILayer"]
-material = SubResource("ShaderMaterial_7emwf")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
 [connection signal="timeout" from="UILayer/userInterface/DialogueContainer/DialogueMargin/dialoguetimer" to="UILayer/userInterface/DialogueContainer/DialogueMargin/Dialogue" method="_on_dialoguetimer_timeout"]
 
 [editable path="SubViewportContainer/SubViewport/Camera3D/weapon_viewport"]
+[editable path="SubViewportContainer/SubViewport/Camera3D/Torch_Wood"]

@@ -1,16 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://c74s3lrg2xrxn"]
+[gd_scene load_steps=6 format=3 uid="uid://c74s3lrg2xrxn"]
 
 [ext_resource type="PackedScene" uid="uid://cncdnf1humyeh" path="res://scenes/ps1_psx_knight.glb" id="1_itplb"]
 [ext_resource type="Script" uid="uid://dev2jkq263i1q" path="res://knight.gd" id="2_633bp"]
 [ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="3_smgdd"]
-[ext_resource type="Texture2D" uid="uid://d3hf1olvks6w6" path="res://scenes/ps1_psx_knight_0.png" id="4_j1ka6"]
-[ext_resource type="Texture2D" uid="uid://vsb1yucfscvf" path="res://scenes/ps1_psx_knight_1.png" id="5_oc3hp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xl6iw"]
 render_priority = 0
 shader = ExtResource("3_smgdd")
 shader_parameter/albedo_color = Color(1, 1, 1, 1)
-shader_parameter/albedo_texture = ExtResource("4_j1ka6")
 shader_parameter/albedo_texture_as_primary_color = true
 shader_parameter/mix_factor = 1.0
 shader_parameter/texture_lod_halve_distance_override = 0.0
@@ -24,7 +21,6 @@ shader_parameter/convert_vertex_colors = false
 render_priority = 0
 shader = ExtResource("3_smgdd")
 shader_parameter/albedo_color = Color(1, 1, 1, 1)
-shader_parameter/albedo_texture = ExtResource("5_oc3hp")
 shader_parameter/albedo_texture_as_primary_color = true
 shader_parameter/mix_factor = 1.0
 shader_parameter/texture_lod_halve_distance_override = 0.0

@@ -28,7 +28,6 @@ SignalBus="*res://signal_bus.gd"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
-window/size/mode=3
 window/size/initial_position_type=2
 
 [editor]
@@ -37,7 +36,7 @@ movie_writer/movie_file="C:/Users/adamf/Documents/husk/movie.avi"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/beehave/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
+enabled=PackedStringArray("res://addons/beehave/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
 
 [global_group]
 
@@ -170,13 +169,13 @@ dither_texture={
 }
 dither_scale={
 "type": "float",
-"value": 2.5
+"value": 1.0
 }
 dither_strength={
 "type": "float",
-"value": 0.15
+"value": 0.5
 }
 dither_levels={
 "type": "float",
-"value": 3.0
+"value": 2.5
 }

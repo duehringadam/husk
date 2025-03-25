@@ -2,13 +2,13 @@
 
 [ext_resource type="ArrayMesh" uid="uid://jb5c3h5nr7gv" path="res://scenes/gravestones/sarcophagus.res" id="1_dses5"]
 [ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="2_o4p6o"]
-[ext_resource type="Texture2D" uid="uid://qwqgw5gnny7h" path="res://scenes/gravestones/grave_stones(1)_0.jpg" id="3_leebx"]
+[ext_resource type="Texture2D" uid="uid://qwqgw5gnny7h" path="res://scenes/gravestones/grave_stones(1)_0.jpg" id="3_o4p6o"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6p5hy"]
 render_priority = 0
 shader = ExtResource("2_o4p6o")
 shader_parameter/albedo_color = Color(1, 1, 1, 1)
-shader_parameter/albedo_texture = ExtResource("3_leebx")
+shader_parameter/albedo_texture = ExtResource("3_o4p6o")
 shader_parameter/albedo_texture_as_primary_color = true
 shader_parameter/mix_factor = 1.0
 shader_parameter/texture_lod_halve_distance_override = 0.0

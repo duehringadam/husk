@@ -2,13 +2,13 @@
 
 [ext_resource type="ArrayMesh" uid="uid://cl76b4yvaba2c" path="res://scenes/psx-dead-tree-pack/source/DeadTreePack/tree3.res" id="1_ar06o"]
 [ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="2_lejmv"]
-[ext_resource type="Texture2D" uid="uid://beu63dt44eixd" path="res://scenes/psx-dead-tree-pack/source/DeadTreePack/Bark1M.jpg" id="3_fjqr7"]
+[ext_resource type="Texture2D" uid="uid://beu63dt44eixd" path="res://scenes/psx-dead-tree-pack/source/DeadTreePack/Bark1M.jpg" id="3_ar06o"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t811t"]
 render_priority = 0
 shader = ExtResource("2_lejmv")
 shader_parameter/albedo_color = Color(1, 1, 1, 1)
-shader_parameter/albedo_texture = ExtResource("3_fjqr7")
+shader_parameter/albedo_texture = ExtResource("3_ar06o")
 shader_parameter/albedo_texture_as_primary_color = true
 shader_parameter/mix_factor = 1.0
 shader_parameter/texture_lod_halve_distance_override = 0.0

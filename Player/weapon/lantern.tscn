@@ -1,14 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://2slbcbwd3que"]
+[gd_scene load_steps=4 format=3 uid="uid://2slbcbwd3que"]
 
 [ext_resource type="ArrayMesh" uid="uid://d2l3em0lidljf" path="res://Player/weapon/lantern.res" id="1_4mflh"]
 [ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="2_hauun"]
-[ext_resource type="Texture2D" uid="uid://bj1oye1sf51um" path="res://Player/weapon/old_low_poly_lantern_0.png" id="3_d6jl0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fyyqk"]
 render_priority = 0
 shader = ExtResource("2_hauun")
 shader_parameter/albedo_color = Color(1, 1, 1, 1)
-shader_parameter/albedo_texture = ExtResource("3_d6jl0")
 shader_parameter/albedo_texture_as_primary_color = true
 shader_parameter/mix_factor = 1.0
 shader_parameter/texture_lod_halve_distance_override = 0.0
@@ -24,10 +22,10 @@ mesh = ExtResource("1_4mflh")
 surface_material_override/0 = SubResource("ShaderMaterial_fyyqk")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 2.07352, 0, 2.55927)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 2.07352, 3.17521, 2.55927)
 layers = 3
 light_color = Color(0.999999, 0.989036, 0.612531, 1)
 light_energy = 1.817
 light_indirect_energy = 1.818
-light_volumetric_fog_energy = 16.0
+light_volumetric_fog_energy = 0.0
 omni_range = 2.5

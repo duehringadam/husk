@@ -1,4 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://7rpwxmtd4vnq"]
+[gd_scene load_steps=12 format=3 uid="uid://7rpwxmtd4vnq"]
+
+[ext_resource type="Texture2D" uid="uid://cprle3s6dj3sq" path="res://scenes/smoke-12.png" id="1_aef0q"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c2a7w"]
 particle_flag_align_y = true
@@ -20,6 +22,43 @@ material = SubResource("StandardMaterial3D_c2a7w")
 size = Vector2(0.004, 0.004)
 orientation = 2
 
+[sub_resource type="Gradient" id="Gradient_aef0q"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vhl11"]
+gradient = SubResource("Gradient_aef0q")
+
+[sub_resource type="Curve" id="Curve_aef0q"]
+_data = [Vector2(0, 0.449438), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vhl11"]
+curve = SubResource("Curve_aef0q")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vhl11"]
+direction = Vector3(0, 0, 0)
+initial_velocity_min = 0.1
+initial_velocity_max = 0.2
+gravity = Vector3(0, 0.1, 0)
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_vhl11")
+color_ramp = SubResource("GradientTexture1D_vhl11")
+hue_variation_min = -2.23517e-08
+hue_variation_max = -2.23517e-08
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xdpml"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_aef0q")
+billboard_mode = 1
+billboard_keep_scale = true
+distance_fade_min_distance = 1.0
+distance_fade_max_distance = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_f025e"]
+material = SubResource("StandardMaterial3D_xdpml")
+size = Vector2(0.5, 0.5)
+
 [node name="hitparticles" type="GPUParticles3D"]
 emitting = false
 amount = 32
@@ -28,4 +67,13 @@ one_shot = true
 explosiveness = 1.0
 trail_lifetime = 1.18
 process_material = SubResource("ParticleProcessMaterial_c2a7w")
+draw_passes = 2
 draw_pass_1 = SubResource("PlaneMesh_aef0q")
+draw_pass_2 = null
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 1
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_vhl11")
+draw_pass_1 = SubResource("QuadMesh_f025e")

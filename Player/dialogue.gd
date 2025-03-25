@@ -20,7 +20,6 @@ func dialogue(_dialogue_text: Array, _duration: float, _dialogue_sound: AudioStr
 	dialogue_sound = _dialogue_sound
 	duration = _duration
 	dialogue_display()
-	print(_dialogue_text)
 
 func _process(delta: float) -> void:
 	if new_dialogue:

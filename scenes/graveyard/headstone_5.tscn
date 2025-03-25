@@ -2,13 +2,13 @@
 
 [ext_resource type="ArrayMesh" uid="uid://4sk5eqv75xdr" path="res://scenes/gravestones/headstone_5.res" id="1_foci8"]
 [ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="2_w35bu"]
-[ext_resource type="Texture2D" uid="uid://qwqgw5gnny7h" path="res://scenes/gravestones/grave_stones(1)_0.jpg" id="3_xfe02"]
+[ext_resource type="Texture2D" uid="uid://qwqgw5gnny7h" path="res://scenes/gravestones/grave_stones(1)_0.jpg" id="3_xthdd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_foci8"]
 render_priority = 0
 shader = ExtResource("2_w35bu")
 shader_parameter/albedo_color = Color(1, 1, 1, 1)
-shader_parameter/albedo_texture = ExtResource("3_xfe02")
+shader_parameter/albedo_texture = ExtResource("3_xthdd")
 shader_parameter/albedo_texture_as_primary_color = true
 shader_parameter/mix_factor = 1.0
 shader_parameter/texture_lod_halve_distance_override = 0.0

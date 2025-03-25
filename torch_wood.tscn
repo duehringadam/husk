@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7ipg6uwgrip8"]
+
+[ext_resource type="PackedScene" uid="uid://c2aqip4556h1x" path="res://scenes/Assets - PS1 Dungeon Pack/Assets - PS1 Dungeon Pack/Props/Torch_Wood.fbx" id="1_qyg87"]
+[ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="2_vuqeo"]
+[ext_resource type="Texture2D" uid="uid://cgybn76xy26fr" path="res://scenes/Assets - PS1 Dungeon Pack/Assets - PS1 Dungeon Pack/Props/Torch_Metal_0.png" id="3_vuqeo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_85i42"]
+render_priority = 0
+shader = ExtResource("2_vuqeo")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("3_vuqeo")
+shader_parameter/albedo_texture_as_primary_color = true
+shader_parameter/mix_factor = 1.0
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+
+[node name="Torch_Wood" instance=ExtResource("1_qyg87")]
+
+[node name="TorchWood" parent="." index="0"]
+layers = 3
+surface_material_override/0 = SubResource("ShaderMaterial_85i42")

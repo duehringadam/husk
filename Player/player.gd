@@ -15,7 +15,7 @@ const CROUCH_SPEED = 3
 @onready var camera: Camera3D = %Camera3D
 @onready var weapon: Node3D = %weapon_viewport
 @onready var weapon_world: Node3D = $head/Camera3D/sword_world_model
-@onready var lantern: MeshInstance3D = $SubViewportContainer/SubViewport/Camera3D/lantern
+@onready var lantern: Node3D = $SubViewportContainer/SubViewport/Camera3D/Torch_Wood
 
 
 #camera bob
@@ -32,15 +32,21 @@ var t_bob = 0.0
 
 var gravity = 18
 
-var can_shoot = true
 var dead = false
+var can_attack_bool: bool = true
 
 func _ready() -> void:
 	Global.player = self
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	SignalBus.connect("can_attack", can_attack)
 	
 
+func can_attack(value: bool):
+	print(value)
+	can_attack_bool = value
+
 func _input(event: InputEvent) -> void:
+	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	if dead:
 		return
 	if event is InputEventMouseMotion:
@@ -48,15 +54,19 @@ func _input(event: InputEvent) -> void:
 		camera.rotate_x(-event.relative.y * MOUSE_SENS)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-70),deg_to_rad(70))
 	
-	if event.is_action_pressed("attack_primary") && can_shoot:
-		can_shoot = false
-		weapon.animation_player.play("hold_right")
-		weapon_world.animation_player.play("hold_right")
-	if event.is_action_released("attack_primary"):
-		weapon.animation_player.play("swing_right")
-		weapon_world.animation_player.play("swing_right")
-		await weapon_world.animation_player.animation_finished
-		can_shoot = true
+	if event.is_action_pressed("attack_primary") && can_attack_bool:
+		if input_dir.y < 0:
+			weapon.state_chart.send_event("hold_forward")
+			weapon_world.state_chart.send_event("hold_forward")
+		elif input_dir.y > 0:
+			weapon.state_chart.send_event("hold_back")
+			weapon_world.state_chart.send_event("hold_back")
+		if input_dir.x < 0:
+			weapon.state_chart.send_event("hold_left")
+			weapon_world.state_chart.send_event("hold_left")
+		else:
+			weapon.state_chart.send_event("hold_right")
+			weapon_world.state_chart.send_event("hold_right")
 		
 
 func _process(delta: float) -> void:
@@ -91,6 +101,7 @@ func update_input(delta) ->void:
 			t_bob += delta * velocity.length() * float(is_on_floor())
 			camera.transform.origin = _headbob(t_bob)
 			weapon.transform.origin = _gunbob(t_bob)
+			lantern.transform.origin = _offhandbob(t_bob)
 		else:
 			velocity.x = lerp(velocity.x, direction.x * SPEED, delta * 7.0)
 			velocity.z = lerp(velocity.z, direction.z * SPEED, delta * 7.0)
@@ -102,17 +113,14 @@ func update_input(delta) ->void:
 			lantern.transform.origin = _offhandbob(t_bob)
 			
 		if input_dir.x > 0:
-			head.rotation.z = lerp_angle(head.rotation.z, deg_to_rad(-1), 0.05)
+			head.rotation.z = lerp_angle(head.rotation.z, deg_to_rad(-1), 0.06)
 		elif input_dir.x < 0:
-			head.rotation.z = lerp_angle(head.rotation.z, deg_to_rad(1), 0.05)
+			head.rotation.z = lerp_angle(head.rotation.z, deg_to_rad(1), 0.06)
 		else:
-			head.rotation.z = lerp_angle(head.rotation.z, deg_to_rad(0), 0.05)
+			head.rotation.z = lerp_angle(head.rotation.z, deg_to_rad(0), 0.06)
 	
 func update_velocity():
 	move_and_slide()
-
-func shoot_done():
-	can_shoot = true
 
 func kill():
 	dead = true

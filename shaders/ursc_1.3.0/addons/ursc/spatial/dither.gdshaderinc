@@ -1,4 +1,4 @@
-global uniform sampler2D dither_texture: filter_nearest;
+global uniform sampler2D dither_texture: filter_linear;
 global uniform float dither_scale;
 global uniform float dither_strength;
 global uniform float dither_levels;
