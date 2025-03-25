@@ -10,12 +10,13 @@ const MOUSE_SENS = 0.003
 const JUMP_VELOCITY = 8.0
 const CROUCH_SPEED = 3
 
+@export var mainhand: Node3D
+@export var offhand: Node3D
+
 @onready var animation: AnimationPlayer = %AnimationPlayer
 @onready var head: Node3D = $head
 @onready var camera: Camera3D = %Camera3D
-@onready var weapon: Node3D = %weapon_viewport
-@onready var weapon_world: Node3D = $head/Camera3D/sword_world_model
-@onready var lantern: Node3D = $SubViewportContainer/SubViewport/Camera3D/Torch_Wood
+
 
 
 #camera bob
@@ -42,7 +43,6 @@ func _ready() -> void:
 	
 
 func can_attack(value: bool):
-	print(value)
 	can_attack_bool = value
 
 func _input(event: InputEvent) -> void:
@@ -55,19 +55,20 @@ func _input(event: InputEvent) -> void:
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-70),deg_to_rad(70))
 	
 	if event.is_action_pressed("attack_primary") && can_attack_bool:
+		if input_dir.x < 0 && input_dir.y == 0:
+			mainhand.weapon.state_chart.send_event("hold_left")
+			mainhand.weapon_world.state_chart.send_event("hold_left")
+		elif input_dir.x > 0 && input_dir.y == 0:
+			mainhand.weapon.state_chart.send_event("hold_right")
+			mainhand.weapon_world.state_chart.send_event("hold_right")
 		if input_dir.y < 0:
-			weapon.state_chart.send_event("hold_forward")
-			weapon_world.state_chart.send_event("hold_forward")
+			mainhand.weapon.state_chart.send_event("hold_forward")
+			mainhand.weapon_world.state_chart.send_event("hold_forward")
 		elif input_dir.y > 0:
-			weapon.state_chart.send_event("hold_back")
-			weapon_world.state_chart.send_event("hold_back")
-		if input_dir.x < 0:
-			weapon.state_chart.send_event("hold_left")
-			weapon_world.state_chart.send_event("hold_left")
-		else:
-			weapon.state_chart.send_event("hold_right")
-			weapon_world.state_chart.send_event("hold_right")
-		
+			mainhand.weapon.state_chart.send_event("hold_back")
+			mainhand.weapon_world.state_chart.send_event("hold_back")
+		mainhand.weapon.state_chart.send_event("hold_right")
+		mainhand.weapon_world.state_chart.send_event("hold_right")
 
 func _process(delta: float) -> void:
 	if dead:
@@ -96,21 +97,21 @@ func update_input(delta) ->void:
 		if direction:
 			velocity.x = direction.x * SPEED
 			velocity.z = direction.z * SPEED
-			weapon.rotation_degrees.z = lerp(weapon.rotation_degrees.z, clampf(weapon.rotation_degrees.z+velocity.z,-14,-6),delta * 7.0)
-			lantern.rotation_degrees.z = lerp(weapon.rotation_degrees.z, clampf(weapon.rotation_degrees.z+velocity.z,-14,-6),delta * 3.5)
+			mainhand.rotation_degrees.z = lerp(mainhand.rotation_degrees.z, clampf(mainhand.rotation_degrees.z+velocity.z,-10,6),delta * 7.0)
+			offhand.rotation_degrees.z = lerp(offhand.rotation_degrees.z, clampf(offhand.rotation_degrees.z-velocity.z,-10,6),delta * 3.5)
 			t_bob += delta * velocity.length() * float(is_on_floor())
 			camera.transform.origin = _headbob(t_bob)
-			weapon.transform.origin = _gunbob(t_bob)
-			lantern.transform.origin = _offhandbob(t_bob)
+			mainhand.transform.origin = _gunbob(t_bob)
+			offhand.transform.origin = _offhandbob(t_bob)
 		else:
 			velocity.x = lerp(velocity.x, direction.x * SPEED, delta * 7.0)
 			velocity.z = lerp(velocity.z, direction.z * SPEED, delta * 7.0)
-			weapon.rotation_degrees.z = lerp(weapon.rotation_degrees.z, clampf(weapon.rotation_degrees.z+velocity.z,-14,-6),delta * 7.0)
-			lantern.rotation_degrees.z = lerp(weapon.rotation_degrees.z, clampf(weapon.rotation_degrees.z+velocity.z,-14,-6),delta * 3.5)
+			mainhand.rotation_degrees.z = lerp(mainhand.rotation_degrees.z, clampf(mainhand.rotation_degrees.z+velocity.z,-10,6),delta * 7.0)
+			offhand.rotation_degrees.z = lerp(offhand.rotation_degrees.z, clampf(offhand.rotation_degrees.z-velocity.z,-10,6),delta * 3.5)
 			t_bob += delta * velocity.length() * float(is_on_floor())
 			camera.transform.origin = _headbob(t_bob)
-			weapon.transform.origin = _gunbob(t_bob)
-			lantern.transform.origin = _offhandbob(t_bob)
+			mainhand.transform.origin = _gunbob(t_bob)
+			offhand.transform.origin = _offhandbob(t_bob)
 			
 		if input_dir.x > 0:
 			head.rotation.z = lerp_angle(head.rotation.z, deg_to_rad(-1), 0.06)
@@ -132,7 +133,7 @@ func _headbob(time) -> Vector3:
 	return pos
 
 func _gunbob(time) -> Vector3:
-	var pos = Vector3(0.8,0-.3,-1.1)
+	var pos = Vector3(.3,-.15,-.4)
 	pos.y += sin(time * GUN_BOB_FREQ) * GUN_BOB_AMP
 	return pos
 

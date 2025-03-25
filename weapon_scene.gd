@@ -1,3 +1,4 @@
+class_name Weapon
 extends Node3D
 
 @export var player_lookat_ray: RayCast3D

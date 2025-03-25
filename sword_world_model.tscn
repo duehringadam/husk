@@ -1,8 +1,9 @@
-[gd_scene load_steps=47 format=3 uid="uid://c10yndd1w41ng"]
+[gd_scene load_steps=37 format=3 uid="uid://c10yndd1w41ng"]
 
 [ext_resource type="Script" uid="uid://8y578oqvscc3" path="res://sword_world_model.gd" id="1_ehfv0"]
-[ext_resource type="ArrayMesh" uid="uid://dqb5es2uomja" path="res://Player/weapon/EXECUTIONER_SWORD [PSX STYLE]/EXECUTIONER_SWORD [PSX STYLE]/[EXECUTIONER SWORD]/executionersword.obj" id="2_ehfv0"]
+[ext_resource type="ArrayMesh" uid="uid://6anlaptdar52" path="res://Player/weapon/ALL/BrokenSword/broken.res" id="2_uw8pe"]
 [ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="3_hj4ra"]
+[ext_resource type="Texture2D" uid="uid://befxb5uqu5t7d" path="res://Player/weapon/ALL/BrokenSword/base2.png" id="4_8ovlp"]
 [ext_resource type="Script" uid="uid://bb3ghyy64k2bd" path="res://addons/godot_state_charts/state_chart.gd" id="6_tc1m8"]
 [ext_resource type="Script" uid="uid://clt3bkcujiepo" path="res://addons/godot_state_charts/compound_state.gd" id="7_igbsf"]
 [ext_resource type="Script" uid="uid://1xhujeketj0r" path="res://addons/godot_state_charts/atomic_state.gd" id="8_vujui"]
@@ -20,10 +21,11 @@
 [ext_resource type="Script" uid="uid://dk5ryvkfxf66v" path="res://sword_held_back.gd" id="16_573oq"]
 [ext_resource type="Script" uid="uid://bc3inuwe0nld0" path="res://sword_held_forward.gd" id="18_5kunp"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7e2dh"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k3it3"]
 render_priority = 0
 shader = ExtResource("3_hj4ra")
 shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("4_8ovlp")
 shader_parameter/albedo_texture_as_primary_color = true
 shader_parameter/mix_factor = 1.0
 shader_parameter/texture_lod_halve_distance_override = 0.0
@@ -33,152 +35,9 @@ shader_parameter/uv_scroll_speed = Vector2(0, 0)
 shader_parameter/cull_distance_override = 0.0
 shader_parameter/convert_vertex_colors = false
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5yrxi"]
-render_priority = 0
-shader = ExtResource("3_hj4ra")
-shader_parameter/albedo_color = Color(1, 1, 1, 1)
-shader_parameter/albedo_texture_as_primary_color = true
-shader_parameter/mix_factor = 1.0
-shader_parameter/texture_lod_halve_distance_override = 0.0
-shader_parameter/uv_offset = Vector2(0, 0)
-shader_parameter/uv_scale = Vector2(1, 1)
-shader_parameter/uv_scroll_speed = Vector2(0, 0)
-shader_parameter/cull_distance_override = 0.0
-shader_parameter/convert_vertex_colors = false
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ysmu5"]
-render_priority = 0
-shader = ExtResource("3_hj4ra")
-shader_parameter/albedo_color = Color(1, 1, 1, 1)
-shader_parameter/albedo_texture_as_primary_color = true
-shader_parameter/mix_factor = 1.0
-shader_parameter/texture_lod_halve_distance_override = 0.0
-shader_parameter/uv_offset = Vector2(0, 0)
-shader_parameter/uv_scale = Vector2(1, 1)
-shader_parameter/uv_scroll_speed = Vector2(0, 0)
-shader_parameter/cull_distance_override = 0.0
-shader_parameter/convert_vertex_colors = false
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_da8hw"]
-render_priority = 0
-shader = ExtResource("3_hj4ra")
-shader_parameter/albedo_color = Color(1, 1, 1, 1)
-shader_parameter/albedo_texture_as_primary_color = true
-shader_parameter/mix_factor = 1.0
-shader_parameter/texture_lod_halve_distance_override = 0.0
-shader_parameter/uv_offset = Vector2(0, 0)
-shader_parameter/uv_scale = Vector2(1, 1)
-shader_parameter/uv_scroll_speed = Vector2(0, 0)
-shader_parameter/cull_distance_override = 0.0
-shader_parameter/convert_vertex_colors = false
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_w1fqq"]
-render_priority = 0
-shader = ExtResource("3_hj4ra")
-shader_parameter/albedo_color = Color(1, 1, 1, 1)
-shader_parameter/albedo_texture_as_primary_color = true
-shader_parameter/mix_factor = 1.0
-shader_parameter/texture_lod_halve_distance_override = 0.0
-shader_parameter/uv_offset = Vector2(0, 0)
-shader_parameter/uv_scale = Vector2(1, 1)
-shader_parameter/uv_scroll_speed = Vector2(0, 0)
-shader_parameter/cull_distance_override = 0.0
-shader_parameter/convert_vertex_colors = false
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ui2p7"]
-render_priority = 0
-shader = ExtResource("3_hj4ra")
-shader_parameter/albedo_color = Color(1, 1, 1, 1)
-shader_parameter/albedo_texture_as_primary_color = true
-shader_parameter/mix_factor = 1.0
-shader_parameter/texture_lod_halve_distance_override = 0.0
-shader_parameter/uv_offset = Vector2(0, 0)
-shader_parameter/uv_scale = Vector2(1, 1)
-shader_parameter/uv_scroll_speed = Vector2(0, 0)
-shader_parameter/cull_distance_override = 0.0
-shader_parameter/convert_vertex_colors = false
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_l6bnc"]
-render_priority = 0
-shader = ExtResource("3_hj4ra")
-shader_parameter/albedo_color = Color(1, 1, 1, 1)
-shader_parameter/albedo_texture_as_primary_color = true
-shader_parameter/mix_factor = 1.0
-shader_parameter/texture_lod_halve_distance_override = 0.0
-shader_parameter/uv_offset = Vector2(0, 0)
-shader_parameter/uv_scale = Vector2(1, 1)
-shader_parameter/uv_scroll_speed = Vector2(0, 0)
-shader_parameter/cull_distance_override = 0.0
-shader_parameter/convert_vertex_colors = false
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_yl3nb"]
-render_priority = 0
-shader = ExtResource("3_hj4ra")
-shader_parameter/albedo_color = Color(1, 1, 1, 1)
-shader_parameter/albedo_texture_as_primary_color = true
-shader_parameter/mix_factor = 1.0
-shader_parameter/texture_lod_halve_distance_override = 0.0
-shader_parameter/uv_offset = Vector2(0, 0)
-shader_parameter/uv_scale = Vector2(1, 1)
-shader_parameter/uv_scroll_speed = Vector2(0, 0)
-shader_parameter/cull_distance_override = 0.0
-shader_parameter/convert_vertex_colors = false
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_n71pd"]
-render_priority = 0
-shader = ExtResource("3_hj4ra")
-shader_parameter/albedo_color = Color(1, 1, 1, 1)
-shader_parameter/albedo_texture_as_primary_color = true
-shader_parameter/mix_factor = 1.0
-shader_parameter/texture_lod_halve_distance_override = 0.0
-shader_parameter/uv_offset = Vector2(0, 0)
-shader_parameter/uv_scale = Vector2(1, 1)
-shader_parameter/uv_scroll_speed = Vector2(0, 0)
-shader_parameter/cull_distance_override = 0.0
-shader_parameter/convert_vertex_colors = false
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1q180"]
-render_priority = 0
-shader = ExtResource("3_hj4ra")
-shader_parameter/albedo_color = Color(1, 1, 1, 1)
-shader_parameter/albedo_texture_as_primary_color = true
-shader_parameter/mix_factor = 1.0
-shader_parameter/texture_lod_halve_distance_override = 0.0
-shader_parameter/uv_offset = Vector2(0, 0)
-shader_parameter/uv_scale = Vector2(1, 1)
-shader_parameter/uv_scroll_speed = Vector2(0, 0)
-shader_parameter/cull_distance_override = 0.0
-shader_parameter/convert_vertex_colors = false
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_33koy"]
-render_priority = 0
-shader = ExtResource("3_hj4ra")
-shader_parameter/albedo_color = Color(1, 1, 1, 1)
-shader_parameter/albedo_texture_as_primary_color = true
-shader_parameter/mix_factor = 1.0
-shader_parameter/texture_lod_halve_distance_override = 0.0
-shader_parameter/uv_offset = Vector2(0, 0)
-shader_parameter/uv_scale = Vector2(1, 1)
-shader_parameter/uv_scroll_speed = Vector2(0, 0)
-shader_parameter/cull_distance_override = 0.0
-shader_parameter/convert_vertex_colors = false
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_byu5a"]
-render_priority = 0
-shader = ExtResource("3_hj4ra")
-shader_parameter/albedo_color = Color(1, 1, 1, 1)
-shader_parameter/albedo_texture_as_primary_color = true
-shader_parameter/mix_factor = 1.0
-shader_parameter/texture_lod_halve_distance_override = 0.0
-shader_parameter/uv_offset = Vector2(0, 0)
-shader_parameter/uv_scale = Vector2(1, 1)
-shader_parameter/uv_scroll_speed = Vector2(0, 0)
-shader_parameter/cull_distance_override = 0.0
-shader_parameter/convert_vertex_colors = false
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eck2g"]
-radius = 1.82241
-height = 22.3763
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_573oq"]
+radius = 0.001
+height = 0.0104571
 
 [sub_resource type="Animation" id="Animation_6cmx2"]
 length = 0.001
@@ -204,7 +63,91 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector3(-1.5708, -1.5708, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_e4sur"]
+resource_name = "hold_back"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.1, -0.01)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1.5708, -1.5708, 0), Vector3(0.314159, -3.10494, 1.16064)]
+}
+
+[sub_resource type="Animation" id="Animation_oq5md"]
+resource_name = "hold_forward"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.25, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1.5708, -1.5708, 0), Vector3(-1.8483, -1.5708, 0.293215)]
+}
+
+[sub_resource type="Animation" id="Animation_3bige"]
+resource_name = "hold_left"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.5, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1.5708, -1.5708, 0), Vector3(-1.10479, -2.0944, 0.0418879)]
 }
 
 [sub_resource type="Animation" id="Animation_j5syt"]
@@ -232,149 +175,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0.260909, -0.328715)]
-}
-
-[sub_resource type="Animation" id="Animation_q24d8"]
-resource_name = "swing_right"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.133333, 0.233333, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0.164207, 0.0714557, 0), Vector3(-1.101, -0.06, -0.13), Vector3(-1.2265, -0.08501, -0.139183), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MeshInstance3D:rotation")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.133333, 0.233333, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0.260909, -0.328715), Vector3(0.0314159, 2.51327, -1.51669), Vector3(0.033635, 2.61496, -1.52827), Vector3(0, 0, 0)]
-}
-tracks/2/type = "audio"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("swing")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"clips": [{
-"end_offset": 0.284495,
-"start_offset": 0.180411,
-"stream": ExtResource("10_0ckxg")
-}],
-"times": PackedFloat32Array(0)
-}
-tracks/2/use_blend = true
-
-[sub_resource type="Animation" id="Animation_3bige"]
-resource_name = "hold_left"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-0.8, 0.07, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MeshInstance3D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, -0.436332, 0.724312)]
-}
-
-[sub_resource type="Animation" id="Animation_5d4qa"]
-resource_name = "swing_left"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.130602, 0.196797, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.8, 0.07, 0), Vector3(-0.105796, 0.07, -0.146158), Vector3(0.198608, 0.07, -0.00828862), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MeshInstance3D:rotation")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.130602, 0.196797, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, -0.436332, 0.724312), Vector3(0.304493, -1.35436, 1.46385), Vector3(0.303687, -2.59007, 1.46433), Vector3(0, 0, 0)]
-}
-tracks/2/type = "audio"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("swing")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"clips": [{
-"end_offset": 0.195008,
-"start_offset": 0.180696,
-"stream": ExtResource("10_0ckxg")
-}],
-"times": PackedFloat32Array(0.0333333)
-}
-tracks/2/use_blend = true
-
-[sub_resource type="Animation" id="Animation_e4sur"]
-resource_name = "hold_back"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0.104345, 0.214524)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MeshInstance3D:rotation")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-1.48149, -3.08262, 3.14159)]
+"values": [Vector3(-1.5708, -1.5708, 0), Vector3(-1.5708, -1.31074, -0.328122)]
 }
 
 [sub_resource type="Animation" id="Animation_y4rpf"]
@@ -387,10 +188,10 @@ tracks/0/path = NodePath("MeshInstance3D:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.130602, 0.5),
+"times": PackedFloat32Array(0, 0.127912, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0.104345, 0.214524), Vector3(-0.4, 0.104, -0.625), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0.104345, 0.214524), Vector3(-0.129783, 0.104345, -0.15719), Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -399,10 +200,10 @@ tracks/1/path = NodePath("MeshInstance3D:rotation")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.132391, 0.5),
+"times": PackedFloat32Array(0, 0.127912, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(-1.48149, -3.08262, 3.14159), Vector3(-1.48149, -3.08262, 3.14159), Vector3(0, 0, 0)]
+"values": [Vector3(0.314456, -2.84112, 1.5708), Vector3(0.139468, -2.8534, 1.51644), Vector3(-1.5708, -1.5708, 0)]
 }
 tracks/2/type = "audio"
 tracks/2/imported = false
@@ -420,34 +221,6 @@ tracks/2/keys = {
 }
 tracks/2/use_blend = true
 
-[sub_resource type="Animation" id="Animation_oq5md"]
-resource_name = "hold_forward"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0.5, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MeshInstance3D:rotation")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.26529, -0.10472, 0.293215)]
-}
-
 [sub_resource type="Animation" id="Animation_cngb6"]
 resource_name = "swing_forward"
 length = 0.5
@@ -458,10 +231,10 @@ tracks/0/path = NodePath("MeshInstance3D:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.233333, 0.5),
+"times": PackedFloat32Array(0, 0.134889, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0.32588, 0), Vector3(-0.0347195, -0.716991, -0.247642), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0.25, 0), Vector3(-0.301, -0.4, -0.039), Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -470,10 +243,10 @@ tracks/1/path = NodePath("MeshInstance3D:rotation")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.233333, 0.5),
+"times": PackedFloat32Array(0, 0.134889, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0.264957, 0.447077, 0.29349), Vector3(-0.911876, 2.93216, -2.97637), Vector3(0, 0, 0)]
+"values": [Vector3(-1.8483, -1.43292, 0.293215), Vector3(0.897671, -2.4489, 2.58998), Vector3(-1.5708, -1.5708, 0)]
 }
 tracks/2/type = "audio"
 tracks/2/imported = false
@@ -485,6 +258,92 @@ tracks/2/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.183729,
+"stream": ExtResource("10_0ckxg")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
+
+[sub_resource type="Animation" id="Animation_5d4qa"]
+resource_name = "swing_left"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.130238, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.2, 0.07, 0), Vector3(0.132484, 0.07, -0.00332069), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.130238, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-1.3823, -2.0944, 0.0418879), Vector3(0.10472, -3.58316, -0.240855), Vector3(-1.5708, -1.5708, 0)]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("swing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.195008,
+"start_offset": 0.180696,
+"stream": ExtResource("10_0ckxg")
+}],
+"times": PackedFloat32Array(0.0333333)
+}
+tracks/2/use_blend = true
+
+[sub_resource type="Animation" id="Animation_q24d8"]
+resource_name = "swing_right"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.129077, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.164207, 0.0714557, 0), Vector3(-0.284717, 0.0714557, -0.0388806), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.130651, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-1.5708, -1.31074, -0.328122), Vector3(-3.23584, 0.657989, -0.328122), Vector3(-1.5708, -1.5708, 0)]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("swing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.284495,
+"start_offset": 0.180411,
 "stream": ExtResource("10_0ckxg")
 }],
 "times": PackedFloat32Array(0)
@@ -504,6 +363,11 @@ _data = {
 &"swing_right": SubResource("Animation_q24d8")
 }
 
+[sub_resource type="Resource" id="Resource_5kunp"]
+script = ExtResource("10_uw8pe")
+expression = "can_attack == true"
+metadata/_custom_type_script = "uid://dtsqtfrp33jka"
+
 [sub_resource type="Resource" id="Resource_x6r11"]
 script = ExtResource("10_uw8pe")
 expression = "can_attack == true"
@@ -519,32 +383,17 @@ script = ExtResource("10_uw8pe")
 expression = "can_attack == true"
 metadata/_custom_type_script = "uid://dtsqtfrp33jka"
 
-[sub_resource type="Resource" id="Resource_qjvga"]
-script = ExtResource("10_uw8pe")
-expression = "can_attack == true"
-metadata/_custom_type_script = "uid://dtsqtfrp33jka"
-
 [node name="sword_world_model" type="Node3D"]
 script = ExtResource("1_ehfv0")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, 0, 0, 0)
-mesh = ExtResource("2_ehfv0")
-surface_material_override/0 = SubResource("ShaderMaterial_7e2dh")
-surface_material_override/1 = SubResource("ShaderMaterial_5yrxi")
-surface_material_override/2 = SubResource("ShaderMaterial_ysmu5")
-surface_material_override/3 = SubResource("ShaderMaterial_da8hw")
-surface_material_override/4 = SubResource("ShaderMaterial_w1fqq")
-surface_material_override/5 = SubResource("ShaderMaterial_ui2p7")
-surface_material_override/6 = SubResource("ShaderMaterial_l6bnc")
-surface_material_override/7 = SubResource("ShaderMaterial_yl3nb")
-surface_material_override/8 = SubResource("ShaderMaterial_n71pd")
-surface_material_override/9 = SubResource("ShaderMaterial_1q180")
-surface_material_override/10 = SubResource("ShaderMaterial_33koy")
-surface_material_override/11 = SubResource("ShaderMaterial_byu5a")
+transform = Transform3D(-0.000361999, 100, 0.000361999, 0, -0.000361999, 100, 100, 0.000361999, 1.31043e-09, 0, 0, 0)
+layers = 2
+mesh = ExtResource("2_uw8pe")
+surface_material_override/0 = SubResource("ShaderMaterial_k3it3")
 
 [node name="DamageComponent" type="Area3D" parent="MeshInstance3D"]
-transform = Transform3D(0.99999, -0.00352725, -0.00279964, 0.00352723, 0.999994, -9.87513e-06, 0.00279966, 4.91127e-11, 0.999996, -0.0219912, -0.00966203, -6.16632e-05)
+transform = Transform3D(0.99999, -0.00352724, -0.00279963, 0.00352722, 0.999994, -9.87513e-06, 0.00279965, 9.54969e-11, 0.999996, 0, 0, -0.001)
 collision_mask = 6
 monitoring = false
 monitorable = false
@@ -553,15 +402,16 @@ damage_type = 1
 metadata/_custom_type_script = "uid://dlsydctoxqbwy"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/DamageComponent"]
-shape = SubResource("CapsuleShape3D_eck2g")
-
-[node name="swing" type="AudioStreamPlayer3D" parent="."]
-volume_db = -12.0
+transform = Transform3D(0.99998, -0.000755995, -0.00634921, -0.00635508, -0.00803333, -0.999948, 0.00070495, 0.999967, -0.00803797, 7.87552e-06, -1.22693e-10, 0.00281303)
+shape = SubResource("CapsuleShape3D_573oq")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_ff8w7")
 }
+
+[node name="swing" type="AudioStreamPlayer3D" parent="."]
+volume_db = -12.0
 
 [node name="StateChart" type="Node" parent="."]
 script = ExtResource("6_tc1m8")
@@ -578,32 +428,33 @@ script = ExtResource("8_vujui")
 script = ExtResource("9_ayjpo")
 to = NodePath("../../held_left")
 event = &"hold_left"
-guard = SubResource("Resource_x6r11")
+guard = SubResource("Resource_5kunp")
 delay_in_seconds = "0.0"
 
 [node name="to_held_right" type="Node" parent="StateChart/CompoundState/idle"]
 script = ExtResource("9_ayjpo")
 to = NodePath("../../held_right")
 event = &"hold_right"
-guard = SubResource("Resource_rfk6e")
+guard = SubResource("Resource_x6r11")
 delay_in_seconds = "0.0"
 
 [node name="to_held_back" type="Node" parent="StateChart/CompoundState/idle"]
 script = ExtResource("9_ayjpo")
 to = NodePath("../../held_back")
 event = &"hold_back"
-guard = SubResource("Resource_qrc4r")
+guard = SubResource("Resource_rfk6e")
 delay_in_seconds = "0.0"
 
 [node name="to_held_forwards" type="Node" parent="StateChart/CompoundState/idle"]
 script = ExtResource("9_ayjpo")
 to = NodePath("../../held_forward")
 event = &"hold_forward"
-guard = SubResource("Resource_qjvga")
+guard = SubResource("Resource_qrc4r")
 delay_in_seconds = "0.0"
 
-[node name="idle" type="Node" parent="StateChart/CompoundState/idle"]
+[node name="idle" type="Node" parent="StateChart/CompoundState/idle" node_paths=PackedStringArray("weapon")]
 script = ExtResource("11_uw8pe")
+weapon = NodePath("../../../..")
 
 [node name="held_left" type="Node" parent="StateChart/CompoundState"]
 script = ExtResource("8_vujui")

@@ -1,3 +1,4 @@
+class_name WeaponWorld
 extends Node3D
 
 
