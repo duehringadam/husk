@@ -35,15 +35,20 @@ var gravity = 18
 
 var dead = false
 var can_attack_bool: bool = true
+var secondary_active_bool: bool = false
 
 func _ready() -> void:
 	Global.player = self
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	SignalBus.connect("can_attack", can_attack)
+	SignalBus.connect("secondary_active", secondary_active)
 	
 
 func can_attack(value: bool):
 	can_attack_bool = value
+
+func secondary_active(value: bool):
+	secondary_active_bool = value
 
 func _input(event: InputEvent) -> void:
 	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -54,7 +59,7 @@ func _input(event: InputEvent) -> void:
 		camera.rotate_x(-event.relative.y * MOUSE_SENS)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-70),deg_to_rad(70))
 	
-	if event.is_action_pressed("attack_primary") && can_attack_bool:
+	if event.is_action_pressed("attack_primary") && can_attack_bool && !secondary_active_bool:
 		if input_dir.x < 0 && input_dir.y == 0:
 			mainhand.weapon.state_chart.send_event("hold_left")
 			mainhand.weapon_world.state_chart.send_event("hold_left")
@@ -69,6 +74,9 @@ func _input(event: InputEvent) -> void:
 			mainhand.weapon_world.state_chart.send_event("hold_back")
 		mainhand.weapon.state_chart.send_event("hold_right")
 		mainhand.weapon_world.state_chart.send_event("hold_right")
+		
+	if event.is_action_pressed("attack_secondary"):
+		offhand.offhand.state_chart.send_event("secondary_attack")
 
 func _process(delta: float) -> void:
 	if dead:
