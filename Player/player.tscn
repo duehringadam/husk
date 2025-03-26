@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://crwpbskjjllht"]
+[gd_scene load_steps=45 format=3 uid="uid://crwpbskjjllht"]
 
 [ext_resource type="Script" uid="uid://bi6bcf1evx4ur" path="res://Player/player.gd" id="1_t2vdx"]
 [ext_resource type="Script" uid="uid://b3yihwhs36do6" path="res://Player/States/statemachine.gd" id="2_7a7qp"]
@@ -15,7 +15,6 @@
 [ext_resource type="Script" uid="uid://c0igns5ruyseu" path="res://Player/States/jumpingPlayerState.gd" id="7_gsrmw"]
 [ext_resource type="Script" uid="uid://3xygyavglg41" path="res://Player/States/fallingPlayerState.gd" id="8_d032x"]
 [ext_resource type="PackedScene" uid="uid://wbbu81bn30xc" path="res://sword_viewmodel.tscn" id="11_apopc"]
-[ext_resource type="Texture2D" uid="uid://dpk2gn2elqcr3" path="res://AllSkyFree/Skyboxes/AllSkyFree_Sky_OvercastLow_Equirect.png" id="11_n471f"]
 [ext_resource type="AudioStream" uid="uid://jgru6x0534if" path="res://sfx/jute-dh-steps/jute-dh-steps/stepdirt_1.wav" id="12_o28un"]
 [ext_resource type="Script" uid="uid://c5uu825dg725o" path="res://Player/mainhand.gd" id="13_m0h3t"]
 [ext_resource type="AudioStream" uid="uid://bqja0ky1x67vd" path="res://sfx/jute-dh-steps/jute-dh-steps/stepdirt_2.wav" id="13_n471f"]
@@ -26,7 +25,9 @@
 [ext_resource type="AudioStream" uid="uid://bkoo0dovg888a" path="res://sfx/jute-dh-steps/jute-dh-steps/stepdirt_6.wav" id="17_8mwp6"]
 [ext_resource type="AudioStream" uid="uid://cqptw22pmofy7" path="res://sfx/jute-dh-steps/jute-dh-steps/stepdirt_7.wav" id="18_qemgg"]
 [ext_resource type="AudioStream" uid="uid://c64kea7efbe3v" path="res://sfx/jute-dh-steps/jute-dh-steps/stepdirt_8.wav" id="19_8viyr"]
+[ext_resource type="Environment" uid="uid://c8pnvcuwa2lcp" path="res://scenes/world.tres" id="21_i4o1l"]
 [ext_resource type="Script" uid="uid://bh51mi6cbu7iw" path="res://Player/user_interface.gd" id="22_8viyr"]
+[ext_resource type="Script" uid="uid://cn1tuyffokj2" path="res://Player/viewport_camera.gd" id="22_j2n6q"]
 [ext_resource type="StyleBox" uid="uid://bkasfcxtv0jxl" path="res://fonts/dialogue_gradient_fade.tres" id="23_sm0op"]
 [ext_resource type="Theme" uid="uid://duc0j73rblgge" path="res://fonts/text_theme.tres" id="24_76lrf"]
 [ext_resource type="PackedScene" uid="uid://baow87b6rrpvl" path="res://shield.tscn" id="24_m0h3t"]
@@ -190,22 +191,6 @@ _data = {
 &"RESET": SubResource("Animation_sjg43"),
 &"crouch": SubResource("Animation_4snmk")
 }
-
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_7emwf"]
-panorama = ExtResource("11_n471f")
-energy_multiplier = 2.0
-
-[sub_resource type="Sky" id="Sky_hshwv"]
-sky_material = SubResource("PanoramaSkyMaterial_7emwf")
-
-[sub_resource type="Environment" id="Environment_o28un"]
-background_mode = 2
-background_color = Color(0.821789, 0.821789, 0.821789, 1)
-background_energy_multiplier = 1.12
-sky = SubResource("Sky_hshwv")
-
-[sub_resource type="World3D" id="World3D_n471f"]
-environment = SubResource("Environment_o28un")
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_sm0op"]
 shuffle = true
@@ -389,12 +374,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.29565, 0)
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.70418, 0)
 shape = SubResource("SphereShape3D_npvy2")
+collision_mask = 6
 collide_with_areas = true
-collide_with_bodies = false
 
 [node name="Camera3D" type="Camera3D" parent="head"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00930202, 0)
+cull_mask = 1048573
 fov = 70.0
 
 [node name="blue light" type="OmniLight3D" parent="head/Camera3D"]
@@ -471,19 +457,23 @@ grow_vertical = 2
 stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
-world_3d = SubResource("World3D_n471f")
 transparent_bg = true
 handle_input_locally = false
 use_debanding = true
 use_occlusion_culling = true
+use_hdr_2d = true
 audio_listener_enable_2d = true
 audio_listener_enable_3d = true
 size = Vector2i(1280, 720)
 render_target_update_mode = 4
 
-[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("main_camera")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00171711, 1.30519, 0.0021373)
 cull_mask = 1048574
+environment = ExtResource("21_i4o1l")
+current = true
+script = ExtResource("22_j2n6q")
+main_camera = NodePath("../../../head/Camera3D")
 
 [node name="mainhand" type="Node3D" parent="SubViewportContainer/SubViewport/Camera3D" node_paths=PackedStringArray("weapon", "weapon_world")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.299, -0.152, -0.403)
@@ -515,5 +505,3 @@ bus = &"SFX"
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="health_changed" from="HealthComponent" to="UILayer/userInterface/uiMargin/healthcontainer/playerHealth" method="_on_health_changed"]
 [connection signal="max_health_changed" from="HealthComponent" to="UILayer/userInterface/uiMargin/healthcontainer/playerHealth" method="_on_max_health_changed"]
-
-[editable path="SubViewportContainer/SubViewport/Camera3D/mainhand/weapon_viewport"]

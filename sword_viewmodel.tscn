@@ -36,8 +36,8 @@ shader_parameter/cull_distance_override = 0.0
 shader_parameter/convert_vertex_colors = false
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aq43c"]
-radius = 1.82241
-height = 22.3763
+radius = 0.0005
+height = 0.00722901
 
 [sub_resource type="Animation" id="Animation_6cmx2"]
 length = 0.001
@@ -394,7 +394,7 @@ mesh = ExtResource("2_ri8l3")
 surface_material_override/0 = SubResource("ShaderMaterial_ri8l3")
 
 [node name="DamageComponent" type="Area3D" parent="MeshInstance3D"]
-transform = Transform3D(12.4999, -0.0440906, -0.0349955, 0.0440904, 12.4999, -0.000123439, 0.0349957, 6.13909e-10, 12.4999, -0.27489, -0.120775, -0.00077079)
+transform = Transform3D(0.99999, -0.00352724, -0.00279963, 0.00352722, 0.999994, -9.87513e-06, 0.00279965, 9.54969e-11, 0.999996, 0, 0, 0)
 collision_mask = 6
 monitoring = false
 monitorable = false
@@ -404,6 +404,7 @@ damage_type = 1
 metadata/_custom_type_script = "uid://dlsydctoxqbwy"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/DamageComponent"]
+transform = Transform3D(0.995105, 0.00726411, 0.0985567, 0.0986997, -0.0230195, -0.994851, -0.004958, 0.999709, -0.0236237, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_aq43c")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

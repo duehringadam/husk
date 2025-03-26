@@ -16,7 +16,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if shake_strength > 0:
 		shake_strength = lerpf(shake_strength,0,shakeFade * delta)
-		
 		shake_target.global_position.x += rng.randf_range(-shake_strength,shake_strength)
 		shake_target.global_position.z += rng.randf_range(-shake_strength,shake_strength)
 		
