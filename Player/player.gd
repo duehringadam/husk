@@ -141,3 +141,7 @@ func _offhandbob(time) -> Vector3:
 	var pos = Vector3(-0.47,-0.6,-0.7)
 	pos.y += sin(time * LANTERN_BOB_FREQ) * LANTERN_BOB_AMP
 	return pos
+
+
+func _on_health_component_died() -> void:
+	pass # Replace with function body.

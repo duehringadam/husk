@@ -1,6 +1,8 @@
 class_name hurtbox_component
 extends Area3D
 
+signal damage_taken(amount: float, actual: float, source: DamageComponent)
+
 @onready var timer: Timer
 
 @export var damage_resistance: DamageTypes.DAMAGE_TYPES
@@ -11,8 +13,7 @@ extends Area3D
 ## Reduction on incoming damage. Zero takes full damage, one takes none. For more complex behavior, override [method reduce_damage]
 @export_range(0, 1) var damage_resist: float
 @export var invulnerability_duration: float
-
-@export var can_spawn_rage: bool = true
+@export var damage_particles: PackedScene
 
 
 ## add the invulnerability timer

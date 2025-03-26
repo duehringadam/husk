@@ -1,7 +1,8 @@
-[gd_scene load_steps=60 format=3 uid="uid://crwpbskjjllht"]
+[gd_scene load_steps=63 format=3 uid="uid://crwpbskjjllht"]
 
 [ext_resource type="Script" uid="uid://bi6bcf1evx4ur" path="res://Player/player.gd" id="1_t2vdx"]
 [ext_resource type="Script" uid="uid://b3yihwhs36do6" path="res://Player/States/statemachine.gd" id="2_7a7qp"]
+[ext_resource type="Script" uid="uid://dgjqgiw3yw42e" path="res://components/health_component.gd" id="2_c6x0f"]
 [ext_resource type="PackedScene" uid="uid://c10yndd1w41ng" path="res://sword_world_model.tscn" id="2_hshwv"]
 [ext_resource type="Script" uid="uid://c00yuda8yv1rm" path="res://Player/States/idlePlayerState.gd" id="3_841m4"]
 [ext_resource type="Script" uid="uid://mw667ajlk6l5" path="res://Player/look_at_ray.gd" id="3_j2n6q"]
@@ -10,6 +11,7 @@
 [ext_resource type="Script" uid="uid://dby6vdcgpp7pl" path="res://Player/States/leaningPlayerState.gd" id="5_v6lau"]
 [ext_resource type="Script" uid="uid://04q1kycsbd3e" path="res://Player/States/crouchingPlayerState.gd" id="6_b2402"]
 [ext_resource type="Script" uid="uid://do22my2l07iw8" path="res://Player/States/leaning_right_player_state.gd" id="6_d4l27"]
+[ext_resource type="PackedScene" uid="uid://78q517wrknfe" path="res://player_health.tscn" id="6_jp1hh"]
 [ext_resource type="Script" uid="uid://c0igns5ruyseu" path="res://Player/States/jumpingPlayerState.gd" id="7_gsrmw"]
 [ext_resource type="Script" uid="uid://3xygyavglg41" path="res://Player/States/fallingPlayerState.gd" id="8_d032x"]
 [ext_resource type="PackedScene" uid="uid://wbbu81bn30xc" path="res://sword_viewmodel.tscn" id="11_apopc"]
@@ -34,6 +36,62 @@
 [ext_resource type="Texture2D" uid="uid://cgybn76xy26fr" path="res://scenes/Assets - PS1 Dungeon Pack/Assets - PS1 Dungeon Pack/Props/Torch_Metal_0.png" id="24_m0h3t"]
 [ext_resource type="Script" uid="uid://bs2pkx3tfve5x" path="res://Player/dialogue.gd" id="25_efx54"]
 [ext_resource type="Script" uid="uid://sj3mml8ulasu" path="res://Player/crosshair.gd" id="26_sm0op"]
+
+[sub_resource type="Animation" id="Animation_sm0op"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_8viyr"]
+resource_name = "dialogue_Show"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_76lrf"]
+resource_name = "dialogue_hide"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_76lrf"]
+_data = {
+&"RESET": SubResource("Animation_sm0op"),
+&"dialogue_Show": SubResource("Animation_8viyr"),
+&"dialogue_hide": SubResource("Animation_76lrf")
+}
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jp1hh"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tvulw"]
 radius = 0.375
@@ -273,65 +331,163 @@ stream_5 = ExtResource("17_8mwp6")
 stream_6 = ExtResource("18_qemgg")
 stream_7 = ExtResource("19_8viyr")
 
-[sub_resource type="Animation" id="Animation_sm0op"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_8viyr"]
-resource_name = "dialogue_Show"
-length = 0.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_76lrf"]
-resource_name = "dialogue_hide"
-length = 0.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_76lrf"]
-_data = {
-&"RESET": SubResource("Animation_sm0op"),
-&"dialogue_Show": SubResource("Animation_8viyr"),
-&"dialogue_hide": SubResource("Animation_76lrf")
-}
-
 [node name="player" type="CharacterBody3D" node_paths=PackedStringArray("mainhand", "offhand")]
 collision_mask = 3
 script = ExtResource("1_t2vdx")
 mainhand = NodePath("SubViewportContainer/SubViewport/Camera3D/mainhand")
 offhand = NodePath("SubViewportContainer/SubViewport/Camera3D/offhand")
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="userInterface" type="Control" parent="UILayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("22_8viyr")
+
+[node name="Label" type="Label" parent="UILayer/userInterface"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="DialogueContainer" type="PanelContainer" parent="UILayer/userInterface"]
+visible = false
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+theme_override_styles/panel = ExtResource("23_sm0op")
+
+[node name="DialogueMargin" type="MarginContainer" parent="UILayer/userInterface/DialogueContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 20
+
+[node name="Dialogue" type="RichTextLabel" parent="UILayer/userInterface/DialogueContainer/DialogueMargin"]
+custom_minimum_size = Vector2(400, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme = ExtResource("24_76lrf")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+bbcode_enabled = true
+text = "test
+test
+test
+test
+test
+test
+test
+test"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 2
+visible_characters_behavior = 1
+script = ExtResource("25_efx54")
+
+[node name="dialoguetimer" type="Timer" parent="UILayer/userInterface/DialogueContainer/DialogueMargin"]
+wait_time = 2.0
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UILayer/userInterface/DialogueContainer"]
+libraries = {
+&"": SubResource("AnimationLibrary_76lrf")
+}
+
+[node name="uiMargin" type="MarginContainer" parent="UILayer/userInterface"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="healthcontainer" type="PanelContainer" parent="UILayer/userInterface/uiMargin"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_jp1hh")
+
+[node name="playerHealth" parent="UILayer/userInterface/uiMargin/healthcontainer" instance=ExtResource("6_jp1hh")]
+layout_mode = 2
+
+[node name="crosshair" type="CenterContainer" parent="UILayer/userInterface" node_paths=PackedStringArray("RETICLE_LINES", "PLAYER_CONTROLLER")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -0.5
+offset_right = 0.5
+offset_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("26_sm0op")
+RETICLE_LINES = [NodePath("top"), NodePath("right"), NodePath("bottom"), NodePath("left")]
+PLAYER_CONTROLLER = NodePath("../../..")
+
+[node name="top" type="Line2D" parent="UILayer/userInterface/crosshair"]
+points = PackedVector2Array(0, -5, 0, -15)
+width = 2.0
+
+[node name="right" type="Line2D" parent="UILayer/userInterface/crosshair"]
+points = PackedVector2Array(5, 0, 15, 0)
+width = 2.0
+
+[node name="bottom" type="Line2D" parent="UILayer/userInterface/crosshair"]
+points = PackedVector2Array(0, 5, 0, 15)
+width = 2.0
+
+[node name="left" type="Line2D" parent="UILayer/userInterface/crosshair"]
+points = PackedVector2Array(-5, 0, -15, 0)
+width = 2.0
+
+[node name="interactprompt" type="RichTextLabel" parent="UILayer"]
+visible = false
+custom_minimum_size = Vector2(200, 120)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -41.0
+offset_right = 50.0
+offset_bottom = 74.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("24_76lrf")
+theme_override_constants/outline_size = 10
+bbcode_enabled = true
+text = "Open [F]"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="HealthComponent" type="Node3D" parent="."]
+script = ExtResource("2_c6x0f")
+max_health = 100.0
+metadata/_custom_type_script = "uid://dgjqgiw3yw42e"
 
 [node name="hitbox" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
@@ -456,6 +612,7 @@ transform = Transform3D(0.961684, 0.186662, 0.200802, -0.200802, 0.978233, 0.052
 player_lookat_ray = NodePath("../../../../../head/Camera3D/look_at_ray")
 
 [node name="MeshInstance3D" parent="SubViewportContainer/SubViewport/Camera3D/mainhand/weapon_viewport" index="0"]
+transform = Transform3D(-0.000199099, 55, 0.000199099, 0, -0.000199099, 55, 55, 0.000199099, 7.20738e-10, 0, 0, 0)
 layers = 3
 
 [node name="offhand" type="Node3D" parent="SubViewportContainer/SubViewport/Camera3D" node_paths=PackedStringArray("offhand")]
@@ -502,146 +659,10 @@ stream = SubResource("AudioStreamPlaylist_sm0op")
 volume_db = -30.0
 bus = &"SFX"
 
-[node name="UILayer" type="CanvasLayer" parent="."]
-
-[node name="userInterface" type="Control" parent="UILayer"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("22_8viyr")
-
-[node name="Label" type="Label" parent="UILayer/userInterface"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-
-[node name="DialogueContainer" type="PanelContainer" parent="UILayer/userInterface"]
-visible = false
-custom_minimum_size = Vector2(300, 200)
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -20.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_vertical = 8
-theme_override_styles/panel = ExtResource("23_sm0op")
-
-[node name="DialogueMargin" type="MarginContainer" parent="UILayer/userInterface/DialogueContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 40
-theme_override_constants/margin_top = 40
-theme_override_constants/margin_right = 40
-theme_override_constants/margin_bottom = 20
-
-[node name="Dialogue" type="RichTextLabel" parent="UILayer/userInterface/DialogueContainer/DialogueMargin"]
-custom_minimum_size = Vector2(400, 150)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-theme = ExtResource("24_76lrf")
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 10
-bbcode_enabled = true
-text = "test
-test
-test
-test
-test
-test
-test
-test"
-fit_content = true
-horizontal_alignment = 1
-vertical_alignment = 2
-visible_characters_behavior = 1
-script = ExtResource("25_efx54")
-
-[node name="dialoguetimer" type="Timer" parent="UILayer/userInterface/DialogueContainer/DialogueMargin"]
-wait_time = 2.0
-one_shot = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="UILayer/userInterface/DialogueContainer"]
-libraries = {
-&"": SubResource("AnimationLibrary_76lrf")
-}
-
-[node name="uiMargin" type="MarginContainer" parent="UILayer/userInterface"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 40
-theme_override_constants/margin_top = 40
-theme_override_constants/margin_right = 40
-theme_override_constants/margin_bottom = 40
-
-[node name="crosshair" type="CenterContainer" parent="UILayer/userInterface" node_paths=PackedStringArray("RETICLE_LINES", "PLAYER_CONTROLLER")]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -0.5
-offset_top = -0.5
-offset_right = 0.5
-offset_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("26_sm0op")
-RETICLE_LINES = [NodePath("top"), NodePath("right"), NodePath("bottom"), NodePath("left")]
-PLAYER_CONTROLLER = NodePath("../../..")
-
-[node name="top" type="Line2D" parent="UILayer/userInterface/crosshair"]
-points = PackedVector2Array(0, -5, 0, -15)
-width = 2.0
-
-[node name="right" type="Line2D" parent="UILayer/userInterface/crosshair"]
-points = PackedVector2Array(5, 0, 15, 0)
-width = 2.0
-
-[node name="bottom" type="Line2D" parent="UILayer/userInterface/crosshair"]
-points = PackedVector2Array(0, 5, 0, 15)
-width = 2.0
-
-[node name="left" type="Line2D" parent="UILayer/userInterface/crosshair"]
-points = PackedVector2Array(-5, 0, -15, 0)
-width = 2.0
-
-[node name="interactprompt" type="RichTextLabel" parent="UILayer"]
-visible = false
-custom_minimum_size = Vector2(200, 120)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -41.0
-offset_right = 50.0
-offset_bottom = 74.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme = ExtResource("24_76lrf")
-theme_override_constants/outline_size = 10
-bbcode_enabled = true
-text = "Open [F]"
-horizontal_alignment = 1
-vertical_alignment = 2
-
 [connection signal="timeout" from="UILayer/userInterface/DialogueContainer/DialogueMargin/dialoguetimer" to="UILayer/userInterface/DialogueContainer/DialogueMargin/Dialogue" method="_on_dialoguetimer_timeout"]
+[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
+[connection signal="health_changed" from="HealthComponent" to="UILayer/userInterface/uiMargin/healthcontainer/playerHealth" method="_on_health_changed"]
+[connection signal="max_health_changed" from="HealthComponent" to="UILayer/userInterface/uiMargin/healthcontainer/playerHealth" method="_on_max_health_changed"]
 
 [editable path="SubViewportContainer/SubViewport/Camera3D/mainhand/weapon_viewport"]
 [editable path="SubViewportContainer/SubViewport/Camera3D/offhand/Torch_Wood"]

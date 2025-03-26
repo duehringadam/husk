@@ -2,7 +2,6 @@ extends RayCast3D
 
 @onready var interactprompt: RichTextLabel = $"../../../UILayer/interactprompt"
 
-
 func _process(delta: float) -> void:
 	if is_colliding():
 		if get_collider() is interact:

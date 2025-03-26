@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://78q517wrknfe"]
+
+[ext_resource type="Texture2D" uid="uid://bmku16s2g7qwq" path="res://Player/UI/damage_bar_texture(1).png" id="1_wlq4h"]
+[ext_resource type="Texture2D" uid="uid://cg3rulqev0juy" path="res://Player/UI/hp_bar_texture.png" id="2_26qjk"]
+[ext_resource type="Script" uid="uid://duqdbhlweipi" path="res://Player/player_health.gd" id="3_5llcl"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6pogt"]
+texture = ExtResource("2_26qjk")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wlq4h"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wlq4h"]
+texture = ExtResource("1_wlq4h")
+
+[node name="playerHealth" type="ProgressBar"]
+z_index = 1
+custom_minimum_size = Vector2(300, 40)
+size_flags_horizontal = 0
+theme_override_styles/fill = SubResource("StyleBoxTexture_6pogt")
+value = 50.0
+show_percentage = false
+script = ExtResource("3_5llcl")
+
+[node name="damageBar" type="ProgressBar" parent="."]
+z_index = -1
+custom_minimum_size = Vector2(300, 40)
+layout_mode = 0
+offset_right = 4.0
+offset_bottom = 27.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_wlq4h")
+theme_override_styles/fill = SubResource("StyleBoxTexture_wlq4h")
+value = 100.0
+show_percentage = false
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
