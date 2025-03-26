@@ -50,7 +50,8 @@ func can_attack(value: bool):
 func secondary_active(value: bool):
 	secondary_active_bool = value
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
+	#region player controls
 	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	if dead:
 		return
@@ -77,15 +78,21 @@ func _input(event: InputEvent) -> void:
 		
 	if event.is_action_pressed("attack_secondary"):
 		offhand.offhand.state_chart.send_event("secondary_attack")
-
-func _process(delta: float) -> void:
-	if dead:
-		return
-	if Input.is_action_just_pressed("exit"):
-		get_tree().quit()
-	if Input.is_action_just_pressed("restart"):
+	#endregion
+	
+	#region debug controls
+	if event is InputEventMouseButton and event.is_pressed() and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	if event.is_action_pressed("exit"):
+		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		else:
+			get_tree().quit()
+			
+	if event.is_action_pressed("restart"):
 		#restart()
 		kill()
+	#endregion
 
 func restart():
 	get_tree().reload_current_scene()

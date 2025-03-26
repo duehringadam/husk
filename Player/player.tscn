@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://crwpbskjjllht"]
+[gd_scene load_steps=46 format=3 uid="uid://crwpbskjjllht"]
 
 [ext_resource type="Script" uid="uid://bi6bcf1evx4ur" path="res://Player/player.gd" id="1_t2vdx"]
 [ext_resource type="Script" uid="uid://b3yihwhs36do6" path="res://Player/States/statemachine.gd" id="2_7a7qp"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://78q517wrknfe" path="res://player_health.tscn" id="6_jp1hh"]
 [ext_resource type="Script" uid="uid://c0igns5ruyseu" path="res://Player/States/jumpingPlayerState.gd" id="7_gsrmw"]
 [ext_resource type="Script" uid="uid://3xygyavglg41" path="res://Player/States/fallingPlayerState.gd" id="8_d032x"]
+[ext_resource type="Texture2D" uid="uid://bcxgdhnva8ev3" path="res://Player/UI/interact_frame.png" id="8_j2n6q"]
 [ext_resource type="PackedScene" uid="uid://wbbu81bn30xc" path="res://sword_viewmodel.tscn" id="11_apopc"]
 [ext_resource type="AudioStream" uid="uid://jgru6x0534if" path="res://sfx/jute-dh-steps/jute-dh-steps/stepdirt_1.wav" id="12_o28un"]
 [ext_resource type="Script" uid="uid://c5uu825dg725o" path="res://Player/mainhand.gd" id="13_m0h3t"]
@@ -220,6 +221,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("22_8viyr")
 
 [node name="Label" type="Label" parent="UILayer/userInterface"]
@@ -351,12 +353,24 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+mouse_filter = 2
 theme = ExtResource("24_76lrf")
 theme_override_constants/outline_size = 10
 bbcode_enabled = true
 text = "Open [F]"
 horizontal_alignment = 1
 vertical_alignment = 2
+
+[node name="interactframe" type="NinePatchRect" parent="UILayer"]
+texture_filter = 1
+offset_right = 769.0
+offset_bottom = 401.0
+texture = ExtResource("8_j2n6q")
+draw_center = false
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
 
 [node name="HealthComponent" type="Node3D" parent="."]
 script = ExtResource("2_c6x0f")
