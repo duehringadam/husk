@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://crwpbskjjllht"]
+[gd_scene load_steps=53 format=3 uid="uid://crwpbskjjllht"]
 
 [ext_resource type="Script" uid="uid://bi6bcf1evx4ur" path="res://Player/player.gd" id="1_t2vdx"]
 [ext_resource type="Script" uid="uid://b3yihwhs36do6" path="res://Player/States/statemachine.gd" id="2_7a7qp"]
@@ -8,13 +8,14 @@
 [ext_resource type="Script" uid="uid://mw667ajlk6l5" path="res://Player/look_at_ray.gd" id="3_j2n6q"]
 [ext_resource type="Script" uid="uid://cvlafrfonwbet" path="res://Player/States/walkingPlayerState.gd" id="4_fqfeh"]
 [ext_resource type="Script" uid="uid://vy0c7th4phgh" path="res://Player/States/sprintingPlayerState.gd" id="5_5kr7g"]
-[ext_resource type="Script" uid="uid://dby6vdcgpp7pl" path="res://Player/States/leaningPlayerState.gd" id="5_v6lau"]
 [ext_resource type="Script" uid="uid://04q1kycsbd3e" path="res://Player/States/crouchingPlayerState.gd" id="6_b2402"]
-[ext_resource type="Script" uid="uid://do22my2l07iw8" path="res://Player/States/leaning_right_player_state.gd" id="6_d4l27"]
 [ext_resource type="PackedScene" uid="uid://78q517wrknfe" path="res://player_health.tscn" id="6_jp1hh"]
 [ext_resource type="Script" uid="uid://c0igns5ruyseu" path="res://Player/States/jumpingPlayerState.gd" id="7_gsrmw"]
 [ext_resource type="Script" uid="uid://3xygyavglg41" path="res://Player/States/fallingPlayerState.gd" id="8_d032x"]
+[ext_resource type="Shader" uid="uid://dgt3e85o3avu2" path="res://Player/damage.gdshader" id="8_jp1hh"]
+[ext_resource type="Script" uid="uid://6h8f2qhrbtt6" path="res://Player/damage_overlay.gd" id="9_qs4pp"]
 [ext_resource type="PackedScene" uid="uid://wbbu81bn30xc" path="res://sword_viewmodel.tscn" id="11_apopc"]
+[ext_resource type="Script" uid="uid://c43ri6rkww00v" path="res://Player/camera_3d.gd" id="11_qs4pp"]
 [ext_resource type="AudioStream" uid="uid://jgru6x0534if" path="res://sfx/jute-dh-steps/jute-dh-steps/stepdirt_1.wav" id="12_o28un"]
 [ext_resource type="Script" uid="uid://c5uu825dg725o" path="res://Player/mainhand.gd" id="13_m0h3t"]
 [ext_resource type="AudioStream" uid="uid://bqja0ky1x67vd" path="res://sfx/jute-dh-steps/jute-dh-steps/stepdirt_2.wav" id="13_n471f"]
@@ -33,6 +34,7 @@
 [ext_resource type="PackedScene" uid="uid://baow87b6rrpvl" path="res://shield.tscn" id="24_m0h3t"]
 [ext_resource type="Script" uid="uid://bs2pkx3tfve5x" path="res://Player/dialogue.gd" id="25_efx54"]
 [ext_resource type="Script" uid="uid://sj3mml8ulasu" path="res://Player/crosshair.gd" id="26_sm0op"]
+[ext_resource type="Script" uid="uid://csps0dnf2gf2n" path="res://Player/player_hurtbox_component.gd" id="34_j2n6q"]
 
 [sub_resource type="Animation" id="Animation_sm0op"]
 length = 0.001
@@ -90,6 +92,83 @@ _data = {
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jp1hh"]
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_iyprq"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_f4lon"]
+noise = SubResource("FastNoiseLite_iyprq")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8ynux"]
+shader = ExtResource("8_jp1hh")
+shader_parameter/noise = SubResource("NoiseTexture2D_f4lon")
+shader_parameter/line_color = Color(1, 0, 0, 0.160784)
+shader_parameter/line_count = 2.0
+shader_parameter/line_density = 1.0
+shader_parameter/line_faloff = 0.368
+shader_parameter/mask_size = 1.0
+shader_parameter/mask_edge = 1.0
+shader_parameter/animation_speed = 1.0
+
+[sub_resource type="Animation" id="Animation_jp1hh"]
+resource_name = "damage"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/mask_edge")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/mask_size")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 0.263, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_qs4pp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/mask_edge")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/mask_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iyprq"]
+_data = {
+&"RESET": SubResource("Animation_qs4pp"),
+&"damage": SubResource("Animation_jp1hh")
+}
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tvulw"]
 radius = 0.375
 
@@ -137,7 +216,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("head/Camera3D:position")
+tracks/3/path = NodePath("head/main_camera:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -248,7 +327,7 @@ layout_mode = 2
 theme_override_constants/margin_left = 40
 theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 40
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_bottom = 40
 
 [node name="Dialogue" type="RichTextLabel" parent="UILayer/userInterface/DialogueContainer/DialogueMargin"]
 custom_minimum_size = Vector2(400, 150)
@@ -335,6 +414,22 @@ width = 2.0
 points = PackedVector2Array(-5, 0, -15, 0)
 width = 2.0
 
+[node name="damage" type="ColorRect" parent="UILayer/userInterface" node_paths=PackedStringArray("hurtbox")]
+material = SubResource("ShaderMaterial_8ynux")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_qs4pp")
+hurtbox = NodePath("../../../hurtbox_component")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UILayer/userInterface/damage"]
+libraries = {
+&"": SubResource("AnimationLibrary_iyprq")
+}
+
 [node name="interactprompt" type="RichTextLabel" parent="UILayer"]
 visible = false
 custom_minimum_size = Vector2(200, 120)
@@ -377,14 +472,18 @@ shape = SubResource("SphereShape3D_npvy2")
 collision_mask = 6
 collide_with_areas = true
 
-[node name="Camera3D" type="Camera3D" parent="head"]
+[node name="main_camera" type="Camera3D" parent="head" node_paths=PackedStringArray("hurtbox")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00930202, 0)
 cull_mask = 1048573
 fov = 70.0
+script = ExtResource("11_qs4pp")
+randomStrength = 0.05
+hurtbox = NodePath("../../hurtbox_component")
 
-[node name="blue light" type="OmniLight3D" parent="head/Camera3D"]
+[node name="blue light" type="OmniLight3D" parent="head/main_camera"]
 transform = Transform3D(0.912179, 0.185672, -0.365316, -0.0986075, 0.964723, 0.244102, 0.397752, -0.186642, 0.898309, -0.216577, 0.103927, -0.836795)
+layers = 3
 light_color = Color(0.761397, 0.841342, 1, 1)
 light_energy = 0.1
 light_volumetric_fog_energy = 0.0
@@ -392,22 +491,12 @@ shadow_enabled = true
 omni_range = 50.0
 omni_attenuation = 0.1
 
-[node name="sword_world_model" parent="head/Camera3D" node_paths=PackedStringArray("player_lookat_ray") instance=ExtResource("2_hshwv")]
+[node name="sword_world_model" parent="head/main_camera" node_paths=PackedStringArray("player_lookat_ray") instance=ExtResource("2_hshwv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.287, -0.09, -1.22793)
 visible = false
 player_lookat_ray = NodePath("../look_at_ray")
 
-[node name="RayCast3D" type="RayCast3D" parent="head/Camera3D"]
-transform = Transform3D(0.564477, 0.825444, -0.00293898, 1.67303e-10, -0.00356046, -0.999994, -0.825449, 0.564474, -0.0020098, 0, 0, 0)
-collision_mask = 6
-collide_with_areas = true
-
-[node name="RayCast3D2" type="RayCast3D" parent="head/Camera3D"]
-transform = Transform3D(0.550452, -0.834862, 0.00297251, 3.28176e-10, -0.00356046, -0.999994, 0.834867, 0.550448, -0.00195986, 0, 0, 0)
-collision_mask = 6
-collide_with_areas = true
-
-[node name="look_at_ray" type="RayCast3D" parent="head/Camera3D"]
+[node name="look_at_ray" type="RayCast3D" parent="head/main_camera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00919533, 0)
 target_position = Vector3(0, 0, -2.5)
 collision_mask = 6
@@ -423,12 +512,6 @@ script = ExtResource("3_841m4")
 
 [node name="walkingPlayerState" type="Node" parent="stateMachine"]
 script = ExtResource("4_fqfeh")
-
-[node name="leaningPlayerState" type="Node" parent="stateMachine"]
-script = ExtResource("5_v6lau")
-
-[node name="leaningRightPlayerState" type="Node" parent="stateMachine"]
-script = ExtResource("6_d4l27")
 
 [node name="sprintingPlayerState" type="Node" parent="stateMachine"]
 script = ExtResource("5_5kr7g")
@@ -473,18 +556,27 @@ cull_mask = 1048574
 environment = ExtResource("21_i4o1l")
 current = true
 script = ExtResource("22_j2n6q")
-main_camera = NodePath("../../../head/Camera3D")
+main_camera = NodePath("../../../head/main_camera")
+
+[node name="blue light2" type="OmniLight3D" parent="SubViewportContainer/SubViewport/Camera3D"]
+transform = Transform3D(0.912179, 0.185672, -0.365316, -0.0986075, 0.964723, 0.244102, 0.397752, -0.186642, 0.898309, 0.160764, 0.103689, -0.0961482)
+layers = 3
+light_color = Color(0.761397, 0.841342, 1, 1)
+light_energy = 0.2
+light_volumetric_fog_energy = 0.0
+shadow_enabled = true
+omni_attenuation = 0.1
 
 [node name="mainhand" type="Node3D" parent="SubViewportContainer/SubViewport/Camera3D" node_paths=PackedStringArray("weapon", "weapon_world")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.299, -0.152, -0.403)
 script = ExtResource("13_m0h3t")
 weapon = NodePath("weapon_viewport")
-weapon_world = NodePath("../../../../head/Camera3D/sword_world_model")
+weapon_world = NodePath("../../../../head/main_camera/sword_world_model")
 
 [node name="weapon_viewport" parent="SubViewportContainer/SubViewport/Camera3D/mainhand" node_paths=PackedStringArray("player_lookat_ray") instance=ExtResource("11_apopc")]
 unique_name_in_owner = true
 transform = Transform3D(0.961684, 0.186662, 0.200802, -0.200802, 0.978233, 0.052336, -0.186662, -0.0906522, 0.978233, -0.000358999, 0.000228763, 0.000118345)
-player_lookat_ray = NodePath("../../../../../head/Camera3D/look_at_ray")
+player_lookat_ray = NodePath("../../../../../head/main_camera/look_at_ray")
 
 [node name="offhand" type="Node3D" parent="SubViewportContainer/SubViewport/Camera3D" node_paths=PackedStringArray("offhand")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.802, -0.606, -0.751)
@@ -492,7 +584,7 @@ script = ExtResource("15_i4o1l")
 offhand = NodePath("shield")
 
 [node name="shield" parent="SubViewportContainer/SubViewport/Camera3D/offhand" instance=ExtResource("24_m0h3t")]
-transform = Transform3D(-0.970384, 0, -0.241566, 0, 1, 0, 0.241566, 0, -0.970384, 0.206698, -0.169226, -0.116924)
+transform = Transform3D(-0.970384, 0, -0.241566, 0, 1, 0, 0.241566, 0, -0.970384, 0.140279, -0.169226, -0.124493)
 
 [node name="walk" type="AudioStreamPlayer3D" parent="SubViewportContainer/SubViewport/Camera3D"]
 unique_name_in_owner = true
@@ -500,6 +592,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00171711, -1.07993, -0.002
 stream = SubResource("AudioStreamPlaylist_sm0op")
 volume_db = -30.0
 bus = &"SFX"
+
+[node name="hurtbox_component" type="Area3D" parent="." node_paths=PackedStringArray("player_camera", "health_component")]
+collision_mask = 6
+script = ExtResource("34_j2n6q")
+player_camera = NodePath("../head/main_camera")
+health_component = NodePath("../HealthComponent")
+invulnerability_duration = 0.5
+metadata/_custom_type_script = "uid://c2i6qdosp0h2"
+
+[node name="hitbox" type="CollisionShape3D" parent="hurtbox_component"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+shape = SubResource("CapsuleShape3D_tvulw")
 
 [connection signal="timeout" from="UILayer/userInterface/DialogueContainer/DialogueMargin/dialoguetimer" to="UILayer/userInterface/DialogueContainer/DialogueMargin/Dialogue" method="_on_dialoguetimer_timeout"]
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]

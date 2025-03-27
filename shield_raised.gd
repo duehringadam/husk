@@ -5,6 +5,7 @@ extends Node
 
 
 func _on_raised_state_entered() -> void:
+	SignalBus.emit_signal("is_blocking",true)
 	SignalBus.emit_signal("secondary_active", true)
 	animation_player.play("raise_shield")
 

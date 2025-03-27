@@ -15,8 +15,7 @@ const CROUCH_SPEED = 3
 
 @onready var animation: AnimationPlayer = %AnimationPlayer
 @onready var head: Node3D = $head
-@onready var camera: Camera3D = %Camera3D
-
+@onready var camera: Camera3D = %main_camera
 
 
 #camera bob
@@ -36,12 +35,17 @@ var gravity = 18
 var dead = false
 var can_attack_bool: bool = true
 var secondary_active_bool: bool = false
+var primary_active_bool: bool = false
+var blocking: bool = false
+
 
 func _ready() -> void:
 	Global.player = self
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	SignalBus.connect("can_attack", can_attack)
 	SignalBus.connect("secondary_active", secondary_active)
+	SignalBus.connect("primary_active", primary_active)
+	SignalBus.connect("is_blocking",update_blocking)
 	
 
 func can_attack(value: bool):
@@ -49,6 +53,12 @@ func can_attack(value: bool):
 
 func secondary_active(value: bool):
 	secondary_active_bool = value
+
+func primary_active(value: bool):
+	primary_active_bool = value
+
+func update_blocking(value:bool):
+	blocking = value
 
 func _input(event: InputEvent) -> void:
 	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -75,7 +85,7 @@ func _input(event: InputEvent) -> void:
 		mainhand.weapon.state_chart.send_event("hold_right")
 		mainhand.weapon_world.state_chart.send_event("hold_right")
 		
-	if event.is_action_pressed("attack_secondary"):
+	if event.is_action_pressed("attack_secondary") && !primary_active_bool:
 		offhand.offhand.state_chart.send_event("secondary_attack")
 
 func _process(delta: float) -> void:
@@ -146,7 +156,7 @@ func _gunbob(time) -> Vector3:
 	return pos
 
 func _offhandbob(time) -> Vector3:
-	var pos = Vector3(-0.47,-0.6,-0.7)
+	var pos = Vector3(-0.8,-0.6,-0.75)
 	pos.y += sin(time * LANTERN_BOB_FREQ) * LANTERN_BOB_AMP
 	return pos
 

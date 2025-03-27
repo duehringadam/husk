@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://baow87b6rrpvl"]
+[gd_scene load_steps=16 format=3 uid="uid://baow87b6rrpvl"]
 
 [ext_resource type="PackedScene" uid="uid://cyvu5q0tccd4b" path="res://Player/weapon/ALL/Shield/shield.fbx" id="1_dmnlx"]
 [ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="2_0vxx4"]
@@ -24,6 +24,33 @@ shader_parameter/uv_scale = Vector2(1, 1)
 shader_parameter/uv_scroll_speed = Vector2(0, 0)
 shader_parameter/cull_distance_override = 0.0
 shader_parameter/convert_vertex_colors = false
+
+[sub_resource type="Animation" id="Animation_kjr8o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cube:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cube:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.5708, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_275sl"]
 resource_name = "raise_shield"
@@ -53,36 +80,38 @@ tracks/1/keys = {
 "values": [Vector3(-1.5708, 0, 0), Vector3(-1.36244, -1.5708, 1.5708)]
 }
 
-[sub_resource type="Animation" id="Animation_kjr8o"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_vivl0"]
+resource_name = "blocked"
+length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("Cube:position")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector3(-0.18, 0.237, -0.188), Vector3(-0.18, 0.237, -0.273)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath("Cube:rotation")
-tracks/1/interp = 1
+tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.0833333),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(-1.5708, 0, 0)]
+"values": [Vector3(-1.36244, -1.5708, 1.5708), Vector3(-1.43117, -1.5708, 1.5708)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vivl0"]
 _data = {
 &"RESET": SubResource("Animation_kjr8o"),
+&"blocked": SubResource("Animation_vivl0"),
 &"raise_shield": SubResource("Animation_275sl")
 }
 
@@ -90,7 +119,7 @@ _data = {
 script = ExtResource("2_xc41h")
 
 [node name="Cube" parent="." index="0"]
-transform = Transform3D(40, 0, 0, 0, -8.35024e-07, 40, 0, -19.1031, -1.74846e-06, 0, 0, 0)
+transform = Transform3D(40, 0, 0, 0, -6.9153e-05, 40, 0, -19.1031, -0.0001448, 0, 0, 0)
 layers = 2
 surface_material_override/0 = SubResource("ShaderMaterial_275sl")
 

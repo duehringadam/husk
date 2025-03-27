@@ -33,6 +33,7 @@ func reduce_damage(amount: float, source: DamageComponent) -> float:
 
 func take_damage(amount: float, source: DamageComponent):
 	if timer.time_left > 0: return 0
+	
 	# invulnerability on damage
 	invulnerability(invulnerability_duration)
 	# take damage

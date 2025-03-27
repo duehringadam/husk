@@ -21,9 +21,5 @@ func update(delta):
 		transition.emit("crouchingPlayerState")
 	if Input.is_action_just_pressed("jump") and Global.player.is_on_floor():
 		transition.emit("jumpingPlayerState")
-	if Input.is_action_just_pressed("lean_left"):
-		transition.emit("leaningPlayerState")
-	if Input.is_action_just_pressed("lean_right"):
-		transition.emit("leaningRightPlayerState")
 				
 			

@@ -6,3 +6,5 @@ signal dialogue_interact(dialogue: Array, duration: float, dialogue_sound: Audio
 signal dialogue_close
 signal can_attack(value: bool)
 signal secondary_active(value:bool)
+signal primary_active(value:bool)
+signal is_blocking(value:bool)
