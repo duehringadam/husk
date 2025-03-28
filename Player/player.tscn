@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://crwpbskjjllht"]
+[gd_scene load_steps=54 format=3 uid="uid://crwpbskjjllht"]
 
 [ext_resource type="Script" uid="uid://bi6bcf1evx4ur" path="res://Player/player.gd" id="1_t2vdx"]
 [ext_resource type="Script" uid="uid://b3yihwhs36do6" path="res://Player/States/statemachine.gd" id="2_7a7qp"]
@@ -35,6 +35,7 @@
 [ext_resource type="Script" uid="uid://bs2pkx3tfve5x" path="res://Player/dialogue.gd" id="25_efx54"]
 [ext_resource type="Script" uid="uid://sj3mml8ulasu" path="res://Player/crosshair.gd" id="26_sm0op"]
 [ext_resource type="Script" uid="uid://csps0dnf2gf2n" path="res://Player/player_hurtbox_component.gd" id="34_j2n6q"]
+[ext_resource type="AudioStream" uid="uid://df2b8w21sb3xf" path="res://sfx/hit-rock-03-266305.mp3" id="36_jp1hh"]
 
 [sub_resource type="Animation" id="Animation_sm0op"]
 length = 0.001
@@ -597,6 +598,7 @@ bus = &"SFX"
 collision_mask = 6
 script = ExtResource("34_j2n6q")
 player_camera = NodePath("../head/main_camera")
+hit_sound = ExtResource("36_jp1hh")
 health_component = NodePath("../HealthComponent")
 invulnerability_duration = 0.5
 metadata/_custom_type_script = "uid://c2i6qdosp0h2"

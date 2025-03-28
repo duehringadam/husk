@@ -1,7 +1,7 @@
 extends hurtbox_component
 
 @export var player_camera: Camera3D
-
+@export var hit_sound: AudioStream
 func take_damage(amount: float, source: DamageComponent):
 	if timer.time_left > 0: return 0
 	
@@ -11,7 +11,7 @@ func take_damage(amount: float, source: DamageComponent):
 		invulnerability(invulnerability_duration)
 		return 0 
 	# invulnerability on damage
-	AudioManager.play_sound(load("res://sfx/hit-rock-03-266305.mp3"),global_position,-10)
+	AudioManager.play_sound(hit_sound,global_position,-10)
 	invulnerability(invulnerability_duration)
 	# take damage
 	var actual = reduce_damage(amount, source)

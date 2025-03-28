@@ -12,5 +12,10 @@ func _on_held_right_state_exited() -> void:
 
 
 func _on_held_right_state_processing(delta: float) -> void:
-	if Input.is_action_just_released("attack_primary"):
-		state_chart.send_event("attack_right")
+	if animation_player.is_playing():
+		if Input.is_action_just_released("attack_primary"):
+			await animation_player.animation_finished
+			state_chart.send_event("attack_right")
+	else:
+		if Input.is_action_just_released("attack_primary"):
+			state_chart.send_event("attack_right")
