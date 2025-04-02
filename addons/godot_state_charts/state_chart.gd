@@ -221,7 +221,8 @@ func _run_changes() -> void:
 			# process the next event	
 			var next_event = _queued_events.pop_front()
 			event_received.emit(next_event)
-			_state._process_transitions(TriggerType.EVENT, next_event)
+			if not _state._process_transitions(TriggerType.EVENT, next_event):
+				push_warning("State transition from %s to %s failed." % [ _state.name, next_event ])
 	
 	_locked_down = false
 
