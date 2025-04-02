@@ -1,0 +1,11 @@
+extends Node
+
+
+enum ITEM_TYPES {
+	WEAPON,
+	OFFHAND,
+	ARMOR,
+	JEWELRY,
+	CONSUMABLE,
+	KEY
+}

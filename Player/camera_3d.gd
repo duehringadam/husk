@@ -14,6 +14,7 @@ var offset
 func _ready() -> void:
 	if !hurtbox.is_connected("damage_taken", _on_damage_taken):
 		hurtbox.connect("damage_taken", _on_damage_taken)
+		
 func _process(delta: float) -> void:
 	
 
@@ -24,7 +25,7 @@ func _process(delta: float) -> void:
 		v_offset = offset.y
 		
 ###################
-# this is called when you want to apply screen shake to camera2d
+# this is called when you want to apply screen shake to camera
 ###################
 func apply_shake():
 	shake_strength = randomStrength

@@ -2,7 +2,6 @@ class_name IdlePlayerState
 
 extends State
 
-@onready var weapon: Node3D = %weapon_viewport
 @onready var walk: AudioStreamPlayer3D = %walk
 
 

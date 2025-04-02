@@ -16,6 +16,8 @@ const CROUCH_SPEED = 3
 @onready var animation: AnimationPlayer = %AnimationPlayer
 @onready var head: Node3D = $head
 @onready var camera: Camera3D = %main_camera
+@onready var state_machine: StateMachine = $stateMachine
+@onready var inventory_vbox: VBoxContainer = $UILayer/userInterface/uiMargin/inventory/PanelContainer/ScrollContainer/VBoxContainer
 
 
 #camera bob
@@ -69,21 +71,19 @@ func _input(event: InputEvent) -> void:
 		camera.rotate_x(-event.relative.y * MOUSE_SENS)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-70),deg_to_rad(70))
 	
-	if event.is_action_pressed("attack_primary") && can_attack_bool && !secondary_active_bool:
+	if event.is_action_pressed("attack_primary") && can_attack_bool && !secondary_active_bool && mainhand.get_child_count() != 0:
 		if input_dir.x < 0 && input_dir.y == 0:
-			mainhand.weapon.state_chart.send_event("hold_left")
-			mainhand.weapon_world.state_chart.send_event("hold_left")
+			mainhand.get_child(0).state_chart.send_event("hold_left")
 		elif input_dir.x > 0 && input_dir.y == 0:
-			mainhand.weapon.state_chart.send_event("hold_right")
-			mainhand.weapon_world.state_chart.send_event("hold_right")
+			mainhand.get_child(0).state_chart.send_event("hold_right")
 		if input_dir.y < 0:
-			mainhand.weapon.state_chart.send_event("hold_forward")
-			mainhand.weapon_world.state_chart.send_event("hold_forward")
+			mainhand.get_child(0).state_chart.send_event("hold_forward")
 		elif input_dir.y > 0:
-			mainhand.weapon.state_chart.send_event("hold_back")
-			mainhand.weapon_world.state_chart.send_event("hold_back")
-		mainhand.weapon.state_chart.send_event("hold_right")
-		mainhand.weapon_world.state_chart.send_event("hold_right")
+			mainhand.get_child(0).state_chart.send_event("hold_back")
+			mainhand.get_child(0).state_chart.send_event("hold_right")
+		
+		elif input_dir.x == 0 && input_dir.y == 0:
+			mainhand.get_child(0).state_chart.send_event("hold_right")
 		
 	if event.is_action_pressed("attack_secondary") && !primary_active_bool:
 		offhand.offhand.state_chart.send_event("secondary_attack")
@@ -151,15 +151,15 @@ func _headbob(time) -> Vector3:
 	return pos
 
 func _gunbob(time) -> Vector3:
-	var pos = Vector3(.3,-.15,-.4)
+	var pos = Vector3(.6,-.3,-.9)
 	pos.y += sin(time * GUN_BOB_FREQ) * GUN_BOB_AMP
 	return pos
 
 func _offhandbob(time) -> Vector3:
-	var pos = Vector3(-0.8,-0.6,-0.75)
+	var pos = Vector3(-.6,-.6,-.9)
 	pos.y += sin(time * LANTERN_BOB_FREQ) * LANTERN_BOB_AMP
 	return pos
 
 
 func _on_health_component_died() -> void:
-	pass # Replace with function body.
+	state_machine.CURRENT_STATE.transition.emit("dyingPlayerState")

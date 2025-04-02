@@ -14,7 +14,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xl6iw"]
 render_priority = 0
 shader = ExtResource("3_smgdd")
-shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_color = Color(0.212305, 0.212305, 0.212305, 1)
 shader_parameter/albedo_texture = ExtResource("4_smgdd")
 shader_parameter/albedo_texture_as_primary_color = true
 shader_parameter/mix_factor = 1.0
@@ -72,7 +72,7 @@ script = ExtResource("6_oc3hp")
 max_health = 100.0
 metadata/_custom_type_script = "uid://dgjqgiw3yw42e"
 
-[node name="hurtbox_component" type="Area3D" parent="." index="3" node_paths=PackedStringArray("health_component")]
+[node name="hurtbox_component" type="Area3D" parent="." index="3" node_paths=PackedStringArray("health_component") groups=["enemy"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01944, 0)
 collision_layer = 4
 script = ExtResource("7_xl6iw")

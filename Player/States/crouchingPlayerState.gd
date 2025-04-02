@@ -7,7 +7,7 @@ extends State
 func enter(previous_state)->void:
 	animation.play("crouch",0,2)
 	Global.player.SPEED = Global.player.CROUCH_SPEED
-	walk.play()
+	if Global.player.velocity.length() > 0: walk.play()
 
 func update(delta):
 	Global.player.update_gravity(delta)

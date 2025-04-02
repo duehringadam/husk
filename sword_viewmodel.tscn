@@ -1,9 +1,14 @@
-[gd_scene load_steps=37 format=3 uid="uid://wbbu81bn30xc"]
+[gd_scene load_steps=42 format=3 uid="uid://wbbu81bn30xc"]
 
 [ext_resource type="Script" uid="uid://dtuv0q76720mr" path="res://weapon_scene.gd" id="1_3bige"]
 [ext_resource type="ArrayMesh" uid="uid://6anlaptdar52" path="res://Player/weapon/ALL/BrokenSword/broken.res" id="2_ri8l3"]
 [ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="3_jkoxj"]
+[ext_resource type="AudioStream" uid="uid://cv1ysqh6rmcxe" path="res://sfx/metal-hit-91-200421.mp3" id="3_oq5md"]
+[ext_resource type="AudioStream" uid="uid://bcriecbp33ym8" path="res://sfx/hit-tree-01-266310.mp3" id="4_cngb6"]
 [ext_resource type="Texture2D" uid="uid://befxb5uqu5t7d" path="res://Player/weapon/ALL/BrokenSword/base2.png" id="4_t54oq"]
+[ext_resource type="AudioStream" uid="uid://28i0pxdfmu06" path="res://sfx/hit-shell-01-266294.mp3" id="5_aq43c"]
+[ext_resource type="AudioStream" uid="uid://b4rhfsbttaw6l" path="res://sfx/hit-plant-03-266292.mp3" id="5_cngb6"]
+[ext_resource type="AudioStream" uid="uid://df2b8w21sb3xf" path="res://sfx/hit-rock-03-266305.mp3" id="6_t54oq"]
 [ext_resource type="AudioStream" uid="uid://bjlhqucjq20c" path="res://sfx/sword-sound-260274.mp3" id="10_6fyjw"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="10_cngb6"]
 [ext_resource type="Script" uid="uid://bb3ghyy64k2bd" path="res://addons/godot_state_charts/state_chart.gd" id="11_ab26s"]
@@ -35,9 +40,9 @@ shader_parameter/uv_scroll_speed = Vector2(0, 0)
 shader_parameter/cull_distance_override = 0.0
 shader_parameter/convert_vertex_colors = false
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aq43c"]
-radius = 0.0005
-height = 0.00722901
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e4sur"]
+radius = 0.001
+height = 0.01
 
 [sub_resource type="Animation" id="Animation_6cmx2"]
 length = 0.001
@@ -191,7 +196,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.127912, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0.104345, 0.214524), Vector3(-0.129783, 0.104345, -0.15719), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0.104345, 0.214524), Vector3(-0.13, 0.104, -1.107), Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -234,7 +239,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.0579548, 0.12201, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0.25, 0), Vector3(-0.148874, 0.00870147, -0.26316), Vector3(-0.149, -0.176, -0.263), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0.25, 0), Vector3(-0.149, 0.009, -1), Vector3(-0.149, -0.636, -1), Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -274,10 +279,10 @@ tracks/0/path = NodePath("MeshInstance3D:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.130238, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.0762563, 0.130238, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(-0.2, 0.07, 0), Vector3(0.132484, 0.07, -0.00332069), Vector3(0, 0, 0)]
+"values": [Vector3(-0.5, 0, 0), Vector3(-0.176, 0.037, -0.925), Vector3(0.567, 0.07, -1), Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -289,7 +294,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.130238, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(-1.3823, -2.0944, 0.0418879), Vector3(0.10472, -3.58316, -0.240855), Vector3(-1.5708, -1.5708, 0)]
+"values": [Vector3(-1.10479, -2.0944, 0.0418879), Vector3(0.10472, -3.58316, -0.240855), Vector3(-1.5708, -1.5708, 0)]
 }
 tracks/2/type = "audio"
 tracks/2/imported = false
@@ -320,7 +325,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.129077, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0.164207, 0.0714557, 0), Vector3(-0.284717, 0.0714557, -0.0388806), Vector3(0, 0, 0)]
+"values": [Vector3(0.164207, 0.0714557, 0), Vector3(-0.64, 0.071, -1), Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -385,27 +390,35 @@ metadata/_custom_type_script = "uid://dtsqtfrp33jka"
 
 [node name="sword_viewmodel" type="Node3D"]
 script = ExtResource("1_3bige")
+hit_sound = Dictionary[String, AudioStream]({
+"bone": ExtResource("5_aq43c"),
+"enemy": ExtResource("6_t54oq"),
+"rock": ExtResource("3_oq5md"),
+"tree": ExtResource("4_cngb6"),
+"world": ExtResource("5_cngb6")
+})
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.000199099, 55, 0.000199099, 0, -0.000199099, 55, 55, 0.000199099, 7.20738e-10, 0, 0, 0)
+transform = Transform3D(-0.000361999, 100, 0.000361999, 0, -0.000361999, 100, 100, 0.000361999, 1.31043e-09, 0, 0, 0)
 layers = 2
 gi_mode = 2
 mesh = ExtResource("2_ri8l3")
 surface_material_override/0 = SubResource("ShaderMaterial_ri8l3")
 
 [node name="DamageComponent" type="Area3D" parent="MeshInstance3D"]
-transform = Transform3D(0.99999, -0.00352724, -0.00279963, 0.00352722, 0.999994, -9.87513e-06, 0.00279965, 9.54969e-11, 0.999996, 0, 0, 0)
+transform = Transform3D(0.00352353, -0.99999, 0.0028049, 0.999994, 0.00352354, -3.62661e-06, -6.2566e-06, 0.0028049, 0.999996, 0, 0, 0)
 collision_mask = 6
 monitoring = false
 monitorable = false
 script = ExtResource("10_cngb6")
-amount = 100.0
+amount = 25.0
+hit_sound = ExtResource("6_t54oq")
 damage_type = 1
 metadata/_custom_type_script = "uid://dlsydctoxqbwy"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/DamageComponent"]
 transform = Transform3D(0.995105, 0.00726411, 0.0985567, 0.0986997, -0.0230195, -0.994851, -0.004958, 0.999709, -0.0236237, 0, 0, 0)
-shape = SubResource("CapsuleShape3D_aq43c")
+shape = SubResource("CapsuleShape3D_e4sur")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -472,8 +485,9 @@ delay_in_seconds = "0.0"
 [node name="left" type="Node" parent="StateChart/CompoundState"]
 script = ExtResource("13_0o31y")
 
-[node name="left" type="Node" parent="StateChart/CompoundState/left"]
+[node name="left" type="Node" parent="StateChart/CompoundState/left" node_paths=PackedStringArray("damage_component")]
 script = ExtResource("16_ri8l3")
+damage_component = NodePath("../../../../MeshInstance3D/DamageComponent")
 
 [node name="to_idle" type="Node" parent="StateChart/CompoundState/left"]
 script = ExtResource("14_mqvla")
@@ -496,8 +510,9 @@ delay_in_seconds = "0.0"
 [node name="right" type="Node" parent="StateChart/CompoundState"]
 script = ExtResource("13_0o31y")
 
-[node name="right" type="Node" parent="StateChart/CompoundState/right"]
+[node name="right" type="Node" parent="StateChart/CompoundState/right" node_paths=PackedStringArray("damage_component")]
 script = ExtResource("17_t54oq")
+damage_component = NodePath("../../../../MeshInstance3D/DamageComponent")
 
 [node name="to_idle2" type="Node" parent="StateChart/CompoundState/right"]
 script = ExtResource("14_mqvla")
@@ -519,8 +534,9 @@ delay_in_seconds = "0.0"
 [node name="back" type="Node" parent="StateChart/CompoundState"]
 script = ExtResource("13_0o31y")
 
-[node name="back" type="Node" parent="StateChart/CompoundState/back"]
+[node name="back" type="Node" parent="StateChart/CompoundState/back" node_paths=PackedStringArray("damage_component")]
 script = ExtResource("18_e4sur")
+damage_component = NodePath("../../../../MeshInstance3D/DamageComponent")
 
 [node name="to_idle3" type="Node" parent="StateChart/CompoundState/back"]
 script = ExtResource("14_mqvla")
@@ -542,14 +558,17 @@ delay_in_seconds = "0.0"
 [node name="forward" type="Node" parent="StateChart/CompoundState"]
 script = ExtResource("13_0o31y")
 
-[node name="forward" type="Node" parent="StateChart/CompoundState/forward"]
+[node name="forward" type="Node" parent="StateChart/CompoundState/forward" node_paths=PackedStringArray("damage_component")]
 script = ExtResource("19_y4rpf")
+damage_component = NodePath("../../../../MeshInstance3D/DamageComponent")
 
 [node name="to_idle4" type="Node" parent="StateChart/CompoundState/forward"]
 script = ExtResource("14_mqvla")
 to = NodePath("../../idle")
 delay_in_seconds = ".5"
 
+[connection signal="area_entered" from="MeshInstance3D/DamageComponent" to="." method="_on_damage_component_area_entered"]
+[connection signal="body_entered" from="MeshInstance3D/DamageComponent" to="." method="_on_damage_component_body_entered"]
 [connection signal="state_entered" from="StateChart/CompoundState/idle" to="StateChart/CompoundState/idle/idle" method="_on_idle_state_entered"]
 [connection signal="state_exited" from="StateChart/CompoundState/idle" to="StateChart/CompoundState/idle/idle" method="_on_idle_state_exited"]
 [connection signal="state_processing" from="StateChart/CompoundState/idle" to="StateChart/CompoundState/idle/idle" method="_on_idle_state_processing"]

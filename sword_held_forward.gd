@@ -12,11 +12,5 @@ func _on_held_forward_state_exited() -> void:
 
 
 func _on_held_forward_state_processing(delta: float) -> void:
-	if animation_player.is_playing():
-		if Input.is_action_just_released("attack_primary"):
-			await animation_player.animation_finished
-			print("hi2")
-			state_chart.send_event("attack_forward")
-	else:
-		if Input.is_action_just_released("attack_primary"):
-			state_chart.send_event("attack_forward")
+	if not (animation_player.is_playing() or Input.is_action_pressed("attack_primary")):
+		state_chart.send_event("attack_forward")

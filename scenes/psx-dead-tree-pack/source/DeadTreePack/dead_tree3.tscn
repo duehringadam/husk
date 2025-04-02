@@ -18,10 +18,12 @@ shader_parameter/uv_scroll_speed = Vector2(0, 0)
 shader_parameter/cull_distance_override = 0.0
 shader_parameter/convert_vertex_colors = false
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_lejmv"]
-points = PackedVector3Array(-0.0196913, 0.00837324, -0.012996, 0.02815, -0.0131427, 0.140096, 0.02815, -0.015531, 0.140096, -0.048396, -0.0107544, 0.111369, 0.0114037, 0.0418659, 0.0994253, 0.0114037, -0.015531, -0.012996, 0.0185817, 0.0107686, -0.012996, 0.00422562, -0.029896, 0.101823, -0.010123, -0.015531, -0.012996, -0.0316497, 0.0107686, 0.116164, -0.010123, 0.0203359, -0.012996, -0.00773282, 0.00360363, 0.135301, 0.0137939, 0.0418659, 0.0898346, 0.0137939, -0.029896, 0.0922473, 0.0185817, -0.00836606, -0.012996, 0.00901349, 0.0203359, -0.012996, -0.0172936, -0.0107544, -0.012996, -0.00534263, -0.0179334, -0.012996, -0.0316497, 0.0107686, 0.104206, -0.048396, -0.0107544, 0.106603, -0.0172936, 0.0131569, -0.012996, 0.00422562, -0.029896, 0.0946449, 0.0114037, 0.0418659, 0.0898346, 0.0257523, -0.015531, 0.140096, 0.0137939, 0.0179406, -0.012996, 0.02815, -0.015531, 0.135301, -0.0196913, 0.00120828, -0.012996, -0.00773282, 0.00120828, 0.135301, -0.000554761, -0.0179334, -0.012996, -0.00534263, 0.00360363, 0.135301, 0.02815, -0.0131427, 0.135301, 0.0137939, -0.029896, 0.0970276)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ar06o"]
+height = 4.39727
 
-[node name="StaticBody3D" type="StaticBody3D"]
+[node name="tree" type="StaticBody3D" groups=["tree"]]
+collision_layer = 2
+collision_mask = 5
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(50, 0, 0, 0, -2.18557e-06, 50, 0, -50, -2.18557e-06, 0, 0, 0)
@@ -29,5 +31,5 @@ mesh = ExtResource("1_ar06o")
 surface_material_override/0 = SubResource("ShaderMaterial_t811t")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(50, 0, 0, 0, -2.18557e-06, 50, 0, -50, -2.18557e-06, 0, 0, 0)
-shape = SubResource("ConvexPolygonShape3D_lejmv")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25852, 0)
+shape = SubResource("CapsuleShape3D_ar06o")

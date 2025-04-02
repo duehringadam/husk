@@ -2,7 +2,7 @@ extends Node
 
 @onready var animation_player: AnimationPlayer = $"../../../../AnimationPlayer"
 @onready var state_chart: StateChart = $"../../.."
-@onready var damage_component: DamageComponent = $"../../../../MeshInstance3D/DamageComponent"
+@export var damage_component: DamageComponent
 
 func _on_forward_state_entered() -> void:
 	damage_component.monitorable = true
@@ -14,7 +14,8 @@ func _on_forward_state_entered() -> void:
 
 
 func _on_forward_state_exited() -> void:
-	pass # Replace with function body.
+	damage_component.monitorable = false
+	damage_component.monitoring = false
 
 
 func _on_forward_state_processing(delta: float) -> void:

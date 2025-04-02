@@ -1,9 +1,8 @@
-[gd_scene load_steps=54 format=3 uid="uid://crwpbskjjllht"]
+[gd_scene load_steps=58 format=3 uid="uid://crwpbskjjllht"]
 
 [ext_resource type="Script" uid="uid://bi6bcf1evx4ur" path="res://Player/player.gd" id="1_t2vdx"]
 [ext_resource type="Script" uid="uid://b3yihwhs36do6" path="res://Player/States/statemachine.gd" id="2_7a7qp"]
 [ext_resource type="Script" uid="uid://dgjqgiw3yw42e" path="res://components/health_component.gd" id="2_c6x0f"]
-[ext_resource type="PackedScene" uid="uid://c10yndd1w41ng" path="res://sword_world_model.tscn" id="2_hshwv"]
 [ext_resource type="Script" uid="uid://c00yuda8yv1rm" path="res://Player/States/idlePlayerState.gd" id="3_841m4"]
 [ext_resource type="Script" uid="uid://mw667ajlk6l5" path="res://Player/look_at_ray.gd" id="3_j2n6q"]
 [ext_resource type="Script" uid="uid://cvlafrfonwbet" path="res://Player/States/walkingPlayerState.gd" id="4_fqfeh"]
@@ -11,10 +10,12 @@
 [ext_resource type="Script" uid="uid://04q1kycsbd3e" path="res://Player/States/crouchingPlayerState.gd" id="6_b2402"]
 [ext_resource type="PackedScene" uid="uid://78q517wrknfe" path="res://player_health.tscn" id="6_jp1hh"]
 [ext_resource type="Script" uid="uid://c0igns5ruyseu" path="res://Player/States/jumpingPlayerState.gd" id="7_gsrmw"]
+[ext_resource type="Script" uid="uid://b3emi1vc4o4mr" path="res://Player/item_container.gd" id="7_iyprq"]
+[ext_resource type="Texture2D" uid="uid://e3utw70yh625" path="res://item/stiletto.svg" id="7_qs4pp"]
 [ext_resource type="Script" uid="uid://3xygyavglg41" path="res://Player/States/fallingPlayerState.gd" id="8_d032x"]
 [ext_resource type="Shader" uid="uid://dgt3e85o3avu2" path="res://Player/damage.gdshader" id="8_jp1hh"]
+[ext_resource type="Script" uid="uid://ds4jqcfrmjpbj" path="res://Player/inventory.gd" id="9_8ynux"]
 [ext_resource type="Script" uid="uid://6h8f2qhrbtt6" path="res://Player/damage_overlay.gd" id="9_qs4pp"]
-[ext_resource type="PackedScene" uid="uid://wbbu81bn30xc" path="res://sword_viewmodel.tscn" id="11_apopc"]
 [ext_resource type="Script" uid="uid://c43ri6rkww00v" path="res://Player/camera_3d.gd" id="11_qs4pp"]
 [ext_resource type="AudioStream" uid="uid://jgru6x0534if" path="res://sfx/jute-dh-steps/jute-dh-steps/stepdirt_1.wav" id="12_o28un"]
 [ext_resource type="Script" uid="uid://c5uu825dg725o" path="res://Player/mainhand.gd" id="13_m0h3t"]
@@ -26,6 +27,7 @@
 [ext_resource type="AudioStream" uid="uid://bkoo0dovg888a" path="res://sfx/jute-dh-steps/jute-dh-steps/stepdirt_6.wav" id="17_8mwp6"]
 [ext_resource type="AudioStream" uid="uid://cqptw22pmofy7" path="res://sfx/jute-dh-steps/jute-dh-steps/stepdirt_7.wav" id="18_qemgg"]
 [ext_resource type="AudioStream" uid="uid://c64kea7efbe3v" path="res://sfx/jute-dh-steps/jute-dh-steps/stepdirt_8.wav" id="19_8viyr"]
+[ext_resource type="Script" uid="uid://b7bdwt4r1x8b3" path="res://Player/dying_player_state.gd" id="20_jp1hh"]
 [ext_resource type="Environment" uid="uid://c8pnvcuwa2lcp" path="res://scenes/world.tres" id="21_i4o1l"]
 [ext_resource type="Script" uid="uid://bh51mi6cbu7iw" path="res://Player/user_interface.gd" id="22_8viyr"]
 [ext_resource type="Script" uid="uid://cn1tuyffokj2" path="res://Player/viewport_camera.gd" id="22_j2n6q"]
@@ -93,6 +95,16 @@ _data = {
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jp1hh"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iyprq"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_blend = true
+corner_radius_top_left = 1
+corner_detail = 16
+
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_iyprq"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_f4lon"]
@@ -108,6 +120,33 @@ shader_parameter/line_faloff = 0.368
 shader_parameter/mask_size = 1.0
 shader_parameter/mask_edge = 1.0
 shader_parameter/animation_speed = 1.0
+
+[sub_resource type="Animation" id="Animation_qs4pp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/mask_edge")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/mask_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
 
 [sub_resource type="Animation" id="Animation_jp1hh"]
 resource_name = "damage"
@@ -135,33 +174,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [1.0, 0.263, 1.0]
-}
-
-[sub_resource type="Animation" id="Animation_qs4pp"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/mask_edge")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:material:shader_parameter/mask_size")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iyprq"]
@@ -212,7 +224,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 1.29565, 0)]
+"values": [Vector3(0, 1.25, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -224,7 +236,31 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0.00930202, 0)]
+"values": [Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SubViewportContainer:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("head/main_camera:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_4snmk"]
@@ -266,10 +302,63 @@ tracks/2/keys = {
 "values": [Vector3(0, 1.29565, 0), Vector3(0, 0.5, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_iyprq"]
+resource_name = "death"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hitbox:shape:height")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SubViewportContainer:visible")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.24),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("head:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1.296, 0), Vector3(-0.708, 0.315, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("head/main_camera:rotation")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 1.5708)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_idr3j"]
 _data = {
 &"RESET": SubResource("Animation_sjg43"),
-&"crouch": SubResource("Animation_4snmk")
+&"crouch": SubResource("Animation_4snmk"),
+&"death": SubResource("Animation_iyprq")
 }
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_sm0op"]
@@ -286,7 +375,7 @@ stream_6 = ExtResource("18_qemgg")
 stream_7 = ExtResource("19_8viyr")
 
 [node name="player" type="CharacterBody3D" node_paths=PackedStringArray("mainhand", "offhand")]
-collision_mask = 3
+collision_mask = 6
 script = ExtResource("1_t2vdx")
 mainhand = NodePath("SubViewportContainer/SubViewport/Camera3D/mainhand")
 offhand = NodePath("SubViewportContainer/SubViewport/Camera3D/offhand")
@@ -294,6 +383,7 @@ offhand = NodePath("SubViewportContainer/SubViewport/Camera3D/offhand")
 [node name="UILayer" type="CanvasLayer" parent="."]
 
 [node name="userInterface" type="Control" parent="UILayer"]
+process_priority = -1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -382,6 +472,67 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_jp1hh")
 [node name="playerHealth" parent="UILayer/userInterface/uiMargin/healthcontainer" instance=ExtResource("6_jp1hh")]
 layout_mode = 2
 
+[node name="itemContainer" type="PanelContainer" parent="UILayer/userInterface/uiMargin"]
+visible = false
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_iyprq")
+script = ExtResource("7_iyprq")
+
+[node name="itemMargin" type="MarginContainer" parent="UILayer/userInterface/uiMargin/itemContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/userInterface/uiMargin/itemContainer/itemMargin"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UILayer/userInterface/uiMargin/itemContainer/itemMargin/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme = ExtResource("24_76lrf")
+bbcode_enabled = true
+text = "Whistling Death"
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="UILayer/userInterface/uiMargin/itemContainer/itemMargin/HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+texture = ExtResource("7_qs4pp")
+expand_mode = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="UILayer/userInterface/uiMargin/itemContainer/itemMargin/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+theme = ExtResource("24_76lrf")
+bbcode_enabled = true
+text = "[F]"
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="UILayer/userInterface/uiMargin/itemContainer"]
+wait_time = 0.25
+one_shot = true
+
+[node name="inventory" type="PanelContainer" parent="UILayer/userInterface/uiMargin"]
+layout_mode = 2
+script = ExtResource("9_8ynux")
+
+[node name="PanelContainer" type="PanelContainer" parent="UILayer/userInterface/uiMargin/inventory"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UILayer/userInterface/uiMargin/inventory/PanelContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/userInterface/uiMargin/inventory/PanelContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
 [node name="crosshair" type="CenterContainer" parent="UILayer/userInterface" node_paths=PackedStringArray("RETICLE_LINES", "PLAYER_CONTROLLER")]
 layout_mode = 1
 anchors_preset = 8
@@ -423,6 +574,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("9_qs4pp")
 hurtbox = NodePath("../../../hurtbox_component")
 
@@ -447,6 +599,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+mouse_filter = 2
 theme = ExtResource("24_76lrf")
 theme_override_constants/outline_size = 10
 bbcode_enabled = true
@@ -464,7 +617,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 shape = SubResource("CapsuleShape3D_tvulw")
 
 [node name="head" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.29565, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 
 [node name="ShapeCast3D" type="ShapeCast3D" parent="head"]
 unique_name_in_owner = true
@@ -475,7 +628,6 @@ collide_with_areas = true
 
 [node name="main_camera" type="Camera3D" parent="head" node_paths=PackedStringArray("hurtbox")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00930202, 0)
 cull_mask = 1048573
 fov = 70.0
 script = ExtResource("11_qs4pp")
@@ -483,24 +635,20 @@ randomStrength = 0.05
 hurtbox = NodePath("../../hurtbox_component")
 
 [node name="blue light" type="OmniLight3D" parent="head/main_camera"]
-transform = Transform3D(0.912179, 0.185672, -0.365316, -0.0986075, 0.964723, 0.244102, 0.397752, -0.186642, 0.898309, -0.216577, 0.103927, -0.836795)
+transform = Transform3D(0.912179, 0.185672, -0.365316, -0.0986075, 0.964723, 0.244102, 0.397752, -0.186642, 0.898309, 0.00757489, 0.0209635, -0.0580237)
 layers = 3
 light_color = Color(0.761397, 0.841342, 1, 1)
-light_energy = 0.1
+light_energy = 0.3
 light_volumetric_fog_energy = 0.0
 shadow_enabled = true
 omni_range = 50.0
-omni_attenuation = 0.1
-
-[node name="sword_world_model" parent="head/main_camera" node_paths=PackedStringArray("player_lookat_ray") instance=ExtResource("2_hshwv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.287, -0.09, -1.22793)
-visible = false
-player_lookat_ray = NodePath("../look_at_ray")
+omni_attenuation = 0.392
 
 [node name="look_at_ray" type="RayCast3D" parent="head/main_camera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00919533, 0)
-target_position = Vector3(0, 0, -2.5)
-collision_mask = 6
+target_position = Vector3(0, 0, -4)
+collision_mask = 14
+hit_from_inside = true
 collide_with_areas = true
 script = ExtResource("3_j2n6q")
 
@@ -525,6 +673,9 @@ script = ExtResource("7_gsrmw")
 
 [node name="fallingPlayerState" type="Node" parent="stateMachine"]
 script = ExtResource("8_d032x")
+
+[node name="dyingPlayerState" type="Node" parent="stateMachine"]
+script = ExtResource("20_jp1hh")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
@@ -559,33 +710,18 @@ current = true
 script = ExtResource("22_j2n6q")
 main_camera = NodePath("../../../head/main_camera")
 
-[node name="blue light2" type="OmniLight3D" parent="SubViewportContainer/SubViewport/Camera3D"]
-transform = Transform3D(0.912179, 0.185672, -0.365316, -0.0986075, 0.964723, 0.244102, 0.397752, -0.186642, 0.898309, 0.160764, 0.103689, -0.0961482)
-layers = 3
-light_color = Color(0.761397, 0.841342, 1, 1)
-light_energy = 0.2
-light_volumetric_fog_energy = 0.0
-shadow_enabled = true
-omni_attenuation = 0.1
-
-[node name="mainhand" type="Node3D" parent="SubViewportContainer/SubViewport/Camera3D" node_paths=PackedStringArray("weapon", "weapon_world")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.299, -0.152, -0.403)
+[node name="mainhand" type="Node3D" parent="SubViewportContainer/SubViewport/Camera3D" node_paths=PackedStringArray("ray")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.632625, -0.395923, -0.914053)
 script = ExtResource("13_m0h3t")
-weapon = NodePath("weapon_viewport")
-weapon_world = NodePath("../../../../head/main_camera/sword_world_model")
-
-[node name="weapon_viewport" parent="SubViewportContainer/SubViewport/Camera3D/mainhand" node_paths=PackedStringArray("player_lookat_ray") instance=ExtResource("11_apopc")]
-unique_name_in_owner = true
-transform = Transform3D(0.961684, 0.186662, 0.200802, -0.200802, 0.978233, 0.052336, -0.186662, -0.0906522, 0.978233, -0.000358999, 0.000228763, 0.000118345)
-player_lookat_ray = NodePath("../../../../../head/main_camera/look_at_ray")
+ray = NodePath("../../../../head/main_camera/look_at_ray")
 
 [node name="offhand" type="Node3D" parent="SubViewportContainer/SubViewport/Camera3D" node_paths=PackedStringArray("offhand")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.802, -0.606, -0.751)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.675159, -0.662092, -0.932292)
 script = ExtResource("15_i4o1l")
 offhand = NodePath("shield")
 
 [node name="shield" parent="SubViewportContainer/SubViewport/Camera3D/offhand" instance=ExtResource("24_m0h3t")]
-transform = Transform3D(-0.970384, 0, -0.241566, 0, 1, 0, 0.241566, 0, -0.970384, 0.140279, -0.169226, -0.124493)
+transform = Transform3D(-0.970384, 0, -0.241566, 0, 1, 0, 0.241566, 0, -0.970384, 0.149635, -0.169226, 0.146411)
 
 [node name="walk" type="AudioStreamPlayer3D" parent="SubViewportContainer/SubViewport/Camera3D"]
 unique_name_in_owner = true
