@@ -30,6 +30,7 @@ ItemTypes="*res://item_types.gd"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/mode=3
 window/size/initial_position_type=2
 
 [editor]
@@ -145,6 +146,10 @@ inventory={
 3d_physics/layer_3="enemy"
 3d_physics/layer_4="interact"
 
+[physics]
+
+3d/physics_engine="Jolt Physics"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=3
@@ -182,7 +187,7 @@ texture_lod_halve_distance={
 }
 vertex_snap_intensity={
 "type": "int",
-"value": 1
+"value": 0
 }
 dither_texture={
 "type": "sampler2D",

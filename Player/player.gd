@@ -151,7 +151,7 @@ func _headbob(time) -> Vector3:
 	return pos
 
 func _gunbob(time) -> Vector3:
-	var pos = Vector3(.6,-.3,-.9)
+	var pos = Vector3(.6,-.3,-.7)
 	pos.y += sin(time * GUN_BOB_FREQ) * GUN_BOB_AMP
 	return pos
 

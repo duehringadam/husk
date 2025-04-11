@@ -10,5 +10,5 @@ void light() {
     light += (texture(dither_texture, uv).r - 0.5) * dither_strength;
     light = floor(light * dither_levels) / dither_levels;
     DIFFUSE_LIGHT += light * LIGHT_COLOR;
-	
+
 }

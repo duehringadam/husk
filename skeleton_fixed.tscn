@@ -1,0 +1,106 @@
+[gd_scene load_steps=11 format=3 uid="uid://bvkqunqw6swlf"]
+
+[ext_resource type="PackedScene" uid="uid://bwcgfp755h3q0" path="res://scenes/skeleton_fixed.fbx" id="1_kngh2"]
+[ext_resource type="Shader" uid="uid://bmf7s0356ck4c" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_transparent.gdshader" id="2_mt6pw"]
+[ext_resource type="Texture2D" uid="uid://7nevu5j2bsx7" path="res://scenes/PS1 Dark Fantasy Horror Game Assets (by Stark Crafts)/PS1 Dark Fantasy Horror Game Assets (by Stark Crafts)/PS1_Skull/Capoeira_0.png" id="3_7uhm2"]
+[ext_resource type="PackedScene" uid="uid://cwv5flat6hf1p" path="res://Player/weapon/ALL/BrokenSword/broken.fbx" id="4_4b7m4"]
+[ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="5_qqjuo"]
+[ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="6_0nes1"]
+[ext_resource type="Texture2D" uid="uid://cuk0f2s0psqec" path="res://Player/weapon/ALL/BrokenSword/base.png" id="7_tbyyi"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kd5hy"]
+render_priority = 0
+shader = ExtResource("2_mt6pw")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("3_7uhm2")
+shader_parameter/albedo_texture_as_primary_color = true
+shader_parameter/mix_factor = 1.0
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t2bmk"]
+radius = 0.00435018
+height = 0.0381203
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mkqpr"]
+render_priority = 0
+shader = ExtResource("6_0nes1")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("7_tbyyi")
+shader_parameter/albedo_texture_as_primary_color = true
+shader_parameter/mix_factor = 1.0
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+
+[node name="skeleton_fixed" instance=ExtResource("1_kngh2")]
+transform = Transform3D(-0.17, 0, 2.56693e-08, 0, 0.17, 0, -2.56693e-08, 0, -0.17, 0, 0, 0)
+
+[node name="metarig" parent="." index="0"]
+transform = Transform3D(63.7036, 75.9917, -12.9271, 4.39102, 13.1656, 99.0322, 76.9583, -63.6547, 5.05018, 0.0935734, 4.51074, 0.0776587)
+
+[node name="Skeleton3D" parent="metarig" index="0"]
+bones/1/rotation = Quaternion(0.0836742, 0.0265172, -0.0160685, 0.996011)
+bones/2/rotation = Quaternion(0.0743147, 0.0496588, -0.0104243, 0.995943)
+bones/3/rotation = Quaternion(0.0864802, 0.0499604, -0.0851734, 0.991348)
+bones/4/rotation = Quaternion(-0.166673, 0.0156403, 0.0236895, 0.985604)
+bones/5/rotation = Quaternion(0.0359789, 0.020425, 0.000658916, 0.999144)
+bones/6/rotation = Quaternion(0.14234, 0.0202452, -0.0027828, 0.989607)
+bones/9/rotation = Quaternion(0.494275, 0.674897, 0.415073, -0.357659)
+bones/10/rotation = Quaternion(-0.310766, 0.576807, -0.304455, 0.691394)
+bones/11/rotation = Quaternion(0.241858, -0.0900569, -0.09196, 0.961737)
+bones/12/rotation = Quaternion(0.0204719, 0.00718511, 0.060315, 0.997944)
+bones/15/rotation = Quaternion(0.490765, -0.699768, -0.430078, -0.290702)
+bones/16/rotation = Quaternion(-0.548352, -0.537547, 0.101629, 0.632476)
+bones/17/rotation = Quaternion(0.397045, 0.0336072, 0.0952929, 0.91222)
+bones/18/rotation = Quaternion(0.307643, -0.00664067, 0.0479844, 0.950268)
+bones/21/rotation = Quaternion(0.416877, 0.504856, 0.635206, -0.409693)
+bones/27/rotation = Quaternion(0.792997, 0.200482, -0.357135, 0.451019)
+bones/28/rotation = Quaternion(0.470192, 0.172223, 0.0234591, 0.865279)
+bones/29/rotation = Quaternion(-0.639057, -0.0724715, 0.0829436, 0.761232)
+bones/32/rotation = Quaternion(0.923877, -0.210643, 0.0423674, 0.316678)
+bones/33/rotation = Quaternion(0.529471, -0.0390493, 0.0600385, 0.8453)
+bones/34/rotation = Quaternion(-0.793757, 0.115788, -0.204185, 0.561116)
+
+[node name="ps1_skeleton" parent="metarig/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_kd5hy")
+
+[node name="weapon" type="BoneAttachment3D" parent="metarig/Skeleton3D" index="1"]
+transform = Transform3D(-0.862718, 0.0428118, 0.503869, -0.188323, -0.951936, -0.241563, 0.469309, -0.303291, 0.829314, -0.019796, -0.0174628, 0.00885741)
+bone_name = "hand.R"
+bone_idx = 18
+
+[node name="broken" parent="metarig/Skeleton3D/weapon" index="0" instance=ExtResource("4_4b7m4")]
+transform = Transform3D(-0.618433, -0.780147, 0.0944147, 0.782518, -0.622392, -0.0171742, 0.0721614, 0.0632603, 0.995385, -2.66694e-05, 0.00387728, 0.0142616)
+
+[node name="DamageComponent" type="Area3D" parent="metarig/Skeleton3D/weapon/broken" index="0"]
+transform = Transform3D(1, 0, -5.96046e-08, 0, 1, -1.86265e-09, -2.98023e-08, 0, 1, 0.00103473, -0.000988219, 0.000634462)
+collision_layer = 4
+monitoring = false
+monitorable = false
+script = ExtResource("5_qqjuo")
+amount = 10.0
+metadata/_custom_type_script = "uid://dlsydctoxqbwy"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="metarig/Skeleton3D/weapon/broken/DamageComponent" index="0"]
+transform = Transform3D(0.843372, 0.0869525, 0.530248, -0.535342, 0.0511756, 0.843083, 0.0461717, -0.994897, 0.0897094, -0.00088685, 0.000177983, 0.00733709)
+shape = SubResource("CapsuleShape3D_t2bmk")
+
+[node name="Cube" parent="metarig/Skeleton3D/weapon/broken" index="1"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -0.000599571, -0.000727236, -2.97129e-05)
+surface_material_override/0 = SubResource("ShaderMaterial_mkqpr")
+
+[node name="SkeletonIK3D" type="SkeletonIK3D" parent="metarig/Skeleton3D" index="2"]
+root_bone = &"thigh.L"
+tip_bone = &"foot.L"
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." index="2"]
+
+[editable path="metarig/Skeleton3D/weapon/broken"]

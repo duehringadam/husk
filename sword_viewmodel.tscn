@@ -1,13 +1,10 @@
-[gd_scene load_steps=42 format=3 uid="uid://wbbu81bn30xc"]
+[gd_scene load_steps=39 format=3 uid="uid://wbbu81bn30xc"]
 
 [ext_resource type="Script" uid="uid://dtuv0q76720mr" path="res://weapon_scene.gd" id="1_3bige"]
 [ext_resource type="ArrayMesh" uid="uid://6anlaptdar52" path="res://Player/weapon/ALL/BrokenSword/broken.res" id="2_ri8l3"]
 [ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="3_jkoxj"]
-[ext_resource type="AudioStream" uid="uid://cv1ysqh6rmcxe" path="res://sfx/metal-hit-91-200421.mp3" id="3_oq5md"]
-[ext_resource type="AudioStream" uid="uid://bcriecbp33ym8" path="res://sfx/hit-tree-01-266310.mp3" id="4_cngb6"]
+[ext_resource type="Material" uid="uid://c5w2i4ors51to" path="res://blood_buildup.tres" id="4_e4sur"]
 [ext_resource type="Texture2D" uid="uid://befxb5uqu5t7d" path="res://Player/weapon/ALL/BrokenSword/base2.png" id="4_t54oq"]
-[ext_resource type="AudioStream" uid="uid://28i0pxdfmu06" path="res://sfx/hit-shell-01-266294.mp3" id="5_aq43c"]
-[ext_resource type="AudioStream" uid="uid://b4rhfsbttaw6l" path="res://sfx/hit-plant-03-266292.mp3" id="5_cngb6"]
 [ext_resource type="AudioStream" uid="uid://df2b8w21sb3xf" path="res://sfx/hit-rock-03-266305.mp3" id="6_t54oq"]
 [ext_resource type="AudioStream" uid="uid://bjlhqucjq20c" path="res://sfx/sword-sound-260274.mp3" id="10_6fyjw"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="10_cngb6"]
@@ -28,6 +25,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ri8l3"]
 render_priority = 0
+next_pass = ExtResource("4_e4sur")
 shader = ExtResource("3_jkoxj")
 shader_parameter/albedo_color = Color(1, 1, 1, 1)
 shader_parameter/albedo_texture = ExtResource("4_t54oq")
@@ -210,21 +208,6 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(0.314456, -2.84112, 1.5708), Vector3(0.139468, -2.8534, 1.51644), Vector3(-1.5708, -1.5708, 0)]
 }
-tracks/2/type = "audio"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("swing")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.178907,
-"stream": ExtResource("10_6fyjw")
-}],
-"times": PackedFloat32Array(0)
-}
-tracks/2/use_blend = true
 
 [sub_resource type="Animation" id="Animation_cngb6"]
 resource_name = "swing_forward"
@@ -253,21 +236,6 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(-1.56381, -1.43292, -0.383972), Vector3(-0.0436332, -3.09796, 1.97222), Vector3(0.647517, -3.09796, 1.97222), Vector3(-1.5708, -1.5708, 0)]
 }
-tracks/2/type = "audio"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("swing")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.183729,
-"stream": ExtResource("10_6fyjw")
-}],
-"times": PackedFloat32Array(0)
-}
-tracks/2/use_blend = true
 
 [sub_resource type="Animation" id="Animation_5d4qa"]
 resource_name = "swing_left"
@@ -296,21 +264,6 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(-1.10479, -2.0944, 0.0418879), Vector3(0.10472, -3.58316, -0.240855), Vector3(-1.5708, -1.5708, 0)]
 }
-tracks/2/type = "audio"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("swing")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"clips": [{
-"end_offset": 0.195008,
-"start_offset": 0.180696,
-"stream": ExtResource("10_6fyjw")
-}],
-"times": PackedFloat32Array(0.0333333)
-}
-tracks/2/use_blend = true
 
 [sub_resource type="Animation" id="Animation_q24d8"]
 resource_name = "swing_right"
@@ -339,21 +292,6 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(-1.5708, -1.31074, -0.328122), Vector3(-3.23584, 0.657989, -0.328122), Vector3(-1.5708, -1.5708, 0)]
 }
-tracks/2/type = "audio"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("swing")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"clips": [{
-"end_offset": 0.284495,
-"start_offset": 0.180411,
-"stream": ExtResource("10_6fyjw")
-}],
-"times": PackedFloat32Array(0)
-}
-tracks/2/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ff8w7"]
 _data = {
@@ -390,13 +328,7 @@ metadata/_custom_type_script = "uid://dtsqtfrp33jka"
 
 [node name="sword_viewmodel" type="Node3D"]
 script = ExtResource("1_3bige")
-hit_sound = Dictionary[String, AudioStream]({
-"bone": ExtResource("5_aq43c"),
-"enemy": ExtResource("6_t54oq"),
-"rock": ExtResource("3_oq5md"),
-"tree": ExtResource("4_cngb6"),
-"world": ExtResource("5_cngb6")
-})
+swing_sound = ExtResource("10_6fyjw")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.000361999, 100, 0.000361999, 0, -0.000361999, 100, 100, 0.000361999, 1.31043e-09, 0, 0, 0)
@@ -485,9 +417,10 @@ delay_in_seconds = "0.0"
 [node name="left" type="Node" parent="StateChart/CompoundState"]
 script = ExtResource("13_0o31y")
 
-[node name="left" type="Node" parent="StateChart/CompoundState/left" node_paths=PackedStringArray("damage_component")]
+[node name="left" type="Node" parent="StateChart/CompoundState/left" node_paths=PackedStringArray("damage_component", "weapon")]
 script = ExtResource("16_ri8l3")
 damage_component = NodePath("../../../../MeshInstance3D/DamageComponent")
+weapon = NodePath("../../../..")
 
 [node name="to_idle" type="Node" parent="StateChart/CompoundState/left"]
 script = ExtResource("14_mqvla")
@@ -510,9 +443,10 @@ delay_in_seconds = "0.0"
 [node name="right" type="Node" parent="StateChart/CompoundState"]
 script = ExtResource("13_0o31y")
 
-[node name="right" type="Node" parent="StateChart/CompoundState/right" node_paths=PackedStringArray("damage_component")]
+[node name="right" type="Node" parent="StateChart/CompoundState/right" node_paths=PackedStringArray("damage_component", "weapon")]
 script = ExtResource("17_t54oq")
 damage_component = NodePath("../../../../MeshInstance3D/DamageComponent")
+weapon = NodePath("../../../..")
 
 [node name="to_idle2" type="Node" parent="StateChart/CompoundState/right"]
 script = ExtResource("14_mqvla")
@@ -534,9 +468,10 @@ delay_in_seconds = "0.0"
 [node name="back" type="Node" parent="StateChart/CompoundState"]
 script = ExtResource("13_0o31y")
 
-[node name="back" type="Node" parent="StateChart/CompoundState/back" node_paths=PackedStringArray("damage_component")]
+[node name="back" type="Node" parent="StateChart/CompoundState/back" node_paths=PackedStringArray("damage_component", "weapon")]
 script = ExtResource("18_e4sur")
 damage_component = NodePath("../../../../MeshInstance3D/DamageComponent")
+weapon = NodePath("../../../..")
 
 [node name="to_idle3" type="Node" parent="StateChart/CompoundState/back"]
 script = ExtResource("14_mqvla")
@@ -558,9 +493,10 @@ delay_in_seconds = "0.0"
 [node name="forward" type="Node" parent="StateChart/CompoundState"]
 script = ExtResource("13_0o31y")
 
-[node name="forward" type="Node" parent="StateChart/CompoundState/forward" node_paths=PackedStringArray("damage_component")]
+[node name="forward" type="Node" parent="StateChart/CompoundState/forward" node_paths=PackedStringArray("damage_component", "weapon")]
 script = ExtResource("19_y4rpf")
 damage_component = NodePath("../../../../MeshInstance3D/DamageComponent")
+weapon = NodePath("../../../..")
 
 [node name="to_idle4" type="Node" parent="StateChart/CompoundState/forward"]
 script = ExtResource("14_mqvla")

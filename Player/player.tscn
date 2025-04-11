@@ -711,7 +711,7 @@ script = ExtResource("22_j2n6q")
 main_camera = NodePath("../../../head/main_camera")
 
 [node name="mainhand" type="Node3D" parent="SubViewportContainer/SubViewport/Camera3D" node_paths=PackedStringArray("ray")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.632625, -0.395923, -0.914053)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.632625, -0.395923, -0.755159)
 script = ExtResource("13_m0h3t")
 ray = NodePath("../../../../head/main_camera/look_at_ray")
 
@@ -734,9 +734,9 @@ bus = &"SFX"
 collision_mask = 6
 script = ExtResource("34_j2n6q")
 player_camera = NodePath("../head/main_camera")
-hit_sound = ExtResource("36_jp1hh")
 health_component = NodePath("../HealthComponent")
 invulnerability_duration = 0.5
+hit_sound = ExtResource("36_jp1hh")
 metadata/_custom_type_script = "uid://c2i6qdosp0h2"
 
 [node name="hitbox" type="CollisionShape3D" parent="hurtbox_component"]

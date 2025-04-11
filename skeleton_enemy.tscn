@@ -1,0 +1,160 @@
+[gd_scene load_steps=15 format=3 uid="uid://bcouwuedywudo"]
+
+[ext_resource type="Script" uid="uid://xv8olxahr3k" path="res://skeleton_enemy.gd" id="1_vq3l7"]
+[ext_resource type="Script" uid="uid://df27yo6esc0lt" path="res://addons/beehave/nodes/beehave_tree.gd" id="2_nct8o"]
+[ext_resource type="Script" uid="uid://dgjqgiw3yw42e" path="res://components/health_component.gd" id="2_tj24s"]
+[ext_resource type="Script" uid="uid://c2i6qdosp0h2" path="res://components/hurtbox_component.gd" id="2_ut0ih"]
+[ext_resource type="PackedScene" uid="uid://bvkqunqw6swlf" path="res://skeleton_fixed.tscn" id="2_ycnem"]
+[ext_resource type="Script" uid="uid://smg2xw2t0edh" path="res://addons/beehave/nodes/composites/selector.gd" id="3_cr58e"]
+[ext_resource type="PackedScene" uid="uid://7rpwxmtd4vnq" path="res://hitparticles.tscn" id="4_35onr"]
+[ext_resource type="Script" uid="uid://bedtxiwg0qd8n" path="res://addons/beehave/nodes/composites/sequence.gd" id="4_vq3l7"]
+[ext_resource type="Script" uid="uid://wktwtvysjga4" path="res://follow_player.gd" id="7_ut0ih"]
+[ext_resource type="Script" uid="uid://iift0ic35h6p" path="res://chasecondition.gd" id="9_35onr"]
+[ext_resource type="Script" uid="uid://bail5hittr0ri" path="res://attack_condition.gd" id="11_35onr"]
+[ext_resource type="Script" uid="uid://dh5pwonwnk7xk" path="res://attack.gd" id="12_35onr"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_487bs"]
+height = 1.44312
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ycnem"]
+radius = 0.31745
+height = 1.49864
+
+[node name="skeleton_enemy" type="CharacterBody3D"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_vq3l7")
+
+[node name="HealthComponent" type="Node3D" parent="."]
+script = ExtResource("2_tj24s")
+max_health = 100.0
+metadata/_custom_type_script = "uid://dgjqgiw3yw42e"
+
+[node name="hurtbox_component" type="Area3D" parent="." node_paths=PackedStringArray("health_component") groups=["enemy"]]
+collision_layer = 4
+script = ExtResource("2_ut0ih")
+health_component = NodePath("../HealthComponent")
+damage_particles = ExtResource("4_35onr")
+metadata/_custom_type_script = "uid://c2i6qdosp0h2"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hurtbox_component"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.897725, 0)
+shape = SubResource("CapsuleShape3D_487bs")
+
+[node name="skeleton_fixed" parent="." instance=ExtResource("2_ycnem")]
+
+[node name="metarig" parent="skeleton_fixed" index="0"]
+transform = Transform3D(63.7036, 75.9917, -12.9271, 4.39101, 13.1656, 99.0322, 76.9582, -63.6547, 5.05017, 0.0935734, 4.51074, 0.0776587)
+
+[node name="Skeleton3D" parent="skeleton_fixed/metarig" index="0"]
+bones/1/position = Vector3(-1.4996e-11, 0.00808254, 1.40546e-10)
+bones/1/scale = Vector3(1, 1, 1)
+bones/2/position = Vector3(2.97367e-10, 0.0080651, -6.34258e-10)
+bones/2/scale = Vector3(1, 1, 1)
+bones/3/position = Vector3(2.97267e-10, 0.00959257, -6.75418e-10)
+bones/3/scale = Vector3(1, 1, 1)
+bones/4/position = Vector3(2.56703e-10, 0.00838191, 1.9517e-09)
+bones/4/scale = Vector3(1, 1, 1)
+bones/5/position = Vector3(1.91978e-10, 0.00252323, 1.68908e-09)
+bones/5/scale = Vector3(1, 1, 1)
+bones/6/position = Vector3(1.59609e-10, 0.00250099, -9.97078e-11)
+bones/6/scale = Vector3(1, 1, 1)
+bones/7/position = Vector3(-1.15407e-10, 0.00506645, 1.54101e-09)
+bones/7/rotation = Quaternion(8.75253e-08, 1.08415e-08, -5.00721e-09, 1)
+bones/9/position = Vector3(7.94674e-05, 0.00687402, 2.57876e-05)
+bones/9/scale = Vector3(1, 1, 1)
+bones/10/position = Vector3(4.76217e-10, 0.00768185, -1.00085e-09)
+bones/10/scale = Vector3(1, 1, 1)
+bones/11/position = Vector3(1.683e-09, 0.0164376, -1.47618e-10)
+bones/11/scale = Vector3(1, 1, 1)
+bones/12/position = Vector3(-4.26286e-09, 0.0165673, -6.73748e-10)
+bones/12/scale = Vector3(1, 1, 1)
+bones/13/position = Vector3(-3.88558e-10, 0.00681522, -2.61759e-10)
+bones/13/rotation = Quaternion(8.94612e-09, -5.22738e-09, -1.73274e-09, 1)
+bones/15/position = Vector3(7.94674e-05, 0.00687402, 2.57876e-05)
+bones/15/scale = Vector3(1, 1, 1)
+bones/16/position = Vector3(-7.32201e-10, 0.00768185, -3.34901e-09)
+bones/16/scale = Vector3(1, 1, 1)
+bones/17/position = Vector3(-1.35721e-10, 0.0164376, -1.06975e-09)
+bones/17/scale = Vector3(1, 1, 1)
+bones/18/position = Vector3(1.43949e-09, 0.0165673, -1.62063e-09)
+bones/18/scale = Vector3(1, 1, 1)
+bones/19/position = Vector3(4.72879e-10, 0.00681522, 2.86625e-10)
+bones/19/rotation = Quaternion(3.55677e-08, 8.38036e-09, -3.55493e-08, 1)
+bones/19/scale = Vector3(1, 1, 1)
+bones/21/position = Vector3(-3.61339e-10, -2.39701e-05, 0.000929811)
+bones/21/scale = Vector3(1, 1, 1)
+bones/22/position = Vector3(-1.29282e-09, 0.00740766, 3.95279e-09)
+bones/22/rotation = Quaternion(3.45899e-09, 1.99733e-08, 4.49049e-08, 1)
+bones/24/position = Vector3(-3.61339e-10, -2.39701e-05, 0.000929811)
+bones/24/rotation = Quaternion(-0.416877, 0.504855, 0.635206, 0.409693)
+bones/24/scale = Vector3(1, 1, 1)
+bones/25/position = Vector3(5.19165e-10, 0.00740766, 4.26131e-09)
+bones/25/rotation = Quaternion(1.45277e-08, -5.87219e-08, 1.67411e-08, 1)
+bones/25/scale = Vector3(1, 1, 1)
+bones/27/position = Vector3(0.00754792, -0.000949648, 0.00258102)
+bones/27/scale = Vector3(1, 1, 1)
+bones/28/position = Vector3(1.23726e-09, 0.0205203, 1.28263e-09)
+bones/28/scale = Vector3(1, 1, 1)
+bones/29/position = Vector3(-8.24821e-09, 0.0254464, 2.59947e-09)
+bones/29/scale = Vector3(1, 1, 1)
+bones/30/position = Vector3(-6.35612e-11, 0.010421, 1.898e-09)
+bones/30/rotation = Quaternion(-5.04787e-09, -2.13458e-09, -5.07736e-09, 1)
+bones/30/scale = Vector3(1, 1, 1)
+bones/32/position = Vector3(-0.00754792, -0.000949645, 0.00258102)
+bones/32/scale = Vector3(1, 1, 1)
+bones/33/position = Vector3(-1.0599e-09, 0.0205203, -3.98971e-10)
+bones/33/scale = Vector3(1, 1, 1)
+bones/34/position = Vector3(9.47748e-10, 0.0254464, 9.36616e-10)
+bones/34/scale = Vector3(1, 1, 1)
+bones/35/position = Vector3(-4.84664e-10, 0.010421, 3.18582e-09)
+bones/35/rotation = Quaternion(2.26017e-07, -2.49715e-06, 2.82434e-07, 1)
+bones/35/scale = Vector3(1, 1, 1)
+
+[node name="weapon" parent="skeleton_fixed/metarig/Skeleton3D" index="1"]
+transform = Transform3D(-0.862718, 0.0428117, 0.503869, -0.188323, -0.951936, -0.241563, 0.469309, -0.303292, 0.829315, -0.0197961, -0.0174628, 0.0088574)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1, 0, 1.01836, 0)
+shape = SubResource("CapsuleShape3D_ycnem")
+
+[node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
+script = ExtResource("2_nct8o")
+blackboard = NodePath("@Node@22505")
+actor = NodePath("..")
+metadata/_custom_type_script = "uid://df27yo6esc0lt"
+
+[node name="SelectorComposite" type="Node" parent="BeehaveTree"]
+script = ExtResource("3_cr58e")
+metadata/_custom_type_script = "uid://smg2xw2t0edh"
+
+[node name="SequenceComposite2" type="Node" parent="BeehaveTree/SelectorComposite"]
+script = ExtResource("4_vq3l7")
+metadata/_custom_type_script = "uid://bedtxiwg0qd8n"
+
+[node name="attack" type="Node" parent="BeehaveTree/SelectorComposite/SequenceComposite2"]
+script = ExtResource("11_35onr")
+metadata/_custom_type_script = "uid://bm0oyyvtijjxw"
+
+[node name="attackaction" type="Node" parent="BeehaveTree/SelectorComposite/SequenceComposite2"]
+script = ExtResource("12_35onr")
+metadata/_custom_type_script = "uid://duu32ufqefpby"
+
+[node name="SequenceComposite" type="Node" parent="BeehaveTree/SelectorComposite"]
+script = ExtResource("4_vq3l7")
+metadata/_custom_type_script = "uid://bedtxiwg0qd8n"
+
+[node name="chasecondition" type="Node" parent="BeehaveTree/SelectorComposite/SequenceComposite"]
+script = ExtResource("9_35onr")
+metadata/_custom_type_script = "uid://bm0oyyvtijjxw"
+
+[node name="chase" type="Node" parent="BeehaveTree/SelectorComposite/SequenceComposite"]
+script = ExtResource("7_ut0ih")
+metadata/_custom_type_script = "uid://duu32ufqefpby"
+
+[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
+[connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]
+
+[editable path="skeleton_fixed"]
+[editable path="skeleton_fixed/metarig/Skeleton3D/weapon/broken"]

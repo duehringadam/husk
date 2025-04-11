@@ -7,7 +7,7 @@ extends Node
 func play_sound(stream: AudioStream, position, audio_in_decibels):
 	var instance = AudioStreamPlayer3D.new()
 	instance.volume_db = audio_in_decibels
-	instance.pitch_scale = randf_range(0.90,1.4)
+	instance.pitch_scale = randf_range(0.9,1.2)
 	instance.bus = "SFX"
 	instance.stream = stream
 	instance.finished.connect(remove_node.bind(instance))
@@ -27,9 +27,10 @@ func play_sound_normal(stream: AudioStream, position, audio_in_decibels):
 	instance.global_position = position
 	instance.play()
 
-func play_sound_non_positional(stream: AudioStream):
+func play_sound_non_positional(stream: AudioStream, audio_in_decibels):
 	var instance = AudioStreamPlayer3D.new()
-	instance.pitch_scale = 1
+	instance.volume_db = audio_in_decibels
+	instance.pitch_scale = randf_range(0.9,1.2)
 	instance.bus = "SFX"
 	instance.stream = stream
 	instance.finished.connect(remove_node.bind(instance))

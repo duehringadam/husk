@@ -14,7 +14,7 @@ signal damage_taken(amount: float, actual: float, source: DamageComponent)
 @export_range(0, 1) var damage_resist: float
 @export var invulnerability_duration: float
 @export var damage_particles: PackedScene
-
+@export var hit_sound: AudioStream
 
 ## add the invulnerability timer
 func _ready():
@@ -33,10 +33,11 @@ func reduce_damage(amount: float, source: DamageComponent) -> float:
 
 func take_damage(amount: float, source: DamageComponent):
 	if timer.time_left > 0: return 0
-	
 	# invulnerability on damage
 	invulnerability(invulnerability_duration)
 	# take damage
+	if hit_sound != null:
+		AudioManager.play_sound(hit_sound,self.global_position,-4.0)
 	var actual = reduce_damage(amount, source)
 	emit_signal("damage_taken", amount, actual, source)
 	health_component.modify_health(-actual)
