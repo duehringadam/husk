@@ -6,8 +6,8 @@ extends Node
 
 
 func _on_reload_state_entered() -> void:
-	AudioManager.play_sound(load("res://Player/weapon/ALL/Crossbow/crossbow-shot-85570.mp3"),weapon.global_position,0)
-	animation_player.play("reload",-1.0,.5)
+	AudioManager.play_sound(load("res://Player/weapon/ALL/Crossbow/crossbow-shot-85570.mp3"),weapon.global_position,20.0)
+	animation_player.play("reload",-1.0,.25)
 	await animation_player.animation_finished
 	state_chart.send_event("idle")
 

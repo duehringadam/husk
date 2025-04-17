@@ -7,8 +7,17 @@ extends CharacterBody3D
 
 @export var SPEED: float
 
+
+var timer: float = 0.0
+
 func _ready() -> void:
-	animation_player.play("metarig|idle",-1,.5)
+	animation_player.play("metarig|idle",-1,1)
+	
+func _process(delta: float) -> void:
+	timer += delta
+	if timer >= 0.1:
+		animation_player.advance(timer)
+		timer = 0
 
 func _physics_process(delta: float) -> void:
 	var direction = Vector3()

@@ -13,6 +13,7 @@ const CROUCH_SPEED = 3
 @export var mainhand: Node3D
 @export var offhand: Node3D
 
+@onready var lookat_ray: RayCast3D = $head/main_camera/look_at_ray
 @onready var animation: AnimationPlayer = %AnimationPlayer
 @onready var head: Node3D = $head
 @onready var camera: Camera3D = %main_camera
@@ -46,6 +47,10 @@ var input_dir
 func _ready() -> void:
 	Global.player = self
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	SignalBus.connect("is_blocking",is_blocking)
+
+func is_blocking(value:bool):
+	blocking = value
 
 func _unhandled_input(event: InputEvent) -> void:
 	input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -83,8 +88,12 @@ func update_input(delta) ->void:
 		if direction:
 			velocity.x = direction.x * SPEED
 			velocity.z = direction.z * SPEED
-			mainhand.rotation_degrees.z = lerp(mainhand.rotation_degrees.z, clampf(mainhand.rotation_degrees.z+velocity.z,-10,6),delta * 7.0)
-			offhand.rotation_degrees.z = lerp(offhand.rotation_degrees.z, clampf(offhand.rotation_degrees.z-velocity.z,-10,6),delta * 3.5)
+			mainhand.rotation_degrees.z = lerp(mainhand.rotation_degrees.z, clampf(mainhand.rotation_degrees.z+velocity.z,-6,6),delta * 7.0)
+			offhand.rotation_degrees.z = lerp(offhand.rotation_degrees.z, clampf(offhand.rotation_degrees.z-velocity.z,-6,6),delta * 3.5)
+			mainhand.rotation_degrees.y = lerp(mainhand.rotation_degrees.y, clampf(mainhand.rotation_degrees.y+velocity.z,-2,2),delta * 7.0)
+			offhand.rotation_degrees.y = lerp(offhand.rotation_degrees.y, clampf(offhand.rotation_degrees.y-velocity.z,-2,2),delta * 3.5)
+			mainhand.rotation_degrees.x = lerp(mainhand.rotation_degrees.x, clampf(mainhand.rotation_degrees.x+velocity.z,-2,2),delta * 7.0)
+			offhand.rotation_degrees.x = lerp(offhand.rotation_degrees.x, clampf(offhand.rotation_degrees.x-velocity.z,-2,2),delta * 3.5)
 			t_bob += delta * velocity.length() * float(is_on_floor())
 			camera.transform.origin = _headbob(t_bob)
 			mainhand.transform.origin = _gunbob(t_bob)
@@ -92,8 +101,12 @@ func update_input(delta) ->void:
 		else:
 			velocity.x = lerp(velocity.x, direction.x * SPEED, delta * 7.0)
 			velocity.z = lerp(velocity.z, direction.z * SPEED, delta * 7.0)
-			mainhand.rotation_degrees.z = lerp(mainhand.rotation_degrees.z, clampf(mainhand.rotation_degrees.z+velocity.z,-10,6),delta * 7.0)
-			offhand.rotation_degrees.z = lerp(offhand.rotation_degrees.z, clampf(offhand.rotation_degrees.z-velocity.z,-10,6),delta * 3.5)
+			mainhand.rotation_degrees.z = lerp(mainhand.rotation_degrees.z, clampf(mainhand.rotation_degrees.z+velocity.z,-6,6),delta * 7.0)
+			offhand.rotation_degrees.z = lerp(offhand.rotation_degrees.z, clampf(offhand.rotation_degrees.z-velocity.z,-6,6),delta * 3.5)
+			mainhand.rotation_degrees.y = lerp(mainhand.rotation_degrees.y, clampf(mainhand.rotation_degrees.y+velocity.z,-2,2),delta * 7.0)
+			offhand.rotation_degrees.y = lerp(offhand.rotation_degrees.y, clampf(offhand.rotation_degrees.y-velocity.z,-2,2),delta * 3.5)
+			mainhand.rotation_degrees.x = lerp(mainhand.rotation_degrees.x, clampf(mainhand.rotation_degrees.x+velocity.z,-2,2),delta * 7.0)
+			offhand.rotation_degrees.x = lerp(offhand.rotation_degrees.x, clampf(offhand.rotation_degrees.x-velocity.z,-2,2),delta * 3.5)
 			t_bob += delta * velocity.length() * float(is_on_floor())
 			camera.transform.origin = _headbob(t_bob)
 			mainhand.transform.origin = _gunbob(t_bob)
@@ -121,7 +134,6 @@ func _headbob(time) -> Vector3:
 func _gunbob(time) -> Vector3:
 	var pos = Vector3(.6,-.3,-.7)
 	pos.y += sin(time * GUN_BOB_FREQ) * GUN_BOB_AMP
-	pos.x += sin(-time * GUN_BOB_FREQ) * GUN_BOB_AMP
 	return pos
 
 func _offhandbob(time) -> Vector3:
