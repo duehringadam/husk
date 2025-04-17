@@ -376,6 +376,7 @@ _data = {
 }
 
 [node name="player" type="CharacterBody3D" node_paths=PackedStringArray("mainhand", "offhand")]
+visible = false
 collision_mask = 6
 script = ExtResource("1_t2vdx")
 mainhand = NodePath("SubViewportContainer/SubViewport/Camera3D/mainhand")

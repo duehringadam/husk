@@ -34,7 +34,6 @@ func _unhandled_input(event: InputEvent) -> void:
 			state_chart.send_event("hold_forward")
 		elif Global.player.input_dir.y > 0:
 			state_chart.send_event("hold_back")
-			state_chart.send_event("hold_right")
 		
 		elif Global.player.input_dir.x == 0 && Global.player.input_dir.y == 0:
 			state_chart.send_event("hold_right")

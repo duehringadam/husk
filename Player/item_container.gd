@@ -8,6 +8,6 @@ extends PanelContainer
 
 
 
-func _gui_input(event: InputEvent) -> void:
+func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") && timer.time_left <= 0:
 		visible = false

@@ -39,14 +39,14 @@ var can_attack_bool: bool = true
 var secondary_active_bool: bool = false
 var primary_active_bool: bool = false
 var blocking: bool = false
-
+var input_dir
 
 func _ready() -> void:
 	Global.player = self
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _unhandled_input(event: InputEvent) -> void:
-	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	if dead:
 		return
 	if event is InputEventMouseMotion:
@@ -76,7 +76,7 @@ func update_gravity(delta)->void:
 
 func update_input(delta) ->void:
 	# Get the input direction and handle the movement/deceleration.
-	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	direction = (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if is_on_floor():
 		if direction:
