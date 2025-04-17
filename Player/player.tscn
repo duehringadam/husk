@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://crwpbskjjllht"]
+[gd_scene load_steps=59 format=3 uid="uid://crwpbskjjllht"]
 
 [ext_resource type="Script" uid="uid://bi6bcf1evx4ur" path="res://Player/player.gd" id="1_t2vdx"]
 [ext_resource type="Script" uid="uid://b3yihwhs36do6" path="res://Player/States/statemachine.gd" id="2_7a7qp"]
@@ -36,8 +36,22 @@
 [ext_resource type="PackedScene" uid="uid://baow87b6rrpvl" path="res://shield.tscn" id="24_m0h3t"]
 [ext_resource type="Script" uid="uid://bs2pkx3tfve5x" path="res://Player/dialogue.gd" id="25_efx54"]
 [ext_resource type="Script" uid="uid://sj3mml8ulasu" path="res://Player/crosshair.gd" id="26_sm0op"]
+[ext_resource type="PackedScene" uid="uid://dvapiuj2llrlq" path="res://crossbow.tscn" id="27_f4lon"]
 [ext_resource type="Script" uid="uid://csps0dnf2gf2n" path="res://Player/player_hurtbox_component.gd" id="34_j2n6q"]
 [ext_resource type="AudioStream" uid="uid://df2b8w21sb3xf" path="res://sfx/hit-rock-03-266305.mp3" id="36_jp1hh"]
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_sm0op"]
+shuffle = true
+fade_time = 0.0
+stream_count = 8
+stream_0 = ExtResource("12_o28un")
+stream_1 = ExtResource("13_n471f")
+stream_2 = ExtResource("14_7emwf")
+stream_3 = ExtResource("15_hshwv")
+stream_4 = ExtResource("16_gpjlu")
+stream_5 = ExtResource("17_8mwp6")
+stream_6 = ExtResource("18_qemgg")
+stream_7 = ExtResource("19_8viyr")
 
 [sub_resource type="Animation" id="Animation_sm0op"]
 length = 0.001
@@ -361,24 +375,61 @@ _data = {
 &"death": SubResource("Animation_iyprq")
 }
 
-[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_sm0op"]
-shuffle = true
-fade_time = 0.0
-stream_count = 8
-stream_0 = ExtResource("12_o28un")
-stream_1 = ExtResource("13_n471f")
-stream_2 = ExtResource("14_7emwf")
-stream_3 = ExtResource("15_hshwv")
-stream_4 = ExtResource("16_gpjlu")
-stream_5 = ExtResource("17_8mwp6")
-stream_6 = ExtResource("18_qemgg")
-stream_7 = ExtResource("19_8viyr")
-
 [node name="player" type="CharacterBody3D" node_paths=PackedStringArray("mainhand", "offhand")]
 collision_mask = 6
 script = ExtResource("1_t2vdx")
 mainhand = NodePath("SubViewportContainer/SubViewport/Camera3D/mainhand")
 offhand = NodePath("SubViewportContainer/SubViewport/Camera3D/offhand")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+use_debanding = true
+use_occlusion_culling = true
+use_hdr_2d = true
+audio_listener_enable_2d = true
+audio_listener_enable_3d = true
+size = Vector2i(1280, 720)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("main_camera")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00171711, 1.30519, 0.0021373)
+cull_mask = 1048574
+environment = ExtResource("21_i4o1l")
+current = true
+script = ExtResource("22_j2n6q")
+main_camera = NodePath("../../../head/main_camera")
+
+[node name="mainhand" type="Node3D" parent="SubViewportContainer/SubViewport/Camera3D" node_paths=PackedStringArray("ray")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.632625, -0.395923, -0.755159)
+script = ExtResource("13_m0h3t")
+ray = NodePath("../../../../head/main_camera/look_at_ray")
+
+[node name="crossbow" parent="SubViewportContainer/SubViewport/Camera3D/mainhand" instance=ExtResource("27_f4lon")]
+
+[node name="offhand" type="Node3D" parent="SubViewportContainer/SubViewport/Camera3D" node_paths=PackedStringArray("offhand")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.675159, -0.662092, -0.932292)
+script = ExtResource("15_i4o1l")
+offhand = NodePath("shield")
+
+[node name="shield" parent="SubViewportContainer/SubViewport/Camera3D/offhand" instance=ExtResource("24_m0h3t")]
+transform = Transform3D(-0.970384, 0, -0.241566, 0, 1, 0, 0.241566, 0, -0.970384, 0.149635, -0.169226, 0.146411)
+
+[node name="walk" type="AudioStreamPlayer3D" parent="SubViewportContainer/SubViewport/Camera3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00171711, -1.07993, -0.0021373)
+stream = SubResource("AudioStreamPlaylist_sm0op")
+volume_db = -30.0
+bus = &"SFX"
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 
@@ -390,6 +441,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("22_8viyr")
 
 [node name="Label" type="Label" parent="UILayer/userInterface"]
@@ -518,6 +570,7 @@ wait_time = 0.25
 one_shot = true
 
 [node name="inventory" type="PanelContainer" parent="UILayer/userInterface/uiMargin"]
+visible = false
 layout_mode = 2
 script = ExtResource("9_8ynux")
 
@@ -682,53 +735,6 @@ unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_idr3j")
 }
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-stretch = true
-
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
-transparent_bg = true
-handle_input_locally = false
-use_debanding = true
-use_occlusion_culling = true
-use_hdr_2d = true
-audio_listener_enable_2d = true
-audio_listener_enable_3d = true
-size = Vector2i(1280, 720)
-render_target_update_mode = 4
-
-[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("main_camera")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00171711, 1.30519, 0.0021373)
-cull_mask = 1048574
-environment = ExtResource("21_i4o1l")
-current = true
-script = ExtResource("22_j2n6q")
-main_camera = NodePath("../../../head/main_camera")
-
-[node name="mainhand" type="Node3D" parent="SubViewportContainer/SubViewport/Camera3D" node_paths=PackedStringArray("ray")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.632625, -0.395923, -0.755159)
-script = ExtResource("13_m0h3t")
-ray = NodePath("../../../../head/main_camera/look_at_ray")
-
-[node name="offhand" type="Node3D" parent="SubViewportContainer/SubViewport/Camera3D" node_paths=PackedStringArray("offhand")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.675159, -0.662092, -0.932292)
-script = ExtResource("15_i4o1l")
-offhand = NodePath("shield")
-
-[node name="shield" parent="SubViewportContainer/SubViewport/Camera3D/offhand" instance=ExtResource("24_m0h3t")]
-transform = Transform3D(-0.970384, 0, -0.241566, 0, 1, 0, 0.241566, 0, -0.970384, 0.149635, -0.169226, 0.146411)
-
-[node name="walk" type="AudioStreamPlayer3D" parent="SubViewportContainer/SubViewport/Camera3D"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00171711, -1.07993, -0.0021373)
-stream = SubResource("AudioStreamPlaylist_sm0op")
-volume_db = -30.0
-bus = &"SFX"
 
 [node name="hurtbox_component" type="Area3D" parent="." node_paths=PackedStringArray("player_camera", "health_component")]
 collision_mask = 6

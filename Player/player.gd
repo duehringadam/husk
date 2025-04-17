@@ -44,23 +44,8 @@ var blocking: bool = false
 func _ready() -> void:
 	Global.player = self
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	SignalBus.connect("can_attack", can_attack)
-	SignalBus.connect("secondary_active", secondary_active)
-	SignalBus.connect("primary_active", primary_active)
-	SignalBus.connect("is_blocking",update_blocking)
-	
 
-func can_attack(value: bool):
-	can_attack_bool = value
 
-func secondary_active(value: bool):
-	secondary_active_bool = value
-
-func primary_active(value: bool):
-	primary_active_bool = value
-
-func update_blocking(value:bool):
-	blocking = value
 
 func _input(event: InputEvent) -> void:
 	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -70,23 +55,7 @@ func _input(event: InputEvent) -> void:
 		head.rotate_y(-event.relative.x * MOUSE_SENS)
 		camera.rotate_x(-event.relative.y * MOUSE_SENS)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-70),deg_to_rad(70))
-	
-	if event.is_action_pressed("attack_primary") && can_attack_bool && !secondary_active_bool && mainhand.get_child_count() != 0:
-		if input_dir.x < 0 && input_dir.y == 0:
-			mainhand.get_child(0).state_chart.send_event("hold_left")
-		elif input_dir.x > 0 && input_dir.y == 0:
-			mainhand.get_child(0).state_chart.send_event("hold_right")
-		if input_dir.y < 0:
-			mainhand.get_child(0).state_chart.send_event("hold_forward")
-		elif input_dir.y > 0:
-			mainhand.get_child(0).state_chart.send_event("hold_back")
-			mainhand.get_child(0).state_chart.send_event("hold_right")
-		
-		elif input_dir.x == 0 && input_dir.y == 0:
-			mainhand.get_child(0).state_chart.send_event("hold_right")
-		
-	if event.is_action_pressed("attack_secondary") && !primary_active_bool:
-		offhand.offhand.state_chart.send_event("secondary_attack")
+
 
 func _process(delta: float) -> void:
 	if dead:
@@ -153,6 +122,7 @@ func _headbob(time) -> Vector3:
 func _gunbob(time) -> Vector3:
 	var pos = Vector3(.6,-.3,-.7)
 	pos.y += sin(time * GUN_BOB_FREQ) * GUN_BOB_AMP
+	pos.x += sin(-time * GUN_BOB_FREQ) * GUN_BOB_AMP
 	return pos
 
 func _offhandbob(time) -> Vector3:

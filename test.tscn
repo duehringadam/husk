@@ -1,0 +1,150 @@
+[gd_scene load_steps=26 format=3 uid="uid://h8jpst376bb5"]
+
+[ext_resource type="Texture2D" uid="uid://dmvh0hkwyfoe5" path="res://test texture/kenney_prototype-textures/Vector/texture_01.svg" id="1_37kl0"]
+[ext_resource type="PackedScene" uid="uid://crwpbskjjllht" path="res://Player/player.tscn" id="2_8uh7m"]
+[ext_resource type="Texture2D" uid="uid://cprle3s6dj3sq" path="res://scenes/smoke-12.png" id="3_ehkex"]
+[ext_resource type="Script" uid="uid://bj1ymnpmngj1y" path="res://components/item_interact_component.gd" id="4_xersf"]
+[ext_resource type="Script" uid="uid://c23n4qi4fu7ia" path="res://item/item_required_stats.gd" id="5_00tp4"]
+[ext_resource type="PackedScene" uid="uid://dvapiuj2llrlq" path="res://crossbow.tscn" id="6_77dp3"]
+[ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/item_stat.gd" id="7_5tkv4"]
+[ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/item.gd" id="8_0m0f1"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8uh7m"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_6uqi0"]
+sky_material = SubResource("ProceduralSkyMaterial_8uh7m")
+
+[sub_resource type="Environment" id="Environment_ppyta"]
+background_mode = 2
+sky = SubResource("Sky_6uqi0")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b0q6j"]
+albedo_texture = ExtResource("1_37kl0")
+uv1_scale = Vector3(40, 40, 40)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mhym6"]
+material = SubResource("StandardMaterial3D_b0q6j")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_6uqi0"]
+points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
+
+[sub_resource type="Curve" id="Curve_d7jmx"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_6yyuu"]
+curve = SubResource("Curve_d7jmx")
+
+[sub_resource type="Gradient" id="Gradient_ys7tt"]
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_unjj8"]
+gradient = SubResource("Gradient_ys7tt")
+
+[sub_resource type="Curve" id="Curve_7u88n"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_tfp68"]
+curve = SubResource("Curve_7u88n")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p0x8t"]
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_max = 1.0
+angular_velocity_min = -720.0
+angular_velocity_max = 720.0
+gravity = Vector3(0, 0.1, 0)
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_tfp68")
+color_ramp = SubResource("GradientTexture1D_unjj8")
+alpha_curve = SubResource("CurveTexture_6yyuu")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qkbkf"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("3_ehkex")
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 16.0
+emission_texture = ExtResource("3_ehkex")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_yydre"]
+material = SubResource("StandardMaterial3D_qkbkf")
+size = Vector2(0.3, 0.3)
+
+[sub_resource type="Resource" id="Resource_a3se8"]
+script = ExtResource("8_0m0f1")
+item_name = "Crossbow"
+item_description = "a crossbow"
+item_type = 0
+item_stats = Array[ExtResource("7_5tkv4")]([])
+item_required_stats = Array[ExtResource("5_00tp4")]([])
+item_scene = ExtResource("6_77dp3")
+metadata/_custom_type_script = "uid://dcfd18dx8x1bm"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_d7jmx"]
+radius = 2.0
+
+[node name="test" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ppyta")
+
+[node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(80, 0, 0, 0, 0.96, 0, 0, 0, 80, 0, 0, 0)
+mesh = SubResource("BoxMesh_mhym6")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="CSGBakedMeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1.27335, 0, 0, 0, 1, 0, -0.0341306, 0)
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGBakedMeshInstance3D/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_6uqi0")
+
+[node name="player" parent="." instance=ExtResource("2_8uh7m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.860176, 0)
+
+[node name="item_world" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.323534, 0.749221, -7.27925)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="item_world"]
+amount = 32
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_p0x8t")
+draw_pass_1 = SubResource("QuadMesh_yydre")
+
+[node name="iteminteractcomponent" type="Area3D" parent="item_world"]
+transform = Transform3D(0.999998, 0.00168589, -0.00126219, -0.00168428, 0.999998, 0.00127415, 0.00126434, -0.00127202, 0.999998, 0, 0, 0)
+collision_layer = 8
+script = ExtResource("4_xersf")
+item_pickup = SubResource("Resource_a3se8")
+interact_type = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="item_world/iteminteractcomponent"]
+shape = SubResource("SphereShape3D_d7jmx")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="item_world"]
+layers = 3
+
+[connection signal="body_entered" from="item_world/iteminteractcomponent" to="item_world/iteminteractcomponent" method="_on_body_entered"]
+[connection signal="body_exited" from="item_world/iteminteractcomponent" to="item_world/iteminteractcomponent" method="_on_body_exited"]
