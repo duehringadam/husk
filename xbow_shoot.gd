@@ -6,7 +6,7 @@ extends Node
 
 
 func _on_shoot_state_entered() -> void:
-	AudioManager.play_sound(weapon.swing_sound,weapon.global_position,0)
+	AudioManager.play_sound(weapon.swing_sound,weapon.global_position,-20.0)
 	animation_player.play("shoot")
 	await animation_player.animation_finished
 	state_chart.send_event("reload")

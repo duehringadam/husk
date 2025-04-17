@@ -11,7 +11,7 @@ func secondary_active(value:bool):
 func _on_damage_component_body_entered(body: Node3D) -> void:
 	pass
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("attack_primary"):
 		state_chart.send_event("shoot")
 

@@ -13,7 +13,7 @@ func _ready() -> void:
 	SignalBus.interact_close.connect(close_dialogue_box)
 	SignalBus.item_interact.connect(show_item_box)
 
-func _unhandled_key_input(event: InputEvent) -> void:
+func _gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("inventory"):
 		inventory_menu()
 	
