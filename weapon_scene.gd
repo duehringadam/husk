@@ -24,8 +24,8 @@ func secondary_active(value:bool):
 func _on_damage_component_body_entered(body: Node3D) -> void:
 	pass
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("attack_primary"):
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("attack_primary") && can_attack:
 		if Global.player.input_dir.x < 0 && Global.player.input_dir.y == 0:
 			state_chart.send_event("hold_left")
 		elif Global.player.input_dir.x > 0 && Global.player.input_dir.y == 0:
