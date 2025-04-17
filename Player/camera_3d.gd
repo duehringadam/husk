@@ -16,8 +16,6 @@ func _ready() -> void:
 		hurtbox.connect("damage_taken", _on_damage_taken)
 		
 func _process(delta: float) -> void:
-	
-
 	if shake_strength > 0:
 		shake_strength = lerpf(shake_strength,0,shakeFade * delta)
 		offset = randomOffset()

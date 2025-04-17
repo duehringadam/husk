@@ -16,8 +16,10 @@ const CROUCH_SPEED = 3
 @onready var animation: AnimationPlayer = %AnimationPlayer
 @onready var head: Node3D = $head
 @onready var camera: Camera3D = %main_camera
+@onready var viewport_camera: Camera3D = $SubViewportContainer/SubViewport/Camera3D
 @onready var state_machine: StateMachine = $stateMachine
 @onready var inventory_vbox: VBoxContainer = $UILayer/userInterface/uiMargin/inventory/PanelContainer/ScrollContainer/VBoxContainer
+@onready var sub_viewport: SubViewport = %SubViewport
 
 
 #camera bob
@@ -53,7 +55,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		head.rotate_y(-event.relative.x * MOUSE_SENS)
 		camera.rotate_x(-event.relative.y * MOUSE_SENS)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-70),deg_to_rad(70))
-
 
 func _process(delta: float) -> void:
 	if dead:

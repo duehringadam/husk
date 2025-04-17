@@ -10,7 +10,6 @@ func enter(previous_state)->void:
 	walk.play()
 
 func update(delta):
-	
 	Global.player.update_gravity(delta)
 	Global.player.update_input(delta)
 	Global.player.update_velocity()

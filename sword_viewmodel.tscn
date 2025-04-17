@@ -1,11 +1,12 @@
-[gd_scene load_steps=39 format=3 uid="uid://wbbu81bn30xc"]
+[gd_scene load_steps=41 format=3 uid="uid://wbbu81bn30xc"]
 
 [ext_resource type="Script" uid="uid://dtuv0q76720mr" path="res://weapon_scene.gd" id="1_3bige"]
 [ext_resource type="ArrayMesh" uid="uid://6anlaptdar52" path="res://Player/weapon/ALL/BrokenSword/broken.res" id="2_ri8l3"]
 [ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="3_jkoxj"]
-[ext_resource type="Material" uid="uid://c5w2i4ors51to" path="res://blood_buildup.tres" id="4_e4sur"]
 [ext_resource type="Texture2D" uid="uid://befxb5uqu5t7d" path="res://Player/weapon/ALL/BrokenSword/base2.png" id="4_t54oq"]
 [ext_resource type="AudioStream" uid="uid://df2b8w21sb3xf" path="res://sfx/hit-rock-03-266305.mp3" id="6_t54oq"]
+[ext_resource type="Shader" uid="uid://m1ybqx5bqk5r" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/blood_mix.gdshader" id="6_y4rpf"]
+[ext_resource type="Texture2D" uid="uid://dag5diw53bqq3" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/1000_F_450773512_a2Qi0jF5nSby6TZV5rjpE3F0mLgHD6k6.jpg" id="7_oq5md"]
 [ext_resource type="AudioStream" uid="uid://bjlhqucjq20c" path="res://sfx/sword-sound-260274.mp3" id="10_6fyjw"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="10_cngb6"]
 [ext_resource type="Script" uid="uid://bb3ghyy64k2bd" path="res://addons/godot_state_charts/state_chart.gd" id="11_ab26s"]
@@ -23,9 +24,17 @@
 [ext_resource type="Script" uid="uid://dk5ryvkfxf66v" path="res://sword_held_back.gd" id="21_y4rpf"]
 [ext_resource type="Script" uid="uid://bc3inuwe0nld0" path="res://sword_held_forward.gd" id="23_oq5md"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ri8l3"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y4rpf"]
 render_priority = 0
-next_pass = ExtResource("4_e4sur")
+shader = ExtResource("6_y4rpf")
+shader_parameter/noise = ExtResource("7_oq5md")
+shader_parameter/noise_shading = 1.0
+shader_parameter/intensity = 0.0
+shader_parameter/color = Color(1, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oq5md"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_y4rpf")
 shader = ExtResource("3_jkoxj")
 shader_parameter/albedo_color = Color(1, 1, 1, 1)
 shader_parameter/albedo_texture = ExtResource("4_t54oq")
@@ -335,7 +344,7 @@ transform = Transform3D(-0.000361999, 100, 0.000361999, 0, -0.000361999, 100, 10
 layers = 2
 gi_mode = 2
 mesh = ExtResource("2_ri8l3")
-surface_material_override/0 = SubResource("ShaderMaterial_ri8l3")
+surface_material_override/0 = SubResource("ShaderMaterial_oq5md")
 
 [node name="DamageComponent" type="Area3D" parent="MeshInstance3D"]
 transform = Transform3D(0.00352353, -0.99999, 0.0028049, 0.999994, 0.00352354, -3.62661e-06, -6.2566e-06, 0.0028049, 0.999996, 0, 0, 0)

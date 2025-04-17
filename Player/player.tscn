@@ -1,7 +1,8 @@
-[gd_scene load_steps=59 format=3 uid="uid://crwpbskjjllht"]
+[gd_scene load_steps=60 format=3 uid="uid://crwpbskjjllht"]
 
 [ext_resource type="Script" uid="uid://bi6bcf1evx4ur" path="res://Player/player.gd" id="1_t2vdx"]
 [ext_resource type="Script" uid="uid://b3yihwhs36do6" path="res://Player/States/statemachine.gd" id="2_7a7qp"]
+[ext_resource type="Script" uid="uid://q2ii5x3uljl4" path="res://Player/sub_viewport.gd" id="2_8ynux"]
 [ext_resource type="Script" uid="uid://dgjqgiw3yw42e" path="res://components/health_component.gd" id="2_c6x0f"]
 [ext_resource type="Script" uid="uid://c00yuda8yv1rm" path="res://Player/States/idlePlayerState.gd" id="3_841m4"]
 [ext_resource type="Script" uid="uid://mw667ajlk6l5" path="res://Player/look_at_ray.gd" id="3_j2n6q"]
@@ -39,6 +40,19 @@
 [ext_resource type="PackedScene" uid="uid://dvapiuj2llrlq" path="res://crossbow.tscn" id="27_f4lon"]
 [ext_resource type="Script" uid="uid://csps0dnf2gf2n" path="res://Player/player_hurtbox_component.gd" id="34_j2n6q"]
 [ext_resource type="AudioStream" uid="uid://df2b8w21sb3xf" path="res://sfx/hit-rock-03-266305.mp3" id="36_jp1hh"]
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_sm0op"]
+shuffle = true
+fade_time = 0.0
+stream_count = 8
+stream_0 = ExtResource("12_o28un")
+stream_1 = ExtResource("13_n471f")
+stream_2 = ExtResource("14_7emwf")
+stream_3 = ExtResource("15_hshwv")
+stream_4 = ExtResource("16_gpjlu")
+stream_5 = ExtResource("17_8mwp6")
+stream_6 = ExtResource("18_qemgg")
+stream_7 = ExtResource("19_8viyr")
 
 [sub_resource type="Animation" id="Animation_sm0op"]
 length = 0.001
@@ -182,19 +196,6 @@ _data = {
 &"RESET": SubResource("Animation_qs4pp"),
 &"damage": SubResource("Animation_jp1hh")
 }
-
-[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_sm0op"]
-shuffle = true
-fade_time = 0.0
-stream_count = 8
-stream_0 = ExtResource("12_o28un")
-stream_1 = ExtResource("13_n471f")
-stream_2 = ExtResource("14_7emwf")
-stream_3 = ExtResource("15_hshwv")
-stream_4 = ExtResource("16_gpjlu")
-stream_5 = ExtResource("17_8mwp6")
-stream_6 = ExtResource("18_qemgg")
-stream_7 = ExtResource("19_8viyr")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tvulw"]
 radius = 0.375
@@ -376,11 +377,63 @@ _data = {
 }
 
 [node name="player" type="CharacterBody3D" node_paths=PackedStringArray("mainhand", "offhand")]
-visible = false
 collision_mask = 6
 script = ExtResource("1_t2vdx")
 mainhand = NodePath("SubViewportContainer/SubViewport/Camera3D/mainhand")
 offhand = NodePath("SubViewportContainer/SubViewport/Camera3D/offhand")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+unique_name_in_owner = true
+transparent_bg = true
+handle_input_locally = false
+use_debanding = true
+use_occlusion_culling = true
+use_hdr_2d = true
+audio_listener_enable_2d = true
+audio_listener_enable_3d = true
+size = Vector2i(1280, 720)
+render_target_update_mode = 4
+script = ExtResource("2_8ynux")
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("main_camera", "hurtbox")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00171711, 1.30519, 0.0021373)
+cull_mask = 1048574
+environment = ExtResource("21_i4o1l")
+current = true
+script = ExtResource("22_j2n6q")
+main_camera = NodePath("../../../head/main_camera")
+randomStrength = 0.01
+hurtbox = NodePath("../../../hurtbox_component")
+
+[node name="mainhand" type="Node3D" parent="SubViewportContainer/SubViewport/Camera3D" node_paths=PackedStringArray("ray")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.632625, -0.395923, -0.755159)
+script = ExtResource("13_m0h3t")
+ray = NodePath("../../../../head/main_camera/look_at_ray")
+
+[node name="crossbow" parent="SubViewportContainer/SubViewport/Camera3D/mainhand" instance=ExtResource("27_f4lon")]
+
+[node name="offhand" type="Node3D" parent="SubViewportContainer/SubViewport/Camera3D" node_paths=PackedStringArray("offhand")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.675159, -0.662092, -0.932292)
+script = ExtResource("15_i4o1l")
+offhand = NodePath("shield")
+
+[node name="shield" parent="SubViewportContainer/SubViewport/Camera3D/offhand" instance=ExtResource("24_m0h3t")]
+transform = Transform3D(-0.970384, 0, -0.241566, 0, 1, 0, 0.241566, 0, -0.970384, 0.149635, -0.169226, 0.146411)
+
+[node name="walk" type="AudioStreamPlayer3D" parent="SubViewportContainer/SubViewport/Camera3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00171711, -1.07993, -0.0021373)
+stream = SubResource("AudioStreamPlaylist_sm0op")
+volume_db = -30.0
+bus = &"SFX"
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 
@@ -555,6 +608,7 @@ offset_right = 0.5
 offset_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("26_sm0op")
 RETICLE_LINES = [NodePath("top"), NodePath("right"), NodePath("bottom"), NodePath("left")]
 PLAYER_CONTROLLER = NodePath("../../..")
@@ -615,56 +669,6 @@ bbcode_enabled = true
 text = "Open [F]"
 horizontal_alignment = 1
 vertical_alignment = 2
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 0
-stretch = true
-
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
-transparent_bg = true
-handle_input_locally = false
-use_debanding = true
-use_occlusion_culling = true
-use_hdr_2d = true
-audio_listener_enable_2d = true
-audio_listener_enable_3d = true
-size = Vector2i(1280, 720)
-render_target_update_mode = 4
-
-[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("main_camera")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00171711, 1.30519, 0.0021373)
-cull_mask = 1048574
-environment = ExtResource("21_i4o1l")
-current = true
-script = ExtResource("22_j2n6q")
-main_camera = NodePath("../../../head/main_camera")
-
-[node name="mainhand" type="Node3D" parent="SubViewportContainer/SubViewport/Camera3D" node_paths=PackedStringArray("ray")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.632625, -0.395923, -0.755159)
-script = ExtResource("13_m0h3t")
-ray = NodePath("../../../../head/main_camera/look_at_ray")
-
-[node name="crossbow" parent="SubViewportContainer/SubViewport/Camera3D/mainhand" instance=ExtResource("27_f4lon")]
-
-[node name="offhand" type="Node3D" parent="SubViewportContainer/SubViewport/Camera3D" node_paths=PackedStringArray("offhand")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.675159, -0.662092, -0.932292)
-script = ExtResource("15_i4o1l")
-offhand = NodePath("shield")
-
-[node name="shield" parent="SubViewportContainer/SubViewport/Camera3D/offhand" instance=ExtResource("24_m0h3t")]
-transform = Transform3D(-0.970384, 0, -0.241566, 0, 1, 0, 0.241566, 0, -0.970384, 0.149635, -0.169226, 0.146411)
-
-[node name="walk" type="AudioStreamPlayer3D" parent="SubViewportContainer/SubViewport/Camera3D"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00171711, -1.07993, -0.0021373)
-stream = SubResource("AudioStreamPlaylist_sm0op")
-volume_db = -30.0
-bus = &"SFX"
 
 [node name="HealthComponent" type="Node3D" parent="."]
 script = ExtResource("2_c6x0f")
@@ -755,7 +759,12 @@ metadata/_custom_type_script = "uid://c2i6qdosp0h2"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 shape = SubResource("CapsuleShape3D_tvulw")
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.07
+autostart = true
+
 [connection signal="timeout" from="UILayer/userInterface/DialogueContainer/DialogueMargin/dialoguetimer" to="UILayer/userInterface/DialogueContainer/DialogueMargin/Dialogue" method="_on_dialoguetimer_timeout"]
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="health_changed" from="HealthComponent" to="UILayer/userInterface/uiMargin/healthcontainer/playerHealth" method="_on_health_changed"]
 [connection signal="max_health_changed" from="HealthComponent" to="UILayer/userInterface/uiMargin/healthcontainer/playerHealth" method="_on_max_health_changed"]
+[connection signal="timeout" from="Timer" to="SubViewportContainer/SubViewport" method="_on_timer_timeout"]
