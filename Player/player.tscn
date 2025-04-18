@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://crwpbskjjllht"]
+[gd_scene load_steps=58 format=3 uid="uid://crwpbskjjllht"]
 
 [ext_resource type="Script" uid="uid://bi6bcf1evx4ur" path="res://Player/player.gd" id="1_t2vdx"]
 [ext_resource type="Script" uid="uid://b3yihwhs36do6" path="res://Player/States/statemachine.gd" id="2_7a7qp"]
@@ -34,10 +34,8 @@
 [ext_resource type="Script" uid="uid://cn1tuyffokj2" path="res://Player/viewport_camera.gd" id="22_j2n6q"]
 [ext_resource type="StyleBox" uid="uid://bkasfcxtv0jxl" path="res://fonts/dialogue_gradient_fade.tres" id="23_sm0op"]
 [ext_resource type="Theme" uid="uid://duc0j73rblgge" path="res://fonts/text_theme.tres" id="24_76lrf"]
-[ext_resource type="PackedScene" uid="uid://baow87b6rrpvl" path="res://shield.tscn" id="24_m0h3t"]
 [ext_resource type="Script" uid="uid://bs2pkx3tfve5x" path="res://Player/dialogue.gd" id="25_efx54"]
 [ext_resource type="Script" uid="uid://sj3mml8ulasu" path="res://Player/crosshair.gd" id="26_sm0op"]
-[ext_resource type="PackedScene" uid="uid://dvapiuj2llrlq" path="res://crossbow.tscn" id="27_f4lon"]
 [ext_resource type="Script" uid="uid://csps0dnf2gf2n" path="res://Player/player_hurtbox_component.gd" id="34_j2n6q"]
 [ext_resource type="AudioStream" uid="uid://df2b8w21sb3xf" path="res://sfx/hit-rock-03-266305.mp3" id="36_jp1hh"]
 
@@ -417,14 +415,8 @@ hurtbox = NodePath("../../../hurtbox_component")
 script = ExtResource("13_m0h3t")
 ray = NodePath("../../../../head/main_camera/look_at_ray")
 
-[node name="crossbow" parent="SubViewportContainer/SubViewport/Camera3D/mainhand" instance=ExtResource("27_f4lon")]
-
-[node name="offhand" type="Node3D" parent="SubViewportContainer/SubViewport/Camera3D" node_paths=PackedStringArray("offhand")]
+[node name="offhand" type="Node3D" parent="SubViewportContainer/SubViewport/Camera3D"]
 script = ExtResource("15_i4o1l")
-offhand = NodePath("shield")
-
-[node name="shield" parent="SubViewportContainer/SubViewport/Camera3D/offhand" instance=ExtResource("24_m0h3t")]
-transform = Transform3D(-0.970384, 0, -0.241566, 0, 1, 0, 0.241566, 0, -0.970384, 0.149635, -0.169226, 0.146411)
 
 [node name="walk" type="AudioStreamPlayer3D" parent="SubViewportContainer/SubViewport/Camera3D"]
 unique_name_in_owner = true
@@ -744,10 +736,11 @@ libraries = {
 &"": SubResource("AnimationLibrary_idr3j")
 }
 
-[node name="hurtbox_component" type="Area3D" parent="." node_paths=PackedStringArray("player_camera", "health_component")]
+[node name="hurtbox_component" type="Area3D" parent="." node_paths=PackedStringArray("player_camera", "viewport_camera", "health_component")]
 collision_mask = 6
 script = ExtResource("34_j2n6q")
 player_camera = NodePath("../head/main_camera")
+viewport_camera = NodePath("../SubViewportContainer/SubViewport/Camera3D")
 health_component = NodePath("../HealthComponent")
 invulnerability_duration = 0.5
 hit_sound = ExtResource("36_jp1hh")

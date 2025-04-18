@@ -49,7 +49,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-1.5708, 0, 0)]
+"values": [Vector3(-1.5708, 0, -3.14159)]
 }
 
 [sub_resource type="Animation" id="Animation_vivl0"]
@@ -62,10 +62,10 @@ tracks/0/path = NodePath("Cube:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
+"times": PackedFloat32Array(0, 0.0991167),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(-0.18, 0.237, -0.188), Vector3(-0.18, 0.237, -0.273)]
+"values": [Vector3(0.34, 0.082, 0.152), Vector3(0.34, 0.082, 0.202)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -77,7 +77,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.0833333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(-1.36244, -1.5708, 1.5708), Vector3(-1.43117, -1.5708, 1.5708)]
+"values": [Vector3(-1.5708, -0.137881, -2.96706), Vector3(-1.43117, -1.5708, -1.5708)]
 }
 
 [sub_resource type="Animation" id="Animation_275sl"]
@@ -90,10 +90,10 @@ tracks/0/path = NodePath("Cube:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.233333),
+"times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-0.18, 0.237, -0.188)]
+"values": [Vector3(0, 0, 0), Vector3(0.34, 0.082, 0.152)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -105,7 +105,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.233333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(-1.5708, 0, 0), Vector3(-1.36244, -1.5708, 1.5708)]
+"values": [Vector3(-1.5708, 0, -3.14159), Vector3(-1.5708, -0.137881, -2.96706)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vivl0"]
@@ -119,7 +119,7 @@ _data = {
 script = ExtResource("2_xc41h")
 
 [node name="Cube" parent="." index="0"]
-transform = Transform3D(40, 0, 0, 0, -6.91527e-05, 40, 0, -19.103, -0.0001448, 0, 0, 0)
+transform = Transform3D(-40, -1.67004e-06, 0, -1.52855e-13, 8.35019e-07, 40, -3.49691e-06, 19.103, -1.74846e-06, 0, 0, 0)
 layers = 2
 surface_material_override/0 = SubResource("ShaderMaterial_275sl")
 
@@ -153,8 +153,9 @@ event = &"secondary_released"
 delay_in_seconds = "0.0
 "
 
-[node name="raised" type="Node" parent="StateChart/CompoundState/raised" index="1"]
+[node name="raised" type="Node" parent="StateChart/CompoundState/raised" index="1" node_paths=PackedStringArray("weapon")]
 script = ExtResource("10_vivl0")
+weapon = NodePath("../../../../Cube")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
 libraries = {

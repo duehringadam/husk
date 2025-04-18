@@ -8,7 +8,7 @@ extends Node
 func _on_left_state_entered() -> void:
 	damage_component.monitorable = true
 	damage_component.monitoring = true
-	animation_player.play("swing_left")
+	animation_player.play("swing_left",-1,.75)
 	AudioManager.play_sound(weapon.swing_sound,weapon.global_position,0)
 	await animation_player.animation_finished
 	state_chart.send_event("idle")

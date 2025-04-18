@@ -1,13 +1,18 @@
 extends hurtbox_component
 
 @export var player_camera: Camera3D
+@export var viewport_camera: Camera3D
 
 func take_damage(amount: float, source: DamageComponent):
 	if timer.time_left > 0: return 0
 	
 	if Global.player.blocking && is_facing(source): 
 		player_camera.apply_shake()
-		Global.player.offhand.offhand.block()
+		viewport_camera.apply_shake()
+		if Global.player.offhand.get_child_count() > 0:
+			Global.player.offhand.get_child(0).block()
+		else:
+			Global.player.mainhand.get_child(0).block()
 		invulnerability(invulnerability_duration)
 		return 0 
 	# invulnerability on damage
@@ -23,6 +28,6 @@ func take_damage(amount: float, source: DamageComponent):
 	
 
 func is_facing(source: DamageComponent):
-	var block_dir = sign(Global.player.offhand.offhand.global_position.z - global_position.z)
+	var block_dir = sign(Global.player.offhand.global_position.z - global_position.z)
 	var hit_dir = sign(global_position.z - source.global_position.z)
 	return block_dir != hit_dir

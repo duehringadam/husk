@@ -15,7 +15,7 @@ func _ready() -> void:
 	
 func _process(delta: float) -> void:
 	timer += delta
-	if timer >= 0.1:
+	if timer >= 0.05:
 		animation_player.advance(timer)
 		timer = 0
 

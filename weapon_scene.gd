@@ -1,6 +1,7 @@
 class_name Weapon
 extends Node3D
 
+@export var two_handed: bool = false
 @export var player_lookat_ray: RayCast3D
 @export var hit_particles_add: PackedScene
 @export var swing_sound: AudioStream
@@ -16,6 +17,7 @@ var secondary_active_bool: bool = false
 func _ready() -> void:
 	state_chart.set_expression_property("can_attack", true)
 	SignalBus.connect("secondary_active", secondary_active)
+	animation_player.play("equip")
 
 func secondary_active(value:bool):
 	secondary_active_bool = value

@@ -6,7 +6,7 @@ extends Node
 @onready var ray: RayCast3D = $"../../../../MeshInstance3D/RayCast3D"
 
 
-var bolt_add = preload("res://bolt.tscn")
+var bolt_add = preload("res://heavy_bolt.tscn")
 
 func _on_shoot_state_entered() -> void:
 	Global.player.camera.apply_shake()

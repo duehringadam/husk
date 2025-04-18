@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://wbbu81bn30xc"]
+[gd_scene load_steps=43 format=3 uid="uid://wbbu81bn30xc"]
 
 [ext_resource type="Script" uid="uid://dtuv0q76720mr" path="res://weapon_scene.gd" id="1_3bige"]
 [ext_resource type="ArrayMesh" uid="uid://6anlaptdar52" path="res://Player/weapon/ALL/BrokenSword/broken.res" id="2_ri8l3"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dag5diw53bqq3" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/1000_F_450773512_a2Qi0jF5nSby6TZV5rjpE3F0mLgHD6k6.jpg" id="7_oq5md"]
 [ext_resource type="AudioStream" uid="uid://bjlhqucjq20c" path="res://sfx/sword-sound-260274.mp3" id="10_6fyjw"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="10_cngb6"]
+[ext_resource type="AudioStream" uid="uid://ctdeci7aj53xk" path="res://Player/weapon/ALL/RustedSword/sword-unsheathe.wav" id="10_oq5md"]
 [ext_resource type="Script" uid="uid://bb3ghyy64k2bd" path="res://addons/godot_state_charts/state_chart.gd" id="11_ab26s"]
 [ext_resource type="Script" uid="uid://clt3bkcujiepo" path="res://addons/godot_state_charts/compound_state.gd" id="12_r87k0"]
 [ext_resource type="Script" uid="uid://1xhujeketj0r" path="res://addons/godot_state_charts/atomic_state.gd" id="13_0o31y"]
@@ -302,9 +303,52 @@ tracks/1/keys = {
 "values": [Vector3(-1.5708, -1.31074, -0.328122), Vector3(-3.23584, 0.657989, -0.328122), Vector3(-1.5708, -1.5708, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_aq43c"]
+resource_name = "equip"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.21349, 3.14159, 1.57079), Vector3(-1.5708, 3.14159, 1.5708)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -0.854271, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("swing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_oq5md")
+}],
+"times": PackedFloat32Array(0.7)
+}
+tracks/2/use_blend = true
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ff8w7"]
 _data = {
 &"RESET": SubResource("Animation_6cmx2"),
+&"equip": SubResource("Animation_aq43c"),
 &"hold_back": SubResource("Animation_e4sur"),
 &"hold_forward": SubResource("Animation_oq5md"),
 &"hold_left": SubResource("Animation_3bige"),
