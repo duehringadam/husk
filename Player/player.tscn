@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://crwpbskjjllht"]
+[gd_scene load_steps=59 format=3 uid="uid://crwpbskjjllht"]
 
 [ext_resource type="Script" uid="uid://bi6bcf1evx4ur" path="res://Player/player.gd" id="1_t2vdx"]
 [ext_resource type="Script" uid="uid://b3yihwhs36do6" path="res://Player/States/statemachine.gd" id="2_7a7qp"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://cvlafrfonwbet" path="res://Player/States/walkingPlayerState.gd" id="4_fqfeh"]
 [ext_resource type="Script" uid="uid://vy0c7th4phgh" path="res://Player/States/sprintingPlayerState.gd" id="5_5kr7g"]
 [ext_resource type="Script" uid="uid://04q1kycsbd3e" path="res://Player/States/crouchingPlayerState.gd" id="6_b2402"]
+[ext_resource type="PackedScene" uid="uid://c3sqr5u2peuhu" path="res://heavy_mace.tscn" id="6_f4lon"]
 [ext_resource type="PackedScene" uid="uid://78q517wrknfe" path="res://player_health.tscn" id="6_jp1hh"]
 [ext_resource type="Script" uid="uid://c0igns5ruyseu" path="res://Player/States/jumpingPlayerState.gd" id="7_gsrmw"]
 [ext_resource type="Script" uid="uid://b3emi1vc4o4mr" path="res://Player/item_container.gd" id="7_iyprq"]
@@ -415,7 +416,11 @@ hurtbox = NodePath("../../../hurtbox_component")
 script = ExtResource("13_m0h3t")
 ray = NodePath("../../../../head/main_camera/look_at_ray")
 
+[node name="mace" parent="SubViewportContainer/SubViewport/Camera3D/mainhand" instance=ExtResource("6_f4lon")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0566368, 0, 0)
+
 [node name="offhand" type="Node3D" parent="SubViewportContainer/SubViewport/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.817597)
 script = ExtResource("15_i4o1l")
 
 [node name="walk" type="AudioStreamPlayer3D" parent="SubViewportContainer/SubViewport/Camera3D"]
@@ -751,7 +756,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 shape = SubResource("CapsuleShape3D_tvulw")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.06
+wait_time = 0.05
 autostart = true
 
 [connection signal="timeout" from="UILayer/userInterface/DialogueContainer/DialogueMargin/dialoguetimer" to="UILayer/userInterface/DialogueContainer/DialogueMargin/Dialogue" method="_on_dialoguetimer_timeout"]

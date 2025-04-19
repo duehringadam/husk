@@ -2,9 +2,11 @@ extends Node
 
 @export var weapon: Node3D
 @onready var state_chart: StateChart = $"../../.."
+@onready var gpu_trail: GPUTrail3D = $"../../../../MeshInstance3D/GPUTrail3D"
 
 
 func _on_idle_state_entered() -> void:
+	gpu_trail.visible = false
 	SignalBus.emit_signal("can_attack", true)
 	SignalBus.emit_signal("primary_active",false)
 	state_chart.set_expression_property("can_attack", true)

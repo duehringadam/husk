@@ -31,7 +31,7 @@ const GUN_BOB_FREQ = 2.4
 const GUN_BOB_AMP = 0.04
 
 const LANTERN_BOB_FREQ = 2.4
-const LANTERN_BOB_AMP = 0.02
+const LANTERN_BOB_AMP = 0.04
 
 var t_bob = 0.0
 

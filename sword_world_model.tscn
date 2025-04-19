@@ -1,6 +1,5 @@
-[gd_scene load_steps=37 format=3 uid="uid://c10yndd1w41ng"]
+[gd_scene load_steps=37 format=3 uid="uid://ddymjjpifpc4d"]
 
-[ext_resource type="Script" uid="uid://8y578oqvscc3" path="res://sword_world_model.gd" id="1_ehfv0"]
 [ext_resource type="ArrayMesh" uid="uid://6anlaptdar52" path="res://Player/weapon/ALL/BrokenSword/broken.res" id="2_uw8pe"]
 [ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="3_hj4ra"]
 [ext_resource type="Texture2D" uid="uid://befxb5uqu5t7d" path="res://Player/weapon/ALL/BrokenSword/base2.png" id="4_8ovlp"]
@@ -20,6 +19,33 @@
 [ext_resource type="Script" uid="uid://wvdotxijfutl" path="res://sword_forward.gd" id="14_r0jyg"]
 [ext_resource type="Script" uid="uid://dk5ryvkfxf66v" path="res://sword_held_back.gd" id="16_573oq"]
 [ext_resource type="Script" uid="uid://bc3inuwe0nld0" path="res://sword_held_forward.gd" id="18_5kunp"]
+
+[sub_resource type="GDScript" id="GDScript_0ckxg"]
+script/source = "class_name WeaponWorld
+extends Node3D
+
+
+@export var player_lookat_ray: RayCast3D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var state_chart: StateChart = $StateChart
+
+var hit_particles_add = preload(\"res://hitparticles.tscn\")
+
+func _on_damage_component_body_entered(body: Node3D) -> void:
+	if player_lookat_ray.is_colliding() && player_lookat_ray.get_collider() == body:
+		print(body.collision_layer)
+		var hit_particles = hit_particles_add.instantiate()
+		get_tree().current_scene.add_child(hit_particles)
+		hit_particles.global_position = player_lookat_ray.get_collision_point()
+		hit_particles.emitting = true
+		hit_particles.get_child(0).emitting=true
+		AudioManager.play_sound(load(\"res://sfx/metal-hit-91-200421.mp3\"),player_lookat_ray.get_collision_point(),-20.0)
+
+
+func _on_damage_component_area_entered(area: Area3D) -> void:
+	if area.collision_layer == 4:
+		AudioManager.play_sound(load(\"res://sfx/hit-rock-03-266305.mp3\"),player_lookat_ray.get_collision_point(),-20.0)
+"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k3it3"]
 render_priority = 0
@@ -384,7 +410,7 @@ expression = "can_attack == true"
 metadata/_custom_type_script = "uid://dtsqtfrp33jka"
 
 [node name="sword_world_model" type="Node3D"]
-script = ExtResource("1_ehfv0")
+script = SubResource("GDScript_0ckxg")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.000361999, 100, 0.000361999, 0, -0.000361999, 100, 100, 0.000361999, 1.31043e-09, 0, 0, 0)

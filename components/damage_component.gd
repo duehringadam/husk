@@ -33,4 +33,5 @@ func _physics_process(delta: float) -> void:
 				var damage = get_damage(other)
 				if damage > 0:
 					var actual = other.take_damage(damage, self)
+					Global.player.viewport_camera.apply_shake()
 					emit_signal("damage_dealt", damage, actual, other, damage_type)

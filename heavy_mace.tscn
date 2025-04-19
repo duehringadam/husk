@@ -1,0 +1,673 @@
+[gd_scene load_steps=59 format=3 uid="uid://c3sqr5u2peuhu"]
+
+[ext_resource type="Script" uid="uid://dtuv0q76720mr" path="res://weapon_scene.gd" id="1_b8kcf"]
+[ext_resource type="AudioStream" uid="uid://bquoh3r8l4qhq" path="res://Player/weapon/ALL/Mace3/sfx_hammer_spinn_whoosh_05.wav" id="2_b8kcf"]
+[ext_resource type="AudioStream" uid="uid://bvo0ngui5a0kn" path="res://sfx/sfx_hammer_hit_2.wav" id="3_1qvh1"]
+[ext_resource type="ArrayMesh" uid="uid://bf041dkyh6d3t" path="res://Player/weapon/ALL/Mace3/mace.res" id="3_b8kcf"]
+[ext_resource type="Shader" uid="uid://m1ybqx5bqk5r" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/blood_mix.gdshader" id="4_iyi1k"]
+[ext_resource type="Texture2D" uid="uid://dag5diw53bqq3" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/1000_F_450773512_a2Qi0jF5nSby6TZV5rjpE3F0mLgHD6k6.jpg" id="5_dg7pj"]
+[ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="6_pg731"]
+[ext_resource type="Texture2D" uid="uid://btefutenjumm0" path="res://Player/weapon/ALL/Mace3/Material_Base_color.png" id="7_1qvh1"]
+[ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="8_5qkyb"]
+[ext_resource type="AudioStream" uid="uid://dstroep0pwn61" path="res://sfx/cartoon-hammer-312212.mp3" id="9_k83m2"]
+[ext_resource type="Script" uid="uid://bb3ghyy64k2bd" path="res://addons/godot_state_charts/state_chart.gd" id="11_5onj0"]
+[ext_resource type="Shader" uid="uid://cn072kbcnp0m0" path="res://GPUTrail-main/shaders/trail.gdshader" id="11_dg7pj"]
+[ext_resource type="Script" uid="uid://clt3bkcujiepo" path="res://addons/godot_state_charts/compound_state.gd" id="12_kxrbt"]
+[ext_resource type="Shader" uid="uid://bjhxqywaiahde" path="res://GPUTrail-main/shaders/trail_draw_pass.gdshader" id="12_pg731"]
+[ext_resource type="Texture2D" uid="uid://cp2dvq8gnm7mi" path="res://shaders/ursc_1.3.0/addons/ursc/bayer16.png" id="13_dshsm"]
+[ext_resource type="Script" uid="uid://1xhujeketj0r" path="res://addons/godot_state_charts/atomic_state.gd" id="13_ipx1p"]
+[ext_resource type="Script" uid="uid://ixj1a12i7hrm" path="res://GPUTrail-main/GPUTrail3D.gd" id="14_5qkyb"]
+[ext_resource type="Script" uid="uid://8kg3tepcr415" path="res://addons/godot_state_charts/transition.gd" id="14_wfkea"]
+[ext_resource type="Script" uid="uid://dtsqtfrp33jka" path="res://addons/godot_state_charts/expression_guard.gd" id="15_8w2kf"]
+[ext_resource type="Script" uid="uid://d3uud607qvbfb" path="res://sword_idle.gd" id="16_yq2n0"]
+[ext_resource type="Script" uid="uid://x2oyy53b422h" path="res://sword_held_left.gd" id="17_hnn6v"]
+[ext_resource type="Script" uid="uid://c3csf7xo741r7" path="res://sword_left.gd" id="18_dvp38"]
+[ext_resource type="Script" uid="uid://dq87itd33hbbc" path="res://sword_held_right.gd" id="19_6648u"]
+[ext_resource type="Script" uid="uid://4edxvrrmei6h" path="res://sword_right.gd" id="20_dle73"]
+[ext_resource type="Script" uid="uid://dk5ryvkfxf66v" path="res://sword_held_back.gd" id="21_0b67p"]
+[ext_resource type="Script" uid="uid://dbijl0u5302qj" path="res://sword_back.gd" id="22_77k2n"]
+[ext_resource type="Script" uid="uid://bc3inuwe0nld0" path="res://sword_held_forward.gd" id="23_s5yd0"]
+[ext_resource type="Script" uid="uid://wvdotxijfutl" path="res://sword_forward.gd" id="24_gytik"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k83m2"]
+render_priority = 0
+shader = ExtResource("4_iyi1k")
+shader_parameter/noise = ExtResource("5_dg7pj")
+shader_parameter/noise_shading = 1.0
+shader_parameter/intensity = 0.0
+shader_parameter/color = Color(1, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b8kcf"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_k83m2")
+shader = ExtResource("6_pg731")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("7_1qvh1")
+shader_parameter/albedo_texture_as_primary_color = true
+shader_parameter/mix_factor = 1.0
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e4sur"]
+radius = 0.00635937
+height = 0.0456148
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_b8kcf"]
+particle_flag_rotate_y = true
+emission_shape = 1
+emission_sphere_radius = 0.01
+inherit_velocity_ratio = 1.0
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 0.01
+initial_velocity_max = 0.01
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_b8kcf"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2aoi0"]
+noise = SubResource("FastNoiseLite_b8kcf")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1qvh1"]
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0, 0, 1)
+albedo_texture = SubResource("NoiseTexture2D_2aoi0")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_dg7pj"]
+material = SubResource("StandardMaterial3D_1qvh1")
+size = Vector2(0.01, 0.03)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kkl3a"]
+shader = ExtResource("11_dg7pj")
+
+[sub_resource type="Gradient" id="Gradient_d8uqq"]
+offsets = PackedFloat32Array(0, 0.617391)
+colors = PackedColorArray(0.605274, 0.605274, 0.605274, 0.533333, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5onj0"]
+gradient = SubResource("Gradient_d8uqq")
+
+[sub_resource type="Curve" id="Curve_kxrbt"]
+bake_resolution = 16
+_data = [Vector2(0, 1), 0.0, -0.886908, 0, 0, Vector2(1, 0.1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ipx1p"]
+curve = SubResource("Curve_kxrbt")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wfkea"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("12_pg731")
+shader_parameter/tex = ExtResource("13_dshsm")
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/color_ramp = SubResource("GradientTexture1D_5onj0")
+shader_parameter/curve = SubResource("CurveTexture_ipx1p")
+shader_parameter/emmission_transform = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/flags = 18
+
+[sub_resource type="QuadMesh" id="QuadMesh_8w2kf"]
+material = SubResource("ShaderMaterial_wfkea")
+
+[sub_resource type="Animation" id="Animation_b8kcf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.2, 0, -0.6)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.3653, 1.5708, 3.14159)]
+}
+
+[sub_resource type="Animation" id="Animation_k83m2"]
+resource_name = "equip"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.566667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -2.65081, 0), Vector3(0, -0.3, -0.6)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.695758),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.844739, -2.01935, 2.9147), Vector3(5.01608, 0.986111, 0.774926)]
+}
+
+[sub_resource type="Animation" id="Animation_5qkyb"]
+resource_name = "hold_back"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.366667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -0.3, -0.6), Vector3(0, -0.625, -0.6)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(5.01608, 0.986111, 0.774926), Vector3(6.28319, 0.623083, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_pg731"]
+resource_name = "hold_forward"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.00629645, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -0.3, -0.6), Vector3(-0.313, 0.379, -0.6)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.00629645, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(5.01608, 0.986111, 0.774926), Vector3(4.8398, 0.69115, 3.14159)]
+}
+
+[sub_resource type="Animation" id="Animation_iyi1k"]
+resource_name = "hold_left"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -0.3, -0.6), Vector3(-0.695, -0.3, -0.19)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.497419),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(5.01608, 0.986111, 0.774926), Vector3(3.97237, 1.61617, 0.820305)]
+}
+
+[sub_resource type="Animation" id="Animation_1qvh1"]
+resource_name = "hold_right"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -0.3, -0.6), Vector3(0.200916, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(5.01608, 0.986111, 0.774926), Vector3(5.20283, 0.932006, 0.836013)]
+}
+
+[sub_resource type="Animation" id="Animation_kkl3a"]
+resource_name = "swing_back"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.684739),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -0.625, -0.6), Vector3(-1.004, 0.4, -1.271), Vector3(0, -0.3, -0.6)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.198338, 0.366667, 0.684739),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.623083, 0), Vector3(0.261799, 2.60752, 0), Vector3(-0.705113, 3.43655, 0), Vector3(-1.1973, 0.986111, 0.774926)]
+}
+
+[sub_resource type="Animation" id="Animation_dshsm"]
+resource_name = "swing_forward"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.3, 0.73463),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.313, 0.379, -0.6), Vector3(-0.598, -0.176, -1.255), Vector3(-0.598, -1.769, -1.255), Vector3(0, -0.3, -0.6)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.165924, 0.366667, 0.733333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(4.8398, 0.69115, 3.14159), Vector3(2.91819, 0, 0), Vector3(2.39285, 0, 0), Vector3(-1.15192, 0.932006, 0.836013)]
+}
+
+[sub_resource type="Animation" id="Animation_dg7pj"]
+resource_name = "swing_left"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.00258055, 0.133333, 0.285934, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.695, -0.3, -0.19), Vector3(-0.433, -0.3, -1.38), Vector3(0.507, -0.3, -0.26), Vector3(0, -0.3, -0.6)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.366667, 0.733333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(3.97237, 1.61617, 0.820305), Vector3(3.29518, 0.865683, 0.118682), Vector3(3.1765, -1.92161, -0.750492), Vector3(5.01608, 0.986111, 0.774926)]
+}
+
+[sub_resource type="Animation" id="Animation_2aoi0"]
+resource_name = "swing_right"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.097595, 0.2, 0.303804, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.200916, 0, 0), Vector3(-0.214, 0, -1.016), Vector3(-0.942, 0, -1.073), Vector3(-1.459, 0, -0.568), Vector3(0, -0.3, -0.6)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.097595, 0.366667, 0.698906),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(5.20283, 0.932006, 0.836013), Vector3(5.9603, 2.37016, 0.101229), Vector3(6.28319, 4.49248, 0), Vector3(5.20283, 0.932006, 0.836013)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1qvh1"]
+_data = {
+&"RESET": SubResource("Animation_b8kcf"),
+&"equip": SubResource("Animation_k83m2"),
+&"hold_back": SubResource("Animation_5qkyb"),
+&"hold_forward": SubResource("Animation_pg731"),
+&"hold_left": SubResource("Animation_iyi1k"),
+&"hold_right": SubResource("Animation_1qvh1"),
+&"swing_back": SubResource("Animation_kkl3a"),
+&"swing_forward": SubResource("Animation_dshsm"),
+&"swing_left": SubResource("Animation_dg7pj"),
+&"swing_right": SubResource("Animation_2aoi0")
+}
+
+[sub_resource type="Resource" id="Resource_e4sur"]
+script = ExtResource("15_8w2kf")
+expression = "can_attack == true"
+metadata/_custom_type_script = "uid://dtsqtfrp33jka"
+
+[sub_resource type="Resource" id="Resource_y4rpf"]
+script = ExtResource("15_8w2kf")
+expression = "can_attack == true"
+metadata/_custom_type_script = "uid://dtsqtfrp33jka"
+
+[sub_resource type="Resource" id="Resource_oq5md"]
+script = ExtResource("15_8w2kf")
+expression = "can_attack == true"
+metadata/_custom_type_script = "uid://dtsqtfrp33jka"
+
+[sub_resource type="Resource" id="Resource_cngb6"]
+script = ExtResource("15_8w2kf")
+expression = "can_attack == true"
+metadata/_custom_type_script = "uid://dtsqtfrp33jka"
+
+[node name="mace" type="Node3D"]
+script = ExtResource("1_b8kcf")
+two_handed = true
+swing_sound = ExtResource("2_b8kcf")
+hit_sound = ExtResource("3_1qvh1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(5.12167e-05, 44.0531, 9.18239, 2.3279e-05, -9.18237, 44.0532, 45, -4.53888e-05, -3.32402e-05, -0.2, 0, -0.6)
+layers = 2
+gi_mode = 2
+mesh = ExtResource("3_b8kcf")
+surface_material_override/0 = SubResource("ShaderMaterial_b8kcf")
+
+[node name="DamageComponent" type="Area3D" parent="MeshInstance3D"]
+transform = Transform3D(0.00352353, -0.99999, 0.00280493, 0.999994, 0.00352362, -3.64706e-06, -6.24731e-06, 0.00280491, 0.999996, 0.0025845, -0.00188374, 0.0211552)
+collision_mask = 6
+monitoring = false
+monitorable = false
+script = ExtResource("8_5qkyb")
+amount = 25.0
+hit_sound = ExtResource("9_k83m2")
+metadata/_custom_type_script = "uid://dlsydctoxqbwy"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/DamageComponent"]
+transform = Transform3D(0.995105, 0.00726417, 0.0985566, 0.0986996, -0.0230196, -0.994851, -0.00495806, 0.999709, -0.0236237, 0.00224586, 0.0029077, -0.0116561)
+shape = SubResource("CapsuleShape3D_e4sur")
+
+[node name="blood drip" type="GPUParticles3D" parent="MeshInstance3D"]
+transform = Transform3D(0.870487, 0.492185, -0.00245076, -0.490182, 0.867374, 0.0859343, 0.0444213, -0.0736033, 0.996298, -0.00016275, 4.4602e-05, 0.0248021)
+amount = 32
+lifetime = 10.0
+process_material = SubResource("ParticleProcessMaterial_b8kcf")
+draw_pass_1 = SubResource("QuadMesh_dg7pj")
+
+[node name="GPUTrail3D" type="GPUParticles3D" parent="MeshInstance3D"]
+transform = Transform3D(1.22296e-05, -0.00019961, 0.00456048, 0.00321258, 7.1458e-05, -1.67354e-05, -2.23734e-05, 0.0101512, 8.97934e-05, 3.86965e-06, 0.000895494, 0.017145)
+visible = false
+layers = 2
+amount = 5
+lifetime = 5.0
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ShaderMaterial_kkl3a")
+draw_pass_1 = SubResource("QuadMesh_8w2kf")
+script = ExtResource("14_5qkyb")
+length = 5
+length_seconds = 0.0833333
+texture = ExtResource("13_dshsm")
+color_ramp = SubResource("GradientTexture1D_5onj0")
+curve = SubResource("CurveTexture_ipx1p")
+use_red_as_alpha = true
+dewiggle = false
+clip_overlaps = false
+snap_to_transform = true
+_defaults_have_been_set = true
+metadata/_custom_type_script = "uid://ixj1a12i7hrm"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_1qvh1")
+}
+
+[node name="swing" type="AudioStreamPlayer3D" parent="."]
+volume_db = -12.0
+
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("11_5onj0")
+metadata/_custom_type_script = "uid://bb3ghyy64k2bd"
+
+[node name="CompoundState" type="Node" parent="StateChart"]
+script = ExtResource("12_kxrbt")
+initial_state = NodePath("idle")
+
+[node name="idle" type="Node" parent="StateChart/CompoundState"]
+script = ExtResource("13_ipx1p")
+
+[node name="to_held_left" type="Node" parent="StateChart/CompoundState/idle"]
+script = ExtResource("14_wfkea")
+to = NodePath("../../held_left")
+event = &"hold_left"
+guard = SubResource("Resource_e4sur")
+delay_in_seconds = "0.0"
+
+[node name="to_held_right" type="Node" parent="StateChart/CompoundState/idle"]
+script = ExtResource("14_wfkea")
+to = NodePath("../../held_right")
+event = &"hold_right"
+guard = SubResource("Resource_y4rpf")
+delay_in_seconds = "0.0"
+
+[node name="to_held_back" type="Node" parent="StateChart/CompoundState/idle"]
+script = ExtResource("14_wfkea")
+to = NodePath("../../held_back")
+event = &"hold_back"
+guard = SubResource("Resource_oq5md")
+delay_in_seconds = "0.0"
+
+[node name="to_held_forwards" type="Node" parent="StateChart/CompoundState/idle"]
+script = ExtResource("14_wfkea")
+to = NodePath("../../held_forward")
+event = &"hold_forward"
+guard = SubResource("Resource_cngb6")
+delay_in_seconds = "0.0"
+
+[node name="idle" type="Node" parent="StateChart/CompoundState/idle"]
+script = ExtResource("16_yq2n0")
+
+[node name="held_left" type="Node" parent="StateChart/CompoundState"]
+script = ExtResource("13_ipx1p")
+
+[node name="held_left" type="Node" parent="StateChart/CompoundState/held_left"]
+script = ExtResource("17_hnn6v")
+
+[node name="to_left" type="Node" parent="StateChart/CompoundState/held_left"]
+script = ExtResource("14_wfkea")
+to = NodePath("../../left")
+event = &"attack_left"
+delay_in_seconds = "0.0"
+
+[node name="left" type="Node" parent="StateChart/CompoundState"]
+script = ExtResource("13_ipx1p")
+
+[node name="left" type="Node" parent="StateChart/CompoundState/left" node_paths=PackedStringArray("damage_component", "weapon")]
+script = ExtResource("18_dvp38")
+damage_component = NodePath("../../../../MeshInstance3D/DamageComponent")
+weapon = NodePath("../../../..")
+
+[node name="to_idle" type="Node" parent="StateChart/CompoundState/left"]
+script = ExtResource("14_wfkea")
+to = NodePath("../../idle")
+event = &"idle"
+delay_in_seconds = ".5"
+
+[node name="held_right" type="Node" parent="StateChart/CompoundState"]
+script = ExtResource("13_ipx1p")
+
+[node name="held_right" type="Node" parent="StateChart/CompoundState/held_right"]
+script = ExtResource("19_6648u")
+
+[node name="to_right" type="Node" parent="StateChart/CompoundState/held_right"]
+script = ExtResource("14_wfkea")
+to = NodePath("../../right")
+event = &"attack_right"
+delay_in_seconds = "0.0"
+
+[node name="right" type="Node" parent="StateChart/CompoundState"]
+script = ExtResource("13_ipx1p")
+
+[node name="right" type="Node" parent="StateChart/CompoundState/right" node_paths=PackedStringArray("damage_component", "weapon")]
+script = ExtResource("20_dle73")
+damage_component = NodePath("../../../../MeshInstance3D/DamageComponent")
+weapon = NodePath("../../../..")
+
+[node name="to_idle2" type="Node" parent="StateChart/CompoundState/right"]
+script = ExtResource("14_wfkea")
+to = NodePath("../../idle")
+delay_in_seconds = ".5"
+
+[node name="held_back" type="Node" parent="StateChart/CompoundState"]
+script = ExtResource("13_ipx1p")
+
+[node name="held_back" type="Node" parent="StateChart/CompoundState/held_back"]
+script = ExtResource("21_0b67p")
+
+[node name="to_back" type="Node" parent="StateChart/CompoundState/held_back"]
+script = ExtResource("14_wfkea")
+to = NodePath("../../back")
+event = &"attack_back"
+delay_in_seconds = "0.0"
+
+[node name="back" type="Node" parent="StateChart/CompoundState"]
+script = ExtResource("13_ipx1p")
+
+[node name="back" type="Node" parent="StateChart/CompoundState/back" node_paths=PackedStringArray("damage_component", "weapon")]
+script = ExtResource("22_77k2n")
+damage_component = NodePath("../../../../MeshInstance3D/DamageComponent")
+weapon = NodePath("../../../..")
+
+[node name="to_idle3" type="Node" parent="StateChart/CompoundState/back"]
+script = ExtResource("14_wfkea")
+to = NodePath("../../idle")
+delay_in_seconds = ".5"
+
+[node name="held_forward" type="Node" parent="StateChart/CompoundState"]
+script = ExtResource("13_ipx1p")
+
+[node name="held_forward" type="Node" parent="StateChart/CompoundState/held_forward"]
+script = ExtResource("23_s5yd0")
+
+[node name="to_forward" type="Node" parent="StateChart/CompoundState/held_forward"]
+script = ExtResource("14_wfkea")
+to = NodePath("../../forward")
+event = &"attack_forward"
+delay_in_seconds = "0.0"
+
+[node name="forward" type="Node" parent="StateChart/CompoundState"]
+script = ExtResource("13_ipx1p")
+
+[node name="forward" type="Node" parent="StateChart/CompoundState/forward" node_paths=PackedStringArray("damage_component", "weapon")]
+script = ExtResource("24_gytik")
+damage_component = NodePath("../../../../MeshInstance3D/DamageComponent")
+weapon = NodePath("../../../..")
+
+[node name="to_idle4" type="Node" parent="StateChart/CompoundState/forward"]
+script = ExtResource("14_wfkea")
+to = NodePath("../../idle")
+delay_in_seconds = ".5"
+
+[node name="bloodtimer" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+
+[connection signal="area_entered" from="MeshInstance3D/DamageComponent" to="." method="_on_damage_component_area_entered"]
+[connection signal="body_entered" from="MeshInstance3D/DamageComponent" to="." method="_on_damage_component_body_entered"]
+[connection signal="state_entered" from="StateChart/CompoundState/idle" to="StateChart/CompoundState/idle/idle" method="_on_idle_state_entered"]
+[connection signal="state_exited" from="StateChart/CompoundState/idle" to="StateChart/CompoundState/idle/idle" method="_on_idle_state_exited"]
+[connection signal="state_processing" from="StateChart/CompoundState/idle" to="StateChart/CompoundState/idle/idle" method="_on_idle_state_processing"]
+[connection signal="state_entered" from="StateChart/CompoundState/held_left" to="StateChart/CompoundState/held_left/held_left" method="_on_held_left_state_entered"]
+[connection signal="state_exited" from="StateChart/CompoundState/held_left" to="StateChart/CompoundState/held_left/held_left" method="_on_held_left_state_exited"]
+[connection signal="state_processing" from="StateChart/CompoundState/held_left" to="StateChart/CompoundState/held_left/held_left" method="_on_held_left_state_processing"]
+[connection signal="state_entered" from="StateChart/CompoundState/left" to="StateChart/CompoundState/left/left" method="_on_left_state_entered"]
+[connection signal="state_exited" from="StateChart/CompoundState/left" to="StateChart/CompoundState/left/left" method="_on_left_state_exited"]
+[connection signal="state_processing" from="StateChart/CompoundState/left" to="StateChart/CompoundState/left/left" method="_on_left_state_processing"]
+[connection signal="state_entered" from="StateChart/CompoundState/held_right" to="StateChart/CompoundState/held_right/held_right" method="_on_held_right_state_entered"]
+[connection signal="state_exited" from="StateChart/CompoundState/held_right" to="StateChart/CompoundState/held_right/held_right" method="_on_held_right_state_exited"]
+[connection signal="state_processing" from="StateChart/CompoundState/held_right" to="StateChart/CompoundState/held_right/held_right" method="_on_held_right_state_processing"]
+[connection signal="state_entered" from="StateChart/CompoundState/right" to="StateChart/CompoundState/right/right" method="_on_right_state_entered"]
+[connection signal="state_exited" from="StateChart/CompoundState/right" to="StateChart/CompoundState/right/right" method="_on_right_state_exited"]
+[connection signal="state_processing" from="StateChart/CompoundState/right" to="StateChart/CompoundState/right/right" method="_on_right_state_processing"]
+[connection signal="state_entered" from="StateChart/CompoundState/held_back" to="StateChart/CompoundState/held_back/held_back" method="_on_held_back_state_entered"]
+[connection signal="state_exited" from="StateChart/CompoundState/held_back" to="StateChart/CompoundState/held_back/held_back" method="_on_held_back_state_exited"]
+[connection signal="state_processing" from="StateChart/CompoundState/held_back" to="StateChart/CompoundState/held_back/held_back" method="_on_held_back_state_processing"]
+[connection signal="state_entered" from="StateChart/CompoundState/back" to="StateChart/CompoundState/back/back" method="_on_back_state_entered"]
+[connection signal="state_exited" from="StateChart/CompoundState/back" to="StateChart/CompoundState/back/back" method="_on_back_state_exited"]
+[connection signal="state_processing" from="StateChart/CompoundState/back" to="StateChart/CompoundState/back/back" method="_on_back_state_processing"]
+[connection signal="state_entered" from="StateChart/CompoundState/held_forward" to="StateChart/CompoundState/held_forward/held_forward" method="_on_held_forward_state_entered"]
+[connection signal="state_exited" from="StateChart/CompoundState/held_forward" to="StateChart/CompoundState/held_forward/held_forward" method="_on_held_forward_state_exited"]
+[connection signal="state_processing" from="StateChart/CompoundState/held_forward" to="StateChart/CompoundState/held_forward/held_forward" method="_on_held_forward_state_processing"]
+[connection signal="state_entered" from="StateChart/CompoundState/forward" to="StateChart/CompoundState/forward/forward" method="_on_forward_state_entered"]
+[connection signal="state_exited" from="StateChart/CompoundState/forward" to="StateChart/CompoundState/forward/forward" method="_on_forward_state_exited"]
+[connection signal="state_processing" from="StateChart/CompoundState/forward" to="StateChart/CompoundState/forward/forward" method="_on_forward_state_processing"]
+[connection signal="timeout" from="bloodtimer" to="." method="_on_bloodtimer_timeout"]

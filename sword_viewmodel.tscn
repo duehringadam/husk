@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://wbbu81bn30xc"]
+[gd_scene load_steps=48 format=3 uid="uid://wbbu81bn30xc"]
 
 [ext_resource type="Script" uid="uid://dtuv0q76720mr" path="res://weapon_scene.gd" id="1_3bige"]
 [ext_resource type="ArrayMesh" uid="uid://6anlaptdar52" path="res://Player/weapon/ALL/BrokenSword/broken.res" id="2_ri8l3"]
@@ -52,6 +52,32 @@ shader_parameter/convert_vertex_colors = false
 radius = 0.001
 height = 0.01
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_oq5md"]
+particle_flag_rotate_y = true
+inherit_velocity_ratio = 1.0
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 0.01
+initial_velocity_max = 0.01
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1qvh1"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cngb6"]
+noise = SubResource("FastNoiseLite_1qvh1")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iyi1k"]
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0, 0, 1)
+albedo_texture = SubResource("NoiseTexture2D_cngb6")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_aq43c"]
+material = SubResource("StandardMaterial3D_iyi1k")
+size = Vector2(0.01, 0.03)
+
 [sub_resource type="Animation" id="Animation_6cmx2"]
 length = 0.001
 tracks/0/type = "value"
@@ -76,8 +102,50 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-1.5708, -1.5708, 0)]
+"values": [Vector3(-1.84656, -1.5708, 0)]
 }
+
+[sub_resource type="Animation" id="Animation_aq43c"]
+resource_name = "equip"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.21349, 3.14159, 1.57079), Vector3(-1.84656, 4.38427, 1.5708)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -0.854271, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("swing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_oq5md")
+}],
+"times": PackedFloat32Array(0.7)
+}
+tracks/2/use_blend = true
 
 [sub_resource type="Animation" id="Animation_e4sur"]
 resource_name = "hold_back"
@@ -303,48 +371,6 @@ tracks/1/keys = {
 "values": [Vector3(-1.5708, -1.31074, -0.328122), Vector3(-3.23584, 0.657989, -0.328122), Vector3(-1.5708, -1.5708, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_aq43c"]
-resource_name = "equip"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:rotation")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(1.21349, 3.14159, 1.57079), Vector3(-1.5708, 3.14159, 1.5708)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MeshInstance3D:position")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, -0.854271, 0), Vector3(0, 0, 0)]
-}
-tracks/2/type = "audio"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("swing")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("10_oq5md")
-}],
-"times": PackedFloat32Array(0.7)
-}
-tracks/2/use_blend = true
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ff8w7"]
 _data = {
 &"RESET": SubResource("Animation_6cmx2"),
@@ -384,7 +410,7 @@ script = ExtResource("1_3bige")
 swing_sound = ExtResource("10_6fyjw")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.000361999, 100, 0.000361999, 0, -0.000361999, 100, 100, 0.000361999, 1.31043e-09, 0, 0, 0)
+transform = Transform3D(-0.000361999, 96.2217, 27.2282, 0, -27.2282, 96.2217, 100, 0.000348322, 9.85657e-05, 0, 0, 0)
 layers = 2
 gi_mode = 2
 mesh = ExtResource("2_ri8l3")
@@ -404,6 +430,14 @@ metadata/_custom_type_script = "uid://dlsydctoxqbwy"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/DamageComponent"]
 transform = Transform3D(0.995105, 0.00726411, 0.0985567, 0.0986997, -0.0230195, -0.994851, -0.004958, 0.999709, -0.0236237, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_e4sur")
+
+[node name="blood drip" type="GPUParticles3D" parent="MeshInstance3D"]
+transform = Transform3D(0.000444214, -0.000736033, 0.00996298, 0.00971065, 0.00237421, -0.000257564, -0.00234646, 0.00968615, 0.000820203, 0.000248021, 3.51212e-05, 0.00368903)
+emitting = false
+amount = 32
+lifetime = 16.0
+process_material = SubResource("ParticleProcessMaterial_oq5md")
+draw_pass_1 = SubResource("QuadMesh_aq43c")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -555,6 +589,10 @@ weapon = NodePath("../../../..")
 script = ExtResource("14_mqvla")
 to = NodePath("../../idle")
 delay_in_seconds = ".5"
+
+[node name="bloodtimer" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
 
 [connection signal="area_entered" from="MeshInstance3D/DamageComponent" to="." method="_on_damage_component_area_entered"]
 [connection signal="body_entered" from="MeshInstance3D/DamageComponent" to="." method="_on_damage_component_body_entered"]
