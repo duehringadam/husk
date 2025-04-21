@@ -3,8 +3,8 @@ extends Node
 
 @export var hurtbox_component: hurtbox_component
 @export var shake_target: Node3D
-@export var randomStrength: float = 3.0
-@export var shakeFade: float = 5.0
+@export var randomStrength: float = .02
+@export var shakeFade: float = 20
 
 var rng = RandomNumberGenerator.new()
 var shake_strength: float = 0.0
@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 		shake_target.global_position.x += rng.randf_range(-shake_strength,shake_strength)
 		shake_target.global_position.z += rng.randf_range(-shake_strength,shake_strength)
 		
-func apply_shake(amount: float, actual: float, source: DamageComponent):
+func apply_shake(amount: float, actual: float, source: DamageComponent, hit_dir:Vector3):
 	shake_strength = randomStrength
 	
 func randomOffset():

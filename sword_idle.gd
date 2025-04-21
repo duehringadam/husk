@@ -6,17 +6,23 @@ extends Node
 
 
 func _on_idle_state_entered() -> void:
+	var tween = get_tree().create_tween()
+	tween.tween_property(Global.player.camera,"fov", Global.camera_fov,.25)
+	state_chart.set_expression_property("can_attack", true)
 	gpu_trail.visible = false
 	SignalBus.emit_signal("can_attack", true)
 	SignalBus.emit_signal("primary_active",false)
-	state_chart.set_expression_property("can_attack", true)
+	
 
 
 
 func _on_idle_state_exited() -> void:
+	var tween = get_tree().create_tween()
+	tween.tween_property(Global.player.camera,"fov", Global.player.camera.fov+10,.25)
+	state_chart.set_expression_property("can_attack", false)
 	SignalBus.emit_signal("can_attack", false)
 	SignalBus.emit_signal("primary_active",true)
-	state_chart.set_expression_property("can_attack", false)
+	
 
 
 

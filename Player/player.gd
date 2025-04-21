@@ -61,6 +61,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		camera.rotate_x(-event.relative.y * MOUSE_SENS)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-70),deg_to_rad(70))
 
+
+
 func _process(delta: float) -> void:
 	if dead:
 		return
@@ -113,11 +115,11 @@ func update_input(delta) ->void:
 			offhand.transform.origin = _offhandbob(t_bob)
 			
 		if input_dir.x > 0:
-			head.rotation.z = lerp_angle(head.rotation.z, deg_to_rad(-1), 0.06)
+			head.rotation.z = lerp_angle(head.rotation.z, deg_to_rad(-2.5), 0.1)
 		elif input_dir.x < 0:
-			head.rotation.z = lerp_angle(head.rotation.z, deg_to_rad(1), 0.06)
+			head.rotation.z = lerp_angle(head.rotation.z, deg_to_rad(2.5), 0.1)
 		else:
-			head.rotation.z = lerp_angle(head.rotation.z, deg_to_rad(0), 0.06)
+			head.rotation.z = lerp_angle(head.rotation.z, deg_to_rad(0), 0.1)
 	
 func update_velocity():
 	move_and_slide()

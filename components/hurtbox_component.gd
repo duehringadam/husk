@@ -1,7 +1,7 @@
 class_name hurtbox_component
 extends Area3D
 
-signal damage_taken(amount: float, actual: float, source: DamageComponent)
+signal damage_taken(amount: float, actual: float, source: DamageComponent, hit_dir: Vector3)
 
 @onready var timer: Timer
 
@@ -32,6 +32,7 @@ func reduce_damage(amount: float, source: DamageComponent) -> float:
 	return amount * (1 - damage_resist)
 
 func take_damage(amount: float, source: DamageComponent):
+	var hit_dir = (global_position.direction_to(source.global_position)).normalized()
 	if timer.time_left > 0: return 0
 	# invulnerability on damage
 	invulnerability(invulnerability_duration)
@@ -39,6 +40,6 @@ func take_damage(amount: float, source: DamageComponent):
 	if hit_sound != null:
 		AudioManager.play_sound(hit_sound,self.global_position,-4.0)
 	var actual = reduce_damage(amount, source)
-	emit_signal("damage_taken", amount, actual, source)
+	emit_signal("damage_taken", amount, actual, source, hit_dir)
 	health_component.modify_health(-actual)
 	return actual

@@ -3,6 +3,9 @@ extends Node
 @onready var animation_player: AnimationPlayer = $"../../../../AnimationPlayer"
 @onready var state_chart: StateChart = $"../../.."
 
+var camera
+var viewport_camera
+
 func _on_held_back_state_entered() -> void:
 	animation_player.play("hold_back")
 

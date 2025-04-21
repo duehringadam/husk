@@ -10,11 +10,6 @@ var camera
 var viewport_camera
 
 func _on_back_state_entered() -> void:
-	camera = Global.player.camera
-	viewport_camera = Global.player.viewport_camera
-	var tween = get_tree().create_tween()
-	tween.tween_property(camera,"fov", camera.fov+5,.25)
-	tween.tween_property(viewport_camera,"fov", camera.fov+5,.25)
 	gpu_trail.visible = true
 	damage_component.monitorable = true
 	damage_component.monitoring = true
@@ -30,8 +25,6 @@ func _on_back_state_processing(delta: float) -> void:
 
 
 func _on_back_state_exited() -> void:
+	gpu_trail.visible = false
 	damage_component.monitorable = false
 	damage_component.monitoring = false
-	var tween = get_tree().create_tween()
-	tween.tween_property(camera,"fov", camera.fov-5,.25)
-	tween.tween_property(viewport_camera,"fov", camera.fov-5,.25)

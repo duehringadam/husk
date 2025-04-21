@@ -4,6 +4,7 @@ extends Node
 @onready var state_chart: StateChart = $"../../.."
 
 
+
 func _on_held_left_state_entered() -> void:
 	animation_player.play("hold_left")
 

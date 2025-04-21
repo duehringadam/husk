@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://h8jpst376bb5"]
+[gd_scene load_steps=27 format=3 uid="uid://h8jpst376bb5"]
 
 [ext_resource type="Texture2D" uid="uid://dmvh0hkwyfoe5" path="res://test texture/kenney_prototype-textures/Vector/texture_01.svg" id="1_37kl0"]
 [ext_resource type="PackedScene" uid="uid://crwpbskjjllht" path="res://Player/player.tscn" id="2_8uh7m"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dvapiuj2llrlq" path="res://crossbow.tscn" id="6_77dp3"]
 [ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/item_stat.gd" id="7_5tkv4"]
 [ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/item.gd" id="8_0m0f1"]
+[ext_resource type="PackedScene" uid="uid://bcouwuedywudo" path="res://skeleton_enemy.tscn" id="9_xersf"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8uh7m"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -145,6 +146,9 @@ shape = SubResource("SphereShape3D_d7jmx")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="item_world"]
 layers = 3
+
+[node name="skeleton_enemy" parent="." instance=ExtResource("9_xersf")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.787841, 0.475029, -5.30804)
 
 [connection signal="body_entered" from="item_world/iteminteractcomponent" to="item_world/iteminteractcomponent" method="_on_body_entered"]
 [connection signal="body_exited" from="item_world/iteminteractcomponent" to="item_world/iteminteractcomponent" method="_on_body_exited"]
