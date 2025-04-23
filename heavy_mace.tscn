@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://c3sqr5u2peuhu"]
+[gd_scene load_steps=64 format=3 uid="uid://c3sqr5u2peuhu"]
 
 [ext_resource type="Script" uid="uid://dtuv0q76720mr" path="res://weapon_scene.gd" id="1_b8kcf"]
 [ext_resource type="AudioStream" uid="uid://bquoh3r8l4qhq" path="res://Player/weapon/ALL/Mace3/sfx_hammer_spinn_whoosh_05.wav" id="2_b8kcf"]
@@ -28,6 +28,8 @@
 [ext_resource type="Script" uid="uid://dbijl0u5302qj" path="res://sword_back.gd" id="22_77k2n"]
 [ext_resource type="Script" uid="uid://bc3inuwe0nld0" path="res://sword_held_forward.gd" id="23_s5yd0"]
 [ext_resource type="Script" uid="uid://wvdotxijfutl" path="res://sword_forward.gd" id="24_gytik"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dg7pj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k83m2"]
 render_priority = 0
@@ -128,7 +130,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-0.2, 0, -0.6)]
+"values": [Vector3(0, -0.3, -0.6)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -140,7 +142,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-1.3653, 1.5708, 3.14159)]
+"values": [Vector3(5.01608, 0.986111, 0.774926)]
 }
 
 [sub_resource type="Animation" id="Animation_k83m2"]
@@ -377,7 +379,7 @@ tracks/0/path = NodePath("MeshInstance3D:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.097595, 0.2, 0.303804, 0.7),
+"times": PackedFloat32Array(0, 0.097595, 0.2, 0.266667, 0.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0.200916, 0, 0), Vector3(-0.214, 0, -1.016), Vector3(-0.942, 0, -0.588), Vector3(-1.459, 0, -0.568), Vector3(0, -0.3, -0.6)]
@@ -389,10 +391,122 @@ tracks/1/path = NodePath("MeshInstance3D:rotation")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.097595, 0.366667, 0.698906),
+"times": PackedFloat32Array(0, 0.097595, 0.32953, 0.698906),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(5.20283, 0.932006, 0), Vector3(5.9603, 2.37016, 0), Vector3(6.28319, 4.49248, 0), Vector3(5.20283, 0.932006, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_d8uqq"]
+resource_name = "swing_right_hit"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.2, 0.3, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.200916, 0, 0), Vector3(-0.214, -0.31, -1.016), Vector3(-0.735, -0.31, -0.73), Vector3(-0.28, -0.36, -0.73), Vector3(0, -0.3, -0.6)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.2, 0.236363, 0.698906),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(5.20283, 0.932006, 0), Vector3(5.9603, 2.37016, 0), Vector3(6.2618, 3.2542, 0), Vector3(6.2618, 3.2542, 0), Vector3(5.20283, 0.932006, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_5onj0"]
+resource_name = "swing_left_hit"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.00258055, 0.133333, 0.2, 0.466667, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.695, -0.3, -0.19), Vector3(-0.433, -0.3, -1.01), Vector3(0.0664947, -0.3, -0.688474), Vector3(-0.294, -0.3, -0.688), Vector3(0, -0.3, -0.6)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.2, 0.5, 0.733333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(3.97237, 1.61617, 0), Vector3(3.29518, 0.865683, 0), Vector3(3.11457, -0.0994028, 0), Vector3(3.11541, 0.45204, 0), Vector3(5.01608, 0.986111, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_kxrbt"]
+resource_name = "swing_forward_hit"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0999997, 0.233333, 0.305642, 0.73463),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.313, 0.379, -0.6), Vector3(-0.598, -0.176, -1.035), Vector3(-0.598, -0.111, -1.035), Vector3(-0.598, -0.111, -1.035), Vector3(0, -0.3, -0.6)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.132591, 0.265924, 0.338233, 0.733333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(4.8398, 0.69115, 0), Vector3(2.91819, 0, 0), Vector3(3.88336, 0, 0), Vector3(3.88336, 0, 0), Vector3(4.92357, 0.932006, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ipx1p"]
+resource_name = "swing_back_hit"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.240438, 0.684739),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -0.625, -0.6), Vector3(-1.004, 0.4, -1.046), Vector3(-0.819, 0.4, -1.046), Vector3(0, -0.3, -0.6)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.198338, 0.272109, 0.684739),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.623083, 0), Vector3(0.261799, 2.60752, 0), Vector3(0.261799, 2.056, 0), Vector3(-1.1973, 0.986111, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1qvh1"]
@@ -404,9 +518,13 @@ _data = {
 &"hold_left": SubResource("Animation_iyi1k"),
 &"hold_right": SubResource("Animation_1qvh1"),
 &"swing_back": SubResource("Animation_kkl3a"),
+&"swing_back_hit": SubResource("Animation_ipx1p"),
 &"swing_forward": SubResource("Animation_dshsm"),
+&"swing_forward_hit": SubResource("Animation_kxrbt"),
 &"swing_left": SubResource("Animation_dg7pj"),
-&"swing_right": SubResource("Animation_2aoi0")
+&"swing_left_hit": SubResource("Animation_5onj0"),
+&"swing_right": SubResource("Animation_2aoi0"),
+&"swing_right_hit": SubResource("Animation_d8uqq")
 }
 
 [sub_resource type="Resource" id="Resource_e4sur"]
@@ -429,14 +547,19 @@ script = ExtResource("15_8w2kf")
 expression = "can_attack == true"
 metadata/_custom_type_script = "uid://dtsqtfrp33jka"
 
-[node name="mace" type="Node3D"]
+[node name="mace" type="RigidBody3D" node_paths=PackedStringArray("damage_component", "blood_drip", "bloodtimer")]
+physics_material_override = SubResource("PhysicsMaterial_dg7pj")
+gravity_scale = 0.0
 script = ExtResource("1_b8kcf")
 two_handed = true
 swing_sound = ExtResource("2_b8kcf")
 hit_sound = ExtResource("3_1qvh1")
+damage_component = NodePath("MeshInstance3D/DamageComponent")
+blood_drip = NodePath("MeshInstance3D/blood drip")
+bloodtimer = NodePath("bloodtimer")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(5.12167e-05, 44.0531, 9.18239, 2.3279e-05, -9.18237, 44.0532, 45, -4.53888e-05, -3.32402e-05, -0.2, 0, -0.6)
+transform = Transform3D(-6.49586, -38.1878, 9.97475, 8.36921, 8.54636, 38.1696, -38.5715, 8.28563, 6.60214, 0, -0.3, -0.6)
 layers = 2
 gi_mode = 2
 mesh = ExtResource("3_b8kcf")
@@ -491,6 +614,7 @@ metadata/_custom_type_script = "uid://ixj1a12i7hrm"
 libraries = {
 &"": SubResource("AnimationLibrary_1qvh1")
 }
+playback_auto_capture_transition_type = 2
 
 [node name="swing" type="AudioStreamPlayer3D" parent="."]
 volume_db = -12.0
@@ -534,8 +658,9 @@ event = &"hold_forward"
 guard = SubResource("Resource_cngb6")
 delay_in_seconds = "0.0"
 
-[node name="idle" type="Node" parent="StateChart/CompoundState/idle"]
+[node name="idle" type="Node" parent="StateChart/CompoundState/idle" node_paths=PackedStringArray("weapon")]
 script = ExtResource("16_yq2n0")
+weapon = NodePath("../../../..")
 
 [node name="held_left" type="Node" parent="StateChart/CompoundState"]
 script = ExtResource("13_ipx1p")
@@ -644,6 +769,7 @@ one_shot = true
 
 [connection signal="area_entered" from="MeshInstance3D/DamageComponent" to="." method="_on_damage_component_area_entered"]
 [connection signal="body_entered" from="MeshInstance3D/DamageComponent" to="." method="_on_damage_component_body_entered"]
+[connection signal="damage_dealt" from="MeshInstance3D/DamageComponent" to="." method="_on_damage_component_damage_dealt"]
 [connection signal="state_entered" from="StateChart/CompoundState/idle" to="StateChart/CompoundState/idle/idle" method="_on_idle_state_entered"]
 [connection signal="state_exited" from="StateChart/CompoundState/idle" to="StateChart/CompoundState/idle/idle" method="_on_idle_state_exited"]
 [connection signal="state_processing" from="StateChart/CompoundState/idle" to="StateChart/CompoundState/idle/idle" method="_on_idle_state_processing"]

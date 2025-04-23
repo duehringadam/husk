@@ -1,5 +1,9 @@
 extends SubViewport
 
+var timer = 0
 
-func _on_timer_timeout() -> void:
-	render_target_update_mode = SubViewport.UPDATE_ONCE
+func _process(delta: float) -> void:
+	timer += delta
+	if timer >= 0.04:
+		render_target_update_mode = SubViewport.UPDATE_ONCE
+		timer = 0

@@ -10,10 +10,10 @@ var camera
 var viewport_camera
 
 func _on_back_state_entered() -> void:
+	animation_player.play("swing_back")
 	gpu_trail.visible = true
 	damage_component.monitorable = true
 	damage_component.monitoring = true
-	animation_player.play("swing_back",-1,.75)
 	AudioManager.play_sound(weapon.swing_sound,weapon.global_position,0)
 	await animation_player.animation_finished
 	state_chart.send_event("idle")

@@ -15,7 +15,7 @@ signal damage_taken(amount: float, actual: float, source: DamageComponent, hit_d
 @export var invulnerability_duration: float
 @export var damage_particles: PackedScene
 @export var hit_sound: AudioStream
-
+@export var can_bleed: bool = false
 ## add the invulnerability timer
 func _ready():
 	timer = Timer.new()

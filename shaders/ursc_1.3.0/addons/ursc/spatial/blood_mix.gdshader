@@ -18,6 +18,10 @@ void fragment() {
 	ALPHA = color.a * step(noise_texture.r, intensity);
 }
 
+void vertex(){
+	VERTEX = VERTEX + NORMAL * 0.0001;
+}
+
 //void light() {
 //	// Called for every pixel for every light affecting the CanvasItem.
 //	// Uncomment to replace the default light processing function with this one.

@@ -3,6 +3,7 @@ extends Node
 @onready var animation_player: AnimationPlayer = $"../../../../AnimationPlayer"
 @onready var state_chart: StateChart = $"../../.."
 
+
 var camera
 var viewport_camera
 

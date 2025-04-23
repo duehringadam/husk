@@ -7,8 +7,8 @@ extends CharacterBody3D
 @onready var phys_timer: Timer = $phys_timer
 
 @export var SPEED: float
-
-
+@export var damage_particles: PackedScene
+@export var can_bleed: bool = true
 var timer: float = 0.0
 
 func _ready() -> void:
@@ -43,6 +43,10 @@ func _on_timer_timeout() -> void:
 
 
 func _on_hurtbox_component_damage_taken(amount: float, actual: float, source: DamageComponent, hit_dir: Vector3) -> void:
+	var hit_particles = damage_particles.instantiate()
+	get_tree().current_scene.add_child(hit_particles)
+	hit_particles.global_position = source.global_position
+	hit_particles.emitting = true
 	if hit_dir.x < 0:
 		animation_player.play("hit_right",-1,1.25)
 	if hit_dir.x > 0:

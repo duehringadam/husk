@@ -148,7 +148,7 @@ shape = SubResource("SphereShape3D_d7jmx")
 layers = 3
 
 [node name="skeleton_enemy" parent="." instance=ExtResource("9_xersf")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.787841, 0.475029, -5.30804)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.787841, 0.630025, -5.30804)
 
 [connection signal="body_entered" from="item_world/iteminteractcomponent" to="item_world/iteminteractcomponent" method="_on_body_entered"]
 [connection signal="body_exited" from="item_world/iteminteractcomponent" to="item_world/iteminteractcomponent" method="_on_body_exited"]

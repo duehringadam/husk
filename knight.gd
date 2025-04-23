@@ -7,7 +7,7 @@ extends Node3D
 @onready var bone_simulator: PhysicalBoneSimulator3D = $Skeleton3D/PhysicalBoneSimulator3D
 @onready var physicstimeout: Timer = $physicstimeout
 @onready var dialogue_interact_component: DialogueInteractComponent = $DialogueInteractComponent
-
+@export var can_bleed: bool = true
 var timer: float = 0.0
 
 

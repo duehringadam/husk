@@ -6,14 +6,11 @@ extends Node
 @export var weapon: Node3D
 @onready var gpu_trail: GPUTrail3D = $"../../../../MeshInstance3D/GPUTrail3D"
 
-var camera
-var viewport_camera
-
 func _on_right_state_entered() -> void:
+	animation_player.play("swing_right")
 	gpu_trail.visible = true
 	damage_component.monitorable = true
 	damage_component.monitoring = true
-	animation_player.play("swing_right",-1,.75)
 	AudioManager.play_sound(weapon.swing_sound,weapon.global_position,0)
 	await animation_player.animation_finished
 	state_chart.send_event("idle")

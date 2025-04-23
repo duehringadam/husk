@@ -3,10 +3,10 @@
 [ext_resource type="Texture2D" uid="uid://cprle3s6dj3sq" path="res://scenes/smoke-12.png" id="1_aef0q"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c2a7w"]
-particle_flag_align_y = true
 particle_flag_rotate_y = true
 angle_min = -167.8
 angle_max = 153.8
+inherit_velocity_ratio = -0.001
 direction = Vector3(0, 1, 0)
 spread = 23.801
 initial_velocity_min = 1.0
@@ -14,7 +14,13 @@ initial_velocity_max = 5.0
 scale_max = 4.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c2a7w"]
+vertex_color_use_as_albedo = true
 albedo_color = Color(1, 1, 0.380392, 1)
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_aef0q"]
 lightmap_size_hint = Vector2i(2, 2)

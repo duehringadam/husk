@@ -1,0 +1,22 @@
+
+
+render_mode depth_prepass_alpha;
+render_mode diffuse_toon;
+
+
+uniform sampler2D noise : repeat_enable; // cutout & shading texture
+uniform float noise_shading : hint_range(0.0, 1.0) = 1.0; // shading from noise
+uniform float intensity : hint_range(0.0, 1.0) = 0.0; // amount of blood
+uniform vec4 color : source_color = vec4(1.0, 0.0, 0.0, 1.0); // color of blood
+
+void fragment() {
+	vec4 noise_texture = texture(noise, UV);
+
+	ALBEDO = color.rgb * mix(vec3(1.0), noise_texture.rgb, noise_shading);
+	ALPHA = color.a * step(noise_texture.r, intensity);
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the CanvasItem.
+//	// Uncomment to replace the default light processing function with this one.
+//}
