@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://02her00b3r8i"]
+
+[ext_resource type="PackedScene" uid="uid://dcj1fyx7qm513" path="res://scenes/PSX_Dungeon/PSX_Dungeon/Models/Arch.fbx" id="1_vw30s"]
+[ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="2_gxr7i"]
+[ext_resource type="Texture2D" uid="uid://dsluxeqjn7vbc" path="res://scenes/Assets - PS1 Dungeon Pack/Assets - PS1 Dungeon Pack/Environment/Common/Wall_Texture.png" id="3_tke4o"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cs2nd"]
+render_priority = 0
+shader = ExtResource("2_gxr7i")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("3_tke4o")
+shader_parameter/albedo_texture_as_primary_color = true
+shader_parameter/mix_factor = 1.0
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(4, 4)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+
+[node name="Arch" instance=ExtResource("1_vw30s")]
+
+[node name="Cube_031" parent="." index="0"]
+transform = Transform3D(-0.2, 0, -3.01992e-08, 0, 0.2, 0, 3.01992e-08, 0, -0.2, 0, -1, 0)
+surface_material_override/0 = SubResource("ShaderMaterial_cs2nd")

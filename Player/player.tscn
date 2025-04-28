@@ -15,20 +15,20 @@
 [ext_resource type="Script" uid="uid://b3emi1vc4o4mr" path="res://Player/item_container.gd" id="7_iyprq"]
 [ext_resource type="Texture2D" uid="uid://e3utw70yh625" path="res://item/stiletto.svg" id="7_qs4pp"]
 [ext_resource type="Script" uid="uid://3xygyavglg41" path="res://Player/States/fallingPlayerState.gd" id="8_d032x"]
+[ext_resource type="AudioStream" uid="uid://c6foy2kakid3c" path="res://sfx/jute-dh-steps/jute-dh-steps/stepstone_1.wav" id="8_f4lon"]
 [ext_resource type="Shader" uid="uid://dgt3e85o3avu2" path="res://Player/damage.gdshader" id="8_jp1hh"]
 [ext_resource type="Script" uid="uid://ds4jqcfrmjpbj" path="res://Player/inventory.gd" id="9_8ynux"]
+[ext_resource type="AudioStream" uid="uid://c8ow5by3dgnf6" path="res://sfx/jute-dh-steps/jute-dh-steps/stepstone_2.wav" id="9_d30e8"]
 [ext_resource type="Script" uid="uid://6h8f2qhrbtt6" path="res://Player/damage_overlay.gd" id="9_qs4pp"]
+[ext_resource type="AudioStream" uid="uid://crur0onbqaiv1" path="res://sfx/jute-dh-steps/jute-dh-steps/stepstone_3.wav" id="10_6pogt"]
+[ext_resource type="AudioStream" uid="uid://bf4aacxlru443" path="res://sfx/jute-dh-steps/jute-dh-steps/stepstone_4.wav" id="11_ie76m"]
 [ext_resource type="Script" uid="uid://c43ri6rkww00v" path="res://Player/camera_3d.gd" id="11_qs4pp"]
-[ext_resource type="AudioStream" uid="uid://jgru6x0534if" path="res://sfx/jute-dh-steps/jute-dh-steps/stepdirt_1.wav" id="12_o28un"]
+[ext_resource type="AudioStream" uid="uid://bxgeebeqr0cec" path="res://sfx/jute-dh-steps/jute-dh-steps/stepstone_5.wav" id="12_dy65m"]
 [ext_resource type="Script" uid="uid://c5uu825dg725o" path="res://Player/mainhand.gd" id="13_m0h3t"]
-[ext_resource type="AudioStream" uid="uid://bqja0ky1x67vd" path="res://sfx/jute-dh-steps/jute-dh-steps/stepdirt_2.wav" id="13_n471f"]
-[ext_resource type="AudioStream" uid="uid://7vv20hgqqcxk" path="res://sfx/jute-dh-steps/jute-dh-steps/stepdirt_3.wav" id="14_7emwf"]
-[ext_resource type="AudioStream" uid="uid://bge0h5kq5rdrj" path="res://sfx/jute-dh-steps/jute-dh-steps/stepdirt_4.wav" id="15_hshwv"]
+[ext_resource type="AudioStream" uid="uid://bb7ydn7axvwft" path="res://sfx/jute-dh-steps/jute-dh-steps/stepstone_6.wav" id="13_maysp"]
+[ext_resource type="AudioStream" uid="uid://cvrlkj35kxhnq" path="res://sfx/jute-dh-steps/jute-dh-steps/stepstone_7.wav" id="14_1l10g"]
+[ext_resource type="AudioStream" uid="uid://c0bvrmabbuquq" path="res://sfx/jute-dh-steps/jute-dh-steps/stepstone_8.wav" id="15_6rl0i"]
 [ext_resource type="Script" uid="uid://d3vjqiaaxlykb" path="res://Player/offhand.gd" id="15_i4o1l"]
-[ext_resource type="AudioStream" uid="uid://cyxllvh7hmhts" path="res://sfx/jute-dh-steps/jute-dh-steps/stepdirt_5.wav" id="16_gpjlu"]
-[ext_resource type="AudioStream" uid="uid://bkoo0dovg888a" path="res://sfx/jute-dh-steps/jute-dh-steps/stepdirt_6.wav" id="17_8mwp6"]
-[ext_resource type="AudioStream" uid="uid://cqptw22pmofy7" path="res://sfx/jute-dh-steps/jute-dh-steps/stepdirt_7.wav" id="18_qemgg"]
-[ext_resource type="AudioStream" uid="uid://c64kea7efbe3v" path="res://sfx/jute-dh-steps/jute-dh-steps/stepdirt_8.wav" id="19_8viyr"]
 [ext_resource type="Script" uid="uid://b7bdwt4r1x8b3" path="res://Player/dying_player_state.gd" id="20_jp1hh"]
 [ext_resource type="Environment" uid="uid://c8pnvcuwa2lcp" path="res://scenes/world.tres" id="21_i4o1l"]
 [ext_resource type="Script" uid="uid://bh51mi6cbu7iw" path="res://Player/user_interface.gd" id="22_8viyr"]
@@ -40,18 +40,17 @@
 [ext_resource type="Script" uid="uid://csps0dnf2gf2n" path="res://Player/player_hurtbox_component.gd" id="34_j2n6q"]
 [ext_resource type="AudioStream" uid="uid://df2b8w21sb3xf" path="res://sfx/hit-rock-03-266305.mp3" id="36_jp1hh"]
 
-[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_sm0op"]
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_7x5p2"]
 shuffle = true
-fade_time = 0.0
 stream_count = 8
-stream_0 = ExtResource("12_o28un")
-stream_1 = ExtResource("13_n471f")
-stream_2 = ExtResource("14_7emwf")
-stream_3 = ExtResource("15_hshwv")
-stream_4 = ExtResource("16_gpjlu")
-stream_5 = ExtResource("17_8mwp6")
-stream_6 = ExtResource("18_qemgg")
-stream_7 = ExtResource("19_8viyr")
+stream_0 = ExtResource("8_f4lon")
+stream_1 = ExtResource("9_d30e8")
+stream_2 = ExtResource("10_6pogt")
+stream_3 = ExtResource("11_ie76m")
+stream_4 = ExtResource("12_dy65m")
+stream_5 = ExtResource("13_maysp")
+stream_6 = ExtResource("14_1l10g")
+stream_7 = ExtResource("15_6rl0i")
 
 [sub_resource type="Animation" id="Animation_sm0op"]
 length = 0.001
@@ -426,7 +425,7 @@ script = ExtResource("15_i4o1l")
 [node name="walk" type="AudioStreamPlayer3D" parent="SubViewportContainer/SubViewport/Camera3D"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00171711, -1.07993, -0.0021373)
-stream = SubResource("AudioStreamPlaylist_sm0op")
+stream = SubResource("AudioStreamPlaylist_7x5p2")
 volume_db = -30.0
 bus = &"SFX"
 
@@ -694,8 +693,11 @@ hurtbox = NodePath("../../hurtbox_component")
 [node name="blue light" type="OmniLight3D" parent="head/main_camera"]
 transform = Transform3D(0.912179, 0.185672, -0.365316, -0.0986075, 0.964723, 0.244102, 0.397752, -0.186642, 0.898309, 0.00757489, 0.0209635, -0.0580237)
 layers = 3
-light_color = Color(0.761397, 0.841342, 1, 1)
+light_color = Color(0.599972, 0.731476, 1, 1)
+light_energy = 0.5
 light_volumetric_fog_energy = 0.0
+light_size = 1.0
+light_bake_mode = 0
 shadow_enabled = true
 omni_range = 10.0
 omni_attenuation = 0.25

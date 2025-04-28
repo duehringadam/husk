@@ -10,7 +10,6 @@ extends Node3D
 @export var can_bleed: bool = true
 var timer: float = 0.0
 
-
 func _ready():
 	animation_player.play("Idle")
 
@@ -18,8 +17,8 @@ func _process(delta: float) -> void:
 	timer += delta
 	if timer >= 0.15:
 		animation_player.advance(timer)
-		timer = 0
-
+		timer -= 0.15
+	
 		
 func _on_health_component_died() -> void:
 	hurtbox.monitorable = false

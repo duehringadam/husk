@@ -27,7 +27,8 @@ func _process(delta: float) -> void:
 		shake_target.global_position.z += rng.randf_range(-shake_strength,shake_strength)
 		
 func _on_health_changed(amount: float, new_value: float):
-	shake_strength = randomStrength
+	if amount > 0:
+		shake_strength = randomStrength
 	
 func apply_shake(amount: float, actual: float, source: DamageComponent, hit_dir:Vector3):
 	shake_strength = randomStrength

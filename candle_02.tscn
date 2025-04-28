@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dpx7ytnoh5ffx"]
+
+[ext_resource type="PackedScene" uid="uid://c4xnicjt5r0gf" path="res://scenes/PSX_Dungeon/PSX_Dungeon/Models/Candle_02.fbx" id="1_ifdgd"]
+[ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="2_i0ilj"]
+[ext_resource type="Texture2D" uid="uid://b1bl3b52o7p22" path="res://scenes/PSX_Dungeon/PSX_Dungeon/Textures/TEX_Candle_01.png" id="3_jvlu5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_40r3g"]
+render_priority = 0
+shader = ExtResource("2_i0ilj")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("3_jvlu5")
+shader_parameter/albedo_texture_as_primary_color = true
+shader_parameter/mix_factor = 1.0
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+
+[node name="Candle_02" instance=ExtResource("1_ifdgd")]
+
+[node name="Cylinder_024" parent="." index="0"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+surface_material_override/0 = SubResource("ShaderMaterial_40r3g")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+light_color = Color(0.989797, 1, 0.604981, 1)
+omni_range = 2.5

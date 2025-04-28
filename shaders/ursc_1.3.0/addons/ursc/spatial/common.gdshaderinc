@@ -1,6 +1,7 @@
 // If you want to use fog controlled by a Godot Environment resource (pixel-based),
 // simply uncomment the following line:
 #define USE_ENVIRONMENT_FOG
+#define TEXTURE_REPEAT
 
 // Render mode
 render_mode

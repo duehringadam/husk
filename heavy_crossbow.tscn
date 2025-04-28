@@ -1,12 +1,10 @@
-[gd_scene load_steps=27 format=3 uid="uid://casagqutbfyv6"]
+[gd_scene load_steps=25 format=3 uid="uid://casagqutbfyv6"]
 
 [ext_resource type="Script" uid="uid://blhbji210er4q" path="res://crossbow.gd" id="1_seim3"]
 [ext_resource type="AudioStream" uid="uid://c8riien6g2ofy" path="res://Player/weapon/ALL/Crossbow/crossbow-firing-95020.mp3" id="2_yg30w"]
 [ext_resource type="ArrayMesh" uid="uid://g8nhxbgs3sh7" path="res://Player/weapon/ALL/HeavyCrossbow/heavyxbow.res" id="3_seim3"]
 [ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="5_rofvw"]
-[ext_resource type="Texture2D" uid="uid://hio7ka8q4l81" path="res://Player/weapon/ALL/HeavyCrossbow/base2.png" id="6_yg30w"]
 [ext_resource type="ArrayMesh" uid="uid://unepod5rwmun" path="res://Player/weapon/ALL/Belt/bolt.res" id="7_fy2dd"]
-[ext_resource type="Texture2D" uid="uid://udidug1u1tlm" path="res://Player/weapon/ALL/Belt/Material_Base_color.png" id="8_gw1vj"]
 [ext_resource type="Script" uid="uid://dwhlx7r1lhgny" path="res://ray.gd" id="9_fgoaw"]
 [ext_resource type="AudioStream" uid="uid://6cnfpmt5x52g" path="res://Player/weapon/ALL/HeavyCrossbow/heavy_equip.wav" id="9_seim3"]
 [ext_resource type="Script" uid="uid://bb3ghyy64k2bd" path="res://addons/godot_state_charts/state_chart.gd" id="10_tqfvm"]
@@ -22,7 +20,6 @@
 render_priority = 0
 shader = ExtResource("5_rofvw")
 shader_parameter/albedo_color = Color(1, 1, 1, 1)
-shader_parameter/albedo_texture = ExtResource("6_yg30w")
 shader_parameter/albedo_texture_as_primary_color = true
 shader_parameter/mix_factor = 1.0
 shader_parameter/texture_lod_halve_distance_override = 0.0
@@ -36,7 +33,6 @@ shader_parameter/convert_vertex_colors = false
 render_priority = 0
 shader = ExtResource("5_rofvw")
 shader_parameter/albedo_color = Color(1, 1, 1, 1)
-shader_parameter/albedo_texture = ExtResource("8_gw1vj")
 shader_parameter/albedo_texture_as_primary_color = true
 shader_parameter/mix_factor = 1.0
 shader_parameter/texture_lod_halve_distance_override = 0.0

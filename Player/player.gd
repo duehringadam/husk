@@ -21,6 +21,7 @@ const CROUCH_SPEED = 3
 @onready var state_machine: StateMachine = $stateMachine
 @onready var inventory_vbox: VBoxContainer = $UILayer/userInterface/uiMargin/inventory/PanelContainer/ScrollContainer/VBoxContainer
 @onready var sub_viewport: SubViewport = %SubViewport
+@onready var hitbox: CollisionShape3D = $hitbox
 
 
 #camera bob
@@ -43,6 +44,7 @@ var secondary_active_bool: bool = false
 var primary_active_bool: bool = false
 var blocking: bool = false
 var input_dir
+var noclip := false
 
 func _ready() -> void:
 	Global.player = self
@@ -61,8 +63,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		camera.rotate_x(-event.relative.y * MOUSE_SENS)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-70),deg_to_rad(70))
 
-
-
 func _process(delta: float) -> void:
 	if dead:
 		return
@@ -78,7 +78,15 @@ func restart():
 func _physics_process(delta: float) -> void:
 	if dead:
 		return
+	if not _handle_noclip(delta):
+		pass
+	
 
+func _handle_noclip(delta) -> bool:
+	if Input.is_action_just_pressed("noclip"):
+		noclip = !noclip
+	return noclip
+	
 func update_gravity(delta)->void:
 	velocity.y -= gravity * delta
 

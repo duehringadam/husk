@@ -5,11 +5,13 @@ extends CharacterBody3D
 @onready var navigation_agent: NavigationAgent3D = $skeleton_fixed/NavigationAgent3D
 @onready var bone_simulator: PhysicalBoneSimulator3D = $skeleton_fixed/metarig/Skeleton3D/PhysicalBoneSimulator3D
 @onready var phys_timer: Timer = $phys_timer
+@onready var fractured_skeleton: VoronoiCollection = $skeleton_fixed/metarig/Skeleton3D/VoronoiShatter/Fractured_ps1_skeleton_941809
 
 @export var SPEED: float
 @export var damage_particles: PackedScene
 @export var can_bleed: bool = true
 var timer: float = 0.0
+var hit_dir: Vector3
 
 func _ready() -> void:
 	animation_player.play("metarig|idle",-1,1)
@@ -33,21 +35,25 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_health_component_died() -> void:
-	animation_player.stop()
-	bone_simulator.physical_bones_start_simulation()
-	phys_timer.start()
+	if hit_dir.x < 0:
+		animation_player.play("death_left")
+		fractured_skeleton.create_rigid_bodies()
+	if hit_dir.x > 0:
+		animation_player.play("death_right")
+		fractured_skeleton.create_rigid_bodies()
 
 
 func _on_timer_timeout() -> void:
 	bone_simulator.physical_bones_stop_simulation()
 
 
-func _on_hurtbox_component_damage_taken(amount: float, actual: float, source: DamageComponent, hit_dir: Vector3) -> void:
+func _on_hurtbox_component_damage_taken(amount: float, actual: float, source: DamageComponent, _hit_dir: Vector3) -> void:
+	hit_dir = _hit_dir
 	var hit_particles = damage_particles.instantiate()
 	get_tree().current_scene.add_child(hit_particles)
 	hit_particles.global_position = source.global_position
 	hit_particles.emitting = true
-	if hit_dir.x < 0:
+	if _hit_dir.x < 0:
 		animation_player.play("hit_right",-1,1.25)
-	if hit_dir.x > 0:
+	if _hit_dir.x > 0:
 		animation_player.play("metarig|hit reaction",-1,1.25)

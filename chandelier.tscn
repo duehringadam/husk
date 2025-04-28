@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://bqeu6mcojxej4"]
+
+[ext_resource type="PackedScene" uid="uid://b1qru541jreip" path="res://scenes/PSX_Dungeon/PSX_Dungeon/Models/Chandelier.fbx" id="1_dt8dj"]
+[ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="2_an4in"]
+[ext_resource type="Texture2D" uid="uid://4cksqkib661w" path="res://scenes/PSX_Dungeon/PSX_Dungeon/Textures/TEX_Planks_01.png" id="3_83u2j"]
+[ext_resource type="Texture2D" uid="uid://cn1m0evyu1dny" path="res://scenes/PSX_Dungeon/PSX_Dungeon/Textures/TEX_Chain_02.png" id="4_aeqdx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7ifx1"]
+render_priority = 0
+shader = ExtResource("2_an4in")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("3_83u2j")
+shader_parameter/albedo_texture_as_primary_color = true
+shader_parameter/mix_factor = 1.0
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_von5a"]
+render_priority = 0
+shader = ExtResource("2_an4in")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("4_aeqdx")
+shader_parameter/albedo_texture_as_primary_color = true
+shader_parameter/mix_factor = 1.0
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+
+[node name="Chandelier" instance=ExtResource("1_dt8dj")]
+
+[node name="Cylinder_025" parent="." index="0"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+surface_material_override/0 = SubResource("ShaderMaterial_7ifx1")
+surface_material_override/1 = SubResource("ShaderMaterial_von5a")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+light_color = Color(1, 0.640886, 0.453545, 1)
+shadow_enabled = true
