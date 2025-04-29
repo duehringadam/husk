@@ -12,5 +12,5 @@ func update(delta):
 	Global.player.update_velocity()
 	
 	if Global.player.is_on_floor():
-		AudioManager.play_sound(load("res://sfx/land.wav"),Global.player.global_position,-20)
+		AudioManager.play_sound(load("res://sfx/land.wav"),Global.player.global_position,-10)
 		transition.emit("idlePlayerState")

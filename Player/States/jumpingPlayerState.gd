@@ -7,7 +7,7 @@ var anim_stored
 @onready var walk: AudioStreamPlayer3D = %walk
 
 func enter(previous_state)->void:
-	AudioManager.play_sound(load("res://sfx/jump.wav"),Global.player.global_position,-20)
+	AudioManager.play_sound(load("res://sfx/jump.wav"),Global.player.global_position,-10)
 	Global.player.velocity.y += JUMP_VELOCITY
 	walk.stop()
 

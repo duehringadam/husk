@@ -38,7 +38,7 @@ func take_damage(amount: float, source: DamageComponent):
 	invulnerability(invulnerability_duration)
 	# take damage
 	if hit_sound != null:
-		AudioManager.play_sound(hit_sound,self.global_position,-4.0)
+		AudioManager.play_sound(hit_sound,self.global_position,-10.0)
 	var actual = reduce_damage(amount, source)
 	emit_signal("damage_taken", amount, actual, source, hit_dir)
 	health_component.modify_health(-actual)

@@ -1,17 +1,15 @@
-[gd_scene load_steps=63 format=3 uid="uid://c3sqr5u2peuhu"]
+[gd_scene load_steps=59 format=3 uid="uid://c3sqr5u2peuhu"]
 
 [ext_resource type="Script" uid="uid://dtuv0q76720mr" path="res://weapon_scene.gd" id="1_b8kcf"]
 [ext_resource type="AudioStream" uid="uid://bquoh3r8l4qhq" path="res://Player/weapon/ALL/Mace3/sfx_hammer_spinn_whoosh_05.wav" id="2_b8kcf"]
 [ext_resource type="AudioStream" uid="uid://bvo0ngui5a0kn" path="res://sfx/sfx_hammer_hit_2.wav" id="3_1qvh1"]
 [ext_resource type="ArrayMesh" uid="uid://bf041dkyh6d3t" path="res://Player/weapon/ALL/Mace3/mace.res" id="3_b8kcf"]
-[ext_resource type="Shader" uid="uid://m1ybqx5bqk5r" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/blood_mix.gdshader" id="4_iyi1k"]
-[ext_resource type="Texture2D" uid="uid://dag5diw53bqq3" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/1000_F_450773512_a2Qi0jF5nSby6TZV5rjpE3F0mLgHD6k6.jpg" id="5_dg7pj"]
-[ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="6_pg731"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="8_5qkyb"]
-[ext_resource type="Texture2D" uid="uid://btefutenjumm0" path="res://Player/weapon/ALL/Mace3/Material_Base_color.png" id="8_dg7pj"]
 [ext_resource type="AudioStream" uid="uid://dstroep0pwn61" path="res://sfx/cartoon-hammer-312212.mp3" id="9_k83m2"]
+[ext_resource type="AudioStream" uid="uid://byvpy4sc4yfvr" path="res://sfx/heavy_equip.mp3" id="11_1qvh1"]
 [ext_resource type="Script" uid="uid://bb3ghyy64k2bd" path="res://addons/godot_state_charts/state_chart.gd" id="11_5onj0"]
 [ext_resource type="Shader" uid="uid://cn072kbcnp0m0" path="res://GPUTrail-main/shaders/trail.gdshader" id="11_dg7pj"]
+[ext_resource type="AudioStream" uid="uid://3pgi0lauevph" path="res://sfx/heavy_equip_2.mp3" id="12_2aoi0"]
 [ext_resource type="Script" uid="uid://clt3bkcujiepo" path="res://addons/godot_state_charts/compound_state.gd" id="12_kxrbt"]
 [ext_resource type="Shader" uid="uid://bjhxqywaiahde" path="res://GPUTrail-main/shaders/trail_draw_pass.gdshader" id="12_pg731"]
 [ext_resource type="Texture2D" uid="uid://cp2dvq8gnm7mi" path="res://shaders/ursc_1.3.0/addons/ursc/bayer16.png" id="13_dshsm"]
@@ -28,29 +26,6 @@
 [ext_resource type="Script" uid="uid://dbijl0u5302qj" path="res://sword_back.gd" id="22_77k2n"]
 [ext_resource type="Script" uid="uid://bc3inuwe0nld0" path="res://sword_held_forward.gd" id="23_s5yd0"]
 [ext_resource type="Script" uid="uid://wvdotxijfutl" path="res://sword_forward.gd" id="24_gytik"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_k83m2"]
-render_priority = 0
-shader = ExtResource("4_iyi1k")
-shader_parameter/noise = ExtResource("5_dg7pj")
-shader_parameter/noise_shading = 1.0
-shader_parameter/intensity = 0.0
-shader_parameter/color = Color(1, 0, 0, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_b8kcf"]
-render_priority = 0
-next_pass = SubResource("ShaderMaterial_k83m2")
-shader = ExtResource("6_pg731")
-shader_parameter/albedo_color = Color(1, 1, 1, 1)
-shader_parameter/albedo_texture = ExtResource("8_dg7pj")
-shader_parameter/albedo_texture_as_primary_color = true
-shader_parameter/mix_factor = 1.0
-shader_parameter/texture_lod_halve_distance_override = 0.0
-shader_parameter/uv_offset = Vector2(0, 0)
-shader_parameter/uv_scale = Vector2(1, 1)
-shader_parameter/uv_scroll_speed = Vector2(0, 0)
-shader_parameter/cull_distance_override = 0.0
-shader_parameter/convert_vertex_colors = false
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e4sur"]
 radius = 0.00635937
@@ -170,6 +145,36 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(0.844739, -2.01935, 2.9147), Vector3(5.01608, 0.986111, 0.774926)]
 }
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("swing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_1qvh1")
+}],
+"times": PackedFloat32Array(0.133333)
+}
+tracks/2/use_blend = true
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("swing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_2aoi0")
+}],
+"times": PackedFloat32Array(0.233333)
+}
+tracks/3/use_blend = true
 
 [sub_resource type="Animation" id="Animation_5qkyb"]
 resource_name = "hold_back"
@@ -559,7 +564,6 @@ transform = Transform3D(-6.49586, -38.1878, 9.97476, 8.36921, 8.54636, 38.1696, 
 layers = 2
 gi_mode = 2
 mesh = ExtResource("3_b8kcf")
-surface_material_override/0 = SubResource("ShaderMaterial_b8kcf")
 
 [node name="DamageComponent" type="Area3D" parent="MeshInstance3D"]
 transform = Transform3D(0.00352353, -0.99999, 0.00280493, 0.999994, 0.00352362, -3.64706e-06, -6.24731e-06, 0.00280491, 0.999996, 0.0025845, -0.00188374, 0.0211552)
@@ -614,6 +618,7 @@ playback_auto_capture_transition_type = 2
 
 [node name="swing" type="AudioStreamPlayer3D" parent="."]
 volume_db = -12.0
+bus = &"SFX"
 
 [node name="StateChart" type="Node" parent="."]
 script = ExtResource("11_5onj0")

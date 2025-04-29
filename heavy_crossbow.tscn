@@ -1,9 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://casagqutbfyv6"]
+[gd_scene load_steps=22 format=3 uid="uid://casagqutbfyv6"]
 
 [ext_resource type="Script" uid="uid://blhbji210er4q" path="res://crossbow.gd" id="1_seim3"]
 [ext_resource type="AudioStream" uid="uid://c8riien6g2ofy" path="res://Player/weapon/ALL/Crossbow/crossbow-firing-95020.mp3" id="2_yg30w"]
 [ext_resource type="ArrayMesh" uid="uid://g8nhxbgs3sh7" path="res://Player/weapon/ALL/HeavyCrossbow/heavyxbow.res" id="3_seim3"]
-[ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="5_rofvw"]
 [ext_resource type="ArrayMesh" uid="uid://unepod5rwmun" path="res://Player/weapon/ALL/Belt/bolt.res" id="7_fy2dd"]
 [ext_resource type="Script" uid="uid://dwhlx7r1lhgny" path="res://ray.gd" id="9_fgoaw"]
 [ext_resource type="AudioStream" uid="uid://6cnfpmt5x52g" path="res://Player/weapon/ALL/HeavyCrossbow/heavy_equip.wav" id="9_seim3"]
@@ -15,32 +14,6 @@
 [ext_resource type="Script" uid="uid://bj22mnnihr537" path="res://xbow_shoot.gd" id="15_om7wy"]
 [ext_resource type="Script" uid="uid://b0jyy5d8q8irl" path="res://xbow_reload.gd" id="16_jjqaa"]
 [ext_resource type="Script" uid="uid://44l61k4jks6l" path="res://xbow_block.gd" id="17_yg30w"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_cx7js"]
-render_priority = 0
-shader = ExtResource("5_rofvw")
-shader_parameter/albedo_color = Color(1, 1, 1, 1)
-shader_parameter/albedo_texture_as_primary_color = true
-shader_parameter/mix_factor = 1.0
-shader_parameter/texture_lod_halve_distance_override = 0.0
-shader_parameter/uv_offset = Vector2(0, 0)
-shader_parameter/uv_scale = Vector2(1, 1)
-shader_parameter/uv_scroll_speed = Vector2(0, 0)
-shader_parameter/cull_distance_override = 0.0
-shader_parameter/convert_vertex_colors = false
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_npafi"]
-render_priority = 0
-shader = ExtResource("5_rofvw")
-shader_parameter/albedo_color = Color(1, 1, 1, 1)
-shader_parameter/albedo_texture_as_primary_color = true
-shader_parameter/mix_factor = 1.0
-shader_parameter/texture_lod_halve_distance_override = 0.0
-shader_parameter/uv_offset = Vector2(0, 0)
-shader_parameter/uv_scale = Vector2(1, 1)
-shader_parameter/uv_scroll_speed = Vector2(0, 0)
-shader_parameter/cull_distance_override = 0.0
-shader_parameter/convert_vertex_colors = false
 
 [sub_resource type="Animation" id="Animation_0i1vk"]
 length = 0.001
@@ -304,14 +277,12 @@ transform = Transform3D(-11.9106, 1.46247, 1.10128e-10, -5.29401e-06, -4.31163e-
 layers = 2
 gi_mode = 2
 mesh = ExtResource("3_seim3")
-surface_material_override/0 = SubResource("ShaderMaterial_cx7js")
 
 [node name="bolt" type="MeshInstance3D" parent="MeshInstance3D"]
 transform = Transform3D(5.43147e-06, -6.55869e-08, 1.5, -1.5, 5.47766e-06, 5.43147e-06, -5.47767e-06, -1.5, -6.55671e-08, 1.32274e-09, -0.000365422, 0.00624091)
 layers = 2
 mesh = ExtResource("7_fy2dd")
 skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("ShaderMaterial_npafi")
 
 [node name="RayCast3D" type="RayCast3D" parent="MeshInstance3D"]
 transform = Transform3D(-0.1, -4.41165e-08, -7.13123e-05, -7.13123e-05, -3.59301e-07, 0.1, -4.43728e-08, 0.1, 3.59269e-07, 0.000363517, -4.46519e-05, 0.00460258)

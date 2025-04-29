@@ -1,22 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://c6gtw3pejjexu"]
+[gd_scene load_steps=5 format=3 uid="uid://c6gtw3pejjexu"]
 
 [ext_resource type="Script" uid="uid://coilwpmlrrpu4" path="res://projectile.gd" id="1_4f44d"]
 [ext_resource type="ArrayMesh" uid="uid://unepod5rwmun" path="res://Player/weapon/ALL/Belt/bolt.res" id="1_s5mil"]
-[ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="2_j3fb8"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="5_5miqj"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5miqj"]
-render_priority = 0
-shader = ExtResource("2_j3fb8")
-shader_parameter/albedo_color = Color(1, 1, 1, 1)
-shader_parameter/albedo_texture_as_primary_color = true
-shader_parameter/mix_factor = 1.0
-shader_parameter/texture_lod_halve_distance_override = 0.0
-shader_parameter/uv_offset = Vector2(0, 0)
-shader_parameter/uv_scale = Vector2(1, 1)
-shader_parameter/uv_scroll_speed = Vector2(0, 0)
-shader_parameter/cull_distance_override = 0.0
-shader_parameter/convert_vertex_colors = false
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_md0um"]
 radius = 0.0137137
@@ -29,7 +15,6 @@ speed = 50
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.207343, 0, 19.9989, 0, 20, 0, -19.9989, 0, 0.207343, 0, 0, 0)
 mesh = ExtResource("1_s5mil")
-surface_material_override/0 = SubResource("ShaderMaterial_5miqj")
 
 [node name="DamageComponent" type="Area3D" parent="MeshInstance3D"]
 transform = Transform3D(-0.0499742, 0, -0.00160455, 0, 0.05, 0, 0.00160455, 0, -0.0499742, 0, 0, 0)

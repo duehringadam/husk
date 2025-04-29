@@ -9,7 +9,7 @@ extends Node3D
 func _ready() -> void:
 	if health_component != null:
 		if !health_component.is_connected("died", _on_broken):
-			health_component.connect("died", _on_broken)	
+			health_component.connect("died", _on_broken)
 			
 func _on_broken():
 	var player_dir = global_position.direction_to(Global.player.global_position)
@@ -17,4 +17,6 @@ func _on_broken():
 	hurtboxcomponent.monitorable = false
 	for i in PhysicsObjectArray:
 		i.freeze = false
-		i.linear_velocity -= player_dir*2
+		i.linear_velocity -= player_dir*4
+		i.collision_layer = 1
+	await get_tree().create_timer(5).timeout.connect(func(): queue_free())

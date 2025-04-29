@@ -5,7 +5,7 @@ uniform float FOV : hint_range(20, 120) = 75;
 
 void vertex() {
     float scale = 1.0 / tan(FOV * 0.5 * PI / -180.0);
-    
+
     PROJECTION_MATRIX[0][0] = scale / (-VIEWPORT_SIZE.x / VIEWPORT_SIZE.y);
     PROJECTION_MATRIX[1][1] = scale;
 }
