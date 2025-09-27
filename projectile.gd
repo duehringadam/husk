@@ -1,9 +1,10 @@
+class_name Projectile
 extends Node3D
 
 @export var speed: int = 100
-@onready var damage_component: DamageComponent = $MeshInstance3D/DamageComponent
-@onready var ray_cast_3d: RayCast3D = $RayCast3D
-@onready var gpu_trail: GPUTrail3D = $MeshInstance3D/GPUTrail3D
+@export var damage_component: DamageComponent
+@export var ray_cast_3d: RayCast3D
+@export var gpu_trail: GPUTrail3D
 
 var pin: bool = false
 

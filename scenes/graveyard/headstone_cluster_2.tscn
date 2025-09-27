@@ -36,13 +36,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.1828, 0, 1577.4)
 mesh = ExtResource("1_qpgvm")
 surface_material_override/0 = SubResource("ShaderMaterial_av7fg")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
-collision_layer = 2
-collision_mask = 7
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_qpgvm")
-
 [node name="headstone_1" parent="." instance=ExtResource("4_tsnxe")]
 transform = Transform3D(0.883913, 0, 0.467652, 0.110552, 0.971656, -0.208954, -0.454397, 0.236397, 0.858859, 404.143, -76.6452, 1118.1)
 
@@ -57,3 +50,7 @@ transform = Transform3D(0.707489, 0, -0.706724, 0, 1, 0, 0.706724, 0, 0.707489, 
 
 [node name="headstone_5" parent="." instance=ExtResource("8_6g76o")]
 transform = Transform3D(0.748391, -0.430133, 0.504872, 0.35658, 0.902766, 0.240552, -0.559251, 0, 0.828999, 154.684, 150.802, 828.012)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.1828, 0, 1577.4)
+shape = SubResource("ConvexPolygonShape3D_qpgvm")

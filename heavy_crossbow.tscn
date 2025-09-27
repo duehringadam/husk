@@ -267,13 +267,14 @@ _data = {
 &"shoot": SubResource("Animation_0s0e8")
 }
 
-[node name="heavy_crossbow" type="Node3D"]
+[node name="heavy_crossbow" type="Node3D" node_paths=PackedStringArray("weapon_mesh")]
 script = ExtResource("1_seim3")
 two_handed = true
 swing_sound = ExtResource("2_yg30w")
+weapon_mesh = NodePath("MeshInstance3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(-11.9106, 1.46247, 1.10128e-10, -5.29401e-06, -4.31163e-05, 12, 1.46247, 11.9106, 4.34399e-05, -0.08, 0, 0)
+transform = Transform3D(-11.910601, 1.4624679, 1.1012799e-10, -5.29401e-06, -4.311627e-05, 12, 1.4624679, 11.910601, 4.3439883e-05, -0.08, 0, 0)
 layers = 2
 gi_mode = 2
 mesh = ExtResource("3_seim3")

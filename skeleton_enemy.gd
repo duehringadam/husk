@@ -5,7 +5,6 @@ extends CharacterBody3D
 @onready var navigation_agent: NavigationAgent3D = $skeleton_fixed/NavigationAgent3D
 @onready var bone_simulator: PhysicalBoneSimulator3D = $skeleton_fixed/metarig/Skeleton3D/PhysicalBoneSimulator3D
 @onready var phys_timer: Timer = $phys_timer
-@onready var fractured_skeleton: VoronoiCollection = $skeleton_fixed/metarig/Skeleton3D/VoronoiShatter/Fractured_ps1_skeleton_941809
 
 @export var SPEED: float
 @export var damage_particles: PackedScene
@@ -37,10 +36,10 @@ func _physics_process(delta: float) -> void:
 func _on_health_component_died() -> void:
 	if hit_dir.x < 0:
 		animation_player.play("death_left")
-		fractured_skeleton.create_rigid_bodies()
+		
 	if hit_dir.x > 0:
 		animation_player.play("death_right")
-		fractured_skeleton.create_rigid_bodies()
+		
 
 
 func _on_timer_timeout() -> void:

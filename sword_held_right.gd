@@ -7,6 +7,8 @@ extends Node
 
 func _on_held_right_state_entered() -> void:
 	animation_player.play("hold_right")
+	SignalBus.emit_signal("can_attack", false)
+	SignalBus.emit_signal("primary_active",true)
 
 
 func _on_held_right_state_exited() -> void:

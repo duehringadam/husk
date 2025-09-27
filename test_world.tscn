@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=3 uid="uid://iarqxfted72l"]
+
+[ext_resource type="PackedScene" uid="uid://crwpbskjjllht" path="res://Player/player.tscn" id="1_gy3sr"]
+[ext_resource type="Texture2D" uid="uid://bxgdenwt3i5pb" path="res://test texture/kenney_prototype-textures/Vector/texture_03.svg" id="2_1lwx6"]
+[ext_resource type="PackedScene" uid="uid://bj6sdc0lp46oo" path="res://scenes/knight/physics_knight.tscn" id="3_1lwx6"]
+[ext_resource type="PackedScene" uid="uid://bph60ey8qmqni" path="res://barrel_throwable.tscn" id="4_dsnr4"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gy3sr"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_1lwx6"]
+sky_material = SubResource("ProceduralSkyMaterial_gy3sr")
+
+[sub_resource type="Environment" id="Environment_dsnr4"]
+background_mode = 2
+sky = SubResource("Sky_1lwx6")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dsnr4"]
+albedo_texture = ExtResource("2_1lwx6")
+uv1_scale = Vector3(10, 10, 10)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_t34gm"]
+material = SubResource("StandardMaterial3D_dsnr4")
+size = Vector2(100, 100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_gy3sr"]
+points = PackedVector3Array(-50, 0, -50, -50, 0, 50, 50, 0, -50, 50, 0, 50)
+
+[node name="test_world" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_dsnr4")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, -0.024397261, 0.99970233, 0, -0.99970233, -0.024397261, 0, 1.5199726, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_t34gm")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+collision_layer = 2
+collision_mask = 15
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_gy3sr")
+
+[node name="physics_knight" parent="." instance=ExtResource("3_1lwx6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.238919, 0, 0.030591965)
+
+[node name="physics_knight2" parent="." instance=ExtResource("3_1lwx6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3855824, 0, 0)
+
+[node name="physics_knight3" parent="." instance=ExtResource("3_1lwx6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5975955, 0, 0)
+
+[node name="physics_knight4" parent="." instance=ExtResource("3_1lwx6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.83042336, 0, 0)
+
+[node name="barrel_throwable" parent="." instance=ExtResource("4_dsnr4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03025031, 2.9802308e-07, 1.3753684)
+
+[node name="barrel_throwable2" parent="." instance=ExtResource("4_dsnr4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2683297, 2.9802308e-07, 1.3874041)
+
+[node name="barrel_throwable3" parent="." instance=ExtResource("4_dsnr4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.49591, 5.364417e-07, 1.3746285)
+
+[node name="barrel_throwable4" parent="." instance=ExtResource("4_dsnr4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7025676, 2.980231e-07, 1.3712063)
+
+[node name="player" parent="." instance=ExtResource("1_gy3sr")]

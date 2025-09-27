@@ -1,0 +1,108 @@
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://bosq5hcbc1oej"]
+
+[sub_resource type="Shader" id="Shader_1uons"]
+code = "shader_type spatial;
+
+uniform float progress : hint_range(0.0, 1.0) = 0.0;
+uniform float noiseForce : hint_range(0.0, 1.0) = 0.2;
+uniform sampler2D noiseTexture;
+uniform vec4 burnColor : source_color = vec4(1.0, 0.3, 0.0, 1.0);
+uniform float borderWidth : hint_range(0.0, 0.5) = 0.1;
+uniform float direction : hint_range(0.0, 360.0) = 180.0;
+uniform vec2 scroll_direction;
+uniform float scroll_speed;
+uniform sampler2D albedo_texture : source_color;
+uniform float burn_axis : hint_range(0.0, 2.0) = 1.0;
+uniform bool cylindrical_burn = true;
+uniform float ash_alpha : hint_range(0.0, 1.0) = 0.3;
+uniform vec3 ash_color : source_color = vec3(0.3, 0.3, 0.3);
+
+varying vec3 world_position;
+varying vec3 local_position;
+
+void vertex() {
+	VERTEX = VERTEX + NORMAL * 0.0001;
+    world_position = VERTEX;
+    local_position = VERTEX;
+}
+
+void fragment(){
+	vec2 scrolled_uv = UV + scroll_direction * scroll_speed * TIME;
+	vec4 albedo = texture(noiseTexture, scrolled_uv);
+    vec4 base_color = texture(albedo_texture, UV);
+
+    float burn_progress;
+
+    if (cylindrical_burn) {
+        burn_progress = local_position.y;
+    } else {
+        if (burn_axis < 0.5) {
+            burn_progress = local_position.x;
+        } else if (burn_axis < 1.5) {
+            burn_progress = local_position.y;
+        } else {
+            burn_progress = local_position.z;
+        }
+    }
+
+    burn_progress = (burn_progress + 1.0) * 0.5;
+
+    float noise_sample = texture(noiseTexture, scrolled_uv).r;
+    float burn_line = burn_progress + (noise_sample * noiseForce);
+
+    bool is_burned = burn_line < progress;
+    bool is_border = burn_line < (progress + borderWidth);
+
+    vec3 final_albedo;
+    float final_alpha;
+
+    if (is_burned) {
+        final_albedo = ash_color;
+        final_alpha = ash_alpha;
+    } else if (is_border) {
+        float burn_mix = (progress + borderWidth - burn_line) / borderWidth;
+        final_albedo = mix(base_color.rgb, burnColor.rgb, burn_mix);
+        final_alpha = 1.0;
+    } else {
+        final_albedo = base_color.rgb;
+        final_alpha = base_color.a;
+    }
+
+    ALBEDO = final_albedo;
+    ALPHA = final_alpha;
+
+    if (is_border && !is_burned) {
+        float burn_mix = (progress + borderWidth - burn_line) / borderWidth;
+        EMISSION = burnColor.rgb * burn_mix * 0.5;
+    }
+}"
+
+[sub_resource type="Gradient" id="Gradient_vj2pg"]
+colors = PackedColorArray(1, 0.13725491, 0, 0, 1, 0.18431373, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_g1qs4"]
+gradient = SubResource("Gradient_vj2pg")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_28d3u"]
+frequency = 0.0767
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ewo4e"]
+noise = SubResource("FastNoiseLite_28d3u")
+
+[resource]
+render_priority = 0
+shader = SubResource("Shader_1uons")
+shader_parameter/progress = 0.0
+shader_parameter/noiseForce = 0.2
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_ewo4e")
+shader_parameter/burnColor = Color(1, 0.3764706, 0, 1)
+shader_parameter/borderWidth = 0.1
+shader_parameter/direction = 180.0
+shader_parameter/scroll_direction = Vector2(1, 1)
+shader_parameter/scroll_speed = 0.01
+shader_parameter/albedo_texture = SubResource("GradientTexture1D_g1qs4")
+shader_parameter/burn_axis = 2.0
+shader_parameter/cylindrical_burn = false
+shader_parameter/ash_alpha = 0.7130000338675
+shader_parameter/ash_color = Color(0.3, 0.3, 0.3, 1)

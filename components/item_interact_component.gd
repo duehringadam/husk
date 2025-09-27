@@ -9,8 +9,7 @@ extends interact
 var interactable: bool = false
 
 func _on_body_entered(body: Node3D) -> void:
-	if body is Player:
-		interactable = true
+	pass
 		
 
 func _input(event: InputEvent) -> void:
@@ -21,6 +20,8 @@ func _input(event: InputEvent) -> void:
 		parent.queue_free()
 
 func _process(delta: float) -> void:
+	if ray_cast_3d.get_collider() == Global.player:
+		interactable = true
 	ray_cast_3d.target_position = ray_cast_3d.global_position.direction_to(Global.player.global_position)*2
 
 func _on_body_exited(body: Node3D) -> void:

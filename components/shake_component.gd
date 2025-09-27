@@ -30,7 +30,7 @@ func _on_health_changed(amount: float, new_value: float):
 	if amount > 0:
 		shake_strength = randomStrength
 	
-func apply_shake(amount: float, actual: float, source: DamageComponent, hit_dir:Vector3):
+func apply_shake(actual: float, source: DamageComponent, hit_dir:Vector3):
 	shake_strength = randomStrength
 	
 func randomOffset():

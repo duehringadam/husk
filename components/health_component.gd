@@ -16,7 +16,6 @@ func _ready() -> void:
 
 func modify_health(amount: float):
 	current_health = clampf(current_health + amount, 0, max_health)
-	
 	emit_signal("health_changed", amount, current_health)
 	if current_health <= 0:
 		emit_signal("died")

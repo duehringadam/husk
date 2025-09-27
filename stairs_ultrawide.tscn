@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bma6xe0tsvta3"]
+
+[ext_resource type="PackedScene" uid="uid://bhcxj3sdilgaf" path="res://scenes/PSX_Dungeon/PSX_Dungeon/Models/Stairs_Ultrawide.fbx" id="1_gu2p4"]
+[ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="2_c76vt"]
+[ext_resource type="Texture2D" uid="uid://ck2vwlei0vl2t" path="res://scenes/Assets - PS1 Dungeon Pack/Assets - PS1 Dungeon Pack/Environment/Textures/Stairs_Texture.png" id="3_a6ehj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dprr1"]
+render_priority = 0
+shader = ExtResource("2_c76vt")
+shader_parameter/albedo_color = Color(0.827451, 1, 0.807843, 1)
+shader_parameter/albedo_texture = ExtResource("3_a6ehj")
+shader_parameter/albedo_texture_as_primary_color = true
+shader_parameter/mix_factor = 1.0
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(10, 10)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+
+[node name="Stairs_Ultrawide" instance=ExtResource("1_gu2p4")]
+
+[node name="Cube_052" parent="." index="0"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+surface_material_override/0 = SubResource("ShaderMaterial_dprr1")

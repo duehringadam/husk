@@ -8,6 +8,8 @@ extends Node
 
 func _on_held_left_state_entered() -> void:
 	animation_player.play("hold_left")
+	SignalBus.emit_signal("can_attack", false)
+	SignalBus.emit_signal("primary_active",true)
 
 
 func _on_held_left_state_exited() -> void:

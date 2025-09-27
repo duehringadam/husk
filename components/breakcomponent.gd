@@ -18,5 +18,5 @@ func _on_broken():
 	for i in PhysicsObjectArray:
 		i.freeze = false
 		i.linear_velocity -= player_dir*4
-		i.collision_layer = 1
+		i.collision_layer = 16
 	await get_tree().create_timer(5).timeout.connect(func(): queue_free())

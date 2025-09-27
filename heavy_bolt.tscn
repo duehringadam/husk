@@ -15,21 +15,21 @@ height = 0.0755693
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4huvn"]
 shader = ExtResource("6_wkmag")
 
-[sub_resource type="Gradient" id="Gradient_5u3yu"]
+[sub_resource type="Gradient" id="Gradient_l3ccd"]
 colors = PackedColorArray(0.619608, 0.619608, 0.619608, 0.85098, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_v100t"]
-gradient = SubResource("Gradient_5u3yu")
+gradient = SubResource("Gradient_l3ccd")
 
-[sub_resource type="Curve" id="Curve_qbim7"]
+[sub_resource type="Curve" id="Curve_wkmag"]
 bake_resolution = 16
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_fmpjr"]
-curve = SubResource("Curve_qbim7")
+curve = SubResource("Curve_wkmag")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_v1bgd"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1swpe"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("7_1swpe")
@@ -41,11 +41,14 @@ shader_parameter/emmission_transform = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 
 shader_parameter/flags = 42
 
 [sub_resource type="QuadMesh" id="QuadMesh_5lwrl"]
-material = SubResource("ShaderMaterial_v1bgd")
+material = SubResource("ShaderMaterial_1swpe")
 
-[node name="projectile" type="Node3D"]
+[node name="bolt" type="Node3D" node_paths=PackedStringArray("damage_component", "ray_cast_3d", "gpu_trail")]
 script = ExtResource("1_w5f6u")
 speed = 30
+damage_component = NodePath("MeshInstance3D/DamageComponent")
+ray_cast_3d = NodePath("RayCast3D")
+gpu_trail = NodePath("MeshInstance3D/GPUTrail3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.155507, 0, 14.9992, 0, 15, 0, -14.9992, 0, 0.155507, 0, 0, 0)
@@ -74,7 +77,7 @@ process_material = SubResource("ShaderMaterial_4huvn")
 draw_pass_1 = SubResource("QuadMesh_5lwrl")
 script = ExtResource("8_2ho4y")
 length = 19
-length_seconds = 0.316667
+length_seconds = 0.31666666666666665
 texture = ExtResource("8_1swpe")
 color_ramp = SubResource("GradientTexture1D_v100t")
 curve = SubResource("CurveTexture_fmpjr")

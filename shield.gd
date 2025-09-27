@@ -10,6 +10,11 @@ func _ready() -> void:
 	
 func primary_active(value: bool):
 	primary_active_bool = value
+	
+	if primary_active_bool:
+		state_chart.send_event("lower")
+	else:
+		state_chart.send_event("primary_released")
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("attack_secondary") && !primary_active_bool:

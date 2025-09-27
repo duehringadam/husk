@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://54gj5htolv56"]
+
+[ext_resource type="Script" uid="uid://cmrc6hxb0a6wm" path="res://status_effects/fire_damage_component.gd" id="1_ohhyp"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ohhyp"]
+radius = 1.25
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bsfdi"]
+particle_flag_align_y = true
+emission_shape = 1
+emission_sphere_radius = 0.5
+gravity = Vector3(0, 4.8, 0)
+turbulence_enabled = true
+turbulence_noise_scale = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bsfdi"]
+albedo_color = Color(1, 0.23529412, 0, 1)
+emission_enabled = true
+emission = Color(1, 0.23529412, 0, 1)
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_1tjll"]
+material = SubResource("StandardMaterial3D_bsfdi")
+radius = 0.005
+radial_steps = 3
+sections = 3
+section_length = 0.01
+cap_top = false
+cap_bottom = false
+
+[node name="DamageComponent" type="Area3D"]
+collision_layer = 8
+collision_mask = 13
+script = ExtResource("1_ohhyp")
+damage_types = Dictionary[int, float]({
+6: 1.0
+})
+status_types = Dictionary[int, float]({
+0: 0.25
+})
+metadata/_custom_type_script = "uid://dlsydctoxqbwy"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47161865, 0)
+shape = SubResource("SphereShape3D_ohhyp")
+
+[node name="embers" type="GPUParticles3D" parent="."]
+amount = 32
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_bsfdi")
+draw_pass_1 = SubResource("TubeTrailMesh_1tjll")
+
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]

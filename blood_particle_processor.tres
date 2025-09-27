@@ -1,0 +1,17 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=3 format=3 uid="uid://dguajrylbaalc"]
+
+[sub_resource type="Curve" id="Curve_4ulmk"]
+_limits = [-360.0, 360.0, 0.0, 1.0]
+_data = [Vector2(0, 360), 0.0, 0.0, 0, 0, Vector2(1, -360), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_sdg28"]
+curve = SubResource("Curve_4ulmk")
+
+[resource]
+emission_shape = 2
+emission_sphere_radius = 0.5
+angle_min = -720.0
+angle_max = 720.0
+angle_curve = SubResource("CurveTexture_sdg28")
+scale_max = 2.0

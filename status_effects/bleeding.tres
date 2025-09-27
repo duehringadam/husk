@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="status_effect" load_steps=5 format=3 uid="uid://c7qv8hswr4p26"]
+
+[ext_resource type="Script" uid="uid://ca8ha7ig6gshg" path="res://components/status_effect.gd" id="1_b7kcr"]
+[ext_resource type="Material" uid="uid://c5w2i4ors51to" path="res://blood_buildup.tres" id="1_dr34u"]
+[ext_resource type="PackedScene" uid="uid://dibtgpxf2w0ie" path="res://status_effects/bleed_damage.tscn" id="1_kpjdm"]
+[ext_resource type="QuadMesh" uid="uid://ddda2n4s6em7f" path="res://status_effects/blood_drip_mesh.tres" id="2_66non"]
+
+[resource]
+script = ExtResource("1_b7kcr")
+effect_type = 3
+damage_types = Dictionary[int, float]({
+1: 1.0
+})
+damage_component_scene = ExtResource("1_kpjdm")
+status_effect_mesh = ExtResource("2_66non")
+affected_target_next_pass = ExtResource("1_dr34u")
+gravity = -9.8
+metadata/_custom_type_script = "uid://ca8ha7ig6gshg"

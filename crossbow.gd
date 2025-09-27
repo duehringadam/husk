@@ -23,6 +23,6 @@ func _on_damage_component_area_entered(area: Area3D) -> void:
 
 func block():
 	animation_player.play("block")
-	AudioManager.play_sound(load("res://sfx/hit-tree-01-266310.mp3"),mesh.global_position,20.0)
+	AudioManager.play_sound(load("res://sfx/hit-tree-01-266310.mp3"),weapon_mesh.global_position,20.0)
 	await animation_player.animation_finished
 	animation_player.play("block",-1,-1,true)

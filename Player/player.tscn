@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://crwpbskjjllht"]
+[gd_scene load_steps=62 format=3 uid="uid://crwpbskjjllht"]
 
 [ext_resource type="Script" uid="uid://bi6bcf1evx4ur" path="res://Player/player.gd" id="1_t2vdx"]
 [ext_resource type="Script" uid="uid://b3yihwhs36do6" path="res://Player/States/statemachine.gd" id="2_7a7qp"]
@@ -9,8 +9,9 @@
 [ext_resource type="Script" uid="uid://cvlafrfonwbet" path="res://Player/States/walkingPlayerState.gd" id="4_fqfeh"]
 [ext_resource type="Script" uid="uid://vy0c7th4phgh" path="res://Player/States/sprintingPlayerState.gd" id="5_5kr7g"]
 [ext_resource type="Script" uid="uid://04q1kycsbd3e" path="res://Player/States/crouchingPlayerState.gd" id="6_b2402"]
-[ext_resource type="PackedScene" uid="uid://c3sqr5u2peuhu" path="res://heavy_mace.tscn" id="6_f4lon"]
+[ext_resource type="PackedScene" uid="uid://wbbu81bn30xc" path="res://sword_viewmodel.tscn" id="6_f4lon"]
 [ext_resource type="PackedScene" uid="uid://78q517wrknfe" path="res://player_health.tscn" id="6_jp1hh"]
+[ext_resource type="PackedScene" uid="uid://5i8e6fsne4v5" path="res://spell_fire.tscn" id="7_f4lon"]
 [ext_resource type="Script" uid="uid://c0igns5ruyseu" path="res://Player/States/jumpingPlayerState.gd" id="7_gsrmw"]
 [ext_resource type="Script" uid="uid://b3emi1vc4o4mr" path="res://Player/item_container.gd" id="7_iyprq"]
 [ext_resource type="Texture2D" uid="uid://e3utw70yh625" path="res://item/stiletto.svg" id="7_qs4pp"]
@@ -39,6 +40,7 @@
 [ext_resource type="Script" uid="uid://sj3mml8ulasu" path="res://Player/crosshair.gd" id="26_sm0op"]
 [ext_resource type="Script" uid="uid://csps0dnf2gf2n" path="res://Player/player_hurtbox_component.gd" id="34_j2n6q"]
 [ext_resource type="AudioStream" uid="uid://df2b8w21sb3xf" path="res://sfx/hit-rock-03-266305.mp3" id="36_jp1hh"]
+[ext_resource type="Script" uid="uid://1gqpr75ri7ke" path="res://status_effects/kick_damage_component.gd" id="41_d30e8"]
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_7x5p2"]
 shuffle = true
@@ -200,6 +202,8 @@ radius = 0.375
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_npvy2"]
 radius = 0.25
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d30e8"]
 
 [sub_resource type="Animation" id="Animation_sjg43"]
 length = 0.001
@@ -409,18 +413,20 @@ current = true
 script = ExtResource("22_j2n6q")
 main_camera = NodePath("../../../head/main_camera")
 randomStrength = 0.01
+shakeFade = null
 hurtbox = NodePath("../../../hurtbox_component")
 
 [node name="mainhand" type="Node3D" parent="SubViewportContainer/SubViewport/Camera3D" node_paths=PackedStringArray("ray")]
 script = ExtResource("13_m0h3t")
 ray = NodePath("../../../../head/main_camera/look_at_ray")
 
-[node name="mace" parent="SubViewportContainer/SubViewport/Camera3D/mainhand" instance=ExtResource("6_f4lon")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0566368, 0, 0)
+[node name="sword_viewmodel" parent="SubViewportContainer/SubViewport/Camera3D/mainhand" instance=ExtResource("6_f4lon")]
 
 [node name="offhand" type="Node3D" parent="SubViewportContainer/SubViewport/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.817597)
 script = ExtResource("15_i4o1l")
+
+[node name="spell_fire" parent="SubViewportContainer/SubViewport/Camera3D/offhand" instance=ExtResource("7_f4lon")]
 
 [node name="walk" type="AudioStreamPlayer3D" parent="SubViewportContainer/SubViewport/Camera3D"]
 unique_name_in_owner = true
@@ -709,6 +715,30 @@ collision_mask = 14
 collide_with_areas = true
 script = ExtResource("3_j2n6q")
 
+[node name="carry" type="Node3D" parent="head/main_camera"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.563539, -0.850265)
+
+[node name="carryTransform" type="RemoteTransform3D" parent="head/main_camera/carry"]
+unique_name_in_owner = true
+
+[node name="Marker3D" type="Marker3D" parent="head/main_camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7006413, -0.9042196)
+
+[node name="kick_damage_component" type="Area3D" parent="head/main_camera/Marker3D"]
+collision_mask = 14
+monitoring = false
+monitorable = false
+script = ExtResource("41_d30e8")
+damage_types = Dictionary[int, float]({
+0: 5.0
+})
+metadata/_custom_type_script = "uid://dlsydctoxqbwy"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="head/main_camera/Marker3D/kick_damage_component"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_d30e8")
+
 [node name="stateMachine" type="Node" parent="." node_paths=PackedStringArray("CURRENT_STATE")]
 script = ExtResource("2_7a7qp")
 CURRENT_STATE = NodePath("idlePlayerState")
@@ -758,3 +788,6 @@ shape = SubResource("CapsuleShape3D_tvulw")
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="health_changed" from="HealthComponent" to="UILayer/userInterface/uiMargin/healthcontainer/playerHealth" method="_on_health_changed"]
 [connection signal="max_health_changed" from="HealthComponent" to="UILayer/userInterface/uiMargin/healthcontainer/playerHealth" method="_on_max_health_changed"]
+[connection signal="damage_taken" from="hurtbox_component" to="SubViewportContainer/SubViewport/Camera3D" method="_on_hurtbox_component_damage_taken"]
+[connection signal="damage_taken" from="hurtbox_component" to="UILayer/userInterface/damage" method="_on_hurtbox_component_damage_taken"]
+[connection signal="damage_taken" from="hurtbox_component" to="head/main_camera" method="_on_hurtbox_component_damage_taken"]

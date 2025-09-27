@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwqhy3l4o5yic"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bsfdi"]
+particle_flag_align_y = true
+emission_shape = 1
+emission_sphere_radius = 0.5
+gravity = Vector3(0, 4.8, 0)
+turbulence_enabled = true
+turbulence_noise_scale = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bsfdi"]
+albedo_color = Color(1, 0.23529412, 0, 1)
+emission_enabled = true
+emission = Color(1, 0.23529412, 0, 1)
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_1tjll"]
+material = SubResource("StandardMaterial3D_bsfdi")
+radius = 0.005
+radial_steps = 3
+sections = 3
+section_length = 0.01
+cap_top = false
+cap_bottom = false
+
+[node name="Node3D" type="GPUParticles3D"]
+amount = 32
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_bsfdi")
+draw_pass_1 = SubResource("TubeTrailMesh_1tjll")

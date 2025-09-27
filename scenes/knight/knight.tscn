@@ -73,18 +73,13 @@ script = ExtResource("6_oc3hp")
 max_health = 100.0
 metadata/_custom_type_script = "uid://dgjqgiw3yw42e"
 
-[node name="hitstop_component" type="Node" parent="." index="3" node_paths=PackedStringArray("hurtbox_component")]
+[node name="hitstop_component" type="Node" parent="." index="3"]
 script = ExtResource("9_ey8th")
-hurtbox_component = NodePath("")
-hit_stop_duration = 0.15
 metadata/_custom_type_script = "uid://bmlo0cxbepq2r"
 
-[node name="shake_component" type="Node" parent="." index="4" node_paths=PackedStringArray("hurtbox_component", "shake_target")]
+[node name="shake_component" type="Node" parent="." index="4" node_paths=PackedStringArray("shake_target")]
 script = ExtResource("10_pvkuu")
-hurtbox_component = NodePath("")
 shake_target = NodePath("..")
-randomStrength = 0.02
-shakeFade = 20.0
 metadata/_custom_type_script = "uid://cyh3kd4813yrx"
 
 [node name="physicstimeout" type="Timer" parent="." index="5"]

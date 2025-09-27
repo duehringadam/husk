@@ -22,6 +22,8 @@ const CROUCH_SPEED = 3
 @onready var inventory_vbox: VBoxContainer = $UILayer/userInterface/uiMargin/inventory/PanelContainer/ScrollContainer/VBoxContainer
 @onready var sub_viewport: SubViewport = %SubViewport
 @onready var hitbox: CollisionShape3D = $hitbox
+@onready var carry: Node3D = %carry
+@onready var carry_transform: RemoteTransform3D = %carryTransform
 
 
 #camera bob
@@ -104,6 +106,9 @@ func update_input(delta) ->void:
 			offhand.rotation_degrees.y = lerp(offhand.rotation_degrees.y, clampf(offhand.rotation_degrees.y-velocity.z,-2,2),delta * 3.5)
 			mainhand.rotation_degrees.x = lerp(mainhand.rotation_degrees.x, clampf(mainhand.rotation_degrees.x+velocity.z,-2,2),delta * 7.0)
 			offhand.rotation_degrees.x = lerp(offhand.rotation_degrees.x, clampf(offhand.rotation_degrees.x-velocity.z,-2,2),delta * 3.5)
+			carry.rotation_degrees.x = lerp(carry.rotation_degrees.x, clampf(carry.rotation_degrees.x-velocity.z,-2,2),delta * 3.5)
+			carry.rotation_degrees.y = lerp(carry.rotation_degrees.y, clampf(carry.rotation_degrees.y-velocity.z,-2,2),delta * 3.5)
+			carry.rotation_degrees.z = lerp(carry.rotation_degrees.z, clampf(carry.rotation_degrees.z-velocity.z,-2,2),delta * 3.5)
 			t_bob += delta * velocity.length() * float(is_on_floor())
 			camera.transform.origin = _headbob(t_bob)
 			mainhand.transform.origin = _gunbob(t_bob)
@@ -117,6 +122,9 @@ func update_input(delta) ->void:
 			offhand.rotation_degrees.y = lerp(offhand.rotation_degrees.y, clampf(offhand.rotation_degrees.y-velocity.z,-2,2),delta * 3.5)
 			mainhand.rotation_degrees.x = lerp(mainhand.rotation_degrees.x, clampf(mainhand.rotation_degrees.x+velocity.z,-2,2),delta * 7.0)
 			offhand.rotation_degrees.x = lerp(offhand.rotation_degrees.x, clampf(offhand.rotation_degrees.x-velocity.z,-2,2),delta * 3.5)
+			carry.rotation_degrees.x = lerp(carry.rotation_degrees.x, clampf(carry.rotation_degrees.x-velocity.z,-2,2),delta * 3.5)
+			carry.rotation_degrees.y = lerp(carry.rotation_degrees.y, clampf(carry.rotation_degrees.y-velocity.z,-2,2),delta * 3.5)
+			carry.rotation_degrees.z = lerp(carry.rotation_degrees.z, clampf(carry.rotation_degrees.z-velocity.z,-2,2),delta * 3.5)
 			t_bob += delta * velocity.length() * float(is_on_floor())
 			camera.transform.origin = _headbob(t_bob)
 			mainhand.transform.origin = _gunbob(t_bob)

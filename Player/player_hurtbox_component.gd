@@ -3,7 +3,7 @@ extends hurtbox_component
 @export var player_camera: Camera3D
 @export var viewport_camera: Camera3D
 
-func take_damage(amount: float, source: DamageComponent):
+func take_damage(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float], status_types: Dictionary[Global.STATUS_TYPE, float], source: DamageComponent):
 	if timer.time_left > 0: return 0
 	
 	if Global.player.blocking && is_facing(source): 
@@ -21,10 +21,15 @@ func take_damage(amount: float, source: DamageComponent):
 		AudioManager.play_sound(hit_sound,global_position,-10)
 	invulnerability(invulnerability_duration)
 	# take damage
-	var actual = reduce_damage(amount, source)
-	emit_signal("damage_taken", amount, actual, source)
-	health_component.modify_health(-actual)
-	return actual
+	var sum := 0.0
+	for i in damage_types:
+		var actual = modify_damage(i,damage_types[i],source)
+		emit_signal("damage_taken", actual, source, Vector3.ZERO)
+		sum += actual
+	if hit_sound != null:
+		AudioManager.play_sound(hit_sound,self.global_position,-10.0)
+	health_component.modify_health(-sum)
+	return sum
 	
 
 func is_facing(source: DamageComponent):

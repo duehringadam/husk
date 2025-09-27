@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="status_effect" load_steps=5 format=3 uid="uid://bn5eyf7hu3grj"]
+
+[ext_resource type="Script" uid="uid://ca8ha7ig6gshg" path="res://components/status_effect.gd" id="1_gq2ay"]
+[ext_resource type="Texture2D" uid="uid://255onixnbg8w" path="res://Assets/LeartesStudios/MysticDungeon/Art/Textures/smoke_04.png" id="2_kvh0t"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kvh0t"]
+transparency = 2
+alpha_scissor_threshold = 0.319
+alpha_antialiasing_mode = 0
+albedo_color = Color(0.74753857, 0.71744704, 1, 0.69803923)
+albedo_texture = ExtResource("2_kvh0t")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_kkqn6"]
+material = SubResource("StandardMaterial3D_kvh0t")
+size = Vector2(0.5, 0.5)
+
+[resource]
+script = ExtResource("1_gq2ay")
+effect_type = 2
+status_effect_mesh = SubResource("QuadMesh_kkqn6")
+gravity = 1.0
+turbulence = true
+metadata/_custom_type_script = "uid://ca8ha7ig6gshg"

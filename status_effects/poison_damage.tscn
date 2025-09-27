@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://c64bx48b8sxhh"]
+
+[ext_resource type="Script" uid="uid://cmrc6hxb0a6wm" path="res://status_effects/fire_damage_component.gd" id="1_dsjjr"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_m0aoy"]
+radius = 0.1
+
+[node name="DamageComponent" type="Area3D"]
+collision_layer = 4
+collision_mask = 13
+script = ExtResource("1_dsjjr")
+damage_types = Dictionary[int, float]({
+6: 1.0
+})
+status_types = Dictionary[int, float]({
+0: 0.25
+})
+metadata/_custom_type_script = "uid://dlsydctoxqbwy"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47161865, 0)
+shape = SubResource("SphereShape3D_m0aoy")

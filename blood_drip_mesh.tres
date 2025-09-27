@@ -1,0 +1,19 @@
+[gd_resource type="TubeTrailMesh" load_steps=3 format=3 uid="uid://cjk1g4tieg5hw"]
+
+[ext_resource type="Texture2D" uid="uid://cjl4qfjmnnm1w" path="res://shaders/blood_splatter.png" id="1_p2vaa"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ydgic"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_color = Color(1, 0, 0, 1)
+albedo_texture = ExtResource("1_p2vaa")
+emission = Color(0.21568628, 0, 0, 1)
+
+[resource]
+material = SubResource("StandardMaterial3D_ydgic")
+radius = 0.05
+sections = 2
+section_length = 0.02
+cap_top = false
+cap_bottom = false

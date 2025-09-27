@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://b0a5loaonoi0t"]
+
+[ext_resource type="Material" uid="uid://dguajrylbaalc" path="res://blood_particle_processor.tres" id="1_q1gro"]
+[ext_resource type="Texture2D" uid="uid://cprle3s6dj3sq" path="res://scenes/smoke-12.png" id="2_q1gro"]
+[ext_resource type="Script" uid="uid://ctt8dqj00nfsi" path="res://mesh_particles.gd" id="3_812m7"]
+[ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="4_a2efs"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4rnka"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_color = Color(1, 0, 0, 0.7294118)
+albedo_texture = ExtResource("2_q1gro")
+
+[sub_resource type="QuadMesh" id="QuadMesh_812m7"]
+material = SubResource("StandardMaterial3D_4rnka")
+size = Vector2(0.2, 0.25)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_v260f"]
+radius = 1.5
+
+[node name="blood_particle" type="GPUParticles3D"]
+transform = Transform3D(0.9999998, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
+amount = 32
+lifetime = 3.0
+process_material = ExtResource("1_q1gro")
+draw_passes = 2
+draw_pass_2 = SubResource("QuadMesh_812m7")
+script = ExtResource("3_812m7")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 15.0
+autostart = true
+
+[node name="DamageComponent" type="Area3D" parent="."]
+transform = Transform3D(1, -2.9802322e-08, 0, 2.9802322e-08, 1, 0, 0, -7.450581e-09, 1, 0, 0, 0)
+collision_layer = 8
+collision_mask = 13
+monitoring = false
+monitorable = false
+script = ExtResource("4_a2efs")
+damage_types = Dictionary[int, float]({
+6: 1.0
+})
+metadata/_custom_type_script = "uid://dlsydctoxqbwy"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent"]
+shape = SubResource("SphereShape3D_v260f")
+debug_color = Color(0.99215686, 0, 0, 0.41960785)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+layers = 3
+light_color = Color(1, 0.3882353, 0, 1)
+light_energy = 0.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

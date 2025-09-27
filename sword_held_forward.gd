@@ -3,12 +3,10 @@ extends Node
 @onready var animation_player: AnimationPlayer = $"../../../../AnimationPlayer"
 @onready var state_chart: StateChart = $"../../.."
 
-
-var camera
-var viewport_camera
-
 func _on_held_forward_state_entered() -> void:
 	animation_player.play("hold_forward")
+	SignalBus.emit_signal("can_attack", false)
+	SignalBus.emit_signal("primary_active",true)
 
 
 func _on_held_forward_state_exited() -> void:

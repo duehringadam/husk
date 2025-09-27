@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="status_effect" load_steps=5 format=3 uid="uid://d1srffkhbks70"]
+
+[ext_resource type="Material" uid="uid://bosq5hcbc1oej" path="res://shaders/burn_material.tres" id="1_al4dh"]
+[ext_resource type="PackedScene" uid="uid://54gj5htolv56" path="res://status_effects/fire_damage.tscn" id="1_el8fs"]
+[ext_resource type="Script" uid="uid://ca8ha7ig6gshg" path="res://components/status_effect.gd" id="1_p5b5h"]
+[ext_resource type="QuadMesh" uid="uid://co1jn44ey31hl" path="res://fire_mesh.tres" id="2_sdqui"]
+
+[resource]
+script = ExtResource("1_p5b5h")
+damage_types = Dictionary[int, float]({
+6: 1.0
+})
+damage_component_scene = ExtResource("1_el8fs")
+status_effect_mesh = ExtResource("2_sdqui")
+affected_target_next_pass = ExtResource("1_al4dh")
+gravity = 4.799999999999999
+metadata/_custom_type_script = "uid://ca8ha7ig6gshg"

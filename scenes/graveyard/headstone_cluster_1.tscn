@@ -1,34 +1,206 @@
-[gd_scene load_steps=7 format=3 uid="uid://bgvnqixhkpgra"]
+[gd_scene load_steps=21 format=3 uid="uid://bgvnqixhkpgra"]
 
-[ext_resource type="PackedScene" uid="uid://cytve7ikjdrnc" path="res://scenes/graveyard/headstone_4.tscn" id="4_sqvje"]
-[ext_resource type="PackedScene" uid="uid://bx0enav7xwb6t" path="res://scenes/graveyard/headstone_7.tscn" id="5_qiomk"]
-[ext_resource type="PackedScene" uid="uid://bs3mj2xqror26" path="res://scenes/graveyard/headstone_1.tscn" id="6_0i68j"]
-[ext_resource type="PackedScene" uid="uid://bt1tq5km7xjcm" path="res://scenes/graveyard/headstone_2.tscn" id="6_vahuu"]
-[ext_resource type="PackedScene" uid="uid://qvj7c0v73iro" path="res://scenes/graveyard/headstone_5.tscn" id="7_q0r61"]
-[ext_resource type="PackedScene" uid="uid://cehkr5wurwefe" path="res://scenes/graveyard/headstone_6.tscn" id="8_03ih4"]
+[ext_resource type="ArrayMesh" uid="uid://ds5wbeowywqbx" path="res://scenes/gravestones/headstone_7.res" id="1_sqvje"]
+[ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="2_qiomk"]
+[ext_resource type="Texture2D" uid="uid://qwqgw5gnny7h" path="res://scenes/gravestones/grave_stones(1)_0.jpg" id="3_0i68j"]
+[ext_resource type="ArrayMesh" uid="uid://bavp7iwsg65ci" path="res://scenes/gravestones/headstone_1.res" id="4_q0r61"]
+[ext_resource type="ArrayMesh" uid="uid://4sk5eqv75xdr" path="res://scenes/gravestones/headstone_5.res" id="5_03ih4"]
+[ext_resource type="ArrayMesh" uid="uid://ckypc4vu75fqg" path="res://scenes/gravestones/headstone_6.res" id="6_cv8f8"]
+[ext_resource type="ArrayMesh" uid="uid://cgl1dte0j3fd1" path="res://scenes/gravestones/headstone_2.res" id="7_6fqsd"]
+[ext_resource type="ArrayMesh" uid="uid://cfkdvaeho4dwj" path="res://scenes/gravestones/headstone_4.res" id="8_3hl23"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wrwnj"]
+render_priority = 0
+shader = ExtResource("2_qiomk")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("3_0i68j")
+shader_parameter/albedo_texture_as_primary_color = true
+shader_parameter/mix_factor = 1.0
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_gxr6o"]
+points = PackedVector3Array(28.2269, 1113.67, -2246.29, -115.518, -53.7152, -2390.01, -115.295, -52.6181, -2158.75, 115.739, -52.6174, -2389.79, 127.302, 85.9268, -2147.19, -87.7233, 1024.02, -2362.22, -87.7233, 1024.02, -2186.32, 88.168, 1024.02, -2362.22, 88.168, 1024.02, -2186.32, -126.857, 85.9268, -2401.35, 127.302, 85.9268, -2401.35, -126.857, 85.9268, -2147.19, 115.516, -51.519, -2158.98, -27.7972, 1114.5, -2302.29, -68.1688, 1043.5, -2186.32, 88.168, 1043.5, -2342.69, -87.7233, 1043.5, -2205.85, 68.6134, 1043.5, -2362.22, 28.249, 1114.15, -2302.27, -126.857, 105.399, -2381.79, 127.302, 105.399, -2166.74, -107.303, 105.399, -2401.35, 107.747, 105.399, -2147.19, -27.7758, 1114.05, -2246.27, 88.168, 1043.5, -2205.85, 68.6134, 1043.5, -2186.32, -87.7233, 1043.5, -2342.69, -68.1688, 1043.5, -2362.22, 107.747, 105.399, -2401.35, -107.303, 105.399, -2147.19, 127.302, 105.399, -2381.79, -126.857, 105.399, -2166.74)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4gj0x"]
+render_priority = 0
+shader = ExtResource("2_qiomk")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("3_0i68j")
+shader_parameter/albedo_texture_as_primary_color = true
+shader_parameter/mix_factor = 1.0
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_6s5yb"]
+points = PackedVector3Array(-108.915, 576.204, -700.459, 124.369, -79.3114, -433.849, -175.595, -79.3114, -433.849, -180.137, -109.311, -912.798, 124.369, -79.3114, -922.753, 53.1891, 568.134, -657.341, -116.656, 445.985, -539.06, 54.0164, 465.399, -805.706, 135.471, -112.654, -433.849, -116.656, 445.985, -817.543, 51.8103, 448.64, -544.062, 135.471, -112.654, -878.295, -186.698, -79.3114, -922.753, -186.698, -90.449, -433.849, -108.915, 587.341, -656.144, -178.187, -105.007, -446.764, 55.0394, 576.031, -678.301, 135.471, -79.3114, -878.295, 67.7328, 428.298, -550.556, 67.7653, 428.367, -806.091, -186.698, -79.3114, -445.048, 135.471, -101.517, -445.048, -108.915, 509.517, -778.274, 118.158, -109.068, -912.63, 135.471, -79.3114, -811.582, -108.915, 587.341, -678.301)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_foci8"]
+render_priority = 0
+shader = ExtResource("2_qiomk")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("3_0i68j")
+shader_parameter/albedo_texture_as_primary_color = true
+shader_parameter/mix_factor = 1.0
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_w35bu"]
+points = PackedVector3Array(-66.8765, 701.43, -3893.99, 162.517, 138.77, -3434.97, -161.954, 138.1, -3434.32, -179.28, -88.1296, -3913.48, 179.28, -85.4993, -3912.04, 67.9042, 851.407, -3594.37, -178.769, -86.8217, -3410.78, -66.8765, 701.43, -3429.55, 179.28, -85.4993, -3411.5, 67.9042, 701.43, -3893.99, -66.8765, 851.407, -3729.17, 67.9042, 701.43, -3429.55, 162.517, 138.77, -3888.58, -162.712, 137.01, -3890.29, -66.8765, 851.407, -3594.37, 67.9042, 851.407, -3729.17)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w4x6y"]
+render_priority = 0
+shader = ExtResource("2_qiomk")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("3_0i68j")
+shader_parameter/albedo_texture_as_primary_color = true
+shader_parameter/mix_factor = 1.0
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_clyg7"]
+points = PackedVector3Array(-59.169, 428.184, -3055.27, 76.5025, 108.475, -2696.72, 57.1165, 418.468, -2735.5, -78.5853, -104.847, -2696.72, 69.9682, -78.7095, -3077.31, -78.5853, -104.847, -3094.05, 57.1165, 428.184, -3055.27, -59.169, 496.073, -2803.34, 69.8697, -78.3157, -2713.71, -78.5853, 108.475, -2696.72, 57.1165, 515.504, -2938.97, 76.5025, 108.475, -3094.05, -78.5853, 108.475, -3094.05, -59.169, 418.468, -2735.5, -59.169, 505.789, -2968.03, 57.1165, 496.073, -2803.34, -59.169, 515.504, -2851.8, 57.1165, 496.073, -2987.44, 57.1165, 515.504, -2851.8, -59.169, 437.961, -2745.19, -59.169, 515.504, -2938.97, -59.169, 496.073, -2987.44, 57.1165, 437.961, -2745.19, 57.1165, 505.789, -2968.03)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c5nsd"]
+render_priority = 0
+shader = ExtResource("2_qiomk")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("3_0i68j")
+shader_parameter/albedo_texture_as_primary_color = true
+shader_parameter/mix_factor = 1.0
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_yn77r"]
+points = PackedVector3Array(-108.915, 576.204, -700.459, 124.369, -79.3114, -433.849, -175.595, -79.3114, -433.849, -180.137, -109.311, -912.798, 124.369, -79.3114, -922.753, 53.1891, 568.134, -657.341, -116.656, 445.985, -539.06, 54.0164, 465.399, -805.706, 135.471, -112.654, -433.849, -116.656, 445.985, -817.543, 51.8103, 448.64, -544.062, 135.471, -112.654, -878.295, -186.698, -79.3114, -922.753, -186.698, -90.449, -433.849, -108.915, 587.341, -656.144, -178.187, -105.007, -446.764, 55.0394, 576.031, -678.301, 135.471, -79.3114, -878.295, 67.7328, 428.298, -550.556, 67.7653, 428.367, -806.091, -186.698, -79.3114, -445.048, 135.471, -101.517, -445.048, -108.915, 509.517, -778.274, 118.158, -109.068, -912.63, 135.471, -79.3114, -811.582, -108.915, 587.341, -678.301)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_je6mn"]
+render_priority = 0
+shader = ExtResource("2_qiomk")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("3_0i68j")
+shader_parameter/albedo_texture_as_primary_color = true
+shader_parameter/mix_factor = 1.0
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_wrnjr"]
+points = PackedVector3Array(-68.4344, 350.835, -4849.9, 82.2151, -46.6743, -4464.01, 68.4566, 351.194, -4494.05, -82.3613, -46.6743, -4464.01, 77.536, -87.1655, -4868.5, -77.536, -86.615, -4868.13, 68.3604, 350.989, -4850.09, -68.4202, 496.628, -4640.33, 68.2476, 496.516, -4704.04, -68.5305, 351.04, -4494.23, 77.536, -87.1655, -4475.85, -82.3613, -46.6743, -4880.33, 82.2151, -46.6743, -4880.33, -77.536, -86.615, -4476.22, 68.3133, 496.796, -4640.31, -68.3553, 496.351, -4704.02)
 
 [node name="headstone_1" type="StaticBody3D"]
 transform = Transform3D(0.002, 0, 0, 0, 0.002, 0, 0, 0, 0.002, 0, 0, 0.687554)
 collision_layer = 2
 collision_mask = 5
 
-[node name="headstone_1" parent="." instance=ExtResource("4_sqvje")]
-transform = Transform3D(0.883913, 0, 0.467652, 0.110552, 0.971656, -0.208954, -0.454397, 0.236397, 0.858859, 404.143, -76.6452, 1118.1)
-
-[node name="headstone_2" parent="." instance=ExtResource("5_qiomk")]
+[node name="headstone_2" type="StaticBody3D" parent="."]
 transform = Transform3D(0.98435, 0.176226, 0, -0.176226, 0.98435, 0, 0, 0, 1, 274.034, -88.1481, 541.854)
+collision_layer = 2
+collision_mask = 5
 
-[node name="headstone_3" parent="." instance=ExtResource("6_0i68j")]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="headstone_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.1828, 0, 1577.4)
+mesh = ExtResource("1_sqvje")
+surface_material_override/0 = SubResource("ShaderMaterial_wrwnj")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="headstone_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.1828, 0, 1577.4)
+shape = SubResource("ConvexPolygonShape3D_gxr6o")
+
+[node name="headstone_3" type="StaticBody3D" parent="."]
 transform = Transform3D(0.812758, 0.355776, -0.461354, -0.309404, 0.934571, 0.17563, 0.493653, 0, 0.869659, -24.4076, 0.000119209, 864.87)
+collision_layer = 2
+collision_mask = 5
 
-[node name="headstone_4" parent="." instance=ExtResource("7_q0r61")]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="headstone_3"]
+mesh = ExtResource("4_q0r61")
+surface_material_override/0 = SubResource("ShaderMaterial_4gj0x")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="headstone_3"]
+shape = SubResource("ConvexPolygonShape3D_6s5yb")
+
+[node name="headstone_4" type="StaticBody3D" parent="."]
 transform = Transform3D(0.707489, 0, -0.706724, 0, 1, 0, 0.706724, 0, 0.707489, -740.658, 0, 178.839)
+collision_layer = 2
+collision_mask = 5
 
-[node name="headstone_5" parent="." instance=ExtResource("8_03ih4")]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="headstone_4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.1828, 0, 2980.54)
+mesh = ExtResource("5_03ih4")
+surface_material_override/0 = SubResource("ShaderMaterial_foci8")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="headstone_4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.1828, 0, 2980.54)
+shape = SubResource("ConvexPolygonShape3D_w35bu")
+
+[node name="headstone_5" type="StaticBody3D" parent="."]
 transform = Transform3D(0.748391, -0.430133, 0.504872, 0.35658, 0.902766, 0.240552, -0.559251, 0, 0.828999, 154.684, 150.802, 828.012)
+collision_layer = 2
+collision_mask = 5
 
-[node name="headstone_6" parent="." instance=ExtResource("6_vahuu")]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="headstone_5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.1828, 0, 2209.56)
+mesh = ExtResource("6_cv8f8")
+surface_material_override/0 = SubResource("ShaderMaterial_w4x6y")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="headstone_5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.1828, 0, 2209.56)
+shape = SubResource("ConvexPolygonShape3D_clyg7")
+
+[node name="headstone_6" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.885937, 0.463806, 0, -0.463806, 0.885937, 126.272, 309.97, 172.51)
+collision_layer = 2
+collision_mask = 5
 
-[node name="headstone_7" parent="." instance=ExtResource("6_0i68j")]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="headstone_6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -74.9846, 0, -1550.89)
+mesh = ExtResource("7_6fqsd")
+surface_material_override/0 = SubResource("ShaderMaterial_c5nsd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="headstone_6"]
+shape = SubResource("ConvexPolygonShape3D_yn77r")
+
+[node name="headstone_7" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.991588, -0.129436, 0, 0.129436, 0.991588, 55.8088, 2.07908, 738.383)
+collision_layer = 2
+collision_mask = 5
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="headstone_7"]
+mesh = ExtResource("4_q0r61")
+surface_material_override/0 = SubResource("ShaderMaterial_4gj0x")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="headstone_7"]
+shape = SubResource("ConvexPolygonShape3D_6s5yb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.883913, 0, 0.467652, 0.110552, 0.971656, -0.208954, -0.454397, 0.236397, 0.858859, 2238.56, -912.055, 4551.87)
+mesh = ExtResource("8_3hl23")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_je6mn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.883913, 0, 0.467652, 0.110552, 0.971656, -0.208954, -0.454397, 0.236397, 0.858859, 2238.56, -912.055, 4551.87)
+shape = SubResource("ConvexPolygonShape3D_wrnjr")
