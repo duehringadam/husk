@@ -1,0 +1,504 @@
+[gd_scene load_steps=41 format=3 uid="uid://cvm1x6igaprq3"]
+
+[ext_resource type="Script" uid="uid://ba1l1kqe7yxt6" path="res://addons/player/Player.gd" id="1_cyojo"]
+[ext_resource type="Script" uid="uid://4cedxwyntjmx" path="res://addons/player/head.gd" id="2_6oqec"]
+[ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/item.gd" id="2_863th"]
+[ext_resource type="Script" uid="uid://cn1tuyffokj2" path="res://Player/viewport_camera.gd" id="3_6oqec"]
+[ext_resource type="Resource" uid="uid://dmv7he43amthj" path="res://item/weapons/morning_star.tres" id="3_e6ia4"]
+[ext_resource type="PackedScene" uid="uid://bj4hhphu33n38" path="res://addons/player/player_body.tscn" id="3_tio5b"]
+[ext_resource type="Script" uid="uid://dgjqgiw3yw42e" path="res://components/health_component.gd" id="4_7ek8b"]
+[ext_resource type="Script" uid="uid://c5uu825dg725o" path="res://Player/mainhand.gd" id="4_cqqbj"]
+[ext_resource type="Resource" uid="uid://bgq4jclx52jt0" path="res://item/weapons/rusted_sword.tres" id="4_d6j5h"]
+[ext_resource type="Resource" uid="uid://c8afm2d4w8gxb" path="res://item/spells/telekinesis.tres" id="5_863th"]
+[ext_resource type="Script" uid="uid://csps0dnf2gf2n" path="res://Player/player_hurtbox_component.gd" id="5_eon52"]
+[ext_resource type="Script" uid="uid://d3vjqiaaxlykb" path="res://Player/offhand.gd" id="6_c1i0s"]
+[ext_resource type="Script" uid="uid://dql5v81gqvdat" path="res://components/status_effect_component.gd" id="6_eon52"]
+[ext_resource type="AudioStream" uid="uid://df2b8w21sb3xf" path="res://sfx/hit-rock-03-266305.mp3" id="8_jux4o"]
+[ext_resource type="Shader" uid="uid://dgt3e85o3avu2" path="res://Player/damage.gdshader" id="9_4ng6s"]
+[ext_resource type="Script" uid="uid://6h8f2qhrbtt6" path="res://Player/damage_overlay.gd" id="10_jux4o"]
+[ext_resource type="Script" uid="uid://sj3mml8ulasu" path="res://Player/crosshair.gd" id="12_qk8yx"]
+[ext_resource type="Shader" uid="uid://b6aaasr8tdyr5" path="res://Player/distort.gdshader" id="12_vnn13"]
+[ext_resource type="Script" uid="uid://b74g26tt85wqw" path="res://Player/launch.gd" id="13_tio5b"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_xc2g5"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wydro"]
+radius = 0.43554688
+height = 2.0170898
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dverj"]
+radius = 0.75
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_dverj"]
+length = 0.5
+slide_on_slope = true
+
+[sub_resource type="Animation" id="Animation_by45h"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Neck/Camera3D:rotation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Neck/Camera3D:rotation:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Neck/Camera3D:rotation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_kgtn1"]
+resource_name = "jump"
+length = 0.8
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Neck/Camera3D:rotation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 3, 0, 2),
+"points": PackedFloat32Array(0, 0, 0, 0.023466667, 0, -0.017453292, -0.029600002, 0.0016087238, 0.029600002, -0.0016087238, 0.0052359877, -0.058, 0, 0.058, 0, 0, -0.07733333, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.0704, 0.4544, 0.8)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Neck/Camera3D:rotation:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 2, 0, 2),
+"points": PackedFloat32Array(0, 0, 0, 0.023466667, 0, -0.008726646, -0.023466667, 0, 0.16586667, 0, 0.0034906585, -0.16586667, 0, 0.07733333, 0, 0, -0.07733333, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.0704, 0.4544, 0.8)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Neck/Camera3D:rotation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(2, 2, 0, 2),
+"points": PackedFloat32Array(0, 0, 0, 0.023466667, 0, 0.0034906585, -0.023466667, 0, 0.16586667, 0, -0.0017453292, -0.16586667, 0, 0.07733333, 0, 0, -0.07733333, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.0704, 0.4544, 0.8)
+}
+
+[sub_resource type="Animation" id="Animation_n47sy"]
+resource_name = "land"
+length = 0.8
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Neck/Camera3D:rotation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 2, 2, 2),
+"points": PackedFloat32Array(0, 0, 0, 0.023466667, 0, -0.008726646, -0.023466667, 0, 0.128, 0, 0.0034906585, -0.128, 0, 0.115200005, 0, 0, -0.115200005, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.0704, 0.4544, 0.8)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_by45h"]
+_data = {
+&"RESET": SubResource("Animation_by45h"),
+&"jump": SubResource("Animation_kgtn1"),
+&"land": SubResource("Animation_n47sy")
+}
+
+[sub_resource type="Animation" id="Animation_3br5i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FootSteps:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_0l22m"]
+resource_name = "footsteps"
+length = 0.65
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FootSteps:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3br5i"]
+_data = {
+&"RESET": SubResource("Animation_3br5i"),
+&"footsteps": SubResource("Animation_0l22m")
+}
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qk8yx"]
+noise_type = 2
+frequency = 0.0928
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xcdg0"]
+noise = SubResource("FastNoiseLite_qk8yx")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vhccx"]
+shader = ExtResource("9_4ng6s")
+shader_parameter/noise = SubResource("NoiseTexture2D_xcdg0")
+shader_parameter/line_color = Color(0.8666667, 0, 0, 0.49803922)
+shader_parameter/line_count = 1.0000000149012
+shader_parameter/line_density = 0.0
+shader_parameter/line_faloff = 0.50000002375
+shader_parameter/mask_size = 0.1
+shader_parameter/mask_edge = 0.5
+shader_parameter/animation_speed = 0.5
+
+[sub_resource type="Animation" id="Animation_jux4o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/line_density")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_4ng6s"]
+resource_name = "damage"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/line_density")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.400000019, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qk8yx"]
+_data = {
+&"RESET": SubResource("Animation_jux4o"),
+&"damage": SubResource("Animation_4ng6s")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cqqbj"]
+shader = ExtResource("12_vnn13")
+shader_parameter/strength = 0.08
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/radius = 0.0
+shader_parameter/aberration = 0.0490000023275
+shader_parameter/width = 0.04
+shader_parameter/feather = 0.2470000117325
+
+[sub_resource type="Animation" id="Animation_3dmg4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_c1i0s"]
+resource_name = "shockwave"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.23),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_863th"]
+_data = {
+&"RESET": SubResource("Animation_3dmg4"),
+&"shockwave": SubResource("Animation_c1i0s")
+}
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("player_body", "mainhand", "offhand") groups=["player"]]
+script = ExtResource("1_cyojo")
+inventory = Array[ExtResource("2_863th")]([ExtResource("3_e6ia4"), ExtResource("4_d6j5h"), ExtResource("5_863th")])
+player_body = NodePath("playerBody")
+mainhand = NodePath("Head/SubViewportContainer/SubViewport/Camera3D/RightHand")
+offhand = NodePath("Head/SubViewportContainer/SubViewport/Camera3D/LeftHand")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
+layers = 524288
+mesh = SubResource("CapsuleMesh_xc2g5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9914551, 0)
+shape = SubResource("CapsuleShape3D_wydro")
+
+[node name="Ceiling" type="ShapeCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
+shape = SubResource("SphereShape3D_dverj")
+target_position = Vector3(0, 1, 0)
+max_results = 1
+debug_shape_custom_color = Color(0.87734646, 2.9119105e-06, 1.92523e-07, 1)
+
+[node name="Ground" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.5, 0.32294333)
+shape = SubResource("SeparationRayShape3D_dverj")
+
+[node name="Ground2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.5, -0.34500784)
+shape = SubResource("SeparationRayShape3D_dverj")
+
+[node name="Ground3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.34204298, 0.5, 0)
+shape = SubResource("SeparationRayShape3D_dverj")
+
+[node name="Ground4" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.37856722, 0.5, 0)
+shape = SubResource("SeparationRayShape3D_dverj")
+
+[node name="Head" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+script = ExtResource("2_6oqec")
+
+[node name="Neck" type="Node3D" parent="Head"]
+unique_name_in_owner = true
+
+[node name="Camera3D" type="Camera3D" parent="Head/Neck"]
+unique_name_in_owner = true
+cull_mask = 524285
+current = true
+
+[node name="RayCast3D" type="RayCast3D" parent="Head/Neck/Camera3D"]
+unique_name_in_owner = true
+target_position = Vector3(0, 0, -2)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="CameraAnimationPlayer" type="AnimationPlayer" parent="Head"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_by45h")
+}
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Head"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="Head/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Head/SubViewportContainer/SubViewport" node_paths=PackedStringArray("main_camera", "hurtbox")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5935609, 0)
+cull_mask = 1048574
+fov = 85.0
+script = ExtResource("3_6oqec")
+main_camera = NodePath("../../../Neck/Camera3D")
+randomStrength = 0.02
+hurtbox = NodePath("../../../../hurtbox_component")
+
+[node name="RightHand" type="Marker3D" parent="Head/SubViewportContainer/SubViewport/Camera3D" node_paths=PackedStringArray("offhand")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0, -0.725)
+script = ExtResource("4_cqqbj")
+weapon = ExtResource("3_e6ia4")
+offhand = NodePath("../LeftHand")
+
+[node name="LeftHand" type="Marker3D" parent="Head/SubViewportContainer/SubViewport/Camera3D" node_paths=PackedStringArray("mainhand")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.41, 0, -0.725)
+script = ExtResource("6_c1i0s")
+mainhand = NodePath("../RightHand")
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Head"]
+transform = Transform3D(-0.99999994, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -0.99999994, 0, -1.8152095, 0.55213237)
+remote_path = NodePath("../../playerBody")
+update_scale = false
+
+[node name="playerBody" parent="." instance=ExtResource("3_tio5b")]
+transform = Transform3D(-1.2, 0, 1.04907336e-07, 0, 1.2, 0, -1.04907336e-07, 0, -1.2, 0, -0.21520948, 0.55213237)
+top_level = true
+
+[node name="FootSteps" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+volume_db = 6.0
+max_db = 6.0
+bus = &"SFX"
+
+[node name="FootStepsAnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_3br5i")
+}
+autoplay = "footsteps"
+
+[node name="HealthComponent" type="Node3D" parent="."]
+script = ExtResource("4_7ek8b")
+max_health = 100.0
+metadata/_custom_type_script = "uid://dgjqgiw3yw42e"
+
+[node name="hurtbox_component" type="Area3D" parent="." node_paths=PackedStringArray("player_camera", "viewport_camera", "health_component", "status_component", "source")]
+script = ExtResource("5_eon52")
+player_camera = NodePath("../Head/Neck/Camera3D")
+viewport_camera = NodePath("../Head/SubViewportContainer/SubViewport/Camera3D")
+status_weaknesses = Dictionary[int, float]({
+0: 10.0
+})
+health_component = NodePath("../HealthComponent")
+status_component = NodePath("../status_effect_component")
+invulnerability_duration = 0.25
+hit_sound = ExtResource("8_jux4o")
+source = NodePath("..")
+metadata/_custom_type_script = "uid://c2i6qdosp0h2"
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="hurtbox_component"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9914551, 0)
+shape = SubResource("CapsuleShape3D_wydro")
+
+[node name="status_effect_component" type="GPUParticles3D" parent="." node_paths=PackedStringArray("hurtbox", "mesh_to_affect", "health_component")]
+script = ExtResource("6_eon52")
+available_statuses = Dictionary[int, float]({
+0: 0.0,
+1: 0.0,
+2: 0.0,
+3: 0.0
+})
+hurtbox = NodePath("../hurtbox_component")
+mesh_to_affect = NodePath("../MeshInstance3D")
+health_component = NodePath("../HealthComponent")
+metadata/_custom_type_script = "uid://dql5v81gqvdat"
+
+[node name="damage" type="ColorRect" parent="." node_paths=PackedStringArray("hurtbox")]
+material = SubResource("ShaderMaterial_vhccx")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("10_jux4o")
+hurtbox = NodePath("../hurtbox_component")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="damage"]
+libraries = {
+&"": SubResource("AnimationLibrary_qk8yx")
+}
+
+[node name="launch" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_cqqbj")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("13_tio5b")
+
+[node name="shockwave" type="AnimationPlayer" parent="launch"]
+libraries = {
+&"": SubResource("AnimationLibrary_863th")
+}
+
+[node name="crosshair" type="CenterContainer" parent="." node_paths=PackedStringArray("RETICLE_LINES", "PLAYER_CONTROLLER")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -0.5
+offset_right = 0.5
+offset_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("12_qk8yx")
+RETICLE_LINES = [NodePath("top"), NodePath("right"), NodePath("bottom"), NodePath("left")]
+PLAYER_CONTROLLER = NodePath("..")
+
+[node name="top" type="Line2D" parent="crosshair"]
+points = PackedVector2Array(0, -5, 0, -15)
+width = 2.0
+
+[node name="right" type="Line2D" parent="crosshair"]
+points = PackedVector2Array(5, 0, 15, 0)
+width = 2.0
+
+[node name="bottom" type="Line2D" parent="crosshair"]
+points = PackedVector2Array(0, 5, 0, 15)
+width = 2.0
+
+[node name="left" type="Line2D" parent="crosshair"]
+points = PackedVector2Array(-5, 0, -15, 0)
+width = 2.0

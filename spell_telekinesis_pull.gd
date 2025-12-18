@@ -1,0 +1,28 @@
+extends Node
+
+@onready var spell: Node3D = $"../../../.."
+@onready var state_chart: StateChart = $"../../.."
+@onready var animation_player: AnimationPlayer = $"../../../../AnimationPlayer"
+
+func _on_pulling_state_entered() -> void:
+	animation_player.play("grab_object")
+
+func _on_pulling_state_exited() -> void:
+	pass # Replace with function body.
+
+
+func _on_pulling_state_physics_processing(delta: float) -> void:
+	if is_instance_valid(spell.grabbed_object):
+		spell.grabbed_object.apply_central_impulse(-(spell.grabbed_object.global_position - spell.global_position) * (spell.grabbed_object.pull_force * delta)) #- (spell.grabbed_object.linear_velocity)* delta)
+		#spell.grabbed_object.apply_torque_impulse(-((spell.grabbed_object.global_position - spell.global_position) + (spell.grabbed_object.linear_velocity * delta))/30)
+		if spell.grabbed_object.global_position.distance_to(spell.hold_node.global_position) < 1:
+			Global.player.hold_joint.node_b = spell.grabbed_object.get_path()
+			spell.grabbed_object.global_transform = spell.hold_node.global_transform
+			spell.grabbed_object.linear_velocity = Vector3.ZERO
+			spell.grabbed_object.angular_velocity = Vector3.ZERO
+			spell.grabbed_object._is_grabbed = true
+			spell.grabbed_object.throw_power *= spell.throw_power_multiplier
+			state_chart.send_event("hold")
+
+	else:
+		state_chart.send_event("missed")

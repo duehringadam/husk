@@ -4,7 +4,7 @@ global uniform float dither_strength;
 global uniform float dither_levels;
 
 void light() {
-    float light = (dot(NORMAL, LIGHT) + 1.0) * 0.5 * ATTENUATION;
+    float light = (dot(NORMAL, LIGHT) + 1.0) * 0.5;
     vec2 ts = vec2(textureSize(dither_texture, 0)) * dither_scale;
     vec2 uv = mod(FRAGCOORD.xy, ts) / ts;
     light += (texture(dither_texture, uv).r - 0.5) * dither_strength;

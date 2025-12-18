@@ -15,6 +15,7 @@ signal apply_statuses(status_types: Global.STATUS_TYPE, application_amount: floa
 ## Where to apply incoming damage
 @export var health_component: HealthComponent
 @export var status_component: status_effect_component
+@export var stance_component: StanceComponent
 @export var invulnerability_duration: float
 @export var damage_particles: PackedScene
 @export var hit_sound: AudioStream
@@ -48,10 +49,10 @@ func apply_status(status_types: Dictionary[Global.STATUS_TYPE, float]):
 		if status_weaknesses.keys().has(i):
 			emit_signal("apply_statuses", i,(1*status_weaknesses[i]))
 
-func take_damage(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float], status_types: Dictionary[Global.STATUS_TYPE, float], source: DamageComponent):
+func take_damage(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float], status_types: Dictionary[Global.STATUS_TYPE, float], stance_damage: float, source: DamageComponent):
 	var hit_dir = (global_position.direction_to(source.global_position)).normalized()
 	if timer.time_left > 0: return 0
-	# invulnerability on damage
+	# invulnerability on damage.
 	invulnerability(invulnerability_duration)
 	# take damage
 	var sum := 0.0
@@ -62,6 +63,8 @@ func take_damage(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float], stat
 			emit_signal("damage_taken", actual, source, hit_dir)
 			health_component.modify_health(-actual)
 			sum += actual
+	if stance_component != null:
+		stance_component.modify_stance(-stance_damage)
 	if hit_sound != null:
 		AudioManager.play_sound(hit_sound,self.global_position,-10.0)
 	return sum

@@ -1,13 +1,11 @@
-[gd_resource type="Resource" script_class="status_effect" load_steps=6 format=3 uid="uid://ba5fmd8hrdeo4"]
+[gd_resource type="Resource" script_class="status_effect" load_steps=5 format=3 uid="uid://ba5fmd8hrdeo4"]
 
 [ext_resource type="Script" uid="uid://ca8ha7ig6gshg" path="res://components/status_effect.gd" id="1_dwnkm"]
 [ext_resource type="PackedScene" uid="uid://c64bx48b8sxhh" path="res://status_effects/poison_damage.tscn" id="1_mqju3"]
-[ext_resource type="Texture2D" uid="uid://255onixnbg8w" path="res://Assets/LeartesStudios/MysticDungeon/Art/Textures/smoke_04.png" id="2_owfeo"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mqju3"]
 transparency = 1
 albedo_color = Color(0.49019608, 0, 0.49019608, 1)
-albedo_texture = ExtResource("2_owfeo")
 
 [sub_resource type="QuadMesh" id="QuadMesh_h7d5u"]
 material = SubResource("StandardMaterial3D_mqju3")
@@ -20,4 +18,5 @@ damage_component_scene = ExtResource("1_mqju3")
 status_effect_mesh = SubResource("QuadMesh_h7d5u")
 gravity = 1.0
 turbulence = true
+shader_buildup_max = 0.6
 metadata/_custom_type_script = "uid://ca8ha7ig6gshg"

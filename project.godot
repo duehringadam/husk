@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Husk"
-run/main_scene="res://scenes/world.tscn"
+run/main_scene="uid://xdej0aou65bb"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -24,7 +24,15 @@ BeehaveGlobalDebugger="*res://addons/beehave/debug/global_debugger.gd"
 DamageTypes="*res://damage_types.gd"
 SignalBus="*res://signal_bus.gd"
 HitStop="*res://hit_stop.gd"
-ItemTypes="*res://item_types.gd"
+ItemEquippableType="*res://item_equippable_types.gd"
+AppConfig="*res://addons/maaacks_menus_template/base/scenes/autoloads/app_config.tscn"
+SceneLoader="*res://addons/maaacks_menus_template/base/scenes/autoloads/scene_loader.tscn"
+ProjectMusicController="*res://addons/maaacks_menus_template/base/scenes/autoloads/project_music_controller.tscn"
+InputIconMapperGlobal="*res://addons/prompt_formatters/kenneys/input_icon_mapper.tscn"
+GamePiecesEventBus="*res://addons/game_pieces/GamePiecesEventBus.gd"
+ProjectUISoundController="*res://addons/maaacks_menus_template/base/scenes/autoloads/project_ui_sound_controller.tscn"
+MadTalkGlobals="*res://addons/madtalk/runtime/MadTalkGlobals.tscn"
+GlobalUi="*res://Globals/globalUI.tscn"
 
 [display]
 
@@ -39,7 +47,7 @@ movie_writer/movie_file="C:/Users/adamf/Documents/husk/movie.avi"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/asset_placer/plugin.cfg", "res://addons/beehave/plugin.cfg", "res://addons/deformablemesh/plugin.cfg", "res://addons/freecam_3D/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
+enabled=PackedStringArray("res://addons/GPUTrail-main/plugin.cfg", "res://addons/asset_placer/plugin.cfg", "res://addons/beehave/plugin.cfg", "res://addons/credits_generator/plugin.cfg", "res://addons/deformablemesh/plugin.cfg", "res://addons/freecam_3D/plugin.cfg", "res://addons/game_pieces/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/maaacks_menus_template/plugin.cfg", "res://addons/madtalk/plugin.cfg", "res://addons/prompt_formatters/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
 
 [global_group]
 
@@ -148,6 +156,64 @@ kick={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":70,"key_label":0,"unicode":102,"location":0,"echo":false,"script":null)
 ]
 }
+move_forward={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":87,"key_label":0,"unicode":119,"location":0,"echo":false,"script":null)
+]
+}
+move_left={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":65,"key_label":0,"unicode":97,"location":0,"echo":false,"script":null)
+]
+}
+move_right={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":68,"key_label":0,"unicode":100,"location":0,"echo":false,"script":null)
+]
+}
+move_back={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":83,"key_label":0,"unicode":115,"location":0,"echo":false,"script":null)
+]
+}
+zoom={
+"deadzone": 0.2,
+"events": []
+}
+use={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":70,"key_label":0,"unicode":102,"location":0,"echo":false,"script":null)
+]
+}
+primary_action={
+"deadzone": 0.2,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(108, 16),"global_position":Vector2(117, 64),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
+secondary_action={
+"deadzone": 0.2,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":2,"position":Vector2(112, 6),"global_position":Vector2(121, 54),"factor":1.0,"button_index":2,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
+scroll_up={
+"deadzone": 0.2,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":8,"position":Vector2(122, 9),"global_position":Vector2(131, 57),"factor":1.0,"button_index":4,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
+scroll_down={
+"deadzone": 0.2,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":16,"position":Vector2(103, 26),"global_position":Vector2(112, 74),"factor":1.0,"button_index":5,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
+rotate={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":82,"key_label":0,"unicode":114,"location":0,"echo":false,"script":null)
+]
+}
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://addons/maaacks_menus_template/base/translations/menus_translations.en.translation", "res://addons/maaacks_menus_template/base/translations/menus_translations.fr.translation")
 
 [layer_names]
 
@@ -156,6 +222,13 @@ kick={
 3d_physics/layer_3="enemy"
 3d_physics/layer_4="interact"
 
+[maaacks_menus_template]
+
+disable_install_audio_busses=true
+disable_update_check=false
+disable_install_wizard=true
+copy_path="res://scenes/ui/"
+
 [physics]
 
 common/physics_ticks_per_second=90
@@ -163,11 +236,16 @@ common/physics_ticks_per_second=90
 
 [rendering]
 
-textures/canvas_textures/default_texture_filter=3
+textures/canvas_textures/default_texture_filter=0
 viewport/hdr_2d=true
+anti_aliasing/quality/msaa_2d=2
+anti_aliasing/quality/msaa_3d=2
+textures/decals/filter=2
 textures/light_projectors/filter=4
 lightmapping/primitive_meshes/texel_size=1.0
 lightmapping/lightmap_gi/use_bicubic_filter=false
+vrs/decals/filter=3
+vrs/canvas_textures/default_texture_filter=3
 
 [shader_globals]
 
@@ -202,10 +280,6 @@ texture_lod_halve_distance={
 vertex_snap_intensity={
 "type": "int",
 "value": 0
-}
-dither_texture={
-"type": "sampler2D",
-"value": "res://shaders/ursc_1.3.0/addons/ursc/bayer16.png"
 }
 dither_scale={
 "type": "float",

@@ -6,6 +6,7 @@ extends Node
 ###################
 func play_sound(stream: AudioStream, position, audio_in_decibels):
 	var instance = AudioStreamPlayer3D.new()
+	instance.max_db = 10
 	instance.volume_db = audio_in_decibels
 	instance.pitch_scale = randf_range(0.9,1.2)
 	instance.bus = "SFX"

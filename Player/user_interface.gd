@@ -2,11 +2,13 @@ extends Control
 
 var can_open: bool = true
 var inventory_open: bool = false
+
 @onready var dialogue_container: PanelContainer = $DialogueContainer
 @onready var dialogue: RichTextLabel = $DialogueContainer/DialogueMargin/Dialogue
 @onready var animation_player: AnimationPlayer = $DialogueContainer/AnimationPlayer
 @onready var item_container: PanelContainer = $uiMargin/itemContainer
 @onready var inventory: PanelContainer = $uiMargin/inventory
+@onready var launch: ColorRect = $launch
 
 func _ready() -> void:
 	SignalBus.dialogue_interact.connect(show_dialogue_box)

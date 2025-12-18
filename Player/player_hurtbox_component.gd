@@ -3,7 +3,7 @@ extends hurtbox_component
 @export var player_camera: Camera3D
 @export var viewport_camera: Camera3D
 
-func take_damage(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float], status_types: Dictionary[Global.STATUS_TYPE, float], source: DamageComponent):
+func take_damage(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float], status_types: Dictionary[Global.STATUS_TYPE, float], stance_damage: float, source: DamageComponent):
 	if timer.time_left > 0: return 0
 	
 	if Global.player.blocking && is_facing(source): 

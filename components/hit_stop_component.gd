@@ -16,7 +16,7 @@ func _ready():
 			health_component.connect("health_changed", _on_health_changed)	
 
 func _on_damage_taken(reduced:float, source: DamageComponent, hit_dir: Vector3):
-	if reduced > 10:
+	if reduced > 1:
 		HitStop.hit_stop(HIT_STOP_TIME_SCALE, hit_stop_duration)
 
 func _on_health_changed(amount: float, new_value: float):

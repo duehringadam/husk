@@ -2,15 +2,12 @@
 
 [ext_resource type="Script" uid="uid://c23n4qi4fu7ia" path="res://item/item_required_stats.gd" id="1_gd088"]
 [ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/item_stat.gd" id="2_umlii"]
-[ext_resource type="PackedScene" uid="uid://wbbu81bn30xc" path="res://sword_viewmodel.tscn" id="2_xayhp"]
+[ext_resource type="PackedScene" uid="uid://wbbu81bn30xc" path="res://scenes/player/sword_viewmodel.tscn" id="2_xayhp"]
 [ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/item.gd" id="3_xayhp"]
 
 [resource]
 script = ExtResource("3_xayhp")
 item_name = "Rusted Sword"
-item_description = "A weak and paltry rusted blade, pilfered from a corpse."
-item_type = 0
-item_stats = Array[ExtResource("2_umlii")]([])
-item_required_stats = Array[ExtResource("1_gd088")]([])
+item_description = "A weak and paltry blade, pilfered from a corpse."
 item_scene = ExtResource("2_xayhp")
 metadata/_custom_type_script = "uid://dcfd18dx8x1bm"

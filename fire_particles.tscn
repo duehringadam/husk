@@ -1,6 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://dhv8elukfw85o"]
+[gd_scene load_steps=10 format=3 uid="uid://dhv8elukfw85o"]
 
-[ext_resource type="Texture2D" uid="uid://cprle3s6dj3sq" path="res://scenes/smoke-12.png" id="1_srqyl"]
+[ext_resource type="QuadMesh" uid="uid://p0yd1xgsgykp" path="res://fire_animated.tres" id="1_srqyl"]
 [ext_resource type="Script" uid="uid://dql5v81gqvdat" path="res://components/status_effect_component.gd" id="2_srqyl"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="2_svl11"]
 
@@ -30,27 +30,9 @@ scale_max = 1.5
 scale_curve = SubResource("CurveTexture_rf353")
 color = Color(1, 0.4627451, 0, 1)
 alpha_curve = SubResource("CurveTexture_0eavj")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
 turbulence_noise_speed = Vector3(0, 1, 0)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mypao"]
-transparency = 2
-alpha_scissor_threshold = 0.358
-alpha_antialiasing_mode = 0
-blend_mode = 1
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("1_srqyl")
-emission_enabled = true
-emission = Color(1, 0.2509804, 0, 1)
-emission_energy_multiplier = 2.0
-backlight = Color(1, 1, 1, 1)
-billboard_mode = 1
-billboard_keep_scale = true
-grow_amount = -0.264
-distance_fade_max_distance = 1.0
-stencil_flags = 2
-
-[sub_resource type="QuadMesh" id="QuadMesh_cyixd"]
-material = SubResource("StandardMaterial3D_mypao")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_srqyl"]
 radius = 1.5
@@ -59,7 +41,7 @@ radius = 1.5
 transform = Transform3D(0.9999998, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_dp12e")
-draw_pass_1 = SubResource("QuadMesh_cyixd")
+draw_pass_1 = ExtResource("1_srqyl")
 script = ExtResource("2_srqyl")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]

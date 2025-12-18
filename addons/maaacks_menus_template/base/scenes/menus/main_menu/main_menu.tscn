@@ -1,0 +1,279 @@
+[gd_scene load_steps=18 format=3 uid="uid://c6k5nnpbypshi"]
+
+[ext_resource type="Script" uid="uid://bhgs1upaahk3y" path="res://addons/maaacks_menus_template/base/scenes/menus/main_menu/main_menu.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://hmx6o472ropw" path="res://addons/maaacks_menus_template/base/scenes/menus/options_menu/master_options_menu_with_tabs.tscn" id="2_qvrrd"]
+[ext_resource type="PackedScene" uid="uid://osxulxw2oas3" path="res://addons/maaacks_menus_template/base/scenes/credits/scrollable_credits.tscn" id="3_73am8"]
+[ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_menus_template/base/scripts/capture_focus.gd" id="4_l1ebe"]
+[ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_menus_template/base/scenes/music_players/background_music_player.tscn" id="4_w8sbm"]
+[ext_resource type="Script" uid="uid://b5oej1q4h7jvh" path="res://addons/maaacks_menus_template/base/scripts/ui_sound_controller.gd" id="6_bs342"]
+[ext_resource type="Script" uid="uid://dmkubt2nsnsbn" path="res://addons/maaacks_menus_template/base/scenes/menus/main_menu/config_version_label.gd" id="6_pdiij"]
+[ext_resource type="Script" uid="uid://bkwlopi4qn32o" path="res://addons/maaacks_menus_template/base/scenes/menus/main_menu/config_name_label.gd" id="7_j7612"]
+[ext_resource type="FontFile" uid="uid://dijnj82fautkf" path="res://fonts/Berani.otf" id="7_oseat"]
+[ext_resource type="Script" uid="uid://hakprqsniwqv" path="res://main.gd" id="9_fhhe7"]
+[ext_resource type="FontFile" uid="uid://co2gk2ahl5pot" path="res://fonts/W95FA.otf" id="10_81wrs"]
+[ext_resource type="PackedScene" uid="uid://curni802w01ox" path="res://scenes/world_beginning.tscn" id="10_oseat"]
+[ext_resource type="PackedScene" uid="uid://dpxwg06jnxrb0" path="res://scenes/modular with shader/doorway_2_wide_2.tscn" id="11_81wrs"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_h77f6"]
+viewport_path = NodePath("main/world2/SubViewport")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_h2yge"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_i7141"]
+sky_material = SubResource("ProceduralSkyMaterial_h2yge")
+
+[sub_resource type="Environment" id="Environment_1bvp3"]
+background_mode = 1
+background_energy_multiplier = 3.58
+sky = SubResource("Sky_i7141")
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 8.23
+tonemap_mode = 3
+tonemap_exposure = 1.5
+ssao_enabled = true
+sdfgi_use_occlusion = true
+fog_enabled = true
+fog_light_color = Color(0.0068718926, 0.008331003, 0.0109341405, 1)
+fog_density = 0.053
+volumetric_fog_albedo = Color(0.34781694, 0.34781697, 0.3478169, 1)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+game_scene_path = "uid://c1jl3hgies2i4"
+options_packed_scene = ExtResource("2_qvrrd")
+credits_packed_scene = ExtResource("3_73am8")
+
+[node name="UISoundController" type="Node" parent="."]
+script = ExtResource("6_bs342")
+
+[node name="BackgroundMusicPlayer" parent="." instance=ExtResource("4_w8sbm")]
+
+[node name="BackgroundTextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_h77f6")
+expand_mode = 3
+
+[node name="VersionMargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VersionContainer" type="Control" parent="VersionMargin"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VersionLabel" type="Label" parent="VersionMargin/VersionContainer"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -88.0
+offset_top = -26.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "v0.0.0"
+horizontal_alignment = 2
+script = ExtResource("6_pdiij")
+
+[node name="MenuContainer" type="MarginContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleMargin" type="MarginContainer" parent="MenuContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 24
+
+[node name="TitleContainer" type="Control" parent="MenuContainer/TitleMargin"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="TitleLabel" type="Label" parent="MenuContainer/TitleMargin/TitleContainer"]
+layout_mode = 1
+offset_left = 92.0
+offset_top = 260.0
+offset_right = 652.0
+offset_bottom = 380.0
+theme_override_fonts/font = ExtResource("7_oseat")
+theme_override_font_sizes/font_size = 128
+text = "HUSK"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("7_j7612")
+
+[node name="SubTitleMargin" type="MarginContainer" parent="MenuContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_top = 92
+
+[node name="SubTitleContainer" type="Control" parent="MenuContainer/SubTitleMargin"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="SubTitleLabel" type="Label" parent="MenuContainer/SubTitleMargin/SubTitleContainer"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 34.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "Subtitle"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MenuButtonsMargin" type="MarginContainer" parent="MenuContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 272
+theme_override_constants/margin_top = 136
+theme_override_constants/margin_bottom = 8
+
+[node name="MenuButtonsContainer" type="Control" parent="MenuContainer/MenuButtonsMargin"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MenuButtonsBoxContainer" type="BoxContainer" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -104.0
+offset_right = 128.0
+offset_bottom = 104.0
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 16
+alignment = 1
+vertical = true
+script = ExtResource("4_l1ebe")
+
+[node name="NewGameButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("10_81wrs")
+theme_override_font_sizes/font_size = 32
+text = "New Game"
+
+[node name="OptionsButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("10_81wrs")
+theme_override_font_sizes/font_size = 32
+text = "Options"
+
+[node name="CreditsButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("10_81wrs")
+theme_override_font_sizes/font_size = 32
+text = "Credits"
+
+[node name="ExitButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("10_81wrs")
+theme_override_font_sizes/font_size = 32
+text = "Exit"
+
+[node name="OptionsContainer" type="MarginContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CreditsContainer" type="MarginContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 64
+
+[node name="FlowControlContainer" type="MarginContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="FlowControl" type="Control" parent="FlowControlContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="BackButton" type="Button" parent="FlowControlContainer/FlowControl"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+offset_right = 45.0
+grow_vertical = 0
+text = "Back"
+
+[node name="main" type="Node3D" parent="."]
+script = ExtResource("9_fhhe7")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="main"]
+environment = SubResource("Environment_1bvp3")
+
+[node name="world2" parent="main" instance=ExtResource("10_oseat")]
+
+[node name="doorway_2_wide2" parent="main/world2" instance=ExtResource("11_81wrs")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 0, 0)
+
+[node name="SubViewport" type="SubViewport" parent="main/world2"]
+size = Vector2i(1920, 1080)
+size_2d_override_stretch = true
+
+[node name="Camera3D" type="Camera3D" parent="main/world2/SubViewport"]
+transform = Transform3D(0.58070296, 0.18175137, 0.7935682, 0, 0.9747612, -0.2232501, -0.8141155, 0.129642, 0.5660467, 1.6653576, 0.27469987, 1.6544269)
+fov = 58.9
+
+[connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="FlowControlContainer/FlowControl/BackButton" to="." method="_on_back_button_pressed"]

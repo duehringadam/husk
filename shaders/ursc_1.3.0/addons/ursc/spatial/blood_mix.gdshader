@@ -1,6 +1,5 @@
 shader_type spatial;
 
-#include "dither.gdshaderinc"
 
 render_mode depth_prepass_alpha;
 render_mode diffuse_toon;

@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://ist04xesgvp0"]
+[gd_scene load_steps=16 format=3 uid="uid://ist04xesgvp0"]
 
 [ext_resource type="Script" uid="uid://5ptxbw6k4ws5" path="res://spell_fire_projectile.gd" id="1_bsmes"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="1_sjnaj"]
-[ext_resource type="Texture2D" uid="uid://255onixnbg8w" path="res://Assets/LeartesStudios/MysticDungeon/Art/Textures/smoke_04.png" id="2_bsmes"]
+[ext_resource type="AudioStream" uid="uid://1saram1j110e" path="res://sfx/burn-flesh-01-266302.mp3" id="3_057mb"]
+[ext_resource type="QuadMesh" uid="uid://p0yd1xgsgykp" path="res://fire_animated.tres" id="3_bsmes"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bsmes"]
 
@@ -30,48 +31,27 @@ curve = SubResource("Curve_pqdrc")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bsmes"]
 lifetime_randomness = 1.0
 emission_shape = 1
-emission_sphere_radius = 0.25
+emission_sphere_radius = 0.5
 direction = Vector3(0, 1, 0)
 spread = 138.782
-initial_velocity_min = 6.0
-initial_velocity_max = 6.0
+initial_velocity_min = 2.5
+initial_velocity_max = 2.5
 gravity = Vector3(0, 4.8, 0)
 linear_accel_min = -2.23517e-06
 linear_accel_max = -2.23517e-06
 scale_min = 4.0
-scale_max = 4.0
+scale_max = 8.0
 scale_curve = SubResource("CurveTexture_3yxkx")
 color = Color(1, 0.1764706, 0, 1)
 alpha_curve = SubResource("CurveTexture_rf353")
 emission_curve = SubResource("CurveTexture_057mb")
 hue_variation_min = -2.2351742e-08
 hue_variation_max = -2.2351742e-08
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+anim_offset_min = 1.0
+anim_offset_max = 1.0
 turbulence_noise_speed = Vector3(0, 1, 0)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_057mb"]
-transparency = 2
-alpha_scissor_threshold = 0.224
-alpha_antialiasing_mode = 0
-blend_mode = 1
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("2_bsmes")
-emission_enabled = true
-emission = Color(1, 0.21960784, 0, 1)
-emission_energy_multiplier = 7.02
-backlight = Color(1, 1, 1, 1)
-billboard_mode = 3
-billboard_keep_scale = true
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-grow_amount = -0.264
-proximity_fade_distance = 1117.19
-distance_fade_max_distance = 1.0
-stencil_flags = 2
-
-[sub_resource type="QuadMesh" id="QuadMesh_e0xe7"]
-material = SubResource("StandardMaterial3D_057mb")
-size = Vector2(0.3, 0.3)
 
 [sub_resource type="Animation" id="Animation_057mb"]
 length = 0.001
@@ -163,13 +143,14 @@ script = ExtResource("1_bsmes")
 
 [node name="DamageComponent" type="Area3D" parent="."]
 transform = Transform3D(-0.0499742, 0, -0.00160455, 0, 0.05, 0, 0.00160455, 0, -0.0499742, 0, 0, 0)
-collision_mask = 14
+collision_mask = 15
 script = ExtResource("1_sjnaj")
+hit_sound = ExtResource("3_057mb")
 damage_types = Dictionary[int, float]({
 6: 0.1
 })
 status_types = Dictionary[int, float]({
-0: 10.0
+0: 0.33
 })
 metadata/_custom_type_script = "uid://dlsydctoxqbwy"
 
@@ -184,7 +165,7 @@ amount = 16
 lifetime = 0.5
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_bsmes")
-draw_pass_1 = SubResource("QuadMesh_e0xe7")
+draw_pass_1 = ExtResource("3_bsmes")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="GPUParticles3D"]
 layers = 3

@@ -7,10 +7,12 @@ func _ready() -> void:
 	SignalBus.item_interact.connect(_update_inventory)
 
 func open_inventory():
+	GamePiecesEventBus.emit_signal("camera_lock_requested", true)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	visible = true
 
 func close_inventory():
+	GamePiecesEventBus.emit_signal("camera_lock_requested", false)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	visible = false
 

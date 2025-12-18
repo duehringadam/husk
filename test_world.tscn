@@ -1,9 +1,17 @@
-[gd_scene load_steps=11 format=3 uid="uid://iarqxfted72l"]
+[gd_scene load_steps=20 format=3 uid="uid://iarqxfted72l"]
 
-[ext_resource type="PackedScene" uid="uid://crwpbskjjllht" path="res://Player/player.tscn" id="1_gy3sr"]
 [ext_resource type="Texture2D" uid="uid://bxgdenwt3i5pb" path="res://test texture/kenney_prototype-textures/Vector/texture_03.svg" id="2_1lwx6"]
 [ext_resource type="PackedScene" uid="uid://bj6sdc0lp46oo" path="res://scenes/knight/physics_knight.tscn" id="3_1lwx6"]
-[ext_resource type="PackedScene" uid="uid://bph60ey8qmqni" path="res://barrel_throwable.tscn" id="4_dsnr4"]
+[ext_resource type="PackedScene" uid="uid://bia32vkq1a5i" path="res://scenes/player/player.tscn" id="5_cnaw2"]
+[ext_resource type="PackedScene" uid="uid://bjwshwcps86mq" path="res://flesh_prince.tscn" id="5_lf0gk"]
+[ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/item.gd" id="5_ud3vi"]
+[ext_resource type="Resource" uid="uid://dmv7he43amthj" path="res://item/weapons/morning_star.tres" id="6_5457m"]
+[ext_resource type="PackedScene" uid="uid://bb24ddx38sw06" path="res://scenes/Ghoul Animated/ghoul.tscn" id="6_cnaw2"]
+[ext_resource type="Resource" uid="uid://bgq4jclx52jt0" path="res://item/weapons/rusted_sword.tres" id="7_ivea3"]
+[ext_resource type="PackedScene" uid="uid://dr38p0k3ko4ks" path="res://scenes/pieces/crate_pickable.tscn" id="7_kt6p6"]
+[ext_resource type="PackedScene" uid="uid://c56q3gytk8fia" path="res://scenes/pieces/barrel_pickable.tscn" id="7_uu1iw"]
+[ext_resource type="Resource" uid="uid://c8afm2d4w8gxb" path="res://item/spells/telekinesis.tres" id="8_5457m"]
+[ext_resource type="Resource" uid="uid://dhgsftnl3tw13" path="res://item/spells/flame.tres" id="9_ivea3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gy3sr"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -17,6 +25,12 @@ background_mode = 2
 sky = SubResource("Sky_1lwx6")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_cnaw2"]
+vertices = PackedVector3Array(-49.5, 0.02, -49.5, -49.5, 0.02, 49.5, 49.5, 0.02, 49.5, 49.5, 0.02, -49.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+geometry_collision_mask = 4294967293
+cell_height = 0.01
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dsnr4"]
 albedo_texture = ExtResource("2_1lwx6")
@@ -36,39 +50,180 @@ environment = SubResource("Environment_dsnr4")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(1, 0, 0, 0, -0.024397261, 0.99970233, 0, -0.99970233, -0.024397261, 0, 1.5199726, 0)
+layers = 3
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_cnaw2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
 mesh = SubResource("PlaneMesh_t34gm")
+skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D"]
 collision_layer = 2
 collision_mask = 15
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_gy3sr")
 
 [node name="physics_knight" parent="." instance=ExtResource("3_1lwx6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.238919, 0, 0.030591965)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.4662375, 0, 0.030591965)
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Lonely Knight","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":null,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
 
 [node name="physics_knight2" parent="." instance=ExtResource("3_1lwx6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3855824, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4374113, 0, 0)
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Lonely Knight","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":null,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
 
 [node name="physics_knight3" parent="." instance=ExtResource("3_1lwx6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5975955, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5293832, 0, 0)
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Lonely Knight","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":null,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
 
 [node name="physics_knight4" parent="." instance=ExtResource("3_1lwx6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.83042336, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0812697, 0, 0)
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Lonely Knight","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":null,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
 
-[node name="barrel_throwable" parent="." instance=ExtResource("4_dsnr4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03025031, 2.9802308e-07, 1.3753684)
 
-[node name="barrel_throwable2" parent="." instance=ExtResource("4_dsnr4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2683297, 2.9802308e-07, 1.3874041)
+[node name="Jeremy(2)" parent="." instance=ExtResource("5_lf0gk")]
+transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 21.849957, 2.167182, 0.6472039)
 
-[node name="barrel_throwable3" parent="." instance=ExtResource("4_dsnr4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.49591, 5.364417e-07, 1.3746285)
+[node name="Player2" parent="." instance=ExtResource("5_cnaw2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.206863, 0, 14.340787)
+inventory = Array[ExtResource("5_ud3vi")]([ExtResource("6_5457m"), ExtResource("7_ivea3"), ExtResource("8_5457m"), ExtResource("9_ivea3")])
+footsteps_sound = null
+head_bob_strength = 0.05
+toggle_crouch = false
+sprint_speed = 5.5
+jump_power = 4.5
+fov_change = 2.0
+crouch_height = 0.65
+camera_lean_position = Vector3(0, 0, 0)
 
-[node name="barrel_throwable4" parent="." instance=ExtResource("4_dsnr4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7025676, 2.980231e-07, 1.3712063)
+[node name="SK_Ghoul" parent="." instance=ExtResource("6_cnaw2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.734641, -0.02596438, 5.164627)
+SPEED = 2.0
 
-[node name="player" parent="." instance=ExtResource("1_gy3sr")]
+[node name="Pickable" parent="." instance=ExtResource("7_kt6p6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.716255, 0, 8.127597)
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Wooden Crate","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="Pickable2" parent="." instance=ExtResource("7_uu1iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055034637, 0.309731, 7.542962)
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Wooden Crate","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="Pickable3" parent="." instance=ExtResource("7_uu1iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2597251, 0.309731, 7.542962)
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Wooden Crate","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="Pickable4" parent="." instance=ExtResource("7_uu1iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2597251, 0.309731, 8.717202)
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Wooden Crate","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="Pickable5" parent="." instance=ExtResource("7_uu1iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.031236649, 0.309731, 8.717202)
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Wooden Crate","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="Pickable6" parent="." instance=ExtResource("7_uu1iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.033119977, 0.309731, 9.916753)
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Wooden Crate","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="Pickable7" parent="." instance=ExtResource("7_uu1iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2816398, 0.309731, 9.916753)
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Wooden Crate","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="Pickable8" parent="." instance=ExtResource("7_uu1iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2816398, 0.309731, 11.090993)
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Wooden Crate","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="Pickable9" parent="." instance=ExtResource("7_uu1iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.009321988, 0.309731, 11.090993)
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Wooden Crate","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="Pickable10" parent="." instance=ExtResource("7_uu1iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6893225, 0.309731, 9.916753)
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Wooden Crate","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="Pickable11" parent="." instance=ExtResource("7_uu1iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3745627, 0.309731, 9.916753)
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Wooden Crate","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="Pickable12" parent="." instance=ExtResource("7_uu1iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3745627, 0.309731, 11.090993)
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Wooden Crate","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="Pickable13" parent="." instance=ExtResource("7_uu1iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6655245, 0.309731, 11.090993)
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Wooden Crate","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="Pickable14" parent="." instance=ExtResource("7_uu1iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6893225, 0.309731, 7.553727)
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Wooden Crate","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="Pickable15" parent="." instance=ExtResource("7_uu1iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3745627, 0.309731, 7.553727)
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Wooden Crate","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="Pickable16" parent="." instance=ExtResource("7_uu1iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3745627, 0.309731, 8.727967)
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Wooden Crate","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="Pickable17" parent="." instance=ExtResource("7_uu1iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6655245, 0.309731, 8.727967)
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Wooden Crate","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+

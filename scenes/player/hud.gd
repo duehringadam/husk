@@ -1,0 +1,49 @@
+extends Control
+
+@onready var cross_hair: TextureRect = %CrossHair
+@onready var interact_prompt: RichTextLabel = %InteractPrompt
+@onready var _formatter: PromptFormatter = PromptKenneysFormatter.new()
+@onready var inventory: PanelContainer = %inventory
+
+var inventory_open: bool = false
+
+func _ready() -> void:
+	_nothing_interactable()
+	InteractionController.current.clear_action_prompts.connect(_nothing_interactable)
+	InteractionController.current.display_action_prompts.connect(_something_interactable)
+	
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("inventory"):
+		inventory_menu()
+	
+func inventory_menu():
+	if inventory_open:
+		inventory.close_inventory()
+	else:
+		inventory.open_inventory()
+
+	inventory_open = !inventory_open
+
+func _nothing_interactable() -> void:
+	cross_hair.hide()
+	interact_prompt.text = ""
+
+func _something_interactable(object_name: String, actions: Array[Interaction], alt_display: bool) -> void:
+	if alt_display:
+		cross_hair.hide()
+		actions = actions.filter(func(a: Interaction) -> bool: return not a.hide_while_grabbed)
+	else:
+		cross_hair.show()
+	
+	if actions.is_empty():
+		cross_hair.hide()
+		interact_prompt.text = ""
+		return
+	
+	interact_prompt.text = "[b]%s[/b]: %s" % [
+		object_name,
+		", ".join(actions.map(func(a: Interaction) -> String:
+		@warning_ignore("redundant_await")
+		return "%s to %s" % [await _formatter.format_async(a.control), a.get_display_name()]
+		))
+	]

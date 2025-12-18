@@ -1,0 +1,231 @@
+[gd_scene load_steps=14 format=3 uid="uid://cerk3y8j1h1do"]
+
+[ext_resource type="Script" uid="uid://c6av3xe4m2ujl" path="res://addons/madtalk/runtime/madtalk_runtime.gd" id="1_qttj8"]
+[ext_resource type="FontFile" uid="uid://ip8tcqh7uxmx" path="res://fonts/Alkhemikal.ttf" id="3_6sbyu"]
+[ext_resource type="Texture2D" uid="uid://dmj1j5r0psdlj" path="res://example_scene/images/francesco.png" id="4_n4gff"]
+[ext_resource type="AudioStream" uid="uid://dr553b0ej26vk" path="res://example_scene/sfx/click.wav" id="5_e3s6y"]
+[ext_resource type="PackedScene" uid="uid://4ggo1b35btnu" path="res://scenes/player/hud.tscn" id="5_svxpm"]
+[ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_menus_template/base/scripts/pause_menu_controller.gd" id="6_kthw8"]
+[ext_resource type="PackedScene" uid="uid://cndau4qyl56kx" path="res://scenes/menus/overlaid_menus/pause_menu.tscn" id="7_yumqv"]
+[ext_resource type="Script" uid="uid://ds4jqcfrmjpbj" path="res://Player/inventory.gd" id="8_kthw8"]
+
+[sub_resource type="GDScript" id="4"]
+script/source = "extends Control
+
+# If using a typing sound as .wav file, remember to set it to loop and reimport
+
+@onready var sfx_click: AudioStreamPlayer = $Dialog/SFXClick
+
+func _ready():
+	SignalBus.connect(\"npc_interacted\", _on_npc_interacted)
+	# In case you forget to hide manually in the scene tree before saving
+	$Dialog.hide()
+	$Dialog/DialogBox.hide()
+	$Dialog/MenuBox.hide()
+	# You can use animations to handle this, and in that case the animation
+	# RESET track can take care of this
+
+
+func _on_npc_interacted(sheet_id):
+	$MadTalk.start_dialog(sheet_id)
+	
+func _on_SheetID_text_entered(new_text):
+	# Starting a dialog is as simplas as this:
+	# just start_dialog( <sheet name> )
+	$MadTalk.start_dialog(new_text)
+
+
+func _input(event):
+	# How the user tells the dialog to continue is up to you
+	# it can be a key press, a mouse click, touch event, etc
+	# All you have to do is call dialog_acknowledge() 
+	if (
+		(event is InputEventKey) and (event.pressed) and (not event.echo) and (event.keycode in [KEY_SPACE, KEY_ENTER, KEY_KP_ENTER])
+	) or (
+		(event is InputEventMouseButton) and (event.pressed) and (event.button_index == MOUSE_BUTTON_LEFT)
+	):
+		$MadTalk.dialog_acknowledge()
+
+#func _on_ItemList_item_activated(index):
+	#if index >= 0:
+		#var sheet_id = sheet_list.get_item_text(index)
+		#sheet_list.deselect_all()
+		#
+		#$MadTalk.start_dialog(sheet_id)
+
+
+func _on_mad_talk_activate_custom_effect(custom_id: Variant, custom_data: Variant) -> void:
+	SignalBus.emit_signal(\"custom_effect\", custom_id, custom_data)
+
+
+func _on_mad_talk_dialog_finished(sheet_name: Variant, sequence_id: Variant) -> void:
+	SignalBus.emit_signal(\"dialogue_ended\", sheet_name, sequence_id)
+
+
+func _on_mad_talk_dialog_started(sheet_name: Variant, sequence_id: Variant) -> void:
+	SignalBus.emit_signal(\"dialogue_started\")
+"
+
+[sub_resource type="Resource" id="Resource_6sbyu"]
+metadata/__load_path__ = "res://button.tscn"
+
+[sub_resource type="Gradient" id="Gradient_1ogho"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.35051546, 1)
+colors = PackedColorArray(0, 0, 0, 0.7294118, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6sbyu"]
+gradient = SubResource("Gradient_1ogho")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ffo63"]
+texture = SubResource("GradientTexture2D_6sbyu")
+
+[node name="CanvasLayer" type="CanvasLayer"]
+process_mode = 3
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="PauseMenuController" type="Node" parent="."]
+script = ExtResource("6_kthw8")
+pause_menu_packed = ExtResource("7_yumqv")
+
+[node name="Scene" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = SubResource("4")
+
+[node name="MadTalk" type="Node" parent="Scene"]
+script = ExtResource("1_qttj8")
+DialogMainControl = NodePath("../Dialog")
+DialogMessageBox = NodePath("../Dialog/DialogBox")
+DialogMessageLabel = NodePath("../Dialog/DialogBox/LabelMessage")
+DialogSpeakerLabel = NodePath("../Dialog/DialogBox/LabelName")
+DialogSpeakerAvatar = NodePath("../Dialog/DialogBox/Avatar")
+DialogButtonsMenu = NodePath("../Dialog/MenuBox")
+DialogButtonsContainer = NodePath("../Dialog/MenuBox/MenuContainer")
+DialogButtonSceneFile = SubResource("Resource_6sbyu")
+AnimatedTextMilisecondPerCharacter = 25.0
+KeyPressAudioStreamPlayer = NodePath("../Dialog/SFXClick")
+
+[node name="Dialog" type="Control" parent="Scene"]
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="DialogBox" type="Panel" parent="Scene/Dialog"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -209.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ffo63")
+
+[node name="Avatar" type="TextureRect" parent="Scene/Dialog/DialogBox"]
+visible = false
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 144.0
+offset_bottom = 144.0
+texture = ExtResource("4_n4gff")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="LabelName" type="Label" parent="Scene/Dialog/DialogBox"]
+visible = false
+layout_mode = 0
+offset_left = 17.0
+offset_top = 149.0
+offset_right = 144.0
+offset_bottom = 180.0
+theme_override_font_sizes/font_size = 20
+clip_text = true
+
+[node name="LabelMessage" type="RichTextLabel" parent="Scene/Dialog/DialogBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 33.0
+offset_top = 22.0
+offset_right = -20.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("3_6sbyu")
+theme_override_fonts/bold_font = ExtResource("3_6sbyu")
+theme_override_fonts/bold_italics_font = ExtResource("3_6sbyu")
+theme_override_fonts/italics_font = ExtResource("3_6sbyu")
+theme_override_fonts/mono_font = ExtResource("3_6sbyu")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+horizontal_alignment = 1
+
+[node name="MenuBox" type="Panel" parent="Scene/Dialog"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -219.0
+offset_top = 192.0
+offset_right = 219.0
+offset_bottom = 309.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuContainer" type="VBoxContainer" parent="Scene/Dialog/MenuBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SFXClick" type="AudioStreamPlayer" parent="Scene/Dialog"]
+stream = ExtResource("5_e3s6y")
+volume_db = -6.0
+bus = &"SFX"
+
+[node name="HUD" parent="." instance=ExtResource("5_svxpm")]
+
+[node name="inventory" type="PanelContainer" parent="."]
+visible = false
+mouse_filter = 2
+script = ExtResource("8_kthw8")
+
+[node name="PanelContainer" type="PanelContainer" parent="inventory"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="inventory/PanelContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="inventory/PanelContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="activate_custom_effect" from="Scene/MadTalk" to="Scene" method="_on_mad_talk_activate_custom_effect"]
+[connection signal="dialog_acknowledged" from="Scene/MadTalk" to="." method="_on_mad_talk_dialog_acknowledged"]
+[connection signal="dialog_finished" from="Scene/MadTalk" to="Scene" method="_on_mad_talk_dialog_finished"]
+[connection signal="dialog_started" from="Scene/MadTalk" to="Scene" method="_on_mad_talk_dialog_started"]
+[connection signal="message_text_shown" from="Scene/MadTalk" to="." method="_on_mad_talk_message_text_shown"]

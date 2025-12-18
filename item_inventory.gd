@@ -8,18 +8,17 @@ extends PanelContainer
 
 
 func _on_button_pressed() -> void:
-	Global.inventory.append(Global.player.mainhand.weapon)
 	match item_inventory.item_type:
-			ItemTypes.ITEM_TYPES.WEAPON:
+			ItemEquippableType.ITEM_EQUIPPABLE_TYPES.WEAPON:
 				Global.player.mainhand.weapon = item_inventory
-			ItemTypes.ITEM_TYPES.OFFHAND:
+			ItemEquippableType.ITEM_EQUIPPABLE_TYPES.OFFHAND:
 				Global.player.offhand.weapon = item_inventory
-			ItemTypes.ITEM_TYPES.ARMOR:
+			ItemEquippableType.ITEM_EQUIPPABLE_TYPES.ARMOR:
 				pass
-			ItemTypes.ITEM_TYPES.JEWELRY:
+			ItemEquippableType.ITEM_EQUIPPABLE_TYPES.JEWELRY:
 				pass
-			ItemTypes.ITEM_TYPES.CONSUMABLE:
+			ItemEquippableType.ITEM_EQUIPPABLE_TYPES.CONSUMABLE:
 				pass
-			ItemTypes.ITEM_TYPES.KEY:
+			ItemEquippableType.ITEM_EQUIPPABLE_TYPES.KEY:
 				pass
 	

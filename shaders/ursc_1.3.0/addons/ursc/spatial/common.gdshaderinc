@@ -19,12 +19,9 @@ render_mode
 #if defined(ALPHA_BLEND)
 	depth_draw_always,
 #else
-	depth_draw_opaque,
+	depth_draw_opaque;
 #endif
 
-
-
-specular_disabled;
 
 
 // Constants

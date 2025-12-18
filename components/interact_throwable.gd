@@ -1,19 +1,11 @@
-class_name throwable_object
-extends interact
+extends Pickable
 
 var interactable: bool = false
 var carried: bool = false
 var player_close :bool = false
 
-@export var throwable_mesh: MeshInstance3D
-@export var throwable: RigidBody3D
-@export var interact_area: Area3D
-@export var damage_component: DamageComponent
-@export var shattered_mesh: PackedScene
-@export var break_sound: AudioStream
 
 const ROTATION_AMOUNT_REDUCTION := 30
-
 
 func _ready():
 	pass
@@ -40,33 +32,25 @@ func throw(throw_dir:Vector3, throw_force: int):
 	throwable.apply_central_impulse(throw_dir * throw_force)
 	throwable.apply_torque_impulse(throw_dir/ROTATION_AMOUNT_REDUCTION)
 	
+	
 func drop():
 	throwable.freeze = false
 	Global.player.carry_transform.remote_path = ""
 	throwable_mesh.layers = 1
 	carried = false
 
-func _on_body_exited(body: Node3D) -> void:
-	if body is Player:
-		player_close = false
-		SignalBus.interact_close.emit()
 
-func _on_body_entered(body: Node3D) -> void:
-	if body is Player:
-		player_close = true
 
 func _on_damage_component_damage_dealt(types: Dictionary[DamageTypes.DAMAGE_TYPES, float], actual: float, target: hurtbox_component) -> void:
-	if shattered_mesh != null:
-		break_object()
 	if throwable.linear_velocity.length() > 3:
+		health_component.modify_health(-(throwable.linear_velocity.length()))
 		if target.get_parent() is NPC:
 			target.get_parent().fall(Vector3.FORWARD)
 
 
 func _on_rigidbody_entered(body: Node) -> void:
-	if throwable.linear_velocity.length() > 4 and body.collision_layer == 2:
-		if shattered_mesh != null:
-			break_object()
+	if throwable.linear_velocity.length() > 3 and body.collision_layer == 2:
+		health_component.modify_health(-(throwable.linear_velocity.length()))
 
 func break_object():
 	var shattered_mesh_add = shattered_mesh.instantiate()
@@ -74,7 +58,7 @@ func break_object():
 	shattered_mesh_add.global_transform = self.global_transform
 	shattered_mesh_add.break_mesh(throwable.linear_velocity, throwable_mesh.get_surface_override_material(0))
 	AudioManager.play_sound(break_sound, self.global_position, 0)
-	get_tree().create_timer(.1).timeout.connect(func(): self.queue_free())
+	get_tree().create_timer(.05).timeout.connect(func(): self.queue_free())
 
 
 func _on_health_component_died() -> void:

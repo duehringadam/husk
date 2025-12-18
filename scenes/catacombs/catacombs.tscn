@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://c2sfk0i2k2td3"]
+
+[ext_resource type="PackedScene" uid="uid://bia32vkq1a5i" path="res://scenes/player/player.tscn" id="2_ji22j"]
+
+[node name="catacombs" type="Node3D"]
+
+[node name="Player2" parent="." instance=ExtResource("2_ji22j")]
+footsteps_sound = null
+head_bob_strength = 0.05
+toggle_crouch = false
+walk_speed = 4.5
+jump_power = 4.5
+fov_change = 2.0
+camera_lean_position = Vector3(0, 0, 0)

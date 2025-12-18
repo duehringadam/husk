@@ -1,4 +1,4 @@
-class_name Player
+#class_name Player
 extends CharacterBody3D
 
 var direction
@@ -12,6 +12,11 @@ const CROUCH_SPEED = 3
 
 @export var mainhand: Node3D
 @export var offhand: Node3D
+@export var body:Node3D
+
+@export var weapon_sway_amount : float = 5
+@export var weapon_rotation_amount : float = 1
+@export var invert_weapon_sway : bool = false
 
 @onready var lookat_ray: RayCast3D = $head/main_camera/look_at_ray
 @onready var animation: AnimationPlayer = %AnimationPlayer
@@ -47,11 +52,17 @@ var primary_active_bool: bool = false
 var blocking: bool = false
 var input_dir
 var noclip := false
+var mouse_movement: Vector2
+
+var mainhand_weapon_holder_pos : Vector3
+var offhand_weapon_holder_pos : Vector3
 
 func _ready() -> void:
 	Global.player = self
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	SignalBus.connect("is_blocking",is_blocking)
+	mainhand_weapon_holder_pos = mainhand.position
+	offhand_weapon_holder_pos = offhand.position
 
 func is_blocking(value:bool):
 	blocking = value
@@ -64,6 +75,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		head.rotate_y(-event.relative.x * MOUSE_SENS)
 		camera.rotate_x(-event.relative.y * MOUSE_SENS)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-70),deg_to_rad(70))
+		mouse_movement = event.relative
+
 
 func _process(delta: float) -> void:
 	if dead:
@@ -80,14 +93,7 @@ func restart():
 func _physics_process(delta: float) -> void:
 	if dead:
 		return
-	if not _handle_noclip(delta):
-		pass
 	
-
-func _handle_noclip(delta) -> bool:
-	if Input.is_action_just_pressed("noclip"):
-		noclip = !noclip
-	return noclip
 	
 func update_gravity(delta)->void:
 	velocity.y -= gravity * delta
@@ -100,35 +106,16 @@ func update_input(delta) ->void:
 		if direction:
 			velocity.x = direction.x * SPEED
 			velocity.z = direction.z * SPEED
-			mainhand.rotation_degrees.z = lerp(mainhand.rotation_degrees.z, clampf(mainhand.rotation_degrees.z+velocity.z,-6,6),delta * 7.0)
-			offhand.rotation_degrees.z = lerp(offhand.rotation_degrees.z, clampf(offhand.rotation_degrees.z-velocity.z,-6,6),delta * 3.5)
-			mainhand.rotation_degrees.y = lerp(mainhand.rotation_degrees.y, clampf(mainhand.rotation_degrees.y+velocity.z,-2,2),delta * 7.0)
-			offhand.rotation_degrees.y = lerp(offhand.rotation_degrees.y, clampf(offhand.rotation_degrees.y-velocity.z,-2,2),delta * 3.5)
-			mainhand.rotation_degrees.x = lerp(mainhand.rotation_degrees.x, clampf(mainhand.rotation_degrees.x+velocity.z,-2,2),delta * 7.0)
-			offhand.rotation_degrees.x = lerp(offhand.rotation_degrees.x, clampf(offhand.rotation_degrees.x-velocity.z,-2,2),delta * 3.5)
-			carry.rotation_degrees.x = lerp(carry.rotation_degrees.x, clampf(carry.rotation_degrees.x-velocity.z,-2,2),delta * 3.5)
-			carry.rotation_degrees.y = lerp(carry.rotation_degrees.y, clampf(carry.rotation_degrees.y-velocity.z,-2,2),delta * 3.5)
-			carry.rotation_degrees.z = lerp(carry.rotation_degrees.z, clampf(carry.rotation_degrees.z-velocity.z,-2,2),delta * 3.5)
 			t_bob += delta * velocity.length() * float(is_on_floor())
 			camera.transform.origin = _headbob(t_bob)
-			mainhand.transform.origin = _gunbob(t_bob)
-			offhand.transform.origin = _offhandbob(t_bob)
+			body.transform.origin = _gunbob(t_bob)
+			
 		else:
 			velocity.x = lerp(velocity.x, direction.x * SPEED, delta * 7.0)
 			velocity.z = lerp(velocity.z, direction.z * SPEED, delta * 7.0)
-			mainhand.rotation_degrees.z = lerp(mainhand.rotation_degrees.z, clampf(mainhand.rotation_degrees.z+velocity.z,-6,6),delta * 7.0)
-			offhand.rotation_degrees.z = lerp(offhand.rotation_degrees.z, clampf(offhand.rotation_degrees.z-velocity.z,-6,6),delta * 3.5)
-			mainhand.rotation_degrees.y = lerp(mainhand.rotation_degrees.y, clampf(mainhand.rotation_degrees.y+velocity.z,-2,2),delta * 7.0)
-			offhand.rotation_degrees.y = lerp(offhand.rotation_degrees.y, clampf(offhand.rotation_degrees.y-velocity.z,-2,2),delta * 3.5)
-			mainhand.rotation_degrees.x = lerp(mainhand.rotation_degrees.x, clampf(mainhand.rotation_degrees.x+velocity.z,-2,2),delta * 7.0)
-			offhand.rotation_degrees.x = lerp(offhand.rotation_degrees.x, clampf(offhand.rotation_degrees.x-velocity.z,-2,2),delta * 3.5)
-			carry.rotation_degrees.x = lerp(carry.rotation_degrees.x, clampf(carry.rotation_degrees.x-velocity.z,-2,2),delta * 3.5)
-			carry.rotation_degrees.y = lerp(carry.rotation_degrees.y, clampf(carry.rotation_degrees.y-velocity.z,-2,2),delta * 3.5)
-			carry.rotation_degrees.z = lerp(carry.rotation_degrees.z, clampf(carry.rotation_degrees.z-velocity.z,-2,2),delta * 3.5)
 			t_bob += delta * velocity.length() * float(is_on_floor())
 			camera.transform.origin = _headbob(t_bob)
-			mainhand.transform.origin = _gunbob(t_bob)
-			offhand.transform.origin = _offhandbob(t_bob)
+			body.transform.origin = _gunbob(t_bob)
 			
 		if input_dir.x > 0:
 			head.rotation.z = lerp_angle(head.rotation.z, deg_to_rad(-2.5), 0.1)
@@ -136,10 +123,27 @@ func update_input(delta) ->void:
 			head.rotation.z = lerp_angle(head.rotation.z, deg_to_rad(2.5), 0.1)
 		else:
 			head.rotation.z = lerp_angle(head.rotation.z, deg_to_rad(0), 0.1)
+	weapon_tilt(input_dir.x, delta)
+	weapon_sway(delta)
 	
 func update_velocity():
 	move_and_slide()
 
+func weapon_tilt(input_x, delta):
+	if mainhand:
+		mainhand.rotation.z = lerpf(mainhand.rotation.z, clampf(-input_x * weapon_rotation_amount * 10,-.3,.3), 5 * delta)
+	if offhand:
+		offhand.rotation.z = lerpf(offhand.rotation.z, clampf(-input_x * weapon_rotation_amount * 10,-.3,.3), 5 * delta)
+
+func weapon_sway(delta):
+	mouse_movement = lerp(mouse_movement,Vector2.ZERO,10*delta)
+	if mainhand:
+		mainhand.rotation.x = lerpf(mainhand.rotation.x, clampf(mouse_movement.y * weapon_rotation_amount * (-1 if invert_weapon_sway else 1),-.1,.1), 5 * delta)
+		mainhand.rotation.y = lerpf(mainhand.rotation.y, clampf(mouse_movement.x * weapon_rotation_amount * (-1 if invert_weapon_sway else 1),-.1,.1), 5 * delta)
+	if offhand:
+		offhand.rotation.x = lerpf(offhand.rotation.x, clampf(mouse_movement.x * weapon_rotation_amount * (-1 if invert_weapon_sway else 1),-.1,.1), 5 * delta)
+		offhand.rotation.y = lerpf(offhand.rotation.y, clampf(mouse_movement.y * weapon_rotation_amount * (-1 if invert_weapon_sway else 1),-.1,.1), 5 * delta)
+	
 func kill():
 	dead = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -147,17 +151,21 @@ func kill():
 func _headbob(time) -> Vector3:
 	var pos = Vector3(0,0,0)
 	pos.y += sin(time * BOB_FREQ) * BOB_AMP 
+	pos.x += sin(time * BOB_FREQ) * BOB_AMP 
 	return pos
 
 func _gunbob(time) -> Vector3:
-	var pos = Vector3(.6,-.3,-.7)
+	var pos = Vector3(0,-0.1,0)
 	pos.y += sin(time * GUN_BOB_FREQ) * GUN_BOB_AMP
+	
 	return pos
 
 func _offhandbob(time) -> Vector3:
-	var pos = Vector3(-.6,-.6,-.9)
+	var pos = Vector3(-.441,-.298,-.565)
 	pos.y += sin(time * LANTERN_BOB_FREQ) * LANTERN_BOB_AMP
+
 	return pos
+	
 
 
 func _on_health_component_died() -> void:

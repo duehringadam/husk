@@ -1,10 +1,10 @@
 extends Node
 
-@onready var animation_player: AnimationPlayer = $"../../../../AnimationPlayer"
-@onready var state_chart: StateChart = $"../../.."
+@export var state_chart: StateChart
+@onready var mainhand_anim: AnimationPlayer = $"../../../../Mainhand_Anim"
 
 func _on_held_forward_state_entered() -> void:
-	animation_player.play("hold_forward")
+	mainhand_anim.play("one_handed_sword_hold_forward")
 	SignalBus.emit_signal("can_attack", false)
 	SignalBus.emit_signal("primary_active",true)
 
@@ -14,5 +14,5 @@ func _on_held_forward_state_exited() -> void:
 
 
 func _on_held_forward_state_processing(delta: float) -> void:
-	if not (animation_player.is_playing() or Input.is_action_pressed("attack_primary")):
+	if not (Input.is_action_pressed("attack_primary")) and !mainhand_anim.is_playing():
 		state_chart.send_event("attack_forward")

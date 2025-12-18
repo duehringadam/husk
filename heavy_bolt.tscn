@@ -1,54 +1,19 @@
-[gd_scene load_steps=16 format=3 uid="uid://c5kaqjijtr1ve"]
+[gd_scene load_steps=5 format=3 uid="uid://c5kaqjijtr1ve"]
 
 [ext_resource type="Script" uid="uid://coilwpmlrrpu4" path="res://projectile.gd" id="1_w5f6u"]
 [ext_resource type="ArrayMesh" uid="uid://unepod5rwmun" path="res://Player/weapon/ALL/Belt/bolt.res" id="2_si0gp"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="5_1swpe"]
-[ext_resource type="Shader" uid="uid://cn072kbcnp0m0" path="res://GPUTrail-main/shaders/trail.gdshader" id="6_wkmag"]
-[ext_resource type="Shader" uid="uid://bjhxqywaiahde" path="res://GPUTrail-main/shaders/trail_draw_pass.gdshader" id="7_1swpe"]
-[ext_resource type="Texture2D" uid="uid://cp2dvq8gnm7mi" path="res://shaders/ursc_1.3.0/addons/ursc/bayer16.png" id="8_1swpe"]
-[ext_resource type="Script" uid="uid://ixj1a12i7hrm" path="res://GPUTrail-main/GPUTrail3D.gd" id="8_2ho4y"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_md0um"]
 radius = 0.0137137
 height = 0.0755693
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4huvn"]
-shader = ExtResource("6_wkmag")
-
-[sub_resource type="Gradient" id="Gradient_l3ccd"]
-colors = PackedColorArray(0.619608, 0.619608, 0.619608, 0.85098, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_v100t"]
-gradient = SubResource("Gradient_l3ccd")
-
-[sub_resource type="Curve" id="Curve_wkmag"]
-bake_resolution = 16
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_fmpjr"]
-curve = SubResource("Curve_wkmag")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1swpe"]
-resource_local_to_scene = true
-render_priority = 0
-shader = ExtResource("7_1swpe")
-shader_parameter/tex = ExtResource("8_1swpe")
-shader_parameter/uv_offset = Vector2(0, 0)
-shader_parameter/color_ramp = SubResource("GradientTexture1D_v100t")
-shader_parameter/curve = SubResource("CurveTexture_fmpjr")
-shader_parameter/emmission_transform = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
-shader_parameter/flags = 42
-
-[sub_resource type="QuadMesh" id="QuadMesh_5lwrl"]
-material = SubResource("ShaderMaterial_1swpe")
 
 [node name="bolt" type="Node3D" node_paths=PackedStringArray("damage_component", "ray_cast_3d", "gpu_trail")]
 script = ExtResource("1_w5f6u")
 speed = 30
 damage_component = NodePath("MeshInstance3D/DamageComponent")
 ray_cast_3d = NodePath("RayCast3D")
-gpu_trail = NodePath("MeshInstance3D/GPUTrail3D")
+gpu_trail = NodePath("")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.155507, 0, 14.9992, 0, 15, 0, -14.9992, 0, 0.155507, 0, 0, 0)
@@ -58,32 +23,11 @@ mesh = ExtResource("2_si0gp")
 transform = Transform3D(-0.0499742, 0, -0.00160455, 0, 0.05, 0, 0.00160455, 0, -0.0499742, 0, 0, 0)
 collision_mask = 6
 script = ExtResource("5_1swpe")
-amount = 20.0
-damage_type = 2
 metadata/_custom_type_script = "uid://dlsydctoxqbwy"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/DamageComponent"]
 transform = Transform3D(-0.0684165, -9.99977, 0, 9.99977, -0.0684165, 0, 0, 0, 10, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_md0um")
-
-[node name="GPUTrail3D" type="GPUParticles3D" parent="MeshInstance3D"]
-transform = Transform3D(2.07343e-05, 0, -0.00199989, 0, 0.002, 0, 0.00199989, 0, 2.07343e-05, -0.00805032, 0.000416985, 8.34633e-05)
-layers = 2
-amount = 19
-lifetime = 19.0
-explosiveness = 1.0
-fixed_fps = 60
-process_material = SubResource("ShaderMaterial_4huvn")
-draw_pass_1 = SubResource("QuadMesh_5lwrl")
-script = ExtResource("8_2ho4y")
-length = 19
-length_seconds = 0.31666666666666665
-texture = ExtResource("8_1swpe")
-color_ramp = SubResource("GradientTexture1D_v100t")
-curve = SubResource("CurveTexture_fmpjr")
-use_red_as_alpha = true
-_defaults_have_been_set = true
-metadata/_custom_type_script = "uid://ixj1a12i7hrm"
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 target_position = Vector3(0, 0, -0.3)

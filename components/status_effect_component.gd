@@ -16,6 +16,7 @@ var poisoned_preload = preload("res://status_effects/poisoned.tres")
 var sleep_preload = preload("res://status_effects/sleep.tres")
 
 var child_damage_component
+var status_buildup_progress_clamp: float
 
 func _ready() -> void:
 	if hurtbox != null:
@@ -60,21 +61,32 @@ func _apply_statuses(effects: Array[status_effect]):
 				additional_particles.process_material["turbulence_enabled"] = true
 			if i.damage_component_scene != null:
 				child_damage_component = i.damage_component_scene.instantiate()
-				add_child(child_damage_component)
+				get_parent().add_child(child_damage_component)
 				child_damage_component.connect("increment_shader",increment_shader)
+			if i.is_animated:
+				additional_particles.process_material["anim_speed"] = 1
+			if i.shader_buildup_max > 0:
+				status_buildup_progress_clamp = i.shader_buildup_max
 	else:
 		for i in effects:
 			self.draw_pass_1 = i.status_effect_mesh
 			self.process_material["gravity"].y = i.gravity
 			if mesh_to_affect != null:
 				if i.affected_target_next_pass != null:
-					mesh_to_affect.get_surface_override_material(0).next_pass = i.affected_target_next_pass.duplicate()
+					if mesh_to_affect.get_surface_override_material(0).next_pass == null:
+						mesh_to_affect.get_surface_override_material(0).next_pass = i.affected_target_next_pass.duplicate()
 			if i.turbulence:
 				self.process_material["turbulence_enabled"] = true
 			if i.damage_component_scene != null:
 				child_damage_component = i.damage_component_scene.instantiate()
 				add_child(child_damage_component)
-				child_damage_component.connect("increment_shader",increment_shader)
+				if !health_component.is_connected("health_changed", increment_shader):
+					health_component.connect("health_changed", increment_shader)
+			if i.is_animated:
+				self.process_material["anim_speed_min"] = 1.0
+			if i.shader_buildup_max > 0:
+				status_buildup_progress_clamp = i.shader_buildup_max
+
 
 func check_status_type(status: Global.STATUS_TYPE) -> status_effect:
 	match status:
@@ -100,22 +112,23 @@ func remove_status(effect: status_effect):
 			child_damage_component.queue_free()
 		emitting = false
 		available_statuses[effect.effect_type] = 0
-		if effect.affected_target_next_pass != null:
-			var material = mesh_to_affect.get_surface_override_material(0).next_pass
-			var tween = get_tree().create_tween()
-			tween.tween_property(material, "shader_parameter/progress",0,2)
+		var material = mesh_to_affect.get_surface_override_material(0).next_pass
+		var tween = get_tree().create_tween()
+		tween.tween_property(material, "shader_parameter/progress",0,1)
+	
 
-func increment_shader(_actual: float):
+func increment_shader(amount: float, new_value: float):
+	print(status_buildup_progress_clamp)
 	if health_component != null:
-		if health_component.current_health <= 0:
+		if new_value <= 0:
 			var material = mesh_to_affect.get_surface_override_material(0).next_pass
 			var tween = get_tree().create_tween()
-			tween.tween_property(material, "shader_parameter/progress",clampf(material["shader_parameter/progress"]+1,0,.65),.5)
+			tween.tween_property(material, "shader_parameter/progress",clampf(material["shader_parameter/progress"]+1,0,status_buildup_progress_clamp),.5)
 		else:
-			var ratio = 1-health_component.current_health/health_component.max_health
+			var ratio = 1-(health_component.current_health/health_component.max_health)
 			var material = mesh_to_affect.get_surface_override_material(0).next_pass
 			var tween = get_tree().create_tween()
-			tween.tween_property(material, "shader_parameter/progress",clampf(material["shader_parameter/progress"]+ratio,0,.45),.5)
+			tween.tween_property(material, "shader_parameter/progress",clampf(material["shader_parameter/progress"]+ratio,0,status_buildup_progress_clamp),.5)
 
 func _on_death():
 	for i in statuses.values():

@@ -15,9 +15,11 @@ dest_files=["res://.godot/imported/DeadTreePack.fbx-e2d6ba9d1983d9b6d190dc3c4d7c
 
 nodes/root_type=""
 nodes/root_name=""
+nodes/root_script=null
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false
+nodes/use_name_suffixes=true
 nodes/use_node_type_suffixes=true
 meshes/ensure_tangents=true
 meshes/generate_lods=true
@@ -32,6 +34,9 @@ animation/trimming=true
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
+materials/extract=0
+materials/extract_format=0
+materials/extract_path=""
 _subresources={
 "meshes": {
 "Vert_002": {
@@ -40,7 +45,8 @@ _subresources={
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
 "save_to_file/enabled": true,
-"save_to_file/path": "res://scenes/psx-dead-tree-pack/source/DeadTreePack/tree3.res"
+"save_to_file/fallback_path": "res://scenes/psx-dead-tree-pack/source/DeadTreePack/tree3.res",
+"save_to_file/path": "uid://cl76b4yvaba2c"
 },
 "Vert_003": {
 "generate/lightmap_uv": 0,
@@ -48,7 +54,8 @@ _subresources={
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
 "save_to_file/enabled": true,
-"save_to_file/path": "res://scenes/psx-dead-tree-pack/source/DeadTreePack/tree2.res"
+"save_to_file/fallback_path": "res://scenes/psx-dead-tree-pack/source/DeadTreePack/tree2.res",
+"save_to_file/path": "uid://mllhcra267cm"
 },
 "Vert_005": {
 "generate/lightmap_uv": 0,
@@ -56,10 +63,12 @@ _subresources={
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
 "save_to_file/enabled": true,
-"save_to_file/path": "res://scenes/psx-dead-tree-pack/source/DeadTreePack/tree1.res"
+"save_to_file/fallback_path": "res://scenes/psx-dead-tree-pack/source/DeadTreePack/tree1.res",
+"save_to_file/path": "uid://7yt8ih1ld2o2"
 }
 }
 }
 fbx/importer=0
 fbx/allow_geometry_helper_nodes=false
 fbx/embedded_image_handling=1
+fbx/naming_version=1

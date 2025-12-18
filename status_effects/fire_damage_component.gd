@@ -19,7 +19,7 @@ func _physics_process(delta: float) -> void:
 					get_tree().create_timer(1).timeout.connect(func(): hits.clear())
 					for i in damage:
 						if i > 0:
-							var actual = other.take_damage(damage_types, status_types, self)
+							var actual = other.take_damage(damage_types, status_types, stance_damage_value, self)
 							emit_signal("damage_dealt", damage_types, actual, other)
 							emit_signal("increment_shader", actual)
-							AudioManager.play_sound(hit_sound, self.global_position, 0.0)
+							AudioManager.play_sound(hit_sound, self.global_position, -5)

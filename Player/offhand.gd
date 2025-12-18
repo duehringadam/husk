@@ -1,14 +1,14 @@
 extends Node3D
 
 @export var weapon: item: set = _set_item
-@onready var mainhand: Node3D = $"../mainhand"
+@export var mainhand: Node3D
 
 
 func _set_item(new_item):
 	weapon = new_item
 	if mainhand.weapon != null:
 		if mainhand.get_child(0).two_handed:
-			return
+			mainhand.unequip()
 	if get_child_count() != 0:
 		unequip()
 	var item_add = new_item.item_scene.instantiate()

@@ -1,0 +1,748 @@
+[gd_scene load_steps=4 format=3 uid="uid://bdhwmd4i2y2rv"]
+
+[ext_resource type="PackedScene" uid="uid://bt2yp4lr4l2we" path="res://scenes/menus/credits/scrolling_credits.tscn" id="1_jw1kl"]
+[ext_resource type="Script" uid="uid://c71kimpjti6cj" path="res://scenes/menus/end_credits/end_credits.gd" id="2_skbm0"]
+[ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_menus_template/base/scripts/capture_focus.gd" id="4_d7507"]
+
+[node name="EndCredits" instance=ExtResource("1_jw1kl")]
+script = ExtResource("2_skbm0")
+main_menu_scene = "res://scenes/menus/main_menu/main_menu_with_animations.tscn"
+force_mouse_mode_visible = false
+
+[node name="BackgroundColor" type="ColorRect" parent="." index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="BackgroundTextureRect" type="TextureRect" parent="." index="1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ScrollContainer" parent="." index="2"]
+scroll_vertical = 0
+
+[node name="CreditsLabel" parent="ScrollContainer/VBoxContainer" index="1"]
+text = "[center][font_size=24]HUSK[/font_size]
+[font_size=24]ShroomJam 2025[/font_size]
+
+[font_size=48]Programming [/font_size]
+[font_size=24]Adam Duehring[/font_size]
+
+[font_size=48]Story [/font_size]
+[font_size=24]Adam Duehring[/font_size]
+
+[font_size=48]Music [/font_size]
+[font_size=24]Duke Stanza[/font_size]
+
+[font_size=48]3d Help[/font_size]
+[font_size=24]pumpkinsmile[/font_size]
+
+[font_size=48]Sourced[/font_size]
+[font_size=32]Addons[/font_size]
+[font_size=20][url=https://github.com/AdeelTariq/First-Person-Horror-Template]Game Controls[/url][/font_size]
+Author: [url=]Adeel Tariq[/url]  
+License: [url=]MIT license (c) 2025-present[/url]  
+
+[font_size=20][url=https://github.com/AdeelTariq/First-Person-Horror-Template]Prompt Formatters[/url][/font_size]
+Author: [url=]Adeel Tariq[/url]  
+License: [url=]MIT license (c) 2025-present[/url]  
+
+[font_size=20][url=https://github.com/Maaack/Godot-Menus-Template]Maaacks Icons Installer[/url][/font_size]
+Author: [url=https://github.com/Maaack/Godot-Menus-Template/graphs/contributors]Marek Belski and contributors[/url]  
+License: [url=https://github.com/Maaack/Godot-Menus-Template/blob/main/LICENSE.txt]MIT license (c) 2022-present[/url]  
+
+[font_size=20][url=https://github.com/AdeelTariq/First-Person-Horror-Template]Player[/url][/font_size]
+Author: [url=]Adeel Tariq[/url]  
+License: [url=]MIT license (c) 2025-present[/url]  
+
+[font_size=20][url=https://github.com/AdeelTariq/First-Person-Horror-Template]Interaction System[/url][/font_size]
+Author: [url=]Adeel Tariq[/url]  
+License: [url=]MIT license (c) 2025-present[/url]  
+
+[font_size=20][url=https://github.com/Maaack/Godot-Menus-Template]Maaacks Menus Template[/url][/font_size]
+Author: [url=https://github.com/Maaack/Godot-Menus-Template/graphs/contributors]Marek Belski and contributors[/url]  
+License: [url=https://github.com/Maaack/Godot-Menus-Template/blob/main/LICENSE.txt]MIT license (c) 2022-present[/url]  
+
+[font_size=20][url=https://github.com/AdeelTariq/First-Person-Horror-Template]Game Pieces[/url][/font_size]
+Author: [url=]Adeel Tariq[/url]  
+License: [url=]MIT license (c) 2025-present[/url]  
+
+[font_size=20][url=https://github.com/AdeelTariq/First-Person-Horror-Template]Credits Generator[/url][/font_size]
+Author: [url=]Adeel Tariq[/url]  
+License: [url=]MIT license (c) 2025-present[/url]  
+
+[font_size=32]Assets[/font_size]
+[font_size=24]Models[/font_size]
+[font_size=20][url=https://pizzadoggy.itch.io/psx-mega-pack]PSX Mega Pack[/url][/font_size]
+Author: [Pizza Doggy]   
+
+[font_size=20][url=https://pizzadoggy.itch.io/psx-mega-pack-2]PSX Mega Pack 2[/url][/font_size]
+Author: [Pizza Doggy] 
+
+[font_size=24]SFX[/font_size]
+[font_size=20][url=https://pixabay.com/sound-effects/]Pixabay[/url][/font_size]
+Author: [Varied] 
+License: [url=http://creativecommons.org/publicdomain/zero/1.0/]Creative Commons Zero, CC0[/url]  
+
+[font_size=24]Others[/font_size]
+[font_size=20][url=https://kenney.nl/assets/input-prompts]Kenney Input Prompts[/url][/font_size]
+Author: [url=www.kenney.nl]Kenney[/url]  
+License: [url=http://creativecommons.org/publicdomain/zero/1.0/]Creative Commons Zero, CC0[/url]  
+
+
+[font_size=48]Tools[/font_size]
+
+[font_size=24]Git[/font_size]
+Author: [url=https://github.com/torvalds]Linus Torvalds[/url]  
+Source: [url=https://git-scm.com/downloads]git-scm.com[/url]  
+License: [url=https://opensource.org/licenses/GPL-2.0]GNU General Public License version 2[/url]
+
+
+[font_size=48]Godot[/font_size]
+Copyright (c) 2014-present Godot Engine contributors (see AUTHORS.md).
+Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the \"Software\"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+[font_size=48]Godot Third Party[/font_size]
+
+[font_size=24]Godot Engine[/font_size]
+**Copyright**  
+2014-present, Godot Engine contributors  
+2007-2014, Juan Linietsky, Ariel Manzur  
+**License**: Expat  
+
+[font_size=24]Godot Engine logo[/font_size]
+**Copyright**  
+2017, Andrea Calabró  
+**License**: CC-BY-4.0  
+
+[font_size=24]Bullet Continuous Collision Detection and Physics Library[/font_size]
+**Copyright**  
+2011, Ole Kniemeyer, MAXON, www.maxon.net  
+2014-present, Godot Engine contributors  
+2007-2014, Juan Linietsky, Ariel Manzur  
+**License**: Expat and Zlib  
+
+**Copyright**  
+2003-2008, Erwin Coumans  
+2014-present, Godot Engine contributors  
+2007-2014, Juan Linietsky, Ariel Manzur  
+**License**: Expat and Zlib  
+
+**Copyright**  
+2007, Starbreeze Studios  
+2014-present, Godot Engine contributors  
+2007-2014, Juan Linietsky, Ariel Manzur  
+**License**: Expat and Zlib  
+
+[font_size=24]Betsy[/font_size]
+**Copyright**  
+2020-2022, Matias N. Goldberg  
+**License**: Expat  
+
+[font_size=24]Chipmunk2D Joint Constraints[/font_size]
+**Copyright**  
+2007, Scott Lembcke  
+**License**: Expat  
+
+[font_size=24]Open Dynamics Engine[/font_size]
+**Copyright**  
+2001-2003, Russell L. Smith, Alen Ladavac, Nguyen Binh  
+**License**: BSD-3-clause  
+
+[font_size=24]Jolt Physics[/font_size]
+**Copyright**  
+2021, Jorrit Rouwe  
+2014-present, Godot Engine contributors  
+2007-2014, Juan Linietsky, Ariel Manzur  
+**License**: Expat  
+
+**Copyright**  
+2021, Jorrit Rouwe  
+**License**: Expat  
+
+[font_size=24]Joint Non-Local Means (JNLM) denoiser[/font_size]
+**Copyright**  
+2020, Manuel Prandini  
+2014-present, Godot Engine contributors  
+2007-2014, Juan Linietsky, Ariel Manzur  
+**License**: Expat  
+
+[font_size=24]The Android Open Source Project[/font_size]
+**Copyright**  
+2008-2016, The Android Open Source Project  
+2002, Google, Inc.  
+**License**: Apache-2.0  
+
+[font_size=24]ProcessPhoenix[/font_size]
+**Copyright**  
+2015, Jake Wharton  
+**License**: Apache-2.0  
+
+[font_size=24]Robert Penner's Easing Functions[/font_size]
+**Copyright**  
+2001, Robert Penner  
+2014-present, Godot Engine contributors  
+2007-2014, Juan Linietsky, Ariel Manzur  
+**License**: Expat  
+
+[font_size=24]NVidia's FXAA 3.11, simplified by Simon Rodriguez[/font_size]
+**Copyright**  
+2014-2015, NVIDIA CORPORATION  
+2017 Simon Rodriguez  
+**License**: BSD-3-clause and Expat  
+
+[font_size=24]Intel ASSAO and related files[/font_size]
+**Copyright**  
+2016, Intel Corporation  
+**License**: Expat  
+
+[font_size=24]Temporal Anti-Aliasing resolve implementation[/font_size]
+**Copyright**  
+2016, Panos Karabelas  
+**License**: Expat  
+
+[font_size=24]Subpixel Morphological Antialiasing[/font_size]
+**Copyright**  
+2013, Jorge Jimenez  
+2013, Jose I. Echevarria  
+2013, Belen Masia  
+2013, Fernando Navarro  
+2013, Diego Gutierrez  
+**License**: Expat  
+
+[font_size=24]AccessKit[/font_size]
+**Copyright**  
+2023, The AccessKit Authors.  
+**License**: Expat  
+
+[font_size=24]AMD FidelityFX Super Resolution[/font_size]
+**Copyright**  
+2021, Advanced Micro Devices, Inc.  
+**License**: Expat  
+
+[font_size=24]AMD FidelityFX Super Resolution 2[/font_size]
+**Copyright**  
+2022-2023, Advanced Micro Devices, Inc.  
+**License**: Expat  
+
+[font_size=24]ANGLE[/font_size]
+**Copyright**  
+2018, The ANGLE Project Authors.  
+**License**: BSD-3-clause  
+
+[font_size=24]Arm ASTC Encoder[/font_size]
+**Copyright**  
+2011-2025, Arm Limited  
+**License**: Apache-2.0  
+
+[font_size=24]Basis Universal[/font_size]
+**Copyright**  
+2019-2024, Binomial LLC.  
+**License**: Apache-2.0  
+
+[font_size=24]Brotli[/font_size]
+**Copyright**  
+2009, 2010, 2013-2016 by the Brotli Authors.  
+**License**: Expat  
+
+[font_size=24]CA certificates[/font_size]
+**Copyright**  
+Mozilla Contributors  
+**License**: MPL-2.0  
+
+[font_size=24]Clipper2[/font_size]
+**Copyright**  
+2010-2025, Angus Johnson  
+**License**: BSL-1.0  
+
+[font_size=24]Convection Texture Tools Stand-Alone Kernels[/font_size]
+**Copyright**  
+2018, Eric Lasota  
+2018, Microsoft Corp.  
+**License**: Expat  
+
+[font_size=24]D3D12 Memory Allocator[/font_size]
+**Copyright**  
+2019-2022 Advanced Micro Devices, Inc.  
+**License**: Expat  
+
+[font_size=24]DirectX Headers[/font_size]
+**Copyright**  
+Microsoft Corporation  
+**License**: Expat  
+
+[font_size=24]doctest[/font_size]
+**Copyright**  
+2016-2023, Viktor Kirilov  
+**License**: Expat  
+
+[font_size=24]Embree[/font_size]
+**Copyright**  
+2009-2021 Intel Corporation  
+**License**: Apache-2.0  
+
+[font_size=24]ENet[/font_size]
+**Copyright**  
+2002-2024, Lee Salzman  
+**License**: Expat  
+
+[font_size=24]etcpak[/font_size]
+**Copyright**  
+2013-2022, Bartosz Taudul  
+**License**: BSD-3-clause  
+
+[font_size=24]DroidSans font[/font_size]
+**Copyright**  
+2008, The Android Open Source Project  
+**License**: Apache-2.0  
+
+[font_size=24]JetBrains Mono font[/font_size]
+**Copyright**  
+2020, JetBrains s.r.o.  
+**License**: OFL-1.1  
+
+[font_size=24]Noto Sans font[/font_size]
+**Copyright**  
+2012, Google Inc.  
+**License**: OFL-1.1  
+
+[font_size=24]Vazirmatn font[/font_size]
+**Copyright**  
+2015, The Vazirmatn Project Authors.  
+**License**: OFL-1.1  
+
+[font_size=24]The FreeType Project[/font_size]
+**Copyright**  
+1996-2023, David Turner, Robert Wilhelm, and Werner Lemberg.  
+**License**: FTL  
+
+[font_size=24]glad[/font_size]
+**Copyright**  
+2013-2022, David Herberth  
+2013-2020, The Khronos Group Inc.  
+**License**: CC0-1.0 and Apache-2.0  
+
+[font_size=24]glslang[/font_size]
+**Copyright**  
+2015-2020, Google, Inc.  
+2014-2020, The Khronos Group Inc  
+2002, NVIDIA Corporation.  
+**License**: glslang  
+
+[font_size=24]Graphite engine[/font_size]
+**Copyright**  
+2010, SIL International  
+**License**: Expat  
+
+[font_size=24]Grisu2 float serialization algorithm[/font_size]
+**Copyright**  
+2009, Florian Loitsch  
+2018-2023, The simdjson authors  
+**License**: Expat and Apache-2.0  
+
+[font_size=24]HarfBuzz text shaping library[/font_size]
+**Copyright**  
+2010-2022, Google, Inc.  
+2015-2020, Ebrahim Byagowi  
+2019,2020, Facebook, Inc.  
+2012, 2015, Mozilla Foundation  
+2011, Codethink Limited  
+2008, 2010, Nokia Corporation and/or its subsidiary(-ies)  
+2009, Keith Stribley  
+2011, Martin Hosken and SIL International  
+2007, Chris Wilson  
+2005-2006, 2020-2023, Behdad Esfahbod  
+2004, 2007-2010, 2013, 2021-2023, Red Hat, Inc.  
+1998-2005, David Turner and Werner Lemberg  
+2016, Igalia, S.L.  
+2022, Matthias Clasen  
+2018, 2021, Khaled Hosny  
+2018-2020, Adobe, Inc.  
+2013-2015, Alexei Podtelezhnikov  
+**License**: HarfBuzz  
+
+[font_size=24]International Components for Unicode[/font_size]
+**Copyright**  
+2016-2024, Unicode, Inc.  
+**License**: Unicode  
+
+[font_size=24]libbacktrace[/font_size]
+**Copyright**  
+2012-2021, Free Software Foundation, Inc.  
+**License**: BSD-3-clause  
+
+[font_size=24]libjpeg-turbo[/font_size]
+**Copyright**  
+2009-2024, D. R. Commander  
+2015, Viktor Szathmáry.  
+1991-2020, Thomas G. Lane, Guido Vollbeding  
+**License**: BSD-3-clause and IJG  
+
+[font_size=24]KTX[/font_size]
+**Copyright**  
+2013-2020, Mark Callow  
+2010-2020 The Khronos Group, Inc.  
+**License**: Apache-2.0  
+
+[font_size=24]OggVorbis[/font_size]
+**Copyright**  
+2002, Xiph.org Foundation  
+**License**: BSD-3-clause  
+
+**Copyright**  
+2002-2015, Xiph.org Foundation  
+**License**: BSD-3-clause  
+
+[font_size=24]libpng[/font_size]
+**Copyright**  
+1995-2025, The PNG Reference Library Authors.  
+2018-2025, Cosmin Truta.  
+2000-2002, 2004, 2006-2018 Glenn Randers-Pehrson.  
+1996-1997, Andreas Dilger.  
+1995-1996, Guy Eric Schalnat, Group 42, Inc.  
+**License**: Zlib  
+
+[font_size=24]OggTheora[/font_size]
+**Copyright**  
+2002-2009, Xiph.org Foundation  
+**License**: BSD-3-clause  
+
+[font_size=24]WebP codec[/font_size]
+**Copyright**  
+2010, Google Inc.  
+**License**: BSD-3-clause  
+
+[font_size=24]Manifold[/font_size]
+**Copyright**  
+2020-2025, The Manifold Authors  
+**License**: Apache-2.0  
+
+[font_size=24]Mbed TLS[/font_size]
+**Copyright**  
+The Mbed TLS Contributors  
+**License**: Apache-2.0  
+
+[font_size=24]meshoptimizer[/font_size]
+**Copyright**  
+2016-2024, Arseny Kapoulkine  
+**License**: Expat  
+
+[font_size=24]mingw-std-threads[/font_size]
+**Copyright**  
+2016, Mega Limited  
+**License**: BSD-2-clause  
+
+[font_size=24]MiniMP3[/font_size]
+**Copyright**  
+lieff  
+**License**: CC0-1.0  
+
+[font_size=24]MiniUPnP Project[/font_size]
+**Copyright**  
+2005-2025, Thomas Bernard  
+**License**: BSD-3-clause  
+
+[font_size=24]MiniZip[/font_size]
+**Copyright**  
+1998-2010, Gilles Vollant  
+2007-2008, Even Rouault  
+2009-2010, Mathias Svensson  
+**License**: Zlib  
+
+[font_size=24]bcdec[/font_size]
+**Copyright**  
+2022, Sergii Kudlai  
+**License**: Expat  
+
+[font_size=24]Fast Filtering of Reflection Probes[/font_size]
+**Copyright**  
+2016, Activision Publishing, Inc.  
+**License**: Expat  
+
+[font_size=24]FastLZ[/font_size]
+**Copyright**  
+2005-2020, Ariya Hidayat  
+**License**: Expat  
+
+[font_size=24]FastNoise Lite[/font_size]
+**Copyright**  
+2023, Jordan Peck and contributors  
+**License**: Expat  
+
+[font_size=24]libjingle[/font_size]
+**Copyright**  
+2012-2013, Google Inc.  
+**License**: BSD-3-clause  
+
+[font_size=24]Tangent Space Normal Maps implementation[/font_size]
+**Copyright**  
+2011, Morten S. Mikkelsen  
+**License**: Zlib  
+
+[font_size=24]NVIDIA NVAPI (minimal excerpt)[/font_size]
+**Copyright**  
+2019-2022, NVIDIA Corporation  
+**License**: Expat  
+
+[font_size=24]OK Lab color space[/font_size]
+**Copyright**  
+2021, Björn Ottosson  
+**License**: Expat  
+
+[font_size=24]Minimal PCG32 implementation[/font_size]
+**Copyright**  
+2014, M.E. O'Neill  
+**License**: Apache-2.0  
+
+[font_size=24]PolyPartition / Triangulator[/font_size]
+**Copyright**  
+2011-2021, Ivan Fratric and contributors  
+**License**: Expat  
+
+[font_size=24]Quite OK Audio Format[/font_size]
+**Copyright**  
+2023, Dominic Szablewski  
+**License**: Expat  
+
+[font_size=24]r128 library[/font_size]
+**Copyright**  
+Alan Hickman  
+**License**: public-domain or Unlicense  
+
+[font_size=24]SMAZ[/font_size]
+**Copyright**  
+2006-2009, Salvatore Sanfilippo  
+**License**: BSD-3-clause  
+
+[font_size=24]SMOL-V[/font_size]
+**Copyright**  
+2016-2024, Aras Pranckevicius  
+**License**: public-domain or Unlicense or Expat  
+
+[font_size=24]stb libraries[/font_size]
+**Copyright**  
+Sean Barrett  
+**License**: public-domain or Unlicense or Expat  
+
+[font_size=24]YUV2RGB[/font_size]
+**Copyright**  
+2008-2011, Robin Watts  
+**License**: BSD-2-clause  
+
+[font_size=24]Multi-channel signed distance field generator[/font_size]
+**Copyright**  
+2014-2025, Viktor Chlumsky  
+**License**: Expat  
+
+[font_size=24]OpenXR Loader[/font_size]
+**Copyright**  
+2020-2025, The Khronos Group Inc.  
+**License**: Apache-2.0  
+
+[font_size=24]PCRE2[/font_size]
+**Copyright**  
+1997-2024, University of Cambridge  
+2009-2024, Zoltan Herczeg  
+**License**: BSD-3-clause  
+
+[font_size=24]Recast[/font_size]
+**Copyright**  
+2009, Mikko Mononen  
+**License**: Zlib  
+
+[font_size=24]RVO2[/font_size]
+**Copyright**  
+2016, University of North Carolina at Chapel Hill  
+**License**: Apache-2.0  
+
+[font_size=24]SDL[/font_size]
+**Copyright**  
+1997-2025, Sam Lantinga  
+**License**: Zlib  
+
+[font_size=24]hidapi[/font_size]
+**Copyright**  
+2010, Alan Ott, Signal 11 Software  
+**License**: BSD-3-Clause  
+
+[font_size=24]SPIRV-Cross[/font_size]
+**Copyright**  
+2015-2021, Arm Limited  
+**License**: Apache-2.0 or Expat  
+
+[font_size=24]SPIRV-Reflect[/font_size]
+**Copyright**  
+2017-2022, Google Inc.  
+**License**: Apache-2.0  
+
+[font_size=24]Swappy[/font_size]
+**Copyright**  
+2019, The Android Open Source Project  
+**License**: Apache-2.0  
+
+[font_size=24]ThorVG[/font_size]
+**Copyright**  
+2020-2024, The ThorVG Project  
+**License**: Expat  
+
+[font_size=24]TinyEXR[/font_size]
+**Copyright**  
+2014-2021, Syoyo Fujita  
+2002, Industrial Light & Magic, a division of Lucas Digital Ltd. LLC  
+**License**: BSD-3-clause  
+
+[font_size=24]ufbx[/font_size]
+**Copyright**  
+2020, Samuli Raivio  
+**License**: Expat  
+
+[font_size=24]V-HACD[/font_size]
+**Copyright**  
+2011, Khaled Mamou  
+2003-2009, Erwin Coumans  
+**License**: BSD-3-clause  
+
+[font_size=24]volk[/font_size]
+**Copyright**  
+2018-2024, Arseny Kapoulkine  
+**License**: Expat  
+
+[font_size=24]Vulkan Headers[/font_size]
+**Copyright**  
+2014-2024, The Khronos Group Inc.  
+2014-2024, Valve Corporation  
+2014-2024, LunarG, Inc.  
+**License**: Apache-2.0  
+
+[font_size=24]Vulkan Memory Allocator[/font_size]
+**Copyright**  
+2017-2024, Advanced Micro Devices, Inc.  
+**License**: Expat  
+
+[font_size=24]Wayland core protocol[/font_size]
+**Copyright**  
+2008-2012, Kristian Høgsberg  
+2010-2012, Intel Corporation  
+2011, Benjamin Franzke  
+2012, Collabora, Ltd.  
+**License**: Expat  
+
+[font_size=24]Wayland protocols[/font_size]
+**Copyright**  
+2008-2013, Kristian Høgsberg  
+2010-2013, Intel Corporation  
+2013, Rafael Antognolli  
+2013, Jasper St. Pierre  
+2014, Jonas Ådahl  
+2014, Jason Ekstrand  
+2014-2015, Collabora, Ltd.  
+2015, Red Hat Inc.  
+**License**: Expat  
+
+[font_size=24]Wslay[/font_size]
+**Copyright**  
+2011, 2012, 2015, Tatsuhiro Tsujikawa  
+**License**: Expat  
+
+[font_size=24]xatlas[/font_size]
+**Copyright**  
+2018-2020, Jonathan Young  
+2013, Thekla, Inc  
+2006, NVIDIA Corporation, Ignacio Castano  
+**License**: Expat  
+
+[font_size=24]zlib[/font_size]
+**Copyright**  
+1995-2024, Jean-loup Gailly and Mark Adler  
+**License**: Zlib  
+
+[font_size=24]Zstandard[/font_size]
+**Copyright**  
+Meta Platforms, Inc. and affiliates.  
+**License**: BSD-3-clause
+[/center]"
+
+[node name="CenterContainer" type="CenterContainer" parent="." index="3"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="EndMessagePanel" type="Panel" parent="CenterContainer" index="0"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(360, 120)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/EndMessagePanel" index="0"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ThankPlayer" type="Label" parent="CenterContainer/EndMessagePanel/VBoxContainer" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Thanks for playing!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/EndMessagePanel/VBoxContainer" index="1"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/EndMessagePanel/VBoxContainer/CenterContainer" index="0"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+script = ExtResource("4_d7507")
+
+[node name="ExitButton" type="Button" parent="CenterContainer/EndMessagePanel/VBoxContainer/CenterContainer/HBoxContainer" index="0"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Exit"
+
+[node name="MenuButton" type="Button" parent="CenterContainer/EndMessagePanel/VBoxContainer/CenterContainer/HBoxContainer" index="1"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Menu"
+
+[connection signal="pressed" from="CenterContainer/EndMessagePanel/VBoxContainer/CenterContainer/HBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="CenterContainer/EndMessagePanel/VBoxContainer/CenterContainer/HBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]

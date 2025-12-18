@@ -1,11 +1,10 @@
-[gd_scene load_steps=22 format=4 uid="uid://5i8e6fsne4v5"]
+[gd_scene load_steps=19 format=4 uid="uid://5i8e6fsne4v5"]
 
 [ext_resource type="Script" uid="uid://gbfdqpek0no8" path="res://spell_fire.gd" id="1_0eavj"]
 [ext_resource type="Texture2D" uid="uid://b4mgsikbc344q" path="res://Player/viewmodel/hands/psx-first-person-arms-free-game-assets/PSX_First_Person_Arms_arms.png" id="2_4h3xe"]
 [ext_resource type="PackedScene" uid="uid://ist04xesgvp0" path="res://spell_fire_projectile.tscn" id="2_rf353"]
-[ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="3_stlr1"]
 [ext_resource type="Script" uid="uid://d2ttm1mliwk5r" path="res://ik_right.gd" id="4_3yxkx"]
-[ext_resource type="Texture2D" uid="uid://255onixnbg8w" path="res://Assets/LeartesStudios/MysticDungeon/Art/Textures/smoke_04.png" id="5_0eavj"]
+[ext_resource type="QuadMesh" uid="uid://p0yd1xgsgykp" path="res://fire_animated.tres" id="6_rf353"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kqisc"]
 resource_name = "arms"
@@ -179,19 +178,9 @@ bind/45/name = &"sword_2"
 bind/45/bone = -1
 bind/45/pose = Transform3D(-0.6276164, 0.77852297, -1.1692308e-07, 1.3760209e-08, 2.170793e-07, 0.9999999, 0.77852297, 0.6276162, -1.0861427e-07, -1.3887665, 0.104847014, -0.21833906)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0eavj"]
-render_priority = 0
-shader = ExtResource("3_stlr1")
-shader_parameter/albedo_color = Color(0.70380783, 0.70380783, 0.70380783, 1)
-shader_parameter/albedo_texture = ExtResource("2_4h3xe")
-shader_parameter/albedo_texture_as_primary_color = false
-shader_parameter/mix_factor = 0.999999977648
-shader_parameter/texture_lod_halve_distance_override = 0.0
-shader_parameter/uv_offset = Vector2(0, 0)
-shader_parameter/uv_scale = Vector2(1, 1)
-shader_parameter/uv_scroll_speed = Vector2(0, 0)
-shader_parameter/cull_distance_override = 0.0
-shader_parameter/convert_vertex_colors = true
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0eavj"]
+albedo_color = Color(0.74138474, 0.7413847, 0.74138457, 1)
+albedo_texture = ExtResource("2_4h3xe")
 
 [sub_resource type="Curve" id="Curve_0eavj"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.80288464, 0.41573036), 0.0, 0.0, 0, 0]
@@ -222,31 +211,85 @@ scale_max = 1.5
 scale_curve = SubResource("CurveTexture_rf353")
 color = Color(1, 0, 0, 1)
 alpha_curve = SubResource("CurveTexture_0eavj")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
 turbulence_noise_speed = Vector3(0, 1, 0)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_stlr1"]
-transparency = 2
-alpha_scissor_threshold = 0.252
-alpha_antialiasing_mode = 0
-blend_mode = 1
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("5_0eavj")
-emission_enabled = true
-emission = Color(1, 0.5058824, 0, 1)
-emission_energy_multiplier = 2.0
-backlight = Color(1, 1, 1, 1)
-billboard_mode = 3
-billboard_keep_scale = true
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-grow_amount = -0.264
-distance_fade_max_distance = 1.0
-stencil_flags = 2
+[sub_resource type="Animation" id="Animation_0eavj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TargetIKLeft:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.30977494, 0.41481572, 0.47409666)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TargetIKLeft:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.40289658, -0.78035414, -0.42906055)]
+}
+tracks/2/type = "rotation_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("arms_armature/Skeleton3D:forearm.L")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0, 0.005, -0.054, 0.982)
 
-[sub_resource type="QuadMesh" id="QuadMesh_stlr1"]
-material = SubResource("StandardMaterial3D_stlr1")
-size = Vector2(0.1, 0.1)
+[sub_resource type="Animation" id="Animation_rf353"]
+resource_name = "fire_spell_attack"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TargetIKLeft:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.30977494, 0.41481572, 0.47409666), Vector3(0.3634924, 0.41481572, 0.3497157), Vector3(0.363, 0.465, 0.35), Vector3(0.30977494, 0.41481572, 0.47409666)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TargetIKLeft:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.16817226, 0.49736053),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.40289658, -0.78035414, -0.42906055), Vector3(0.12432385, 1.5223707, -0.45556748), Vector3(-0.40289658, -0.78035414, -0.42906055)]
+}
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("arms_armature/Skeleton3D:upper_arm.L")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.23, 0.317, -0.167)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("arms_armature/Skeleton3D:forearm.L")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0.18130183, 0.005123422, -0.054098956, 0.981925, 0.1717504, 1, 0.941, -0.339, 0.013, 0.02)
 
 [sub_resource type="Animation" id="Animation_4h3xe"]
 resource_name = "fire_spell_idle"
@@ -277,61 +320,6 @@ tracks/1/keys = {
 "values": [Vector3(-0.40289658, -0.78035414, -0.42906055), Vector3(-0.4886922, -1.2566371, -0.429351), Vector3(-0.37175512, -0.87266463, -0.429351), Vector3(-0.40289658, -0.78035414, -0.42906055)]
 }
 
-[sub_resource type="Animation" id="Animation_0eavj"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TargetIKLeft:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.30977494, 0.41481572, 0.47409666)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("TargetIKLeft:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.40289658, -0.78035414, -0.42906055)]
-}
-
-[sub_resource type="Animation" id="Animation_rf353"]
-resource_name = "fire_spell_attack"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TargetIKLeft:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.16666667, 0.3, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0.30977494, 0.41481572, 0.47409666), Vector3(0.3634924, 0.41481572, 0.3497157), Vector3(0.363, 0.465, 0.35), Vector3(0.30977494, 0.41481572, 0.47409666)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("TargetIKLeft:rotation")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.23333333, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.40289658, -0.78035414, -0.42906055), Vector3(-1.2897983, 1.1868238, -0.87964594), Vector3(-0.40289658, -0.78035414, -0.42906055)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rf353"]
 _data = {
 &"RESET": SubResource("Animation_0eavj"),
@@ -343,12 +331,13 @@ _data = {
 script = ExtResource("1_0eavj")
 spell_projectile = ExtResource("2_rf353")
 ray = NodePath("spell_raycast")
+weapon_initial_position = Vector3(-0.2, -0.665, -0.225)
 
 [node name="arms_armature" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.012435436, -0.1681863, 0.86541045)
+transform = Transform3D(-1.4, 0, -2.1139412e-07, 0, 1.4, 0, 2.1139412e-07, 0, -1.4, -0.012435436, -0.1681863, 0.86541045)
 
 [node name="Skeleton3D" type="Skeleton3D" parent="arms_armature"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.46972206, 0, -5.9604645e-08)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.36687317, -0.063797414, 0.0822317)
 bones/0/name = "spine"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 0.99954224, 0.03025413, 0, -0.03025413, 0.99954224, 0.015252764, 0.03435743, 0.036044255)
@@ -360,15 +349,15 @@ bones/1/name = "upper_arm.L"
 bones/1/parent = 0
 bones/1/rest = Transform3D(-0.46921688, 0.861266, 0.19507992, -0.8829167, -0.45325544, -0.12254482, -0.017122647, -0.22973946, 0.97310156, 0.1953, 0.29236248, -0.017462814)
 bones/1/enabled = true
-bones/1/position = Vector3(0.1953, 0.29236248, -0.017462814)
-bones/1/rotation = Quaternion(0, 0.104, -8.046, 0.513)
+bones/1/position = Vector3(0.23, 0.317, -0.167)
+bones/1/rotation = Quaternion(-0.07798768, 0.08598641, -0.955849, 0.26995736)
 bones/1/scale = Vector3(0.99999976, 0.9999999, 1)
 bones/2/name = "forearm.L"
 bones/2/parent = 1
 bones/2/rest = Transform3D(0.99409413, 0.10810001, -0.009554846, -0.10438447, 0.9284059, -0.35660395, -0.029678112, 0.35549524, 0.9342068, -4.9592927e-08, 0.2862151, 0)
 bones/2/enabled = true
 bones/2/position = Vector3(-4.9592927e-08, 0.2862151, 0)
-bones/2/rotation = Quaternion(0, 0.005, -0.054, 0.982)
+bones/2/rotation = Quaternion(0.18130183, 0.005123422, -0.054098956, 0.981925)
 bones/2/scale = Vector3(1, 0.99999994, 1)
 bones/3/name = "hand.L"
 bones/3/parent = 2
@@ -676,18 +665,17 @@ bones/45/scale = Vector3(1, 1.0000001, 1)
 layers = 2
 mesh = SubResource("ArrayMesh_j4gbj")
 skin = SubResource("Skin_16ch1")
-surface_material_override/0 = SubResource("ShaderMaterial_0eavj")
+surface_material_override/0 = SubResource("StandardMaterial3D_0eavj")
 
 [node name="IKLeft" type="SkeletonIK3D" parent="arms_armature/Skeleton3D"]
 transform = Transform3D(-1.3, 1.96295e-07, 8.58031e-15, 0, -5.68248e-08, 1.3, 1.96295e-07, 1.3, 5.68248e-08, 0.83737576, -1.7972109, 0.038122356)
 root_bone = &"upper_arm.L"
 tip_bone = &"hand.L"
-override_tip_basis = false
 target_node = NodePath("../../../TargetIKLeft")
 script = ExtResource("4_3yxkx")
 
 [node name="TargetIKLeft" type="Node3D" parent="."]
-transform = Transform3D(0.53149205, 0.5464886, -0.6471988, -0.38270587, 0.8365438, 0.39208463, 0.75568, 0.039296947, 0.65376097, 0.30977494, 0.41481572, 0.47409666)
+transform = Transform3D(0.5314922, 0.5464886, -0.64719874, -0.38270596, 0.8365438, 0.3920846, 0.7556802, 0.039296947, 0.6537609, 0.30977494, 0.41481572, 0.47409666)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="TargetIKLeft"]
 transform = Transform3D(0.11995289, -0.11267176, 0.9863653, 0.63165057, 0.77516437, 0.011730708, -0.7659168, 0.621631, 0.16415232, 0.036243796, 0.063952565, 0.017454892)
@@ -696,14 +684,14 @@ amount = 32
 lifetime = 0.3
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_0eavj")
-draw_pass_1 = SubResource("QuadMesh_stlr1")
+draw_pass_1 = ExtResource("6_rf353")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="TargetIKLeft/GPUParticles3D"]
 layers = 3
 light_color = Color(1, 0.3882353, 0, 1)
-light_energy = 0.05
+light_energy = 0.25
 shadow_enabled = true
-omni_range = 0.1
+omni_range = 0.2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

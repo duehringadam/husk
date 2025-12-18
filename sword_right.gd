@@ -1,28 +1,17 @@
 extends Node
 
-@onready var animation_player: AnimationPlayer = $"../../../../AnimationPlayer"
-@onready var state_chart: StateChart = $"../../.."
-@export var damage_component: DamageComponent
-@export var weapon: Node3D
-@onready var gpu_trail: GPUTrail3D = %GPUTrail3D
+@export var state_chart: StateChart
+@export var animation_tree: AnimationTree
+
 
 func _on_right_state_entered() -> void:
-	animation_player.play("swing_right")
-	gpu_trail.visible = true
-	damage_component.monitorable = true
-	damage_component.monitoring = true
-	AudioManager.play_sound(weapon.swing_sound,weapon.global_position,0)
-	var tween = get_tree().create_tween()
-	tween.tween_property(Global.player.camera,"fov", Global.camera_fov,.25)
-	await animation_player.animation_finished
-	state_chart.send_event("idle")
-
+	animation_tree.set("parameters/conditions/hold_right", true)
 
 
 func _on_right_state_exited() -> void:
-	damage_component.monitorable = false
-	damage_component.monitoring = false
+	animation_tree.set("parameters/conditions/hold_right", false)
 
 
 func _on_right_state_processing(delta: float) -> void:
-	pass # Replace with function body.
+	if not (Input.is_action_pressed("attack_primary") and animation_tree.animation_finished):
+		state_chart.send_event("swing")

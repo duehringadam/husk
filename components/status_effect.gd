@@ -11,3 +11,5 @@ extends Resource
 @export var affected_target_next_pass: ShaderMaterial
 @export_range(-9.8,9.8) var gravity: float
 @export var turbulence: bool 
+@export var is_animated: bool
+@export_range(0.0,1.0) var shader_buildup_max: float

@@ -1,17 +1,152 @@
-[gd_resource type="Resource" script_class="status_effect" load_steps=5 format=3 uid="uid://d1srffkhbks70"]
+[gd_resource type="Resource" script_class="status_effect" load_steps=13 format=3 uid="uid://d1srffkhbks70"]
 
-[ext_resource type="Material" uid="uid://bosq5hcbc1oej" path="res://shaders/burn_material.tres" id="1_al4dh"]
 [ext_resource type="PackedScene" uid="uid://54gj5htolv56" path="res://status_effects/fire_damage.tscn" id="1_el8fs"]
 [ext_resource type="Script" uid="uid://ca8ha7ig6gshg" path="res://components/status_effect.gd" id="1_p5b5h"]
-[ext_resource type="QuadMesh" uid="uid://co1jn44ey31hl" path="res://fire_mesh.tres" id="2_sdqui"]
+[ext_resource type="Texture2D" uid="uid://bgpuc5rjm2yh5" path="res://Textures/T_Fire01_SubUV.png" id="4_al4dh"]
+[ext_resource type="Texture2D" uid="uid://dgnarq1axwhae" path="res://Textures/T_Fire01_Tiled_D_Yellow.png" id="5_ujb7e"]
+
+[sub_resource type="Shader" id="Shader_al4dh"]
+code = "shader_type spatial;
+
+uniform float progress : hint_range(0.0, 1.0) = 0.0;
+uniform float noiseForce : hint_range(0.0, 1.0) = 0.2;
+uniform sampler2D noiseTexture;
+uniform vec4 burnColor : source_color = vec4(1.0, 0.3, 0.0, 1.0);
+uniform float borderWidth : hint_range(0.0, 0.5) = 0.1;
+uniform float direction : hint_range(0.0, 360.0) = 180.0;
+uniform vec2 scroll_direction;
+uniform float scroll_speed;
+uniform sampler2D albedo_texture : source_color;
+uniform float burn_axis : hint_range(0.0, 2.0) = 1.0;
+uniform bool cylindrical_burn = true;
+uniform float ash_alpha : hint_range(0.0, 1.0) = 0.3;
+uniform vec3 ash_color : source_color = vec3(0.3, 0.3, 0.3);
+
+varying vec3 world_position;
+varying vec3 local_position;
+
+void vertex() {
+	VERTEX = VERTEX + NORMAL * 0.0001;
+    world_position = VERTEX;
+    local_position = VERTEX;
+}
+
+void fragment(){
+	vec2 scrolled_uv = UV + scroll_direction * scroll_speed * TIME;
+	vec4 albedo = texture(noiseTexture, scrolled_uv);
+    vec4 base_color = texture(albedo_texture, UV);
+
+    float burn_progress;
+
+    if (cylindrical_burn) {
+        burn_progress = local_position.y;
+    } else {
+        if (burn_axis < 0.5) {
+            burn_progress = local_position.x;
+        } else if (burn_axis < 1.5) {
+            burn_progress = local_position.y;
+        } else {
+            burn_progress = local_position.z;
+        }
+    }
+
+    burn_progress = (burn_progress + 1.0) * 0.5;
+
+    float noise_sample = texture(noiseTexture, scrolled_uv).r;
+    float burn_line = burn_progress + (noise_sample * noiseForce);
+
+    bool is_burned = burn_line < progress;
+    bool is_border = burn_line < (progress + borderWidth);
+
+    vec3 final_albedo;
+    float final_alpha;
+
+    if (is_burned) {
+        final_albedo = ash_color;
+        final_alpha = ash_alpha;
+    } else if (is_border) {
+        float burn_mix = (progress + borderWidth - burn_line) / borderWidth;
+        final_albedo = mix(base_color.rgb, burnColor.rgb, burn_mix);
+        final_alpha = 1.0;
+    } else {
+        final_albedo = base_color.rgb;
+        final_alpha = base_color.a;
+    }
+
+    ALBEDO = final_albedo;
+    ALPHA = final_alpha;
+
+    if (is_border && !is_burned) {
+        float burn_mix = (progress + borderWidth - burn_line) / borderWidth;
+        EMISSION = burnColor.rgb * burn_mix * 0.5;
+    }
+}"
+
+[sub_resource type="Gradient" id="Gradient_ujb7e"]
+colors = PackedColorArray(1, 0.13725491, 0, 0, 1, 0.18431373, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ytnet"]
+gradient = SubResource("Gradient_ujb7e")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dpwem"]
+frequency = 0.0767
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hvb2d"]
+noise = SubResource("FastNoiseLite_dpwem")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vju1b"]
+render_priority = 0
+shader = SubResource("Shader_al4dh")
+shader_parameter/progress = 0.0
+shader_parameter/noiseForce = 0.250000011875
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_hvb2d")
+shader_parameter/burnColor = Color(1, 0.3764706, 0, 1)
+shader_parameter/borderWidth = 0.1
+shader_parameter/direction = 180.0
+shader_parameter/scroll_direction = Vector2(1, 1)
+shader_parameter/scroll_speed = 0.01
+shader_parameter/albedo_texture = SubResource("GradientTexture1D_ytnet")
+shader_parameter/burn_axis = 2.0
+shader_parameter/cylindrical_burn = true
+shader_parameter/ash_alpha = 0.5290000251275
+shader_parameter/ash_color = Color(0.2836822, 0.2836822, 0.2836822, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xcmeu"]
+resource_local_to_scene = true
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0.3254902, 0, 1)
+albedo_texture = ExtResource("4_al4dh")
+emission_enabled = true
+emission = Color(1, 0.21960784, 0, 1)
+emission_energy_multiplier = 7.02
+emission_texture = ExtResource("5_ujb7e")
+backlight = Color(1, 1, 1, 1)
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 6
+particles_anim_loop = true
+grow_amount = -0.264
+proximity_fade_distance = 1117.19
+distance_fade_max_distance = 1.0
+stencil_flags = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_ujb7e"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_xcmeu")
+size = Vector2(0.75, 0.75)
 
 [resource]
 script = ExtResource("1_p5b5h")
 damage_types = Dictionary[int, float]({
-6: 1.0
+6: 2.0
 })
 damage_component_scene = ExtResource("1_el8fs")
-status_effect_mesh = ExtResource("2_sdqui")
-affected_target_next_pass = ExtResource("1_al4dh")
-gravity = 4.799999999999999
+status_effect_mesh = SubResource("QuadMesh_ujb7e")
+affected_target_next_pass = SubResource("ShaderMaterial_vju1b")
+gravity = 2.3999999999999986
+is_animated = true
+shader_buildup_max = 0.65
 metadata/_custom_type_script = "uid://ca8ha7ig6gshg"
