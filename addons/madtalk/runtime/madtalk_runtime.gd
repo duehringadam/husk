@@ -423,6 +423,9 @@ func _ready():
 	emit_signal("time_updated", MadTalkGlobals.gametime)
 		
 
+func end_dialog():
+	dialog_queue.clear()
+
 func _prepare_sheet_sequence_map(sheet_name, sequence_id) -> int:
 	# Check if we need to lookup and add this sheet/sequence to map
 	# Happens the first time it is accessed
@@ -549,7 +552,9 @@ func _anim_dialog_text_visible(show: bool = true, percent_visible_range: Array= 
 					animated_text_tween.tween_callback(_on_animated_text_tween_completed)
 
 					if sfx_key_press:
-						sfx_key_press.play()
+						#sfx_key_press.play()
+						#sfx_key_press.pitch_scale = randf_range(.9,1.2)
+						AudioManager.play_sound_non_positional(sfx_key_press.stream,0.0)
 					await self.text_display_completed # both user interaction or animation_finished are routed here
 					if sfx_key_press:
 						sfx_key_press.stop()
@@ -603,6 +608,9 @@ func _anim_dialog_menu_visible(show: bool = true) -> void:
 			else:
 				if dialog_menu:
 					dialog_menu.hide()
+					GamePiecesEventBus.emit_signal("camera_lock_requested", false)
+					SignalBus.emit_signal("dialogue_ended")
+					Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 			
 			dialog_menu_active = false
 

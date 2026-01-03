@@ -6,6 +6,8 @@ signal apply_statuses(status_types: Global.STATUS_TYPE, application_amount: floa
 
 @onready var timer: Timer
 
+@export var hurtboxes_to_disable: Array[hurtbox_component]
+
 ## Reduction on incoming damage. Zero takes full damage, one takes none. For more complex behavior, override [method reduce_damage]
 @export var damage_resistances: Dictionary[DamageTypes.DAMAGE_TYPES, float]
 @export var damage_weakness: Dictionary[DamageTypes.DAMAGE_TYPES, float]
@@ -14,6 +16,7 @@ signal apply_statuses(status_types: Global.STATUS_TYPE, application_amount: floa
 
 ## Where to apply incoming damage
 @export var health_component: HealthComponent
+@export var bone_health_component: BoneHealthComponent
 @export var status_component: status_effect_component
 @export var stance_component: StanceComponent
 @export var invulnerability_duration: float
@@ -32,6 +35,9 @@ func _ready():
 ## start the invulnerability timer
 func invulnerability(duration: float):
 	timer.start(duration)
+	if hurtboxes_to_disable:
+		for i in hurtboxes_to_disable:
+			i.timer.start(i.duration)
 
 ## Override this to cusomize damage reduction (damage types, armor, etc)
 func modify_damage(damage_type: DamageTypes.DAMAGE_TYPES, amount: float, source: DamageComponent) -> float:
@@ -61,7 +67,14 @@ func take_damage(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float], stat
 			if status_types.size() != 0:
 				apply_status(status_types)
 			emit_signal("damage_taken", actual, source, hit_dir)
-			health_component.modify_health(-actual)
+			if health_component:
+				health_component.modify_health(-actual)
+			if bone_health_component:
+				bone_health_component.modify_health(-actual)
+				if damage_types.keys().has(DamageTypes.DAMAGE_TYPES.STRIKE):
+					bone_health_component.last_damage_taken = DamageTypes.DAMAGE_TYPES.STRIKE
+				if damage_types.keys().has(DamageTypes.DAMAGE_TYPES.SLASH):
+					bone_health_component.last_damage_taken = DamageTypes.DAMAGE_TYPES.SLASH
 			sum += actual
 	if stance_component != null:
 		stance_component.modify_stance(-stance_damage)

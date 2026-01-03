@@ -24,6 +24,13 @@ func kick():
 	is_kicking = true
 	animation_tree.set("parameters/conditions/kick", true)
 	var anim = animation_tree.get_animation("standing_kick")
-	await get_tree().create_timer(anim.length).timeout
+	await get_tree().create_timer(anim.length/1.5).timeout
 	is_kicking = false
+	animation_tree.set("parameters/conditions/endkick", true)
 	animation_tree.set("parameters/conditions/kick", false)
+	await animation_tree.animation_started
+	animation_tree.set("parameters/conditions/endkick", false)
+
+
+func _on_kick_damage_component_damage_dealt(types, actual: float, stance_damage: float, target: hurtbox_component) -> void:
+	Global.player.camera.apply_shake()

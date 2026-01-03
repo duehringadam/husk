@@ -1,7 +1,11 @@
-extends Spell
+extends Node3D
 
+@export var weapon_initial_position: Vector3
+@export var spell_projectile: PackedScene
 
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var target_ik_left: Node3D = $TargetIKLeft
+@onready var ray: RayCast3D = $spell_raycast
 
 func _ready() -> void:
 	animation_player.play("fire_spell_idle")

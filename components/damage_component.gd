@@ -13,7 +13,7 @@ signal damage_dealt(types: Dictionary[DamageTypes.DAMAGE_TYPES, float], actual: 
 ## How much damage to deal for basic attacks. Extend [DamageComponent] and
 ## override [method DamageComponent.get_damage] if customization is needed.
 var amount: float
-@export var hit_sound: AudioStream
+@export var hit_sound: AudioStreamPlayer3D
 @export var can_knockback: bool = true
 @export var damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float]
 @export var status_types: Dictionary[Global.STATUS_TYPE, float]
@@ -39,4 +39,6 @@ func _physics_process(delta: float) -> void:
 						if i > 0:
 							var actual = other.take_damage(damage_types, status_types, stance_damage_value, self)
 							emit_signal("damage_dealt", damage_types, actual, stance_damage_value, other)
-							AudioManager.play_sound(hit_sound, self.global_position, 0.0)
+							if hit_sound:
+								hit_sound.pitch_scale = randf_range(0.9,1.2)
+								hit_sound.play()

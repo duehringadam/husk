@@ -34,7 +34,7 @@ func _physics_process(_delta: float) -> void:
 		var distance_to_player: float = ray_cast.global_position.distance_to(global_position)
 		if distance_to_player > release_distance * _position_offset:
 			_released(_interaction_controller)
-	if linear_velocity.length() > 0.5:
+	if linear_velocity.length() > 15:
 		damage_component.monitorable = true
 		damage_component.monitoring = true
 	else:
@@ -156,11 +156,9 @@ func set_transparency(object: Node, value: float) -> void:
 		var mesh: MeshInstance3D = child
 		mesh.transparency = value
 
-func _on_damage_component_damage_dealt(types: Dictionary[DamageTypes.DAMAGE_TYPES, float], actual: float, target: hurtbox_component) -> void:
+func _on_damage_component_damage_dealt(types: Dictionary[DamageTypes.DAMAGE_TYPES, float], actual: float, stance_damage: float, target: hurtbox_component) -> void:
 	if throwable.linear_velocity.length() > 3:
 		health_component.modify_health(-(throwable.linear_velocity.length()))
-		if target.get_parent() is NPC:
-			target.get_parent().fall(Vector3.FORWARD)
 
 
 func _on_rigidbody_entered(body: Node) -> void:
@@ -168,12 +166,13 @@ func _on_rigidbody_entered(body: Node) -> void:
 		health_component.modify_health(-(throwable.linear_velocity.length()))
 
 func break_object():
-	var shattered_mesh_add = shattered_mesh.instantiate()
-	get_tree().current_scene.add_child(shattered_mesh_add)
-	shattered_mesh_add.global_transform = self.global_transform
-	shattered_mesh_add.break_mesh(throwable.linear_velocity, throwable_mesh.get_surface_override_material(0))
-	AudioManager.play_sound(break_sound, self.global_position, 0)
-	get_tree().create_timer(.05).timeout.connect(func(): self.queue_free())
+	if shattered_mesh:
+		var shattered_mesh_add = shattered_mesh.instantiate()
+		get_tree().current_scene.add_child(shattered_mesh_add)
+		shattered_mesh_add.global_transform = self.global_transform
+		shattered_mesh_add.break_mesh(throwable.linear_velocity, throwable_mesh.get_surface_override_material(0))
+		AudioManager.play_sound(break_sound, self.global_position, 0)
+		get_tree().create_timer(.05).timeout.connect(func(): self.queue_free())
 
 
 func _on_health_component_died() -> void:

@@ -9,7 +9,7 @@ var attack_once:= true
 func tick(actor: Node, blackboard: Blackboard) -> int:
 	
 	attack_once = true
-	actor.SPEED = 3.5
+	actor.SPEED = 2
 	actor_stored = actor
 	var current_location = actor_stored.global_position
 	var desired_location = actor_stored.navigation_agent.get_next_path_position()

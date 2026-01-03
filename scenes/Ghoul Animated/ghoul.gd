@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 @export var SPEED: float = 1
-
+@export var arms_group: Array[StringName]
 @onready var physical_bone_simulator: PhysicalBoneSimulator3D = %PhysicalBoneSimulator3D
 @onready var animation_tree: AnimationTree = %AnimationTree
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
@@ -39,16 +39,23 @@ func _push_rigid_bodies():
 			var push_force = mass_ratio *  5
 			c.get_collider().apply_impulse(push_dir * velocity_diff * push_force, c.get_position() - c.get_collider().global_position)
 
+func limp_arm():
+	physical_bone_simulator.physical_bones_start_simulation(arms_group)
 
 func _on_hurtbox_component_damage_taken(actual: float, source: DamageComponent, hit_dir: Vector3) -> void:
 	animation_tree.set("parameters/conditions/flinch", true)
 	get_tree().create_timer(.1).timeout.connect(func(): animation_tree.set("parameters/conditions/flinch", false))
 
 func fall():
-		physical_bone_simulator.physical_bones_start_simulation()
+	physical_bone_simulator.physical_bones_start_simulation()
+	hurtbox.monitorable = false
+	hurtbox.monitoring = false
+	beehave_tree.enabled = false
+	SPEED = 0
+	collision_layer = 0
 
 func _on_health_component_died() -> void:
-	var time_rand = randf_range(0.5,1.25)
+	var time_rand = randf_range(1,1.25)
 	get_tree().create_timer(time_rand).timeout.connect(func(): physical_bone_simulator.physical_bones_start_simulation())
 	collision_layer = 128
 	hurtbox.monitorable = false

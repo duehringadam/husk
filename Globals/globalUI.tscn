@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://c6av3xe4m2ujl" path="res://addons/madtalk/runtime/madtalk_runtime.gd" id="1_qttj8"]
 [ext_resource type="FontFile" uid="uid://ip8tcqh7uxmx" path="res://fonts/Alkhemikal.ttf" id="3_6sbyu"]
 [ext_resource type="Texture2D" uid="uid://dmj1j5r0psdlj" path="res://example_scene/images/francesco.png" id="4_n4gff"]
-[ext_resource type="AudioStream" uid="uid://dr553b0ej26vk" path="res://example_scene/sfx/click.wav" id="5_e3s6y"]
 [ext_resource type="PackedScene" uid="uid://4ggo1b35btnu" path="res://scenes/player/hud.tscn" id="5_svxpm"]
 [ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_menus_template/base/scripts/pause_menu_controller.gd" id="6_kthw8"]
+[ext_resource type="AudioStream" uid="uid://bvsxxn2k42rju" path="res://sfx/vocal_samples/whisper_1.ogg" id="6_yumqv"]
 [ext_resource type="PackedScene" uid="uid://cndau4qyl56kx" path="res://scenes/menus/overlaid_menus/pause_menu.tscn" id="7_yumqv"]
 [ext_resource type="Script" uid="uid://ds4jqcfrmjpbj" path="res://Player/inventory.gd" id="8_kthw8"]
 
@@ -15,7 +15,6 @@ script/source = "extends Control
 # If using a typing sound as .wav file, remember to set it to loop and reimport
 
 @onready var sfx_click: AudioStreamPlayer = $Dialog/SFXClick
-
 func _ready():
 	SignalBus.connect(\"npc_interacted\", _on_npc_interacted)
 	# In case you forget to hide manually in the scene tree before saving
@@ -29,6 +28,7 @@ func _ready():
 func _on_npc_interacted(sheet_id):
 	$MadTalk.start_dialog(sheet_id)
 	
+	
 func _on_SheetID_text_entered(new_text):
 	# Starting a dialog is as simplas as this:
 	# just start_dialog( <sheet name> )
@@ -40,7 +40,7 @@ func _input(event):
 	# it can be a key press, a mouse click, touch event, etc
 	# All you have to do is call dialog_acknowledge() 
 	if (
-		(event is InputEventKey) and (event.pressed) and (not event.echo) and (event.keycode in [KEY_SPACE, KEY_ENTER, KEY_KP_ENTER])
+		(event is InputEventKey) and (event.pressed) and (not event.echo) and (event.keycode in [KEY_SPACE, KEY_ENTER, KEY_KP_ENTER, KEY_E])
 	) or (
 		(event is InputEventMouseButton) and (event.pressed) and (event.button_index == MOUSE_BUTTON_LEFT)
 	):
@@ -59,11 +59,17 @@ func _on_mad_talk_activate_custom_effect(custom_id: Variant, custom_data: Varian
 
 
 func _on_mad_talk_dialog_finished(sheet_name: Variant, sequence_id: Variant) -> void:
-	SignalBus.emit_signal(\"dialogue_ended\", sheet_name, sequence_id)
+	GamePiecesEventBus.emit_signal(\"move_disable\", true)
+	SignalBus.emit_signal(\"dialogue_ended\")
+	GamePiecesEventBus.emit_signal(\"camera_lock_requested\", false)
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 
 func _on_mad_talk_dialog_started(sheet_name: Variant, sequence_id: Variant) -> void:
 	SignalBus.emit_signal(\"dialogue_started\")
+	GamePiecesEventBus.emit_signal(\"camera_lock_requested\", true)
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	GamePiecesEventBus.emit_signal(\"move_disable\", false)
 "
 
 [sub_resource type="Resource" id="Resource_6sbyu"]
@@ -201,8 +207,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="SFXClick" type="AudioStreamPlayer" parent="Scene/Dialog"]
-stream = ExtResource("5_e3s6y")
+stream = ExtResource("6_yumqv")
 volume_db = -6.0
+max_polyphony = 5
 bus = &"SFX"
 
 [node name="HUD" parent="." instance=ExtResource("5_svxpm")]
@@ -225,6 +232,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [connection signal="activate_custom_effect" from="Scene/MadTalk" to="Scene" method="_on_mad_talk_activate_custom_effect"]
+[connection signal="dialog_aborted" from="Scene/MadTalk" to="Scene" method="_on_mad_talk_dialog_aborted"]
 [connection signal="dialog_acknowledged" from="Scene/MadTalk" to="." method="_on_mad_talk_dialog_acknowledged"]
 [connection signal="dialog_finished" from="Scene/MadTalk" to="Scene" method="_on_mad_talk_dialog_finished"]
 [connection signal="dialog_started" from="Scene/MadTalk" to="Scene" method="_on_mad_talk_dialog_started"]

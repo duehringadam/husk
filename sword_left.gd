@@ -4,10 +4,12 @@ extends Node
 @export var animation_tree: AnimationTree
 
 func _on_left_state_entered() -> void:
+	GamePiecesEventBus.slow_player_requested(1)
 	animation_tree.set("parameters/conditions/hold_left", true)
 
 
 func _on_left_state_exited() -> void:
+	GamePiecesEventBus.slow_player_requested(-1)
 	animation_tree.set("parameters/conditions/hold_left", false)
 
 

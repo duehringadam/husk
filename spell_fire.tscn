@@ -327,11 +327,10 @@ _data = {
 &"fire_spell_idle": SubResource("Animation_4h3xe")
 }
 
-[node name="spell_fire" type="Node3D" node_paths=PackedStringArray("ray")]
+[node name="spell_fire" type="Node3D"]
 script = ExtResource("1_0eavj")
-spell_projectile = ExtResource("2_rf353")
-ray = NodePath("spell_raycast")
 weapon_initial_position = Vector3(-0.2, -0.665, -0.225)
+spell_projectile = ExtResource("2_rf353")
 
 [node name="arms_armature" type="Node3D" parent="."]
 transform = Transform3D(-1.4, 0, -2.1139412e-07, 0, 1.4, 0, 2.1139412e-07, 0, -1.4, -0.012435436, -0.1681863, 0.86541045)
@@ -675,7 +674,7 @@ target_node = NodePath("../../../TargetIKLeft")
 script = ExtResource("4_3yxkx")
 
 [node name="TargetIKLeft" type="Node3D" parent="."]
-transform = Transform3D(0.5314922, 0.5464886, -0.64719874, -0.38270596, 0.8365438, 0.3920846, 0.7556802, 0.039296947, 0.6537609, 0.30977494, 0.41481572, 0.47409666)
+transform = Transform3D(0.5314922, 0.5464886, -0.64719874, -0.38270596, 0.8365438, 0.3920846, 0.7556802, 0.039296944, 0.6537609, 0.30977494, 0.41481572, 0.47409666)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="TargetIKLeft"]
 transform = Transform3D(0.11995289, -0.11267176, 0.9863653, 0.63165057, 0.77516437, 0.011730708, -0.7659168, 0.621631, 0.16415232, 0.036243796, 0.063952565, 0.017454892)

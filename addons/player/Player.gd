@@ -12,7 +12,7 @@ const LEAN_SPEED: float = 0.1
 
 @export_category("User Settings")
 ## Look/Mouse sensitivity
-@export var mouse_sensitivity: float = 4
+@export var mouse_sensitivity: float = 4.0
 
 ## How much head bobs
 @export var head_bob_strength: float = 0.025
@@ -25,8 +25,8 @@ const LEAN_SPEED: float = 0.1
 @export_group("Player Body")
 @export var player_body: Node3D
 @export_group("Movement")
-@export var walk_speed = 3.0
-@export var sprint_speed: float = 6.0
+@export var walk_speed = 3.0: set = _set_walk_speed
+@export var sprint_speed: float = 6.0: set = _set_sprint_speed
 @export var crouch_speed = 1.5
 @export var jump_power: float = 4
 ## How much fov changes from base value based on current velocity
@@ -102,6 +102,13 @@ const LOOK_AT_DURATION := 1
 var look_target: Node3D
 var mouse_movement: Vector2
 var input_dir: Vector3
+var blocking:= false
+var can_move:=true
+const WALK_SPEED_MINIMUM := 3.0
+const WALK_SPEED_MAXIMUM := 4.0
+
+const SPRINT_SPEED_MIN := 5.0
+const SPRINT_SPEED_MAX := 6.0
 
 func _ready() -> void:
 	Global.camera_fov = base_fov
@@ -112,6 +119,11 @@ func _ready() -> void:
 		for i in inventory:
 			SignalBus.emit_signal("item_interact", i)
 
+func _set_walk_speed(value: float):
+	walk_speed = clampf(value,WALK_SPEED_MINIMUM, WALK_SPEED_MAXIMUM)
+	
+func _set_sprint_speed(value:float):
+	sprint_speed = clampf(value, SPRINT_SPEED_MIN, SPRINT_SPEED_MAX)
 
 func _physics_process(delta) -> void:
 	if Engine.is_editor_hint(): return
@@ -120,10 +132,8 @@ func _physics_process(delta) -> void:
 	handle_jump()
 	handle_crouch(delta)
 	set_movement_speed()
-	look_around()
 	handle_movement(delta)
 	handle_head_bob(delta)
-	handle_fov_change(delta)
 	handle_zoom(delta)
 	handle_switch_hands()
 	handle_lean(delta)
@@ -134,7 +144,8 @@ func _physics_process(delta) -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		mouse_movement = event.relative
-	
+		look_around()
+		
 func handle_effects(delta) -> void:
 	
 	if is_on_floor():
@@ -196,6 +207,8 @@ func set_crouch(enable: bool) -> void:
 		_crouch_tween.tween_property(self, "scale", Vector3.ONE * full_height, crouch_time)
 
 func set_movement_speed() -> void:
+	if !can_move: speed = 0; return
+	
 	if player_body.is_kicking:
 		speed = 0
 		return
@@ -227,6 +240,7 @@ func handle_movement(delta: float) -> void:
 		if direction:
 			velocity.x = direction.x * speed
 			velocity.z = direction.z * speed
+			handle_fov_change(delta)
 		else:
 			velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
 			velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)

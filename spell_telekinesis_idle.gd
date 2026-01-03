@@ -38,8 +38,11 @@ func _on_idle_state_physics_processing(delta: float) -> void:
 					var check_dist = spell_shapecast.get_collider(i).global_position.distance_to(Global.player.global_position)
 					if check_dist < base_object.global_position.distance_to(Global.player.global_position):
 						base_object = spell_shapecast.get_collider(i)
-			spell.grabbed_object = base_object
-			state_chart.send_event("pull")
+					spell.grabbed_object = base_object
+					state_chart.send_event("pull")
+					return
+				else:
+					spell.grabbed_object = null
 
 		if spell.grabbed_object == null:
 			await animation_player.animation_finished

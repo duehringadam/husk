@@ -19,16 +19,22 @@ var tween: Tween
 
 func _ready() -> void:
 	self.position = weapon_initial_position
+	SignalBus.connect("npc_interacted", _on_npc_interacted)
+	SignalBus.connect("dialogue_ended", _on_dialogue_ended)
 
+func _on_npc_interacted(sheet_id):
+	can_attack = false
+
+func _on_dialogue_ended():
+	can_attack = true
 
 func _on_bloodtimer_timeout() -> void:
 	blood_drip.emitting = false
 	remove_blood()
-	
 
 
 func _on_damage_component_damage_dealt(types: Dictionary[DamageTypes.DAMAGE_TYPES, float], actual: float, stance_damage:float, target: hurtbox_component) -> void:
-	AudioManager.play_sound(hit_sound,self.global_position,-20)
+	#AudioManager.play_sound(hit_sound,self.global_position,-20)
 	Global.player.camera.apply_shake(0.04)
 	if !target.can_bleed:
 		return

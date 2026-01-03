@@ -1,0 +1,342 @@
+[gd_scene load_steps=14 format=3 uid="uid://dfl6qgyleyflk"]
+
+[ext_resource type="Script" uid="uid://dlojjjuet8kit" path="res://scenes/physics_pickable/sack.gd" id="1_tcubw"]
+[ext_resource type="Script" uid="uid://ck3cei0hvspym" path="res://addons/interaction_system/interaction_container.gd" id="2_5hf64"]
+[ext_resource type="ArrayMesh" uid="uid://bbiyjib2op3vv" path="res://scenes/physics_pickable/bag_updated_UV_Cube_001.res" id="2_to1ue"]
+[ext_resource type="Texture2D" uid="uid://ltq6ewiinh4t" path="res://scenes/physics_pickable/textures/bag/2.png" id="2_y22fg"]
+[ext_resource type="Script" uid="uid://b8ltdmwdav2x3" path="res://addons/game_pieces/pickable/pickable_ragdoll.gd" id="3_555u8"]
+[ext_resource type="Script" uid="uid://5tinbhq6p45k" path="res://addons/interaction_system/interaction.gd" id="3_wd8ff"]
+[ext_resource type="Script" uid="uid://bxe74cq2uqemi" path="res://addons/game_controls/vanilla/input_map_game_control.gd" id="4_555u8"]
+[ext_resource type="Script" uid="uid://doc0okecalxnp" path="res://addons/interaction_system/interaction_context.gd" id="5_3uqm0"]
+[ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="9_61vn5"]
+
+[sub_resource type="Skin" id="Skin_8io5n"]
+resource_name = "Skin"
+bind_count = 3
+bind/0/name = &"Bone"
+bind/0/bone = -1
+bind/0/pose = Transform3D(6.666668, 0, -1.5894575e-06, 0, 6.666668, 0, 1.5894575e-06, 0, 6.666668, 0, 3.7878916, 0)
+bind/1/name = &"Bone.002"
+bind/1/bone = -1
+bind/1/pose = Transform3D(6.666668, 0, -1.5894575e-06, 0, 6.666668, 0, 1.5894575e-06, 0, 6.666668, 0, 1.2744333, 0)
+bind/2/name = &"Bone.001"
+bind/2/bone = -1
+bind/2/pose = Transform3D(6.666668, 0, -1.5894575e-06, 0, 6.666668, 0, 1.5894575e-06, 0, 6.666668, 0, -1.239025, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y22fg"]
+albedo_texture = ExtResource("2_y22fg")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3uqm0"]
+radius = 0.5498047
+height = 1.9118652
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_tcubw"]
+points = PackedVector3Array(-1.3321577, -0.6032032, -0.47990233, -0.011107415, 3.9929934, 2.664865, 0.85837287, 1.6064243, 2.1029007, 0.25472987, 3.9929934, -2.526527, 0.25472987, -3.9929934, -2.526527, -0.2769447, -3.9929934, 2.664865, 1.442326, -0.9647994, -0.11795868, -1.1004055, 2.7984776, 0.9753637, -0.2769447, 3.9929934, -2.6599603, 1.1045079, 2.9624867, -1.2319171, 0.8643376, -3.734312, 1.2464433, -0.2769447, -3.9929934, -2.6599603, -1.1004055, -2.7984776, 0.9753637, 0.8643376, 3.734312, 1.2464433, 1.3234309, -1.3279585, -1.2053845, -1.2190063, 1.3346914, -1.2115085, -0.861236, 1.3442953, 2.0806525, 1.3230584, 1.3275683, 1.208989, 0.3880981, -3.9929934, 2.3985195, -0.9884237, -3.0708704, -1.2260883, -0.2769447, 3.9929934, 2.664865, 0.8544495, 1.7210684, -2.0877328, 0.9709369, -3.418861, -1.218706, 1.3230584, -1.3275683, 1.208989, -0.862434, -1.3460522, -2.0784638, -1.2185984, -1.3342644, 1.2150745, -0.8684615, 3.4501483, -0.9833181, -1.331808, 1.5680841, 0.12242026, 1.3234309, 1.3279585, -1.2053845, -0.6376173, -3.7811294, 1.5142527, 0.3880981, 3.9929934, 2.3985195, 1.2105573, -2.7967784, 0.36671546)
+
+[node name="bag_pickable" type="Node3D"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+
+[node name="Skeleton3D2" type="Skeleton3D" parent="."]
+transform = Transform3D(1.4999998, 0, 0, 0, 1.4999998, 0, 0, 0, 1.4999998, 0, 0, 0)
+bones/0/name = "Bone"
+bones/0/parent = -1
+bones/0/rest = Transform3D(1, 0, 2.3841858e-07, 0, 1, 0, -2.3841858e-07, 0, 1, 0, -3.7878919, 0)
+bones/0/enabled = true
+bones/0/position = Vector3(0, -3.7878919, 0)
+bones/0/rotation = Quaternion(0, 1.1920929e-07, 0, 1)
+bones/0/scale = Vector3(1, 1, 1)
+bones/1/name = "Bone.002"
+bones/1/parent = 0
+bones/1/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5134583, 0)
+bones/1/enabled = true
+bones/1/position = Vector3(0, 2.5134583, 0)
+bones/1/rotation = Quaternion(0, 0, 0, 1)
+bones/1/scale = Vector3(1, 1, 1)
+bones/2/name = "Bone.001"
+bones/2/parent = 1
+bones/2/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5134583, 0)
+bones/2/enabled = true
+bones/2/position = Vector3(0, 2.5134583, 0)
+bones/2/rotation = Quaternion(0, 0, 0, 1)
+bones/2/scale = Vector3(1, 1, 1)
+script = ExtResource("1_tcubw")
+
+[node name="Cube" type="MeshInstance3D" parent="Skeleton3D2"]
+mesh = ExtResource("2_to1ue")
+skin = SubResource("Skin_8io5n")
+skeleton = NodePath("../../Skeleton3D2")
+surface_material_override/0 = SubResource("StandardMaterial3D_y22fg")
+
+[node name="DamageComponent" type="Area3D" parent="Skeleton3D2/Cube"]
+transform = Transform3D(4.920001, 0, 0, 0, -2.1506007e-07, -4.920001, 0, 4.920001, -2.1506007e-07, 0, 0, 0)
+collision_mask = 5
+monitoring = false
+monitorable = false
+script = ExtResource("9_61vn5")
+damage_types = Dictionary[int, float]({
+0: 3.0
+})
+metadata/_custom_type_script = "uid://dlsydctoxqbwy"
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Skeleton3D2/Cube/DamageComponent"]
+transform = Transform3D(1, 0, 0, 0, -0.008709051, -0.99996215, 0, 0.99996215, -0.008709051, 0, -0.0912126, -0.025031151)
+shape = SubResource("CapsuleShape3D_3uqm0")
+
+[node name="PhysicalBoneSimulator3D" type="PhysicalBoneSimulator3D" parent="Skeleton3D2"]
+transform = Transform3D(0.66666675, 0, 0, 0, 0.66666675, 0, 0, 0, 0.66666675, 0, 0, 0)
+
+[node name="Physical Bone Root" type="PhysicalBone3D" parent="Skeleton3D2/PhysicalBoneSimulator3D" node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component") groups=["throwable"]]
+transform = Transform3D(10.000001, 2.384186e-06, -4.768372e-06, -4.768372e-06, 0, -10.000001, -2.384186e-06, 10.000001, 1.1368685e-12, -1.3113022e-06, -2.5311744, -1.9073484e-06)
+collision_layer = 8
+collision_mask = 14
+joint_offset = Transform3D(0.9999988, 0, 0, 0, 0.99999714, 0, 0, 0, 0.9999984, 2.813655e-07, 1.9073488e-07, 0.31506628)
+body_offset = Transform3D(6.6666675, 0, -3.1789148e-06, -3.1789148e-06, 0, -6.6666675, 0, 6.6666675, 0, -8.742012e-07, 2.100442, -1.2715659e-06)
+bone_name = "Bone"
+script = ExtResource("3_555u8")
+throw_power = 20.0
+change_distance_interaction = NodePath("InteractionContainer/WhileGrabbed/Change Distance")
+throwable_mesh = NodePath("")
+throwable = NodePath(".")
+damage_component = NodePath("../../Cube/DamageComponent")
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("2_5hf64"),"default_context_id":0,"display_name":"Burlap Sack","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("3_wd8ff")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_wd8ff"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("4_555u8"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root"]
+transform = Transform3D(0.021539412, 0.038826898, 5.8531704e-09, 0, -1.711058e-09, 0.13500004, 0.16807163, -0.0049759056, -7.501199e-10, 7.7797324e-08, 0, 0.16315281)
+shape = SubResource("ConvexPolygonShape3D_tcubw")
+
+[node name="InteractionContainer" type="Node" parent="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root"]
+script = ExtResource("2_5hf64")
+display_name = "Burlap Sack"
+metadata/_custom_type_script = "uid://ck3cei0hvspym"
+
+[node name="Grab" type="Node" parent="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root/InteractionContainer"]
+script = ExtResource("3_wd8ff")
+hide_while_grabbed = true
+display_name = "Grab"
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="interact" type="Node" parent="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root/InteractionContainer/Grab"]
+script = ExtResource("4_555u8")
+action = &"interact"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="WhileGrabbed" type="Node" parent="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root/InteractionContainer"]
+script = ExtResource("5_3uqm0")
+context_id = 1
+metadata/_custom_type_script = "uid://doc0okecalxnp"
+
+[node name="Change Distance" type="Node" parent="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root/InteractionContainer/WhileGrabbed"]
+script = ExtResource("3_wd8ff")
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="scroll" type="Node" parent="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root/InteractionContainer/WhileGrabbed/Change Distance"]
+script = ExtResource("4_555u8")
+type = 1
+action = &"scroll"
+negative_x = &"scroll_down"
+positive_x = &"scroll_up"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="Rotate" type="Node" parent="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root/InteractionContainer/WhileGrabbed"]
+script = ExtResource("3_wd8ff")
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="rotate" type="Node" parent="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root/InteractionContainer/WhileGrabbed/Rotate"]
+script = ExtResource("4_555u8")
+action = &"rotate"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="Throw" type="Node" parent="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root/InteractionContainer/WhileGrabbed"]
+script = ExtResource("3_wd8ff")
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="secondary_action" type="Node" parent="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root/InteractionContainer/WhileGrabbed/Throw"]
+script = ExtResource("4_555u8")
+action = &"secondary_action"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="PickupSound" type="AudioStreamPlayer" parent="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root"]
+
+[node name="Physical Bone Root2" type="PhysicalBone3D" parent="Skeleton3D2/PhysicalBoneSimulator3D" node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component") groups=["throwable"]]
+transform = Transform3D(10.000001, 2.384186e-06, -4.768372e-06, -4.768372e-06, 0, -10.000001, -2.384186e-06, 10.000001, 1.1368685e-12, -1.3113022e-06, -0.017716588, -1.9073484e-06)
+collision_layer = 8
+collision_mask = 14
+joint_type = 2
+joint_offset = Transform3D(0.9999988, 0, 0, 0, 0.99999714, 0, 0, 0, 0.9999984, 2.2143996e-07, 1.9073488e-07, 0.18939337)
+body_offset = Transform3D(6.6666675, 0, -3.1789148e-06, -3.1789148e-06, 0, -6.6666675, 0, 6.6666675, 0, -8.742012e-07, 1.2626226, -1.2715659e-06)
+bone_name = "Bone.002"
+joint_constraints/swing_span = 45.0
+joint_constraints/twist_span = 180.0
+joint_constraints/bias = 0.3
+joint_constraints/softness = 0.8
+joint_constraints/relaxation = 1.0
+script = ExtResource("3_555u8")
+throw_power = 20.0
+change_distance_interaction = NodePath("InteractionContainer/WhileGrabbed/Change Distance")
+throwable_mesh = NodePath("")
+throwable = NodePath(".")
+damage_component = NodePath("../../Cube/DamageComponent")
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("2_5hf64"),"default_context_id":0,"display_name":"Burlap Sack","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("3_wd8ff")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_wd8ff"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("4_555u8"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root2"]
+transform = Transform3D(-0.13752508, 0.0034693738, 6.7497297e-10, 0, -1.325827e-09, 0.135, 0.015834365, 0.030132312, 5.8623097e-09, 0, 0, 8.96398e-09)
+shape = SubResource("ConvexPolygonShape3D_tcubw")
+
+[node name="InteractionContainer" type="Node" parent="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root2"]
+script = ExtResource("2_5hf64")
+display_name = "Burlap Sack"
+metadata/_custom_type_script = "uid://ck3cei0hvspym"
+
+[node name="Grab" type="Node" parent="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root2/InteractionContainer"]
+script = ExtResource("3_wd8ff")
+hide_while_grabbed = true
+display_name = "Grab"
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="interact" type="Node" parent="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root2/InteractionContainer/Grab"]
+script = ExtResource("4_555u8")
+action = &"interact"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="WhileGrabbed" type="Node" parent="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root2/InteractionContainer"]
+script = ExtResource("5_3uqm0")
+context_id = 1
+metadata/_custom_type_script = "uid://doc0okecalxnp"
+
+[node name="Change Distance" type="Node" parent="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root2/InteractionContainer/WhileGrabbed"]
+script = ExtResource("3_wd8ff")
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="scroll" type="Node" parent="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root2/InteractionContainer/WhileGrabbed/Change Distance"]
+script = ExtResource("4_555u8")
+type = 1
+action = &"scroll"
+negative_x = &"scroll_down"
+positive_x = &"scroll_up"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="Rotate" type="Node" parent="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root2/InteractionContainer/WhileGrabbed"]
+script = ExtResource("3_wd8ff")
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="rotate" type="Node" parent="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root2/InteractionContainer/WhileGrabbed/Rotate"]
+script = ExtResource("4_555u8")
+action = &"rotate"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="Throw" type="Node" parent="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root2/InteractionContainer/WhileGrabbed"]
+script = ExtResource("3_wd8ff")
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="secondary_action" type="Node" parent="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root2/InteractionContainer/WhileGrabbed/Throw"]
+script = ExtResource("4_555u8")
+action = &"secondary_action"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="PickupSound" type="AudioStreamPlayer" parent="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root2"]
+
+[node name="Physical Bone Root3" type="PhysicalBone3D" parent="Skeleton3D2/PhysicalBoneSimulator3D" node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component") groups=["throwable"]]
+transform = Transform3D(10.000001, 2.384186e-06, -4.768372e-06, -4.768372e-06, 0, -10.000001, -2.384186e-06, 10.000001, 1.1368685e-12, -1.3113022e-06, 2.495742, -1.9073484e-06)
+collision_layer = 8
+collision_mask = 14
+joint_type = 2
+joint_offset = Transform3D(0.9999988, 0, 0, 0, 0.99999714, 0, 0, 0, 0.9999984, 1.6151449e-07, 1.9073488e-07, 0.06372054)
+body_offset = Transform3D(6.6666675, 0, -3.1789148e-06, -3.1789148e-06, 0, -6.6666675, 0, 6.6666675, 0, -8.742012e-07, 0.4248036, -1.2715659e-06)
+bone_name = "Bone.001"
+joint_constraints/swing_span = 45.0
+joint_constraints/twist_span = 180.0
+joint_constraints/bias = 0.3
+joint_constraints/softness = 0.8
+joint_constraints/relaxation = 1.0
+script = ExtResource("3_555u8")
+throw_power = 20.0
+change_distance_interaction = NodePath("InteractionContainer/WhileGrabbed/Change Distance")
+throwable_mesh = NodePath("")
+throwable = NodePath(".")
+damage_component = NodePath("../../Cube/DamageComponent")
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("2_5hf64"),"default_context_id":0,"display_name":"Burlap Sack","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("3_wd8ff")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_wd8ff"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("4_555u8"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root3"]
+transform = Transform3D(-0.101460725, 0.005435551, 7.107701e-10, 0, -1.9725883e-09, 0.13500002, 0.012310428, 0.044799015, 5.858078e-09, -7.169217e-08, 0, -0.15034936)
+shape = SubResource("ConvexPolygonShape3D_tcubw")
+
+[node name="InteractionContainer" type="Node" parent="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root3"]
+script = ExtResource("2_5hf64")
+display_name = "Burlap Sack"
+metadata/_custom_type_script = "uid://ck3cei0hvspym"
+
+[node name="Grab" type="Node" parent="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root3/InteractionContainer"]
+script = ExtResource("3_wd8ff")
+hide_while_grabbed = true
+display_name = "Grab"
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="interact" type="Node" parent="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root3/InteractionContainer/Grab"]
+script = ExtResource("4_555u8")
+action = &"interact"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="WhileGrabbed" type="Node" parent="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root3/InteractionContainer"]
+script = ExtResource("5_3uqm0")
+context_id = 1
+metadata/_custom_type_script = "uid://doc0okecalxnp"
+
+[node name="Change Distance" type="Node" parent="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root3/InteractionContainer/WhileGrabbed"]
+script = ExtResource("3_wd8ff")
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="scroll" type="Node" parent="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root3/InteractionContainer/WhileGrabbed/Change Distance"]
+script = ExtResource("4_555u8")
+type = 1
+action = &"scroll"
+negative_x = &"scroll_down"
+positive_x = &"scroll_up"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="Rotate" type="Node" parent="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root3/InteractionContainer/WhileGrabbed"]
+script = ExtResource("3_wd8ff")
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="rotate" type="Node" parent="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root3/InteractionContainer/WhileGrabbed/Rotate"]
+script = ExtResource("4_555u8")
+action = &"rotate"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="Throw" type="Node" parent="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root3/InteractionContainer/WhileGrabbed"]
+script = ExtResource("3_wd8ff")
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="secondary_action" type="Node" parent="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root3/InteractionContainer/WhileGrabbed/Throw"]
+script = ExtResource("4_555u8")
+action = &"secondary_action"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="PickupSound" type="AudioStreamPlayer" parent="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root3"]
+
+[connection signal="on_complete" from="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root/InteractionContainer/Grab" to="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root" method="_released"]
+[connection signal="on_trigger" from="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root/InteractionContainer/Grab" to="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root" method="_while_grabbed"]
+[connection signal="on_trigger" from="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root/InteractionContainer/WhileGrabbed/Change Distance" to="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root" method="_on_change_distance"]
+[connection signal="on_complete" from="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root/InteractionContainer/WhileGrabbed/Rotate" to="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root" method="_stopped_rotating"]
+[connection signal="on_trigger" from="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root/InteractionContainer/WhileGrabbed/Rotate" to="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root" method="_while_rotating"]
+[connection signal="on_complete" from="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root/InteractionContainer/WhileGrabbed/Throw" to="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root" method="_on_throw"]
+[connection signal="on_complete" from="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root2/InteractionContainer/Grab" to="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root2" method="_released"]
+[connection signal="on_trigger" from="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root2/InteractionContainer/Grab" to="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root2" method="_while_grabbed"]
+[connection signal="on_trigger" from="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root2/InteractionContainer/WhileGrabbed/Change Distance" to="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root2" method="_on_change_distance"]
+[connection signal="on_complete" from="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root2/InteractionContainer/WhileGrabbed/Rotate" to="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root2" method="_stopped_rotating"]
+[connection signal="on_trigger" from="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root2/InteractionContainer/WhileGrabbed/Rotate" to="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root2" method="_while_rotating"]
+[connection signal="on_complete" from="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root2/InteractionContainer/WhileGrabbed/Throw" to="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root2" method="_on_throw"]
+[connection signal="on_complete" from="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root3/InteractionContainer/Grab" to="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root3" method="_released"]
+[connection signal="on_trigger" from="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root3/InteractionContainer/Grab" to="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root3" method="_while_grabbed"]
+[connection signal="on_trigger" from="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root3/InteractionContainer/WhileGrabbed/Change Distance" to="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root3" method="_on_change_distance"]
+[connection signal="on_complete" from="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root3/InteractionContainer/WhileGrabbed/Rotate" to="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root3" method="_stopped_rotating"]
+[connection signal="on_trigger" from="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root3/InteractionContainer/WhileGrabbed/Rotate" to="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root3" method="_while_rotating"]
+[connection signal="on_complete" from="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root3/InteractionContainer/WhileGrabbed/Throw" to="Skeleton3D2/PhysicalBoneSimulator3D/Physical Bone Root3" method="_on_throw"]

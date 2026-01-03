@@ -1,15 +1,20 @@
-[gd_scene load_steps=132 format=4 uid="uid://h8jpst376bb5"]
+[gd_scene load_steps=137 format=4 uid="uid://h8jpst376bb5"]
 
 [ext_resource type="ArrayMesh" uid="uid://csduafdinjbjm" path="res://scenes/Assets - PS1 Dungeon Pack/Assets - PS1 Dungeon Pack/Environment/Common/stairs.res" id="2_g14j6"]
 [ext_resource type="Texture2D" uid="uid://dsluxeqjn7vbc" path="res://scenes/Assets - PS1 Dungeon Pack/Assets - PS1 Dungeon Pack/Environment/Common/Wall_Texture.png" id="3_g14j6"]
+[ext_resource type="PackedScene" uid="uid://bia32vkq1a5i" path="res://scenes/player/player.tscn" id="4_6qlrc"]
 [ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="4_ehkex"]
 [ext_resource type="Texture2D" uid="uid://dg2xkmk61sbk0" path="res://scenes/Assets - PS1 Dungeon Pack/Assets - PS1 Dungeon Pack/Environment/Textures/Floor_Texture.png" id="4_vbegm"]
 [ext_resource type="Texture2D" uid="uid://bqp1temtxnq34" path="res://scenes/Assets - PS1 Dungeon Pack/Assets - PS1 Dungeon Pack/Environment/Textures/Ceiling_Texture.png" id="5_ehkex"]
-[ext_resource type="PackedScene" uid="uid://b3wkynyeu7f0d" path="res://item_world.tscn" id="6_00tp4"]
+[ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/item.gd" id="5_shobf"]
+[ext_resource type="Resource" uid="uid://dmv7he43amthj" path="res://item/weapons/morning_star.tres" id="6_lb1cv"]
 [ext_resource type="Texture2D" uid="uid://c4ocfkcj2ioi3" path="res://scenes/Assets - PS1 Dungeon Pack/Assets - PS1 Dungeon Pack/Environment/Textures/Column&Doors_Texture.png" id="6_xersf"]
+[ext_resource type="Resource" uid="uid://bgq4jclx52jt0" path="res://item/weapons/rusted_sword.tres" id="7_2h37t"]
 [ext_resource type="Texture2D" uid="uid://b7omr1ksg3yyj" path="res://scenes/Assets - PS1 Dungeon Pack/Assets - PS1 Dungeon Pack/Environment/Common/Stairs_0.png" id="7_5tkv4"]
+[ext_resource type="Resource" uid="uid://c8afm2d4w8gxb" path="res://item/spells/telekinesis.tres" id="8_adp8l"]
 [ext_resource type="PackedScene" uid="uid://be6nrf0b8j4l0" path="res://demo/assets/models/RockA.tscn" id="8_xersf"]
 [ext_resource type="Texture2D" uid="uid://5tssuyok06t3" path="res://scenes/Assets - PS1 Dungeon Pack/Assets - PS1 Dungeon Pack/Props/Coffin_0.png" id="9_00tp4"]
+[ext_resource type="Resource" uid="uid://dhgsftnl3tw13" path="res://item/spells/flame.tres" id="9_dvnpp"]
 [ext_resource type="Script" uid="uid://r18mp0mhtywm" path="res://components/breakcomponent.gd" id="11_eski5"]
 [ext_resource type="Script" uid="uid://c2i6qdosp0h2" path="res://components/hurtbox_component.gd" id="12_pdf00"]
 [ext_resource type="Texture2D" uid="uid://wwnrrvuhdir8" path="res://scenes/Assets - PS1 Dungeon Pack/Assets - PS1 Dungeon Pack/Props/Wall_Chain_0.png" id="13_0m0f1"]
@@ -369,7 +374,7 @@ height = 1.56708
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vxl6d"]
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_yww54"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_naet1"]
 _surfaces = [{
 "aabb": AABB(0.00064078154, -0.00031688155, 1.4888764e-05, 0.0059322095, 0.0006337629, 0.0198977),
 "attribute_data": PackedByteArray("yTPCPnN3HD/JM8I+yqIQP28EyT7KohA/bryzPkqCED/JM8I+ezgoP8kzwj5zdxw/bwTJPns4KD9vBMk+c3ccP28EyT5zdxw/2z1AP8uiED/bPUA/fDgoP9s9QD90dxw/2z1AP3R3HD9dYEg/fDgoP11gSD90dxw/XWBIP3R3HD9dYEg/y6IQPzDvUD/LohA/MO9QP3R3HD8w71A/dHccPwyYWT/MohA/MO9QP3w4KD8MmFk/dnccPwyYWT92dxw/DJhZP3w4KD/pcmI/zKIQP+lyYj92dxw/6XJiP3Z3HD/pcmI/fDgoP7c0bD98OCg/tzRsP3Z3HD+3NGw/zKIQP7c0bD92dxw/YSF1P82iED9hIXU/dnccP2EhdT92dxw/YSF1P304KD9fJdc+7gsdP18l1z6W0ig/UfDOPpbSKD9R8M4+7gsdP1Hwzj4NRxE/XyXXPg1HET9fJdc+7gsdP1Hwzj7uCx0/pFXwPg1HET+kVfA+7gsdP6RV8D7uCx0/pFXwPpbSKD/ATgM/DkcRP8BOAz/uCx0/wE4DP+4LHT/ATgM/ltIoP9dDED8ORxE/10MQP+4LHT/XQxA/7gsdP9dDED+W0ig/g91yP/ALHT+D3XI/8AsdP4Pdcj8PRxE/g91yP5fSKD+0VHQ/8AsdP7RUdD/wCx0/tFR0Pw9HET+0VHQ/l9IoP4Fdfz8ayhw/FqZiP57QKD8OPt8+ntAoPw4+3z4XeRw/tuHZPhd5HD+24dk+ntAoP+BGsz5SXiY/tuHZPhd5HD+24dk+Z+wQPw4+3z5n7BA/Dj7fPhd5HD8WpmI/aOwQPxamYj8aeRw/FqZiPxp5HD9GYmw/ntAoP0ZibD9o7BA/RmJsPxp5HD9GYmw/GnkcPxXOcD8aeRw/Fc5wP57QKD8VznA/GnkcPzu1fD8wriA/mfNPPxnpGz9lMMo+CKIcP71nyj53cxE/mfNPP3hzET+Z808/PZknP5nzTz8Z6Rs/QkrKPqibJz9lMMo+CKIcP7EnYj89mSc/ge9PPz2ZJz/spFQ/GukbP5vzTz8Z6Rs/reZPP8KjET/spFQ/GukbP5vzTz8Z6Rs/e/NXP4x+ET/KL2M/GukbP8ovYz8a6Rs/qa9pPw7UET9vCWo/GukbP28Jaj8a6Rs/qcdqPz2ZJz/RIXE/PZknP7Njbz8a6Rs/s2NvPxrpGz8/l3Q/DtQRP/uedz8+mSc/dxd2PxrpGz93F3Y/GukbPyJZfz8a6Rs/2s7FPublHD/azsU+PgIoPyTPsT4zSSc/2s7FPublHD/azsU+xKkRPxJRyj4+Aig/ElHKPublHD8SUco+5uUcPxJRyj7EqRE/VVN1PwCtED+tpn0/9p0QPyV9fD8gZBw/JX18PyBkHD9VU3U/7EwcP1VTdT/sTBw/VVN1P9nsJz+dnnk/AG4pP0/HfD9KQCg/T8d8P0pAKD+z+Hw/MVcoPwAAgD9ABBw/s/h8PzFXKD/fn38/z94nP1IWvD7A/hw/VZ/GPp4DHT/qH8Y+QngoP5qMvD4Evig/6h/GPkJ4KD9Vn8Y+ngMdP0S7xj7uCx0/1TzGPtJjKD/VPMY+0mMoP0S7xj7uCx0/1TzGPtJjKD8ucX8/++soPy5xfz/W6RA/ZyC2Ps7pED9nILY+9esoP2cgtj7Q6RA/ZyC2PvbrKD90aXw/++soP3RpfD/W6RA/ZyC2PtDpED9nILY+9usoP3RpfD/76yg/dGl8P9bpED8="),
@@ -407,7 +412,7 @@ points = PackedVector3Array(0.000442063, -0.000142002, 0.000791814, 0.00675952, 
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_eski5"]
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_j75vh"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_6qlrc"]
 _surfaces = [{
 "aabb": AABB(0.00064078154, -0.00031688155, 1.4888764e-05, 0.0059322095, 0.0006337629, 0.0198977),
 "attribute_data": PackedByteArray("yTPCPnN3HD/JM8I+yqIQP28EyT7KohA/bryzPkqCED/JM8I+ezgoP8kzwj5zdxw/bwTJPns4KD9vBMk+c3ccP28EyT5zdxw/2z1AP8uiED/bPUA/fDgoP9s9QD90dxw/2z1AP3R3HD9dYEg/fDgoP11gSD90dxw/XWBIP3R3HD9dYEg/y6IQPzDvUD/LohA/MO9QP3R3HD8w71A/dHccPwyYWT/MohA/MO9QP3w4KD8MmFk/dnccPwyYWT92dxw/DJhZP3w4KD/pcmI/zKIQP+lyYj92dxw/6XJiP3Z3HD/pcmI/fDgoP7c0bD98OCg/tzRsP3Z3HD+3NGw/zKIQP7c0bD92dxw/YSF1P82iED9hIXU/dnccP2EhdT92dxw/YSF1P304KD9fJdc+7gsdP18l1z6W0ig/UfDOPpbSKD9R8M4+7gsdP1Hwzj4NRxE/XyXXPg1HET9fJdc+7gsdP1Hwzj7uCx0/pFXwPg1HET+kVfA+7gsdP6RV8D7uCx0/pFXwPpbSKD/ATgM/DkcRP8BOAz/uCx0/wE4DP+4LHT/ATgM/ltIoP9dDED8ORxE/10MQP+4LHT/XQxA/7gsdP9dDED+W0ig/g91yP/ALHT+D3XI/8AsdP4Pdcj8PRxE/g91yP5fSKD+0VHQ/8AsdP7RUdD/wCx0/tFR0Pw9HET+0VHQ/l9IoP4Fdfz8ayhw/FqZiP57QKD8OPt8+ntAoPw4+3z4XeRw/tuHZPhd5HD+24dk+ntAoP+BGsz5SXiY/tuHZPhd5HD+24dk+Z+wQPw4+3z5n7BA/Dj7fPhd5HD8WpmI/aOwQPxamYj8aeRw/FqZiPxp5HD9GYmw/ntAoP0ZibD9o7BA/RmJsPxp5HD9GYmw/GnkcPxXOcD8aeRw/Fc5wP57QKD8VznA/GnkcPzu1fD8wriA/mfNPPxnpGz9lMMo+CKIcP71nyj53cxE/mfNPP3hzET+Z808/PZknP5nzTz8Z6Rs/QkrKPqibJz9lMMo+CKIcP7EnYj89mSc/ge9PPz2ZJz/spFQ/GukbP5vzTz8Z6Rs/reZPP8KjET/spFQ/GukbP5vzTz8Z6Rs/e/NXP4x+ET/KL2M/GukbP8ovYz8a6Rs/qa9pPw7UET9vCWo/GukbP28Jaj8a6Rs/qcdqPz2ZJz/RIXE/PZknP7Njbz8a6Rs/s2NvPxrpGz8/l3Q/DtQRP/uedz8+mSc/dxd2PxrpGz93F3Y/GukbPyJZfz8a6Rs/2s7FPublHD/azsU+PgIoPyTPsT4zSSc/2s7FPublHD/azsU+xKkRPxJRyj4+Aig/ElHKPublHD8SUco+5uUcPxJRyj7EqRE/VVN1PwCtED+tpn0/9p0QPyV9fD8gZBw/JX18PyBkHD9VU3U/7EwcP1VTdT/sTBw/VVN1P9nsJz+dnnk/AG4pP0/HfD9KQCg/T8d8P0pAKD+z+Hw/MVcoPwAAgD9ABBw/s/h8PzFXKD/fn38/z94nP1IWvD7A/hw/VZ/GPp4DHT/qH8Y+QngoP5qMvD4Evig/6h/GPkJ4KD9Vn8Y+ngMdP0S7xj7uCx0/1TzGPtJjKD/VPMY+0mMoP0S7xj7uCx0/1TzGPtJjKD8ucX8/++soPy5xfz/W6RA/ZyC2Ps7pED9nILY+9esoP2cgtj7Q6RA/ZyC2PvbrKD90aXw/++soP3RpfD/W6RA/ZyC2PtDpED9nILY+9usoP3RpfD/76yg/dGl8P9bpED8="),
@@ -1671,6 +1676,18 @@ collision_mask = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="floor/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_5tkv4")
+
+[node name="Player2" parent="." instance=ExtResource("4_6qlrc")]
+transform = Transform3D(-4.37114e-08, 1, 4.0234065e-21, -1, -4.37114e-08, 1.0658141e-14, 1.0658141e-14, 0, 1, -0.50126076, 5.296238, -3.7587798)
+inventory = Array[ExtResource("5_shobf")]([ExtResource("6_lb1cv"), ExtResource("7_2h37t"), ExtResource("8_adp8l"), ExtResource("9_dvnpp")])
+footsteps_sound = null
+head_bob_strength = 0.05
+toggle_crouch = false
+sprint_speed = 5.5
+jump_power = 4.5
+fov_change = 2.0
+crouch_height = 0.65
+camera_lean_position = Vector3(0, 0, 0)
 
 [node name="floor4" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.91069e-15, 1, 4.37114e-08, 4.37114e-08, -4.37114e-08, 1, 1, 0, -4.37114e-08, -0.501261, 0, 2.50408)
@@ -3450,7 +3467,7 @@ transform = Transform3D(0.96418, 0.0139125, -0.264884, -0.258962, -0.166764, -0.
 shape = SubResource("CapsuleShape3D_dwqlq")
 
 [node name="StandardDeformer" type="MeshInstance3D" parent="PhysicsBreakComponent/hurtbox_component"]
-transform = Transform3D(0.01, 3.91155e-09, -2.793978e-10, -3.91155e-09, 0.01, -2.04891e-09, 2.79397e-10, 2.0489102e-09, 0.01, -0.231607, -0.257577, 0.288778)
+transform = Transform3D(0.01, 3.91155e-09, -2.793978e-10, -3.91155e-09, 0.01, -2.0489104e-09, 2.79397e-10, 2.0489104e-09, 0.01, -0.231607, -0.257577, 0.288778)
 mesh = ExtResource("17_dpmuy")
 skeleton = NodePath("../../gate/GateMetalBars")
 script = ExtResource("18_yww54")
@@ -3483,7 +3500,7 @@ collision_shape = NodePath("../CollisionShape3D")
 transform = Transform3D(-96.2033, 26.894, 4.65101, 0.860824, -14.0426, 99.0054, 27.2796, 95.2865, 13.2779, 0.122724, -0.0776481, 0.963297)
 top_level = true
 visible = false
-mesh = SubResource("ArrayMesh_yww54")
+mesh = SubResource("ArrayMesh_naet1")
 script = ExtResource("16_xpeyw")
 original_mesh = SubResource("ArrayMesh_34fux")
 deformers = Array[NodePath]([NodePath("../../../hurtbox_component/StandardDeformer")])
@@ -3517,7 +3534,7 @@ collision_shape = NodePath("../CollisionShape3D")
 transform = Transform3D(95.825, 25.5759, 12.7846, -13.2823, 0.220799, 99.1137, 25.321, -96.6738, 3.60865, -1.27462, 0.0270636, 0.924717)
 top_level = true
 visible = false
-mesh = SubResource("ArrayMesh_j75vh")
+mesh = SubResource("ArrayMesh_6qlrc")
 script = ExtResource("16_xpeyw")
 original_mesh = SubResource("ArrayMesh_2h37t")
 deformers = Array[NodePath]([NodePath("../../../hurtbox_component/StandardDeformer")])
@@ -3553,9 +3570,6 @@ collision_mask = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Coffin/Coffin/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_xpeyw")
-
-[node name="item_world" parent="." instance=ExtResource("6_00tp4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.422709, 0.60607, 2.29239)
 
 [node name="Wall_Chain" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.372226, 1.32754, 0.795912)

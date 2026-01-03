@@ -20,16 +20,20 @@ var _interaction_controller: InteractionController = null
 var is_talking:= false
 
 func _ready():
+	SignalBus.connect("dialogue_ended", end_dialogue)
 	animation_player.play("Idle")
 
 
 func _on_health_component_died() -> void:
+	interaction_collision.queue_free()
 	hurtbox.monitorable = false
 	hurtbox.monitoring = false
 	animation_player.stop()
 	bone_simulator.physical_bones_start_simulation()
 
 func fall(push_dir: Vector3 = Vector3.ZERO):
+	hurtbox.monitorable = false
+	hurtbox.monitoring = false
 	interaction_collision.queue_free()
 	animation_player.stop()
 	bone_simulator.physical_bones_start_simulation()
@@ -46,10 +50,16 @@ func _on_physicstimeout_timeout() -> void:
 
 
 func _on_talk_on_complete(controller: InteractionController) -> void:
-	is_talking = true
-	look_at_modifier_3d.target_node = Global.player.head.get_path()
-	SignalBus.emit_signal("npc_interacted", sheet_id)
+	if is_talking == false:
+		is_talking = true
+		look_at_modifier_3d.target_node = Global.player.head.get_path()
+		SignalBus.emit_signal("npc_interacted", sheet_id)
 
 
 func _on_stance_component_stance_broken() -> void:
 	fall()
+
+func end_dialogue():
+	if is_talking:
+		is_talking = false
+		look_at_modifier_3d.target_node = ""

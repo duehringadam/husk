@@ -8,7 +8,7 @@ class_name item
 @export var item_stats: Array[ItemStat]
 @export var item_required_stats: Array[ItemRequiredStat]
 @export var item_scene: PackedScene
-
+@export var two_handed: bool
 func on_equip() -> void:
 	on_equip_stats()
 

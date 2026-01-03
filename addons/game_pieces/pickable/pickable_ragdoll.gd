@@ -1,0 +1,169 @@
+class_name PickableRagdoll
+extends PhysicalBone3D
+
+@export var pull_force: float = 15
+@export var throw_power: float = 10
+@export var interaction_context_when_grabbed: int = 1
+@export var change_distance_interaction: Interaction
+@export var release_distance: float = 4.
+
+@export var throwable_mesh: MeshInstance3D
+@export var throwable: PhysicalBone3D
+@export var damage_component: DamageComponent
+@export var shattered_mesh: PackedScene
+@export var break_sound: AudioStream
+
+@onready var grab: Interaction = $InteractionContainer/Grab
+
+var _interaction_controller: InteractionController = null
+var _is_grabbed: bool:
+	get(): return _interaction_controller != null
+var _initial_basis: Basis
+var _position_offset: float = 1.0
+var _initial_position: Vector3 = Vector3.ZERO
+var _min_offset: float = 0.65
+var _max_offset: float = 1.65
+var _is_rotating: bool = false
+var _delay_timer: Tween = null
+
+func _physics_process(_delta: float) -> void:
+	if Engine.is_editor_hint(): return
+	if _is_grabbed:
+		var ray_cast: RayCast3D = _interaction_controller.get_parent()
+		var distance_to_player: float = ray_cast.global_position.distance_to(global_position)
+		if distance_to_player > release_distance * _position_offset:
+			_released(_interaction_controller)
+	if linear_velocity.length() > 15:
+		damage_component.monitorable = true
+		damage_component.monitoring = true
+	else:
+		damage_component.monitorable = false
+		damage_component.monitoring = false
+
+
+func _integrate_forces(_state: PhysicsDirectBodyState3D) -> void:
+	if not _is_grabbed: return
+	
+	var reference_node: Node3D = _interaction_controller.get_parent()
+	
+	# Calculate linear velocity
+	var hand_position: Vector3 = reference_node.to_global(_initial_position * _position_offset)
+	var move_distance: float = global_position.distance_to(hand_position)
+	var velocity: Vector3 = global_position.direction_to(hand_position) * (pull_force / mass) * move_distance
+	linear_velocity = velocity
+
+	
+	# Calculate angular velocity
+	var target_basis: Basis = reference_node.global_transform.basis * _initial_basis #Basis.looking_at(target_rotation, reference_node.global_basis.y)
+	# Get rotational difference as quaternion
+	var quaternion_current: Quaternion = global_transform.basis.get_rotation_quaternion()
+	var quaternion_target: Quaternion = target_basis.get_rotation_quaternion()
+	var quaternion_diff: Quaternion = quaternion_target * quaternion_current.inverse()
+	if quaternion_diff.dot(Quaternion.IDENTITY) < 0:
+		quaternion_diff = -quaternion_diff  # ensure shortest path
+	
+	# Convert to axis-angle
+	var angle: float = quaternion_diff.get_angle()
+	if angle > 0.001 and angle < PI:
+		var axis: Vector3 = quaternion_diff.get_axis()
+		angular_velocity = axis * (angle  * (pull_force / (mass * 100))) / 0.01
+	else:
+		angular_velocity = Vector3.ZERO
+
+
+func _input(event: InputEvent) -> void:
+	if not _is_rotating or event is not InputEventMouseMotion: return
+	var mouse_event: InputEventMouseMotion = event
+	var offset: Basis = Basis()
+	offset = offset.rotated(Vector3.RIGHT, deg_to_rad(mouse_event.relative.y))
+	offset = offset.rotated(Vector3.UP, deg_to_rad(mouse_event.relative.x))
+	
+	_initial_basis = offset * _initial_basis
+
+
+func _while_grabbed(controller: InteractionController) -> void:
+	if _interaction_controller != null: return
+	# Again cool down to avoid player flying off
+	if _delay_timer != null and _delay_timer.is_running(): return
+	_interaction_controller = controller
+	_interaction_controller.grab_object(self)
+	apply_central_impulse(Vector3.ONE)
+	_position_offset = 1.0
+	var reference_node: Node3D = _interaction_controller.get_parent()
+	_initial_basis = reference_node.global_transform.basis.inverse() * global_transform.basis
+	_initial_position = reference_node.to_local(global_position)
+	InteractionContainer.from(self).enable(interaction_context_when_grabbed)
+	set_transparency(self, 0.35)
+	$PickupSound.play()
+	# Bring it closer to reference node but with a delay to avoid player flying off
+	_delay_timer = create_tween()
+	_delay_timer.tween_interval(0.1)
+	await _delay_timer.finished
+	_initial_position *= 0.8
+
+
+func _released(_c: InteractionController) -> void:
+	if _c != _interaction_controller: return
+	if _interaction_controller == null: return
+	if _delay_timer != null: 
+		_delay_timer.kill()
+	_delay_timer = create_tween()
+	_delay_timer.tween_interval(0.3)
+	_interaction_controller.release_grabbed()
+	_interaction_controller = null
+	InteractionContainer.from(self).enable()
+	GamePiecesEventBus.request_camera_lock(false)
+	set_transparency(self, 0.0)
+
+
+func _on_change_distance(controller: InteractionController) -> void:
+	if controller != _interaction_controller: return
+	_position_offset += change_distance_interaction.control.value() * 0.1
+	_position_offset = clampf(_position_offset, _min_offset, _max_offset)
+
+
+func _while_rotating(controller: InteractionController) -> void:
+	if controller != _interaction_controller: return
+	_is_rotating = true
+	GamePiecesEventBus.request_camera_lock(true)
+
+
+func _stopped_rotating(controller: InteractionController) -> void:
+	if controller != _interaction_controller: return
+	_is_rotating = false
+	GamePiecesEventBus.request_camera_lock(false)
+
+
+func _on_throw(controller: InteractionController) -> void:
+	if controller != _interaction_controller: return
+	_released(controller)
+	
+	InteractionContainer.from(self).disable() # Disable interactions while throwing
+	var reference_node: Node3D = controller.get_parent()
+	var hand_position: Vector3 = reference_node.to_global(_initial_position * _position_offset)
+	var direction: Vector3 = reference_node.global_position.direction_to(hand_position)
+	apply_impulse(direction * throw_power)
+	await get_tree().process_frame
+	InteractionContainer.from(self).enable()
+
+
+func set_transparency(object: Node, value: float) -> void:
+	for child in object.get_children(true):
+		if child is not MeshInstance3D: 
+			set_transparency(child, value)
+			continue
+		var mesh: MeshInstance3D = child
+		mesh.transparency = value
+
+func break_object():
+	if shattered_mesh:
+		var shattered_mesh_add = shattered_mesh.instantiate()
+		get_tree().current_scene.add_child(shattered_mesh_add)
+		shattered_mesh_add.global_transform = self.global_transform
+		shattered_mesh_add.break_mesh(throwable.linear_velocity, throwable_mesh.get_surface_override_material(0))
+		AudioManager.play_sound(break_sound, self.global_position, 0)
+		get_tree().create_timer(.05).timeout.connect(func(): self.queue_free())
+
+
+func _on_health_component_died() -> void:
+	break_object()

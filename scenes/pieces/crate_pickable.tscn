@@ -97,7 +97,7 @@ scale_curve = SubResource("CurveTexture_4mmpl")
 
 [node name="Pickable" type="RigidBody3D" node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component") groups=["throwable"]]
 collision_layer = 8
-collision_mask = 7
+collision_mask = 14
 contact_monitor = true
 max_contacts_reported = 1
 angular_damp = 5.0
@@ -166,7 +166,7 @@ metadata/_custom_type_script = "uid://bxe74cq2uqemi"
 
 [node name="HealthComponent" type="Node3D" parent="."]
 script = ExtResource("2_kgtx4")
-max_health = 1.0
+max_health = 10.0
 metadata/_custom_type_script = "uid://dgjqgiw3yw42e"
 
 [node name="hurtbox_component" type="Area3D" parent="." node_paths=PackedStringArray("health_component", "status_component")]

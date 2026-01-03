@@ -488,17 +488,21 @@ RETICLE_LINES = [NodePath("top"), NodePath("right"), NodePath("bottom"), NodePat
 PLAYER_CONTROLLER = NodePath("..")
 
 [node name="top" type="Line2D" parent="crosshair"]
-points = PackedVector2Array(0, -5, 0, -15)
+points = PackedVector2Array(-5, -10, 0, -20, 5, -10)
 width = 2.0
+default_color = Color(0.41215247, 0.41215247, 0.41215247, 1)
 
 [node name="right" type="Line2D" parent="crosshair"]
-points = PackedVector2Array(5, 0, 15, 0)
+points = PackedVector2Array(10, -5, 20, 0, 10, 5)
 width = 2.0
+default_color = Color(0.41215247, 0.41215247, 0.41215247, 1)
 
 [node name="bottom" type="Line2D" parent="crosshair"]
-points = PackedVector2Array(0, 5, 0, 15)
+points = PackedVector2Array(5, 10, 0, 20, -5, 10)
 width = 2.0
+default_color = Color(0.41215247, 0.41215247, 0.41215247, 1)
 
 [node name="left" type="Line2D" parent="crosshair"]
-points = PackedVector2Array(-5, 0, -15, 0)
+points = PackedVector2Array(-10, 5, -20, 0, -10, -5)
 width = 2.0
+default_color = Color(0.41215247, 0.41215247, 0.41215247, 1)
