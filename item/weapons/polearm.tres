@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="item" load_steps=5 format=3 uid="uid://vepy1a10tg28"]
+
+[ext_resource type="Script" uid="uid://c23n4qi4fu7ia" path="res://item/item_required_stats.gd" id="1_ccrqm"]
+[ext_resource type="PackedScene" uid="uid://df41i80a5nrxd" path="res://polearm.tscn" id="2_4y8nl"]
+[ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/item_stat.gd" id="2_5qc40"]
+[ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/item.gd" id="3_4y8nl"]
+
+[resource]
+script = ExtResource("3_4y8nl")
+item_name = "Polearm"
+item_description = "a polearm"
+item_scene = ExtResource("2_4y8nl")
+two_handed = true
+metadata/_custom_type_script = "uid://dcfd18dx8x1bm"

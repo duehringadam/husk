@@ -45,5 +45,6 @@ draw_pass_1 = SubResource("QuadMesh_cu8yj")
 script = ExtResource("1_1xu50")
 
 [node name="blood_pos" type="RayCast3D" parent="."]
-target_position = Vector3(0, -10, 0)
+target_position = Vector3(0, -4, 0)
 collision_mask = 2
+hit_from_inside = true

@@ -78,6 +78,7 @@ Optional: %jump, %sprint, %crouch, %lean, %zoom, %switch_hands
 @onready var ceiling: ShapeCast3D = $Ceiling
 @onready var right_hand_pos: Vector3 = %RightHand.transform.origin
 @onready var left_hand_pos: Vector3 = %LeftHand.transform.origin
+@onready var enemy_look_at: Node3D = $enemy_look_at
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -102,15 +103,17 @@ const LOOK_AT_DURATION := 1
 var look_target: Node3D
 var mouse_movement: Vector2
 var input_dir: Vector3
-var blocking:= false
 var can_move:=true
+
 const WALK_SPEED_MINIMUM := 3.0
 const WALK_SPEED_MAXIMUM := 4.0
 
-const SPRINT_SPEED_MIN := 5.0
+const SPRINT_SPEED_MIN := 4.0
 const SPRINT_SPEED_MAX := 6.0
 
 func _ready() -> void:
+	SignalBus.connect("primary_active", _animate_camera_swing)
+	SignalBus.connect("kick_active", _animate_camera_swing)
 	Global.camera_fov = base_fov
 	if Engine.is_editor_hint(): return
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -118,7 +121,11 @@ func _ready() -> void:
 	if inventory.size() > 0:
 		for i in inventory:
 			SignalBus.emit_signal("item_interact", i)
-
+	
+func _animate_camera_swing(value: bool):
+	if value:
+		camera_animation_player.play("swing_left")
+	
 func _set_walk_speed(value: float):
 	walk_speed = clampf(value,WALK_SPEED_MINIMUM, WALK_SPEED_MAXIMUM)
 	
@@ -140,6 +147,7 @@ func _physics_process(delta) -> void:
 	move_and_slide()
 	weapon_sway(delta)
 	handle_kick()
+
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -235,8 +243,13 @@ func handle_movement(delta: float) -> void:
 	player_body.movement_dir.x = input_dir.x
 	player_body.movement_dir.y = input_dir.z
 	weapon_tilt(input_dir.x, delta)
+	
 	var direction: Vector3 = (head.transform.basis * transform.basis * input_dir).normalized()
 	if is_on_floor():
+		
+		#if floor_normal.angle_to(Vector3.UP) > deg_to_rad(floor_max_angle):
+			#velocity.x = 0
+			#velocity.z = 0
 		if direction:
 			velocity.x = direction.x * speed
 			velocity.z = direction.z * speed
@@ -360,4 +373,7 @@ func weapon_sway(delta):
 	if offhand:
 		offhand.rotation.x = lerpf(offhand.rotation.x, clampf(mouse_movement.y * weapon_rotation_amount * (1 if invert_weapon_sway else -1),-.04,.04), delta)
 		offhand.rotation.y = lerpf(offhand.rotation.y, clampf(mouse_movement.y * weapon_rotation_amount * (1 if invert_weapon_sway else -1),-.04,.04), delta)
-	
+
+
+func _on_hurtbox_component_damage_taken(actual: float, source: DamageComponent, hit_dir: Vector3) -> void:
+	camera_animation_player.play("swing_left",-1,1.5)

@@ -6,8 +6,6 @@ signal apply_statuses(status_types: Global.STATUS_TYPE, application_amount: floa
 
 @onready var timer: Timer
 
-@export var hurtboxes_to_disable: Array[hurtbox_component]
-
 ## Reduction on incoming damage. Zero takes full damage, one takes none. For more complex behavior, override [method reduce_damage]
 @export var damage_resistances: Dictionary[DamageTypes.DAMAGE_TYPES, float]
 @export var damage_weakness: Dictionary[DamageTypes.DAMAGE_TYPES, float]
@@ -35,9 +33,6 @@ func _ready():
 ## start the invulnerability timer
 func invulnerability(duration: float):
 	timer.start(duration)
-	if hurtboxes_to_disable:
-		for i in hurtboxes_to_disable:
-			i.timer.start(i.duration)
 
 ## Override this to cusomize damage reduction (damage types, armor, etc)
 func modify_damage(damage_type: DamageTypes.DAMAGE_TYPES, amount: float, source: DamageComponent) -> float:
@@ -51,7 +46,7 @@ func modify_damage(damage_type: DamageTypes.DAMAGE_TYPES, amount: float, source:
 func apply_status(status_types: Dictionary[Global.STATUS_TYPE, float]):
 	for i in status_types:
 		if status_resistances.keys().has(i):
-			emit_signal("apply_statuses", [i],(1-status_resistances[i]))
+			emit_signal("apply_statuses", i,(1-status_resistances[i]))
 		if status_weaknesses.keys().has(i):
 			emit_signal("apply_statuses", i,(1*status_weaknesses[i]))
 
@@ -70,14 +65,25 @@ func take_damage(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float], stat
 			if health_component:
 				health_component.modify_health(-actual)
 			if bone_health_component:
-				bone_health_component.modify_health(-actual)
 				if damage_types.keys().has(DamageTypes.DAMAGE_TYPES.STRIKE):
 					bone_health_component.last_damage_taken = DamageTypes.DAMAGE_TYPES.STRIKE
 				if damage_types.keys().has(DamageTypes.DAMAGE_TYPES.SLASH):
 					bone_health_component.last_damage_taken = DamageTypes.DAMAGE_TYPES.SLASH
+				bone_health_component.modify_health(-actual)
 			sum += actual
 	if stance_component != null:
-		stance_component.modify_stance(-stance_damage)
+		stance_component.modify_stance(-stance_damage, source)
+	if status_component != null:
+		for i in status_types:
+			if status_resistances.keys().has(i):
+				status_component._on_status_increment(i,(1-status_resistances[i]))
+			if status_weaknesses.keys().has(i):
+				status_component._on_status_increment(i,(1*status_weaknesses[i]))
 	if hit_sound != null:
 		AudioManager.play_sound(hit_sound,self.global_position,-10.0)
+	if damage_particles:
+		var damage_particles_add = damage_particles.instantiate()
+		get_tree().current_scene.add_child(damage_particles_add)
+		damage_particles_add.global_position = self.global_position
+		get_tree().create_timer(.1).timeout.connect(func(): damage_particles_add.take_damage())
 	return sum

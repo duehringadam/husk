@@ -2,18 +2,18 @@
 
 [ext_resource type="Texture2D" uid="uid://dle0ovf1vrrho" path="res://test texture/kenney_prototype-textures/PNG/Dark/texture_02.png" id="1_ivea3"]
 [ext_resource type="Texture2D" uid="uid://bwnxaeoqowc5f" path="res://test texture/kenney_prototype-textures/PNG/Orange/texture_01.png" id="2_jvck6"]
-[ext_resource type="PackedScene" uid="uid://bj6sdc0lp46oo" path="res://scenes/knight/physics_knight.tscn" id="3_1lwx6"]
-[ext_resource type="PackedScene" uid="uid://cjce1u8propuf" path="res://friendly_npc_spawn_test.tscn" id="3_ivea3"]
 [ext_resource type="PackedScene" uid="uid://bia32vkq1a5i" path="res://scenes/player/player.tscn" id="5_cnaw2"]
 [ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/item.gd" id="5_ud3vi"]
 [ext_resource type="Resource" uid="uid://dmv7he43amthj" path="res://item/weapons/morning_star.tres" id="6_5457m"]
-[ext_resource type="PackedScene" uid="uid://bb24ddx38sw06" path="res://scenes/Ghoul Animated/ghoul.tscn" id="6_cnaw2"]
-[ext_resource type="Resource" uid="uid://bgq4jclx52jt0" path="res://item/weapons/rusted_sword.tres" id="7_ivea3"]
-[ext_resource type="PackedScene" uid="uid://dr38p0k3ko4ks" path="res://scenes/pieces/crate_pickable.tscn" id="7_kt6p6"]
-[ext_resource type="PackedScene" uid="uid://c56q3gytk8fia" path="res://scenes/pieces/barrel_pickable.tscn" id="7_uu1iw"]
+[ext_resource type="Resource" uid="uid://bgq4jclx52jt0" path="res://item/weapons/broken_sword.tres" id="7_ivea3"]
 [ext_resource type="Resource" uid="uid://c8afm2d4w8gxb" path="res://item/spells/telekinesis.tres" id="8_5457m"]
+[ext_resource type="Resource" uid="uid://crf08k5nswvsi" path="res://item/shield/shield.tres" id="9_5457m"]
 [ext_resource type="Resource" uid="uid://dhgsftnl3tw13" path="res://item/spells/flame.tres" id="9_ivea3"]
+[ext_resource type="Resource" uid="uid://vepy1a10tg28" path="res://item/weapons/polearm.tres" id="10_ivea3"]
+[ext_resource type="Resource" uid="uid://dbk1ijoypy6bl" path="res://item/weapons/heavy crossbow.tres" id="11_jvck6"]
+[ext_resource type="Resource" uid="uid://j2kounr4gxnk" path="res://item/weapons/longsword.tres" id="12_07jwy"]
 [ext_resource type="PackedScene" uid="uid://dfl6qgyleyflk" path="res://scenes/physics_pickable/bag_pickable.tscn" id="14_07jwy"]
+[ext_resource type="PackedScene" uid="uid://csc3ojr7benhn" path="res://maptestflesh(2).tscn" id="15_urhrq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gy3sr"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -29,8 +29,6 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_cnaw2"]
-vertices = PackedVector3Array(-8.75, 0.013163447, -8.75, -8.75, 0.013163447, 8.75, 8.75, 0.013163447, 8.75, 8.75, 0.013163447, -8.75)
-polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 geometry_collision_mask = 4294967293
 cell_height = 0.01
 
@@ -126,68 +124,14 @@ collision_mask = 0
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_jvck6")
 
-[node name="friendly_npc_spawn_test" parent="." node_paths=PackedStringArray("spawn_location_node") instance=ExtResource("3_ivea3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.4662375, 0.560972, 1.6614842)
-collision_layer = 8
-npc_to_spawn = ExtResource("3_1lwx6")
-spawn_location_node = NodePath("Node3D")
-metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Spawner","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":true,"display_name":"Spawn NPC","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
-,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
-]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
-
-
-[node name="Node3D" type="Node3D" parent="friendly_npc_spawn_test"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.50600076, -1.8601147)
-
-[node name="friendly_npc_spawn_test2" parent="." node_paths=PackedStringArray("spawn_location_node") instance=ExtResource("3_ivea3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4238157, 0.560972, 1.6614842)
-collision_layer = 8
-collision_mask = 0
-npc_to_spawn = ExtResource("6_cnaw2")
-spawn_location_node = NodePath("Node3D")
-metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Spawner","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":true,"display_name":"Spawn NPC","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
-,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
-]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
-
-
-[node name="Node3D" type="Node3D" parent="friendly_npc_spawn_test2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5214056, -1.7796655)
-
-[node name="friendly_npc_spawn_test3" parent="." node_paths=PackedStringArray("spawn_location_node") instance=ExtResource("3_ivea3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6805737, 0.560972, 1.6614842)
-collision_layer = 8
-collision_mask = 0
-npc_to_spawn = ExtResource("7_uu1iw")
-spawn_location_node = NodePath("Node3D")
-metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Spawner","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":true,"display_name":"Spawn NPC","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
-,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
-]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
-
-
-[node name="Node3D" type="Node3D" parent="friendly_npc_spawn_test3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5214056, -1.7796655)
-
-[node name="friendly_npc_spawn_test4" parent="." node_paths=PackedStringArray("spawn_location_node") instance=ExtResource("3_ivea3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.993943, 0.560972, 1.6614842)
-collision_layer = 8
-collision_mask = 0
-npc_to_spawn = ExtResource("7_kt6p6")
-spawn_location_node = NodePath("Node3D")
-metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Spawner","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":true,"display_name":"Spawn NPC","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
-,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
-]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
-
-
-[node name="Node3D" type="Node3D" parent="friendly_npc_spawn_test4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5214056, -1.7796655)
-
 [node name="Player2" parent="." instance=ExtResource("5_cnaw2")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3.2628574, 0, 5.296238)
-inventory = Array[ExtResource("5_ud3vi")]([ExtResource("6_5457m"), ExtResource("7_ivea3"), ExtResource("8_5457m"), ExtResource("9_ivea3")])
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.8617, 0, 57.88921)
+collision_mask = 6
+inventory = Array[ExtResource("5_ud3vi")]([ExtResource("6_5457m"), ExtResource("7_ivea3"), ExtResource("8_5457m"), ExtResource("9_ivea3"), ExtResource("9_5457m"), ExtResource("10_ivea3"), ExtResource("11_jvck6"), ExtResource("12_07jwy")])
 footsteps_sound = null
 head_bob_strength = 0.05
 toggle_crouch = false
-sprint_speed = 5.5
+sprint_speed = 4.0
 jump_power = 4.5
 fov_change = 2.0
 crouch_height = 0.65
@@ -195,3 +139,6 @@ camera_lean_position = Vector3(0, 0, 0)
 
 [node name="Armature" parent="." instance=ExtResource("14_07jwy")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -8.505224, 0.8554988, 5.0823913)
+
+[node name="maptestflesh(2)" parent="." instance=ExtResource("15_urhrq")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -7.0952625, 0, 57.730106)

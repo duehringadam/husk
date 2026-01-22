@@ -3,8 +3,10 @@ extends Node
 @export var weapon: Node3D
 @export var state_chart: StateChart
 @export var animation_tree: AnimationTree
+@export var trail: GPUTrail3D
 
 func _on_idle_state_entered() -> void:
+	trail.visible = false
 	weapon.can_attack = true
 	animation_tree.set("parameters/conditions/idle", true)
 	weapon.damage_component.hits.clear()
@@ -18,21 +20,23 @@ func _on_idle_state_exited() -> void:
 
 
 func _on_idle_state_processing(delta: float) -> void:
+	var mouse_movement = Input.get_last_mouse_velocity().normalized()
 	if Input.is_action_pressed("attack_primary") && weapon.can_attack:
-		if Global.player.input_dir.x < 0 && Global.player.input_dir.z == 0:
+		if mouse_movement.x < -0.8:
+			state_chart.send_event("hold_right")
+			
+		elif mouse_movement.x > 0.8:
 			state_chart.send_event("hold_left")
 			
-		elif Global.player.input_dir.x > 0 && Global.player.input_dir.z == 0:
-			state_chart.send_event("hold_right")
-			
-		if Global.player.input_dir.z < 0:
-			state_chart.send_event("hold_forward")
-			
-		elif Global.player.input_dir.z > 0:
+		if mouse_movement.y < -0.8:
 			state_chart.send_event("hold_back")
 			
-		elif Global.player.input_dir.x == 0 && Global.player.input_dir.z == 0:
+		elif mouse_movement.y > 0.8:
+			state_chart.send_event("hold_forward")
+			
+		elif mouse_movement.x == 0 && mouse_movement.x == 0:
 			state_chart.send_event("hold_right")
+			
 	if Input.is_action_just_pressed("attack_secondary"):
 		if weapon.two_handed:
 			state_chart.send_event("block")

@@ -1,4 +1,3 @@
-class_name NPC
 extends Node3D
 
 @export var hurtbox: hurtbox_component
@@ -20,7 +19,6 @@ var _interaction_controller: InteractionController = null
 var is_talking:= false
 
 func _ready():
-	SignalBus.connect("dialogue_ended", end_dialogue)
 	animation_player.play("Idle")
 
 
@@ -40,10 +38,6 @@ func fall(push_dir: Vector3 = Vector3.ZERO):
 	root_joint.apply_central_impulse(push_dir*25)
 	physicstimeout.start()
 
-func _on_hurtbox_component_damage_taken(actual: float, source: DamageComponent, hit_dir: Vector3) -> void:
-	hit_particles.global_position = hurtbox.global_position
-	hit_particles.take_damage()
-
 
 func _on_physicstimeout_timeout() -> void:
 	hurtbox.monitoring = false
@@ -58,8 +52,3 @@ func _on_talk_on_complete(controller: InteractionController) -> void:
 
 func _on_stance_component_stance_broken() -> void:
 	fall()
-
-func end_dialogue():
-	if is_talking:
-		is_talking = false
-		look_at_modifier_3d.target_node = ""

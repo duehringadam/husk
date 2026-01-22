@@ -1,20 +1,20 @@
-[gd_scene load_steps=41 format=3 uid="uid://cvm1x6igaprq3"]
+[gd_scene load_steps=43 format=3 uid="uid://cvm1x6igaprq3"]
 
 [ext_resource type="Script" uid="uid://ba1l1kqe7yxt6" path="res://addons/player/Player.gd" id="1_cyojo"]
-[ext_resource type="Script" uid="uid://4cedxwyntjmx" path="res://addons/player/head.gd" id="2_6oqec"]
 [ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/item.gd" id="2_863th"]
 [ext_resource type="Script" uid="uid://cn1tuyffokj2" path="res://Player/viewport_camera.gd" id="3_6oqec"]
 [ext_resource type="Resource" uid="uid://dmv7he43amthj" path="res://item/weapons/morning_star.tres" id="3_e6ia4"]
 [ext_resource type="PackedScene" uid="uid://bj4hhphu33n38" path="res://addons/player/player_body.tscn" id="3_tio5b"]
 [ext_resource type="Script" uid="uid://dgjqgiw3yw42e" path="res://components/health_component.gd" id="4_7ek8b"]
 [ext_resource type="Script" uid="uid://c5uu825dg725o" path="res://Player/mainhand.gd" id="4_cqqbj"]
-[ext_resource type="Resource" uid="uid://bgq4jclx52jt0" path="res://item/weapons/rusted_sword.tres" id="4_d6j5h"]
+[ext_resource type="Resource" uid="uid://bgq4jclx52jt0" path="res://item/weapons/broken_sword.tres" id="4_d6j5h"]
 [ext_resource type="Resource" uid="uid://c8afm2d4w8gxb" path="res://item/spells/telekinesis.tres" id="5_863th"]
 [ext_resource type="Script" uid="uid://csps0dnf2gf2n" path="res://Player/player_hurtbox_component.gd" id="5_eon52"]
 [ext_resource type="Script" uid="uid://d3vjqiaaxlykb" path="res://Player/offhand.gd" id="6_c1i0s"]
 [ext_resource type="Script" uid="uid://dql5v81gqvdat" path="res://components/status_effect_component.gd" id="6_eon52"]
 [ext_resource type="AudioStream" uid="uid://df2b8w21sb3xf" path="res://sfx/hit-rock-03-266305.mp3" id="8_jux4o"]
 [ext_resource type="Shader" uid="uid://dgt3e85o3avu2" path="res://Player/damage.gdshader" id="9_4ng6s"]
+[ext_resource type="Script" uid="uid://dmju02n5xp4s0" path="res://addons/player/step_detect.gd" id="9_863th"]
 [ext_resource type="Script" uid="uid://6h8f2qhrbtt6" path="res://Player/damage_overlay.gd" id="10_jux4o"]
 [ext_resource type="Script" uid="uid://sj3mml8ulasu" path="res://Player/crosshair.gd" id="12_qk8yx"]
 [ext_resource type="Shader" uid="uid://b6aaasr8tdyr5" path="res://Player/distort.gdshader" id="12_vnn13"]
@@ -132,11 +132,49 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.0704, 0.4544, 0.8)
 }
 
+[sub_resource type="Animation" id="Animation_863th"]
+resource_name = "swing_left"
+length = 0.8
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Neck/Camera3D:rotation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 3, 0, 2),
+"points": PackedFloat32Array(0, 0, 0, 0.023466667, 0, -0.017453292, -0.029600002, 0.0016087238, 0.029600002, -0.0016087238, 0.0052359877, -0.058, 0, 0.058, 0, 0, -0.07733333, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.0704, 0.4544, 0.8)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Neck/Camera3D:rotation:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 2, 0, 2),
+"points": PackedFloat32Array(0, 0, 0, 0.023466667, 0, -0.008726646, -0.023466667, 0, 0.16586667, 0, 0.0034906585, -0.16586667, 0, 0.07733333, 0, 0, -0.07733333, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.0704, 0.4544, 0.8)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Neck/Camera3D:rotation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(2, 2, 0, 2),
+"points": PackedFloat32Array(0, 0, 0, 0.023466667, 0, 0.0034906585, -0.023466667, 0, 0.16586667, 0, -0.0017453292, -0.16586667, 0, 0.07733333, 0, 0, -0.07733333, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.0704, 0.4544, 0.8)
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_by45h"]
 _data = {
 &"RESET": SubResource("Animation_by45h"),
 &"jump": SubResource("Animation_kgtn1"),
-&"land": SubResource("Animation_n47sy")
+&"land": SubResource("Animation_n47sy"),
+&"swing_left": SubResource("Animation_863th")
 }
 
 [sub_resource type="Animation" id="Animation_3br5i"]
@@ -279,6 +317,10 @@ _data = {
 &"shockwave": SubResource("Animation_c1i0s")
 }
 
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_863th"]
+length = 0.5
+slide_on_slope = true
+
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("player_body", "mainhand", "offhand") groups=["player"]]
 script = ExtResource("1_cyojo")
 inventory = Array[ExtResource("2_863th")]([ExtResource("3_e6ia4"), ExtResource("4_d6j5h"), ExtResource("5_863th")])
@@ -322,7 +364,6 @@ shape = SubResource("SeparationRayShape3D_dverj")
 [node name="Head" type="Node3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
-script = ExtResource("2_6oqec")
 
 [node name="Neck" type="Node3D" parent="Head"]
 unique_name_in_owner = true
@@ -371,7 +412,6 @@ hurtbox = NodePath("../../../../hurtbox_component")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0, -0.725)
 script = ExtResource("4_cqqbj")
-weapon = ExtResource("3_e6ia4")
 offhand = NodePath("../LeftHand")
 
 [node name="LeftHand" type="Marker3D" parent="Head/SubViewportContainer/SubViewport/Camera3D" node_paths=PackedStringArray("mainhand")]
@@ -384,6 +424,22 @@ mainhand = NodePath("../RightHand")
 transform = Transform3D(-0.99999994, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -0.99999994, 0, -1.8152095, 0.55213237)
 remote_path = NodePath("../../playerBody")
 update_scale = false
+
+[node name="stepDetect" type="Node3D" parent="Head" node_paths=PackedStringArray("separation_ray", "player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5979036, 0)
+script = ExtResource("9_863th")
+separation_ray = NodePath("../../autostep")
+player = NodePath("../..")
+
+[node name="stepBase" type="RayCast3D" parent="Head/stepDetect"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08176395, 0)
+target_position = Vector3(0, 0, -0.6)
+collision_mask = 2
+
+[node name="stepHeight" type="RayCast3D" parent="Head/stepDetect"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+target_position = Vector3(0, 0, -0.6)
+collision_mask = 2
 
 [node name="playerBody" parent="." instance=ExtResource("3_tio5b")]
 transform = Transform3D(-1.2, 0, 1.04907336e-07, 0, 1.2, 0, -1.04907336e-07, 0, -1.2, 0, -0.21520948, 0.55213237)
@@ -506,3 +562,14 @@ default_color = Color(0.41215247, 0.41215247, 0.41215247, 1)
 points = PackedVector2Array(-10, 5, -20, 0, -10, -5)
 width = 2.0
 default_color = Color(0.41215247, 0.41215247, 0.41215247, 1)
+
+[node name="autostep" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, 0, 0.0522469, 0)
+shape = SubResource("SeparationRayShape3D_863th")
+disabled = true
+debug_color = Color(1, 0, 0, 1)
+
+[node name="enemy_look_at" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+
+[connection signal="damage_taken" from="hurtbox_component" to="." method="_on_hurtbox_component_damage_taken"]

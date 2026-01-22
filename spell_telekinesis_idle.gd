@@ -28,7 +28,6 @@ func _on_idle_state_physics_processing(delta: float) -> void:
 	if Input.is_action_just_pressed("attack_secondary") && spell.grabbed_object == null:
 		AudioManager.play_sound(load("res://sfx/telekeroppomimipickup2.wav"),spell.global_position,-10)
 		AudioManager.play_sound(load("res://sfx/fire-magic-5-378639.mp3"), spell.global_position, -10)
-		var camera = get_viewport().get_camera_3d()
 		animation_player.play("pull_object")
 		if spell_shapecast.is_colliding():
 			var colliders =  spell_shapecast.get_collision_count()

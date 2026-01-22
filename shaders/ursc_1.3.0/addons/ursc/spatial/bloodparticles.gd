@@ -4,6 +4,9 @@ extends GPUParticles3D
 
 var blood_decal = preload("res://blood_decal.tscn")
 
+func _ready() -> void:
+	get_tree().create_timer(1).timeout.connect(func(): self.queue_free())
+
 func take_damage() -> void:
 	emitting = true
 	if blood_pos.is_colliding():

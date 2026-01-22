@@ -3,10 +3,22 @@ extends hurtbox_component
 @export var player_camera: Camera3D
 @export var viewport_camera: Camera3D
 
+var is_blocking: bool = false
+
+func _ready():
+	SignalBus.connect("is_blocking", _update_blocking)
+	timer = Timer.new()
+	add_child(timer)
+	timer.one_shot = true
+	SignalBus.connect("player_immune",invulnerability)
+
+func _update_blocking(value:bool):
+	is_blocking = value
+
 func take_damage(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float], status_types: Dictionary[Global.STATUS_TYPE, float], stance_damage: float, source: DamageComponent):
 	if timer.time_left > 0: return 0
 	
-	if Global.player.blocking && is_facing(source): 
+	if is_blocking && is_facing(source): 
 		player_camera.apply_shake()
 		viewport_camera.apply_shake()
 		if Global.player.offhand.get_child_count() > 0:
@@ -32,7 +44,11 @@ func take_damage(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float], stat
 	return sum
 	
 
-func is_facing(source: DamageComponent):
-	var block_dir = sign(Global.player.offhand.global_position.z - global_position.z)
-	var hit_dir = sign(global_position.z - source.global_position.z)
-	return block_dir != hit_dir
+func is_facing(source: DamageComponent) -> bool:
+	var player_forward = -Global.player.camera.global_transform.basis.z 
+	var target_direction = (source.owner.global_transform.origin - Global.player.camera.global_transform.origin).normalized()
+	var dot_product = player_forward.dot(target_direction)
+	var angle_to_target = acos(dot_product)
+	if angle_to_target < deg_to_rad(60):
+		return true
+	return false

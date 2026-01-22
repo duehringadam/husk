@@ -7,6 +7,7 @@ var primary_active_bool: bool = false
 
 func _ready() -> void:
 	SignalBus.connect("primary_active", primary_active)
+	self.position = weapon_initial_position
 	
 func primary_active(value: bool):
 	primary_active_bool = value

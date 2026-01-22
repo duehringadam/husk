@@ -7,6 +7,7 @@ extends CenterContainer
 @export var RETICLE_SPEED: float = 0.25
 @export var RETICLE_DISTANCE: float = 6.0
 
+
 func _process(delta: float) -> void:
 	adjust_reticle_lines()
 	
@@ -17,8 +18,8 @@ func _draw():
 	draw_circle(Vector2(0,0),DOT_RADIUS,DOT_COLOR)
 
 func adjust_reticle_lines():
+	var mouse_movement = Input.get_last_mouse_velocity().normalized()
 	var vel = PLAYER_CONTROLLER.get_real_velocity()
-	var origin = Vector3(0,0,0)
 	var pos = Vector2(0,0)
 	var speed = vel.length()
 	RETICLE_LINES[0].position = lerp(RETICLE_LINES[0].position, pos + Vector2(0,-speed * RETICLE_DISTANCE),RETICLE_SPEED)
@@ -26,38 +27,63 @@ func adjust_reticle_lines():
 	RETICLE_LINES[2].position = lerp(RETICLE_LINES[2].position, pos + Vector2(0, speed * RETICLE_DISTANCE),RETICLE_SPEED)
 	RETICLE_LINES[3].position = lerp(RETICLE_LINES[3].position, pos + Vector2(-speed * RETICLE_DISTANCE,0),RETICLE_SPEED)
 	
-	if PLAYER_CONTROLLER.input_dir.length() == 0:
+	if abs(mouse_movement.length()) < 0.3:
 		RETICLE_LINES[0]["default_color"] = Color.DIM_GRAY
 		RETICLE_LINES[1]["default_color"] = Color.DIM_GRAY
 		RETICLE_LINES[2]["default_color"] = Color.DIM_GRAY
 		RETICLE_LINES[3]["default_color"] = Color.DIM_GRAY
+		
+		RETICLE_LINES[0].scale = lerp(Vector2.ONE,Vector2.ONE, RETICLE_SPEED)
+		RETICLE_LINES[1].scale = lerp(Vector2.ONE,Vector2.ONE, RETICLE_SPEED)
+		RETICLE_LINES[2].scale = lerp(Vector2.ONE,Vector2.ONE, RETICLE_SPEED)
+		RETICLE_LINES[3].scale = lerp(Vector2.ONE,Vector2.ONE, RETICLE_SPEED)
 		return
 	
-	if PLAYER_CONTROLLER.input_dir.z > 0:
+	if mouse_movement.y > 0.8:
 		RETICLE_LINES[0]["default_color"] = Color.DIM_GRAY
 		RETICLE_LINES[1]["default_color"] = Color.DIM_GRAY
-		RETICLE_LINES[2]["default_color"] = Color.WHITE
+		RETICLE_LINES[2]["default_color"] = lerp(Color.DIM_GRAY, Color.WHITE, 1)
 		RETICLE_LINES[3]["default_color"] = Color.DIM_GRAY
+		
+		RETICLE_LINES[0].scale = lerp(Vector2.ONE,Vector2.ONE, RETICLE_SPEED)
+		RETICLE_LINES[1].scale = lerp(Vector2.ONE,Vector2.ONE, RETICLE_SPEED)
+		RETICLE_LINES[2].scale = lerp(Vector2.ONE,Vector2.ONE*2, RETICLE_SPEED)
+		RETICLE_LINES[3].scale = lerp(Vector2.ONE,Vector2.ONE, RETICLE_SPEED)
 		return
 	
-	if PLAYER_CONTROLLER.input_dir.z < 0:
-		RETICLE_LINES[0]["default_color"] = Color.WHITE
+	if mouse_movement.y < -0.8:
+		RETICLE_LINES[0]["default_color"] = lerp(Color.DIM_GRAY, Color.WHITE, 1)
 		RETICLE_LINES[1]["default_color"] = Color.DIM_GRAY
 		RETICLE_LINES[2]["default_color"] = Color.DIM_GRAY
 		RETICLE_LINES[3]["default_color"] = Color.DIM_GRAY
+		
+		RETICLE_LINES[0].scale = lerp(Vector2.ONE,Vector2.ONE*2, RETICLE_SPEED)
+		RETICLE_LINES[1].scale = lerp(Vector2.ONE,Vector2.ONE, RETICLE_SPEED)
+		RETICLE_LINES[2].scale = lerp(Vector2.ONE,Vector2.ONE, RETICLE_SPEED)
+		RETICLE_LINES[3].scale = lerp(Vector2.ONE,Vector2.ONE, RETICLE_SPEED)
 		return
 	
-	if PLAYER_CONTROLLER.input_dir.x > 0:
+	if mouse_movement.x > 0.8:
 		RETICLE_LINES[0]["default_color"] = Color.DIM_GRAY
-		RETICLE_LINES[1]["default_color"] = Color.WHITE
+		RETICLE_LINES[1]["default_color"] = lerp(Color.DIM_GRAY, Color.WHITE, 1)
 		RETICLE_LINES[2]["default_color"] = Color.DIM_GRAY
 		RETICLE_LINES[3]["default_color"] = Color.DIM_GRAY
+		
+		RETICLE_LINES[0].scale = lerp(Vector2.ONE,Vector2.ONE, RETICLE_SPEED)
+		RETICLE_LINES[1].scale = lerp(Vector2.ONE,Vector2.ONE*2, RETICLE_SPEED)
+		RETICLE_LINES[2].scale = lerp(Vector2.ONE,Vector2.ONE, RETICLE_SPEED)
+		RETICLE_LINES[3].scale = lerp(Vector2.ONE,Vector2.ONE, RETICLE_SPEED)
 		return
 		
-	if PLAYER_CONTROLLER.input_dir.x < 0:
+	if mouse_movement.x < -0.8:
 		RETICLE_LINES[0]["default_color"] = Color.DIM_GRAY
 		RETICLE_LINES[1]["default_color"] = Color.DIM_GRAY
 		RETICLE_LINES[2]["default_color"] = Color.DIM_GRAY
-		RETICLE_LINES[3]["default_color"] = Color.WHITE
+		RETICLE_LINES[3]["default_color"] = lerp(Color.DIM_GRAY, Color.WHITE, 1)
+		
+		RETICLE_LINES[0].scale = lerp(Vector2.ONE,Vector2.ONE, RETICLE_SPEED)
+		RETICLE_LINES[1].scale = lerp(Vector2.ONE,Vector2.ONE, RETICLE_SPEED)
+		RETICLE_LINES[2].scale = lerp(Vector2.ONE,Vector2.ONE, RETICLE_SPEED)
+		RETICLE_LINES[3].scale = lerp(Vector2.ONE,Vector2.ONE*2, RETICLE_SPEED)
 		return
 	

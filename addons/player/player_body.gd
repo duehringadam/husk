@@ -20,11 +20,17 @@ func crouch(value: bool):
 
 func kick():
 	if is_kicking: return
-	
+	SignalBus.emit_signal("kick_active", true)
+	var tween = get_tree().create_tween()
+	tween.tween_property(Global.player.camera,"fov",Global.camera_fov+10,.25)
 	is_kicking = true
 	animation_tree.set("parameters/conditions/kick", true)
 	var anim = animation_tree.get_animation("standing_kick")
-	await get_tree().create_timer(anim.length/1.5).timeout
+	await get_tree().create_timer(anim.length/2).timeout
+	SignalBus.emit_signal("kick_active", false)
+	tween.kill()
+	tween = get_tree().create_tween()
+	tween.tween_property(Global.player.camera,"fov",Global.camera_fov,.25)
 	is_kicking = false
 	animation_tree.set("parameters/conditions/endkick", true)
 	animation_tree.set("parameters/conditions/kick", false)

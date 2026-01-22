@@ -6,11 +6,15 @@ extends Node
 
 func _on_block_state_entered() -> void:
 	animation_tree.set("parameters/conditions/block", true)
+	SignalBus.emit_signal("block_amount", weapon.block_amount)
+	SignalBus.emit_signal("is_blocking", true)
 	GamePiecesEventBus.request_sprint_lock(true)
 
 
 
 func _on_block_state_exited() -> void:
+	SignalBus.emit_signal("block_amount", -weapon.block_amount)
+	SignalBus.emit_signal("is_blocking", false)
 	GamePiecesEventBus.request_sprint_lock(false)
 
 

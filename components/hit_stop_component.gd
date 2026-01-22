@@ -20,6 +20,5 @@ func _on_damage_taken(reduced:float, source: DamageComponent, hit_dir: Vector3):
 		HitStop.hit_stop(HIT_STOP_TIME_SCALE, hit_stop_duration)
 
 func _on_health_changed(amount: float, new_value: float):
-	if amount < 0:
-		pass
-		#HitStop.hit_stop(HIT_STOP_TIME_SCALE, hit_stop_duration)
+	if abs(amount) > 1:
+		HitStop.hit_stop(HIT_STOP_TIME_SCALE, hit_stop_duration)

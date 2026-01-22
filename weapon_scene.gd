@@ -3,6 +3,7 @@ extends Node3D
 
 @export var weapon_initial_position: Vector3
 @export var two_handed: bool = false
+@export_range(0.0,1.0) var block_amount: float
 @export var hit_particles_add: PackedScene
 @export var swing_sound: AudioStream
 @export var hit_sound: AudioStream
@@ -32,9 +33,7 @@ func _on_bloodtimer_timeout() -> void:
 	blood_drip.emitting = false
 	remove_blood()
 
-
 func _on_damage_component_damage_dealt(types: Dictionary[DamageTypes.DAMAGE_TYPES, float], actual: float, stance_damage:float, target: hurtbox_component) -> void:
-	#AudioManager.play_sound(hit_sound,self.global_position,-20)
 	Global.player.camera.apply_shake(0.04)
 	if !target.can_bleed:
 		return
@@ -52,3 +51,8 @@ func remove_blood():
 	var weapon_mesh_shader = weapon_mesh.get_active_material(0)
 	tween = get_tree().create_tween()
 	tween.tween_property(weapon_mesh_shader.next_pass,"shader_parameter/progress",0,60)
+
+func block():
+	animation_tree.set("parameters/conditions/block_hit", true)
+	await get_tree().create_timer(.5).timeout
+	animation_tree.set("parameters/conditions/block_hit", false)

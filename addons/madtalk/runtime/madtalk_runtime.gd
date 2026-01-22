@@ -608,7 +608,6 @@ func _anim_dialog_menu_visible(show: bool = true) -> void:
 			else:
 				if dialog_menu:
 					dialog_menu.hide()
-					GamePiecesEventBus.emit_signal("camera_lock_requested", false)
 					SignalBus.emit_signal("dialogue_ended")
 					Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 			
@@ -1171,7 +1170,7 @@ func run_dialog_item(sheet_name: String = "", sequence_id: int = 0, item_index: 
 	
 func evaluate_condition(condition_type, condition_values):
 	# Returns true if condition is met, false otherwise
-	# May or may not morph into coroutine, caller must check with:
+	# May or may not morph into coroutine, caller must check with:s
 	#     if result is GDScriptFunctionState:
 	#	      result = yield(result, "completed")
 	

@@ -1,0 +1,562 @@
+[gd_scene load_steps=19 format=4 uid="uid://n2jx5heoc8te"]
+
+[ext_resource type="Script" uid="uid://dlojjjuet8kit" path="res://scenes/physics_pickable/sack.gd" id="1_pxvjb"]
+[ext_resource type="Texture2D" uid="uid://cbymplq2p2q2e" path="res://scenes/npc/Ghoul Animated/Textures/T_GhoulB_1024.png" id="2_3jx2o"]
+[ext_resource type="Texture2D" uid="uid://cqw8pa3g2qf2v" path="res://scenes/npc/Ghoul Animated/Textures/NormalMap(2).png" id="3_n6iyo"]
+[ext_resource type="Script" uid="uid://b8ltdmwdav2x3" path="res://addons/game_pieces/pickable/pickable_ragdoll.gd" id="4_888i7"]
+[ext_resource type="PackedScene" uid="uid://el0a5hjf7h2o" path="res://scenes/npc/Ghoul Animated/gore/pickable/limb_sever_bleed.tscn" id="5_ccy01"]
+[ext_resource type="Script" uid="uid://ck3cei0hvspym" path="res://addons/interaction_system/interaction_container.gd" id="6_f1xq0"]
+[ext_resource type="Script" uid="uid://5tinbhq6p45k" path="res://addons/interaction_system/interaction.gd" id="7_8rfuf"]
+[ext_resource type="Script" uid="uid://bxe74cq2uqemi" path="res://addons/game_controls/vanilla/input_map_game_control.gd" id="8_2cc6w"]
+[ext_resource type="Script" uid="uid://doc0okecalxnp" path="res://addons/interaction_system/interaction_context.gd" id="9_o6pme"]
+[ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="10_v30ej"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2jyq8"]
+resource_name = "M_Ghoul.002"
+cull_mode = 2
+albedo_color = Color(0.9063318, 0.9063318, 0.9063318, 1)
+roughness = 0.5
+metadata/extras = {
+"yp": {
+"active_ypaint_node": ""
+}
+}
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_54kue"]
+resource_name = "gore3_Ghoul_005"
+_surfaces = [{
+"aabb": AABB(0.0060629994, -1.0430813e-07, -0.104851, 0.23094027, 0.9562575, 0.2790164),
+"attribute_data": PackedByteArray("RIXVPqDSEj9sQyA/6gV8P8hoED9eQns/umgAP9h1fT/Ul9s+QbJ9P2rQbz/lGHI/9OtqP0GyfT+lnWM/sDxvP/ahcj/6DHA/4ZVvP9Qkcj+oWnI/wwdwP15YPD/qTWQ/Asw2P5TPZT/xLDk/86FrP7+OMz9/z2Y/UUc2P4ImbT9DaDU/FwtjP9+8VT9EqF8/wFY5P+hWbj+iaBw/gHe2PMMcLj/AvA890C8cPxAbTz2lsfI+SU4aP0IA8j5JDUg/WO/ePt5wRD+sAg0/gbc/P2a6HT/yfEM/zk1HP+E4XT9Tmkc/loVNP+eUXT+PJWU/Sd9QPxkZfT8EmTs/wAIlPMXqOj+gnAU9LmM4P/DBSz2HC7w+pGYYP4bI3D5LXHY/LxsiP9OZEj9Cwv8+ogZ2PyvZ/D62Zkc/lC4tP8B9GD+4qAU/IqM/Pyn8Dz+lw3M/1EcUPzL1QD+Wvx8/uql0P4uCZj8onnE/LdVKP0fIaj9aNkE/Jj1oP7ZcQz/WxU0/0Z1XP0i0ZT/Tn1Q/bRFvP95xUj82kHg/lR4uP0CNrDw0Yjg/QGdqPcft3j7Uk04/h4nsPs1Ndz+eyOs+2hZ8P3hVBT9iXBo/5VMGP6jeSz+Ivgc/E0N0P0/RDT8wwUs/N9ESPy2DGT8tABQ/MohMP7i9HD+mAE0/RyAXP3YHdD/pxRc/o6l4P9oGaz9DkHo/EBlxPzBWdz+DvHQ/ymh4P5ttaj8XCms/Xu1DP1VzYj++hUI/+tpsP4n2Oj9oBGo/XAM/P0WnXz/I1zo/nZxmP7rRQD9ycHQ/rcU5P1h6WT9P9kQ/uGxQP2lERj/rXFA/in9MP/plVD+9/1M/7EtWP8H/VD+ShVM/zANVP3pHVz8m4Fc/vIRWP8RdVj+l4Vo/K95aPzMPaD+No10/5Y5pP6R+VT+ch3o/LcFQP1yFeT+nric/8Gh5PfqpJz/AbxM8FRsuPzDfRD0zJTQ/oGgSPfjwOT8wvTo9H/I5PwBLFj3r6zo/4GzCPLeXOz/g7qQ8TRDgPupAST8DWvA+ZvtNP1vl/D5lk00/DBEGPxssRj8RcA0/RvZFP9+7Ez/GlUY/mMMbP0CWRz+Pxwc/afF4P6WdYz/gang/5W5mPzZQdz/Mv2o/dvZuP1N5Pz91c2U/plNFPzeSaD+R9D0/9JxpPwmsQz+xxFo/Iow+P8yrVT9vgUY/csV1P6TySD9T324/UxtMP6dZeT8sP04/+cF2P9IRTz8/o3s/lkxRP+vbdD9zsFE/ikd7P5NvUz9Bsn0/Sp5UP+yGdD9MLFU/5Th4P870WD94wWs/VllTPwVEej/nNVM/FwN9P6b/Uz8iYnw/O5VUP/gSfT/bZVc/Ma9oP6/bWz9CVmo/h1pLP40gYz+Selw/9BRoPycCXz8C2Wc/O85aPxCUZj/mSlk/uwNjPz7ZWz/JbWQ/g3NcP06cZj/PSl4/ZbhnPz4+Xj/i+mY/JwJfPynXZj8WM1M/SOJZP2I6Vz+pIlg/jVZRP6qgVz+iFVY/TE5WP7XmST/SUVE/hdlQP3qSVD/WHkc/JjVTPxdnSD/aC08/aWhTP24TVD+Xplc/4IpUP/gaVT/XTFU/hBBXP1vtVD/wiVY/H25UP/X8Vj//1FM/D1ZEP7QxUz8cV0E/NLJRPyK2Qj/aW08/myhGPwDyTj852EU/QXFMP0fSRD8K8k4/Y8NFP/FHTT9GDEU/4i1NP9HlRD98hkw/shkuP1CjcD2TVDM/4FptPb5VMz+AfEg9+IA2PyClaz0GgjY/sGVKPZWyOj9gl2M9HrM6P2C3Uj3PIzQ/YEE+PdjJNz/ANzw9GMs3P3CtFD17mzw/cKIyPR6cPD/QkB49BSAuPwCrIzzYpTQ/4BsJPZgBNT/AbxM8O6c0P+CiujwGADU/gOKsPN2XOD9gFQc9iCY5PwBHqDwdmTg/4C+/PPInOT/Asx08fc09P+AM+zwfzj0/oPbSPEGhPj8gm5I8+qE+PwBvSjw="),
+"bone_aabbs": [AABB(0.0060629994, 0.49655205, -0.104851, 0.18665247, 0.45970535, 0.20587371), AABB(0.06474135, -1.0430813e-07, -0.0965391, 0.1722719, 0.5807924, 0.2707045), AABB(0.10789945, -1.0430813e-07, -0.0965391, 0.12911382, 0.12154096, 0.2707045)],
+"format": 34359745559,
+"index_count": 732,
+"index_data": PackedByteArray("FgAXAAAAAAAYACIAAAAXABgAFwBgABgAFwA1AGAAFwBhADUAYQAjADUAFgAmABcAJgBhABcAAAA4ABYAOAAmABYAOAAAACQAJAAAACcAOAAkADwAYQA2ACMANgAEACMANgA3AAQAYgA2AGEAJgBiAGEAJQA3ADYAYgAlADYAJQADADcAOAAoACYAPAAoADgAYwBiACYAKABjACYAPAAZACgAGQBjACgAJAAZADwAYwA5AGIAOQAlAGIAGQBkAGMAZAA5AGMAJAAqABkAKgBkABkAJwAqACQAJwAaACoAGgBlACoAKgBlAGQAGgBmAGUAZAA7ADkAZQA7AGQAZgA9AGUAZQA9ADsAZgA+AD0AOQA6ACUAOwA6ADkAOgADACUAOgBnAAMAOwApADoAKQBnADoAPQApADsAKQACAGcAPgA/AD0APQA/ACkAPwACACkAPgArAD8APwBAAAIAKwBAAD8AKwABAEAAQQBoAGkAaQBoAAcAQQAGAGgAaQAHACwAQgAGAEEALAAHAEQAQgBDAAYACQBDAEIACQAKAEMALABEAGoAagBEAAgAagAIAAUAawBsAC4ALgBsAEYALgBGAG0AawBFAGwACwBFAGsACwBIAEUASQBIAAsARQBIAG4ASQAMAEgARwAMAEkADABLAEgASwBuAEgADAAQAEsASwBvAG4ARwANAAwAbQANAEcADQAOAAwADQAPAA4AbQBGAA0ARgASAA0ARgBKABIARgBwAEoARgBxAHAAcQByAHAAbABxAEYAcQBzAHIAcwB0AHIAbAAtAHEALQBzAHEAcwBXAHQAVwAeAHQAdQBXAHMALQB1AHMAVwB2AB4AdgB3AB4AdQAyAFcAMgB2AFcAeAAyAHUALQB4AHUAeAB5ADIALQAxAHgALQB6ADEAeQB7ADIAMgB7AHYAeQBWAHsAewB8AHYAdgB8AHcAVgB9AHsAewB9AHwAfQB3AHwAVgB+AH0AfQB+AHcALQB/AHoAfwCAAHoAgQB/AC0AbACBAC0AfwBUAIAAVABVAIAAMABUAH8AgQAwAH8AVACCAFUAggCDAFUAMACEAFQAhACCAFQAhQCEADAAEQCFADAAEQAwAIEAhQCGAIQAgQBTABEAhgCHAIQAhACHAIIAhgAdAIcAhwCIAIIAggCIAIMAHQCJAIcAhwCJAIgAiQCDAIgAHQCKAIkAiQCKAIMAgQCLAFMAiwCMAFMAGwCLAIEAbAAbAIEAGwBsAEUARQBuABsAiwBRAIwAUQBSAIwAjQBRAIsAGwCNAIsAUQCOAFIATgCNABsAGwCPAE4ATgCQAI0AGwCRAI8AbgCRABsAkQCSAI8AjQBPAFEAkABPAI0ATwCOAFEAkACTAE8AjgCUAFIAkwCVAE8ATwCVAI4AkwBQAJUAjgCWAJQAlQCWAI4AlwCUAJYAlQCXAJYAUACXAJUAlwCYAJQAUACYAJcAkQBNAJIATQAcAJIAmQBNAJEAbgCZAJEAbwCZAG4AbwCaAJkAmgBMAJkAmQBMAE0AmgCbAEwATQCcABwATACcAE0AnACdABwAmwCeAEwATACeAJwAmwAvAJ4AnACfAJ0AngCfAJwAoACdAJ8AngCgAJ8ALwCgAJ4AoAChAJ0ALwChAKAAWAATAFkAWAAVABMAWQAUAFgAWgBYABQAogBYAFoAowCiAFoAowBaAKQApAClAKMApACmAKUApgA0AKUApgAhADQAIQCnADQAIQCoAKcAWwBaABQAWwCpAFoAWwCqAKkAWwCrAKoAqwBcAKoAqwBdAFwAXQCsAFwAXQCtAKwAMwAUAFkArgAzAFkArwAUADMAsAAzAK4ArwAzALEAsACyADMAsQCzAK8AsAC0ALIAsQC1ALMAsAC2ALQAtQAgALMAtgBfALQAtQBeACAAXgC3ACAAXgC4ALcAtgAfAF8AHwC5AF8AHwC6ALkA"),
+"lods": [0.051265888, PackedByteArray("FgAXAAAAAAAYACIAAAAXABgAFwA1ABgAFwAjADUAFwA2ACMANgAEACMANgA3AAQAJgA2ABcAFgAmABcAJQA3ADYAJgAlADYAJQADADcAOAAmABYAAAA4ABYAOQAlACYAOgADACUAOQA6ACUAOgACAAMAKAA5ACYAOAAoACYAOwA6ADkAOwA5ACgAPAAoADgAOAAAACQAOAAkADwAJAAAACcAPAAZACgAJAAZADwAGQA7ACgAJwAqACQAJAAqABkAKgA7ABkAJwAaACoAGgA9ACoAKgA9ADsAGgA+AD0AOwApADoAPQApADsAKQACADoAPgA/AD0APQA/ACkAPwACACkAPgArAD8APwBAAAIAKwBAAD8AKwABAEAAQQAGAAcAQgAGAEEAQQAHACwAQgBDAAYACQBDAEIACQAKAEMALAAHAEQALABEAAUABQBEAAgACwBFAC4ALgBFAEYALgBGAEcACwBIAEUASQBIAAsARwAMAEkASQAMAEgARwANAAwARwBGAA0ADQAOAAwADQAPAA4ARgASAA0ARgBKABIARgAeAEoADAAQAEsADABLAEgASwAvAEgALwBMAEgATAAvAE0ASABMAE0ATQAvABwATQAcAE4ASABNABsAGwBNAE4ARQBIABsATgBPABsATgBQAE8ATwBQAFEAGwBPAFEAUQBQAFIAUQBSAFMAGwBRAFMAGwBTABEAEQAwABsAEQAdADAARQAbAC0AMAAdAFQAGwAwAFQAVAAdAFUAGwBUAC0AVABVADEALQBUADEARQAtAEYALQAxADIAMQBWADIALQBXAEYALQAyAFcAMgBWAFcARgBXAB4AVwBWAB4AWAATAFkAWAAVABMAWQAUAFgAWgBYABQANABYAFoAWgAhADQAWwBaABQAWwBcAFoAWwBdAFwAMwAUAFkAIAAUADMAMwBeACAAHwAzAFkAHwBfADMA"), 0.15476501, PackedByteArray("FgAXAAAAAAAYACIAAAAXABgAFwAjABgAFgAAACQAFwAlACMAFgAmABcAJgAlABcAJQAEACMAJQADAAQAJAAAACcAFgAoACYAKAAlACYAJAAoABYAKQADACUAKAApACUAJAAZACgAGQApACgAKQACAAMAJAAqABkAKgApABkAJwAqACQAJwAaACoAGgArACoAKgArACkAKwACACkAKwABAAIALAAGAAcACQAGACwACQAKAAYALAAHAAUABQAHAAgACwAtAC4ALgAMAAsALgANAAwALgAtAA0ADQAOAAwADQAPAA4ALQASAA0ACwAMABsACwAbAC0ADAAQABsAEAAvABsAGwAvABwAGwAcABEALQAeABIAEQAwABsAGwAwAC0AEQAdADAAMAAdADEALQAwADEAMQAeADIALQAyAB4ALQAxADIAMwAUABMAHwAzABMAIAAUADMAEwAUABUAIQAVABQANAAVACEA"), 0.30805844, PackedByteArray("FgAXAAAAAAAXABgAFwAEABgAFwADAAQAFgAAABkAFgAZABcAGQADABcAAAAaABkAGQACAAMAGgACABkAGgABAAIABQAGAAcABQAHAAgACQAGAAUACQAKAAYACwAMABsADAAQABsAEAAcABsACwANAAwACwAbAA0ADQAOAAwADQAPAA4AGwASAA0AGwAcAB0AGwAeABIAGwAdAB4AHwAgABMAEwAgABUAIQAVACAA"), 0.8592054, PackedByteArray("AAABAAIAAgADAAAAAAADAAQABQAGAAcABQAHAAgACQAGAAUACQAKAAYACwAMAA0ACwANAAwADQAOAAwADQAPAA4ADAAQAA0AEAARAA0ADQARABIAEwAUABUA")],
+"material": SubResource("StandardMaterial3D_2jyq8"),
+"name": "M_Ghoul.002",
+"primitive": 3,
+"skin_data": PackedByteArray("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"),
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 187,
+"vertex_data": PackedByteArray("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")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="Skin" id="Skin_k21lj"]
+resource_name = "Skin4"
+bind_count = 3
+bind/0/name = &"Thigh_L"
+bind/0/bone = -1
+bind/0/pose = Transform3D(-0.024393039, 0.023937805, 0.9994159, 0.11437345, -0.99308234, 0.026577655, 0.99313843, 0.114954844, 0.021486435, -0.020573992, 0.916757, -0.17700028)
+bind/1/name = &"Calf_L"
+bind/1/bone = -1
+bind/1/pose = Transform3D(-0.026243718, -0.1138129, 0.9931556, 0.111077964, -0.9876774, -0.11024994, 0.9934651, 0.10742424, 0.038562424, 0.0535299, 0.5175995, -0.17318304)
+bind/2/name = &"Foot_L"
+bind/2/bone = -1
+bind/2/pose = Transform3D(-1.0000001, -9.2540795e-06, 4.1253593e-06, 6.89098e-06, -0.3205832, 0.9472205, -7.555e-06, 0.9472205, 0.32058316, 0.16841319, 0.06226866, -0.05218762)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wibwg"]
+albedo_texture = ExtResource("2_3jx2o")
+metallic_specular = 0.0
+normal_enabled = true
+normal_texture = ExtResource("3_n6iyo")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_l7tqm"]
+radius = 0.0859375
+height = 0.40298808
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6kh1r"]
+radius = 0.16308594
+height = 0.7993164
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bnlug"]
+radius = 0.053222656
+height = 0.4391209
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v5hn8"]
+radius = 0.028644493
+height = 0.15773435
+
+[node name="Armature_002" type="Node3D"]
+transform = Transform3D(0.99999994, 0, 0, 0, 1.0000005, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Skeleton3D" type="Skeleton3D" parent="."]
+bones/0/name = "Thigh_L"
+bones/0/parent = -1
+bones/0/rest = Transform3D(-0.024393082, 0.11437336, 0.99313825, 0.023937844, -0.99308217, 0.11495487, 0.99941576, 0.026577692, 0.021486485, -0.064383216, 0.57445186, -0.011427157)
+bones/0/enabled = true
+bones/0/position = Vector3(-0.064383216, 0.57445186, -0.011427157)
+bones/0/rotation = Quaternion(0.697711, 0.04955892, 0.7139611, -0.031666826)
+bones/0/scale = Vector3(0.99999994, 0.9999999, 0.99999994)
+bones/1/name = "Calf_L"
+bones/1/parent = 0
+bones/1/rest = Transform3D(0.990491, -0.13653786, 0.016877772, 0.13641971, 0.99061894, 0.007969729, -0.017807612, -0.0055914833, 0.9998258, -2.561137e-09, 0.39809072, -9.851647e-09)
+bones/1/enabled = true
+bones/1/position = Vector3(-2.561137e-09, 0.39809072, -9.851647e-09)
+bones/1/rotation = Quaternion(-0.0033984112, 0.008692085, 0.0684026, 0.99761415)
+bones/1/scale = Vector3(0.9999999, 0.9999999, 1)
+bones/2/name = "Foot_L"
+bones/2/parent = 1
+bones/2/rest = Transform3D(0.02624869, 0.9772235, 0.21058314, -0.11106907, 0.21220243, -0.9708932, -0.9934659, 0.002095403, 0.11410934, -0.00075130444, 0.47242287, -4.5681256e-05)
+bones/2/enabled = true
+bones/2/position = Vector3(-0.00075130444, 0.47242287, -4.5681256e-05)
+bones/2/rotation = Quaternion(0.41831115, 0.5176496, -0.46788305, 0.5814982)
+bones/2/scale = Vector3(0.9999999, 1, 0.9999999)
+script = ExtResource("1_pxvjb")
+
+[node name="legLeft" type="MeshInstance3D" parent="Skeleton3D"]
+mesh = SubResource("ArrayMesh_54kue")
+skin = SubResource("Skin_k21lj")
+surface_material_override/0 = SubResource("StandardMaterial3D_wibwg")
+
+[node name="PhysicalBoneSimulator3D" type="PhysicalBoneSimulator3D" parent="Skeleton3D"]
+
+[node name="Physical Bone UpperArm_R" type="PhysicalBone3D" parent="Skeleton3D/PhysicalBoneSimulator3D" node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component") groups=["throwable"]]
+transform = Transform3D(-0.024396436, 0.9931382, -0.11437499, 0.023946619, 0.1149567, 0.99308145, 0.9994155, 0.02148876, -0.026586844, -0.04800372, 0.43224102, -0.0076205777)
+collision_layer = 8
+collision_mask = 15
+joint_type = 5
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.191982e-07, -7.936512e-07, 0.14320172)
+body_offset = Transform3D(1, 2.283603e-06, -9.119511e-06, -9.110197e-06, -1.7685234e-06, -0.9999996, -2.3264438e-06, 1.0000001, -1.9068248e-06, 5.867332e-07, 0.14320165, 1.0667136e-06)
+bone_name = "Thigh_L"
+joint_constraints/x/linear_limit_enabled = true
+joint_constraints/x/linear_limit_upper = 0.0
+joint_constraints/x/linear_limit_lower = 0.0
+joint_constraints/x/linear_limit_softness = 0.7
+joint_constraints/x/linear_spring_enabled = false
+joint_constraints/x/linear_spring_stiffness = 0.0
+joint_constraints/x/linear_spring_damping = 0.0
+joint_constraints/x/linear_equilibrium_point = 0.0
+joint_constraints/x/linear_restitution = 0.5
+joint_constraints/x/linear_damping = 1.0
+joint_constraints/x/angular_limit_enabled = true
+joint_constraints/x/angular_limit_upper = 49.999992
+joint_constraints/x/angular_limit_lower = -49.999992
+joint_constraints/x/angular_limit_softness = 0.5
+joint_constraints/x/angular_restitution = 0.0
+joint_constraints/x/angular_damping = 1.0
+joint_constraints/x/erp = 0.5
+joint_constraints/x/angular_spring_enabled = false
+joint_constraints/x/angular_spring_stiffness = 0.0
+joint_constraints/x/angular_spring_damping = 0.0
+joint_constraints/x/angular_equilibrium_point = 0.0
+joint_constraints/y/linear_limit_enabled = true
+joint_constraints/y/linear_limit_upper = 0.0
+joint_constraints/y/linear_limit_lower = 0.0
+joint_constraints/y/linear_limit_softness = 0.7
+joint_constraints/y/linear_spring_enabled = false
+joint_constraints/y/linear_spring_stiffness = 0.0
+joint_constraints/y/linear_spring_damping = 0.0
+joint_constraints/y/linear_equilibrium_point = 0.0
+joint_constraints/y/linear_restitution = 0.5
+joint_constraints/y/linear_damping = 1.0
+joint_constraints/y/angular_limit_enabled = true
+joint_constraints/y/angular_limit_upper = 49.999992
+joint_constraints/y/angular_limit_lower = -49.999992
+joint_constraints/y/angular_limit_softness = 0.5
+joint_constraints/y/angular_restitution = 0.0
+joint_constraints/y/angular_damping = 1.0
+joint_constraints/y/erp = 0.5
+joint_constraints/y/angular_spring_enabled = false
+joint_constraints/y/angular_spring_stiffness = 0.0
+joint_constraints/y/angular_spring_damping = 0.0
+joint_constraints/y/angular_equilibrium_point = 0.0
+joint_constraints/z/linear_limit_enabled = true
+joint_constraints/z/linear_limit_upper = 0.0
+joint_constraints/z/linear_limit_lower = 0.0
+joint_constraints/z/linear_limit_softness = 0.7
+joint_constraints/z/linear_spring_enabled = false
+joint_constraints/z/linear_spring_stiffness = 0.0
+joint_constraints/z/linear_spring_damping = 0.0
+joint_constraints/z/linear_equilibrium_point = 0.0
+joint_constraints/z/linear_restitution = 0.5
+joint_constraints/z/linear_damping = 1.0
+joint_constraints/z/angular_limit_enabled = true
+joint_constraints/z/angular_limit_upper = 49.999992
+joint_constraints/z/angular_limit_lower = -49.999992
+joint_constraints/z/angular_limit_softness = 0.5
+joint_constraints/z/angular_restitution = 0.0
+joint_constraints/z/angular_damping = 1.0
+joint_constraints/z/erp = 0.5
+joint_constraints/z/angular_spring_enabled = false
+joint_constraints/z/angular_spring_stiffness = 0.0
+joint_constraints/z/angular_spring_damping = 0.0
+joint_constraints/z/angular_equilibrium_point = 0.0
+script = ExtResource("4_888i7")
+change_distance_interaction = NodePath("InteractionContainer/WhileGrabbed/Change Distance")
+throwable_mesh = NodePath("../../legLeft")
+throwable = NodePath(".")
+damage_component = NodePath("DamageComponent")
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("6_f1xq0"),"default_context_id":0,"display_name":"Severed Arm","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("7_8rfuf")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("7_8rfuf"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("8_2cc6w"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R"]
+transform = Transform3D(0.99999803, -3.4458935e-07, 1.3969839e-07, 4.0978193e-08, -1.949229e-07, 0.9999986, 1.3969839e-07, -0.99999166, 5.578913e-07, -9.778887e-09, 6.9849193e-09, -0.058271497)
+shape = SubResource("CapsuleShape3D_l7tqm")
+
+[node name="GPUParticles3D" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R" instance=ExtResource("5_ccy01")]
+transform = Transform3D(-0.9964714, 0.033116393, 0.07712504, 0.03376086, 0.9994055, 0.0070306486, -0.07684369, 0.00960977, -0.99699676, -0.06762124, 0.58718497, 0.00021219347)
+top_level = true
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R"]
+transform = Transform3D(1, 2.3283064e-10, 7.450581e-09, 8.731149e-10, 1, -9.313226e-10, -7.450581e-09, 9.313226e-10, 1, 0.01201717, -0.0015027695, 0.15590727)
+remote_path = NodePath("../GPUParticles3D")
+update_rotation = false
+
+[node name="InteractionContainer" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R"]
+script = ExtResource("6_f1xq0")
+display_name = "Severed Arm"
+metadata/_custom_type_script = "uid://ck3cei0hvspym"
+
+[node name="Grab" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R/InteractionContainer"]
+script = ExtResource("7_8rfuf")
+hide_while_grabbed = true
+display_name = "Grab"
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="interact" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R/InteractionContainer/Grab"]
+script = ExtResource("8_2cc6w")
+action = &"interact"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="WhileGrabbed" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R/InteractionContainer"]
+script = ExtResource("9_o6pme")
+context_id = 1
+metadata/_custom_type_script = "uid://doc0okecalxnp"
+
+[node name="Change Distance" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R/InteractionContainer/WhileGrabbed"]
+script = ExtResource("7_8rfuf")
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="scroll" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R/InteractionContainer/WhileGrabbed/Change Distance"]
+script = ExtResource("8_2cc6w")
+type = 1
+action = &"scroll"
+negative_x = &"scroll_down"
+positive_x = &"scroll_up"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="Rotate" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R/InteractionContainer/WhileGrabbed"]
+script = ExtResource("7_8rfuf")
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="rotate" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R/InteractionContainer/WhileGrabbed/Rotate"]
+script = ExtResource("8_2cc6w")
+action = &"rotate"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="Throw" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R/InteractionContainer/WhileGrabbed"]
+script = ExtResource("7_8rfuf")
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="secondary_action" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R/InteractionContainer/WhileGrabbed/Throw"]
+script = ExtResource("8_2cc6w")
+action = &"secondary_action"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="PickupSound" type="AudioStreamPlayer" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R"]
+
+[node name="DamageComponent" type="Area3D" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R"]
+script = ExtResource("10_v30ej")
+metadata/_custom_type_script = "uid://dlsydctoxqbwy"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R/DamageComponent"]
+transform = Transform3D(0.9929548, -0.11012626, -0.04373745, 0.044126075, 0.001096691, 0.99904, -0.1099709, -0.99391735, 0.0059485226, -0.022665147, 0.00022570323, -0.20455863)
+shape = SubResource("CapsuleShape3D_6kh1r")
+
+[node name="Physical Bone UpperArm_R2" type="PhysicalBone3D" parent="Skeleton3D/PhysicalBoneSimulator3D" node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component") groups=["throwable"]]
+transform = Transform3D(-0.02624312, 0.9934653, -0.111078516, -0.11380488, 0.10742519, 0.9876779, 0.99315643, 0.03856104, 0.11024205, -0.0029220788, 0.03744237, -0.01667826)
+collision_layer = 8
+collision_mask = 15
+joint_type = 5
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8091927e-05, 3.6315896e-06, 0.14344187)
+body_offset = Transform3D(1.0000004, -1.5683472e-06, -7.83056e-06, -7.912517e-06, -7.2829425e-07, -0.99999994, 1.5385449e-06, 1.0000004, -8.624047e-07, -1.6968697e-05, 0.14344186, -3.5079138e-06)
+bone_name = "Calf_L"
+joint_constraints/x/linear_limit_enabled = true
+joint_constraints/x/linear_limit_upper = 0.0
+joint_constraints/x/linear_limit_lower = 0.0
+joint_constraints/x/linear_limit_softness = 0.7
+joint_constraints/x/linear_spring_enabled = false
+joint_constraints/x/linear_spring_stiffness = 0.0
+joint_constraints/x/linear_spring_damping = 0.0
+joint_constraints/x/linear_equilibrium_point = 0.0
+joint_constraints/x/linear_restitution = 0.5
+joint_constraints/x/linear_damping = 1.0
+joint_constraints/x/angular_limit_enabled = true
+joint_constraints/x/angular_limit_upper = 49.999992
+joint_constraints/x/angular_limit_lower = -49.999992
+joint_constraints/x/angular_limit_softness = 0.5
+joint_constraints/x/angular_restitution = 0.0
+joint_constraints/x/angular_damping = 1.0
+joint_constraints/x/erp = 0.5
+joint_constraints/x/angular_spring_enabled = false
+joint_constraints/x/angular_spring_stiffness = 0.0
+joint_constraints/x/angular_spring_damping = 0.0
+joint_constraints/x/angular_equilibrium_point = 0.0
+joint_constraints/y/linear_limit_enabled = true
+joint_constraints/y/linear_limit_upper = 0.0
+joint_constraints/y/linear_limit_lower = 0.0
+joint_constraints/y/linear_limit_softness = 0.7
+joint_constraints/y/linear_spring_enabled = false
+joint_constraints/y/linear_spring_stiffness = 0.0
+joint_constraints/y/linear_spring_damping = 0.0
+joint_constraints/y/linear_equilibrium_point = 0.0
+joint_constraints/y/linear_restitution = 0.5
+joint_constraints/y/linear_damping = 1.0
+joint_constraints/y/angular_limit_enabled = true
+joint_constraints/y/angular_limit_upper = 49.999992
+joint_constraints/y/angular_limit_lower = -49.999992
+joint_constraints/y/angular_limit_softness = 0.5
+joint_constraints/y/angular_restitution = 0.0
+joint_constraints/y/angular_damping = 1.0
+joint_constraints/y/erp = 0.5
+joint_constraints/y/angular_spring_enabled = false
+joint_constraints/y/angular_spring_stiffness = 0.0
+joint_constraints/y/angular_spring_damping = 0.0
+joint_constraints/y/angular_equilibrium_point = 0.0
+joint_constraints/z/linear_limit_enabled = true
+joint_constraints/z/linear_limit_upper = 0.0
+joint_constraints/z/linear_limit_lower = 0.0
+joint_constraints/z/linear_limit_softness = 0.7
+joint_constraints/z/linear_spring_enabled = false
+joint_constraints/z/linear_spring_stiffness = 0.0
+joint_constraints/z/linear_spring_damping = 0.0
+joint_constraints/z/linear_equilibrium_point = 0.0
+joint_constraints/z/linear_restitution = 0.5
+joint_constraints/z/linear_damping = 1.0
+joint_constraints/z/angular_limit_enabled = true
+joint_constraints/z/angular_limit_upper = 49.999992
+joint_constraints/z/angular_limit_lower = -49.999992
+joint_constraints/z/angular_limit_softness = 0.5
+joint_constraints/z/angular_restitution = 0.0
+joint_constraints/z/angular_damping = 1.0
+joint_constraints/z/erp = 0.5
+joint_constraints/z/angular_spring_enabled = false
+joint_constraints/z/angular_spring_stiffness = 0.0
+joint_constraints/z/angular_spring_damping = 0.0
+joint_constraints/z/angular_equilibrium_point = 0.0
+script = ExtResource("4_888i7")
+change_distance_interaction = NodePath("InteractionContainer/WhileGrabbed/Change Distance")
+throwable_mesh = NodePath("../../legLeft")
+throwable = NodePath(".")
+damage_component = NodePath("../Physical Bone UpperArm_R/DamageComponent")
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("6_f1xq0"),"default_context_id":0,"display_name":"Severed Arm","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("7_8rfuf")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("7_8rfuf"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("8_2cc6w"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2"]
+transform = Transform3D(0.99999714, -1.1920929e-07, -1.4901161e-08, -4.284084e-08, 1.671724e-07, 0.9999935, 2.2351742e-07, -0.99999416, -1.8184073e-07, 1.8626451e-09, 7.450581e-09, -0.07633776)
+shape = SubResource("CapsuleShape3D_bnlug")
+
+[node name="InteractionContainer" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2"]
+script = ExtResource("6_f1xq0")
+display_name = "Severed Arm"
+metadata/_custom_type_script = "uid://ck3cei0hvspym"
+
+[node name="Grab" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2/InteractionContainer"]
+script = ExtResource("7_8rfuf")
+hide_while_grabbed = true
+display_name = "Grab"
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="interact" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2/InteractionContainer/Grab"]
+script = ExtResource("8_2cc6w")
+action = &"interact"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="WhileGrabbed" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2/InteractionContainer"]
+script = ExtResource("9_o6pme")
+context_id = 1
+metadata/_custom_type_script = "uid://doc0okecalxnp"
+
+[node name="Change Distance" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2/InteractionContainer/WhileGrabbed"]
+script = ExtResource("7_8rfuf")
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="scroll" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2/InteractionContainer/WhileGrabbed/Change Distance"]
+script = ExtResource("8_2cc6w")
+type = 1
+action = &"scroll"
+negative_x = &"scroll_down"
+positive_x = &"scroll_up"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="Rotate" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2/InteractionContainer/WhileGrabbed"]
+script = ExtResource("7_8rfuf")
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="rotate" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2/InteractionContainer/WhileGrabbed/Rotate"]
+script = ExtResource("8_2cc6w")
+action = &"rotate"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="Throw" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2/InteractionContainer/WhileGrabbed"]
+script = ExtResource("7_8rfuf")
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="secondary_action" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2/InteractionContainer/WhileGrabbed/Throw"]
+script = ExtResource("8_2cc6w")
+action = &"secondary_action"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="PickupSound" type="AudioStreamPlayer" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2"]
+
+[node name="Physical Bone UpperArm_R3" type="PhysicalBone3D" parent="Skeleton3D/PhysicalBoneSimulator3D" node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component") groups=["throwable"]]
+transform = Transform3D(-1.0000001, -7.097787e-06, -3.4974264e-06, -7.844378e-06, 0.94722044, 0.32058164, 1.0374138e-06, 0.32058173, -0.9472209, 0.033598356, -0.33331993, 0.08198044)
+collision_layer = 8
+collision_mask = 15
+joint_type = 5
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6585562e-08, 9.2013227e-07, 0.143219)
+body_offset = Transform3D(1.0000002, -4.6455966e-07, -3.2125095e-06, -3.14415e-06, -1.3113022e-06, -1.0000001, 5.337648e-07, 0.9999999, -1.4305115e-06, 4.1350722e-07, 0.14321901, -7.1525574e-07)
+bone_name = "Foot_L"
+joint_constraints/x/linear_limit_enabled = true
+joint_constraints/x/linear_limit_upper = 0.0
+joint_constraints/x/linear_limit_lower = 0.0
+joint_constraints/x/linear_limit_softness = 0.7
+joint_constraints/x/linear_spring_enabled = false
+joint_constraints/x/linear_spring_stiffness = 0.0
+joint_constraints/x/linear_spring_damping = 0.0
+joint_constraints/x/linear_equilibrium_point = 0.0
+joint_constraints/x/linear_restitution = 0.5
+joint_constraints/x/linear_damping = 1.0
+joint_constraints/x/angular_limit_enabled = true
+joint_constraints/x/angular_limit_upper = 49.999992
+joint_constraints/x/angular_limit_lower = -49.999992
+joint_constraints/x/angular_limit_softness = 0.5
+joint_constraints/x/angular_restitution = 0.0
+joint_constraints/x/angular_damping = 1.0
+joint_constraints/x/erp = 0.5
+joint_constraints/x/angular_spring_enabled = false
+joint_constraints/x/angular_spring_stiffness = 0.0
+joint_constraints/x/angular_spring_damping = 0.0
+joint_constraints/x/angular_equilibrium_point = 0.0
+joint_constraints/y/linear_limit_enabled = true
+joint_constraints/y/linear_limit_upper = 0.0
+joint_constraints/y/linear_limit_lower = 0.0
+joint_constraints/y/linear_limit_softness = 0.7
+joint_constraints/y/linear_spring_enabled = false
+joint_constraints/y/linear_spring_stiffness = 0.0
+joint_constraints/y/linear_spring_damping = 0.0
+joint_constraints/y/linear_equilibrium_point = 0.0
+joint_constraints/y/linear_restitution = 0.5
+joint_constraints/y/linear_damping = 1.0
+joint_constraints/y/angular_limit_enabled = true
+joint_constraints/y/angular_limit_upper = 49.999992
+joint_constraints/y/angular_limit_lower = -49.999992
+joint_constraints/y/angular_limit_softness = 0.5
+joint_constraints/y/angular_restitution = 0.0
+joint_constraints/y/angular_damping = 1.0
+joint_constraints/y/erp = 0.5
+joint_constraints/y/angular_spring_enabled = false
+joint_constraints/y/angular_spring_stiffness = 0.0
+joint_constraints/y/angular_spring_damping = 0.0
+joint_constraints/y/angular_equilibrium_point = 0.0
+joint_constraints/z/linear_limit_enabled = true
+joint_constraints/z/linear_limit_upper = 0.0
+joint_constraints/z/linear_limit_lower = 0.0
+joint_constraints/z/linear_limit_softness = 0.7
+joint_constraints/z/linear_spring_enabled = false
+joint_constraints/z/linear_spring_stiffness = 0.0
+joint_constraints/z/linear_spring_damping = 0.0
+joint_constraints/z/linear_equilibrium_point = 0.0
+joint_constraints/z/linear_restitution = 0.5
+joint_constraints/z/linear_damping = 1.0
+joint_constraints/z/angular_limit_enabled = true
+joint_constraints/z/angular_limit_upper = 49.999992
+joint_constraints/z/angular_limit_lower = -49.999992
+joint_constraints/z/angular_limit_softness = 0.5
+joint_constraints/z/angular_restitution = 0.0
+joint_constraints/z/angular_damping = 1.0
+joint_constraints/z/erp = 0.5
+joint_constraints/z/angular_spring_enabled = false
+joint_constraints/z/angular_spring_stiffness = 0.0
+joint_constraints/z/angular_spring_damping = 0.0
+joint_constraints/z/angular_equilibrium_point = 0.0
+script = ExtResource("4_888i7")
+change_distance_interaction = NodePath("InteractionContainer/WhileGrabbed/Change Distance")
+throwable_mesh = NodePath("../../legLeft")
+throwable = NodePath(".")
+damage_component = NodePath("../Physical Bone UpperArm_R/DamageComponent")
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("6_f1xq0"),"default_context_id":0,"display_name":"Severed Arm","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("7_8rfuf")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("7_8rfuf"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("8_2cc6w"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3"]
+transform = Transform3D(1, -4.5474735e-12, -1.2607151e-07, -1.5134276e-09, 3.2782555e-07, 0.99999535, 3.410605e-13, -0.999999, 2.9802322e-07, -7.450581e-09, 8.940697e-08, 0.051074162)
+shape = SubResource("CapsuleShape3D_v5hn8")
+
+[node name="InteractionContainer" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3"]
+script = ExtResource("6_f1xq0")
+display_name = "Severed Arm"
+metadata/_custom_type_script = "uid://ck3cei0hvspym"
+
+[node name="Grab" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3/InteractionContainer"]
+script = ExtResource("7_8rfuf")
+hide_while_grabbed = true
+display_name = "Grab"
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="interact" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3/InteractionContainer/Grab"]
+script = ExtResource("8_2cc6w")
+action = &"interact"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="WhileGrabbed" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3/InteractionContainer"]
+script = ExtResource("9_o6pme")
+context_id = 1
+metadata/_custom_type_script = "uid://doc0okecalxnp"
+
+[node name="Change Distance" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3/InteractionContainer/WhileGrabbed"]
+script = ExtResource("7_8rfuf")
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="scroll" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3/InteractionContainer/WhileGrabbed/Change Distance"]
+script = ExtResource("8_2cc6w")
+type = 1
+action = &"scroll"
+negative_x = &"scroll_down"
+positive_x = &"scroll_up"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="Rotate" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3/InteractionContainer/WhileGrabbed"]
+script = ExtResource("7_8rfuf")
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="rotate" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3/InteractionContainer/WhileGrabbed/Rotate"]
+script = ExtResource("8_2cc6w")
+action = &"rotate"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="Throw" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3/InteractionContainer/WhileGrabbed"]
+script = ExtResource("7_8rfuf")
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="secondary_action" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3/InteractionContainer/WhileGrabbed/Throw"]
+script = ExtResource("8_2cc6w")
+action = &"secondary_action"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="PickupSound" type="AudioStreamPlayer" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3"]
+
+[connection signal="on_complete" from="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R/InteractionContainer/Grab" to="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R" method="_released"]
+[connection signal="on_trigger" from="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R/InteractionContainer/Grab" to="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R" method="_while_grabbed"]
+[connection signal="on_trigger" from="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R/InteractionContainer/WhileGrabbed/Change Distance" to="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R" method="_on_change_distance"]
+[connection signal="on_complete" from="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R/InteractionContainer/WhileGrabbed/Rotate" to="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R" method="_stopped_rotating"]
+[connection signal="on_trigger" from="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R/InteractionContainer/WhileGrabbed/Rotate" to="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R" method="_while_rotating"]
+[connection signal="on_complete" from="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R/InteractionContainer/WhileGrabbed/Throw" to="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R" method="_on_throw"]
+[connection signal="on_complete" from="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2/InteractionContainer/Grab" to="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2" method="_released"]
+[connection signal="on_trigger" from="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2/InteractionContainer/Grab" to="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2" method="_while_grabbed"]
+[connection signal="on_trigger" from="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2/InteractionContainer/WhileGrabbed/Change Distance" to="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2" method="_on_change_distance"]
+[connection signal="on_complete" from="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2/InteractionContainer/WhileGrabbed/Rotate" to="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2" method="_stopped_rotating"]
+[connection signal="on_trigger" from="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2/InteractionContainer/WhileGrabbed/Rotate" to="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2" method="_while_rotating"]
+[connection signal="on_complete" from="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2/InteractionContainer/WhileGrabbed/Throw" to="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2" method="_on_throw"]
+[connection signal="on_complete" from="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3/InteractionContainer/Grab" to="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3" method="_released"]
+[connection signal="on_trigger" from="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3/InteractionContainer/Grab" to="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3" method="_while_grabbed"]
+[connection signal="on_trigger" from="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3/InteractionContainer/WhileGrabbed/Change Distance" to="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3" method="_on_change_distance"]
+[connection signal="on_complete" from="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3/InteractionContainer/WhileGrabbed/Rotate" to="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3" method="_stopped_rotating"]
+[connection signal="on_trigger" from="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3/InteractionContainer/WhileGrabbed/Rotate" to="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3" method="_while_rotating"]
+[connection signal="on_complete" from="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3/InteractionContainer/WhileGrabbed/Throw" to="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3" method="_on_throw"]

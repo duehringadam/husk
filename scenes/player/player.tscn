@@ -136,3 +136,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8071404, 0)
 
 [node name="status_effect_component" parent="." index="14"]
 process_material = SubResource("ParticleProcessMaterial_5gtgg")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="20"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1513219, 0)
+layers = 3
+light_color = Color(0.8516858, 0.9016887, 1, 1)
+light_energy = 0.5
+omni_range = 10.0

@@ -10,8 +10,8 @@ func _set_item(new_item):
 		if mainhand.weapon != null:
 			if mainhand.weapon.two_handed:
 				mainhand.unequip()
-			if get_child_count() != 0:
-				unequip()
+		if get_child_count() != 0:
+			unequip()
 		var item_add = new_item.item_scene.instantiate()
 		add_child(item_add)
 

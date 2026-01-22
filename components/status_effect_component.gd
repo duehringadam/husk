@@ -61,7 +61,7 @@ func _apply_statuses(effects: Array[status_effect]):
 				additional_particles.process_material["turbulence_enabled"] = true
 			if i.damage_component_scene != null:
 				child_damage_component = i.damage_component_scene.instantiate()
-				get_parent().add_child(child_damage_component)
+				add_child(child_damage_component)
 				child_damage_component.connect("increment_shader",increment_shader)
 			if i.is_animated:
 				additional_particles.process_material["anim_speed"] = 1
@@ -118,7 +118,6 @@ func remove_status(effect: status_effect):
 	
 
 func increment_shader(amount: float, new_value: float):
-	print(status_buildup_progress_clamp)
 	if health_component != null:
 		if new_value <= 0:
 			var material = mesh_to_affect.get_surface_override_material(0).next_pass

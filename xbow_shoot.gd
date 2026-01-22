@@ -10,7 +10,6 @@ var bolt_add = preload("res://heavy_bolt.tscn")
 
 func _on_shoot_state_entered() -> void:
 	Global.player.camera.apply_shake()
-	Global.player.viewport_camera.apply_shake()
 	AudioManager.play_sound(weapon.swing_sound,weapon.global_position,-20.0)
 	animation_player.play("shoot")
 	

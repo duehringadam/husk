@@ -131,7 +131,7 @@ metadata/_custom_type_script = "uid://bxe74cq2uqemi"
 
 [node name="HealthComponent" type="Node3D" parent="."]
 script = ExtResource("8_hpp4u")
-max_health = 10.0
+max_health = 20.0
 metadata/_custom_type_script = "uid://dgjqgiw3yw42e"
 
 [node name="hurtbox_component" type="Area3D" parent="." node_paths=PackedStringArray("health_component", "status_component", "source")]
@@ -168,11 +168,10 @@ transform = Transform3D(1.0000002e-05, 0, 0, 0, -1.9470662e-12, -1.0000002e-05, 
 collision_layer = 8
 collision_mask = 5
 script = ExtResource("13_yf04e")
-hit_sound = ExtResource("10_f1v06")
 damage_types = Dictionary[int, float]({
-0: 3.0
+0: 5.0
 })
-stance_damage_value = 1.0
+stance_damage_value = 0.5
 metadata/_custom_type_script = "uid://dlsydctoxqbwy"
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Barrel/DamageComponent"]
