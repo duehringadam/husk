@@ -26,8 +26,6 @@ signal apply_statuses(status_types: Global.STATUS_TYPE, application_amount: floa
 var damage_particles_add
 ## add the invulnerability timer
 func _ready():
-	if damage_particles:
-		damage_particles_add = damage_particles.instantiate()
 	timer = Timer.new()
 	add_child(timer)
 	timer.one_shot = true
@@ -88,6 +86,7 @@ func take_damage(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float], stat
 	if hit_sound != null:
 		AudioManager.play_sound(hit_sound,self.global_position,-10.0)
 	if damage_particles:
+		damage_particles_add = damage_particles.instantiate()
 		get_tree().current_scene.add_child(damage_particles_add)
 		damage_particles_add.global_position = self.global_position
 		get_tree().create_timer(.1).timeout.connect(func(): damage_particles_add.take_damage())

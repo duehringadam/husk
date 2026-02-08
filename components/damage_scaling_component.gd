@@ -3,6 +3,8 @@ extends Node
 
 var actual_damage_ratio: float = 0.0
 var stored_damage_values: Array
+var stored_stance_damage: float
+
 var timer = Timer.new()
 var swing_ended:= false
 
@@ -16,6 +18,7 @@ func _ready() -> void:
 	timer.wait_time = 1.25
 	timer.one_shot = true
 	stored_damage_values = damage_component.damage_types.values()
+	stored_stance_damage = damage_component.stance_damage_value
 	for i in weapon_states:
 		if !i.state_entered.is_connected(hold_attack):
 			i.state_entered.connect(hold_attack)
@@ -33,7 +36,10 @@ func attack():
 	timer.stop()
 	for i in damage_component.damage_types:
 		damage_component.damage_types[i]  *= actual_damage_ratio
+	damage_component.stance_damage_value *= actual_damage_ratio
+	print(damage_component.stance_damage_value)
 
+	
 func end_attack():
 	SignalBus.emit_signal("weapon_charge_bool", false)
 	actual_damage_ratio = lerpf(actual_damage_ratio,0,.5)
@@ -41,6 +47,7 @@ func end_attack():
 	for i in damage_component.damage_types:
 		for v in stored_damage_values:
 			damage_component.damage_types[i] = v
+	damage_component.stance_damage_value = stored_stance_damage
 	
 func _process(delta: float) -> void:
 	if swing_ended:

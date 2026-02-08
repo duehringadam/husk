@@ -251,6 +251,6 @@ mesh = NodePath("../Crate")
 [connection signal="on_trigger" from="InteractionContainer/WhileGrabbed/Change Distance" to="." method="_on_change_distance"]
 [connection signal="on_complete" from="InteractionContainer/WhileGrabbed/Rotate" to="." method="_stopped_rotating"]
 [connection signal="on_trigger" from="InteractionContainer/WhileGrabbed/Rotate" to="." method="_while_rotating"]
-[connection signal="on_trigger" from="InteractionContainer/WhileGrabbed/Throw" to="." method="_on_throw"]
+[connection signal="on_complete" from="InteractionContainer/WhileGrabbed/Throw" to="." method="_on_throw"]
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="damage_dealt" from="Crate/DamageComponent" to="." method="_on_damage_component_damage_dealt"]

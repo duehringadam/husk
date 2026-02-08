@@ -104,7 +104,7 @@ func _while_grabbed(controller: InteractionController) -> void:
 	$PickupSound.play()
 	# Bring it closer to reference node but with a delay to avoid player flying off
 	_delay_timer = create_tween()
-	_delay_timer.tween_interval(0.1)
+	_delay_timer.tween_interval(.1)
 	await _delay_timer.finished
 	_initial_position *= 0.8
 
@@ -144,7 +144,6 @@ func _stopped_rotating(controller: InteractionController) -> void:
 func _on_throw(controller: InteractionController) -> void:
 	if controller != _interaction_controller: return
 	_released(controller)
-	
 	InteractionContainer.from(self).disable() # Disable interactions while throwing
 	var reference_node: Node3D = controller.get_parent()
 	var hand_position: Vector3 = reference_node.to_global(_initial_position * _position_offset)

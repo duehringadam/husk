@@ -14,7 +14,10 @@ func _on_pulling_state_exited() -> void:
 
 func _on_pulling_state_physics_processing(delta: float) -> void:
 	if is_instance_valid(spell.grabbed_object):
-		
+		if not Input.is_action_pressed("attack_secondary"):
+			state_chart.send_event("missed")
+			return
+			
 		if spell.grabbed_object.global_position.distance_to(spell.hold_node.global_position) < 2:
 			spell.grabbed_object._is_grabbed = true
 			Global.player.hold_joint.node_b = spell.grabbed_object.get_path()

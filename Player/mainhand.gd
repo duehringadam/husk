@@ -7,7 +7,6 @@ extends Node3D
 func _set_item(new_item):
 	if new_item != null:
 		weapon = new_item
-		print(weapon)
 		var item_add = new_item.item_scene.instantiate()
 		if is_instance_valid(offhand):
 			if item_add.two_handed and offhand.get_child_count() != 0:
