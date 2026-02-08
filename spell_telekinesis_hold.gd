@@ -27,7 +27,6 @@ func _on_holding_state_exited() -> void:
 func _on_holding_state_physics_processing(delta: float) -> void:
 	if spell_telekinesis.grabbed_object != null:
 		spell_telekinesis.grabbed_object._while_grabbed(Global.player._interaction_controller)
-		if timer.time_left > 0: return
 		if not Input.is_action_pressed("attack_secondary") && spell_telekinesis.grabbed_object != null:
 			animation_player.play("throw_object")
 			state_chart.send_event("throw")
