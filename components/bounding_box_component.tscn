@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://dhws2ueoubwwx"]
+
+[ext_resource type="Script" uid="uid://251jy5xhr53n" path="res://components/bounding_box_component.gd" id="1_sp5yl"]
+[ext_resource type="Texture2D" uid="uid://bsdwvs1ul86qm" path="res://components/bounding_box_texture/image0039.png" id="2_nvaig"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wop0f"]
+
+[node name="bounding_box_component" type="PanelContainer" unique_id=326409759]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_wop0f")
+script = ExtResource("1_sp5yl")
+metadata/_custom_type_script = "uid://251jy5xhr53n"
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1679682497]
+layout_mode = 2
+texture = ExtResource("2_nvaig")
+region_rect = Rect2(9, 9, 46, 46)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="Label" type="Label" parent="." unique_id=1298022545]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 5
+text = "test name"
+horizontal_alignment = 1

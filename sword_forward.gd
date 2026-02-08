@@ -7,7 +7,6 @@ var camera
 var viewport_camera
 
 func _on_forward_state_entered() -> void:
-	GamePiecesEventBus.slow_player_requested(1)
 	animation_tree.set("parameters/conditions/hold_forward", true)
 
 

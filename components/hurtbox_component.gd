@@ -23,8 +23,11 @@ signal apply_statuses(status_types: Global.STATUS_TYPE, application_amount: floa
 @export var can_bleed: bool = false
 @export var source: Node3D
 
+var damage_particles_add
 ## add the invulnerability timer
 func _ready():
+	if damage_particles:
+		damage_particles_add = damage_particles.instantiate()
 	timer = Timer.new()
 	add_child(timer)
 	timer.one_shot = true
@@ -49,6 +52,8 @@ func apply_status(status_types: Dictionary[Global.STATUS_TYPE, float]):
 			emit_signal("apply_statuses", i,(1-status_resistances[i]))
 		if status_weaknesses.keys().has(i):
 			emit_signal("apply_statuses", i,(1*status_weaknesses[i]))
+		else:
+			emit_signal("apply_statuses", i,1)
 
 func take_damage(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float], status_types: Dictionary[Global.STATUS_TYPE, float], stance_damage: float, source: DamageComponent):
 	var hit_dir = (global_position.direction_to(source.global_position)).normalized()
@@ -64,6 +69,7 @@ func take_damage(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float], stat
 			emit_signal("damage_taken", actual, source, hit_dir)
 			if health_component:
 				health_component.modify_health(-actual)
+				health_component.damage_source = source.source
 			if bone_health_component:
 				if damage_types.keys().has(DamageTypes.DAMAGE_TYPES.STRIKE):
 					bone_health_component.last_damage_taken = DamageTypes.DAMAGE_TYPES.STRIKE
@@ -82,7 +88,6 @@ func take_damage(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float], stat
 	if hit_sound != null:
 		AudioManager.play_sound(hit_sound,self.global_position,-10.0)
 	if damage_particles:
-		var damage_particles_add = damage_particles.instantiate()
 		get_tree().current_scene.add_child(damage_particles_add)
 		damage_particles_add.global_position = self.global_position
 		get_tree().create_timer(.1).timeout.connect(func(): damage_particles_add.take_damage())

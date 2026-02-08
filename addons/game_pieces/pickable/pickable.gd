@@ -12,6 +12,8 @@ extends RigidBody3D
 @export var damage_component: DamageComponent
 @export var shattered_mesh: PackedScene
 @export var break_sound: AudioStream
+@export var bounding_box: bounding_box_component
+
 @onready var health_component: HealthComponent = $HealthComponent
 
 @onready var grab: Interaction = $InteractionContainer/Grab
@@ -27,6 +29,10 @@ var _max_offset: float = 1.65
 var _is_rotating: bool = false
 var _delay_timer: Tween = null
 
+var shattered_mesh_add
+func _ready() -> void:
+	shattered_mesh_add = shattered_mesh.instantiate()
+
 func _physics_process(_delta: float) -> void:
 	if Engine.is_editor_hint(): return
 	if _is_grabbed:
@@ -34,7 +40,7 @@ func _physics_process(_delta: float) -> void:
 		var distance_to_player: float = ray_cast.global_position.distance_to(global_position)
 		if distance_to_player > release_distance * _position_offset:
 			_released(_interaction_controller)
-	if linear_velocity.length() > 15:
+	if linear_velocity.length() > 10:
 		damage_component.monitorable = true
 		damage_component.monitoring = true
 	else:
@@ -158,7 +164,8 @@ func set_transparency(object: Node, value: float) -> void:
 
 func _on_damage_component_damage_dealt(types: Dictionary[DamageTypes.DAMAGE_TYPES, float], actual: float, stance_damage: float, target: hurtbox_component) -> void:
 	if throwable.linear_velocity.length() > 3:
-		health_component.modify_health(-(throwable.linear_velocity.length()))
+		pass
+		#health_component.modify_health(-(throwable.linear_velocity.length()))
 
 
 func _on_rigidbody_entered(body: Node) -> void:
@@ -167,7 +174,6 @@ func _on_rigidbody_entered(body: Node) -> void:
 
 func break_object():
 	if shattered_mesh:
-		var shattered_mesh_add = shattered_mesh.instantiate()
 		get_tree().current_scene.add_child(shattered_mesh_add)
 		shattered_mesh_add.global_transform = self.global_transform
 		shattered_mesh_add.break_mesh(throwable.linear_velocity, throwable_mesh.get_surface_override_material(0))

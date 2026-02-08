@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://4ggo1b35btnu"]
+[gd_scene format=3 uid="uid://4ggo1b35btnu"]
 
 [ext_resource type="Script" uid="uid://cfrncsoneogy8" path="res://scenes/player/hud.gd" id="1_5bwha"]
 [ext_resource type="FontFile" uid="uid://ip8tcqh7uxmx" path="res://fonts/Alkhemikal.ttf" id="2_xivtj"]
@@ -49,7 +49,7 @@ _data = {
 &"showtuttext": SubResource("Animation_gx1jg")
 }
 
-[node name="HUD" type="Control"]
+[node name="HUD" type="Control" unique_id=932650427]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -59,7 +59,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_5bwha")
 
-[node name="CrossHair" type="TextureRect" parent="."]
+[node name="CrossHair" type="TextureRect" parent="." unique_id=1408432638]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -76,7 +76,7 @@ grow_vertical = 2
 mouse_filter = 2
 texture = SubResource("GradientTexture2D_ugbui")
 
-[node name="subtitles" type="RichTextLabel" parent="."]
+[node name="subtitles" type="RichTextLabel" parent="." unique_id=1021178221]
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 256)
 layout_mode = 1
@@ -101,12 +101,10 @@ text = "this is test tutorial text"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="subtitleanim" type="AnimationPlayer" parent="subtitles"]
-libraries = {
-&"": SubResource("AnimationLibrary_fcs02")
-}
+[node name="subtitleanim" type="AnimationPlayer" parent="subtitles" unique_id=790975176]
+libraries/ = SubResource("AnimationLibrary_fcs02")
 
-[node name="InteractPrompt" type="RichTextLabel" parent="."]
+[node name="InteractPrompt" type="RichTextLabel" parent="." unique_id=157683102]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 12
@@ -135,7 +133,7 @@ fit_content = true
 autowrap_mode = 2
 horizontal_alignment = 1
 
-[node name="inventory" type="PanelContainer" parent="."]
+[node name="inventory" type="PanelContainer" parent="." unique_id=2048607073]
 unique_name_in_owner = true
 visible = false
 layout_mode = 0
@@ -148,14 +146,14 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("3_xivtj")
 
-[node name="PanelContainer" type="PanelContainer" parent="inventory"]
+[node name="PanelContainer" type="PanelContainer" parent="inventory" unique_id=723780849]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="inventory/PanelContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="inventory/PanelContainer" unique_id=1987552883]
 layout_mode = 2
 horizontal_scroll_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="inventory/PanelContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="inventory/PanelContainer/ScrollContainer" unique_id=1868460227]
 layout_mode = 2
 size_flags_horizontal = 3

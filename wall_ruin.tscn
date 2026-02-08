@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cc6vgurg80f0h"]
+[gd_scene format=3 uid="uid://cc6vgurg80f0h"]
 
 [ext_resource type="PackedScene" uid="uid://c8svpphilhsur" path="res://scenes/PSX_Dungeon/PSX_Dungeon/Models/Wall_Ruin.fbx" id="1_s3gcq"]
 [ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="2_62om8"]
@@ -18,8 +18,8 @@ shader_parameter/uv_scroll_speed = Vector2(0, 0)
 shader_parameter/cull_distance_override = 0.0
 shader_parameter/convert_vertex_colors = false
 
-[node name="Wall_Ruin" instance=ExtResource("1_s3gcq")]
+[node name="Wall_Ruin" unique_id=317251734 instance=ExtResource("1_s3gcq")]
 
-[node name="Cube_087" parent="." index="0"]
+[node name="Cube_087" parent="." index="0" unique_id=2129036057]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 surface_material_override/0 = SubResource("ShaderMaterial_4yv1r")

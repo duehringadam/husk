@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://cc8ry1rvctgv1"]
+[gd_scene format=3 uid="uid://cc8ry1rvctgv1"]
 
 [ext_resource type="Texture2D" uid="uid://cjl4qfjmnnm1w" path="res://shaders/blood_splatter.png" id="1_6sl8c"]
+[ext_resource type="Script" uid="uid://b8waas5rrw22o" path="res://blood_decal.gd" id="2_rh7ah"]
 
-[node name="Decal" type="Decal"]
+[node name="Decal" type="Decal" unique_id=1542109919]
 size = Vector3(1, 0.218, 1)
 texture_albedo = ExtResource("1_6sl8c")
 modulate = Color(0.38039216, 0, 0, 1)
+script = ExtResource("2_rh7ah")

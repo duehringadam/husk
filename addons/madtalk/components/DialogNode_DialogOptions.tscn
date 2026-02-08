@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bwa38eqib7e25"]
+[gd_scene format=3 uid="uid://bwa38eqib7e25"]
 
 [ext_resource type="FontFile" uid="uid://b38okvijpcxmv" path="res://addons/madtalk/fonts/FreeSans_smal.tres" id="1"]
 [ext_resource type="Script" uid="uid://dg6brgs82d11e" path="res://addons/madtalk/components/DialogNode_DialogOptions.gd" id="2"]
@@ -8,7 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://dyepkyvo6sodg" path="res://addons/madtalk/components/BtnTip.tscn" id="5_jiu2v"]
 [ext_resource type="StyleBox" path="res://addons/madtalk/components/resources/PanelStyle.tres" id="7_m44w6"]
 
-[node name="DialogOptions" type="Window"]
+[node name="DialogOptions" type="Window" unique_id=961188751]
+oversampling_override = 1.0
 initial_position = 2
 size = Vector2i(650, 450)
 transient = true
@@ -16,12 +17,12 @@ exclusive = true
 popup_window = true
 script = ExtResource("2")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=1326386824]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="HelpLabel" type="Label" parent="Panel"]
+[node name="HelpLabel" type="Label" parent="Panel" unique_id=1956068270]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 11.0
@@ -35,7 +36,7 @@ text = "Options below will be presented as buttons in the end of this dialog seq
 If option buttons are not desired, just leave this list empty. A dialog sequence without buttons will have a default leaving output. If the default leaving output is not connected, the dialog will end."
 autowrap_mode = 3
 
-[node name="TitleLabel" type="Label" parent="Panel"]
+[node name="TitleLabel" type="Label" parent="Panel" unique_id=175587528]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 105.55
@@ -45,7 +46,7 @@ theme_override_fonts/font = ExtResource("1")
 theme_override_font_sizes/font_size = 12
 text = "Buttons"
 
-[node name="BtnAdd" type="TextureButton" parent="Panel"]
+[node name="BtnAdd" type="TextureButton" parent="Panel" unique_id=69064191]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -57,7 +58,7 @@ offset_bottom = 121.55
 grow_horizontal = 0
 texture_normal = ExtResource("3")
 
-[node name="LabelLocale" type="Label" parent="Panel"]
+[node name="LabelLocale" type="Label" parent="Panel" unique_id=1326840037]
 modulate = Color(1, 1, 1, 0.501961)
 layout_mode = 0
 offset_left = 24.13
@@ -68,7 +69,7 @@ theme_override_fonts/font = ExtResource("1")
 theme_override_font_sizes/font_size = 10
 text = "Locale:"
 
-[node name="LocaleBar" type="TabBar" parent="Panel"]
+[node name="LocaleBar" type="TabBar" parent="Panel" unique_id=1406162347]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -84,7 +85,7 @@ tab_count = 1
 tab_0/title = "Default"
 tab_0/tooltip = "Default locale. Will also be used if the user's locale is not in this list."
 
-[node name="BtnLocaleNew" type="Button" parent="Panel"]
+[node name="BtnLocaleNew" type="Button" parent="Panel" unique_id=178144922]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -100,7 +101,7 @@ theme_override_font_sizes/font_size = 10
 theme_override_styles/normal = ExtResource("4_lns1l")
 text = "New Locale"
 
-[node name="TipLocale" parent="Panel" instance=ExtResource("5_jiu2v")]
+[node name="TipLocale" parent="Panel" unique_id=1680419366 instance=ExtResource("5_jiu2v")]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -117,7 +118,7 @@ Creating locale versions is optional and is done PER ITEM. The default tab shoul
 
 To configure which locale MadTalk will use, see the help message for localizing message items."
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel" unique_id=1788592502]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -129,16 +130,15 @@ offset_bottom = -39.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBox" type="VBoxContainer" parent="Panel/ScrollContainer"]
+[node name="VBox" type="VBoxContainer" parent="Panel/ScrollContainer" unique_id=835372303]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="DialogNodeOptionsButton2" parent="Panel/ScrollContainer/VBox" instance=ExtResource("5")]
-custom_minimum_size = Vector2(0, 36)
+[node name="DialogNodeOptionsButton2" parent="Panel/ScrollContainer/VBox" unique_id=1654746144 instance=ExtResource("5")]
 layout_mode = 2
 
-[node name="PanelNewLocale" type="Panel" parent="Panel"]
+[node name="PanelNewLocale" type="Panel" parent="Panel" unique_id=913709048]
 visible = false
 layout_mode = 1
 anchors_preset = 1
@@ -151,7 +151,7 @@ offset_bottom = 228.855
 grow_horizontal = 0
 theme_override_styles/panel = ExtResource("7_m44w6")
 
-[node name="Label" type="Label" parent="Panel/PanelNewLocale"]
+[node name="Label" type="Label" parent="Panel/PanelNewLocale" unique_id=1299722876]
 layout_mode = 0
 offset_left = 7.0
 offset_top = 2.0
@@ -161,7 +161,7 @@ theme_override_fonts/font = ExtResource("1")
 theme_override_font_sizes/font_size = 12
 text = "Create new locale for this menu:"
 
-[node name="LocaleEdit" type="LineEdit" parent="Panel/PanelNewLocale"]
+[node name="LocaleEdit" type="LineEdit" parent="Panel/PanelNewLocale" unique_id=753901898]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.5
@@ -174,7 +174,7 @@ theme_override_fonts/font = ExtResource("1")
 theme_override_font_sizes/font_size = 14
 placeholder_text = "locale (e.g. \"es\")"
 
-[node name="BtnLocaleNewConfirm" type="Button" parent="Panel/PanelNewLocale"]
+[node name="BtnLocaleNewConfirm" type="Button" parent="Panel/PanelNewLocale" unique_id=1603624346]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -190,7 +190,7 @@ theme_override_font_sizes/font_size = 12
 theme_override_styles/normal = ExtResource("4_lns1l")
 text = "Create"
 
-[node name="BtnLocaleNewCancel" type="Button" parent="Panel/PanelNewLocale"]
+[node name="BtnLocaleNewCancel" type="Button" parent="Panel/PanelNewLocale" unique_id=1392077814]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -206,7 +206,7 @@ theme_override_font_sizes/font_size = 12
 theme_override_styles/normal = ExtResource("4_lns1l")
 text = "Cancel"
 
-[node name="BottomBar" type="Control" parent="."]
+[node name="BottomBar" type="Control" parent="." unique_id=1042040513]
 layout_mode = 3
 anchors_preset = 12
 anchor_top = 1.0
@@ -217,7 +217,7 @@ offset_bottom = -11.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="BtnSave" type="Button" parent="BottomBar"]
+[node name="BtnSave" type="Button" parent="BottomBar" unique_id=1889706177]
 layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
@@ -230,7 +230,7 @@ offset_bottom = 10.0
 focus_mode = 0
 text = "OK"
 
-[node name="BtnCancel" type="Button" parent="BottomBar"]
+[node name="BtnCancel" type="Button" parent="BottomBar" unique_id=480701576]
 layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5

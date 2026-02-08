@@ -22,8 +22,18 @@ func _ready() -> void:
 	self.position = weapon_initial_position
 	SignalBus.connect("npc_interacted", _on_npc_interacted)
 	SignalBus.connect("dialogue_ended", _on_dialogue_ended)
+	SignalBus.connect("secondary_active", secondary_active)
+	damage_component.source = Global.player
+	
+func secondary_active(value: bool):
+	secondary_active_bool = value
+	
+	if secondary_active_bool:
+		can_attack = false
+	else:
+		can_attack = true
 
-func _on_npc_interacted(sheet_id):
+func _on_npc_interacted(_sheet_id):
 	can_attack = false
 
 func _on_dialogue_ended():

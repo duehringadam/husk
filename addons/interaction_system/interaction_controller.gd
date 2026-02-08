@@ -34,6 +34,7 @@ func _process(_delta: float) -> void:
 
 func on_new_object_available(node: Node) -> void:
 	if _picked_object != null:
+		
 		_prepare_prompts_for_display(InteractionContainer.from(_picked_object), true)
 		return
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://cvm1x6igaprq3"]
+[gd_scene format=3 uid="uid://cvm1x6igaprq3"]
 
 [ext_resource type="Script" uid="uid://ba1l1kqe7yxt6" path="res://addons/player/Player.gd" id="1_cyojo"]
 [ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/item.gd" id="2_863th"]
@@ -16,9 +16,13 @@
 [ext_resource type="Shader" uid="uid://dgt3e85o3avu2" path="res://Player/damage.gdshader" id="9_4ng6s"]
 [ext_resource type="Script" uid="uid://dmju02n5xp4s0" path="res://addons/player/step_detect.gd" id="9_863th"]
 [ext_resource type="Script" uid="uid://6h8f2qhrbtt6" path="res://Player/damage_overlay.gd" id="10_jux4o"]
+[ext_resource type="AudioStream" uid="uid://bhauxowkg5f45" path="res://Player/sfx/footsteps.tres" id="11_d6j5h"]
 [ext_resource type="Script" uid="uid://sj3mml8ulasu" path="res://Player/crosshair.gd" id="12_qk8yx"]
 [ext_resource type="Shader" uid="uid://b6aaasr8tdyr5" path="res://Player/distort.gdshader" id="12_vnn13"]
 [ext_resource type="Script" uid="uid://b74g26tt85wqw" path="res://Player/launch.gd" id="13_tio5b"]
+[ext_resource type="Script" uid="uid://dkb8ltjc6067n" path="res://addons/raytraced_audio/raytraced_audio_player_3d.gd" id="15_paiqy"]
+[ext_resource type="Shader" uid="uid://dc66sjqqg3w1a" path="res://scenes/player/circular_bar.gdshader" id="22_2m5xu"]
+[ext_resource type="Script" uid="uid://83vqngoyog5j" path="res://scenes/player/hold_attack_bar.gd" id="23_5fkmn"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xc2g5"]
 
@@ -317,75 +321,86 @@ _data = {
 &"shockwave": SubResource("Animation_c1i0s")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k1tkb"]
+shader = ExtResource("22_2m5xu")
+shader_parameter/progress = 1.0
+shader_parameter/ring_thickness = 0.04500000143898
+shader_parameter/ring_radius = 0.42500001692762
+shader_parameter/progress_color = Color(0.4117647, 0.4117647, 0.4117647, 0.5019608)
+shader_parameter/background_color = Color(0.2, 0.2, 0.2, 0)
+shader_parameter/gradient_color = Color(1, 1, 1, 1)
+shader_parameter/smoothness = 0.0010000000475
+shader_parameter/gradient_strength = 1.0
+shader_parameter/use_gradient = false
+shader_parameter/rotation_offset = 3.14000014915
+
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_863th"]
 length = 0.5
 slide_on_slope = true
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("player_body", "mainhand", "offhand") groups=["player"]]
+[node name="Player" type="CharacterBody3D" unique_id=1383979839 node_paths=PackedStringArray("player_body", "mainhand", "offhand") groups=["player"]]
 script = ExtResource("1_cyojo")
 inventory = Array[ExtResource("2_863th")]([ExtResource("3_e6ia4"), ExtResource("4_d6j5h"), ExtResource("5_863th")])
 player_body = NodePath("playerBody")
 mainhand = NodePath("Head/SubViewportContainer/SubViewport/Camera3D/RightHand")
 offhand = NodePath("Head/SubViewportContainer/SubViewport/Camera3D/LeftHand")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1092821169]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 visible = false
 layers = 524288
 mesh = SubResource("CapsuleMesh_xc2g5")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1857109981]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9914551, 0)
 shape = SubResource("CapsuleShape3D_wydro")
 
-[node name="Ceiling" type="ShapeCast3D" parent="."]
+[node name="Ceiling" type="ShapeCast3D" parent="." unique_id=1501796684]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
 shape = SubResource("SphereShape3D_dverj")
 target_position = Vector3(0, 1, 0)
 max_results = 1
 debug_shape_custom_color = Color(0.87734646, 2.9119105e-06, 1.92523e-07, 1)
 
-[node name="Ground" type="CollisionShape3D" parent="."]
+[node name="Ground" type="CollisionShape3D" parent="." unique_id=119548199]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.5, 0.32294333)
 shape = SubResource("SeparationRayShape3D_dverj")
 
-[node name="Ground2" type="CollisionShape3D" parent="."]
+[node name="Ground2" type="CollisionShape3D" parent="." unique_id=855117200]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.5, -0.34500784)
 shape = SubResource("SeparationRayShape3D_dverj")
 
-[node name="Ground3" type="CollisionShape3D" parent="."]
+[node name="Ground3" type="CollisionShape3D" parent="." unique_id=1527266277]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.34204298, 0.5, 0)
 shape = SubResource("SeparationRayShape3D_dverj")
 
-[node name="Ground4" type="CollisionShape3D" parent="."]
+[node name="Ground4" type="CollisionShape3D" parent="." unique_id=1873837097]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.37856722, 0.5, 0)
 shape = SubResource("SeparationRayShape3D_dverj")
 
-[node name="Head" type="Node3D" parent="."]
+[node name="Head" type="Node3D" parent="." unique_id=190720462]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 
-[node name="Neck" type="Node3D" parent="Head"]
+[node name="Neck" type="Node3D" parent="Head" unique_id=1052294383]
 unique_name_in_owner = true
 
-[node name="Camera3D" type="Camera3D" parent="Head/Neck"]
+[node name="Camera3D" type="Camera3D" parent="Head/Neck" unique_id=1569056309]
 unique_name_in_owner = true
 cull_mask = 524285
 current = true
 
-[node name="RayCast3D" type="RayCast3D" parent="Head/Neck/Camera3D"]
+[node name="RayCast3D" type="RayCast3D" parent="Head/Neck/Camera3D" unique_id=1535880187]
 unique_name_in_owner = true
 target_position = Vector3(0, 0, -2)
 collision_mask = 2
 collide_with_areas = true
 
-[node name="CameraAnimationPlayer" type="AnimationPlayer" parent="Head"]
+[node name="CameraAnimationPlayer" type="AnimationPlayer" parent="Head" unique_id=2090545160]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_by45h")
-}
+libraries/ = SubResource("AnimationLibrary_by45h")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="Head"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Head" unique_id=572692047]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -393,13 +408,13 @@ grow_horizontal = 2
 grow_vertical = 2
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="Head/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="Head/SubViewportContainer" unique_id=1702353845]
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 
-[node name="Camera3D" type="Camera3D" parent="Head/SubViewportContainer/SubViewport" node_paths=PackedStringArray("main_camera", "hurtbox")]
+[node name="Camera3D" type="Camera3D" parent="Head/SubViewportContainer/SubViewport" unique_id=804073396 node_paths=PackedStringArray("main_camera", "hurtbox")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5935609, 0)
 cull_mask = 1048574
 fov = 85.0
@@ -408,63 +423,88 @@ main_camera = NodePath("../../../Neck/Camera3D")
 randomStrength = 0.02
 hurtbox = NodePath("../../../../hurtbox_component")
 
-[node name="RightHand" type="Marker3D" parent="Head/SubViewportContainer/SubViewport/Camera3D" node_paths=PackedStringArray("offhand")]
+[node name="RightHand" type="Marker3D" parent="Head/SubViewportContainer/SubViewport/Camera3D" unique_id=1248750657 node_paths=PackedStringArray("offhand")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0, -0.725)
 script = ExtResource("4_cqqbj")
 offhand = NodePath("../LeftHand")
 
-[node name="LeftHand" type="Marker3D" parent="Head/SubViewportContainer/SubViewport/Camera3D" node_paths=PackedStringArray("mainhand")]
+[node name="LeftHand" type="Marker3D" parent="Head/SubViewportContainer/SubViewport/Camera3D" unique_id=801051411 node_paths=PackedStringArray("mainhand")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.41, 0, -0.725)
 script = ExtResource("6_c1i0s")
 mainhand = NodePath("../RightHand")
 
-[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Head"]
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Head" unique_id=813206422]
 transform = Transform3D(-0.99999994, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -0.99999994, 0, -1.8152095, 0.55213237)
 remote_path = NodePath("../../playerBody")
 update_scale = false
 
-[node name="stepDetect" type="Node3D" parent="Head" node_paths=PackedStringArray("separation_ray", "player")]
+[node name="stepDetect" type="Node3D" parent="Head" unique_id=838693918 node_paths=PackedStringArray("separation_ray", "player")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5979036, 0)
 script = ExtResource("9_863th")
 separation_ray = NodePath("../../autostep")
 player = NodePath("../..")
 
-[node name="stepBase" type="RayCast3D" parent="Head/stepDetect"]
+[node name="stepBase" type="RayCast3D" parent="Head/stepDetect" unique_id=1607411453]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08176395, 0)
 target_position = Vector3(0, 0, -0.6)
 collision_mask = 2
 
-[node name="stepHeight" type="RayCast3D" parent="Head/stepDetect"]
+[node name="stepHeight" type="RayCast3D" parent="Head/stepDetect" unique_id=1871655106]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 target_position = Vector3(0, 0, -0.6)
 collision_mask = 2
 
-[node name="playerBody" parent="." instance=ExtResource("3_tio5b")]
+[node name="playerBody" parent="." unique_id=764290862 instance=ExtResource("3_tio5b")]
 transform = Transform3D(-1.2, 0, 1.04907336e-07, 0, 1.2, 0, -1.04907336e-07, 0, -1.2, 0, -0.21520948, 0.55213237)
 top_level = true
 
-[node name="FootSteps" type="AudioStreamPlayer3D" parent="."]
+[node name="Root" parent="playerBody" index="0" unique_id=227732896]
+transform = Transform3D(0.6448661, 0.76239777, -0.05381993, -0.025142502, 0.09154066, 0.99548364, 0.7638814, -0.64060074, 0.078200094, 0.05117488, -0.09909083, -0.08101089)
+
+[node name="Skeleton3D" parent="playerBody/Root" index="0" unique_id=1398321543]
+bones/1/rotation = Quaternion(-0.04448053, 0.038317934, 0.014223951, 0.9981738)
+bones/2/rotation = Quaternion(0.030190896, 0.07274516, 0.03465408, 0.99629104)
+bones/3/rotation = Quaternion(0.061138615, 0.05742664, -0.8414238, 0.53382605)
+bones/4/rotation = Quaternion(0.17037408, 0.008583872, -0.29558447, 0.93996215)
+bones/5/rotation = Quaternion(0.56815344, -0.2869275, -0.24015245, 0.73294014)
+bones/7/rotation = Quaternion(0.12852602, -0.039989296, -0.00024713264, 0.99089956)
+bones/9/rotation = Quaternion(0.12980597, -0.04943893, 0.89542305, 0.4229938)
+bones/10/rotation = Quaternion(0.19667624, 0.19561327, 0.043468308, 0.9597731)
+bones/11/rotation = Quaternion(0.50720245, 0.4124326, 0.45182702, 0.6070399)
+bones/13/rotation = Quaternion(-0.8111845, -0.4210067, 0.26494977, 0.30746508)
+bones/14/rotation = Quaternion(0.19998644, 0.18781675, -0.0051757246, 0.9616151)
+bones/16/rotation = Quaternion(-0.75538003, 0.410061, -0.1162934, 0.49772164)
+bones/17/rotation = Quaternion(0.2720007, 0.019983059, 0.0759685, 0.9590856)
+
+[node name="BoneAttachment3D" parent="playerBody/Root/Skeleton3D" index="1" unique_id=1946967126]
+transform = Transform3D(0.55166256, -0.20282993, 0.8090292, -0.7505721, 0.30229264, 0.5875889, -0.36374417, -0.93138576, 0.014525205, -0.29896268, -0.016243376, 0.57531726)
+
+[node name="kick_damage_component" parent="playerBody/Root/Skeleton3D/BoneAttachment3D" index="0" unique_id=1208432582 node_paths=PackedStringArray("source")]
+source = NodePath("../../../../..")
+
+[node name="FootSteps" type="AudioStreamPlayer3D" parent="." unique_id=243641387]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+stream = ExtResource("11_d6j5h")
 volume_db = 6.0
 max_db = 6.0
 bus = &"SFX"
+script = ExtResource("15_paiqy")
+metadata/_custom_type_script = "uid://dkb8ltjc6067n"
 
-[node name="FootStepsAnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="FootStepsAnimationPlayer" type="AnimationPlayer" parent="." unique_id=310687616]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_3br5i")
-}
-autoplay = "footsteps"
+libraries/ = SubResource("AnimationLibrary_3br5i")
+autoplay = &"footsteps"
 
-[node name="HealthComponent" type="Node3D" parent="."]
+[node name="HealthComponent" type="Node3D" parent="." unique_id=669479295]
 script = ExtResource("4_7ek8b")
 max_health = 100.0
 metadata/_custom_type_script = "uid://dgjqgiw3yw42e"
 
-[node name="hurtbox_component" type="Area3D" parent="." node_paths=PackedStringArray("player_camera", "viewport_camera", "health_component", "status_component", "source")]
+[node name="hurtbox_component" type="Area3D" parent="." unique_id=802643040 node_paths=PackedStringArray("player_camera", "viewport_camera", "health_component", "status_component", "source")]
 script = ExtResource("5_eon52")
 player_camera = NodePath("../Head/Neck/Camera3D")
 viewport_camera = NodePath("../Head/SubViewportContainer/SubViewport/Camera3D")
@@ -478,11 +518,11 @@ hit_sound = ExtResource("8_jux4o")
 source = NodePath("..")
 metadata/_custom_type_script = "uid://c2i6qdosp0h2"
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="hurtbox_component"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="hurtbox_component" unique_id=856968540]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9914551, 0)
 shape = SubResource("CapsuleShape3D_wydro")
 
-[node name="status_effect_component" type="GPUParticles3D" parent="." node_paths=PackedStringArray("hurtbox", "mesh_to_affect", "health_component")]
+[node name="status_effect_component" type="GPUParticles3D" parent="." unique_id=1465415421 node_paths=PackedStringArray("hurtbox", "mesh_to_affect", "health_component")]
 script = ExtResource("6_eon52")
 available_statuses = Dictionary[int, float]({
 0: 0.0,
@@ -495,7 +535,7 @@ mesh_to_affect = NodePath("../MeshInstance3D")
 health_component = NodePath("../HealthComponent")
 metadata/_custom_type_script = "uid://dql5v81gqvdat"
 
-[node name="damage" type="ColorRect" parent="." node_paths=PackedStringArray("hurtbox")]
+[node name="damage" type="ColorRect" parent="." unique_id=634867585 node_paths=PackedStringArray("hurtbox")]
 material = SubResource("ShaderMaterial_vhccx")
 anchors_preset = 15
 anchor_right = 1.0
@@ -506,12 +546,10 @@ mouse_filter = 2
 script = ExtResource("10_jux4o")
 hurtbox = NodePath("../hurtbox_component")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="damage"]
-libraries = {
-&"": SubResource("AnimationLibrary_qk8yx")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="damage" unique_id=1537257084]
+libraries/ = SubResource("AnimationLibrary_qk8yx")
 
-[node name="launch" type="ColorRect" parent="."]
+[node name="launch" type="ColorRect" parent="." unique_id=1681020044]
 material = SubResource("ShaderMaterial_cqqbj")
 anchors_preset = 15
 anchor_right = 1.0
@@ -521,12 +559,10 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("13_tio5b")
 
-[node name="shockwave" type="AnimationPlayer" parent="launch"]
-libraries = {
-&"": SubResource("AnimationLibrary_863th")
-}
+[node name="shockwave" type="AnimationPlayer" parent="launch" unique_id=1285983707]
+libraries/ = SubResource("AnimationLibrary_863th")
 
-[node name="crosshair" type="CenterContainer" parent="." node_paths=PackedStringArray("RETICLE_LINES", "PLAYER_CONTROLLER")]
+[node name="crosshair" type="CenterContainer" parent="." unique_id=857848023 node_paths=PackedStringArray("RETICLE_LINES", "PLAYER_CONTROLLER")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -543,33 +579,52 @@ script = ExtResource("12_qk8yx")
 RETICLE_LINES = [NodePath("top"), NodePath("right"), NodePath("bottom"), NodePath("left")]
 PLAYER_CONTROLLER = NodePath("..")
 
-[node name="top" type="Line2D" parent="crosshair"]
+[node name="top" type="Line2D" parent="crosshair" unique_id=610082759]
 points = PackedVector2Array(-5, -10, 0, -20, 5, -10)
 width = 2.0
-default_color = Color(0.41215247, 0.41215247, 0.41215247, 1)
+default_color = Color(0.41140202, 0.41140202, 0.41140202, 0.5)
 
-[node name="right" type="Line2D" parent="crosshair"]
+[node name="right" type="Line2D" parent="crosshair" unique_id=701899964]
 points = PackedVector2Array(10, -5, 20, 0, 10, 5)
 width = 2.0
-default_color = Color(0.41215247, 0.41215247, 0.41215247, 1)
+default_color = Color(0.41140202, 0.41140202, 0.41140202, 0.5)
 
-[node name="bottom" type="Line2D" parent="crosshair"]
+[node name="bottom" type="Line2D" parent="crosshair" unique_id=1399638602]
 points = PackedVector2Array(5, 10, 0, 20, -5, 10)
 width = 2.0
-default_color = Color(0.41215247, 0.41215247, 0.41215247, 1)
+default_color = Color(0.41140202, 0.41140202, 0.41140202, 0.5)
 
-[node name="left" type="Line2D" parent="crosshair"]
+[node name="left" type="Line2D" parent="crosshair" unique_id=107856571]
 points = PackedVector2Array(-10, 5, -20, 0, -10, -5)
 width = 2.0
-default_color = Color(0.41215247, 0.41215247, 0.41215247, 1)
+default_color = Color(0.41140202, 0.41140202, 0.41140202, 0.5)
 
-[node name="autostep" type="CollisionShape3D" parent="."]
+[node name="hold_attack_bar" type="ColorRect" parent="." unique_id=1612312757]
+material = SubResource("ShaderMaterial_k1tkb")
+custom_minimum_size = Vector2(90, 90)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("23_5fkmn")
+
+[node name="autostep" type="CollisionShape3D" parent="." unique_id=378412171]
 transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, 0, 0.0522469, 0)
 shape = SubResource("SeparationRayShape3D_863th")
 disabled = true
 debug_color = Color(1, 0, 0, 1)
 
-[node name="enemy_look_at" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+[node name="enemy_look_at" type="Node3D" parent="." unique_id=1527806411]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.297422, 0)
 
 [connection signal="damage_taken" from="hurtbox_component" to="." method="_on_hurtbox_component_damage_taken"]
+
+[editable path="playerBody"]

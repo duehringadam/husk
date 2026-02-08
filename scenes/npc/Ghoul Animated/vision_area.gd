@@ -1,6 +1,6 @@
 extends Area3D
 
-signal aggro_changed(aggro_amount: float, aggro_position: Vector3)
+signal aggro_changed(aggro_amount: float, aggro_position: Node3D)
 
 @onready var raycasts: Node3D = $raycasts
 @onready var raycast_look: Marker3D = $raycasts/raycast_look
@@ -22,7 +22,7 @@ func _on_timer_timeout() -> void:
 						if ray.is_colliding():
 							if ray.get_collider() is Player:
 								aggro_amount = clampf(aggro_amount+.015,0,1.0)
-								emit_signal("aggro_changed", aggro_amount, ray.get_collision_point())
+								emit_signal("aggro_changed", aggro_amount, ray.get_collider())
 								aggrotimer.start()
 
 func _process(delta: float) -> void:

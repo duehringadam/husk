@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=70 format=3 uid="uid://dqnydbfrvkmnj"]
+[gd_resource type="AnimationNodeStateMachine" format=3 uid="uid://dqnydbfrvkmnj"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8sfyo"]
 animation = &"Armature|Ghoul_BigFlinch"
@@ -45,7 +45,7 @@ blend_point_2/node = SubResource("AnimationNodeAnimation_e7bj8")
 blend_point_2/pos = 1.0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s0uwx"]
-animation = &"Armature|Ghoul_Flinch"
+animation = &"Armature|Ghoul_BigFlinch"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j3tik"]
 animation = &"Armature|Ghoul_Run_InPlace"
@@ -82,7 +82,7 @@ blend_point_2/node = SubResource("AnimationNodeAnimation_fquji")
 blend_point_2/pos = 1.0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_onyj1"]
-animation = &"Armature|Ghoul_Flinch"
+animation = &"Armature|Ghoul_BigFlinch"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wibwg"]
 animation = &"Armature|Ghoul_Walk_InPlace"
@@ -92,7 +92,7 @@ filter_enabled = true
 filters = ["Armature/Skeleton3D:Chest", "Armature/Skeleton3D:Forearm_L", "Armature/Skeleton3D:Forearm_R", "Armature/Skeleton3D:Hand_L", "Armature/Skeleton3D:Hand_R", "Armature/Skeleton3D:Head", "Armature/Skeleton3D:Middle01_L", "Armature/Skeleton3D:Middle01_R", "Armature/Skeleton3D:Middle02_L", "Armature/Skeleton3D:Middle02_R", "Armature/Skeleton3D:Neck", "Armature/Skeleton3D:Shoulder_L", "Armature/Skeleton3D:Shoulder_R", "Armature/Skeleton3D:Spine", "Armature/Skeleton3D:Thumb01_L", "Armature/Skeleton3D:Thumb01_R", "Armature/Skeleton3D:Thumb02_L", "Armature/Skeleton3D:Thumb02_R", "Armature/Skeleton3D:UpperArm_L", "Armature/Skeleton3D:UpperArm_R"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_onyj1"]
-graph_offset = Vector2(-547.6966, 22.593864)
+graph_offset = Vector2(-400.72974, 131.61807)
 nodes/Blend2/node = SubResource("AnimationNodeBlend2_qa26v")
 nodes/Blend2/position = Vector2(140, 140)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_wibwg")
@@ -105,6 +105,7 @@ node_connections = [&"output", 0, &"Blend2", &"Blend2", 0, &"Animation", &"Blend
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6xdc8"]
+xfade_time = 0.1
 advance_mode = 2
 advance_condition = &"aggro"
 
@@ -241,6 +242,7 @@ advance_mode = 2
 advance_condition = &"idle"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5mgxx"]
+xfade_time = 0.1
 advance_mode = 2
 advance_condition = &"aggro"
 
@@ -300,6 +302,7 @@ advance_mode = 2
 advance_condition = &"stagger"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_d0kav"]
+xfade_time = 0.1
 advance_mode = 2
 advance_condition = &"flinch"
 
@@ -337,4 +340,4 @@ states/walkBlend/position = Vector2(451.62036, 111)
 states/walkFlinch/node = SubResource("AnimationNodeBlendTree_onyj1")
 states/walkFlinch/position = Vector2(451.62036, 35.666656)
 transitions = ["Start", "Armature|Ghoul_Idle", SubResource("AnimationNodeStateMachineTransition_wibwg"), "walkFlinch", "Armature|Ghoul_Taunt", SubResource("AnimationNodeStateMachineTransition_6xdc8"), "walkFlinch", "Armature|Ghoul_Death", SubResource("AnimationNodeStateMachineTransition_j5jaw"), "Armature|Ghoul_Taunt", "Armature|Ghoul_Death", SubResource("AnimationNodeStateMachineTransition_shjc5"), "runFlinch", "Armature|Ghoul_Death", SubResource("AnimationNodeStateMachineTransition_obx46"), "Armature|Ghoul_Idle", "Armature|Ghoul_Death", SubResource("AnimationNodeStateMachineTransition_xwedl"), "Armature|Ghoul_Idle", "walkBlend", SubResource("AnimationNodeStateMachineTransition_cxjfl"), "walkBlend", "walkFlinch", SubResource("AnimationNodeStateMachineTransition_yjoxl"), "walkBlend", "Armature|Ghoul_Death", SubResource("AnimationNodeStateMachineTransition_5vd8j"), "walkBlend", "Armature|Ghoul_Taunt", SubResource("AnimationNodeStateMachineTransition_40h88"), "walkBlend", "Attack_Left_Charge", SubResource("AnimationNodeStateMachineTransition_uf4ye"), "walkBlend", "Attack_Right_Charge", SubResource("AnimationNodeStateMachineTransition_iefhv"), "Attack_Left_Charge", "Attack_Left_End", SubResource("AnimationNodeStateMachineTransition_mt0cv"), "Attack_Left_End", "walkBlend", SubResource("AnimationNodeStateMachineTransition_v0psl"), "walkFlinch", "walkBlend", SubResource("AnimationNodeStateMachineTransition_fm7lh"), "Attack_Right_Charge", "Attack_Right_End", SubResource("AnimationNodeStateMachineTransition_6mtfm"), "Attack_Right_End", "walkBlend", SubResource("AnimationNodeStateMachineTransition_e7bj8"), "Armature|Ghoul_Taunt", "runBlend", SubResource("AnimationNodeStateMachineTransition_dw3yx"), "runBlend", "Armature|Ghoul_Death", SubResource("AnimationNodeStateMachineTransition_3kyyp"), "runBlend", "runFlinch", SubResource("AnimationNodeStateMachineTransition_8sfyo"), "runFlinch", "runBlend", SubResource("AnimationNodeStateMachineTransition_e1ww1"), "runBlend", "walkBlend", SubResource("AnimationNodeStateMachineTransition_xoefg"), "Attack_Right_Charge", "Armature|Ghoul_Death", SubResource("AnimationNodeStateMachineTransition_15gm0"), "Attack_Right_End", "Armature|Ghoul_Death", SubResource("AnimationNodeStateMachineTransition_ejp5c"), "Attack_Left_Charge", "Armature|Ghoul_Death", SubResource("AnimationNodeStateMachineTransition_uvxtk"), "Attack_Left_End", "Armature|Ghoul_Death", SubResource("AnimationNodeStateMachineTransition_xqout"), "runBlend", "Attack_Right_Charge", SubResource("AnimationNodeStateMachineTransition_ceb28"), "runBlend", "Attack_Left_Charge", SubResource("AnimationNodeStateMachineTransition_1dr1r"), "walkBlend", "runBlend", SubResource("AnimationNodeStateMachineTransition_gw57s"), "walkBlend", "Armature|Ghoul_Idle", SubResource("AnimationNodeStateMachineTransition_c4mp2"), "Armature|Ghoul_Idle", "Armature|Ghoul_Taunt", SubResource("AnimationNodeStateMachineTransition_5mgxx"), "walkBlend", "Armature|Ghoul_BigFlinch", SubResource("AnimationNodeStateMachineTransition_i0j2d"), "runBlend", "Armature|Ghoul_BigFlinch", SubResource("AnimationNodeStateMachineTransition_jd4yl"), "Attack_Left_Charge", "Armature|Ghoul_BigFlinch", SubResource("AnimationNodeStateMachineTransition_dy0a6"), "Attack_Left_End", "Armature|Ghoul_BigFlinch", SubResource("AnimationNodeStateMachineTransition_ll01s"), "Attack_Right_End", "Armature|Ghoul_BigFlinch", SubResource("AnimationNodeStateMachineTransition_qfx47"), "Attack_Right_Charge", "Armature|Ghoul_BigFlinch", SubResource("AnimationNodeStateMachineTransition_wsuhh"), "runFlinch", "Armature|Ghoul_BigFlinch", SubResource("AnimationNodeStateMachineTransition_4oiom"), "Armature|Ghoul_Idle", "Armature|Ghoul_BigFlinch", SubResource("AnimationNodeStateMachineTransition_8wskv"), "Armature|Ghoul_BigFlinch", "Armature|Ghoul_Idle", SubResource("AnimationNodeStateMachineTransition_5rh14"), "walkFlinch", "Armature|Ghoul_BigFlinch", SubResource("AnimationNodeStateMachineTransition_8ipdc"), "Armature|Ghoul_Taunt", "Armature|Ghoul_BigFlinch", SubResource("AnimationNodeStateMachineTransition_vg56f"), "Armature|Ghoul_Idle", "Armature|Ghoul_Flinch", SubResource("AnimationNodeStateMachineTransition_d0kav"), "Armature|Ghoul_Flinch", "Armature|Ghoul_Idle", SubResource("AnimationNodeStateMachineTransition_2allj")]
-graph_offset = Vector2(-118.534744, 174.46115)
+graph_offset = Vector2(-118.534744, 96.789116)

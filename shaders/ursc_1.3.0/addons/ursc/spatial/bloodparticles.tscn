@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://yuriskgahiyu"]
+[gd_scene format=3 uid="uid://yuriskgahiyu"]
 
 [ext_resource type="Script" uid="uid://4xmeksbaoq8i" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/bloodparticles.gd" id="1_1xu50"]
 [ext_resource type="Texture2D" uid="uid://cjl4qfjmnnm1w" path="res://shaders/blood_splatter.png" id="1_awimy"]
@@ -32,7 +32,7 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_au5lv")
 size = Vector2(0.1, 0.2)
 
-[node name="bloodparticles" type="GPUParticles3D"]
+[node name="bloodparticles" type="GPUParticles3D" unique_id=684537258]
 emitting = false
 amount = 64
 lifetime = 0.5
@@ -44,7 +44,7 @@ process_material = SubResource("ParticleProcessMaterial_c2a7w")
 draw_pass_1 = SubResource("QuadMesh_cu8yj")
 script = ExtResource("1_1xu50")
 
-[node name="blood_pos" type="RayCast3D" parent="."]
+[node name="blood_pos" type="RayCast3D" parent="." unique_id=1110958825]
 target_position = Vector3(0, -4, 0)
 collision_mask = 2
 hit_from_inside = true

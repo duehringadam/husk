@@ -2,18 +2,17 @@ class_name bounding_box_component
 extends PanelContainer
 
 @export var mesh: MeshInstance3D
-@export var interact_area: Area3D
+@onready var label: Label = $Label
 
-var active: bool = false
+var active: bool = false: set = _update_active
 
 func _ready() -> void:
-	if !interact_area.is_connected("player_close", _on_player_close):
-		interact_area.connect("player_close", _on_player_close)
 	self.visible = active
+	label.text = mesh.name
 
-func _on_player_close(value: bool):
-	visible = value
+func _update_active(value: bool):
 	active = value
+	visible = value
 
 func _process(delta: float) -> void:
 	if active:
@@ -21,6 +20,13 @@ func _process(delta: float) -> void:
 		var bounding_box = get_2d_bounding_box(mesh, get_viewport().get_camera_3d())
 		self.position = bounding_box.position
 		self.size = bounding_box.size
+	if mesh.global_position.distance_to(Global.player.global_position) < 2:
+		if Global.player.camera.is_position_in_frustum(mesh.global_position):
+			active = true
+		else:
+			active = false
+	else:
+		active = false
 
 func get_2d_bounding_box(mesh_instance: MeshInstance3D, camera: Camera3D) -> Rect2:
 	if not is_instance_valid(mesh_instance) or not is_instance_valid(camera):
@@ -28,9 +34,9 @@ func get_2d_bounding_box(mesh_instance: MeshInstance3D, camera: Camera3D) -> Rec
 
 	if not mesh:
 		return Rect2()
-	var aabb: AABB = mesh.get_aabb()
+	var aabb: AABB = mesh.get_aabb() 
+	
 	var global_transform: Transform3D = mesh_instance.global_transform
-
 	var min_x = INF
 	var max_x = -INF
 	var min_y = INF

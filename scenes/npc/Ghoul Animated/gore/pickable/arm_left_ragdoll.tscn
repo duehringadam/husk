@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://cjknw10q3kilb"]
+[gd_scene format=4 uid="uid://cjknw10q3kilb"]
 
 [ext_resource type="Script" uid="uid://dlojjjuet8kit" path="res://scenes/physics_pickable/sack.gd" id="1_5e7ha"]
 [ext_resource type="Texture2D" uid="uid://cbymplq2p2q2e" path="res://scenes/npc/Ghoul Animated/Textures/T_GhoulB_1024.png" id="2_umokh"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://bxe74cq2uqemi" path="res://addons/game_controls/vanilla/input_map_game_control.gd" id="8_2xavi"]
 [ext_resource type="Script" uid="uid://doc0okecalxnp" path="res://addons/interaction_system/interaction_context.gd" id="9_u6hau"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="10_4n1vd"]
+[ext_resource type="PackedScene" uid="uid://8mghnok3kdig" path="res://components/bounding_box_ragdoll_component.tscn" id="11_6xbul"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hny3r"]
 resource_name = "M_Ghoul.001"
@@ -73,10 +74,10 @@ height = 0.7993164
 radius = 0.028644493
 height = 0.10269512
 
-[node name="armLeft" type="Node3D"]
+[node name="armLeft" type="Node3D" unique_id=648498263]
 transform = Transform3D(0.042086396, -0.006989005, 0.99908954, 0.038181774, 0.99925643, 0.005381773, -0.99838406, 0.037920497, 0.042321954, 0, 0, 0)
 
-[node name="Skeleton3D" type="Skeleton3D" parent="."]
+[node name="Skeleton3D" type="Skeleton3D" parent="." unique_id=299011321]
 bones/0/name = "UpperArm_L"
 bones/0/parent = -1
 bones/0/rest = Transform3D(0.03606582, 0.9989003, -0.029956445, -0.03778145, 0.031317413, 0.99879503, 0.998635, -0.034890566, 0.03886939, -0.52608454, -0.010180712, -0.0111420285)
@@ -100,14 +101,15 @@ bones/2/rotation = Quaternion(0.007836457, -4.6721244e-08, 0.01869238, 0.9997946
 bones/2/scale = Vector3(1, 0.9999999, 0.99999994)
 script = ExtResource("1_5e7ha")
 
-[node name="armLeft" type="MeshInstance3D" parent="Skeleton3D"]
+[node name="Severed Arm" type="MeshInstance3D" parent="Skeleton3D" unique_id=1303696915]
 mesh = SubResource("ArrayMesh_bl7p0")
 skin = SubResource("Skin_rybal")
+skeleton = NodePath("..")
 surface_material_override/0 = SubResource("StandardMaterial3D_wibwg")
 
-[node name="PhysicalBoneSimulator3D" type="PhysicalBoneSimulator3D" parent="Skeleton3D"]
+[node name="PhysicalBoneSimulator3D" type="PhysicalBoneSimulator3D" parent="Skeleton3D" unique_id=1706367629]
 
-[node name="Physical Bone UpperArm_R" type="PhysicalBone3D" parent="Skeleton3D/PhysicalBoneSimulator3D" node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component") groups=["throwable"]]
+[node name="Physical Bone UpperArm_R" type="PhysicalBone3D" parent="Skeleton3D/PhysicalBoneSimulator3D" unique_id=217140414 node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component") groups=["throwable"]]
 transform = Transform3D(0.03605738, -0.02995824, -0.9989008, -0.037780065, 0.99879515, -0.0313188, 0.99863535, 0.038867813, 0.034882113, -0.3830271, -0.005695449, -0.016138388)
 collision_layer = 8
 collision_mask = 15
@@ -180,53 +182,53 @@ joint_constraints/z/angular_spring_damping = 0.0
 joint_constraints/z/angular_equilibrium_point = 0.0
 script = ExtResource("4_rq57t")
 change_distance_interaction = NodePath("InteractionContainer/WhileGrabbed/Change Distance")
-throwable_mesh = NodePath("../../armLeft")
+throwable_mesh = NodePath("../../Severed Arm")
 throwable = NodePath(".")
 damage_component = NodePath("DamageComponent")
-metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("6_8h68s"),"default_context_id":0,"display_name":"Severed Arm","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("7_mr57i")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("7_mr57i"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("8_2xavi"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("6_8h68s"),"default_context_id":0,"display_name":"Severed Arm","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("7_mr57i")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("7_mr57i"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("8_2xavi"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
 ,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
 ]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
 
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R" unique_id=1719837334]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_uovtg")
 
-[node name="GPUParticles3D" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R" instance=ExtResource("4_umokh")]
+[node name="GPUParticles3D" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R" unique_id=1194812554 instance=ExtResource("4_umokh")]
 transform = Transform3D(-0.9964714, 0.03311639, 0.07712504, 0.03376086, 0.9994054, 0.0070306486, -0.07684369, 0.009609769, -0.99699676, -0.021325652, -0.033069905, 0.5369922)
 top_level = true
 
-[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R"]
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R" unique_id=327914672]
 transform = Transform3D(1, 2.3283064e-10, 7.450581e-09, 8.731149e-10, 1, -9.313226e-10, -7.450581e-09, 9.313226e-10, 1, 0.01201717, -0.0015027695, 0.15590727)
 remote_path = NodePath("../GPUParticles3D")
 update_rotation = false
 
-[node name="InteractionContainer" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R"]
+[node name="InteractionContainer" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R" unique_id=1107259816]
 script = ExtResource("6_8h68s")
 display_name = "Severed Arm"
 metadata/_custom_type_script = "uid://ck3cei0hvspym"
 
-[node name="Grab" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R/InteractionContainer"]
+[node name="Grab" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R/InteractionContainer" unique_id=1853164712]
 script = ExtResource("7_mr57i")
 hide_while_grabbed = true
 display_name = "Grab"
 metadata/_custom_type_script = "uid://5tinbhq6p45k"
 
-[node name="interact" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R/InteractionContainer/Grab"]
+[node name="interact" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R/InteractionContainer/Grab" unique_id=1175302784]
 script = ExtResource("8_2xavi")
 action = &"interact"
 metadata/_custom_type_script = "uid://bxe74cq2uqemi"
 
-[node name="WhileGrabbed" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R/InteractionContainer"]
+[node name="WhileGrabbed" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R/InteractionContainer" unique_id=2099482181]
 script = ExtResource("9_u6hau")
 context_id = 1
 metadata/_custom_type_script = "uid://doc0okecalxnp"
 
-[node name="Change Distance" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R/InteractionContainer/WhileGrabbed"]
+[node name="Change Distance" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R/InteractionContainer/WhileGrabbed" unique_id=602398186]
 script = ExtResource("7_mr57i")
 metadata/_custom_type_script = "uid://5tinbhq6p45k"
 
-[node name="scroll" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R/InteractionContainer/WhileGrabbed/Change Distance"]
+[node name="scroll" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R/InteractionContainer/WhileGrabbed/Change Distance" unique_id=556159689]
 script = ExtResource("8_2xavi")
 type = 1
 action = &"scroll"
@@ -234,28 +236,28 @@ negative_x = &"scroll_down"
 positive_x = &"scroll_up"
 metadata/_custom_type_script = "uid://bxe74cq2uqemi"
 
-[node name="Rotate" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R/InteractionContainer/WhileGrabbed"]
+[node name="Rotate" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R/InteractionContainer/WhileGrabbed" unique_id=1915969083]
 script = ExtResource("7_mr57i")
 metadata/_custom_type_script = "uid://5tinbhq6p45k"
 
-[node name="rotate" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R/InteractionContainer/WhileGrabbed/Rotate"]
+[node name="rotate" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R/InteractionContainer/WhileGrabbed/Rotate" unique_id=1938887227]
 script = ExtResource("8_2xavi")
 action = &"rotate"
 metadata/_custom_type_script = "uid://bxe74cq2uqemi"
 
-[node name="Throw" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R/InteractionContainer/WhileGrabbed"]
+[node name="Throw" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R/InteractionContainer/WhileGrabbed" unique_id=1645376956]
 script = ExtResource("7_mr57i")
 metadata/_custom_type_script = "uid://5tinbhq6p45k"
 
-[node name="secondary_action" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R/InteractionContainer/WhileGrabbed/Throw"]
+[node name="secondary_action" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R/InteractionContainer/WhileGrabbed/Throw" unique_id=795271886]
 script = ExtResource("8_2xavi")
 action = &"secondary_action"
 metadata/_custom_type_script = "uid://bxe74cq2uqemi"
 
-[node name="PickupSound" type="AudioStreamPlayer" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R"]
+[node name="PickupSound" type="AudioStreamPlayer" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R" unique_id=1829667985]
 
-[node name="DamageComponent" type="Area3D" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R"]
-collision_layer = 5
+[node name="DamageComponent" type="Area3D" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R" unique_id=1797252386]
+collision_layer = 4
 collision_mask = 13
 script = ExtResource("10_4n1vd")
 damage_types = Dictionary[int, float]({
@@ -264,11 +266,15 @@ damage_types = Dictionary[int, float]({
 stance_damage_value = 0.1
 metadata/_custom_type_script = "uid://dlsydctoxqbwy"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R/DamageComponent"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R/DamageComponent" unique_id=457201164]
 transform = Transform3D(0.9929548, -0.11012626, -0.04373745, 0.044126075, 0.001096691, 0.99904, -0.1099709, -0.99391735, 0.0059485226, -0.022665147, 0.00022570323, -0.20455863)
 shape = SubResource("CapsuleShape3D_wcsuv")
 
-[node name="Physical Bone UpperArm_R2" type="PhysicalBone3D" parent="Skeleton3D/PhysicalBoneSimulator3D" node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component") groups=["throwable"]]
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R" unique_id=172806438]
+transform = Transform3D(1, -1.7753337e-09, 4.656613e-10, -1.36788e-09, 0.99999994, 7.450581e-09, 4.656613e-10, 0, 1, 0.06844438, -0.0152669065, -0.25047463)
+aabb = AABB(-0.17136048, -0.12114768, -0.47567305, 0.34272096, 0.24229535, 0.9513461)
+
+[node name="Physical Bone UpperArm_R2" type="PhysicalBone3D" parent="Skeleton3D/PhysicalBoneSimulator3D" unique_id=1794232844 node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component") groups=["throwable"]]
 transform = Transform3D(-0.037384935, 0.015668271, -0.99917823, -0.035743706, 0.99921626, 0.017006265, 0.9986615, 0.036350116, -0.03679558, -0.09685876, -0.0036457644, -0.015866298)
 collision_layer = 8
 collision_mask = 15
@@ -341,44 +347,44 @@ joint_constraints/z/angular_spring_damping = 0.0
 joint_constraints/z/angular_equilibrium_point = 0.0
 script = ExtResource("4_rq57t")
 change_distance_interaction = NodePath("InteractionContainer/WhileGrabbed/Change Distance")
-throwable_mesh = NodePath("../../armLeft")
+throwable_mesh = NodePath("../../Severed Arm")
 throwable = NodePath(".")
 damage_component = NodePath("../Physical Bone UpperArm_R/DamageComponent")
-metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("6_8h68s"),"default_context_id":0,"display_name":"Severed Arm","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("7_mr57i")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("7_mr57i"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("8_2xavi"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("6_8h68s"),"default_context_id":0,"display_name":"Severed Arm","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("7_mr57i")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("7_mr57i"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("8_2xavi"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
 ,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
 ]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
 
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2" unique_id=1116990419]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_uovtg")
 
-[node name="InteractionContainer" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2"]
+[node name="InteractionContainer" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2" unique_id=580613088]
 script = ExtResource("6_8h68s")
 display_name = "Severed Arm"
 metadata/_custom_type_script = "uid://ck3cei0hvspym"
 
-[node name="Grab" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2/InteractionContainer"]
+[node name="Grab" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2/InteractionContainer" unique_id=1773330258]
 script = ExtResource("7_mr57i")
 hide_while_grabbed = true
 display_name = "Grab"
 metadata/_custom_type_script = "uid://5tinbhq6p45k"
 
-[node name="interact" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2/InteractionContainer/Grab"]
+[node name="interact" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2/InteractionContainer/Grab" unique_id=1497324890]
 script = ExtResource("8_2xavi")
 action = &"interact"
 metadata/_custom_type_script = "uid://bxe74cq2uqemi"
 
-[node name="WhileGrabbed" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2/InteractionContainer"]
+[node name="WhileGrabbed" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2/InteractionContainer" unique_id=204351666]
 script = ExtResource("9_u6hau")
 context_id = 1
 metadata/_custom_type_script = "uid://doc0okecalxnp"
 
-[node name="Change Distance" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2/InteractionContainer/WhileGrabbed"]
+[node name="Change Distance" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2/InteractionContainer/WhileGrabbed" unique_id=1347272135]
 script = ExtResource("7_mr57i")
 metadata/_custom_type_script = "uid://5tinbhq6p45k"
 
-[node name="scroll" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2/InteractionContainer/WhileGrabbed/Change Distance"]
+[node name="scroll" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2/InteractionContainer/WhileGrabbed/Change Distance" unique_id=1885635967]
 script = ExtResource("8_2xavi")
 type = 1
 action = &"scroll"
@@ -386,27 +392,27 @@ negative_x = &"scroll_down"
 positive_x = &"scroll_up"
 metadata/_custom_type_script = "uid://bxe74cq2uqemi"
 
-[node name="Rotate" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2/InteractionContainer/WhileGrabbed"]
+[node name="Rotate" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2/InteractionContainer/WhileGrabbed" unique_id=795676102]
 script = ExtResource("7_mr57i")
 metadata/_custom_type_script = "uid://5tinbhq6p45k"
 
-[node name="rotate" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2/InteractionContainer/WhileGrabbed/Rotate"]
+[node name="rotate" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2/InteractionContainer/WhileGrabbed/Rotate" unique_id=1102462039]
 script = ExtResource("8_2xavi")
 action = &"rotate"
 metadata/_custom_type_script = "uid://bxe74cq2uqemi"
 
-[node name="Throw" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2/InteractionContainer/WhileGrabbed"]
+[node name="Throw" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2/InteractionContainer/WhileGrabbed" unique_id=282606051]
 script = ExtResource("7_mr57i")
 metadata/_custom_type_script = "uid://5tinbhq6p45k"
 
-[node name="secondary_action" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2/InteractionContainer/WhileGrabbed/Throw"]
+[node name="secondary_action" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2/InteractionContainer/WhileGrabbed/Throw" unique_id=1075823884]
 script = ExtResource("8_2xavi")
 action = &"secondary_action"
 metadata/_custom_type_script = "uid://bxe74cq2uqemi"
 
-[node name="PickupSound" type="AudioStreamPlayer" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2"]
+[node name="PickupSound" type="AudioStreamPlayer" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2" unique_id=1461377401]
 
-[node name="Physical Bone UpperArm_R3" type="PhysicalBone3D" parent="Skeleton3D/PhysicalBoneSimulator3D" node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component") groups=["throwable"]]
+[node name="Physical Bone UpperArm_R3" type="PhysicalBone3D" parent="Skeleton3D/PhysicalBoneSimulator3D" unique_id=831672437 node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component") groups=["throwable"]]
 transform = Transform3D(-3.1255186e-06, -1.296401e-06, -1.0000001, -0.036062744, 0.9993495, -1.1622906e-06, 0.99934953, 0.036062747, -3.1664968e-06, 0.17193206, -0.0057831286, -0.01124409)
 collision_layer = 8
 collision_mask = 15
@@ -479,44 +485,44 @@ joint_constraints/z/angular_spring_damping = 0.0
 joint_constraints/z/angular_equilibrium_point = 0.0
 script = ExtResource("4_rq57t")
 change_distance_interaction = NodePath("InteractionContainer/WhileGrabbed/Change Distance")
-throwable_mesh = NodePath("../../armLeft")
+throwable_mesh = NodePath("../../Severed Arm")
 throwable = NodePath(".")
 damage_component = NodePath("../Physical Bone UpperArm_R/DamageComponent")
-metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("6_8h68s"),"default_context_id":0,"display_name":"Severed Arm","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("7_mr57i")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("7_mr57i"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("8_2xavi"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("6_8h68s"),"default_context_id":0,"display_name":"Severed Arm","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("7_mr57i")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("7_mr57i"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("8_2xavi"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
 ,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
 ]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
 
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3" unique_id=963670970]
 transform = Transform3D(1, 0, -1.260778e-07, -1.5133992e-09, 0, 0.9999954, 0, -1, 3.5762787e-07, 0, -9.313226e-10, 0.09187489)
 shape = SubResource("CapsuleShape3D_w2aag")
 
-[node name="InteractionContainer" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3"]
+[node name="InteractionContainer" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3" unique_id=32675838]
 script = ExtResource("6_8h68s")
 display_name = "Severed Arm"
 metadata/_custom_type_script = "uid://ck3cei0hvspym"
 
-[node name="Grab" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3/InteractionContainer"]
+[node name="Grab" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3/InteractionContainer" unique_id=538109348]
 script = ExtResource("7_mr57i")
 hide_while_grabbed = true
 display_name = "Grab"
 metadata/_custom_type_script = "uid://5tinbhq6p45k"
 
-[node name="interact" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3/InteractionContainer/Grab"]
+[node name="interact" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3/InteractionContainer/Grab" unique_id=2120011285]
 script = ExtResource("8_2xavi")
 action = &"interact"
 metadata/_custom_type_script = "uid://bxe74cq2uqemi"
 
-[node name="WhileGrabbed" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3/InteractionContainer"]
+[node name="WhileGrabbed" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3/InteractionContainer" unique_id=1164866484]
 script = ExtResource("9_u6hau")
 context_id = 1
 metadata/_custom_type_script = "uid://doc0okecalxnp"
 
-[node name="Change Distance" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3/InteractionContainer/WhileGrabbed"]
+[node name="Change Distance" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3/InteractionContainer/WhileGrabbed" unique_id=57861340]
 script = ExtResource("7_mr57i")
 metadata/_custom_type_script = "uid://5tinbhq6p45k"
 
-[node name="scroll" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3/InteractionContainer/WhileGrabbed/Change Distance"]
+[node name="scroll" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3/InteractionContainer/WhileGrabbed/Change Distance" unique_id=1549662933]
 script = ExtResource("8_2xavi")
 type = 1
 action = &"scroll"
@@ -524,25 +530,31 @@ negative_x = &"scroll_down"
 positive_x = &"scroll_up"
 metadata/_custom_type_script = "uid://bxe74cq2uqemi"
 
-[node name="Rotate" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3/InteractionContainer/WhileGrabbed"]
+[node name="Rotate" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3/InteractionContainer/WhileGrabbed" unique_id=1256544464]
 script = ExtResource("7_mr57i")
 metadata/_custom_type_script = "uid://5tinbhq6p45k"
 
-[node name="rotate" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3/InteractionContainer/WhileGrabbed/Rotate"]
+[node name="rotate" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3/InteractionContainer/WhileGrabbed/Rotate" unique_id=641155437]
 script = ExtResource("8_2xavi")
 action = &"rotate"
 metadata/_custom_type_script = "uid://bxe74cq2uqemi"
 
-[node name="Throw" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3/InteractionContainer/WhileGrabbed"]
+[node name="Throw" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3/InteractionContainer/WhileGrabbed" unique_id=723005794]
 script = ExtResource("7_mr57i")
 metadata/_custom_type_script = "uid://5tinbhq6p45k"
 
-[node name="secondary_action" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3/InteractionContainer/WhileGrabbed/Throw"]
+[node name="secondary_action" type="Node" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3/InteractionContainer/WhileGrabbed/Throw" unique_id=1034038793]
 script = ExtResource("8_2xavi")
 action = &"secondary_action"
 metadata/_custom_type_script = "uid://bxe74cq2uqemi"
 
-[node name="PickupSound" type="AudioStreamPlayer" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3"]
+[node name="PickupSound" type="AudioStreamPlayer" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R3" unique_id=843562819]
+
+[node name="bounding_box_ragdoll_component" parent="." unique_id=593655162 node_paths=PackedStringArray("physical_bone", "on_screen_identifier") instance=ExtResource("11_6xbul")]
+offset_right = 78.0
+label_name = "Severed Arm"
+physical_bone = NodePath("../Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R")
+on_screen_identifier = NodePath("../Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R/VisibleOnScreenNotifier3D")
 
 [connection signal="on_complete" from="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R/InteractionContainer/Grab" to="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R" method="_released"]
 [connection signal="on_trigger" from="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R/InteractionContainer/Grab" to="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R" method="_while_grabbed"]

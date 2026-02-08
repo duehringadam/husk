@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bxm7bq8a3137t"]
+[gd_scene format=3 uid="uid://bxm7bq8a3137t"]
 
 [ext_resource type="FontFile" uid="uid://b38okvijpcxmv" path="res://addons/madtalk/fonts/FreeSans_smal.tres" id="1"]
 [ext_resource type="FontFile" path="res://addons/madtalk/fonts/FreeSans_bold_small.tres" id="2"]
@@ -6,13 +6,13 @@
 [ext_resource type="StyleBox" path="res://addons/madtalk/components/resources/ButtonStyle.tres" id="4"]
 [ext_resource type="StyleBox" path="res://addons/madtalk/components/resources/SheetItemStyle.tres" id="5"]
 
-[node name="DialogSearchSheetItem" type="Panel"]
+[node name="DialogSearchSheetItem" type="Panel" unique_id=1012875844]
 custom_minimum_size = Vector2(0, 48)
 offset_right = 437.0
 offset_bottom = 48.0
 theme_override_styles/panel = ExtResource("5")
 
-[node name="SheetIDLabel" type="Label" parent="."]
+[node name="SheetIDLabel" type="Label" parent="." unique_id=157795198]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -29,7 +29,7 @@ vertical_alignment = 1
 autowrap_mode = 1
 clip_text = true
 
-[node name="DescLabel" type="Label" parent="."]
+[node name="DescLabel" type="Label" parent="." unique_id=1674205138]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -48,7 +48,7 @@ vertical_alignment = 1
 autowrap_mode = 3
 clip_text = true
 
-[node name="BtnPick" type="Button" parent="."]
+[node name="BtnPick" type="Button" parent="." unique_id=1723089750]
 layout_mode = 0
 anchor_left = 1.0
 anchor_top = 0.5

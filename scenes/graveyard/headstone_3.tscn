@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://btcqrjeutisf1"]
+[gd_scene format=3 uid="uid://btcqrjeutisf1"]
 
 [ext_resource type="ArrayMesh" uid="uid://bjm0eikkc6rpp" path="res://scenes/gravestones/headstone_3.res" id="1_qv434"]
 [ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="2_wtx1n"]
@@ -21,16 +21,16 @@ shader_parameter/convert_vertex_colors = false
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_wtx1n"]
 points = PackedVector3Array(-61.697, 1054.99, -5584.38, 110.001, 196.583, -5309.73, -113.219, 196.583, -5309.73, 110.001, -26.7313, -5738.95, -104.634, 15.5353, -5722.44, 88.1203, 930.547, -5336.75, 88.9663, 934.392, -5713.66, -113.219, 951.937, -5326.91, -113.219, 951.937, -5721.73, 110.001, -26.7313, -5309.73, -104.634, 15.5353, -5326.23, 41.2825, 1072.2, -5498.63, -113.219, 196.583, -5738.95, 110.001, 196.583, -5738.95, -61.697, 1072.2, -5498.63, 41.2825, 1054.99, -5584.38, -61.697, 1072.2, -5550.01, 41.2825, 1072.2, -5550.01, -61.697, 1054.99, -5464.26)
 
-[node name="headstone_1" type="StaticBody3D"]
+[node name="headstone_1" type="StaticBody3D" unique_id=530300654]
 transform = Transform3D(0.002, 0, 0, 0, 0.002, 0, 0, 0, 0.002, 0, 0, 0.687554)
 collision_layer = 2
 collision_mask = 5
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=955565150]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.1828, 0, 4842.2)
 mesh = ExtResource("1_qv434")
 surface_material_override/0 = SubResource("ShaderMaterial_qv434")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=1966614382]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.1828, 0, 4842.2)
 shape = SubResource("ConvexPolygonShape3D_wtx1n")

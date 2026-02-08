@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cjce1u8propuf"]
+[gd_scene format=4 uid="uid://cjce1u8propuf"]
 
 [ext_resource type="Texture2D" uid="uid://bwnxaeoqowc5f" path="res://test texture/kenney_prototype-textures/PNG/Orange/texture_01.png" id="1_62wli"]
 [ext_resource type="Script" uid="uid://vq1by46waqsk" path="res://friendly_npc_spawn_test.gd" id="1_mkoki"]
 [ext_resource type="Script" uid="uid://ck3cei0hvspym" path="res://addons/interaction_system/interaction_container.gd" id="2_rxwj7"]
 [ext_resource type="Script" uid="uid://5tinbhq6p45k" path="res://addons/interaction_system/interaction.gd" id="3_mkoki"]
 [ext_resource type="Script" uid="uid://bxe74cq2uqemi" path="res://addons/game_controls/vanilla/input_map_game_control.gd" id="4_r7rxa"]
+[ext_resource type="PackedScene" uid="uid://dhws2ueoubwwx" path="res://components/bounding_box_component.tscn" id="6_r7rxa"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_urhrq"]
 data = PackedVector3Array(-0.13916016, -0.54174805, 0.19384766, -0.13916016, -0.54174805, -0.19384766, -0.13916016, 0.54174805, -0.19384766, 0.13916016, -0.54174805, -0.19384766, -0.13916016, -0.54174805, -0.19384766, -0.13916016, -0.54174805, 0.19384766, -0.13916016, 0.54174805, -0.19384766, -0.13916016, -0.54174805, -0.19384766, 0.13916016, -0.54174805, -0.19384766, -0.13916016, 0.54174805, -0.19384766, -0.13916016, 0.54174805, 0.19384766, -0.13916016, -0.54174805, 0.19384766, -0.13916016, -0.54174805, 0.19384766, -0.13916016, 0.54174805, 0.19384766, 0.13916016, 0.54174805, 0.19384766, 0.13916016, 0.54174805, 0.19384766, -0.13916016, 0.54174805, 0.19384766, -0.13916016, 0.54174805, -0.19384766, -0.13916016, -0.54174805, 0.19384766, 0.13916016, -0.54174805, 0.19384766, 0.13916016, -0.54174805, -0.19384766, 0.13916016, 0.54174805, 0.19384766, 0.13916016, -0.54174805, 0.19384766, -0.13916016, -0.54174805, 0.19384766, 0.13916016, -0.54174805, -0.19384766, 0.13916016, -0.54174805, 0.19384766, 0.13916016, 0.54174805, 0.19384766, 0.13916016, -0.54174805, -0.19384766, 0.13916016, 0.54174805, -0.19384766, -0.13916016, 0.54174805, -0.19384766, -0.13916016, 0.54174805, -0.19384766, 0.13916016, 0.54174805, -0.19384766, 0.13916016, 0.54174805, 0.19384766, 0.13916016, 0.54174805, 0.19384766, 0.13916016, 0.54174805, -0.19384766, 0.13916016, -0.54174805, -0.19384766)
@@ -13,35 +14,50 @@ data = PackedVector3Array(-0.13916016, -0.54174805, 0.19384766, -0.13916016, -0.
 albedo_texture = ExtResource("1_62wli")
 texture_filter = 2
 
-[node name="StaticBody3D3" type="StaticBody3D"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_i7mat"]
+_surfaces = [{
+"aabb": AABB(-0.13916016, -0.54174805, -0.19384766, 0.2783203, 1.0834961, 0.3876953),
+"attribute_data": PackedByteArray("AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/"),
+"format": 34359738391,
+"material": SubResource("StandardMaterial3D_kfu6g"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 36,
+"vertex_data": PackedByteArray("AIAOvgCwCr8AgEY+AIAOvgCwCr8AgEa+AIAOvgCwCj8AgEa+AIAOPgCwCr8AgEa+AIAOvgCwCr8AgEa+AIAOvgCwCr8AgEY+AIAOvgCwCj8AgEa+AIAOvgCwCr8AgEa+AIAOPgCwCr8AgEa+AIAOvgCwCj8AgEa+AIAOvgCwCj8AgEY+AIAOvgCwCr8AgEY+AIAOvgCwCr8AgEY+AIAOvgCwCj8AgEY+AIAOPgCwCj8AgEY+AIAOPgCwCj8AgEY+AIAOvgCwCj8AgEY+AIAOvgCwCj8AgEa+AIAOvgCwCr8AgEY+AIAOPgCwCr8AgEY+AIAOPgCwCr8AgEa+AIAOPgCwCj8AgEY+AIAOPgCwCr8AgEY+AIAOvgCwCr8AgEY+AIAOPgCwCr8AgEa+AIAOPgCwCr8AgEY+AIAOPgCwCj8AgEY+AIAOPgCwCr8AgEa+AIAOPgCwCj8AgEa+AIAOvgCwCj8AgEa+AIAOvgCwCj8AgEa+AIAOPgCwCj8AgEa+AIAOPgCwCj8AgEY+AIAOPgCwCj8AgEY+AIAOPgCwCj8AgEa+AIAOPgCwCr8AgEa+AAD/f/9//n8AAP9//3/+fwAA/3//f/5//38AAP//AAD/fwAA//8AAP9/AAD//wAA/////wAA/z//////AAD/P/////8AAP8/AAD/f/9//n8AAP9//3/+fwAA/3//f/5//3//fwAA/z//f/9/AAD/P/9//38AAP8//3//////AAD/f/////8AAP9//////wAA/38AAP//AAD/fwAA//8AAP9/AAD//wAA/3//fwAA/z//f/9/AAD/P/9//38AAP8/////f/9//n////9//3/+f////3//f/5//////wAA/z//////AAD/P/////8AAP8//3//////AAD/f/////8AAP9//////wAA////f/9//n////9//3/+f////3//f/5/")
+}]
+
+[node name="StaticBody3D3" type="StaticBody3D" unique_id=1352087755]
+collision_layer = 10
 script = ExtResource("1_mkoki")
-metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("2_rxwj7"),"default_context_id":0,"display_name":"Spawner","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("3_mkoki")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_mkoki"),"hide_while_grabbed":true,"override_display_name":true,"display_name":"Spawn NPC","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("4_r7rxa"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("2_rxwj7"),"default_context_id":0,"display_name":"Spawner","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("3_mkoki")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_mkoki"),"hide_while_grabbed":true,"override_display_name":true,"display_name":"Spawn NPC","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("4_r7rxa"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
 ,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
 ]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
 
 
-[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="." unique_id=743492429]
 shape = SubResource("ConcavePolygonShape3D_urhrq")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-size = Vector3(0.2783203, 1.0834961, 0.3876953)
-material = SubResource("StandardMaterial3D_kfu6g")
+[node name="Spawner" type="MeshInstance3D" parent="." unique_id=750248714]
+mesh = SubResource("ArrayMesh_i7mat")
 
-[node name="InteractionContainer" type="Node" parent="."]
+[node name="InteractionContainer" type="Node" parent="." unique_id=425621058]
 script = ExtResource("2_rxwj7")
 display_name = "Spawner"
 metadata/_custom_type_script = "uid://ck3cei0hvspym"
 
-[node name="Spawn" type="Node" parent="InteractionContainer"]
+[node name="Spawn" type="Node" parent="InteractionContainer" unique_id=924903351]
 script = ExtResource("3_mkoki")
 hide_while_grabbed = true
 override_display_name = true
 display_name = "Spawn NPC"
 metadata/_custom_type_script = "uid://5tinbhq6p45k"
 
-[node name="interact" type="Node" parent="InteractionContainer/Spawn"]
+[node name="interact" type="Node" parent="InteractionContainer/Spawn" unique_id=1413857662]
 script = ExtResource("4_r7rxa")
 action = &"interact"
 metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="bounding_box_component" parent="." unique_id=942304456 node_paths=PackedStringArray("mesh") instance=ExtResource("6_r7rxa")]
+mesh = NodePath("../Spawner")
 
 [connection signal="on_complete" from="InteractionContainer/Spawn" to="." method="_on_spawn_on_complete"]

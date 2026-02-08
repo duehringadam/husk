@@ -1,4 +1,4 @@
-[gd_scene load_steps=102 format=4 uid="uid://crwpbskjjllht"]
+[gd_scene format=4 uid="uid://crwpbskjjllht"]
 
 [ext_resource type="Script" uid="uid://bi6bcf1evx4ur" path="res://Player/player.gd" id="1_t2vdx"]
 [ext_resource type="Script" uid="uid://b3yihwhs36do6" path="res://Player/States/statemachine.gd" id="2_7a7qp"]
@@ -1024,14 +1024,14 @@ _data = {
 &"death": SubResource("Animation_iyprq")
 }
 
-[node name="player" type="CharacterBody3D" node_paths=PackedStringArray("mainhand", "offhand", "body")]
+[node name="player" type="CharacterBody3D" unique_id=1334179786 node_paths=PackedStringArray("mainhand", "offhand", "body")]
 collision_mask = 14
 script = ExtResource("1_t2vdx")
 mainhand = NodePath("SubViewportContainer/SubViewport/Camera3D/body/IKMainHand")
 offhand = NodePath("SubViewportContainer/SubViewport/Camera3D/body/IKOffHand")
 body = NodePath("SubViewportContainer/SubViewport/Camera3D/body")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=136620946]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1039,7 +1039,7 @@ grow_horizontal = 2
 grow_vertical = 2
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1428565609]
 unique_name_in_owner = true
 transparent_bg = true
 handle_input_locally = false
@@ -1052,7 +1052,7 @@ size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 script = ExtResource("2_8ynux")
 
-[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("main_camera", "hurtbox")]
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=672276952 node_paths=PackedStringArray("main_camera", "hurtbox")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00171711, 1.30519, 0.0021373)
 cull_mask = 1048574
 environment = ExtResource("21_i4o1l")
@@ -1066,21 +1066,21 @@ randomStrength = 0.01
 shakeFade = null
 hurtbox = NodePath("../../../hurtbox_component")
 
-[node name="walk" type="AudioStreamPlayer3D" parent="SubViewportContainer/SubViewport/Camera3D"]
+[node name="walk" type="AudioStreamPlayer3D" parent="SubViewportContainer/SubViewport/Camera3D" unique_id=1175947190]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00171711, -1.07993, -0.0021373)
 stream = SubResource("AudioStreamPlaylist_7x5p2")
 volume_db = -10.0
 bus = &"SFX"
 
-[node name="body" type="Node3D" parent="SubViewportContainer/SubViewport/Camera3D"]
+[node name="body" type="Node3D" parent="SubViewportContainer/SubViewport/Camera3D" unique_id=1684076204]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
 script = ExtResource("32_ie76m")
 
-[node name="Armature" type="Node3D" parent="SubViewportContainer/SubViewport/Camera3D/body"]
+[node name="Armature" type="Node3D" parent="SubViewportContainer/SubViewport/Camera3D/body" unique_id=1846073684]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, -0.5463246, 0.1649003)
 
-[node name="Skeleton3D" type="Skeleton3D" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature"]
+[node name="Skeleton3D" type="Skeleton3D" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature" unique_id=1704263801]
 bones/0/name = "base.R"
 bones/0/parent = -1
 bones/0/rest = Transform3D(0, 0, 1, 0, 0.99999994, 0, -1, 0, 0, 7.252141e-24, -0.4216058, 1.6590964e-16)
@@ -1495,196 +1495,194 @@ bones/58/position = Vector3(-7.55945e-08, 0.2984099, 1.4387463e-08)
 bones/58/rotation = Quaternion(4.9935206e-08, 0, -9.722746e-15, 1)
 bones/58/scale = Vector3(1, 1, 1)
 
-[node name="Cylinder" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D"]
+[node name="Cylinder" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D" unique_id=13040071]
 layers = 2
 mesh = SubResource("ArrayMesh_ehssq")
 skin = SubResource("Skin_k5svw")
+skeleton = NodePath("..")
 surface_material_override/0 = SubResource("ShaderMaterial_6rl0i")
 
-[node name="BoneAttachment3D2" type="BoneAttachment3D" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D"]
-transform = Transform3D(0.87681776, -0.084418505, 0.47335285, -0.45065013, 0.19895872, 0.87024695, -0.16764279, -0.976365, 0.13640723, -1.4874673, 1.1510203, -1.9354184)
+[node name="BoneAttachment3D2" type="BoneAttachment3D" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D" unique_id=2131270686]
+transform = Transform3D(0.6930446, -0.22417673, 0.6851525, -0.60742295, -0.69343764, 0.38753226, 0.38823473, -0.6847545, -0.6167533, -1.4984422, 1.155259, -1.9251502)
 bone_name = "Palm.L"
 bone_idx = 29
 
-[node name="offhand" type="Marker3D" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D2" node_paths=PackedStringArray("mainhand")]
+[node name="offhand" type="Marker3D" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D2" unique_id=1645003325 node_paths=PackedStringArray("mainhand")]
 transform = Transform3D(3.3333302, 0, -1.8626451e-07, 5.9604645e-08, 3.3333318, 0, -5.2154064e-08, -5.9604645e-08, 3.3333318, 0.16444397, 0.51545715, -0.032689333)
 script = ExtResource("15_i4o1l")
 mainhand = NodePath("../../BoneAttachment3D/mainhand")
 
-[node name="spell_telekinesis" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D2/offhand" instance=ExtResource("16_1l10g")]
+[node name="spell_telekinesis" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D2/offhand" unique_id=1831987700 instance=ExtResource("16_1l10g")]
 
-[node name="Offhand_Anim" type="AnimationPlayer" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D2/offhand"]
+[node name="Offhand_Anim" type="AnimationPlayer" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D2/offhand" unique_id=1987782085]
 root_node = NodePath("../../..")
 
-[node name="BoneAttachment3D" type="BoneAttachment3D" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D"]
-transform = Transform3D(0.8947069, 0.14915165, -0.42101496, 0.39444947, 0.1783655, 0.9014408, 0.20954597, -0.9725944, 0.100752085, 1.5545564, 1.1030495, -1.9845655)
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D" unique_id=897020405]
+transform = Transform3D(0.7207972, 0.6600386, -0.21165986, 0.674713, -0.7380696, -0.003889352, -0.15878683, -0.14000618, -0.9773356, 1.7581608, 0.6967794, -2.3554816)
 bone_name = "Palm.R"
 bone_idx = 9
 
-[node name="mainhand" type="Marker3D" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D" node_paths=PackedStringArray("ray", "offhand")]
+[node name="mainhand" type="Marker3D" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D" unique_id=2063489666 node_paths=PackedStringArray("offhand")]
 transform = Transform3D(3.3333323, 1.1920929e-07, -5.2154064e-08, 0, 3.3333323, -2.682209e-07, 2.9802322e-08, 1.7881393e-07, 3.333332, 0.06561375, 0.28142667, 0.11433101)
 script = ExtResource("13_m0h3t")
-ray = NodePath("../../../../../../../../head/main_camera/look_at_ray")
 offhand = NodePath("../../BoneAttachment3D2/offhand")
 
-[node name="sword_viewmodel" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand" instance=ExtResource("6_maysp")]
+[node name="sword_viewmodel" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand" unique_id=742007013 instance=ExtResource("6_maysp")]
 transform = Transform3D(0.20916481, 0.16354384, -0.9641082, -0.95755714, -0.16570905, -0.23585317, -0.19833353, 0.9725199, 0.12194199, -0.055900633, 0.04896283, 0.014772713)
 
-[node name="Mainhand_Anim" type="AnimationPlayer" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand"]
+[node name="Mainhand_Anim" type="AnimationPlayer" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand" unique_id=1307386460]
 root_node = NodePath("../../..")
-libraries = {
-&"": SubResource("AnimationLibrary_gvnt1")
-}
+libraries/ = SubResource("AnimationLibrary_gvnt1")
 
-[node name="StateChart" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand"]
+[node name="StateChart" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand" unique_id=398207686]
 script = ExtResource("19_6eb1q")
 metadata/_custom_type_script = "uid://bb3ghyy64k2bd"
 
-[node name="CompoundState" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart"]
+[node name="CompoundState" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart" unique_id=515718748]
 script = ExtResource("20_wvbyc")
 initial_state = NodePath("idle")
 
-[node name="toIdle" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState"]
+[node name="toIdle" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState" unique_id=2061336010]
 script = ExtResource("21_ntwt4")
 to = NodePath("../idle")
 event = &"idle"
 delay_in_seconds = "0.0"
 
-[node name="toHeldLeft" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState"]
+[node name="toHeldLeft" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState" unique_id=1430543196]
 script = ExtResource("21_ntwt4")
 to = NodePath("../heldLeft")
 event = &"hold_left"
 delay_in_seconds = "0.0"
 
-[node name="toHeldRight" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState"]
+[node name="toHeldRight" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState" unique_id=1422877240]
 script = ExtResource("21_ntwt4")
 to = NodePath("../heldRight")
 event = &"hold_right"
 delay_in_seconds = "0.0"
 
-[node name="toHeldBack" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState"]
+[node name="toHeldBack" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState" unique_id=573909691]
 script = ExtResource("21_ntwt4")
 to = NodePath("../heldBack")
 event = &"hold_back"
 delay_in_seconds = "0.0"
 
-[node name="toHeldForward" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState"]
+[node name="toHeldForward" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState" unique_id=1901216450]
 script = ExtResource("21_ntwt4")
 to = NodePath("../heldForward")
 event = &"hold_forward"
 delay_in_seconds = "0.0"
 
-[node name="toSwingLeft" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState"]
+[node name="toSwingLeft" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState" unique_id=798293925]
 script = ExtResource("21_ntwt4")
 to = NodePath("../swingLeft")
 event = &"attack_left"
 delay_in_seconds = "0.0"
 
-[node name="toSwingRight" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState"]
+[node name="toSwingRight" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState" unique_id=396437114]
 script = ExtResource("21_ntwt4")
 to = NodePath("../swingRight")
 event = &"attack_right"
 delay_in_seconds = "0.0"
 
-[node name="toSwingBack" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState"]
+[node name="toSwingBack" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState" unique_id=1851222477]
 script = ExtResource("21_ntwt4")
 to = NodePath("../swingBack")
 event = &"attack_back"
 delay_in_seconds = "0.0"
 
-[node name="toSwingForward" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState"]
+[node name="toSwingForward" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState" unique_id=372615685]
 script = ExtResource("21_ntwt4")
 to = NodePath("../swingForward")
 event = &"attack_forward"
 delay_in_seconds = "0.0"
 
-[node name="idle" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState"]
+[node name="idle" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState" unique_id=1190432061]
 script = ExtResource("21_gvnt1")
 
-[node name="idle" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState/idle" node_paths=PackedStringArray("weapon", "state_chart")]
+[node name="idle" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState/idle" unique_id=1057308312 node_paths=PackedStringArray("weapon", "state_chart")]
 script = ExtResource("22_qas3k")
 weapon = NodePath("../../../../sword_viewmodel")
 state_chart = NodePath("../../..")
 
-[node name="heldLeft" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState"]
+[node name="heldLeft" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState" unique_id=2133402351]
 script = ExtResource("21_gvnt1")
 
-[node name="heldLeft" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState/heldLeft" node_paths=PackedStringArray("state_chart")]
+[node name="heldLeft" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState/heldLeft" unique_id=1897430822 node_paths=PackedStringArray("state_chart")]
 script = ExtResource("22_8hx1r")
 state_chart = NodePath("../../..")
 
-[node name="heldRight" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState"]
+[node name="heldRight" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState" unique_id=402382981]
 script = ExtResource("21_gvnt1")
 
-[node name="heldRight" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState/heldRight" node_paths=PackedStringArray("state_chart")]
+[node name="heldRight" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState/heldRight" unique_id=1602896088 node_paths=PackedStringArray("state_chart")]
 script = ExtResource("23_qas3k")
 state_chart = NodePath("../../..")
 
-[node name="heldBack" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState"]
+[node name="heldBack" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState" unique_id=747573781]
 script = ExtResource("21_gvnt1")
 
-[node name="heldBack" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState/heldBack" node_paths=PackedStringArray("state_chart")]
+[node name="heldBack" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState/heldBack" unique_id=1979648703 node_paths=PackedStringArray("state_chart")]
 script = ExtResource("24_ntwt4")
 state_chart = NodePath("../../..")
 
-[node name="heldForward" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState"]
+[node name="heldForward" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState" unique_id=320782777]
 script = ExtResource("21_gvnt1")
 
-[node name="heldForward" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState/heldForward" node_paths=PackedStringArray("state_chart")]
+[node name="heldForward" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState/heldForward" unique_id=256198711 node_paths=PackedStringArray("state_chart")]
 script = ExtResource("25_kdg72")
 state_chart = NodePath("../../..")
 
-[node name="swingLeft" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState"]
+[node name="swingLeft" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState" unique_id=1137228076]
 script = ExtResource("21_gvnt1")
 
-[node name="swingLeft" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState/swingLeft" node_paths=PackedStringArray("state_chart")]
+[node name="swingLeft" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState/swingLeft" unique_id=1346201952 node_paths=PackedStringArray("state_chart")]
 script = ExtResource("26_qpoj2")
 state_chart = NodePath("../../..")
 
-[node name="swingRight" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState"]
+[node name="swingRight" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState" unique_id=1610983325]
 script = ExtResource("21_gvnt1")
 
-[node name="swingRight" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState/swingRight" node_paths=PackedStringArray("state_chart")]
+[node name="swingRight" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState/swingRight" unique_id=283041782 node_paths=PackedStringArray("state_chart")]
 script = ExtResource("27_3e3ym")
 state_chart = NodePath("../../..")
 
-[node name="swingBack" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState"]
+[node name="swingBack" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState" unique_id=1165794573]
 script = ExtResource("21_gvnt1")
 
-[node name="swingBack" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState/swingBack" node_paths=PackedStringArray("state_chart")]
+[node name="swingBack" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState/swingBack" unique_id=458368074 node_paths=PackedStringArray("state_chart")]
 script = ExtResource("28_gxi5p")
 state_chart = NodePath("../../..")
 
-[node name="swingForward" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState"]
+[node name="swingForward" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState" unique_id=1865543441]
 script = ExtResource("21_gvnt1")
 
-[node name="swingForward" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState/swingForward" node_paths=PackedStringArray("state_chart")]
+[node name="swingForward" type="Node" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D/BoneAttachment3D/mainhand/StateChart/CompoundState/swingForward" unique_id=760850427 node_paths=PackedStringArray("state_chart")]
 script = ExtResource("29_yxu6j")
 state_chart = NodePath("../../..")
 
-[node name="IKMain" type="SkeletonIK3D" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D"]
+[node name="IKMain" type="SkeletonIK3D" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D" unique_id=1792491544]
 root_bone = &"Shoulder1.R"
 tip_bone = &"Palm.R"
 override_tip_basis = false
 target_node = NodePath("../../../IKMainHand")
 script = ExtResource("18_maysp")
 
-[node name="IKOff" type="SkeletonIK3D" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D"]
+[node name="IKOff" type="SkeletonIK3D" parent="SubViewportContainer/SubViewport/Camera3D/body/Armature/Skeleton3D" unique_id=267044514]
 root_bone = &"Shoulder1.L"
 tip_bone = &"Palm.L"
 override_tip_basis = false
 target_node = NodePath("../../../IKOffHand")
 script = ExtResource("18_maysp")
 
-[node name="IKMainHand" type="Node3D" parent="SubViewportContainer/SubViewport/Camera3D/body"]
-transform = Transform3D(0.26333058, 0.08102172, -0.11871127, 0.11468656, 0.030890672, 0.2754863, 0.086624786, -0.2871954, -0.003858818, 0.5344616, -0.34305298, -0.55743504)
+[node name="IKMainHand" type="Node3D" parent="SubViewportContainer/SubViewport/Camera3D/body" unique_id=201224453]
+transform = Transform3D(0.26333055, 0.08102172, -0.11871127, 0.114686556, 0.030890672, 0.2754863, 0.08662478, -0.2871954, -0.003858818, 0.5344616, -0.34305298, -0.55743504)
 
-[node name="IKOffHand" type="Node3D" parent="SubViewportContainer/SubViewport/Camera3D/body"]
+[node name="IKOffHand" type="Node3D" parent="SubViewportContainer/SubViewport/Camera3D/body" unique_id=654173058]
 transform = Transform3D(0.24489748, 0.06921894, 0.15885198, -0.16752507, 0.1648589, 0.18643199, -0.044278473, -0.24089476, 0.1732314, -0.44952333, -0.19977164, -0.41253498)
 
-[node name="UILayer" type="CanvasLayer" parent="."]
+[node name="UILayer" type="CanvasLayer" parent="." unique_id=566966045]
 
-[node name="userInterface" type="Control" parent="UILayer"]
+[node name="userInterface" type="Control" parent="UILayer" unique_id=20617852]
 process_priority = -1
 layout_mode = 3
 anchors_preset = 15
@@ -1695,7 +1693,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("22_8viyr")
 
-[node name="launch" type="ColorRect" parent="UILayer/userInterface"]
+[node name="launch" type="ColorRect" parent="UILayer/userInterface" unique_id=41892766]
 material = SubResource("ShaderMaterial_maysp")
 layout_mode = 1
 anchors_preset = 15
@@ -1706,20 +1704,18 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("19_dy65m")
 
-[node name="shockwave" type="AnimationPlayer" parent="UILayer/userInterface/launch"]
+[node name="shockwave" type="AnimationPlayer" parent="UILayer/userInterface/launch" unique_id=1745643687]
 root_node = NodePath("../../../..")
-libraries = {
-&"": SubResource("AnimationLibrary_7x5p2")
-}
+libraries/ = SubResource("AnimationLibrary_7x5p2")
 
-[node name="Label" type="Label" parent="UILayer/userInterface"]
+[node name="Label" type="Label" parent="UILayer/userInterface" unique_id=147404301]
 unique_name_in_owner = true
 visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 
-[node name="DialogueContainer" type="PanelContainer" parent="UILayer/userInterface"]
+[node name="DialogueContainer" type="PanelContainer" parent="UILayer/userInterface" unique_id=1064981265]
 visible = false
 custom_minimum_size = Vector2(300, 200)
 layout_mode = 1
@@ -1734,14 +1730,14 @@ size_flags_vertical = 8
 mouse_filter = 2
 theme_override_styles/panel = ExtResource("23_sm0op")
 
-[node name="DialogueMargin" type="MarginContainer" parent="UILayer/userInterface/DialogueContainer"]
+[node name="DialogueMargin" type="MarginContainer" parent="UILayer/userInterface/DialogueContainer" unique_id=1461573604]
 layout_mode = 2
 theme_override_constants/margin_left = 40
 theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 40
 
-[node name="Dialogue" type="RichTextLabel" parent="UILayer/userInterface/DialogueContainer/DialogueMargin"]
+[node name="Dialogue" type="RichTextLabel" parent="UILayer/userInterface/DialogueContainer/DialogueMargin" unique_id=532056062]
 custom_minimum_size = Vector2(400, 150)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -1764,16 +1760,14 @@ vertical_alignment = 2
 visible_characters_behavior = 1
 script = ExtResource("25_efx54")
 
-[node name="dialoguetimer" type="Timer" parent="UILayer/userInterface/DialogueContainer/DialogueMargin"]
+[node name="dialoguetimer" type="Timer" parent="UILayer/userInterface/DialogueContainer/DialogueMargin" unique_id=453106013]
 wait_time = 2.0
 one_shot = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="UILayer/userInterface/DialogueContainer"]
-libraries = {
-&"": SubResource("AnimationLibrary_76lrf")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UILayer/userInterface/DialogueContainer" unique_id=1173402795]
+libraries/ = SubResource("AnimationLibrary_76lrf")
 
-[node name="uiMargin" type="MarginContainer" parent="UILayer/userInterface"]
+[node name="uiMargin" type="MarginContainer" parent="UILayer/userInterface" unique_id=786549531]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1786,16 +1780,16 @@ theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 40
 
-[node name="healthcontainer" type="PanelContainer" parent="UILayer/userInterface/uiMargin"]
+[node name="healthcontainer" type="PanelContainer" parent="UILayer/userInterface/uiMargin" unique_id=935476123]
 custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_jp1hh")
 
-[node name="playerHealth" parent="UILayer/userInterface/uiMargin/healthcontainer" instance=ExtResource("6_jp1hh")]
+[node name="playerHealth" parent="UILayer/userInterface/uiMargin/healthcontainer" unique_id=332988282 instance=ExtResource("6_jp1hh")]
 layout_mode = 2
 
-[node name="itemContainer" type="PanelContainer" parent="UILayer/userInterface/uiMargin"]
+[node name="itemContainer" type="PanelContainer" parent="UILayer/userInterface/uiMargin" unique_id=717349248]
 visible = false
 custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
@@ -1805,17 +1799,17 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_iyprq")
 script = ExtResource("7_iyprq")
 
-[node name="itemMargin" type="MarginContainer" parent="UILayer/userInterface/uiMargin/itemContainer"]
+[node name="itemMargin" type="MarginContainer" parent="UILayer/userInterface/uiMargin/itemContainer" unique_id=422699179]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/userInterface/uiMargin/itemContainer/itemMargin"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/userInterface/uiMargin/itemContainer/itemMargin" unique_id=1804493803]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="UILayer/userInterface/uiMargin/itemContainer/itemMargin/HBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="UILayer/userInterface/uiMargin/itemContainer/itemMargin/HBoxContainer" unique_id=1105790068]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 theme = ExtResource("24_76lrf")
@@ -1823,13 +1817,13 @@ bbcode_enabled = true
 text = "Whistling Death"
 vertical_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="UILayer/userInterface/uiMargin/itemContainer/itemMargin/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="UILayer/userInterface/uiMargin/itemContainer/itemMargin/HBoxContainer" unique_id=1100751575]
 custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
 texture = ExtResource("7_qs4pp")
 expand_mode = 1
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="UILayer/userInterface/uiMargin/itemContainer/itemMargin/HBoxContainer"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="UILayer/userInterface/uiMargin/itemContainer/itemMargin/HBoxContainer" unique_id=891861889]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 theme = ExtResource("24_76lrf")
@@ -1837,29 +1831,29 @@ bbcode_enabled = true
 text = "[F]"
 vertical_alignment = 1
 
-[node name="Timer" type="Timer" parent="UILayer/userInterface/uiMargin/itemContainer"]
+[node name="Timer" type="Timer" parent="UILayer/userInterface/uiMargin/itemContainer" unique_id=989633657]
 wait_time = 0.25
 one_shot = true
 
-[node name="inventory" type="PanelContainer" parent="UILayer/userInterface/uiMargin"]
+[node name="inventory" type="PanelContainer" parent="UILayer/userInterface/uiMargin" unique_id=1405013659]
 visible = false
 layout_mode = 2
 mouse_filter = 2
 script = ExtResource("9_8ynux")
 
-[node name="PanelContainer" type="PanelContainer" parent="UILayer/userInterface/uiMargin/inventory"]
+[node name="PanelContainer" type="PanelContainer" parent="UILayer/userInterface/uiMargin/inventory" unique_id=1356034723]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="UILayer/userInterface/uiMargin/inventory/PanelContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="UILayer/userInterface/uiMargin/inventory/PanelContainer" unique_id=1618548740]
 layout_mode = 2
 horizontal_scroll_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/userInterface/uiMargin/inventory/PanelContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/userInterface/uiMargin/inventory/PanelContainer/ScrollContainer" unique_id=1874174369]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="crosshair" type="CenterContainer" parent="UILayer/userInterface" node_paths=PackedStringArray("RETICLE_LINES", "PLAYER_CONTROLLER")]
+[node name="crosshair" type="CenterContainer" parent="UILayer/userInterface" unique_id=1789208409 node_paths=PackedStringArray("RETICLE_LINES", "PLAYER_CONTROLLER")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1877,23 +1871,23 @@ script = ExtResource("26_sm0op")
 RETICLE_LINES = [NodePath("top"), NodePath("right"), NodePath("bottom"), NodePath("left")]
 PLAYER_CONTROLLER = NodePath("../../..")
 
-[node name="top" type="Line2D" parent="UILayer/userInterface/crosshair"]
+[node name="top" type="Line2D" parent="UILayer/userInterface/crosshair" unique_id=880320238]
 points = PackedVector2Array(0, -5, 0, -15)
 width = 2.0
 
-[node name="right" type="Line2D" parent="UILayer/userInterface/crosshair"]
+[node name="right" type="Line2D" parent="UILayer/userInterface/crosshair" unique_id=1468988716]
 points = PackedVector2Array(5, 0, 15, 0)
 width = 2.0
 
-[node name="bottom" type="Line2D" parent="UILayer/userInterface/crosshair"]
+[node name="bottom" type="Line2D" parent="UILayer/userInterface/crosshair" unique_id=258418779]
 points = PackedVector2Array(0, 5, 0, 15)
 width = 2.0
 
-[node name="left" type="Line2D" parent="UILayer/userInterface/crosshair"]
+[node name="left" type="Line2D" parent="UILayer/userInterface/crosshair" unique_id=821760226]
 points = PackedVector2Array(-5, 0, -15, 0)
 width = 2.0
 
-[node name="damage" type="ColorRect" parent="UILayer/userInterface" node_paths=PackedStringArray("hurtbox")]
+[node name="damage" type="ColorRect" parent="UILayer/userInterface" unique_id=1765577914 node_paths=PackedStringArray("hurtbox")]
 material = SubResource("ShaderMaterial_8ynux")
 layout_mode = 1
 anchors_preset = 15
@@ -1905,12 +1899,10 @@ mouse_filter = 2
 script = ExtResource("9_qs4pp")
 hurtbox = NodePath("../../../hurtbox_component")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="UILayer/userInterface/damage"]
-libraries = {
-&"": SubResource("AnimationLibrary_iyprq")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UILayer/userInterface/damage" unique_id=1545178821]
+libraries/ = SubResource("AnimationLibrary_iyprq")
 
-[node name="interactprompt" type="RichTextLabel" parent="UILayer"]
+[node name="interactprompt" type="RichTextLabel" parent="UILayer" unique_id=1956641181]
 visible = false
 custom_minimum_size = Vector2(200, 120)
 anchors_preset = 8
@@ -1934,33 +1926,33 @@ text = "Open [F]"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="HealthComponent" type="Node3D" parent="."]
+[node name="HealthComponent" type="Node3D" parent="." unique_id=1954600450]
 script = ExtResource("2_c6x0f")
 max_health = 100.0
 metadata/_custom_type_script = "uid://dgjqgiw3yw42e"
 
-[node name="hitbox" type="CollisionShape3D" parent="."]
+[node name="hitbox" type="CollisionShape3D" parent="." unique_id=1258966227]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 shape = SubResource("CapsuleShape3D_tvulw")
 
-[node name="head" type="Node3D" parent="."]
+[node name="head" type="Node3D" parent="." unique_id=664370223]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 
-[node name="ShapeCast3D" type="ShapeCast3D" parent="head"]
+[node name="ShapeCast3D" type="ShapeCast3D" parent="head" unique_id=2028454019]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4534837, 0)
 shape = SubResource("SphereShape3D_npvy2")
 collision_mask = 6
 collide_with_areas = true
 
-[node name="main_camera" type="Camera3D" parent="head" node_paths=PackedStringArray("hurtbox")]
+[node name="main_camera" type="Camera3D" parent="head" unique_id=1803120946 node_paths=PackedStringArray("hurtbox")]
 unique_name_in_owner = true
 cull_mask = 1048573
 fov = 70.0
 script = ExtResource("11_qs4pp")
 hurtbox = NodePath("../../hurtbox_component")
 
-[node name="blue light" type="OmniLight3D" parent="head/main_camera"]
+[node name="blue light" type="OmniLight3D" parent="head/main_camera" unique_id=1759740399]
 transform = Transform3D(0.912179, 0.185672, -0.365316, -0.0986075, 0.964723, 0.244102, 0.397752, -0.186642, 0.898309, 0.00757489, 0.0209635, -0.0580237)
 layers = 3
 light_color = Color(0.599972, 0.731476, 1, 1)
@@ -1972,24 +1964,24 @@ shadow_enabled = true
 omni_range = 10.0
 omni_attenuation = 0.25
 
-[node name="look_at_ray" type="RayCast3D" parent="head/main_camera"]
+[node name="look_at_ray" type="RayCast3D" parent="head/main_camera" unique_id=153318870]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00919533, 0)
 target_position = Vector3(0, 0, -4)
 collision_mask = 14
 collide_with_areas = true
 script = ExtResource("3_j2n6q")
 
-[node name="carry" type="Node3D" parent="head/main_camera"]
+[node name="carry" type="Node3D" parent="head/main_camera" unique_id=1519342387]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.563539, -0.850265)
 
-[node name="carryTransform" type="RemoteTransform3D" parent="head/main_camera/carry"]
+[node name="carryTransform" type="RemoteTransform3D" parent="head/main_camera/carry" unique_id=862189710]
 unique_name_in_owner = true
 
-[node name="Marker3D" type="Marker3D" parent="head/main_camera"]
+[node name="Marker3D" type="Marker3D" parent="head/main_camera" unique_id=1688748472]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7006413, -0.9042196)
 
-[node name="kick_damage_component" type="Area3D" parent="head/main_camera/Marker3D"]
+[node name="kick_damage_component" type="Area3D" parent="head/main_camera/Marker3D" unique_id=177206475]
 collision_mask = 14
 monitoring = false
 monitorable = false
@@ -1999,17 +1991,17 @@ damage_types = Dictionary[int, float]({
 })
 metadata/_custom_type_script = "uid://dlsydctoxqbwy"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="head/main_camera/Marker3D/kick_damage_component"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="head/main_camera/Marker3D/kick_damage_component" unique_id=356436439]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_d30e8")
 
-[node name="look_at_marker" type="Marker3D" parent="head/main_camera"]
+[node name="look_at_marker" type="Marker3D" parent="head/main_camera" unique_id=81188883]
 transform = Transform3D(0.29999998, 0, 0, 0, 0.29999998, 0, 0, 0, 0.29999998, 0, -0.4698962, -0.9444399)
 
-[node name="Armature" type="Node3D" parent="head"]
+[node name="Armature" type="Node3D" parent="head" unique_id=2083554528]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, -0.68364084, -1.1650116)
 
-[node name="Skeleton3D" type="Skeleton3D" parent="head/Armature"]
+[node name="Skeleton3D" type="Skeleton3D" parent="head/Armature" unique_id=1188003960]
 transform = Transform3D(0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0, 0, 4.784564)
 bones/0/name = "base.R"
 bones/0/parent = -1
@@ -2425,51 +2417,48 @@ bones/58/position = Vector3(-7.55945e-08, 0.2984099, 1.4387463e-08)
 bones/58/rotation = Quaternion(4.9935206e-08, 0, -9.722746e-15, 1)
 bones/58/scale = Vector3(1, 1, 1)
 
-[node name="Cylinder" type="MeshInstance3D" parent="head/Armature/Skeleton3D"]
+[node name="Cylinder" type="MeshInstance3D" parent="head/Armature/Skeleton3D" unique_id=311132844]
 layers = 2
 mesh = SubResource("ArrayMesh_ehssq")
 skin = SubResource("Skin_k5svw")
+skeleton = NodePath("..")
 surface_material_override/0 = SubResource("ShaderMaterial_ie76m")
 
-[node name="body_animation" type="AnimationPlayer" parent="head/Armature"]
+[node name="body_animation" type="AnimationPlayer" parent="head/Armature" unique_id=1668429051]
 unique_name_in_owner = true
 root_node = NodePath("../Skeleton3D")
-libraries = {
-&"": SubResource("AnimationLibrary_xc8xw")
-}
+libraries/ = SubResource("AnimationLibrary_xc8xw")
 
-[node name="stateMachine" type="Node" parent="." node_paths=PackedStringArray("CURRENT_STATE")]
+[node name="stateMachine" type="Node" parent="." unique_id=770867226 node_paths=PackedStringArray("CURRENT_STATE")]
 script = ExtResource("2_7a7qp")
 CURRENT_STATE = NodePath("idlePlayerState")
 
-[node name="idlePlayerState" type="Node" parent="stateMachine"]
+[node name="idlePlayerState" type="Node" parent="stateMachine" unique_id=1215784788]
 script = ExtResource("3_841m4")
 
-[node name="walkingPlayerState" type="Node" parent="stateMachine"]
+[node name="walkingPlayerState" type="Node" parent="stateMachine" unique_id=823631280]
 script = ExtResource("4_fqfeh")
 
-[node name="sprintingPlayerState" type="Node" parent="stateMachine"]
+[node name="sprintingPlayerState" type="Node" parent="stateMachine" unique_id=2045594229]
 script = ExtResource("5_5kr7g")
 
-[node name="crouchingPlayerState" type="Node" parent="stateMachine"]
+[node name="crouchingPlayerState" type="Node" parent="stateMachine" unique_id=464555871]
 script = ExtResource("6_b2402")
 
-[node name="jumpingPlayerState" type="Node" parent="stateMachine"]
+[node name="jumpingPlayerState" type="Node" parent="stateMachine" unique_id=1093430574]
 script = ExtResource("7_gsrmw")
 
-[node name="fallingPlayerState" type="Node" parent="stateMachine"]
+[node name="fallingPlayerState" type="Node" parent="stateMachine" unique_id=1901163618]
 script = ExtResource("8_d032x")
 
-[node name="dyingPlayerState" type="Node" parent="stateMachine"]
+[node name="dyingPlayerState" type="Node" parent="stateMachine" unique_id=647805377]
 script = ExtResource("20_jp1hh")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2090755577]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_idr3j")
-}
+libraries/ = SubResource("AnimationLibrary_idr3j")
 
-[node name="hurtbox_component" type="Area3D" parent="." node_paths=PackedStringArray("player_camera", "viewport_camera", "health_component")]
+[node name="hurtbox_component" type="Area3D" parent="." unique_id=1198950943 node_paths=PackedStringArray("player_camera", "viewport_camera", "health_component")]
 collision_mask = 6
 script = ExtResource("34_j2n6q")
 player_camera = NodePath("../head/main_camera")
@@ -2479,7 +2468,7 @@ invulnerability_duration = 0.5
 hit_sound = ExtResource("36_jp1hh")
 metadata/_custom_type_script = "uid://c2i6qdosp0h2"
 
-[node name="hitbox" type="CollisionShape3D" parent="hurtbox_component"]
+[node name="hitbox" type="CollisionShape3D" parent="hurtbox_component" unique_id=203364187]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 shape = SubResource("CapsuleShape3D_tvulw")
 

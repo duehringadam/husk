@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://m6l0cbdlfvlh"]
+[gd_scene format=3 uid="uid://m6l0cbdlfvlh"]
 
 [ext_resource type="PackedScene" uid="uid://d0ijaibfnt0vp" path="res://scenes/PSX_Dungeon/PSX_Dungeon/Models/Door_03.fbx" id="1_nrbjd"]
 [ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="2_jow2x"]
@@ -18,8 +18,8 @@ shader_parameter/uv_scroll_speed = Vector2(0, 0)
 shader_parameter/cull_distance_override = 0.0
 shader_parameter/convert_vertex_colors = false
 
-[node name="Door_03" instance=ExtResource("1_nrbjd")]
+[node name="Door_03" unique_id=830384164 instance=ExtResource("1_nrbjd")]
 
-[node name="Cube_041" parent="." index="0"]
+[node name="Cube_041" parent="." index="0" unique_id=2138404744]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 surface_material_override/0 = SubResource("ShaderMaterial_vnica")

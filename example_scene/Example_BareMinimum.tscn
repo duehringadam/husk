@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://d0c1og2tmfxay"]
+[gd_scene format=3 uid="uid://d0c1og2tmfxay"]
 
 [ext_resource type="Script" uid="uid://c6av3xe4m2ujl" path="res://addons/madtalk/runtime/madtalk_runtime.gd" id="1_hlnhu"]
 
@@ -20,18 +20,18 @@ func _input(event):
 		$MadTalk.dialog_acknowledge()
 "
 
-[node name="Scene" type="Node2D"]
+[node name="Scene" type="Node2D" unique_id=1887082264]
 script = SubResource("GDScript_8be5v")
 
-[node name="MadTalk" type="Node" parent="."]
+[node name="MadTalk" type="Node" parent="." unique_id=768701082]
 script = ExtResource("1_hlnhu")
 DialogMainControl = NodePath("../CanvasLayer/Dialog")
 DialogMessageBox = NodePath("../CanvasLayer/Dialog/MessagePanel")
 DialogMessageLabel = NodePath("../CanvasLayer/Dialog/MessagePanel/MessageRichLabel")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=706735874]
 
-[node name="Dialog" type="Control" parent="CanvasLayer"]
+[node name="Dialog" type="Control" parent="CanvasLayer" unique_id=804248732]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -39,7 +39,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MessagePanel" type="Panel" parent="CanvasLayer/Dialog"]
+[node name="MessagePanel" type="Panel" parent="CanvasLayer/Dialog" unique_id=276489489]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -53,7 +53,7 @@ offset_bottom = -24.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="MessageRichLabel" type="RichTextLabel" parent="CanvasLayer/Dialog/MessagePanel"]
+[node name="MessageRichLabel" type="RichTextLabel" parent="CanvasLayer/Dialog/MessagePanel" unique_id=623227901]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

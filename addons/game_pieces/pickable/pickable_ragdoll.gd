@@ -98,6 +98,7 @@ func _while_grabbed(controller: InteractionController) -> void:
 	# Bring it closer to reference node but with a delay to avoid player flying off
 	_delay_timer = create_tween()
 	_delay_timer.tween_interval(0.1)
+	damage_component.source = Global.player
 	await _delay_timer.finished
 	_initial_position *= 0.8
 
@@ -107,6 +108,7 @@ func _released(_c: InteractionController) -> void:
 	if _interaction_controller == null: return
 	if _delay_timer != null: 
 		_delay_timer.kill()
+	damage_component.source = null
 	_delay_timer = create_tween()
 	_delay_timer.tween_interval(0.3)
 	_interaction_controller.release_grabbed()

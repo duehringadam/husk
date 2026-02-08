@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b2rt3bxhgjwgd"]
+[gd_scene format=3 uid="uid://b2rt3bxhgjwgd"]
 
 [ext_resource type="Script" uid="uid://df27yo6esc0lt" path="res://addons/beehave/nodes/beehave_tree.gd" id="1_fu8ay"]
 [ext_resource type="Script" uid="uid://smg2xw2t0edh" path="res://addons/beehave/nodes/composites/selector.gd" id="2_f6p6j"]
@@ -10,42 +10,37 @@
 [ext_resource type="Script" uid="uid://wrjkfv1yg1ad" path="res://alerted.gd" id="7_0sev1"]
 [ext_resource type="Script" uid="uid://bdkogcl07ubu1" path="res://idle_condition.gd" id="8_eqwsn"]
 
-[node name="BeehaveTree" type="Node" node_paths=PackedStringArray("blackboard", "actor")]
+[node name="BeehaveTree" type="Node" unique_id=67663434 node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("1_fu8ay")
-blackboard = NodePath("@Node@21863")
-actor = NodePath("")
+blackboard = NodePath("@Node@22178")
+actor = NodePath("..")
 
-[node name="SelectorComposite" type="Node" parent="."]
+[node name="SelectorComposite" type="Node" parent="." unique_id=1533538796]
 script = ExtResource("2_f6p6j")
 
-[node name="alert" type="Node" parent="SelectorComposite"]
+[node name="alert" type="Node" parent="SelectorComposite" unique_id=1905149898]
 script = ExtResource("3_l3mfq")
 
-[node name="alertCondition" type="Node" parent="SelectorComposite/alert"]
+[node name="alertCondition" type="Node" parent="SelectorComposite/alert" unique_id=1662018343]
 script = ExtResource("6_2phmt")
 
-[node name="alertAction" type="Node" parent="SelectorComposite/alert"]
+[node name="alertAction" type="Node" parent="SelectorComposite/alert" unique_id=1953827133]
 script = ExtResource("7_0sev1")
 
-[node name="chase" type="Node" parent="SelectorComposite"]
+[node name="chase" type="Node" parent="SelectorComposite" unique_id=357265137]
 script = ExtResource("3_l3mfq")
 
-[node name="isClose" type="Node" parent="SelectorComposite/chase"]
+[node name="isClose" type="Node" parent="SelectorComposite/chase" unique_id=983391235]
 script = ExtResource("4_mtn24")
 
-[node name="Chase" type="Node" parent="SelectorComposite/chase"]
+[node name="Chase" type="Node" parent="SelectorComposite/chase" unique_id=666439201]
 script = ExtResource("5_lid3o")
 
-[node name="idle" type="Node" parent="SelectorComposite"]
+[node name="idle" type="Node" parent="SelectorComposite" unique_id=2048887216]
 script = ExtResource("3_l3mfq")
 
-[node name="idleCondition" type="Node" parent="SelectorComposite/idle"]
+[node name="idleCondition" type="Node" parent="SelectorComposite/idle" unique_id=1469271365]
 script = ExtResource("8_eqwsn")
 
-[node name="Idle" type="Node" parent="SelectorComposite/idle"]
+[node name="Idle" type="Node" parent="SelectorComposite/idle" unique_id=1431266912]
 script = ExtResource("6_yxbor")
-
-[connection signal="signal_pass" from="." to="SelectorComposite/alert/alertAction" method="_on_beehave_tree_signal_pass"]
-[connection signal="signal_pass" from="." to="SelectorComposite/chase/Chase" method="_on_beehave_tree_signal_pass"]
-[connection signal="signal_pass" from="." to="SelectorComposite/idle/Idle" method="_on_beehave_tree_signal_pass"]
-[connection signal="target_reached" from="." to="SelectorComposite/alert/alertAction" method="_on_beehave_tree_target_reached"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cerk3y8j1h1do"]
+[gd_scene format=3 uid="uid://cerk3y8j1h1do"]
 
 [ext_resource type="Script" uid="uid://c6av3xe4m2ujl" path="res://addons/madtalk/runtime/madtalk_runtime.gd" id="1_qttj8"]
 [ext_resource type="FontFile" uid="uid://ip8tcqh7uxmx" path="res://fonts/Alkhemikal.ttf" id="3_6sbyu"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://4ggo1b35btnu" path="res://scenes/player/hud.tscn" id="5_svxpm"]
 [ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_menus_template/base/scripts/pause_menu_controller.gd" id="6_kthw8"]
 [ext_resource type="AudioStream" uid="uid://bvsxxn2k42rju" path="res://sfx/vocal_samples/whisper_1.ogg" id="6_yumqv"]
+[ext_resource type="Script" uid="uid://ckv1vnt3qim3w" path="res://Globals/prototype_tutorial.gd" id="7_xcdg0"]
 [ext_resource type="PackedScene" uid="uid://cndau4qyl56kx" path="res://scenes/menus/overlaid_menus/pause_menu.tscn" id="7_yumqv"]
 [ext_resource type="Script" uid="uid://ds4jqcfrmjpbj" path="res://Player/inventory.gd" id="8_kthw8"]
 
@@ -88,16 +89,16 @@ fill_to = Vector2(0, 0)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ffo63"]
 texture = SubResource("GradientTexture2D_6sbyu")
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="CanvasLayer" type="CanvasLayer" unique_id=555252348]
 process_mode = 3
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=488180959]
 
-[node name="PauseMenuController" type="Node" parent="."]
+[node name="PauseMenuController" type="Node" parent="." unique_id=1359465485]
 script = ExtResource("6_kthw8")
 pause_menu_packed = ExtResource("7_yumqv")
 
-[node name="Scene" type="Control" parent="."]
+[node name="Scene" type="Control" parent="." unique_id=806033347]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -107,7 +108,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = SubResource("4")
 
-[node name="MadTalk" type="Node" parent="Scene"]
+[node name="MadTalk" type="Node" parent="Scene" unique_id=407899283]
 script = ExtResource("1_qttj8")
 DialogMainControl = NodePath("../Dialog")
 DialogMessageBox = NodePath("../Dialog/DialogBox")
@@ -120,13 +121,13 @@ DialogButtonSceneFile = SubResource("Resource_6sbyu")
 AnimatedTextMilisecondPerCharacter = 25.0
 KeyPressAudioStreamPlayer = NodePath("../Dialog/SFXClick")
 
-[node name="Dialog" type="Control" parent="Scene"]
+[node name="Dialog" type="Control" parent="Scene" unique_id=1285987606]
 anchors_preset = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 
-[node name="DialogBox" type="Panel" parent="Scene/Dialog"]
+[node name="DialogBox" type="Panel" parent="Scene/Dialog" unique_id=509792803]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -138,7 +139,7 @@ grow_vertical = 0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_ffo63")
 
-[node name="Avatar" type="TextureRect" parent="Scene/Dialog/DialogBox"]
+[node name="Avatar" type="TextureRect" parent="Scene/Dialog/DialogBox" unique_id=1618003319]
 visible = false
 layout_mode = 0
 offset_left = 16.0
@@ -149,7 +150,7 @@ texture = ExtResource("4_n4gff")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="LabelName" type="Label" parent="Scene/Dialog/DialogBox"]
+[node name="LabelName" type="Label" parent="Scene/Dialog/DialogBox" unique_id=1475039580]
 visible = false
 layout_mode = 0
 offset_left = 17.0
@@ -159,7 +160,7 @@ offset_bottom = 180.0
 theme_override_font_sizes/font_size = 20
 clip_text = true
 
-[node name="LabelMessage" type="RichTextLabel" parent="Scene/Dialog/DialogBox"]
+[node name="LabelMessage" type="RichTextLabel" parent="Scene/Dialog/DialogBox" unique_id=1737689773]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -182,7 +183,7 @@ theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 horizontal_alignment = 1
 
-[node name="MenuBox" type="Panel" parent="Scene/Dialog"]
+[node name="MenuBox" type="Panel" parent="Scene/Dialog" unique_id=463842467]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -196,7 +197,7 @@ offset_bottom = 309.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MenuContainer" type="VBoxContainer" parent="Scene/Dialog/MenuBox"]
+[node name="MenuContainer" type="VBoxContainer" parent="Scene/Dialog/MenuBox" unique_id=2036687068]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -206,28 +207,81 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="SFXClick" type="AudioStreamPlayer" parent="Scene/Dialog"]
+[node name="SFXClick" type="AudioStreamPlayer" parent="Scene/Dialog" unique_id=464333488]
 stream = ExtResource("6_yumqv")
 volume_db = -6.0
 max_polyphony = 5
 bus = &"SFX"
 
-[node name="HUD" parent="." instance=ExtResource("5_svxpm")]
+[node name="tutorial" type="PanelContainer" parent="Scene" unique_id=482539227]
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -250.0
+offset_right = 250.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_xcdg0")
 
-[node name="inventory" type="PanelContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="Scene/tutorial" unique_id=307110745]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Scene/tutorial/MarginContainer" unique_id=1030064587]
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="Scene/tutorial/MarginContainer/VBoxContainer" unique_id=787616865]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[center]Welcome to HUSK! Thanks for playtesting this prototype![/center]
+
+Controls: 
+
+[color=red]WASD[/color] to move
+
+[color=red]F[/color] to kick
+
+[color=red]left click[/color] to attack with mainhand
+
+[color=red]right click[/color] to attack with offhand/block
+
+[color=red]tab[/color] for inventory
+
+[color=red]esc[/color] for menu"
+
+[node name="Button" type="Button" parent="Scene/tutorial/MarginContainer/VBoxContainer" unique_id=369757449]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Close"
+
+[node name="HUD" parent="." unique_id=1609284944 instance=ExtResource("5_svxpm")]
+
+[node name="inventory" type="PanelContainer" parent="." unique_id=678313113]
 visible = false
 mouse_filter = 2
 script = ExtResource("8_kthw8")
 
-[node name="PanelContainer" type="PanelContainer" parent="inventory"]
+[node name="PanelContainer" type="PanelContainer" parent="inventory" unique_id=851313454]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="inventory/PanelContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="inventory/PanelContainer" unique_id=287964254]
 layout_mode = 2
 horizontal_scroll_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="inventory/PanelContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="inventory/PanelContainer/ScrollContainer" unique_id=407990613]
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -237,3 +291,4 @@ size_flags_horizontal = 3
 [connection signal="dialog_finished" from="Scene/MadTalk" to="Scene" method="_on_mad_talk_dialog_finished"]
 [connection signal="dialog_started" from="Scene/MadTalk" to="Scene" method="_on_mad_talk_dialog_started"]
 [connection signal="message_text_shown" from="Scene/MadTalk" to="." method="_on_mad_talk_message_text_shown"]
+[connection signal="pressed" from="Scene/tutorial/MarginContainer/VBoxContainer/Button" to="Scene/tutorial" method="_on_button_pressed"]

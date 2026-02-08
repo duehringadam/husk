@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c74s3lrg2xrxn"]
+[gd_scene format=3 uid="uid://c74s3lrg2xrxn"]
 
 [ext_resource type="PackedScene" uid="uid://cncdnf1humyeh" path="res://scenes/ps1_psx_knight.glb" id="1_itplb"]
 [ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="3_smgdd"]
@@ -41,9 +41,9 @@ shader_parameter/convert_vertex_colors = false
 [sub_resource type="SphereShape3D" id="SphereShape3D_26qbd"]
 radius = 1.74561
 
-[node name="knight" instance=ExtResource("1_itplb")]
+[node name="knight" unique_id=940298033 instance=ExtResource("1_itplb")]
 
-[node name="Skeleton3D" parent="." index="0"]
+[node name="Skeleton3D" parent="." index="0" unique_id=1660874307]
 bones/6/rotation = Quaternion(-0.796357, 0.0303748, -0.0958102, 0.596417)
 bones/7/rotation = Quaternion(0.075161, -0.00813479, 0.0152403, 0.997022)
 bones/9/rotation = Quaternion(0.168963, -0.00223285, 0.0249574, 0.985304)
@@ -59,33 +59,33 @@ bones/26/rotation = Quaternion(-0.0206431, -0.0842788, 0.993553, -0.0729634)
 bones/27/rotation = Quaternion(-0.179271, 0.0870714, 0.0145197, 0.979831)
 bones/28/rotation = Quaternion(0.603538, 0.00400533, -0.0785419, 0.793446)
 
-[node name="Object_7" parent="Skeleton3D" index="0"]
+[node name="Object_7" parent="Skeleton3D" index="0" unique_id=1982585406]
 surface_material_override/0 = SubResource("ShaderMaterial_l4n3p")
 
-[node name="Object_9" parent="Skeleton3D" index="1"]
+[node name="Object_9" parent="Skeleton3D" index="1" unique_id=1775825532]
 surface_material_override/0 = SubResource("ShaderMaterial_fmmry")
 
-[node name="AnimationPlayer" parent="." index="1"]
+[node name="AnimationPlayer" parent="." index="1" unique_id=1212079619]
 callback_mode_process = 2
 
-[node name="HealthComponent" type="Node3D" parent="." index="2"]
+[node name="HealthComponent" type="Node3D" parent="." index="2" unique_id=1580371825]
 script = ExtResource("6_oc3hp")
 max_health = 100.0
 metadata/_custom_type_script = "uid://dgjqgiw3yw42e"
 
-[node name="hitstop_component" type="Node" parent="." index="3"]
+[node name="hitstop_component" type="Node" parent="." index="3" unique_id=1102485524]
 script = ExtResource("9_ey8th")
 metadata/_custom_type_script = "uid://bmlo0cxbepq2r"
 
-[node name="shake_component" type="Node" parent="." index="4" node_paths=PackedStringArray("shake_target")]
+[node name="shake_component" type="Node" parent="." index="4" unique_id=637066503 node_paths=PackedStringArray("shake_target")]
 script = ExtResource("10_pvkuu")
 shake_target = NodePath("..")
 metadata/_custom_type_script = "uid://cyh3kd4813yrx"
 
-[node name="physicstimeout" type="Timer" parent="." index="5"]
+[node name="physicstimeout" type="Timer" parent="." index="5" unique_id=1372640461]
 wait_time = 5.0
 
-[node name="DialogueInteractComponent" type="Area3D" parent="." index="6"]
+[node name="DialogueInteractComponent" type="Area3D" parent="." index="6" unique_id=1676789613]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15689, 0)
 collision_layer = 8
 script = ExtResource("12_dc1rr")
@@ -94,7 +94,7 @@ dialogue_interact_sound = ExtResource("13_0fhiq")
 dialogue_duration = 2.0
 metadata/_custom_type_script = "uid://8eic4hxs6fnv"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DialogueInteractComponent" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DialogueInteractComponent" index="0" unique_id=1828073905]
 shape = SubResource("SphereShape3D_26qbd")
 
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]

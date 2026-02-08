@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://yyd1a2x4mmop"]
+[gd_scene format=3 uid="uid://yyd1a2x4mmop"]
 
 [ext_resource type="FontFile" uid="uid://b38okvijpcxmv" path="res://addons/madtalk/fonts/FreeSans_smal.tres" id="2"]
 [ext_resource type="StyleBox" path="res://addons/madtalk/components/resources/PanelStyle.tres" id="4"]
@@ -14,7 +14,7 @@ border_width_bottom = 1
 border_color = Color(0.06, 0.06, 0.06, 1)
 border_blend = true
 
-[node name="DialogSearchSheet" type="Window"]
+[node name="DialogSearchSheet" type="Window" unique_id=211660794]
 initial_position = 2
 size = Vector2i(600, 400)
 visible = false
@@ -22,13 +22,13 @@ transient = true
 exclusive = true
 popup_window = true
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=638952752]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme_override_styles/panel = ExtResource("4")
 
-[node name="SearchEdit" type="LineEdit" parent="Panel"]
+[node name="SearchEdit" type="LineEdit" parent="Panel" unique_id=1968925477]
 layout_mode = 0
 anchor_right = 1.0
 offset_left = 8.0
@@ -40,7 +40,7 @@ theme_override_font_sizes/font_size = 12
 theme_override_styles/normal = ExtResource("7")
 placeholder_text = "Search ID or description"
 
-[node name="IDLabel" type="Label" parent="Panel"]
+[node name="IDLabel" type="Label" parent="Panel" unique_id=1254877412]
 layout_mode = 0
 offset_left = 12.0
 offset_top = 36.0
@@ -49,7 +49,7 @@ offset_bottom = 50.0
 theme_override_font_sizes/font_size = 12
 text = "Sheet ID"
 
-[node name="DescLabel" type="Label" parent="Panel"]
+[node name="DescLabel" type="Label" parent="Panel" unique_id=245469138]
 layout_mode = 0
 offset_left = 144.0
 offset_top = 36.0
@@ -58,7 +58,7 @@ offset_bottom = 50.0
 theme_override_font_sizes/font_size = 12
 text = "Short description"
 
-[node name="SearchResultsPanel" type="Panel" parent="Panel"]
+[node name="SearchResultsPanel" type="Panel" parent="Panel" unique_id=712895820]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -68,27 +68,27 @@ offset_right = -8.0
 offset_bottom = -30.0
 theme_override_styles/panel = SubResource("1")
 
-[node name="Scroll" type="ScrollContainer" parent="Panel/SearchResultsPanel"]
+[node name="Scroll" type="ScrollContainer" parent="Panel/SearchResultsPanel" unique_id=911924263]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="VBoxResults" type="VBoxContainer" parent="Panel/SearchResultsPanel/Scroll"]
+[node name="VBoxResults" type="VBoxContainer" parent="Panel/SearchResultsPanel/Scroll" unique_id=1383580846]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="DialogSearchSheetItem" parent="Panel/SearchResultsPanel/Scroll/VBoxResults" instance=ExtResource("5")]
+[node name="DialogSearchSheetItem" parent="Panel/SearchResultsPanel/Scroll/VBoxResults" unique_id=65557408 instance=ExtResource("5")]
 layout_mode = 2
 
-[node name="BottomBar" type="Control" parent="Panel"]
+[node name="BottomBar" type="Control" parent="Panel" unique_id=694741475]
 anchors_preset = 0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = -24.0
 
-[node name="BtnCancel" type="Button" parent="Panel/BottomBar"]
+[node name="BtnCancel" type="Button" parent="Panel/BottomBar" unique_id=263659064]
 layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5

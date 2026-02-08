@@ -1,32 +1,107 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6gtw3pejjexu"]
+[gd_scene format=3 uid="uid://c6gtw3pejjexu"]
 
 [ext_resource type="Script" uid="uid://coilwpmlrrpu4" path="res://projectile.gd" id="1_4f44d"]
 [ext_resource type="ArrayMesh" uid="uid://unepod5rwmun" path="res://Player/weapon/ALL/Belt/bolt.res" id="1_s5mil"]
+[ext_resource type="Texture2D" uid="uid://udidug1u1tlm" path="res://Player/weapon/ALL/Belt/Material_Base_color.png" id="3_md0um"]
+[ext_resource type="Shader" uid="uid://bd6eynp1qsy0g" path="res://addons/GPUTrail-main/shaders/trail.gdshader" id="4_5miqj"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="5_5miqj"]
+[ext_resource type="Shader" uid="uid://bnbfs08hp70x0" path="res://addons/GPUTrail-main/shaders/trail_draw_pass.gdshader" id="5_md0um"]
+[ext_resource type="Script" uid="uid://dwsn7gxfshtf8" path="res://addons/GPUTrail-main/GPUTrail3D.gd" id="6_nkawy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nkawy"]
+albedo_texture = ExtResource("3_md0um")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_md0um"]
 radius = 0.0137137
 height = 0.0755693
 
-[node name="projectile" type="Node3D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nasbm"]
+shader = ExtResource("4_5miqj")
+
+[sub_resource type="Gradient" id="Gradient_eha57"]
+colors = PackedColorArray(0.40392157, 0.40392157, 0.40392157, 0.5137255, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mt81f"]
+gradient = SubResource("Gradient_eha57")
+width = 64
+
+[sub_resource type="Curve" id="Curve_5u3yu"]
+bake_resolution = 16
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_448nf"]
+curve = SubResource("Curve_5u3yu")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_d4jfj"]
+noise_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gpyuj"]
+noise = SubResource("FastNoiseLite_d4jfj")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qbim7"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("5_md0um")
+shader_parameter/tex = SubResource("NoiseTexture2D_gpyuj")
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/color_ramp = SubResource("GradientTexture1D_mt81f")
+shader_parameter/curve = SubResource("CurveTexture_448nf")
+shader_parameter/emmission_transform = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/flags = 42
+
+[sub_resource type="QuadMesh" id="QuadMesh_7vtg1"]
+material = SubResource("ShaderMaterial_qbim7")
+
+[node name="projectile" type="Node3D" unique_id=122044696 node_paths=PackedStringArray("damage_component", "ray_cast_3d", "gpu_trail")]
 script = ExtResource("1_4f44d")
 speed = 50
+damage_component = NodePath("MeshInstance3D/DamageComponent")
+ray_cast_3d = NodePath("RayCast3D")
+gpu_trail = NodePath("MeshInstance3D/GPUTrail3D")
+lifetime = 5.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1623547994]
 transform = Transform3D(0.207343, 0, 19.9989, 0, 20, 0, -19.9989, 0, 0.207343, 0, 0, 0)
 mesh = ExtResource("1_s5mil")
+surface_material_override/0 = SubResource("StandardMaterial3D_nkawy")
 
-[node name="DamageComponent" type="Area3D" parent="MeshInstance3D"]
+[node name="DamageComponent" type="Area3D" parent="MeshInstance3D" unique_id=285468105]
 transform = Transform3D(-0.0499742, 0, -0.00160455, 0, 0.05, 0, 0.00160455, 0, -0.0499742, 0, 0, 0)
 collision_mask = 6
 script = ExtResource("5_5miqj")
-amount = 10.0
-damage_type = 2
+damage_types = Dictionary[int, float]({
+2: 10.0
+})
 metadata/_custom_type_script = "uid://dlsydctoxqbwy"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/DamageComponent"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/DamageComponent" unique_id=995059735]
 transform = Transform3D(-0.0684165, -9.99977, 0, 9.99977, -0.0684165, 0, 0, 0, 10, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_md0um")
+
+[node name="GPUTrail3D" type="GPUParticles3D" parent="MeshInstance3D" unique_id=1431409287]
+transform = Transform3D(1.5550764e-06, 0, -0.00014999215, 0, 0.00015000002, 0, 0.00014999215, 0, 1.5550764e-06, -8.894335e-06, 0, -0.00042889823)
+amount = 24
+lifetime = 24.0
+explosiveness = 1.0
+fixed_fps = 164
+process_material = SubResource("ShaderMaterial_nasbm")
+draw_pass_1 = SubResource("QuadMesh_7vtg1")
+script = ExtResource("6_nkawy")
+length = 24
+length_seconds = 0.14634146341463414
+texture = SubResource("NoiseTexture2D_gpyuj")
+color_ramp = SubResource("GradientTexture1D_mt81f")
+curve = SubResource("CurveTexture_448nf")
+use_red_as_alpha = true
+_defaults_have_been_set = true
+metadata/_custom_type_script = "uid://dwsn7gxfshtf8"
+
+[node name="RayCast3D" type="RayCast3D" parent="." unique_id=2024811571]
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0.1360588)
+target_position = Vector3(0, 0, -0.6)
+collision_mask = 14
+collide_with_areas = true
 
 [connection signal="area_entered" from="MeshInstance3D/DamageComponent" to="." method="_on_damage_component_area_entered"]
 [connection signal="body_entered" from="MeshInstance3D/DamageComponent" to="." method="_on_damage_component_body_entered"]

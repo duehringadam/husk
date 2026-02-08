@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bt7m8wpwk3v3u"]
+[gd_scene format=3 uid="uid://bt7m8wpwk3v3u"]
 
 [ext_resource type="ArrayMesh" uid="uid://mllhcra267cm" path="res://scenes/psx-dead-tree-pack/source/DeadTreePack/tree2.res" id="1_5q0ad"]
 [ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="2_l55e6"]
@@ -22,15 +22,15 @@ shader_parameter/convert_vertex_colors = false
 radius = 0.254393
 height = 5.31534
 
-[node name="tree" type="StaticBody3D" groups=["tree"]]
+[node name="tree" type="StaticBody3D" unique_id=636831080 groups=["tree"]]
 collision_layer = 2
 collision_mask = 7
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=490834013]
 transform = Transform3D(50, 0, 0, 0, -2.18557e-06, 50, 0, -50, -2.18557e-06, 0, 0, 0)
 mesh = ExtResource("1_5q0ad")
 surface_material_override/0 = SubResource("ShaderMaterial_t811t")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1392198383]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.48472, 0)
 shape = SubResource("CapsuleShape3D_5q0ad")

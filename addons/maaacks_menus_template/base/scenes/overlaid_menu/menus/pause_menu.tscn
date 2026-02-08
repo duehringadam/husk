@@ -1,60 +1,60 @@
-[gd_scene load_steps=4 format=3 uid="uid://b5cd6sa8qq4vc"]
+[gd_scene format=3 uid="uid://b5cd6sa8qq4vc"]
 
 [ext_resource type="PackedScene" uid="uid://wny2d8dvp3ok" path="res://addons/maaacks_menus_template/base/scenes/overlaid_menu/overlaid_menu.tscn" id="1_gm3uv"]
 [ext_resource type="Script" uid="uid://uidwhqh4fyhj" path="res://addons/maaacks_menus_template/base/scenes/overlaid_menu/menus/pause_menu.gd" id="2_0ln3r"]
 [ext_resource type="PackedScene" uid="uid://cikf3o5omnunl" path="res://addons/maaacks_menus_template/base/scenes/overlaid_menu/menus/mini_options_overlaid_menu.tscn" id="3_kv70e"]
 
-[node name="PauseMenu" instance=ExtResource("1_gm3uv")]
+[node name="PauseMenu" unique_id=521447327 instance=ExtResource("1_gm3uv")]
 process_mode = 3
 script = ExtResource("2_0ln3r")
 options_packed_scene = ExtResource("3_kv70e")
 main_menu_scene = "res://addons/maaacks_menus_template/base/scenes/menus/main_menu/main_menu.tscn"
 pauses_game = true
 
-[node name="MarginContainer" parent="MenuPanelContainer" index="0"]
+[node name="MarginContainer" parent="MenuPanelContainer" parent_id_path=PackedInt32Array(283112820) index="0" unique_id=854249707]
 theme_override_constants/margin_left = 64
 theme_override_constants/margin_right = 64
 
-[node name="TitleLabel" parent="MenuPanelContainer/MarginContainer/BoxContainer/TitleMargin" index="0"]
+[node name="TitleLabel" parent="MenuPanelContainer/MarginContainer/BoxContainer/TitleMargin" parent_id_path=PackedInt32Array(1747760342) index="0" unique_id=681318709]
 text = "Paused"
 
-[node name="MenuButtonsMargin" parent="MenuPanelContainer/MarginContainer/BoxContainer" index="2"]
+[node name="MenuButtonsMargin" parent="MenuPanelContainer/MarginContainer/BoxContainer" parent_id_path=PackedInt32Array(622448474) index="2" unique_id=856899432]
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="CloseButton" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="0"]
+[node name="CloseButton" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons" parent_id_path=PackedInt32Array(318779392) index="0" unique_id=2135695590]
 text = "Resume"
 
-[node name="RestartButton" type="Button" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="1"]
+[node name="RestartButton" type="Button" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons" parent_id_path=PackedInt32Array(318779392) index="1" unique_id=770779719]
 layout_mode = 2
 text = "Restart"
 
-[node name="OptionsButton" type="Button" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="2"]
+[node name="OptionsButton" type="Button" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons" parent_id_path=PackedInt32Array(318779392) index="2" unique_id=78584174]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Options"
 
-[node name="MainMenuButton" type="Button" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="3"]
+[node name="MainMenuButton" type="Button" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons" parent_id_path=PackedInt32Array(318779392) index="3" unique_id=220583266]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Main Menu"
 
-[node name="ExitButton" type="Button" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="4"]
+[node name="ExitButton" type="Button" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons" parent_id_path=PackedInt32Array(318779392) index="4" unique_id=461812684]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Exit Game"
 
-[node name="ConfirmRestart" type="ConfirmationDialog" parent="." index="2"]
+[node name="ConfirmRestart" type="ConfirmationDialog" parent="." index="2" unique_id=1366225005]
 unique_name_in_owner = true
 auto_translate_mode = 1
 dialog_text = "Restart the game?"
 
-[node name="ConfirmMainMenu" type="ConfirmationDialog" parent="." index="3"]
+[node name="ConfirmMainMenu" type="ConfirmationDialog" parent="." index="3" unique_id=1035163189]
 unique_name_in_owner = true
 auto_translate_mode = 1
 dialog_text = "Go back to main menu?"
 
-[node name="ConfirmExit" type="ConfirmationDialog" parent="." index="4"]
+[node name="ConfirmExit" type="ConfirmationDialog" parent="." index="4" unique_id=1659461826]
 unique_name_in_owner = true
 auto_translate_mode = 1
 dialog_text = "Quit the game?"

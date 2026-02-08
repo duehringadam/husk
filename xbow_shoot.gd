@@ -2,19 +2,20 @@ extends Node
 
 @export var weapon: Node3D
 @export var state_chart: StateChart
+@export var shoot: AudioStreamPlayer3D
+
 @onready var animation_player: AnimationPlayer = $"../../../../AnimationPlayer"
 @onready var ray: RayCast3D = $"../../../../MeshInstance3D/RayCast3D"
 
-
-var bolt_add = preload("res://heavy_bolt.tscn")
+@export var bolt_add: PackedScene
 
 func _on_shoot_state_entered() -> void:
 	Global.player.camera.apply_shake()
-	AudioManager.play_sound(weapon.swing_sound,weapon.global_position,-20.0)
 	animation_player.play("shoot")
-	
+	shoot.play()
 	var bolt = bolt_add.instantiate()
 	get_tree().current_scene.add_child(bolt)
+	bolt.source = Global.player
 	var screen_center = get_viewport().size/2
 	var origin = Global.player.camera.project_ray_origin(screen_center)
 	var end = origin + Global.player.camera.project_ray_normal(screen_center) * 100

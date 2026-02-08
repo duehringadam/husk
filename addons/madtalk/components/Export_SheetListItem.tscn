@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c1a8yn1guaowt"]
+[gd_scene format=3 uid="uid://c1a8yn1guaowt"]
 
 [ext_resource type="StyleBox" path="res://addons/madtalk/components/resources/SheetItemStyle.tres" id="1_w11ta"]
 [ext_resource type="FontFile" path="res://addons/madtalk/fonts/FreeSans_bold_small.tres" id="2_oqjov"]
@@ -6,11 +6,11 @@
 [ext_resource type="FontFile" uid="uid://b38okvijpcxmv" path="res://addons/madtalk/fonts/FreeSans_smal.tres" id="4_i0ry5"]
 [ext_resource type="StyleBox" path="res://addons/madtalk/components/resources/ButtonStyle.tres" id="5_en1rw"]
 
-[node name="ExportSheetListItem" type="Panel"]
+[node name="ExportSheetListItem" type="Panel" unique_id=997637171]
 custom_minimum_size = Vector2(0, 48)
 theme_override_styles/panel = ExtResource("1_w11ta")
 
-[node name="SheetIDLabel" type="Label" parent="."]
+[node name="SheetIDLabel" type="Label" parent="." unique_id=2002503781]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -27,7 +27,7 @@ vertical_alignment = 1
 autowrap_mode = 1
 clip_text = true
 
-[node name="DescLabel" type="Label" parent="."]
+[node name="DescLabel" type="Label" parent="." unique_id=1186662560]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -46,7 +46,7 @@ vertical_alignment = 1
 autowrap_mode = 3
 clip_text = true
 
-[node name="BtnSelect" type="CheckBox" parent="."]
+[node name="BtnSelect" type="CheckBox" parent="." unique_id=2113495221]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5

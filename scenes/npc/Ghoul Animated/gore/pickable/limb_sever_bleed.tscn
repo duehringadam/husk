@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://el0a5hjf7h2o"]
+[gd_scene format=3 uid="uid://el0a5hjf7h2o"]
 
 [ext_resource type="Texture2D" uid="uid://cjl4qfjmnnm1w" path="res://shaders/blood_splatter.png" id="1_vvflf"]
 [ext_resource type="Script" uid="uid://bjnui28tj0kv5" path="res://scenes/npc/Ghoul Animated/gore/pickable/bleeding_limb.gd" id="2_cosqg"]
@@ -24,7 +24,7 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_268tq")
 size = Vector2(0.1, 0.25)
 
-[node name="GPUParticles3D" type="GPUParticles3D"]
+[node name="GPUParticles3D" type="GPUParticles3D" unique_id=822322075]
 transform = Transform3D(0.99999994, -6.4028427e-10, 0, 1.5716068e-09, 1, 7.450581e-09, 4.656613e-10, -7.450581e-09, 1.0000001, 0, 0, 0)
 lifetime = 0.48
 explosiveness = 0.46
@@ -32,20 +32,20 @@ process_material = SubResource("ParticleProcessMaterial_sj5l5")
 draw_pass_1 = SubResource("QuadMesh_v65mh")
 script = ExtResource("2_cosqg")
 
-[node name="end_blood_timer" type="Timer" parent="."]
+[node name="end_blood_timer" type="Timer" parent="." unique_id=317998241]
 wait_time = 10.0
 one_shot = true
 autostart = true
 
-[node name="bleed_timer" type="Timer" parent="."]
+[node name="bleed_timer" type="Timer" parent="." unique_id=1812833745]
 autostart = true
 
-[node name="blood_pos" type="RayCast3D" parent="."]
+[node name="blood_pos" type="RayCast3D" parent="." unique_id=1943333567]
 transform = Transform3D(1, -2.9103825e-10, 1.4156105e-07, 4.6566118e-10, 1, 5.7742007e-08, 5.551115e-17, 0, 1, 1.731952e-10, 0.27049732, 2.0153619e-09)
 target_position = Vector3(0, -2, 0)
 collision_mask = 2
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=443498611]
 stream = ExtResource("3_cosqg")
 max_distance = 5.0
 bus = &"SFX"

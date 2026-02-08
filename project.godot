@@ -12,8 +12,12 @@ config_version=5
 
 config/name="Husk"
 run/main_scene="uid://iarqxfted72l"
-config/features=PackedStringArray("4.5", "Forward Plus")
+config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+
+[audio]
+
+buses/default_bus_layout="uid://ou7tvf6lmdvx"
 
 [autoload]
 
@@ -25,15 +29,19 @@ DamageTypes="*res://damage_types.gd"
 SignalBus="*res://signal_bus.gd"
 HitStop="*res://hit_stop.gd"
 ItemEquippableType="*res://item_equippable_types.gd"
-AppConfig="*res://addons/maaacks_menus_template/base/scenes/autoloads/app_config.tscn"
-SceneLoader="*res://addons/maaacks_menus_template/base/scenes/autoloads/scene_loader.tscn"
-ProjectMusicController="*res://addons/maaacks_menus_template/base/scenes/autoloads/project_music_controller.tscn"
-InputIconMapperGlobal="*res://addons/prompt_formatters/kenneys/input_icon_mapper.tscn"
-GamePiecesEventBus="*res://addons/game_pieces/GamePiecesEventBus.gd"
-ProjectUISoundController="*res://addons/maaacks_menus_template/base/scenes/autoloads/project_ui_sound_controller.tscn"
-MadTalkGlobals="*res://addons/madtalk/runtime/MadTalkGlobals.tscn"
+AppConfig="*uid://cjke6crjg14a0"
+SceneLoader="*uid://cbwmrnp0af35y"
+ProjectMusicController="*uid://r5t485lr3p7t"
+InputIconMapperGlobal="*uid://done0t0ojxyp1"
+GamePiecesEventBus="*uid://cm31gl2cxmt6y"
+ProjectUISoundController="*uid://cc37235kj4384"
+MadTalkGlobals="*uid://domdph40m3s8i"
 GlobalUi="*res://Globals/globalUI.tscn"
 EnemyManager="*res://Globals/enemy_manager.gd"
+
+[debug_draw_3d]
+
+settings/addon_root_folder="res://addons/debug_draw_3d"
 
 [display]
 
@@ -48,7 +56,7 @@ movie_writer/movie_file="C:/Users/adamf/Documents/husk/movie.avi"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/GPUTrail-main/plugin.cfg", "res://addons/asset_placer/plugin.cfg", "res://addons/beehave/plugin.cfg", "res://addons/convex_cone_shape3d_plugin/plugin.cfg", "res://addons/credits_generator/plugin.cfg", "res://addons/deformablemesh/plugin.cfg", "res://addons/freecam_3D/plugin.cfg", "res://addons/game_pieces/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/maaacks_menus_template/plugin.cfg", "res://addons/madtalk/plugin.cfg", "res://addons/prompt_formatters/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
+enabled=PackedStringArray("res://addons/GPUTrail-main/plugin.cfg", "res://addons/convex_cone_shape3d_plugin/plugin.cfg", "res://addons/credits_generator/plugin.cfg", "res://addons/deformablemesh/plugin.cfg", "res://addons/freecam_3D/plugin.cfg", "res://addons/game_pieces/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/maaacks_menus_template/plugin.cfg", "res://addons/madtalk/plugin.cfg", "res://addons/prompt_formatters/plugin.cfg", "res://addons/raytraced_audio/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
 
 [global_group]
 
@@ -58,6 +66,7 @@ world=""
 enemy=""
 tree=""
 throwable=""
+traps=""
 
 [input]
 
@@ -222,6 +231,7 @@ locale/translations=PackedStringArray("res://addons/maaacks_menus_template/base/
 3d_physics/layer_2="world"
 3d_physics/layer_3="enemy"
 3d_physics/layer_4="interact"
+3d_physics/layer_5="traps"
 
 [maaacks_menus_template]
 
@@ -233,17 +243,29 @@ copy_path="res://scenes/ui/"
 [physics]
 
 3d/physics_engine="Jolt Physics"
+3d/default_gravity=12.0
+3d/solver/solver_iterations=32
+
+[raytraced_audio]
+
+reverb_bus=&"RaytracedReverb"
+ambient_bus=&"RaytracedAmbient"
 
 [rendering]
 
+occlusion_culling/bvh_build_quality=1
 textures/canvas_textures/default_texture_filter=0
+shading/overrides/force_lambert_over_burley=true
 viewport/hdr_2d=true
-anti_aliasing/quality/msaa_2d=2
-anti_aliasing/quality/msaa_3d=2
+anti_aliasing/quality/msaa_2d=1
+anti_aliasing/quality/msaa_3d=1
 textures/decals/filter=2
-textures/light_projectors/filter=4
+textures/light_projectors/filter=2
 lightmapping/primitive_meshes/texel_size=1.0
 lightmapping/lightmap_gi/use_bicubic_filter=false
+environment/volumetric_fog/use_filter=0
+anti_aliasing/quality/screen_space_aa=1
+occlusion_culling/use_occlusion_culling=true
 vrs/decals/filter=3
 vrs/canvas_textures/default_texture_filter=3
 

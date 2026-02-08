@@ -1,12 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://drlt2laf5svis"]
+[gd_scene format=3 uid="uid://drlt2laf5svis"]
 
 [ext_resource type="PackedScene" uid="uid://osxulxw2oas3" path="res://addons/maaacks_menus_template/base/scenes/credits/scrollable_credits.tscn" id="1_umd21"]
 [ext_resource type="Script" uid="uid://cpkpsaqqte3gh" path="res://scenes/menus/credits/scrollable_credits.gd" id="2_ewmms"]
 
-[node name="ScrollableCredits" instance=ExtResource("1_umd21")]
+[node name="ScrollableCredits" unique_id=1744898511 instance=ExtResource("1_umd21")]
 script = ExtResource("2_ewmms")
 
-[node name="CreditsLabel" parent="." index="0"]
+[node name="CreditsLabel" parent="." index="0" unique_id=1215227734]
 text = "# Attribution
 ## Collaborators
 

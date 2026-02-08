@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dp3rgqaehb3xu"]
+[gd_scene format=3 uid="uid://dp3rgqaehb3xu"]
 
 [ext_resource type="Script" uid="uid://eborw7q4b07h" path="res://addons/maaacks_menus_template/base/scenes/menus/options_menu/input/input_options_menu.gd" id="1"]
 [ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_menus_template/base/scripts/capture_focus.gd" id="2_wft4x"]
@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bxp45814v6ydv" path="res://addons/maaacks_menus_template/base/scenes/menus/options_menu/input/input_actions_list.tscn" id="4_lf2nw"]
 [ext_resource type="PackedScene" uid="uid://ci6wgl2ngd35n" path="res://addons/maaacks_menus_template/base/scenes/menus/options_menu/input/input_actions_tree.tscn" id="5_b2whh"]
 
-[node name="Controls" type="MarginContainer"]
+[node name="Controls" type="MarginContainer" unique_id=1169276180]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -20,43 +20,43 @@ theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 8
 script = ExtResource("1")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=203890792]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("2_wft4x")
 search_depth = 5
 
-[node name="InputMappingContainer" type="VBoxContainer" parent="VBoxContainer"]
+[node name="InputMappingContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=1512135122]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Label" type="Label" parent="VBoxContainer/InputMappingContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/InputMappingContainer" unique_id=1174995701]
 layout_mode = 2
 text = "Actions & Inputs"
 horizontal_alignment = 1
 
-[node name="InputActionsList" parent="VBoxContainer/InputMappingContainer" instance=ExtResource("4_lf2nw")]
+[node name="InputActionsList" parent="VBoxContainer/InputMappingContainer" unique_id=944044832 instance=ExtResource("4_lf2nw")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(560, 480)
 layout_mode = 2
 
-[node name="InputActionsTree" parent="VBoxContainer/InputMappingContainer" instance=ExtResource("5_b2whh")]
+[node name="InputActionsTree" parent="VBoxContainer/InputMappingContainer" unique_id=1325590443 instance=ExtResource("5_b2whh")]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(400, 480)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/InputMappingContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/InputMappingContainer" unique_id=78902404]
 layout_mode = 2
 alignment = 1
 
-[node name="ResetButton" type="Button" parent="VBoxContainer/InputMappingContainer/HBoxContainer"]
+[node name="ResetButton" type="Button" parent="VBoxContainer/InputMappingContainer/HBoxContainer" unique_id=1052909871]
 layout_mode = 2
 text = "Reset"
 
-[node name="KeyAssignmentDialog" type="ConfirmationDialog" parent="."]
+[node name="KeyAssignmentDialog" type="ConfirmationDialog" parent="." unique_id=289643104]
 title = "Assign Key"
 size = Vector2i(400, 158)
 dialog_text = "
@@ -65,7 +65,7 @@ dialog_text = "
 "
 script = ExtResource("3_wsh2h")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="KeyAssignmentDialog"]
+[node name="VBoxContainer" type="VBoxContainer" parent="KeyAssignmentDialog" unique_id=614998450]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -76,13 +76,13 @@ offset_bottom = -49.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="InputLabel" type="Label" parent="KeyAssignmentDialog/VBoxContainer"]
+[node name="InputLabel" type="Label" parent="KeyAssignmentDialog/VBoxContainer" unique_id=46254880]
 unique_name_in_owner = true
 layout_mode = 2
 text = "None"
 horizontal_alignment = 1
 
-[node name="InputTextEdit" type="TextEdit" parent="KeyAssignmentDialog/VBoxContainer"]
+[node name="InputTextEdit" type="TextEdit" parent="KeyAssignmentDialog/VBoxContainer" unique_id=973826085]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
@@ -95,25 +95,25 @@ drag_and_drop_selection_enabled = false
 middle_mouse_paste_enabled = false
 caret_move_on_right_click = false
 
-[node name="DelayTimer" type="Timer" parent="KeyAssignmentDialog"]
+[node name="DelayTimer" type="Timer" parent="KeyAssignmentDialog" unique_id=1870877362]
 unique_name_in_owner = true
 wait_time = 0.1
 one_shot = true
 
-[node name="KeyDeletionDialog" type="ConfirmationDialog" parent="."]
+[node name="KeyDeletionDialog" type="ConfirmationDialog" parent="." unique_id=2063604668]
 title = "Remove Key"
 size = Vector2i(419, 100)
 dialog_text = "Are you sure you want to remove KEY from ACTION?"
 
-[node name="OneInputMinimumDialog" type="AcceptDialog" parent="."]
+[node name="OneInputMinimumDialog" type="AcceptDialog" parent="." unique_id=274635362]
 title = "Cannot Remove"
 size = Vector2i(398, 100)
 
-[node name="AlreadyAssignedDialog" type="AcceptDialog" parent="."]
+[node name="AlreadyAssignedDialog" type="AcceptDialog" parent="." unique_id=2108014916]
 title = "Already Assigned"
 size = Vector2i(398, 100)
 
-[node name="ResetConfirmationDialog" type="ConfirmationDialog" parent="."]
+[node name="ResetConfirmationDialog" type="ConfirmationDialog" parent="." unique_id=385829343]
 size = Vector2i(486, 100)
 dialog_text = "Are you sure you want to reset controls back to the defaults?"
 

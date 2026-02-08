@@ -1,24 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://c7i7yrkyha1bf"]
+[gd_scene format=3 uid="uid://c7i7yrkyha1bf"]
 
 [ext_resource type="Script" uid="uid://bkhj8t8isbpc0" path="res://item_inventory.gd" id="1_wbt12"]
 [ext_resource type="Texture2D" uid="uid://e3utw70yh625" path="res://item/stiletto.svg" id="2_0ojc5"]
 [ext_resource type="Theme" uid="uid://duc0j73rblgge" path="res://fonts/text_theme.tres" id="3_886t4"]
 
-[node name="item" type="PanelContainer"]
+[node name="item" type="PanelContainer" unique_id=1419431230]
 custom_minimum_size = Vector2(0, 100)
 size_flags_horizontal = 3
 script = ExtResource("1_wbt12")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=2130148070]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer" unique_id=391640094]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture = ExtResource("2_0ojc5")
 expand_mode = 1
 
-[node name="item_name" type="RichTextLabel" parent="HBoxContainer"]
+[node name="item_name" type="RichTextLabel" parent="HBoxContainer" unique_id=1341267608]
 custom_minimum_size = Vector2(250, 100)
 layout_mode = 2
 theme = ExtResource("3_886t4")
@@ -26,7 +26,7 @@ bbcode_enabled = true
 text = "test description"
 vertical_alignment = 1
 
-[node name="description" type="RichTextLabel" parent="HBoxContainer"]
+[node name="description" type="RichTextLabel" parent="HBoxContainer" unique_id=1765838835]
 custom_minimum_size = Vector2(500, 100)
 layout_mode = 2
 theme = ExtResource("3_886t4")
@@ -34,7 +34,7 @@ bbcode_enabled = true
 text = "test description"
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="HBoxContainer"]
+[node name="Button" type="Button" parent="HBoxContainer" unique_id=195007445]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "equip"

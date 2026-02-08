@@ -1,18 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://b3j5asjnxmujp"]
+[gd_scene format=3 uid="uid://b3j5asjnxmujp"]
 
 [ext_resource type="ArrayMesh" uid="uid://7yt8ih1ld2o2" path="res://scenes/psx-dead-tree-pack/source/DeadTreePack/tree1.res" id="1_dps6f"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dps6f"]
 height = 7.05457
 
-[node name="StaticBody3D" type="StaticBody3D" groups=["tree"]]
+[node name="StaticBody3D" type="StaticBody3D" unique_id=1377808137 groups=["tree"]]
 collision_layer = 2
 collision_mask = 5
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1353250771]
 transform = Transform3D(50, 0, 0, 0, -2.18557e-06, 50, 0, -50, -2.18557e-06, 0, 0, 0)
 mesh = ExtResource("1_dps6f")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1108814601]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.29079, 0)
 shape = SubResource("CapsuleShape3D_dps6f")

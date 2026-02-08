@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://b1fog6jempap"]
+[gd_scene format=3 uid="uid://b1fog6jempap"]
 
 [ext_resource type="Script" uid="uid://o86txenxmh1k" path="res://addons/credits_generator/license_editor.gd" id="1_yir1k"]
 
-[node name="LicenseEditor" type="ConfirmationDialog"]
+[node name="LicenseEditor" type="ConfirmationDialog" unique_id=401783002]
 oversampling_override = 1.0
 title = "License Info"
 initial_position = 2
@@ -11,53 +11,53 @@ visible = true
 ok_button_text = "Save"
 script = ExtResource("1_yir1k")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1934845449]
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 504.0
 offset_bottom = 383.0
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1506347950]
 layout_mode = 2
 text = "Author"
 
-[node name="Author" type="TextEdit" parent="VBoxContainer"]
+[node name="Author" type="TextEdit" parent="VBoxContainer" unique_id=1333579595]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 placeholder_text = "e.g. Adeel"
 
-[node name="Label2" type="Label" parent="VBoxContainer"]
+[node name="Label2" type="Label" parent="VBoxContainer" unique_id=829361651]
 layout_mode = 2
 text = "Author Link"
 
-[node name="AuthorLink" type="TextEdit" parent="VBoxContainer"]
+[node name="AuthorLink" type="TextEdit" parent="VBoxContainer" unique_id=978035560]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 placeholder_text = "e.g. https://adeeltariq.itch.io/"
 
-[node name="Label3" type="Label" parent="VBoxContainer"]
+[node name="Label3" type="Label" parent="VBoxContainer" unique_id=662061707]
 layout_mode = 2
 text = "License"
 
-[node name="License" type="TextEdit" parent="VBoxContainer"]
+[node name="License" type="TextEdit" parent="VBoxContainer" unique_id=588619123]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 placeholder_text = "e.g. CC0 1.0"
 
-[node name="Label4" type="Label" parent="VBoxContainer"]
+[node name="Label4" type="Label" parent="VBoxContainer" unique_id=523377759]
 layout_mode = 2
 text = "License Link"
 
-[node name="License Link" type="TextEdit" parent="VBoxContainer"]
+[node name="License Link" type="TextEdit" parent="VBoxContainer" unique_id=878323262]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 placeholder_text = "e.g. https://creativecommons.org/publicdomain/zero/1.0/"
 
-[node name="Label5" type="Label" parent="VBoxContainer"]
+[node name="Label5" type="Label" parent="VBoxContainer" unique_id=1518360788]
 layout_mode = 2
 text = "Asset Link"
 
-[node name="Asset Link" type="TextEdit" parent="VBoxContainer"]
+[node name="Asset Link" type="TextEdit" parent="VBoxContainer" unique_id=92292486]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 placeholder_text = "e.g. https://github.com/AdeelTariq/First-Person-Horror-Template"

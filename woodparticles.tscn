@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d1dta8fxxixv"]
+[gd_scene format=3 uid="uid://d1dta8fxxixv"]
 
 [ext_resource type="Texture2D" uid="uid://cprle3s6dj3sq" path="res://scenes/smoke-12.png" id="1_ngyik"]
 
@@ -59,7 +59,7 @@ distance_fade_max_distance = 1.0
 material = SubResource("StandardMaterial3D_xdpml")
 size = Vector2(0.5, 0.5)
 
-[node name="hitparticles" type="GPUParticles3D"]
+[node name="hitparticles" type="GPUParticles3D" unique_id=384209387]
 emitting = false
 amount = 32
 lifetime = 1.78
@@ -71,7 +71,7 @@ draw_passes = 2
 draw_pass_1 = SubResource("PlaneMesh_aef0q")
 draw_pass_2 = null
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=312246213]
 emitting = false
 amount = 1
 one_shot = true

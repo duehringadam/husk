@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://bwiijop5if6mj"]
+[gd_scene format=4 uid="uid://bwiijop5if6mj"]
 
 [ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="1_4rd6d"]
 [ext_resource type="Script" uid="uid://dwkg0yn6a8sic" path="res://metal_door_full.gd" id="1_lstbl"]
@@ -61,18 +61,17 @@ shader_parameter/convert_vertex_colors = false
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_45l4g"]
 points = PackedVector3Array(0.00372581, -0.0011619, 0.0202373, 0.0124654, 0.00110476, 0.0157035, 0.0124654, -0.0011619, 0.0157035, -0.000160669, 0.00110476, -0.000161905, 0.0124654, -0.0011619, -0.000161905, -0.000160669, -0.0011619, -0.000161905, 0.000163204, 0.00110476, 0.0166731, 0.0124654, 0.00110476, -0.000161905, 0.00858019, 0.00110476, 0.0202373, -0.000160669, -0.0011619, 0.015381, 0.00922794, -0.0011619, 0.0199128, 0.00372581, 0.00110476, 0.0202373, 0.00113482, -0.0011619, 0.018294, 0.0111712, 0.00110476, 0.018294, -0.000160669, 0.00110476, 0.015381, 0.00696083, -0.0011619, 0.0205619, 0.0121428, -0.0011619, 0.0169997, 0.00178257, 0.00110476, 0.0189411, 0.00534517, 0.00110476, 0.0205619, 0.0108473, -0.0011619, 0.0186185, 0.0121428, 0.00110476, 0.0169997, 0.000163204, -0.0011619, 0.0166731, 0.0105234, 0.00110476, 0.0189411, 0.00696083, 0.00110476, 0.0205619, 0.00534517, -0.0011619, 0.0205619, 0.000487077, 0.00110476, 0.0173223, 0.00178257, -0.0011619, 0.0189411, 0.00858019, -0.0011619, 0.0202373, 0.00113482, 0.00110476, 0.018294, 0.00922794, 0.00110476, 0.0199128, 0.000487077, -0.0011619, 0.0173223, 0.0111712, -0.0011619, 0.018294)
 
-[node name="Gate_Metal_Full" type="Node3D"]
+[node name="Gate_Metal_Full" type="Node3D" unique_id=874544175]
 script = ExtResource("1_lstbl")
 
-[node name="Gate  Metal Full" type="MeshInstance3D" parent="."]
+[node name="Gate  Metal Full" type="MeshInstance3D" parent="." unique_id=162373572]
 transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 0)
 mesh = SubResource("ArrayMesh_1fsig")
-skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_uty7l")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Gate  Metal Full"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Gate  Metal Full" unique_id=1468993114]
 collision_layer = 2
 collision_mask = 5
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Gate  Metal Full/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Gate  Metal Full/StaticBody3D" unique_id=2124386931]
 shape = SubResource("ConvexPolygonShape3D_45l4g")

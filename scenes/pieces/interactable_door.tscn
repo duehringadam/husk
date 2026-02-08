@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://dgqg1bjfa5smg"]
+[gd_scene format=4 uid="uid://dgqg1bjfa5smg"]
 
 [ext_resource type="PackedScene" uid="uid://bimo0ijo3l1di" path="res://addons/game_pieces/interactable_door/interactable_door.tscn" id="1_jl12t"]
 [ext_resource type="Texture2D" uid="uid://bec224ctuh0rr" path="res://assets/models/kaykit-dungeon-remastered/dungeon_texture.png" id="2_y7amr"]
@@ -46,22 +46,21 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ky0e8")
 
-[node name="InteractableDoor" instance=ExtResource("1_jl12t")]
-metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":false,"override_display_name":false,"display_name":"","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_1wsxh"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+[node name="InteractableDoor" unique_id=1111865564 instance=ExtResource("1_jl12t")]
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Interactable Door","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":false,"override_display_name":false,"display_name":"","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_1wsxh"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
 ,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
 ]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
 
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0" unique_id=805674042]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.393, 0)
 shape = SubResource("BoxShape3D_bjhap")
 
-[node name="wall_doorway_door" type="MeshInstance3D" parent="." index="1"]
+[node name="wall_doorway_door" type="MeshInstance3D" parent="." index="1" unique_id=1577441215]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18848109, 0, 0)
 mesh = SubResource("ArrayMesh_heui7")
-skeleton = NodePath("")
 
-[node name="interact" type="Node" parent="InteractionContainer/Interact" index="0"]
+[node name="interact" type="Node" parent="InteractionContainer/Interact" parent_id_path=PackedInt32Array(1226962243) index="0" unique_id=778305316]
 script = ExtResource("3_1wsxh")
 action = &"interact"
 metadata/_custom_type_script = "uid://bxe74cq2uqemi"

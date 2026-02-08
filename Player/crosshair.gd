@@ -22,12 +22,15 @@ func adjust_reticle_lines():
 	var vel = PLAYER_CONTROLLER.get_real_velocity()
 	var pos = Vector2(0,0)
 	var speed = vel.length()
-	RETICLE_LINES[0].position = lerp(RETICLE_LINES[0].position, pos + Vector2(0,-speed * RETICLE_DISTANCE),RETICLE_SPEED)
-	RETICLE_LINES[1].position = lerp(RETICLE_LINES[1].position, pos + Vector2(speed * RETICLE_DISTANCE, 0),RETICLE_SPEED)
-	RETICLE_LINES[2].position = lerp(RETICLE_LINES[2].position, pos + Vector2(0, speed * RETICLE_DISTANCE),RETICLE_SPEED)
-	RETICLE_LINES[3].position = lerp(RETICLE_LINES[3].position, pos + Vector2(-speed * RETICLE_DISTANCE,0),RETICLE_SPEED)
 	
-	if abs(mouse_movement.length()) < 0.3:
+	var input_dir = PLAYER_CONTROLLER.input_dir
+	
+	#RETICLE_LINES[0].position = lerp(RETICLE_LINES[0].position, pos + Vector2(0,-speed * RETICLE_DISTANCE),RETICLE_SPEED)
+	#RETICLE_LINES[1].position = lerp(RETICLE_LINES[1].position, pos + Vector2(speed * RETICLE_DISTANCE, 0),RETICLE_SPEED)
+	#RETICLE_LINES[2].position = lerp(RETICLE_LINES[2].position, pos + Vector2(0, speed * RETICLE_DISTANCE),RETICLE_SPEED)
+	#RETICLE_LINES[3].position = lerp(RETICLE_LINES[3].position, pos + Vector2(-speed * RETICLE_DISTANCE,0),RETICLE_SPEED)
+	
+	if abs(mouse_movement.length()) < 0.3 && input_dir.length() == 0:
 		RETICLE_LINES[0]["default_color"] = Color.DIM_GRAY
 		RETICLE_LINES[1]["default_color"] = Color.DIM_GRAY
 		RETICLE_LINES[2]["default_color"] = Color.DIM_GRAY
@@ -39,7 +42,7 @@ func adjust_reticle_lines():
 		RETICLE_LINES[3].scale = lerp(Vector2.ONE,Vector2.ONE, RETICLE_SPEED)
 		return
 	
-	if mouse_movement.y > 0.8:
+	if input_dir.z == 1.0:
 		RETICLE_LINES[0]["default_color"] = Color.DIM_GRAY
 		RETICLE_LINES[1]["default_color"] = Color.DIM_GRAY
 		RETICLE_LINES[2]["default_color"] = lerp(Color.DIM_GRAY, Color.WHITE, 1)
@@ -51,7 +54,7 @@ func adjust_reticle_lines():
 		RETICLE_LINES[3].scale = lerp(Vector2.ONE,Vector2.ONE, RETICLE_SPEED)
 		return
 	
-	if mouse_movement.y < -0.8:
+	if input_dir.z == -1.0:
 		RETICLE_LINES[0]["default_color"] = lerp(Color.DIM_GRAY, Color.WHITE, 1)
 		RETICLE_LINES[1]["default_color"] = Color.DIM_GRAY
 		RETICLE_LINES[2]["default_color"] = Color.DIM_GRAY
@@ -63,7 +66,7 @@ func adjust_reticle_lines():
 		RETICLE_LINES[3].scale = lerp(Vector2.ONE,Vector2.ONE, RETICLE_SPEED)
 		return
 	
-	if mouse_movement.x > 0.8:
+	if mouse_movement.x > 0.9:
 		RETICLE_LINES[0]["default_color"] = Color.DIM_GRAY
 		RETICLE_LINES[1]["default_color"] = lerp(Color.DIM_GRAY, Color.WHITE, 1)
 		RETICLE_LINES[2]["default_color"] = Color.DIM_GRAY
@@ -75,7 +78,7 @@ func adjust_reticle_lines():
 		RETICLE_LINES[3].scale = lerp(Vector2.ONE,Vector2.ONE, RETICLE_SPEED)
 		return
 		
-	if mouse_movement.x < -0.8:
+	if mouse_movement.x < -0.9:
 		RETICLE_LINES[0]["default_color"] = Color.DIM_GRAY
 		RETICLE_LINES[1]["default_color"] = Color.DIM_GRAY
 		RETICLE_LINES[2]["default_color"] = Color.DIM_GRAY

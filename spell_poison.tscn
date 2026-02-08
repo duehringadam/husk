@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://ddxyu73stgroi"]
+[gd_scene format=4 uid="uid://ddxyu73stgroi"]
 
 [ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="3_qn8gi"]
 [ext_resource type="Texture2D" uid="uid://b4mgsikbc344q" path="res://Player/viewmodel/hands/psx-first-person-arms-free-game-assets/PSX_First_Person_Arms_arms.png" id="4_ofkmg"]
@@ -250,33 +250,6 @@ shader_parameter/uv_scroll_speed = Vector2(0, 0)
 shader_parameter/cull_distance_override = 0.0
 shader_parameter/convert_vertex_colors = false
 
-[sub_resource type="Animation" id="Animation_evflx"]
-resource_name = "spray_poison"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TargetIKLeft:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.22),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0.3655077, 0.49347207, 0.5225315), Vector3(0.4320142, 0.49347207, 0.3501171)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("TargetIKLeft:rotation")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.22),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(-0.3352596, -1.2255222, -0.50257033), Vector3(-0.16196531, 1.5652163, -0.26391134)]
-}
-
 [sub_resource type="Animation" id="Animation_s5ne3"]
 length = 0.001
 tracks/0/type = "value"
@@ -304,18 +277,45 @@ tracks/1/keys = {
 "values": []
 }
 
+[sub_resource type="Animation" id="Animation_evflx"]
+resource_name = "spray_poison"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TargetIKLeft:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.22),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.3655077, 0.49347207, 0.5225315), Vector3(0.4320142, 0.49347207, 0.3501171)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TargetIKLeft:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.22),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.3352596, -1.2255222, -0.50257033), Vector3(-0.16196531, 1.5652163, -0.26391134)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8ph8f"]
 _data = {
 &"RESET": SubResource("Animation_s5ne3"),
 &"spray_poison": SubResource("Animation_evflx")
 }
 
-[node name="spell_poison" type="Node3D"]
+[node name="spell_poison" type="Node3D" unique_id=1948282799]
 
-[node name="TargetIKLeft" type="Node3D" parent="."]
+[node name="TargetIKLeft" type="Node3D" parent="." unique_id=200308410]
 transform = Transform3D(0.14747731, 0.43434072, -0.88859314, -0.4548618, 0.827556, 0.3290142, 0.87826526, 0.35566503, 0.31961107, 0.3655077, 0.49347207, 0.5225315)
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="TargetIKLeft"]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="TargetIKLeft" unique_id=640895118]
 transform = Transform3D(1.0000005, 0, -1.7881393e-07, -2.0861626e-07, 1.0000017, 1.7136335e-07, -1.7881393e-07, -1.8626451e-07, 1.0000004, 0.041335613, 0.04431516, 0.0026328117)
 layers = 2
 amount = 32
@@ -323,13 +323,13 @@ local_coords = true
 process_material = SubResource("ParticleProcessMaterial_d3rw2")
 draw_pass_1 = SubResource("QuadMesh_qq3af")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="TargetIKLeft/GPUParticles3D"]
+[node name="OmniLight3D" type="OmniLight3D" parent="TargetIKLeft/GPUParticles3D" unique_id=1012541787]
 layers = 3
 light_color = Color(0.32156864, 0, 0.32156864, 1)
 light_energy = 0.1
 omni_range = 0.1
 
-[node name="GPUParticles3D2" type="GPUParticles3D" parent="TargetIKLeft/GPUParticles3D"]
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="TargetIKLeft/GPUParticles3D" unique_id=1299688461]
 transform = Transform3D(1.0000002, 0, 5.9604645e-08, 1.0430813e-07, 0.99999964, -2.0861626e-07, 8.940697e-08, 1.7881393e-07, 1, 0.017506301, -0.007714659, 0.0006493926)
 layers = 2
 lifetime = 3.0
@@ -337,10 +337,10 @@ randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_evflx")
 draw_pass_1 = SubResource("QuadMesh_s5ne3")
 
-[node name="arms_armature" type="Node3D" parent="."]
+[node name="arms_armature" type="Node3D" parent="." unique_id=1761165985]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.012435436, -0.1681863, 0.86541045)
 
-[node name="Skeleton3D" type="Skeleton3D" parent="arms_armature"]
+[node name="Skeleton3D" type="Skeleton3D" parent="arms_armature" unique_id=1874324323]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.46972206, 0, -5.9604645e-08)
 bones/0/name = "spine"
 bones/0/parent = -1
@@ -665,49 +665,48 @@ bones/45/position = Vector3(-0.033159632, 0.0507503, -0.061911404)
 bones/45/rotation = Quaternion(0.68400884, 6.0782284e-08, 0.014975859, 0.72932)
 bones/45/scale = Vector3(1, 1.0000001, 1)
 
-[node name="arms" type="MeshInstance3D" parent="arms_armature/Skeleton3D"]
+[node name="arms" type="MeshInstance3D" parent="arms_armature/Skeleton3D" unique_id=260005004]
 layers = 2
 mesh = SubResource("ArrayMesh_j4gbj")
 skin = SubResource("Skin_16ch1")
+skeleton = NodePath("..")
 surface_material_override/0 = SubResource("ShaderMaterial_0eavj")
 
-[node name="IKLeft" type="SkeletonIK3D" parent="arms_armature/Skeleton3D"]
+[node name="IKLeft" type="SkeletonIK3D" parent="arms_armature/Skeleton3D" unique_id=177351466]
 transform = Transform3D(-1.3, 1.96295e-07, 8.58031e-15, 0, -5.68248e-08, 1.3, 1.96295e-07, 1.3, 5.68248e-08, 0.83737576, -1.7972109, 0.038122356)
 root_bone = &"upper_arm.L"
 tip_bone = &"hand.L"
 target_node = NodePath("../../../TargetIKLeft")
 script = ExtResource("5_qsay3")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_8ph8f")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1609080452]
+libraries/ = SubResource("AnimationLibrary_8ph8f")
 
-[node name="StateChart" type="Node" parent="."]
+[node name="StateChart" type="Node" parent="." unique_id=143714780]
 script = ExtResource("7_mkri4")
 metadata/_custom_type_script = "uid://bb3ghyy64k2bd"
 
-[node name="CompoundState" type="Node" parent="StateChart"]
+[node name="CompoundState" type="Node" parent="StateChart" unique_id=1678981550]
 script = ExtResource("8_hp8et")
 initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateChart/CompoundState"]
+[node name="Idle" type="Node" parent="StateChart/CompoundState" unique_id=1368836147]
 script = ExtResource("9_asykj")
 
-[node name="toHold" type="Node" parent="StateChart/CompoundState/Idle"]
+[node name="toHold" type="Node" parent="StateChart/CompoundState/Idle" unique_id=15651388]
 script = ExtResource("10_8dney")
 event = &"hold"
 delay_in_seconds = "0.0"
 
-[node name="toMissed" type="Node" parent="StateChart/CompoundState/Idle"]
+[node name="toMissed" type="Node" parent="StateChart/CompoundState/Idle" unique_id=2135456741]
 script = ExtResource("10_8dney")
 event = &"missed"
 delay_in_seconds = "0.0"
 
-[node name="idle" type="Node" parent="StateChart/CompoundState/Idle"]
+[node name="idle" type="Node" parent="StateChart/CompoundState/Idle" unique_id=1886243154]
 script = ExtResource("9_s5ne3")
 
-[node name="spell_hold_sound" type="AudioStreamPlayer3D" parent="."]
+[node name="spell_hold_sound" type="AudioStreamPlayer3D" parent="." unique_id=922710762]
 stream = ExtResource("15_yt18g")
 volume_db = -20.0
 pitch_scale = 0.63

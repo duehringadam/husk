@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://csmaqkwk66cjs"]
+[gd_scene format=3 uid="uid://csmaqkwk66cjs"]
 
 [ext_resource type="Script" uid="uid://b0efsmc8oj74f" path="res://addons/madtalk/madtalk_editor.gd" id="1"]
 [ext_resource type="FontFile" uid="uid://b38okvijpcxmv" path="res://addons/madtalk/fonts/FreeSans_smal.tres" id="3"]
@@ -19,7 +19,7 @@ base_font = ExtResource("8_78yji")
 spacing_top = -4
 spacing_bottom = -4
 
-[node name="MadTalkEditor" type="Control"]
+[node name="MadTalkEditor" type="Control" unique_id=197122786]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,19 +31,26 @@ grow_vertical = 2
 size_flags_vertical = 3
 script = ExtResource("1")
 
-[node name="TopBar" type="Panel" parent="."]
+[node name="TopBar" type="Panel" parent="." unique_id=748716156]
 layout_mode = 0
 anchor_right = 1.0
 offset_bottom = 31.0
 
-[node name="GraphArea" type="GraphEdit" parent="."]
+[node name="GraphArea" type="GraphEdit" parent="." unique_id=1284036328]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 31.0
 right_disconnects = true
+connections = Array[Dictionary]([{
+"from_node": &"DialogNode_ID0",
+"from_port": 0,
+"keep_alive": false,
+"to_node": &"DialogNode_ID8",
+"to_port": 0
+}])
 
-[node name="SideBar" parent="." instance=ExtResource("8")]
+[node name="SideBar" parent="." unique_id=1064023864 instance=ExtResource("8")]
 layout_mode = 1
 anchors_preset = -1
 anchor_bottom = 1.0
@@ -53,14 +60,14 @@ offset_right = -16.0
 offset_bottom = -25.0
 grow_horizontal = 0
 
-[node name="Content" type="Control" parent="SideBar"]
+[node name="Content" type="Control" parent="SideBar" unique_id=2071856645]
 clip_contents = true
 anchors_preset = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 25.0
 
-[node name="CurrentPanel" type="Panel" parent="SideBar/Content"]
+[node name="CurrentPanel" type="Panel" parent="SideBar/Content" unique_id=947797646]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -71,7 +78,7 @@ offset_bottom = 105.0
 grow_horizontal = 2
 theme_override_styles/panel = ExtResource("11")
 
-[node name="TitleLabel" type="Label" parent="SideBar/Content/CurrentPanel"]
+[node name="TitleLabel" type="Label" parent="SideBar/Content/CurrentPanel" unique_id=432268702]
 layout_mode = 0
 offset_left = 4.0
 offset_top = 4.0
@@ -81,7 +88,7 @@ theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 12
 text = "Current sheet"
 
-[node name="Label" type="Label" parent="SideBar/Content/CurrentPanel"]
+[node name="Label" type="Label" parent="SideBar/Content/CurrentPanel" unique_id=2004577493]
 layout_mode = 0
 offset_left = 5.52808
 offset_top = 23.0
@@ -91,7 +98,7 @@ theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 12
 text = "ID:"
 
-[node name="SheetIDLabel" type="Label" parent="SideBar/Content/CurrentPanel"]
+[node name="SheetIDLabel" type="Label" parent="SideBar/Content/CurrentPanel" unique_id=1408360924]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -106,7 +113,7 @@ theme_override_font_sizes/font_size = 12
 text = "1_start_here"
 clip_text = true
 
-[node name="Label2" type="Label" parent="SideBar/Content/CurrentPanel"]
+[node name="Label2" type="Label" parent="SideBar/Content/CurrentPanel" unique_id=1472537050]
 layout_mode = 0
 offset_left = 5.52808
 offset_top = 62.0
@@ -116,7 +123,7 @@ theme_override_fonts/font = ExtResource("9")
 theme_override_font_sizes/font_size = 12
 text = "Short description"
 
-[node name="DescEdit" type="Label" parent="SideBar/Content/CurrentPanel"]
+[node name="DescEdit" type="Label" parent="SideBar/Content/CurrentPanel" unique_id=740696221]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -133,7 +140,7 @@ text = "Demonstration sheet. You can delete this in your game, or repurpose it."
 autowrap_mode = 3
 clip_text = true
 
-[node name="BtnEditSheet" type="Button" parent="SideBar/Content/CurrentPanel"]
+[node name="BtnEditSheet" type="Button" parent="SideBar/Content/CurrentPanel" unique_id=1923583633]
 layout_mode = 0
 anchor_left = 1.0
 anchor_right = 1.0
@@ -146,7 +153,7 @@ theme_override_font_sizes/font_size = 12
 theme_override_styles/normal = ExtResource("10")
 text = "Edit"
 
-[node name="labelSheetList" type="Label" parent="SideBar/Content"]
+[node name="labelSheetList" type="Label" parent="SideBar/Content" unique_id=1178123629]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 120.0
@@ -156,7 +163,7 @@ theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 12
 text = "Sheet list"
 
-[node name="SearchIcon" type="TextureRect" parent="SideBar/Content"]
+[node name="SearchIcon" type="TextureRect" parent="SideBar/Content" unique_id=1858092564]
 layout_mode = 0
 anchor_left = 1.0
 anchor_right = 1.0
@@ -166,7 +173,7 @@ offset_right = -7.0
 offset_bottom = 157.0
 texture = ExtResource("14")
 
-[node name="SearchEdit" type="LineEdit" parent="SideBar/Content"]
+[node name="SearchEdit" type="LineEdit" parent="SideBar/Content" unique_id=478732585]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -180,19 +187,19 @@ theme_override_font_sizes/font_size = 12
 theme_override_styles/normal = ExtResource("11")
 placeholder_text = "Search ID or description"
 
-[node name="SheetsScroll" type="ScrollContainer" parent="SideBar/Content"]
+[node name="SheetsScroll" type="ScrollContainer" parent="SideBar/Content" unique_id=1175624637]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 166.0
 offset_bottom = -29.0
 
-[node name="VBox" type="VBoxContainer" parent="SideBar/Content/SheetsScroll"]
+[node name="VBox" type="VBoxContainer" parent="SideBar/Content/SheetsScroll" unique_id=1062052154]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="BtnNewSheet" type="Button" parent="SideBar/Content"]
+[node name="BtnNewSheet" type="Button" parent="SideBar/Content" unique_id=209307538]
 layout_mode = 0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -203,12 +210,12 @@ offset_right = -4.0
 offset_bottom = -4.0
 theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 12
-theme_override_styles/focus = ExtResource("10")
-theme_override_styles/hover = ExtResource("10")
 theme_override_styles/normal = ExtResource("10")
+theme_override_styles/hover = ExtResource("10")
+theme_override_styles/focus = ExtResource("10")
 text = "Create New Dialog Sheet"
 
-[node name="BtnSaveDB" type="Button" parent="SideBar/Content"]
+[node name="BtnSaveDB" type="Button" parent="SideBar/Content" unique_id=1951579075]
 visible = false
 layout_mode = 0
 anchor_top = 1.0
@@ -219,20 +226,20 @@ offset_top = -24.0
 offset_right = -4.0
 offset_bottom = -4.0
 theme_override_fonts/font = ExtResource("3")
-theme_override_styles/focus = ExtResource("10")
-theme_override_styles/hover = ExtResource("10")
 theme_override_styles/normal = ExtResource("10")
+theme_override_styles/hover = ExtResource("10")
+theme_override_styles/focus = ExtResource("10")
 text = "Save Database"
 
-[node name="ImportBar" parent="." instance=ExtResource("10_f8dcc")]
+[node name="ImportBar" parent="." unique_id=2067165022 instance=ExtResource("10_f8dcc")]
 layout_mode = 1
-offset_left = -423.825
+offset_left = -423.82495
 offset_top = 4.0
-offset_right = -223.825
+offset_right = -223.82495
 offset_bottom = 28.0
 SizeOpen = 100
 
-[node name="Content" type="Control" parent="ImportBar"]
+[node name="Content" type="Control" parent="ImportBar" unique_id=1144662997]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -242,7 +249,7 @@ offset_top = 25.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BtnExport" type="Button" parent="ImportBar/Content"]
+[node name="BtnExport" type="Button" parent="ImportBar/Content" unique_id=883911512]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -253,12 +260,12 @@ offset_bottom = 28.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 12
-theme_override_styles/focus = ExtResource("10")
-theme_override_styles/hover = ExtResource("10")
 theme_override_styles/normal = ExtResource("10")
+theme_override_styles/hover = ExtResource("10")
+theme_override_styles/focus = ExtResource("10")
 text = "Export Current Sheet..."
 
-[node name="BGLine" type="ColorRect" parent="ImportBar/Content"]
+[node name="BGLine" type="ColorRect" parent="ImportBar/Content" unique_id=1141134373]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -269,7 +276,7 @@ offset_bottom = 37.0
 grow_horizontal = 2
 color = Color(1, 1, 1, 0.12549)
 
-[node name="BtnImportSheet" type="Button" parent="ImportBar/Content"]
+[node name="BtnImportSheet" type="Button" parent="ImportBar/Content" unique_id=1420211268]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -280,25 +287,25 @@ offset_bottom = 68.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 12
-theme_override_styles/focus = ExtResource("10")
-theme_override_styles/hover = ExtResource("10")
 theme_override_styles/normal = ExtResource("10")
+theme_override_styles/hover = ExtResource("10")
+theme_override_styles/focus = ExtResource("10")
 text = "Import Dialog Data..."
 
-[node name="PopupMenu" type="PopupMenu" parent="."]
+[node name="PopupMenu" type="PopupMenu" parent="." unique_id=1855514154]
 size = Vector2i(141, 100)
 item_count = 1
 item_0/text = "New sequence"
 item_0/id = 0
 
-[node name="DialogDeleteNodePopup" type="ConfirmationDialog" parent="."]
+[node name="DialogDeleteNodePopup" type="ConfirmationDialog" parent="." unique_id=1970185541]
 size = Vector2i(500, 187)
 dialog_text = "
 
     Are you sure you want to delete this entire sequence?"
 dialog_autowrap = true
 
-[node name="DialogSheetRenameError" type="AcceptDialog" parent="."]
+[node name="DialogSheetRenameError" type="AcceptDialog" parent="." unique_id=37196590]
 size = Vector2i(500, 200)
 dialog_text = "
     Error while renaming sheet:
@@ -307,7 +314,7 @@ dialog_text = "
 		       there is already a sheet using this ID"
 dialog_autowrap = true
 
-[node name="DialogSheetCreated" type="AcceptDialog" parent="."]
+[node name="DialogSheetCreated" type="AcceptDialog" parent="." unique_id=1862862965]
 size = Vector2i(400, 200)
 dialog_text = "
     The new sheet was successfully created.
@@ -315,18 +322,40 @@ dialog_text = "
     You are now modifying the new one."
 dialog_autowrap = true
 
-[node name="DialogSheetEdit" parent="." instance=ExtResource("15")]
+[node name="DialogSheetEdit" parent="." unique_id=1942248806 instance=ExtResource("15")]
 visible = false
 
-[node name="DialogExport" parent="." instance=ExtResource("12_bwljl")]
+[node name="DialogExport" parent="." unique_id=672801266 instance=ExtResource("12_bwljl")]
 visible = false
 
-[node name="DialogImport" parent="." instance=ExtResource("13_35vb6")]
+[node name="DialogImport" parent="." unique_id=1821753531 instance=ExtResource("13_35vb6")]
 visible = false
 
 [connection signal="connection_request" from="GraphArea" to="." method="_on_GraphArea_connection_request"]
 [connection signal="disconnection_request" from="GraphArea" to="." method="_on_GraphArea_disconnection_request"]
 [connection signal="gui_input" from="GraphArea" to="." method="_on_GraphEdit_gui_input"]
+[connection signal="dragged" from="GraphArea/DialogNode_ID0" to="GraphArea/DialogNode_ID0" method="_on_DialogNode_dragged"]
+[connection signal="gui_input" from="GraphArea/DialogNode_ID0/DialogNodeItem" to="GraphArea/DialogNode_ID0/DialogNodeItem" method="_on_DialogNodeItem_gui_input"]
+[connection signal="mouse_entered" from="GraphArea/DialogNode_ID0/DialogNodeItem" to="GraphArea/DialogNode_ID0/DialogNodeItem" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="GraphArea/DialogNode_ID0/DialogNodeItem" to="GraphArea/DialogNode_ID0/DialogNodeItem" method="_on_mouse_exited"]
+[connection signal="gui_input" from="GraphArea/DialogNode_ID0/@Control@48218" to="GraphArea/DialogNode_ID0/@Control@48218" method="_on_DialogNodeItem_gui_input"]
+[connection signal="mouse_entered" from="GraphArea/DialogNode_ID0/@Control@48218" to="GraphArea/DialogNode_ID0/@Control@48218" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="GraphArea/DialogNode_ID0/@Control@48218" to="GraphArea/DialogNode_ID0/@Control@48218" method="_on_mouse_exited"]
+[connection signal="dragged" from="GraphArea/DialogNode_ID6" to="GraphArea/DialogNode_ID6" method="_on_DialogNode_dragged"]
+[connection signal="gui_input" from="GraphArea/DialogNode_ID6/@Control@48221" to="GraphArea/DialogNode_ID6/@Control@48221" method="_on_DialogNodeItem_effect_gui_input"]
+[connection signal="gui_input" from="GraphArea/DialogNode_ID6/DialogNodeItem" to="GraphArea/DialogNode_ID6/DialogNodeItem" method="_on_DialogNodeItem_gui_input"]
+[connection signal="mouse_entered" from="GraphArea/DialogNode_ID6/DialogNodeItem" to="GraphArea/DialogNode_ID6/DialogNodeItem" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="GraphArea/DialogNode_ID6/DialogNodeItem" to="GraphArea/DialogNode_ID6/DialogNodeItem" method="_on_mouse_exited"]
+[connection signal="dragged" from="GraphArea/DialogNode_ID8" to="GraphArea/DialogNode_ID8" method="_on_DialogNode_dragged"]
+[connection signal="gui_input" from="GraphArea/DialogNode_ID8/DialogNodeItem" to="GraphArea/DialogNode_ID8/DialogNodeItem" method="_on_DialogNodeItem_gui_input"]
+[connection signal="mouse_entered" from="GraphArea/DialogNode_ID8/DialogNodeItem" to="GraphArea/DialogNode_ID8/DialogNodeItem" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="GraphArea/DialogNode_ID8/DialogNodeItem" to="GraphArea/DialogNode_ID8/DialogNodeItem" method="_on_mouse_exited"]
+[connection signal="gui_input" from="GraphArea/DialogNode_ID8/@Control@48229" to="GraphArea/DialogNode_ID8/@Control@48229" method="_on_DialogNodeItem_gui_input"]
+[connection signal="mouse_entered" from="GraphArea/DialogNode_ID8/@Control@48229" to="GraphArea/DialogNode_ID8/@Control@48229" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="GraphArea/DialogNode_ID8/@Control@48229" to="GraphArea/DialogNode_ID8/@Control@48229" method="_on_mouse_exited"]
+[connection signal="gui_input" from="GraphArea/DialogNode_ID8/@Control@48232" to="GraphArea/DialogNode_ID8/@Control@48232" method="_on_DialogNodeItem_gui_input"]
+[connection signal="mouse_entered" from="GraphArea/DialogNode_ID8/@Control@48232" to="GraphArea/DialogNode_ID8/@Control@48232" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="GraphArea/DialogNode_ID8/@Control@48232" to="GraphArea/DialogNode_ID8/@Control@48232" method="_on_mouse_exited"]
 [connection signal="pressed" from="SideBar/Content/CurrentPanel/BtnEditSheet" to="." method="_on_BtnEditSheet_pressed"]
 [connection signal="text_changed" from="SideBar/Content/SearchEdit" to="." method="_on_SideBar_SearchEdit_text_changed"]
 [connection signal="pressed" from="SideBar/Content/BtnNewSheet" to="." method="_on_BtnNewSheet_pressed"]

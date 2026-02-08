@@ -8,6 +8,8 @@ signal died
 @export var max_health: float
 var current_health: float = max_health
 
+var damage_source: Node3D
+
 func _ready() -> void:
 	current_health = max_health
 	emit_signal("max_health_changed", 0, max_health)

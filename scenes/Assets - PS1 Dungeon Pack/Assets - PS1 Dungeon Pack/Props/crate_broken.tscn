@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=4 uid="uid://dobqqemymqi86"]
+[gd_scene format=4 uid="uid://dobqqemymqi86"]
 
 [ext_resource type="Script" uid="uid://iwqdogm0iwqr" path="res://barrel_fragment.gd" id="1_8ghrl"]
 [ext_resource type="Texture2D" uid="uid://tqchwxl4blho" path="res://scenes/Assets - PS1 Dungeon Pack/Assets - PS1 Dungeon Pack/Props/Textures/DungeonProps_Texture.png" id="2_e5001"]
@@ -673,257 +673,239 @@ shadow_mesh = SubResource("ArrayMesh_i8474")
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_i50vk"]
 points = PackedVector3Array(0.00057936506, -0.0040634917, -0.0040634917, 0.0004522815, 0.0040634917, 0.0040634917, -0.00056349207, 0.0040634917, 0.0040634917, 0.0004522815, 0.0040634917, -0.0040634917, -0.00056349207, -0.0040634917, 0.0040634917, -0.00056349207, -0.0040634917, -0.0040634917, 0.00057936506, -0.0040634917, 0.0040634917, -0.00056349207, 0.0040634917, -0.0040634917, 0.00057936506, 0.0040626964, 0.0040634917, 0.00057936506, 0.0040626964, -0.0040634917)
 
-[node name="crate_broken" type="Node3D"]
+[node name="crate_broken" type="Node3D" unique_id=1491457630]
 script = ExtResource("1_8ghrl")
 
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=823163503]
 collision_layer = 0
 collision_mask = 15
 
-[node name="Crate_002" type="MeshInstance3D" parent="RigidBody3D"]
+[node name="Crate_002" type="MeshInstance3D" parent="RigidBody3D" unique_id=1733486713]
 transform = Transform3D(0, -100, -2.682209e-05, 5.9604645e-06, -3.5762787e-05, 100, -100.000015, -5.9604645e-06, 0, 0.0025404869, 0.4923615, 0.44678915)
 mesh = SubResource("ArrayMesh_5hv6b")
-skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_bgni1")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=1772022875]
 transform = Transform3D(0, -100, -2.682209e-05, 5.9604645e-06, -3.5762787e-05, 100, -100.000015, -5.9604645e-06, 0, 0.0025404869, 0.4923615, 0.44678915)
 shape = SubResource("ConvexPolygonShape3D_7jisl")
 
-[node name="RigidBody3D2" type="RigidBody3D" parent="."]
+[node name="RigidBody3D2" type="RigidBody3D" parent="." unique_id=1305247709]
 collision_layer = 0
 collision_mask = 15
 
-[node name="Crate_004" type="MeshInstance3D" parent="RigidBody3D2"]
+[node name="Crate_004" type="MeshInstance3D" parent="RigidBody3D2" unique_id=1828020620]
 transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, 0, 0.045953806, 0.44823793)
 mesh = SubResource("ArrayMesh_ncpnr")
-skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_bgni1")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D2" unique_id=2011576599]
 transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, 0, 0.045953806, 0.44823793)
 shape = SubResource("ConvexPolygonShape3D_8i7l8")
 
-[node name="RigidBody3D3" type="RigidBody3D" parent="."]
+[node name="RigidBody3D3" type="RigidBody3D" parent="." unique_id=1350134091]
 collision_layer = 0
 collision_mask = 15
 
-[node name="Crate_005" type="MeshInstance3D" parent="RigidBody3D3"]
+[node name="Crate_005" type="MeshInstance3D" parent="RigidBody3D3" unique_id=656882371]
 transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, 0.44846952, 0.045953736, -0.002080597)
 mesh = SubResource("ArrayMesh_qqjjt")
-skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_bgni1")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D3" unique_id=1791369749]
 transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, 0.44846952, 0.045953736, -0.002080597)
 shape = SubResource("ConvexPolygonShape3D_bgni1")
 
-[node name="RigidBody3D4" type="RigidBody3D" parent="."]
+[node name="RigidBody3D4" type="RigidBody3D" parent="." unique_id=513487059]
 collision_layer = 0
 collision_mask = 15
 
-[node name="Crate_017" type="MeshInstance3D" parent="RigidBody3D4"]
+[node name="Crate_017" type="MeshInstance3D" parent="RigidBody3D4" unique_id=268499550]
 transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, 0.44767338, 0.49236143, -0.448238)
 mesh = SubResource("ArrayMesh_2qdh6")
-skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_bgni1")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D4" unique_id=959517996]
 transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, 0.44767338, 0.49236143, -0.448238)
 shape = SubResource("ConvexPolygonShape3D_32a77")
 
-[node name="RigidBody3D5" type="RigidBody3D" parent="."]
+[node name="RigidBody3D5" type="RigidBody3D" parent="." unique_id=2088455998]
 collision_layer = 0
 collision_mask = 15
 
-[node name="Crate_001" type="MeshInstance3D" parent="RigidBody3D5"]
+[node name="Crate_001" type="MeshInstance3D" parent="RigidBody3D5" unique_id=1796720559]
 transform = Transform3D(-100, 3.2584136e-05, -8.74227e-06, -8.742278e-06, -1.1920929e-05, 99.99999, 3.2584136e-05, 99.99999, 1.7881393e-05, 0.44882166, 0.4923615, -0.00074377266)
 mesh = SubResource("ArrayMesh_i66cg")
-skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_bgni1")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D5"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D5" unique_id=1251698568]
 transform = Transform3D(-100, 3.2584136e-05, -8.74227e-06, -8.742278e-06, -1.1920929e-05, 99.99999, 3.2584136e-05, 99.99999, 1.7881393e-05, 0.44882166, 0.4923615, -0.00074377266)
 shape = SubResource("ConvexPolygonShape3D_kc5qp")
 
-[node name="RigidBody3D6" type="RigidBody3D" parent="."]
+[node name="RigidBody3D6" type="RigidBody3D" parent="." unique_id=2009132858]
 collision_layer = 0
 collision_mask = 15
 
-[node name="Crate_003" type="MeshInstance3D" parent="RigidBody3D6"]
+[node name="Crate_003" type="MeshInstance3D" parent="RigidBody3D6" unique_id=1331422091]
 transform = Transform3D(2.9802322e-05, -8.940697e-06, 100, 100, 0, -3.2782555e-05, 0, 100, 5.9604645e-06, -6.070192e-05, 0.045457784, -0.0009682763)
 mesh = SubResource("ArrayMesh_08iue")
-skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_bgni1")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D6"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D6" unique_id=1778376256]
 transform = Transform3D(2.9802322e-05, -8.940697e-06, 100, 100, 0, -3.2782555e-05, 0, 100, 5.9604645e-06, -6.070192e-05, 0.045457784, -0.0009682763)
 shape = SubResource("ConvexPolygonShape3D_2lj2p")
 
-[node name="RigidBody3D7" type="RigidBody3D" parent="."]
+[node name="RigidBody3D7" type="RigidBody3D" parent="." unique_id=884862158]
 collision_layer = 0
 collision_mask = 15
 
-[node name="Crate_006" type="MeshInstance3D" parent="RigidBody3D7"]
+[node name="Crate_006" type="MeshInstance3D" parent="RigidBody3D7" unique_id=693381817]
 transform = Transform3D(0, -100, -2.682209e-05, 5.9604645e-06, -3.5762787e-05, 100, -100.000015, -5.9604645e-06, 0, 0.0025404477, 0.4923615, -0.44956338)
 mesh = SubResource("ArrayMesh_oqma6")
-skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_bgni1")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D7"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D7" unique_id=411068221]
 transform = Transform3D(0, -100, -2.682209e-05, 5.9604645e-06, -3.5762787e-05, 100, -100.000015, -5.9604645e-06, 0, 0.0025404477, 0.4923615, -0.44956338)
 shape = SubResource("ConvexPolygonShape3D_21vl1")
 
-[node name="RigidBody3D8" type="RigidBody3D" parent="."]
+[node name="RigidBody3D8" type="RigidBody3D" parent="." unique_id=799404554]
 collision_layer = 0
 collision_mask = 15
 
-[node name="Crate_007" type="MeshInstance3D" parent="RigidBody3D8"]
+[node name="Crate_007" type="MeshInstance3D" parent="RigidBody3D8" unique_id=406881788]
 transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, -2.9057264e-07, 0.045953956, -0.4497751)
 mesh = SubResource("ArrayMesh_yu1u4")
-skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_bgni1")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D8"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D8" unique_id=1073111384]
 transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, -2.9057264e-07, 0.045953956, -0.4497751)
 shape = SubResource("ConvexPolygonShape3D_q6vo2")
 
-[node name="RigidBody3D9" type="RigidBody3D" parent="."]
+[node name="RigidBody3D9" type="RigidBody3D" parent="." unique_id=1376325810]
 collision_layer = 0
 collision_mask = 15
 
-[node name="Crate_009" type="MeshInstance3D" parent="RigidBody3D9"]
+[node name="Crate_009" type="MeshInstance3D" parent="RigidBody3D9" unique_id=889858611]
 transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, -2.9057264e-07, 0.9387692, -0.44977498)
 mesh = SubResource("ArrayMesh_og3xh")
-skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_bgni1")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D9"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D9" unique_id=554663856]
 transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, -2.9057264e-07, 0.9387692, -0.44977498)
 shape = SubResource("ConvexPolygonShape3D_7xrk3")
 
-[node name="RigidBody3D10" type="RigidBody3D" parent="."]
+[node name="RigidBody3D10" type="RigidBody3D" parent="." unique_id=497379431]
 collision_layer = 0
 collision_mask = 15
 
-[node name="Crate_008" type="MeshInstance3D" parent="RigidBody3D10"]
+[node name="Crate_008" type="MeshInstance3D" parent="RigidBody3D10" unique_id=2060396340]
 transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, 0, 0.938769, 0.448238)
 mesh = SubResource("ArrayMesh_w58eo")
-skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_bgni1")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D10"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D10" unique_id=2133094640]
 transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, 0, 0.938769, 0.448238)
 shape = SubResource("ConvexPolygonShape3D_hbfp3")
 
-[node name="RigidBody3D11" type="RigidBody3D" parent="."]
+[node name="RigidBody3D11" type="RigidBody3D" parent="." unique_id=1452723524]
 collision_layer = 0
 collision_mask = 15
 
-[node name="Crate_010" type="MeshInstance3D" parent="RigidBody3D11"]
+[node name="Crate_010" type="MeshInstance3D" parent="RigidBody3D11" unique_id=920826149]
 transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, -0.4471787, 0.045953736, -0.002080299)
 mesh = SubResource("ArrayMesh_75dmh")
-skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_bgni1")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D11"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D11" unique_id=1705867797]
 transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, -0.4471787, 0.045953736, -0.002080299)
 shape = SubResource("ConvexPolygonShape3D_ac21y")
 
-[node name="RigidBody3D12" type="RigidBody3D" parent="."]
+[node name="RigidBody3D12" type="RigidBody3D" parent="." unique_id=1439663363]
 collision_layer = 0
 collision_mask = 15
 
-[node name="Crate_011" type="MeshInstance3D" parent="RigidBody3D12"]
+[node name="Crate_011" type="MeshInstance3D" parent="RigidBody3D12" unique_id=927187811]
 transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, 0.44846952, 0.93875, -0.0020804445)
 mesh = SubResource("ArrayMesh_ie00x")
-skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_bgni1")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D12"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D12" unique_id=761659876]
 transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, 0.44846952, 0.93875, -0.0020804445)
 shape = SubResource("ConvexPolygonShape3D_ht1g5")
 
-[node name="RigidBody3D13" type="RigidBody3D" parent="."]
+[node name="RigidBody3D13" type="RigidBody3D" parent="." unique_id=328560932]
 collision_layer = 0
 collision_mask = 15
 
-[node name="Crate_012" type="MeshInstance3D" parent="RigidBody3D13"]
+[node name="Crate_012" type="MeshInstance3D" parent="RigidBody3D13" unique_id=914181106]
 transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, -0.4471787, 0.93875, -0.0020801465)
 mesh = SubResource("ArrayMesh_cv3bu")
-skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_bgni1")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D13"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D13" unique_id=990234226]
 transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, -0.4471787, 0.93875, -0.0020801465)
 shape = SubResource("ConvexPolygonShape3D_certa")
 
-[node name="RigidBody3D14" type="RigidBody3D" parent="."]
+[node name="RigidBody3D14" type="RigidBody3D" parent="." unique_id=568138731]
 collision_layer = 0
 collision_mask = 15
 
-[node name="Crate_013" type="MeshInstance3D" parent="RigidBody3D14"]
+[node name="Crate_013" type="MeshInstance3D" parent="RigidBody3D14" unique_id=677145335]
 transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, -0.44767338, 0.49236143, -0.448238)
 mesh = SubResource("ArrayMesh_tvfaf")
-skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_bgni1")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D14"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D14" unique_id=2102002355]
 transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, -0.44767338, 0.49236143, -0.448238)
 shape = SubResource("ConvexPolygonShape3D_4qnqu")
 
-[node name="RigidBody3D15" type="RigidBody3D" parent="."]
+[node name="RigidBody3D15" type="RigidBody3D" parent="." unique_id=352497931]
 collision_layer = 0
 collision_mask = 15
 
-[node name="Crate_014" type="MeshInstance3D" parent="RigidBody3D15"]
+[node name="Crate_014" type="MeshInstance3D" parent="RigidBody3D15" unique_id=1124082659]
 transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, 0.44767338, 0.49236152, 0.4482378)
 mesh = SubResource("ArrayMesh_5wg2n")
-skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_bgni1")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D15"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D15" unique_id=439664645]
 transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, 0.44767338, 0.49236152, 0.4482378)
 shape = SubResource("ConvexPolygonShape3D_jmo4o")
 
-[node name="RigidBody3D16" type="RigidBody3D" parent="."]
+[node name="RigidBody3D16" type="RigidBody3D" parent="." unique_id=247137719]
 collision_layer = 0
 collision_mask = 15
 
-[node name="Crate_015" type="MeshInstance3D" parent="RigidBody3D16"]
+[node name="Crate_015" type="MeshInstance3D" parent="RigidBody3D16" unique_id=712461239]
 transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, -0.44767338, 0.49236152, 0.4482378)
 mesh = SubResource("ArrayMesh_p1oxb")
-skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_bgni1")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D16"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D16" unique_id=119203527]
 transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, -0.44767338, 0.49236152, 0.4482378)
 shape = SubResource("ConvexPolygonShape3D_q6uw4")
 
-[node name="RigidBody3D17" type="RigidBody3D" parent="."]
+[node name="RigidBody3D17" type="RigidBody3D" parent="." unique_id=1284207558]
 collision_layer = 0
 collision_mask = 15
 
-[node name="Crate_016" type="MeshInstance3D" parent="RigidBody3D17"]
+[node name="Crate_016" type="MeshInstance3D" parent="RigidBody3D17" unique_id=1746156258]
 transform = Transform3D(-100, 3.2584136e-05, -8.74227e-06, -8.742278e-06, -1.1920929e-05, 99.99999, 3.2584136e-05, 99.99999, 1.7881393e-05, -0.44753084, 0.4923615, -0.0007932952)
 mesh = SubResource("ArrayMesh_q7xcu")
-skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_bgni1")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D17"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D17" unique_id=1934913167]
 transform = Transform3D(-100, 3.2584136e-05, -8.74227e-06, -8.742278e-06, -1.1920929e-05, 99.99999, 3.2584136e-05, 99.99999, 1.7881393e-05, -0.44753084, 0.4923615, -0.0007932952)
 shape = SubResource("ConvexPolygonShape3D_wf6n4")
 
-[node name="RigidBody3D18" type="RigidBody3D" parent="."]
+[node name="RigidBody3D18" type="RigidBody3D" parent="." unique_id=542958893]
 collision_layer = 0
 collision_mask = 15
 
-[node name="Crate_018" type="MeshInstance3D" parent="RigidBody3D18"]
+[node name="Crate_018" type="MeshInstance3D" parent="RigidBody3D18" unique_id=24325620]
 transform = Transform3D(2.9802322e-05, -8.940697e-06, 100, 100, 0, -3.2782555e-05, 0, 100, 5.9604645e-06, 0.0009107988, 0.93833005, -0.0010057675)
 mesh = SubResource("ArrayMesh_i8llo")
-skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_bgni1")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D18"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D18" unique_id=977525271]
 transform = Transform3D(2.9802322e-05, -8.940697e-06, 100, 100, 0, -3.2782555e-05, 0, 100, 5.9604645e-06, 0.0009107988, 0.93833005, -0.0010057675)
 shape = SubResource("ConvexPolygonShape3D_i50vk")

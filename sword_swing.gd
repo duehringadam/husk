@@ -19,7 +19,7 @@ func _on_swing_left_state_entered() -> void:
 	
 
 func _on_swing_left_state_exited() -> void:
-	GamePiecesEventBus.slow_player_requested(-1)
+	GamePiecesEventBus.slow_player_requested(-2)
 	SignalBus.emit_signal("primary_active", false)
 	animation_tree.set("parameters/conditions/swing", false)
 

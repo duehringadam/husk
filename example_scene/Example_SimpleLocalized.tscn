@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://xf1kfjedcgd"]
+[gd_scene format=3 uid="uid://xf1kfjedcgd"]
 
 [ext_resource type="Script" uid="uid://c6av3xe4m2ujl" path="res://addons/madtalk/runtime/madtalk_runtime.gd" id="1_yfpdx"]
 
@@ -43,10 +43,10 @@ func _on_mad_talk_voice_clip_requested(speaker_id: String, clip_path: String) ->
 		voice_player.play()
 "
 
-[node name="Scene" type="Node2D"]
+[node name="Scene" type="Node2D" unique_id=1658131383]
 script = SubResource("GDScript_53p2i")
 
-[node name="MadTalk" type="Node" parent="."]
+[node name="MadTalk" type="Node" parent="." unique_id=352565803]
 script = ExtResource("1_yfpdx")
 DialogMainControl = NodePath("../CanvasLayer/Dialog")
 DialogMessageBox = NodePath("../CanvasLayer/Dialog/MessagePanel")
@@ -54,9 +54,9 @@ DialogMessageLabel = NodePath("../CanvasLayer/Dialog/MessagePanel/MessageRichLab
 DialogButtonsMenu = NodePath("../CanvasLayer/Dialog/MenuBox")
 DialogButtonsContainer = NodePath("../CanvasLayer/Dialog/MenuBox/MenuContainer")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=828846919]
 
-[node name="Dialog" type="Control" parent="CanvasLayer"]
+[node name="Dialog" type="Control" parent="CanvasLayer" unique_id=1174027672]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -64,7 +64,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MessagePanel" type="Panel" parent="CanvasLayer/Dialog"]
+[node name="MessagePanel" type="Panel" parent="CanvasLayer/Dialog" unique_id=945695795]
 visible = false
 layout_mode = 1
 anchors_preset = 7
@@ -79,7 +79,7 @@ offset_bottom = -24.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="MessageRichLabel" type="RichTextLabel" parent="CanvasLayer/Dialog/MessagePanel"]
+[node name="MessageRichLabel" type="RichTextLabel" parent="CanvasLayer/Dialog/MessagePanel" unique_id=1774249154]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -92,7 +92,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Lorem ipsum"
 
-[node name="MenuBox" type="Panel" parent="CanvasLayer/Dialog"]
+[node name="MenuBox" type="Panel" parent="CanvasLayer/Dialog" unique_id=881744456]
 visible = false
 layout_mode = 1
 anchors_preset = 7
@@ -107,7 +107,7 @@ offset_bottom = -195.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="MenuContainer" type="VBoxContainer" parent="CanvasLayer/Dialog/MenuBox"]
+[node name="MenuContainer" type="VBoxContainer" parent="CanvasLayer/Dialog/MenuBox" unique_id=245879062]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -117,9 +117,9 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VoicePlayer" type="AudioStreamPlayer" parent="CanvasLayer/Dialog"]
+[node name="VoicePlayer" type="AudioStreamPlayer" parent="CanvasLayer/Dialog" unique_id=587295754]
 
-[node name="Label" type="Label" parent="CanvasLayer"]
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=2107505519]
 offset_left = 35.0
 offset_top = 16.0
 offset_right = 791.0

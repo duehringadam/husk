@@ -5,24 +5,38 @@ extends Node
 @export var state_chart: StateChart
 @export var distance: float
 
+@onready var ledge_check: ShapeCast3D = $"../../../../ledgeCheck"
 
 func _on_knocked_back_state_entered() -> void:
+	source_npc.SPEED =0
 	animation_tree.set("parameters/conditions/stagger", true)
 	
 	var kb_source = state_chart.get_expression_property("knockback_source")
-	var kb :Vector3 = kb_source.global_position - source_npc.global_position
+	var kb :Vector3 = kb_source.source.global_position - source_npc.global_position
 	var kb_dir = kb.normalized()
 	kb_dir.y = 0
 	var kb_amount = kb_dir * distance
 	source_npc.velocity = -kb_amount
 	await get_tree().create_timer(.5).timeout
 	animation_tree.set("parameters/conditions/stagger", false)
-	state_chart.send_event("idle")
+	state_chart.send_event("resume")
 
 
 func _on_knocked_back_state_exited() -> void:
-	pass # Replace with function body.
+	pass
 
 
 func _on_knocked_back_state_physics_processing(delta: float) -> void:
-	pass
+	if ledge_check.is_colliding():
+		for i in ledge_check.get_collision_count():
+			var collider = ledge_check.get_collider(i)
+			if collider.owner.is_in_group("traps"):
+				var kb_source = collider.owner
+				var kb :Vector3 = kb_source.global_position - source_npc.global_position
+				var kb_dir = kb.normalized()
+				kb_dir.y = 0
+				var kb_amount = kb_dir * distance
+				source_npc.velocity = -kb_amount
+				state_chart.send_event("knocked_down")
+	else:
+		state_chart.send_event("knocked_down")

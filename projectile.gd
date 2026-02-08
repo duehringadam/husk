@@ -9,6 +9,7 @@ extends Node3D
 
 var pin: bool = false
 var timer = Timer.new()
+var source: Node3D: set = _update_source
 
 func _ready() -> void:
 	add_child(timer)
@@ -16,25 +17,26 @@ func _ready() -> void:
 	timer.start()
 	timer.timeout.connect(func(): self.queue_free())
 
-func _on_damage_component_area_entered(area: Area3D) -> void:
-	gpu_trail.visible = false
-	var collision_point = ray_cast_3d.get_collision_point()
-	pin = true
-	call_deferred("reparent",area)
-	damage_component.set_deferred("monitorable", false)
-	damage_component.set_deferred("monitoring", false)
-	global_position = collision_point
-
+func _update_source(value: Node3D):
+	source = value
+	damage_component.source = source
 
 func _on_damage_component_body_entered(body: Node3D) -> void:
-	gpu_trail.visible = false
-	var collision_point = ray_cast_3d.get_collision_point()
-	pin = true
-	#call_deferred("reparent",body)
-	damage_component.set_deferred("monitorable", false)
-	damage_component.set_deferred("monitoring", false)
-	global_position = collision_point
+	if body is StaticBody3D:
+		gpu_trail.visible = false
+		var collision_point = ray_cast_3d.get_collision_point()
+		pin = true
+		call_deferred("reparent",body)
+		damage_component.set_deferred("monitorable", false)
+		damage_component.set_deferred("monitoring", false)
+		global_position = collision_point
+	else:
+		self.queue_free()
 
 func _process(delta: float) -> void:
 	if !pin:
 		position += transform.basis * Vector3(0,0,-speed*delta)
+
+
+func _on_damage_component_damage_dealt(types: Dictionary, actual: float, stance_damage: float, target: hurtbox_component) -> void:
+	self.queue_free()

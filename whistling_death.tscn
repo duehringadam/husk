@@ -1,7 +1,6 @@
-[gd_scene load_steps=41 format=3 uid="uid://dpc3m8s2jg138"]
+[gd_scene format=3 uid="uid://dpc3m8s2jg138"]
 
 [ext_resource type="Script" uid="uid://dtuv0q76720mr" path="res://weapon_scene.gd" id="1_wo3y1"]
-[ext_resource type="AudioStream" uid="uid://df2b8w21sb3xf" path="res://sfx/hit-rock-03-266305.mp3" id="3_tobms"]
 [ext_resource type="Shader" uid="uid://m1ybqx5bqk5r" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/blood_mix.gdshader" id="4_n2jpf"]
 [ext_resource type="Texture2D" uid="uid://dag5diw53bqq3" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/1000_F_450773512_a2Qi0jF5nSby6TZV5rjpE3F0mLgHD6k6.jpg" id="5_d6jfc"]
 [ext_resource type="ArrayMesh" uid="uid://vgnnj55y4ijo" path="res://Player/weapon/ALL/Estoc/estoc.res" id="7_wo3y1"]
@@ -29,7 +28,7 @@ render_priority = 0
 shader = ExtResource("4_n2jpf")
 shader_parameter/noise = ExtResource("5_d6jfc")
 shader_parameter/noise_shading = 1.0
-shader_parameter/intensity = 0.0
+shader_parameter/progress = 0.0
 shader_parameter/color = Color(1, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ri8l3"]
@@ -395,179 +394,166 @@ script = ExtResource("16_421dw")
 expression = "can_attack == true"
 metadata/_custom_type_script = "uid://dtsqtfrp33jka"
 
-[node name="whistling_death_viewmodel" type="Node3D"]
+[node name="whistling_death_viewmodel" type="Node3D" unique_id=336350631]
 script = ExtResource("1_wo3y1")
 swing_sound = ExtResource("11_txrbs")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(-9.04998e-05, 25, 9.04998e-05, 0, -9.04998e-05, 25, 25, 9.04998e-05, 3.27608e-10, 0, 0, 0)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=765233183]
+transform = Transform3D(-9.049975e-05, 25, 9.049975e-05, 0, -9.049975e-05, 25, 25, 9.049975e-05, 3.2760822e-10, 0, 0, 0)
 layers = 2
 gi_mode = 2
 mesh = ExtResource("7_wo3y1")
 surface_material_override/0 = SubResource("ShaderMaterial_ri8l3")
 
-[node name="DamageComponent" type="Area3D" parent="MeshInstance3D"]
+[node name="DamageComponent" type="Area3D" parent="MeshInstance3D" unique_id=1018808370]
 transform = Transform3D(0.0140941, -3.99996, 0.0112196, 3.99998, 0.0140942, -1.45064e-05, -2.50264e-05, 0.0112196, 3.99998, 0, 0, 0)
 collision_mask = 6
 monitoring = false
 monitorable = false
 script = ExtResource("10_7oyci")
-amount = 25.0
-hit_sound = ExtResource("3_tobms")
-damage_type = 2
 metadata/_custom_type_script = "uid://dlsydctoxqbwy"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/DamageComponent"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/DamageComponent" unique_id=84629539]
 transform = Transform3D(0.995105, 0.00726411, 0.0985567, 0.0986997, -0.0230195, -0.994851, -0.004958, 0.999709, -0.0236237, -2.2923e-08, 1.02053e-05, 0.00363838)
 shape = SubResource("CapsuleShape3D_e4sur")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_ff8w7")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=94663889]
+libraries/ = SubResource("AnimationLibrary_ff8w7")
 
-[node name="swing" type="AudioStreamPlayer3D" parent="."]
+[node name="swing" type="AudioStreamPlayer3D" parent="." unique_id=1310463716]
 volume_db = -12.0
 
-[node name="StateChart" type="Node" parent="."]
+[node name="StateChart" type="Node" parent="." unique_id=169437022]
 script = ExtResource("12_6bbvb")
 metadata/_custom_type_script = "uid://bb3ghyy64k2bd"
 
-[node name="CompoundState" type="Node" parent="StateChart"]
+[node name="CompoundState" type="Node" parent="StateChart" unique_id=1461024844]
 script = ExtResource("13_0cyqb")
 initial_state = NodePath("idle")
 
-[node name="idle" type="Node" parent="StateChart/CompoundState"]
+[node name="idle" type="Node" parent="StateChart/CompoundState" unique_id=483526470]
 script = ExtResource("14_gv7wm")
 
-[node name="to_held_left" type="Node" parent="StateChart/CompoundState/idle"]
+[node name="to_held_left" type="Node" parent="StateChart/CompoundState/idle" unique_id=437577399]
 script = ExtResource("15_awad4")
 to = NodePath("../../held_left")
 event = &"hold_left"
 guard = SubResource("Resource_e4sur")
 delay_in_seconds = "0.0"
 
-[node name="to_held_right" type="Node" parent="StateChart/CompoundState/idle"]
+[node name="to_held_right" type="Node" parent="StateChart/CompoundState/idle" unique_id=729370066]
 script = ExtResource("15_awad4")
 to = NodePath("../../held_right")
 event = &"hold_right"
 guard = SubResource("Resource_y4rpf")
 delay_in_seconds = "0.0"
 
-[node name="to_held_back" type="Node" parent="StateChart/CompoundState/idle"]
+[node name="to_held_back" type="Node" parent="StateChart/CompoundState/idle" unique_id=345415554]
 script = ExtResource("15_awad4")
 to = NodePath("../../held_back")
 event = &"hold_back"
 guard = SubResource("Resource_oq5md")
 delay_in_seconds = "0.0"
 
-[node name="to_held_forwards" type="Node" parent="StateChart/CompoundState/idle"]
+[node name="to_held_forwards" type="Node" parent="StateChart/CompoundState/idle" unique_id=191582862]
 script = ExtResource("15_awad4")
 to = NodePath("../../held_forward")
 event = &"hold_forward"
 guard = SubResource("Resource_cngb6")
 delay_in_seconds = "0.0"
 
-[node name="idle" type="Node" parent="StateChart/CompoundState/idle"]
+[node name="idle" type="Node" parent="StateChart/CompoundState/idle" unique_id=25397675]
 script = ExtResource("17_vxyop")
 
-[node name="held_left" type="Node" parent="StateChart/CompoundState"]
+[node name="held_left" type="Node" parent="StateChart/CompoundState" unique_id=314813569]
 script = ExtResource("14_gv7wm")
 
-[node name="held_left" type="Node" parent="StateChart/CompoundState/held_left"]
+[node name="held_left" type="Node" parent="StateChart/CompoundState/held_left" unique_id=1431693801]
 script = ExtResource("18_uc45u")
 
-[node name="to_left" type="Node" parent="StateChart/CompoundState/held_left"]
+[node name="to_left" type="Node" parent="StateChart/CompoundState/held_left" unique_id=54736601]
 script = ExtResource("15_awad4")
 to = NodePath("../../left")
 event = &"attack_left"
 delay_in_seconds = "0.0"
 
-[node name="left" type="Node" parent="StateChart/CompoundState"]
+[node name="left" type="Node" parent="StateChart/CompoundState" unique_id=1737969104]
 script = ExtResource("14_gv7wm")
 
-[node name="left" type="Node" parent="StateChart/CompoundState/left" node_paths=PackedStringArray("damage_component", "weapon")]
+[node name="left" type="Node" parent="StateChart/CompoundState/left" unique_id=402677353]
 script = ExtResource("19_r2txs")
-damage_component = NodePath("../../../../MeshInstance3D/DamageComponent")
-weapon = NodePath("../../../..")
 
-[node name="to_idle" type="Node" parent="StateChart/CompoundState/left"]
+[node name="to_idle" type="Node" parent="StateChart/CompoundState/left" unique_id=1495138649]
 script = ExtResource("15_awad4")
 to = NodePath("../../idle")
 event = &"idle"
 delay_in_seconds = ".5"
 
-[node name="held_right" type="Node" parent="StateChart/CompoundState"]
+[node name="held_right" type="Node" parent="StateChart/CompoundState" unique_id=703599670]
 script = ExtResource("14_gv7wm")
 
-[node name="held_right" type="Node" parent="StateChart/CompoundState/held_right"]
+[node name="held_right" type="Node" parent="StateChart/CompoundState/held_right" unique_id=505789136]
 script = ExtResource("20_eml6f")
 
-[node name="to_right" type="Node" parent="StateChart/CompoundState/held_right"]
+[node name="to_right" type="Node" parent="StateChart/CompoundState/held_right" unique_id=510854663]
 script = ExtResource("15_awad4")
 to = NodePath("../../right")
 event = &"attack_right"
 delay_in_seconds = "0.0"
 
-[node name="right" type="Node" parent="StateChart/CompoundState"]
+[node name="right" type="Node" parent="StateChart/CompoundState" unique_id=1007066788]
 script = ExtResource("14_gv7wm")
 
-[node name="right" type="Node" parent="StateChart/CompoundState/right" node_paths=PackedStringArray("damage_component", "weapon")]
+[node name="right" type="Node" parent="StateChart/CompoundState/right" unique_id=1332483447]
 script = ExtResource("21_6xoop")
-damage_component = NodePath("../../../../MeshInstance3D/DamageComponent")
-weapon = NodePath("../../../..")
 
-[node name="to_idle2" type="Node" parent="StateChart/CompoundState/right"]
+[node name="to_idle2" type="Node" parent="StateChart/CompoundState/right" unique_id=518620805]
 script = ExtResource("15_awad4")
 to = NodePath("../../idle")
 delay_in_seconds = ".5"
 
-[node name="held_back" type="Node" parent="StateChart/CompoundState"]
+[node name="held_back" type="Node" parent="StateChart/CompoundState" unique_id=98326509]
 script = ExtResource("14_gv7wm")
 
-[node name="held_back" type="Node" parent="StateChart/CompoundState/held_back"]
+[node name="held_back" type="Node" parent="StateChart/CompoundState/held_back" unique_id=820876795]
 script = ExtResource("22_j2d05")
 
-[node name="to_back" type="Node" parent="StateChart/CompoundState/held_back"]
+[node name="to_back" type="Node" parent="StateChart/CompoundState/held_back" unique_id=784630828]
 script = ExtResource("15_awad4")
 to = NodePath("../../back")
 event = &"attack_back"
 delay_in_seconds = "0.0"
 
-[node name="back" type="Node" parent="StateChart/CompoundState"]
+[node name="back" type="Node" parent="StateChart/CompoundState" unique_id=1480480152]
 script = ExtResource("14_gv7wm")
 
-[node name="back" type="Node" parent="StateChart/CompoundState/back" node_paths=PackedStringArray("damage_component", "weapon")]
+[node name="back" type="Node" parent="StateChart/CompoundState/back" unique_id=1198739063]
 script = ExtResource("23_jvmp6")
-damage_component = NodePath("../../../../MeshInstance3D/DamageComponent")
-weapon = NodePath("../../../..")
 
-[node name="to_idle3" type="Node" parent="StateChart/CompoundState/back"]
+[node name="to_idle3" type="Node" parent="StateChart/CompoundState/back" unique_id=226988981]
 script = ExtResource("15_awad4")
 to = NodePath("../../idle")
 delay_in_seconds = ".5"
 
-[node name="held_forward" type="Node" parent="StateChart/CompoundState"]
+[node name="held_forward" type="Node" parent="StateChart/CompoundState" unique_id=153328575]
 script = ExtResource("14_gv7wm")
 
-[node name="held_forward" type="Node" parent="StateChart/CompoundState/held_forward"]
+[node name="held_forward" type="Node" parent="StateChart/CompoundState/held_forward" unique_id=1527069447]
 script = ExtResource("24_afxh1")
 
-[node name="to_forward" type="Node" parent="StateChart/CompoundState/held_forward"]
+[node name="to_forward" type="Node" parent="StateChart/CompoundState/held_forward" unique_id=1061900885]
 script = ExtResource("15_awad4")
 to = NodePath("../../forward")
 event = &"attack_forward"
 delay_in_seconds = "0.0"
 
-[node name="forward" type="Node" parent="StateChart/CompoundState"]
+[node name="forward" type="Node" parent="StateChart/CompoundState" unique_id=1613692774]
 script = ExtResource("14_gv7wm")
 
-[node name="forward" type="Node" parent="StateChart/CompoundState/forward" node_paths=PackedStringArray("damage_component", "weapon")]
+[node name="forward" type="Node" parent="StateChart/CompoundState/forward" unique_id=199827647]
 script = ExtResource("25_twtxp")
-damage_component = NodePath("../../../../MeshInstance3D/DamageComponent")
-weapon = NodePath("../../../..")
 
-[node name="to_idle4" type="Node" parent="StateChart/CompoundState/forward"]
+[node name="to_idle4" type="Node" parent="StateChart/CompoundState/forward" unique_id=160223889]
 script = ExtResource("15_awad4")
 to = NodePath("../../idle")
 delay_in_seconds = ".5"

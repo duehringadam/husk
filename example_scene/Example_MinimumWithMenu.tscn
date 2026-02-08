@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://cuqg3eu58tvfr"]
+[gd_scene format=3 uid="uid://cuqg3eu58tvfr"]
 
 [ext_resource type="Script" uid="uid://c6av3xe4m2ujl" path="res://addons/madtalk/runtime/madtalk_runtime.gd" id="1_vf3rf"]
 
@@ -23,10 +23,10 @@ func _input(event):
 		$MadTalk.start_dialog(\"minimum_menu\")
 "
 
-[node name="Scene" type="Node2D"]
+[node name="Scene" type="Node2D" unique_id=1612187454]
 script = SubResource("GDScript_8be5v")
 
-[node name="MadTalk" type="Node" parent="."]
+[node name="MadTalk" type="Node" parent="." unique_id=771265204]
 script = ExtResource("1_vf3rf")
 DialogMainControl = NodePath("../CanvasLayer/Dialog")
 DialogMessageBox = NodePath("../CanvasLayer/Dialog/MessagePanel")
@@ -37,9 +37,9 @@ ModulateWhenVisitedPreviously = Color(1, 0, 0, 1)
 ModulateWhenVisitedInThisDialog = Color(0, 0, 1, 1)
 AutoShowMenuOnLastMessage = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1325143917]
 
-[node name="Dialog" type="Control" parent="CanvasLayer"]
+[node name="Dialog" type="Control" parent="CanvasLayer" unique_id=648316155]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -47,7 +47,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MessagePanel" type="Panel" parent="CanvasLayer/Dialog"]
+[node name="MessagePanel" type="Panel" parent="CanvasLayer/Dialog" unique_id=709914664]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -61,7 +61,7 @@ offset_bottom = -24.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="MessageRichLabel" type="RichTextLabel" parent="CanvasLayer/Dialog/MessagePanel"]
+[node name="MessageRichLabel" type="RichTextLabel" parent="CanvasLayer/Dialog/MessagePanel" unique_id=1834793565]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -75,7 +75,7 @@ grow_vertical = 2
 bbcode_enabled = true
 text = "Lorem ipsum"
 
-[node name="MenuPanel" type="Panel" parent="CanvasLayer/Dialog"]
+[node name="MenuPanel" type="Panel" parent="CanvasLayer/Dialog" unique_id=1737515527]
 visible = false
 layout_mode = 1
 anchors_preset = 7
@@ -91,7 +91,7 @@ grow_horizontal = 2
 grow_vertical = 0
 metadata/_edit_group_ = true
 
-[node name="ButtonContainer" type="VBoxContainer" parent="CanvasLayer/Dialog/MenuPanel"]
+[node name="ButtonContainer" type="VBoxContainer" parent="CanvasLayer/Dialog/MenuPanel" unique_id=510339323]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

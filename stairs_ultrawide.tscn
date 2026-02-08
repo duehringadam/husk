@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bma6xe0tsvta3"]
+[gd_scene format=3 uid="uid://bma6xe0tsvta3"]
 
 [ext_resource type="PackedScene" uid="uid://bhcxj3sdilgaf" path="res://scenes/PSX_Dungeon/PSX_Dungeon/Models/Stairs_Ultrawide.fbx" id="1_gu2p4"]
 [ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="2_c76vt"]
@@ -18,8 +18,8 @@ shader_parameter/uv_scroll_speed = Vector2(0, 0)
 shader_parameter/cull_distance_override = 0.0
 shader_parameter/convert_vertex_colors = false
 
-[node name="Stairs_Ultrawide" instance=ExtResource("1_gu2p4")]
+[node name="Stairs_Ultrawide" unique_id=215566872 instance=ExtResource("1_gu2p4")]
 
-[node name="Cube_052" parent="." index="0"]
+[node name="Cube_052" parent="." index="0" unique_id=1004074922]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 surface_material_override/0 = SubResource("ShaderMaterial_dprr1")

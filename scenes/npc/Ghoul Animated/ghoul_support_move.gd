@@ -8,18 +8,13 @@ extends Node
 @export var swing_cooldown: float
 
 var delta_timer: float
-var player_attacking := false
-
 var timer = Timer.new()
 
 func _ready() -> void:
-	SignalBus.connect("primary_active", player_attack)
 	self.add_child(timer)
 	timer.wait_time = swing_cooldown
 	timer.one_shot = true
 
-func player_attack(value: bool):
-	player_attacking = value
 
 func _on_move_state_entered() -> void:
 	animation_tree.set("parameters/conditions/idle", false)
@@ -37,16 +32,16 @@ func _on_move_state_physics_processing(delta: float) -> void:
 		var desired_location = source_npc.navigation_agent.get_next_path_position()
 		var new_velocity = (desired_location - current_location).normalized() * source_npc.SPEED
 		source_npc.navigation_agent.set_velocity(new_velocity)
-		var random_pos = NavigationServer3D.map_get_closest_point(get_tree().current_scene.get_world_3d().get_navigation_map(),Global.player.global_position)
+		var random_pos = NavigationServer3D.map_get_closest_point(get_tree().current_scene.get_world_3d().get_navigation_map(),source_npc.target.global_position)
 		source_npc.navigation_agent.set_target_position(random_pos)
 		source_npc.search_position = random_pos
 		
 		if timer.time_left <= 0:
-			if source_npc.global_position.distance_to(Global.player.global_position) < 1.5:
+			if source_npc.global_position.distance_to(source_npc.target.global_position) < 1.5:
 				timer.start()
 				state_chart.send_event("swing")
 		
-		if source_npc.global_position.distance_to(Global.player.global_position) > 1.5:
+		if source_npc.global_position.distance_to(source_npc.target.global_position) > 1.5:
 			source_npc.SPEED = 3.5
 			animation_tree.set("parameters/conditions/run", true)
 			animation_tree.set("parameters/conditions/walk", false)

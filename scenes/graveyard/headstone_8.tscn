@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ckt5kuwit0sdl"]
+[gd_scene format=3 uid="uid://ckt5kuwit0sdl"]
 
 [ext_resource type="ArrayMesh" uid="uid://d3ybhp61njxkh" path="res://scenes/gravestones/headstone_8.res" id="1_av7fg"]
 [ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="2_jano2"]
@@ -21,16 +21,16 @@ shader_parameter/convert_vertex_colors = false
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jano2"]
 points = PackedVector3Array(136.258, 97.5479, -1695.95, 105.864, 279.662, -1362.16, -106.447, 279.662, -1362.16, 45.2073, 1826.87, -1574.53, -136.842, -115.172, -1665.56, -136.842, 1462.64, -1665.56, -136.842, 1462.64, -1392.54, 136.258, 1462.64, -1392.54, 136.258, -115.172, -1392.54, 136.258, 1462.64, -1665.56, -136.842, -115.172, -1392.54, -45.7904, 1735.82, -1392.54, 136.258, -115.172, -1665.56, -136.842, 188.605, -1695.95, -45.7904, 1735.82, -1665.56, -45.7904, 1826.87, -1574.53, 45.2073, 1735.82, -1392.54, 45.2073, 1735.82, -1665.56, 136.258, 157.999, -1362.16, 105.864, 309.888, -1695.95, -45.7904, 1826.87, -1483.57, 45.2073, 1826.87, -1483.57, -106.447, 157.999, -1362.16, -106.447, 309.888, -1695.95, -136.842, 97.5479, -1695.95, 136.258, 188.605, -1695.95, 136.258, 188.605, -1362.16)
 
-[node name="headstone_1" type="StaticBody3D"]
+[node name="headstone_1" type="StaticBody3D" unique_id=896451556]
 transform = Transform3D(0.002, 0, 0, 0, 0.002, 0, 0, 0, 0.002, 0, 0, 0.687554)
 collision_layer = 2
 collision_mask = 5
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=54231089]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.1828, 0, 1577.4)
 mesh = ExtResource("1_av7fg")
 surface_material_override/0 = SubResource("ShaderMaterial_av7fg")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1907437029]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.1828, 0, 1577.4)
 shape = SubResource("ConvexPolygonShape3D_jano2")

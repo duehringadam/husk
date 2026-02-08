@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b22lta4yhfhgu"]
+[gd_scene format=3 uid="uid://b22lta4yhfhgu"]
 
 [ext_resource type="Script" uid="uid://cix5fmirlacwr" path="res://addons/madtalk/components/MainEditor_DialogImport.gd" id="1_8rwin"]
 [ext_resource type="FontFile" uid="uid://dp7os1mai8le8" path="res://addons/madtalk/fonts/droid-sans-mono.regular.ttf" id="4_gx77l"]
@@ -6,8 +6,9 @@
 [ext_resource type="StyleBox" path="res://addons/madtalk/components/resources/ButtonStyle.tres" id="8_0k7gi"]
 [ext_resource type="StyleBox" path="res://addons/madtalk/components/resources/PanelStyle.tres" id="13_45pmk"]
 
-[node name="DialogImport" type="Window"]
+[node name="DialogImport" type="Window" unique_id=675849214]
 auto_translate_mode = 1
+oversampling_override = 1.0
 title = "Import Dialog Sheet"
 position = Vector2i(0, 36)
 size = Vector2i(700, 500)
@@ -16,7 +17,7 @@ exclusive = true
 popup_window = true
 script = ExtResource("1_8rwin")
 
-[node name="PanelInput" type="Panel" parent="."]
+[node name="PanelInput" type="Panel" parent="." unique_id=133437530]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,14 +26,14 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("13_45pmk")
 
-[node name="BtnImporter" type="OptionButton" parent="PanelInput"]
+[node name="BtnImporter" type="OptionButton" parent="PanelInput" unique_id=1187948089]
 layout_mode = 0
 offset_left = 122.0
 offset_top = 16.0
 offset_right = 330.0
 offset_bottom = 36.0
 
-[node name="Label" type="Label" parent="PanelInput/BtnImporter"]
+[node name="Label" type="Label" parent="PanelInput/BtnImporter" unique_id=2108070911]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -45,7 +46,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 12
 text = "Import Format:"
 
-[node name="Label" type="Label" parent="PanelInput"]
+[node name="Label" type="Label" parent="PanelInput" unique_id=463212856]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 52.0
@@ -54,7 +55,7 @@ offset_bottom = 69.0
 theme_override_font_sizes/font_size = 12
 text = "Paste content to import:"
 
-[node name="InputEdit" type="TextEdit" parent="PanelInput"]
+[node name="InputEdit" type="TextEdit" parent="PanelInput" unique_id=1214434620]
 layout_mode = 1
 offset_left = 8.0
 offset_top = 72.0
@@ -66,7 +67,7 @@ deselect_on_focus_loss_enabled = false
 draw_tabs = true
 draw_spaces = true
 
-[node name="BtnLoad" type="Button" parent="PanelInput"]
+[node name="BtnLoad" type="Button" parent="PanelInput" unique_id=2125470084]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -80,12 +81,12 @@ offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 0
 focus_mode = 0
-theme_override_styles/focus = ExtResource("8_0k7gi")
-theme_override_styles/hover = ExtResource("8_0k7gi")
 theme_override_styles/normal = ExtResource("8_0k7gi")
+theme_override_styles/hover = ExtResource("8_0k7gi")
+theme_override_styles/focus = ExtResource("8_0k7gi")
 text = "Load"
 
-[node name="ImporterDesc" type="RichTextLabel" parent="PanelInput"]
+[node name="ImporterDesc" type="RichTextLabel" parent="PanelInput" unique_id=1457354030]
 layout_mode = 0
 offset_left = 374.0
 offset_top = 17.0
@@ -93,7 +94,7 @@ offset_right = 689.0
 offset_bottom = 436.0
 bbcode_enabled = true
 
-[node name="PanelOptions" type="Panel" parent="."]
+[node name="PanelOptions" type="Panel" parent="." unique_id=2071580816]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -101,7 +102,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("13_45pmk")
 
-[node name="ImportSummary" type="RichTextLabel" parent="PanelOptions"]
+[node name="ImportSummary" type="RichTextLabel" parent="PanelOptions" unique_id=1390112807]
 layout_mode = 0
 offset_left = 307.0
 offset_top = 24.0
@@ -110,7 +111,7 @@ offset_bottom = 435.0
 theme_override_fonts/normal_font = ExtResource("4_gx77l")
 bbcode_enabled = true
 
-[node name="BtnDestination" type="OptionButton" parent="PanelOptions"]
+[node name="BtnDestination" type="OptionButton" parent="PanelOptions" unique_id=1228209785]
 layout_mode = 0
 offset_left = 10.0
 offset_top = 46.0
@@ -126,7 +127,7 @@ popup/item_1/id = 1
 popup/item_2/text = "A brand new sheet"
 popup/item_2/id = 2
 
-[node name="Label" type="Label" parent="PanelOptions/BtnDestination"]
+[node name="Label" type="Label" parent="PanelOptions/BtnDestination" unique_id=824918795]
 layout_mode = 0
 offset_top = -24.0
 offset_right = 169.0
@@ -134,32 +135,32 @@ offset_bottom = -7.0
 theme_override_font_sizes/font_size = 12
 text = "Import sequences into:"
 
-[node name="LabelSheets" type="RichTextLabel" parent="PanelOptions/BtnDestination"]
+[node name="LabelSheets" type="RichTextLabel" parent="PanelOptions/BtnDestination" unique_id=1763031172]
 layout_mode = 0
 offset_top = 36.0
 offset_right = 284.0
 offset_bottom = 199.0
+theme_override_font_sizes/normal_font_size = 10
+theme_override_font_sizes/bold_font_size = 10
 theme_override_font_sizes/bold_italics_font_size = 10
 theme_override_font_sizes/italics_font_size = 10
 theme_override_font_sizes/mono_font_size = 10
-theme_override_font_sizes/normal_font_size = 10
-theme_override_font_sizes/bold_font_size = 10
 bbcode_enabled = true
 text = "Destination sheets from the imported data will be respected. The following sheets will be affected:"
 
-[node name="BtnImport" type="Button" parent="PanelOptions"]
+[node name="BtnImport" type="Button" parent="PanelOptions" unique_id=1539743206]
 layout_mode = 1
 offset_left = 21.0
 offset_top = 398.0
 offset_right = 221.0
 offset_bottom = 425.0
 focus_mode = 0
-theme_override_styles/focus = ExtResource("8_0k7gi")
-theme_override_styles/hover = ExtResource("8_0k7gi")
 theme_override_styles/normal = ExtResource("8_0k7gi")
+theme_override_styles/hover = ExtResource("8_0k7gi")
+theme_override_styles/focus = ExtResource("8_0k7gi")
 text = "Import"
 
-[node name="BtnBack" type="Button" parent="PanelOptions"]
+[node name="BtnBack" type="Button" parent="PanelOptions" unique_id=1657144580]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -173,13 +174,13 @@ offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 0
 focus_mode = 0
-theme_override_styles/focus = ExtResource("8_0k7gi")
-theme_override_styles/hover = ExtResource("8_0k7gi")
 theme_override_styles/normal = ExtResource("8_0k7gi")
+theme_override_styles/hover = ExtResource("8_0k7gi")
+theme_override_styles/focus = ExtResource("8_0k7gi")
 text = "Back"
 
-[node name="LabelLocales" type="Label" parent="PanelOptions"]
-layout_mode = 2
+[node name="LabelLocales" type="Label" parent="PanelOptions" unique_id=2060244032]
+layout_mode = 0
 offset_left = 10.0
 offset_top = 250.0
 offset_right = 144.0
@@ -187,21 +188,21 @@ offset_bottom = 267.0
 theme_override_font_sizes/font_size = 12
 text = "Locales to import:"
 
-[node name="LocaleListScroll" type="ScrollContainer" parent="PanelOptions"]
+[node name="LocaleListScroll" type="ScrollContainer" parent="PanelOptions" unique_id=2059028672]
 layout_mode = 0
 offset_left = 10.0
 offset_top = 274.0
 offset_right = 294.0
 offset_bottom = 382.0
 
-[node name="LocaleList" type="VBoxContainer" parent="PanelOptions/LocaleListScroll"]
+[node name="LocaleList" type="VBoxContainer" parent="PanelOptions/LocaleListScroll" unique_id=1925719044]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CheckBoxLocale" parent="PanelOptions/LocaleListScroll/LocaleList" instance=ExtResource("5_ll683")]
+[node name="CheckBoxLocale" parent="PanelOptions/LocaleListScroll/LocaleList" unique_id=877364596 instance=ExtResource("5_ll683")]
 layout_mode = 2
 
-[node name="BtnClose" type="Button" parent="."]
+[node name="BtnClose" type="Button" parent="." unique_id=1660149528]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -214,9 +215,9 @@ offset_bottom = -5.0
 grow_horizontal = 0
 grow_vertical = 0
 focus_mode = 0
-theme_override_styles/focus = ExtResource("8_0k7gi")
-theme_override_styles/hover = ExtResource("8_0k7gi")
 theme_override_styles/normal = ExtResource("8_0k7gi")
+theme_override_styles/hover = ExtResource("8_0k7gi")
+theme_override_styles/focus = ExtResource("8_0k7gi")
 text = "Close"
 
 [connection signal="item_selected" from="PanelInput/BtnImporter" to="." method="_on_btn_importer_item_selected"]

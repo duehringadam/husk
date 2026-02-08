@@ -1,12 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://difhfxods7ra3"]
+[gd_scene format=3 uid="uid://difhfxods7ra3"]
 
 [ext_resource type="Script" uid="uid://bokaxoyjm2ddg" path="res://addons/madtalk/components/MainEditor_DialogExport.gd" id="1_0m3dk"]
 [ext_resource type="StyleBox" path="res://addons/madtalk/components/resources/PanelStyle.tres" id="1_gyveq"]
 [ext_resource type="StyleBox" path="res://addons/madtalk/components/resources/ButtonStyle.tres" id="2_0m3dk"]
 [ext_resource type="PackedScene" uid="uid://c1a8yn1guaowt" path="res://addons/madtalk/components/Export_SheetListItem.tscn" id="4_4xg1u"]
 
-[node name="DialogExport" type="Window"]
+[node name="DialogExport" type="Window" unique_id=1162818687]
 auto_translate_mode = 1
+oversampling_override = 1.0
 title = "Export Dialog Sheet"
 position = Vector2i(0, 36)
 size = Vector2i(700, 500)
@@ -15,7 +16,7 @@ exclusive = true
 popup_window = true
 script = ExtResource("1_0m3dk")
 
-[node name="PanelOptions" type="Panel" parent="."]
+[node name="PanelOptions" type="Panel" parent="." unique_id=1710620849]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -23,7 +24,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("1_gyveq")
 
-[node name="BottomBar" type="Control" parent="PanelOptions"]
+[node name="BottomBar" type="Control" parent="PanelOptions" unique_id=1112796750]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -34,7 +35,7 @@ offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="BtnClose" type="Button" parent="PanelOptions/BottomBar"]
+[node name="BtnClose" type="Button" parent="PanelOptions/BottomBar" unique_id=445342704]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -48,19 +49,19 @@ offset_bottom = 13.5
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
-theme_override_styles/focus = ExtResource("2_0m3dk")
-theme_override_styles/hover = ExtResource("2_0m3dk")
 theme_override_styles/normal = ExtResource("2_0m3dk")
+theme_override_styles/hover = ExtResource("2_0m3dk")
+theme_override_styles/focus = ExtResource("2_0m3dk")
 text = "Close"
 
-[node name="BtnExporter" type="OptionButton" parent="PanelOptions"]
+[node name="BtnExporter" type="OptionButton" parent="PanelOptions" unique_id=1489938755]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 32.0
 offset_right = 276.0
 offset_bottom = 52.0
 
-[node name="Label" type="Label" parent="PanelOptions/BtnExporter"]
+[node name="Label" type="Label" parent="PanelOptions/BtnExporter" unique_id=1903236552]
 layout_mode = 0
 offset_top = -22.0
 offset_right = 87.0
@@ -68,7 +69,7 @@ offset_bottom = -5.0
 theme_override_font_sizes/font_size = 12
 text = "Export Format:"
 
-[node name="CaptionSheets" type="Label" parent="PanelOptions"]
+[node name="CaptionSheets" type="Label" parent="PanelOptions" unique_id=585624027]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 68.0
@@ -77,7 +78,7 @@ offset_bottom = 85.0
 theme_override_font_sizes/font_size = 12
 text = "Sheets to export:"
 
-[node name="BtnManageSheets" type="Button" parent="PanelOptions/CaptionSheets"]
+[node name="BtnManageSheets" type="Button" parent="PanelOptions/CaptionSheets" unique_id=1794340684]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -90,26 +91,26 @@ offset_bottom = 15.5
 grow_horizontal = 0
 grow_vertical = 2
 focus_mode = 0
-theme_override_styles/focus = ExtResource("2_0m3dk")
-theme_override_styles/hover = ExtResource("2_0m3dk")
 theme_override_styles/normal = ExtResource("2_0m3dk")
+theme_override_styles/hover = ExtResource("2_0m3dk")
+theme_override_styles/focus = ExtResource("2_0m3dk")
 text = "..."
 
-[node name="LabelSheets" type="RichTextLabel" parent="PanelOptions"]
+[node name="LabelSheets" type="RichTextLabel" parent="PanelOptions" unique_id=1892328430]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 90.0
 offset_right = 276.0
 offset_bottom = 212.0
+theme_override_font_sizes/normal_font_size = 12
+theme_override_font_sizes/bold_font_size = 12
 theme_override_font_sizes/bold_italics_font_size = 12
 theme_override_font_sizes/italics_font_size = 12
 theme_override_font_sizes/mono_font_size = 12
-theme_override_font_sizes/normal_font_size = 12
-theme_override_font_sizes/bold_font_size = 12
 bbcode_enabled = true
 text = "sheet name"
 
-[node name="ExporterDesc" type="RichTextLabel" parent="PanelOptions"]
+[node name="ExporterDesc" type="RichTextLabel" parent="PanelOptions" unique_id=229931253]
 layout_mode = 0
 offset_left = 308.0
 offset_top = 24.0
@@ -117,7 +118,7 @@ offset_right = 687.0
 offset_bottom = 435.0
 bbcode_enabled = true
 
-[node name="BtnForceLocales" type="CheckButton" parent="PanelOptions"]
+[node name="BtnForceLocales" type="CheckButton" parent="PanelOptions" unique_id=1857326032]
 layout_mode = 0
 offset_left = 21.0
 offset_top = 232.0
@@ -126,7 +127,7 @@ offset_bottom = 257.0
 theme_override_font_sizes/font_size = 12
 text = "Force Locales"
 
-[node name="LocalesPanel" type="Control" parent="PanelOptions"]
+[node name="LocalesPanel" type="Control" parent="PanelOptions" unique_id=1074123330]
 visible = false
 anchors_preset = 0
 offset_left = 21.0
@@ -134,7 +135,7 @@ offset_top = 263.0
 offset_right = 281.0
 offset_bottom = 455.0
 
-[node name="Label" type="Label" parent="PanelOptions/LocalesPanel"]
+[node name="Label" type="Label" parent="PanelOptions/LocalesPanel" unique_id=1759087415]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -145,7 +146,7 @@ theme_override_font_sizes/font_size = 10
 text = "Messages will include only and exactly the locales listed below. If there is no content for them yet, a blank line will be included. (This is meant to be sent to translators, so they fill the blank items.)"
 autowrap_mode = 3
 
-[node name="Label2" type="Label" parent="PanelOptions/LocalesPanel"]
+[node name="Label2" type="Label" parent="PanelOptions/LocalesPanel" unique_id=374256317]
 layout_mode = 1
 offset_left = 8.0
 offset_top = 83.0
@@ -156,7 +157,7 @@ theme_override_font_sizes/font_size = 10
 text = "Enter one locale per line."
 horizontal_alignment = 1
 
-[node name="LocalesEdit" type="TextEdit" parent="PanelOptions/LocalesPanel"]
+[node name="LocalesEdit" type="TextEdit" parent="PanelOptions/LocalesPanel" unique_id=1965374809]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 103.0
@@ -168,19 +169,19 @@ placeholder_text = "es
 pt
 jp"
 
-[node name="BtnExport" type="Button" parent="PanelOptions"]
+[node name="BtnExport" type="Button" parent="PanelOptions" unique_id=915614453]
 layout_mode = 1
 offset_left = 485.0
 offset_top = 466.0
 offset_right = 685.0
 offset_bottom = 493.0
 focus_mode = 0
-theme_override_styles/focus = ExtResource("2_0m3dk")
-theme_override_styles/hover = ExtResource("2_0m3dk")
 theme_override_styles/normal = ExtResource("2_0m3dk")
+theme_override_styles/hover = ExtResource("2_0m3dk")
+theme_override_styles/focus = ExtResource("2_0m3dk")
 text = "Export"
 
-[node name="PanelSheets" type="Panel" parent="."]
+[node name="PanelSheets" type="Panel" parent="." unique_id=1281442549]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -189,7 +190,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("1_gyveq")
 
-[node name="BottomBar" type="Control" parent="PanelSheets"]
+[node name="BottomBar" type="Control" parent="PanelSheets" unique_id=164517109]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -200,7 +201,7 @@ offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="BtnOk" type="Button" parent="PanelSheets/BottomBar"]
+[node name="BtnOk" type="Button" parent="PanelSheets/BottomBar" unique_id=689446241]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -214,12 +215,12 @@ offset_bottom = 13.5
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
-theme_override_styles/focus = ExtResource("2_0m3dk")
-theme_override_styles/hover = ExtResource("2_0m3dk")
 theme_override_styles/normal = ExtResource("2_0m3dk")
+theme_override_styles/hover = ExtResource("2_0m3dk")
+theme_override_styles/focus = ExtResource("2_0m3dk")
 text = "OK"
 
-[node name="Label" type="Label" parent="PanelSheets"]
+[node name="Label" type="Label" parent="PanelSheets" unique_id=349934276]
 layout_mode = 0
 offset_left = 20.0
 offset_top = 12.0
@@ -227,21 +228,21 @@ offset_right = 152.0
 offset_bottom = 35.0
 text = "Sheets to export:"
 
-[node name="SheetScroll" type="ScrollContainer" parent="PanelSheets"]
+[node name="SheetScroll" type="ScrollContainer" parent="PanelSheets" unique_id=306406285]
 layout_mode = 0
 offset_left = 23.0
 offset_top = 53.0
 offset_right = 678.0
 offset_bottom = 443.0
 
-[node name="VBox" type="VBoxContainer" parent="PanelSheets/SheetScroll"]
+[node name="VBox" type="VBoxContainer" parent="PanelSheets/SheetScroll" unique_id=2044382530]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ExportSheetListItem" parent="PanelSheets/SheetScroll/VBox" instance=ExtResource("4_4xg1u")]
+[node name="ExportSheetListItem" parent="PanelSheets/SheetScroll/VBox" unique_id=1491098268 instance=ExtResource("4_4xg1u")]
 layout_mode = 2
 
-[node name="PanelOutput" type="Panel" parent="."]
+[node name="PanelOutput" type="Panel" parent="." unique_id=1483045629]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -250,7 +251,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("1_gyveq")
 
-[node name="BottomBar" type="Control" parent="PanelOutput"]
+[node name="BottomBar" type="Control" parent="PanelOutput" unique_id=596337132]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -261,7 +262,7 @@ offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="BtnBack" type="Button" parent="PanelOutput/BottomBar"]
+[node name="BtnBack" type="Button" parent="PanelOutput/BottomBar" unique_id=1803676307]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -275,12 +276,12 @@ offset_bottom = 13.5
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
-theme_override_styles/focus = ExtResource("2_0m3dk")
-theme_override_styles/hover = ExtResource("2_0m3dk")
 theme_override_styles/normal = ExtResource("2_0m3dk")
+theme_override_styles/hover = ExtResource("2_0m3dk")
+theme_override_styles/focus = ExtResource("2_0m3dk")
 text = "Back"
 
-[node name="OutputEdit" type="TextEdit" parent="PanelOutput"]
+[node name="OutputEdit" type="TextEdit" parent="PanelOutput" unique_id=409780225]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -298,7 +299,7 @@ middle_mouse_paste_enabled = false
 draw_tabs = true
 draw_spaces = true
 
-[node name="Label" type="Label" parent="PanelOutput"]
+[node name="Label" type="Label" parent="PanelOutput" unique_id=356539904]
 layout_mode = 0
 offset_left = 4.0
 offset_top = 4.0

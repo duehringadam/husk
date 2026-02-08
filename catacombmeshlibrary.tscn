@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=4 uid="uid://h5x0vx500h8a"]
+[gd_scene format=4 uid="uid://h5x0vx500h8a"]
 
 [ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="1_2ok0e"]
 [ext_resource type="ArrayMesh" uid="uid://j85kke572h2y" path="res://scenes/Assets - PS1 Dungeon Pack/meshes/Cube.res" id="2_8s45g"]
@@ -970,194 +970,175 @@ shadow_mesh = SubResource("ArrayMesh_vl182")
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_w5vxh"]
 data = PackedVector3Array(0, 0, 0.03, 0, 0.0025, 0.03, 0.03, 0.0025, 0.03, 0.03, 0.0025, 0.03, 0.03, 0, 0.03, 0, 0, 0.03, 0.03, 0.005, 0.03, 0.03, 0.0025, 0.03, 0, 0.0025, 0.03, 0, 0.0025, 0.03, 0, 0.005, 0.03, 0.03, 0.005, 0.03, 0, 0.005, 0.03, 0, 0.0025, 0.03, 0, 0.0025, 0, 0, 0.0025, 0, 0, 0.005, 0, 0, 0.005, 0.03, 0, 0, 0, 0, 0.0025, 0, 0, 0.0025, 0.03, 0, 0.0025, 0.03, 0, 0, 0.03, 0, 0, 0, 0.03, 0, 0.03, 0.03, 0.0025, 0.03, 0.03, 0.0025, 0, 0.03, 0.0025, 0, 0.03, 0, 0, 0.03, 0, 0.03, 0.03, 0.005, 0, 0.03, 0.0025, 0, 0.03, 0.0025, 0.03, 0.03, 0.0025, 0.03, 0.03, 0.005, 0.03, 0.03, 0.005, 0, 0.0199, 0.0025, 0.0199, 0.0199, 0.005, 0.0199, 0.0101, 0.005, 0.0199, 0.0101, 0.005, 0.0199, 0.0101, 0.0025, 0.0199, 0.0199, 0.0025, 0.0199, 0.0199, 0, 0.0199, 0.0199, 0.0025, 0.0199, 0.0101, 0.0025, 0.0199, 0.0101, 0.0025, 0.0199, 0.0101, 0, 0.0199, 0.0199, 0, 0.0199, 0.03, 0.005, 0, 0.0199, 0.005, 0.0101, 0.0101, 0.005, 0.0101, 0.0101, 0.005, 0.0101, 0, 0.005, 0, 0.03, 0.005, 0, 0.0199, 0.005, 0.0101, 0.03, 0.005, 0, 0.03, 0.005, 0.03, 0, 0.005, 0.03, 0, 0.005, 0, 0.0101, 0.005, 0.0101, 0.03, 0.005, 0.03, 0.0199, 0.005, 0.0199, 0.0199, 0.005, 0.0101, 0.0101, 0.005, 0.0101, 0.0101, 0.005, 0.0199, 0, 0.005, 0.03, 0.0101, 0.005, 0.0199, 0.0199, 0.005, 0.0199, 0.03, 0.005, 0.03, 0.03, 0.005, 0.03, 0, 0.005, 0.03, 0.0101, 0.005, 0.0199, 0.0199, 0.005, 0.0101, 0.0199, 0.0025, 0.0101, 0.0101, 0.0025, 0.0101, 0.0101, 0.0025, 0.0101, 0.0101, 0.005, 0.0101, 0.0199, 0.005, 0.0101, 0.0101, 0.0025, 0.0101, 0.0199, 0.0025, 0.0101, 0.0199, 0, 0.0101, 0.0199, 0, 0.0101, 0.0101, 0, 0.0101, 0.0101, 0.0025, 0.0101, 0, 0, 0.03, 0.0101, 0, 0.0199, 0.0101, 0, 0.0101, 0.0101, 0, 0.0101, 0, 0, 0, 0, 0, 0.03, 0.0101, 0, 0.0199, 0, 0, 0.03, 0.03, 0, 0.03, 0.03, 0, 0, 0, 0, 0, 0.0101, 0, 0.0101, 0.0101, 0, 0.0101, 0.0199, 0, 0.0101, 0.03, 0, 0, 0.03, 0, 0.03, 0.03, 0, 0, 0.0199, 0, 0.0101, 0.0199, 0, 0.0101, 0.0199, 0, 0.0199, 0.03, 0, 0.03, 0.03, 0, 0.03, 0.0199, 0, 0.0199, 0.0101, 0, 0.0199, 0.0101, 0.0025, 0.0101, 0.0101, 0, 0.0101, 0.0101, 0, 0.0199, 0.0101, 0, 0.0199, 0.0101, 0.0025, 0.0199, 0.0101, 0.0025, 0.0101, 0.0101, 0.005, 0.0101, 0.0101, 0.0025, 0.0101, 0.0101, 0.0025, 0.0199, 0.0101, 0.0025, 0.0199, 0.0101, 0.005, 0.0199, 0.0101, 0.005, 0.0101, 0.0199, 0.005, 0.0199, 0.0199, 0.0025, 0.0199, 0.0199, 0.0025, 0.0101, 0.0199, 0.0025, 0.0101, 0.0199, 0.005, 0.0101, 0.0199, 0.005, 0.0199, 0.0199, 0.0025, 0.0199, 0.0199, 0, 0.0199, 0.0199, 0, 0.0101, 0.0199, 0, 0.0101, 0.0199, 0.0025, 0.0101, 0.0199, 0.0025, 0.0199, 0.03, 0, 0, 0.03, 0.0025, 0, 0, 0.0025, 0, 0, 0.0025, 0, 0, 0, 0, 0.03, 0, 0, 0, 0.005, 0, 0, 0.0025, 0, 0.03, 0.0025, 0, 0.03, 0.0025, 0, 0.03, 0.005, 0, 0, 0.005, 0, 0.0176, 0.0025, 0.0201, 0.018, 0.0021, 0.0201, 0.018, 0.0021, 0.01, 0.018, 0.0021, 0.01, 0.0176, 0.0025, 0.01, 0.0176, 0.0025, 0.0201, 0.0184, 0.0025, 0.01, 0.018, 0.0021, 0.01, 0.018, 0.0021, 0.0201, 0.0176, 0.0025, 0.0201, 0.0176, 0.0025, 0.01, 0.018, 0.0029, 0.01, 0.018, 0.0021, 0.0201, 0.0184, 0.0025, 0.0201, 0.0184, 0.0025, 0.01, 0.018, 0.0029, 0.01, 0.018, 0.0029, 0.0201, 0.0176, 0.0025, 0.0201, 0.0184, 0.0025, 0.01, 0.0184, 0.0025, 0.0201, 0.018, 0.0029, 0.0201, 0.018, 0.0029, 0.0201, 0.018, 0.0029, 0.01, 0.0184, 0.0025, 0.01, 0.015, 0.0021, 0.0201, 0.0154, 0.0025, 0.0201, 0.0154, 0.0025, 0.01, 0.0154, 0.0025, 0.01, 0.0154, 0.0025, 0.0201, 0.015, 0.0029, 0.0201, 0.0154, 0.0025, 0.01, 0.015, 0.0021, 0.01, 0.015, 0.0021, 0.0201, 0.015, 0.0029, 0.0201, 0.015, 0.0029, 0.01, 0.0154, 0.0025, 0.01, 0.015, 0.0021, 0.0201, 0.015, 0.0021, 0.01, 0.0146, 0.0025, 0.01, 0.0146, 0.0025, 0.01, 0.015, 0.0029, 0.01, 0.015, 0.0029, 0.0201, 0.0146, 0.0025, 0.01, 0.0146, 0.0025, 0.0201, 0.015, 0.0021, 0.0201, 0.015, 0.0029, 0.0201, 0.0146, 0.0025, 0.0201, 0.0146, 0.0025, 0.01, 0.0124, 0.0025, 0.0201, 0.0124, 0.0025, 0.01, 0.012, 0.0021, 0.01, 0.012, 0.0029, 0.01, 0.0124, 0.0025, 0.01, 0.0124, 0.0025, 0.0201, 0.012, 0.0021, 0.01, 0.012, 0.0021, 0.0201, 0.0124, 0.0025, 0.0201, 0.0124, 0.0025, 0.0201, 0.012, 0.0029, 0.0201, 0.012, 0.0029, 0.01, 0.012, 0.0021, 0.0201, 0.012, 0.0021, 0.01, 0.0116, 0.0025, 0.01, 0.0116, 0.0025, 0.01, 0.012, 0.0029, 0.01, 0.012, 0.0029, 0.0201, 0.0116, 0.0025, 0.01, 0.0116, 0.0025, 0.0201, 0.012, 0.0021, 0.0201, 0.012, 0.0029, 0.0201, 0.0116, 0.0025, 0.0201, 0.0116, 0.0025, 0.01, 0.0201, 0.0025, 0.0124, 0.0201, 0.0022, 0.012, 0.01, 0.0022, 0.012, 0.01, 0.0022, 0.012, 0.0201, 0.0022, 0.012, 0.02, 0.0025, 0.0116, 0.01, 0.0022, 0.012, 0.01, 0.0025, 0.0124, 0.0201, 0.0025, 0.0124, 0.02, 0.0025, 0.0116, 0.01, 0.0025, 0.0116, 0.01, 0.0022, 0.012, 0.0201, 0.0025, 0.0124, 0.01, 0.0025, 0.0124, 0.01, 0.0028, 0.012, 0.01, 0.0028, 0.012, 0.01, 0.0025, 0.0116, 0.02, 0.0025, 0.0116, 0.01, 0.0028, 0.012, 0.0201, 0.0028, 0.012, 0.0201, 0.0025, 0.0124, 0.02, 0.0025, 0.0116, 0.0201, 0.0028, 0.012, 0.01, 0.0028, 0.012, 0.0201, 0.0022, 0.015, 0.0201, 0.0025, 0.0146, 0.01, 0.0025, 0.0146, 0.01, 0.0025, 0.0146, 0.0201, 0.0025, 0.0146, 0.0201, 0.0028, 0.015, 0.01, 0.0025, 0.0146, 0.01, 0.0022, 0.015, 0.0201, 0.0022, 0.015, 0.0201, 0.0028, 0.015, 0.01, 0.0028, 0.015, 0.01, 0.0025, 0.0146, 0.0201, 0.0022, 0.015, 0.01, 0.0022, 0.015, 0.01, 0.0025, 0.0154, 0.01, 0.0025, 0.0154, 0.01, 0.0028, 0.015, 0.0201, 0.0028, 0.015, 0.01, 0.0025, 0.0154, 0.0201, 0.0025, 0.0154, 0.0201, 0.0022, 0.015, 0.0201, 0.0028, 0.015, 0.0201, 0.0025, 0.0154, 0.01, 0.0025, 0.0154, 0.02, 0.0022, 0.018, 0.0201, 0.0025, 0.0176, 0.01, 0.0025, 0.0176, 0.01, 0.0025, 0.0176, 0.0201, 0.0025, 0.0176, 0.02, 0.0028, 0.018, 0.01, 0.0025, 0.0176, 0.01, 0.0022, 0.018, 0.02, 0.0022, 0.018, 0.02, 0.0028, 0.018, 0.01, 0.0028, 0.018, 0.01, 0.0025, 0.0176, 0.02, 0.0022, 0.018, 0.01, 0.0022, 0.018, 0.01, 0.0025, 0.0184, 0.01, 0.0025, 0.0184, 0.01, 0.0028, 0.018, 0.02, 0.0028, 0.018, 0.01, 0.0025, 0.0184, 0.0201, 0.0025, 0.0184, 0.02, 0.0022, 0.018, 0.02, 0.0028, 0.018, 0.0201, 0.0025, 0.0184, 0.01, 0.0025, 0.0184)
 
-[node name="catacombmeshlibrary" type="Node3D"]
+[node name="catacombmeshlibrary" type="Node3D" unique_id=931604165]
 
-[node name="ColumnBase" type="MeshInstance3D" parent="."]
+[node name="ColumnBase" type="MeshInstance3D" parent="." unique_id=1504994742]
 transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, -15.6956, 0, 0)
 mesh = SubResource("ArrayMesh_xh5os")
-skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ColumnBase"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ColumnBase" unique_id=986582798]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ColumnBase/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ColumnBase/StaticBody3D" unique_id=304494260]
 shape = SubResource("ConcavePolygonShape3D_dcmh0")
 
-[node name="ColumnBrokenHigh" type="MeshInstance3D" parent="."]
+[node name="ColumnBrokenHigh" type="MeshInstance3D" parent="." unique_id=1690105909]
 transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, -13.9147, 0, 0)
 mesh = SubResource("ArrayMesh_bfp6x")
-skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ColumnBrokenHigh"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ColumnBrokenHigh" unique_id=1790614389]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ColumnBrokenHigh/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ColumnBrokenHigh/StaticBody3D" unique_id=1308517908]
 shape = SubResource("ConcavePolygonShape3D_schm2")
 
-[node name="ColumnBrokenLow" type="MeshInstance3D" parent="."]
+[node name="ColumnBrokenLow" type="MeshInstance3D" parent="." unique_id=1534970586]
 transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, -12.2189, 0, 0)
 mesh = SubResource("ArrayMesh_c2fbx")
-skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ColumnBrokenLow"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ColumnBrokenLow" unique_id=1499149041]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ColumnBrokenLow/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ColumnBrokenLow/StaticBody3D" unique_id=289338365]
 shape = SubResource("ConcavePolygonShape3D_wn73s")
 
-[node name="ColumnRegular" type="MeshInstance3D" parent="."]
+[node name="ColumnRegular" type="MeshInstance3D" parent="." unique_id=1783562239]
 transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, -10.6847, 0, 0)
 mesh = SubResource("ArrayMesh_ffn23")
-skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ColumnRegular"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ColumnRegular" unique_id=1447830811]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ColumnRegular/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ColumnRegular/StaticBody3D" unique_id=793079963]
 shape = SubResource("ConcavePolygonShape3D_mx6wq")
 
-[node name="ColumnHalf" type="MeshInstance3D" parent="."]
+[node name="ColumnHalf" type="MeshInstance3D" parent="." unique_id=481789650]
 transform = Transform3D(50, 0, 0, 0, -5.96046e-06, 50, 0, -50, -5.96046e-06, -9.0729, 0, 0)
 mesh = SubResource("ArrayMesh_k7suv")
-skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ColumnHalf"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ColumnHalf" unique_id=180567996]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ColumnHalf/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ColumnHalf/StaticBody3D" unique_id=400879159]
 shape = SubResource("ConcavePolygonShape3D_y0qh0")
 
-[node name="ColumnPillarBroken" type="MeshInstance3D" parent="."]
+[node name="ColumnPillarBroken" type="MeshInstance3D" parent="." unique_id=214657308]
 transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, -7.67751, 0, 0)
 mesh = SubResource("ArrayMesh_qyeph")
-skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ColumnPillarBroken"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ColumnPillarBroken" unique_id=922378057]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ColumnPillarBroken/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ColumnPillarBroken/StaticBody3D" unique_id=717499647]
 shape = SubResource("ConcavePolygonShape3D_3eegt")
 
-[node name="Door Metal" type="MeshInstance3D" parent="."]
+[node name="Door Metal" type="MeshInstance3D" parent="." unique_id=1865715313]
 transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, -16.0821, 0, 2.66057)
 mesh = SubResource("ArrayMesh_es8cu")
-skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Door Metal"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Door Metal" unique_id=548071741]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Door Metal/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Door Metal/StaticBody3D" unique_id=1110242341]
 shape = SubResource("ConcavePolygonShape3D_l85qq")
 
-[node name="Door Wood" type="MeshInstance3D" parent="."]
+[node name="Door Wood" type="MeshInstance3D" parent="." unique_id=639561731]
 transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 3.43066)
 mesh = SubResource("ArrayMesh_ipids")
-skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Door Wood"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Door Wood" unique_id=1249991458]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Door Wood/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Door Wood/StaticBody3D" unique_id=503717936]
 shape = SubResource("ConcavePolygonShape3D_kn3y6")
 
-[node name="GateMetalBars" type="MeshInstance3D" parent="."]
+[node name="GateMetalBars" type="MeshInstance3D" parent="." unique_id=673076772]
 transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 3.91448)
 mesh = SubResource("ArrayMesh_13ayo")
-skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="GateMetalBars"]
+[node name="StaticBody3D" type="StaticBody3D" parent="GateMetalBars" unique_id=29386950]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GateMetalBars/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GateMetalBars/StaticBody3D" unique_id=1868643780]
 shape = SubResource("ConcavePolygonShape3D_cgv8m")
 
-[node name="Gate  Metal Full" type="MeshInstance3D" parent="."]
+[node name="Gate  Metal Full" type="MeshInstance3D" parent="." unique_id=1870956670]
 transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 4.28644)
 mesh = SubResource("ArrayMesh_1fsig")
-skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Gate  Metal Full"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Gate  Metal Full" unique_id=126934913]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Gate  Metal Full/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Gate  Metal Full/StaticBody3D" unique_id=155646808]
 shape = SubResource("ConcavePolygonShape3D_wgkee")
 
-[node name="Gate  Metal Half" type="MeshInstance3D" parent="."]
+[node name="Gate  Metal Half" type="MeshInstance3D" parent="." unique_id=913925230]
 transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 4.74545)
 mesh = SubResource("ArrayMesh_qxsc3")
-skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Gate  Metal Half"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Gate  Metal Half" unique_id=2064878476]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Gate  Metal Half/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Gate  Metal Half/StaticBody3D" unique_id=446026045]
 shape = SubResource("ConcavePolygonShape3D_o8b3v")
 
-[node name="Wall Arch" type="MeshInstance3D" parent="."]
+[node name="Wall Arch" type="MeshInstance3D" parent="." unique_id=1881184096]
 transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 5.46024)
 mesh = SubResource("ArrayMesh_dbygh")
-skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Wall Arch"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall Arch" unique_id=1696124188]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall Arch/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall Arch/StaticBody3D" unique_id=1588769222]
 shape = SubResource("ConcavePolygonShape3D_7si4k")
 
-[node name="Wall Door " type="MeshInstance3D" parent="."]
+[node name="Wall Door " type="MeshInstance3D" parent="." unique_id=895188180]
 transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 0.942956)
 mesh = SubResource("ArrayMesh_h3fea")
-skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Wall Door "]
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall Door " unique_id=287469770]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall Door /StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall Door /StaticBody3D" unique_id=32338821]
 shape = SubResource("ConcavePolygonShape3D_bl4po")
 
-[node name="Wall Tile Broken" type="MeshInstance3D" parent="."]
+[node name="Wall Tile Broken" type="MeshInstance3D" parent="." unique_id=325032113]
 transform = Transform3D(0, -100, -2.98023e-06, -2.98023e-06, 0, 100, -100, 2.98023e-06, 0, 6.47126, 0, 0)
 mesh = ExtResource("2_8s45g")
-skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Wall Tile Broken"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall Tile Broken" unique_id=1008114128]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall Tile Broken/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall Tile Broken/StaticBody3D" unique_id=421307880]
 shape = SubResource("ConcavePolygonShape3D_s8u5g")
 
-[node name="Floor_Wall_Ceiling_Tile2" type="MeshInstance3D" parent="."]
+[node name="Floor_Wall_Ceiling_Tile2" type="MeshInstance3D" parent="." unique_id=897616404]
 transform = Transform3D(150, 0, 0, 0, -1.78814e-05, 150, 0, -150, -1.78814e-05, 1.86584, 0, 5.93403)
 mesh = ExtResource("2_id08b")
-skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Floor_Wall_Ceiling_Tile2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor_Wall_Ceiling_Tile2" unique_id=1245634240]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor_Wall_Ceiling_Tile2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor_Wall_Ceiling_Tile2/StaticBody3D" unique_id=1530420270]
 shape = SubResource("ConcavePolygonShape3D_h4ovf")
 
-[node name="Stairs2" type="MeshInstance3D" parent="."]
+[node name="Stairs2" type="MeshInstance3D" parent="." unique_id=139102680]
 transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 6.4655, 0, 5.61668)
 mesh = ExtResource("3_8rynr")
-skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Stairs2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Stairs2" unique_id=1307003441]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Stairs2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stairs2/StaticBody3D" unique_id=1371961834]
 shape = SubResource("ConcavePolygonShape3D_gf7xs")
 
-[node name="Wall_Arch2" type="MeshInstance3D" parent="."]
+[node name="Wall_Arch2" type="MeshInstance3D" parent="." unique_id=179450839]
 transform = Transform3D(50, 0, 0, 0, -2.18557e-06, 50, 0, -50, -2.18557e-06, 7.01495, 0, 0)
 mesh = SubResource("ArrayMesh_204tl")
-skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Wall_Arch2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall_Arch2" unique_id=632729635]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_Arch2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_Arch2/StaticBody3D" unique_id=461693745]
 shape = SubResource("ConcavePolygonShape3D_kanjs")
 
-[node name="Wall_Window2" type="MeshInstance3D" parent="."]
+[node name="Wall_Window2" type="MeshInstance3D" parent="." unique_id=1170815849]
 transform = Transform3D(150, 0, 0, 0, -2.18557e-06, 150, 0, -50, -6.55671e-06, 3.50145, 0, 1.39726)
 mesh = SubResource("ArrayMesh_86hf8")
-skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Wall_Window2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall_Window2" unique_id=1159658838]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_Window2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_Window2/StaticBody3D" unique_id=520769310]
 shape = SubResource("ConcavePolygonShape3D_nawvu")
 
-[node name="Wall_Window_Bars2" type="MeshInstance3D" parent="."]
+[node name="Wall_Window_Bars2" type="MeshInstance3D" parent="." unique_id=392692983]
 transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 6.9801, 4.76837e-07, 1.00626)
 mesh = SubResource("ArrayMesh_wf87c")
-skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Wall_Window_Bars2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall_Window_Bars2" unique_id=42414659]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_Window_Bars2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_Window_Bars2/StaticBody3D" unique_id=1065066160]
 shape = SubResource("ConcavePolygonShape3D_w5vxh")

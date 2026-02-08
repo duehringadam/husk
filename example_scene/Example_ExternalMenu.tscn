@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cd2wmgfnnp6qq"]
+[gd_scene format=3 uid="uid://cd2wmgfnnp6qq"]
 
 [ext_resource type="Script" uid="uid://c6av3xe4m2ujl" path="res://addons/madtalk/runtime/madtalk_runtime.gd" id="1_35wmf"]
 [ext_resource type="AudioStream" uid="uid://dr553b0ej26vk" path="res://example_scene/sfx/click.wav" id="4"]
@@ -94,24 +94,15 @@ func _on_ItemList_item_activated(index):
 
 [sub_resource type="FontFile" id="8"]
 fallbacks = Array[Font]([ExtResource("6")])
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
-
-[sub_resource type="FontFile" id="6"]
-fallbacks = Array[Font]([ExtResource("8")])
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
-
-[sub_resource type="FontFile" id="5"]
-fallbacks = Array[Font]([ExtResource("7")])
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -121,6 +112,15 @@ cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
 [sub_resource type="FontFile" id="7"]
 fallbacks = Array[Font]([ExtResource("9")])
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -128,7 +128,43 @@ cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
 cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
-[node name="ExternalMenu" type="Control"]
+[sub_resource type="FontFile" id="5"]
+fallbacks = Array[Font]([ExtResource("7")])
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+
+[sub_resource type="FontFile" id="6"]
+fallbacks = Array[Font]([ExtResource("8")])
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+
+[node name="ExternalMenu" type="Control" unique_id=1897273883]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -137,14 +173,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = SubResource("4")
 
-[node name="MadTalk" type="Node" parent="."]
+[node name="MadTalk" type="Node" parent="." unique_id=2086105182]
 script = ExtResource("1_35wmf")
 DialogMainControl = NodePath("../Dialog")
 DialogMessageBox = NodePath("../Dialog/DialogBox")
 DialogMessageLabel = NodePath("../Dialog/DialogBox/LabelMessage")
 KeyPressAudioStreamPlayer = NodePath("../Dialog/SFXClick")
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="." unique_id=253715136]
 layout_mode = 0
 offset_left = 17.0
 offset_top = 17.0
@@ -153,7 +189,7 @@ offset_bottom = 64.0
 focus_mode = 0
 text = "Click here to start"
 
-[node name="VendingMachine" type="Panel" parent="."]
+[node name="VendingMachine" type="Panel" parent="." unique_id=406219494]
 layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
@@ -164,14 +200,14 @@ offset_top = -262.0
 offset_right = 109.0
 offset_bottom = 71.0
 
-[node name="Label" type="Label" parent="VendingMachine"]
+[node name="Label" type="Label" parent="VendingMachine" unique_id=1275094092]
 layout_mode = 0
 offset_top = -31.0
 offset_right = 194.0
 offset_bottom = -5.0
 text = "Vending Machine"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VendingMachine"]
+[node name="ScrollContainer" type="ScrollContainer" parent="VendingMachine" unique_id=1623400806]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -179,7 +215,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ItemList" type="ItemList" parent="VendingMachine/ScrollContainer"]
+[node name="ItemList" type="ItemList" parent="VendingMachine/ScrollContainer" unique_id=232736859]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -192,13 +228,13 @@ fixed_column_width = 128
 icon_mode = 0
 fixed_icon_size = Vector2i(128, 64)
 
-[node name="Dialog" type="Control" parent="."]
+[node name="Dialog" type="Control" parent="." unique_id=151143967]
 anchors_preset = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 
-[node name="DialogBox" type="Panel" parent="Dialog"]
+[node name="DialogBox" type="Panel" parent="Dialog" unique_id=317228282]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -212,7 +248,7 @@ offset_bottom = -32.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="LabelMessage" type="RichTextLabel" parent="Dialog/DialogBox"]
+[node name="LabelMessage" type="RichTextLabel" parent="Dialog/DialogBox" unique_id=602384933]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -224,12 +260,12 @@ offset_bottom = -13.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/normal_font = SubResource("8")
-theme_override_fonts/italics_font = SubResource("6")
-theme_override_fonts/bold_italics_font = SubResource("5")
 theme_override_fonts/bold_font = SubResource("7")
+theme_override_fonts/bold_italics_font = SubResource("5")
+theme_override_fonts/italics_font = SubResource("6")
 bbcode_enabled = true
 
-[node name="SFXClick" type="AudioStreamPlayer" parent="Dialog"]
+[node name="SFXClick" type="AudioStreamPlayer" parent="Dialog" unique_id=1031164393]
 stream = ExtResource("4")
 volume_db = -6.0
 

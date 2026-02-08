@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ck1nxgrl5ivr5"]
+[gd_scene format=3 uid="uid://ck1nxgrl5ivr5"]
 
 [ext_resource type="PackedScene" uid="uid://cwmholk56pqsl" path="res://scenes/PSX_Dungeon/PSX_Dungeon/Models/Wall_Expanding.fbx" id="1_eqium"]
 [ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="2_m7ou7"]
@@ -18,8 +18,8 @@ shader_parameter/uv_scroll_speed = Vector2(0, 0)
 shader_parameter/cull_distance_override = 0.0
 shader_parameter/convert_vertex_colors = false
 
-[node name="Wall_Expanding" instance=ExtResource("1_eqium")]
+[node name="Wall_Expanding" unique_id=297224025 instance=ExtResource("1_eqium")]
 
-[node name="Cube_056" parent="." index="0"]
+[node name="Cube_056" parent="." index="0" unique_id=579856556]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 surface_material_override/0 = SubResource("ShaderMaterial_1ux81")

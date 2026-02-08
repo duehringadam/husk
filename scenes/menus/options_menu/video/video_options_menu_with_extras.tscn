@@ -1,13 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://b4krdau4xb4up"]
+[gd_scene format=3 uid="uid://b4krdau4xb4up"]
 
 [ext_resource type="PackedScene" uid="uid://b2numvphf2kau" path="res://addons/maaacks_menus_template/base/scenes/menus/options_menu/video/video_options_menu.tscn" id="1_uc77b"]
 [ext_resource type="Script" uid="uid://cvx2dn4o2j0by" path="res://scenes/menus/options_menu/video/video_options_menu.gd" id="2_6e0vx"]
 [ext_resource type="PackedScene" uid="uid://b6bl3n5mp3m1e" path="res://addons/maaacks_menus_template/base/scenes/menus/options_menu/option_control/list_option_control.tscn" id="3_3bal4"]
 
-[node name="Video" instance=ExtResource("1_uc77b")]
+[node name="Video" unique_id=1512552165 instance=ExtResource("1_uc77b")]
 script = ExtResource("2_6e0vx")
 
-[node name="AntiAliasingControl" parent="VBoxContainer" index="3" instance=ExtResource("3_3bal4")]
+[node name="AntiAliasingControl" parent="VBoxContainer" parent_id_path=PackedInt32Array(878392102) index="3" unique_id=739327299 instance=ExtResource("3_3bal4")]
 layout_mode = 2
 lock_titles = true
 option_values = [0, 1, 2, 3]
@@ -19,7 +19,7 @@ section = "VideoSettings"
 property_type = 2
 default_value = 0
 
-[node name="CameraShakeControl" parent="VBoxContainer" index="4" instance=ExtResource("3_3bal4")]
+[node name="CameraShakeControl" parent="VBoxContainer" parent_id_path=PackedInt32Array(878392102) index="4" unique_id=331478259 instance=ExtResource("3_3bal4")]
 visible = false
 layout_mode = 2
 lock_titles = true

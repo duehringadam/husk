@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://cieyrvkejc3w"]
+[gd_scene format=4 uid="uid://cieyrvkejc3w"]
 
 [ext_resource type="Script" uid="uid://bkjjobtn3b4bj" path="res://addons/game_pieces/pickable/pickable.gd" id="1_ckc2e"]
 [ext_resource type="Texture2D" uid="uid://cbymplq2p2q2e" path="res://scenes/npc/Ghoul Animated/Textures/T_GhoulB_1024.png" id="2_82b76"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://doc0okecalxnp" path="res://addons/interaction_system/interaction_context.gd" id="7_38hs1"]
 [ext_resource type="Script" uid="uid://dgjqgiw3yw42e" path="res://components/health_component.gd" id="8_clpk5"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="11_l3xqw"]
+[ext_resource type="PackedScene" uid="uid://dhws2ueoubwwx" path="res://components/bounding_box_component.tscn" id="12_5hsim"]
 [ext_resource type="Script" uid="uid://cp0p4yckxtvmw" path="res://addons/game_pieces/collision_sound/collision_sound_player.gd" id="12_btykd"]
 [ext_resource type="PackedScene" uid="uid://el0a5hjf7h2o" path="res://scenes/npc/Ghoul Animated/gore/pickable/limb_sever_bleed.tscn" id="13_rr114"]
 
@@ -69,7 +70,7 @@ points = PackedVector3Array(-0.13433504, -0.07612507, -1.7888844e-05, -0.0904939
 [sub_resource type="SphereShape3D" id="SphereShape3D_7fqif"]
 radius = 0.16189936
 
-[node name="head" type="RigidBody3D" node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component") groups=["disable_collision_while_grabbed"]]
+[node name="head" type="RigidBody3D" unique_id=689027593 node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component") groups=["disable_collision_while_grabbed"]]
 transform = Transform3D(1, 0, 0, 0, 1, 2.910383e-09, 0, -7.712515e-10, 1, 0, 0, 0)
 collision_layer = 8
 collision_mask = 7
@@ -81,37 +82,37 @@ change_distance_interaction = NodePath("InteractionContainer/WhileGrabbed/Change
 throwable_mesh = NodePath("head")
 throwable = NodePath(".")
 damage_component = NodePath("DamageComponent")
-metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("4_6ud31"),"default_context_id":0,"display_name":"Severed Head","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("5_rr114")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("5_rr114"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("6_3vcc0"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("4_6ud31"),"default_context_id":0,"display_name":"Severed Head","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("5_rr114")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("5_rr114"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("6_3vcc0"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
 ,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
 ]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
 
 
-[node name="InteractionContainer" type="Node" parent="."]
+[node name="InteractionContainer" type="Node" parent="." unique_id=1274696373]
 script = ExtResource("4_6ud31")
 display_name = "Severed Head"
 metadata/_custom_type_script = "uid://ck3cei0hvspym"
 
-[node name="Grab" type="Node" parent="InteractionContainer"]
+[node name="Grab" type="Node" parent="InteractionContainer" unique_id=2021487486]
 script = ExtResource("5_rr114")
 hide_while_grabbed = true
 display_name = "Grab"
 metadata/_custom_type_script = "uid://5tinbhq6p45k"
 
-[node name="interact" type="Node" parent="InteractionContainer/Grab"]
+[node name="interact" type="Node" parent="InteractionContainer/Grab" unique_id=716206647]
 script = ExtResource("6_3vcc0")
 action = &"interact"
 metadata/_custom_type_script = "uid://bxe74cq2uqemi"
 
-[node name="WhileGrabbed" type="Node" parent="InteractionContainer"]
+[node name="WhileGrabbed" type="Node" parent="InteractionContainer" unique_id=773742601]
 script = ExtResource("7_38hs1")
 context_id = 1
 metadata/_custom_type_script = "uid://doc0okecalxnp"
 
-[node name="Change Distance" type="Node" parent="InteractionContainer/WhileGrabbed"]
+[node name="Change Distance" type="Node" parent="InteractionContainer/WhileGrabbed" unique_id=815798496]
 script = ExtResource("5_rr114")
 metadata/_custom_type_script = "uid://5tinbhq6p45k"
 
-[node name="scroll" type="Node" parent="InteractionContainer/WhileGrabbed/Change Distance"]
+[node name="scroll" type="Node" parent="InteractionContainer/WhileGrabbed/Change Distance" unique_id=400531890]
 script = ExtResource("6_3vcc0")
 type = 1
 action = &"scroll"
@@ -119,27 +120,27 @@ negative_x = &"scroll_down"
 positive_x = &"scroll_up"
 metadata/_custom_type_script = "uid://bxe74cq2uqemi"
 
-[node name="Rotate" type="Node" parent="InteractionContainer/WhileGrabbed"]
+[node name="Rotate" type="Node" parent="InteractionContainer/WhileGrabbed" unique_id=1648703316]
 script = ExtResource("5_rr114")
 metadata/_custom_type_script = "uid://5tinbhq6p45k"
 
-[node name="rotate" type="Node" parent="InteractionContainer/WhileGrabbed/Rotate"]
+[node name="rotate" type="Node" parent="InteractionContainer/WhileGrabbed/Rotate" unique_id=115551640]
 script = ExtResource("6_3vcc0")
 action = &"rotate"
 metadata/_custom_type_script = "uid://bxe74cq2uqemi"
 
-[node name="Throw" type="Node" parent="InteractionContainer/WhileGrabbed"]
+[node name="Throw" type="Node" parent="InteractionContainer/WhileGrabbed" unique_id=1409254266]
 script = ExtResource("5_rr114")
 metadata/_custom_type_script = "uid://5tinbhq6p45k"
 
-[node name="secondary_action" type="Node" parent="InteractionContainer/WhileGrabbed/Throw"]
+[node name="secondary_action" type="Node" parent="InteractionContainer/WhileGrabbed/Throw" unique_id=168294108]
 script = ExtResource("6_3vcc0")
 action = &"secondary_action"
 metadata/_custom_type_script = "uid://bxe74cq2uqemi"
 
-[node name="PickupSound" type="AudioStreamPlayer" parent="."]
+[node name="PickupSound" type="AudioStreamPlayer" parent="." unique_id=1497326866]
 
-[node name="CollisionSoundPlayer" type="AudioStreamPlayer3D" parent="."]
+[node name="CollisionSoundPlayer" type="AudioStreamPlayer3D" parent="." unique_id=271385772]
 max_polyphony = 3
 script = ExtResource("12_btykd")
 sounds_per_velocity = Dictionary[int, AudioStream]({
@@ -149,35 +150,37 @@ sounds_per_velocity = Dictionary[int, AudioStream]({
 })
 metadata/_custom_type_script = "uid://cp0p4yckxtvmw"
 
-[node name="head" type="MeshInstance3D" parent="."]
+[node name="head" type="MeshInstance3D" parent="." unique_id=221600661]
 transform = Transform3D(0.9999999, 0, 0, 0, 1, -8.2945917e-10, -3.7252903e-09, -7.712515e-10, 0.9999999, -7.450581e-09, 0, 0)
 mesh = SubResource("ArrayMesh_o21da")
-skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_ba1s8")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=828865351]
 transform = Transform3D(0.9999999, 0, 0, 0, 1, -8.2945917e-10, -3.7252903e-09, -7.712515e-10, 0.9999999, -7.450581e-09, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_abqsd")
 
-[node name="DamageComponent" type="Area3D" parent="."]
+[node name="DamageComponent" type="Area3D" parent="." unique_id=1527411438]
 script = ExtResource("11_l3xqw")
 metadata/_custom_type_script = "uid://dlsydctoxqbwy"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent" unique_id=1253936693]
 shape = SubResource("SphereShape3D_7fqif")
 
-[node name="RemoteTransform3D" type="RemoteTransform3D" parent="."]
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="." unique_id=996941935]
 transform = Transform3D(1, 2.3283064e-10, 7.450581e-09, 8.731149e-10, 1, -9.313226e-10, -7.450581e-09, 9.313226e-10, 1, -0.0954035, -0.13869101, -1.0696565e-10)
 remote_path = NodePath("../GPUParticles3D")
 update_rotation = false
 
-[node name="GPUParticles3D" parent="." instance=ExtResource("13_rr114")]
+[node name="GPUParticles3D" parent="." unique_id=339668811 instance=ExtResource("13_rr114")]
 transform = Transform3D(1, -6.4028427e-10, 0, 1.571607e-09, 1, 1.0360963e-08, 4.6566134e-10, -8.221832e-09, 1, -0.0954035, -0.13869101, 0)
 top_level = true
 
-[node name="HealthComponent" type="Node3D" parent="."]
+[node name="HealthComponent" type="Node3D" parent="." unique_id=279123928]
 script = ExtResource("8_clpk5")
 metadata/_custom_type_script = "uid://dgjqgiw3yw42e"
+
+[node name="bounding_box_component" parent="." unique_id=176133578 node_paths=PackedStringArray("mesh") instance=ExtResource("12_5hsim")]
+mesh = NodePath("../head")
 
 [connection signal="on_complete" from="InteractionContainer/Grab" to="." method="_released"]
 [connection signal="on_trigger" from="InteractionContainer/Grab" to="." method="_while_grabbed"]

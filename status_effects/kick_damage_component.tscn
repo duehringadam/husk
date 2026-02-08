@@ -1,12 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://cfefx7pci0hf0"]
+[gd_scene format=3 uid="uid://cfefx7pci0hf0"]
 
 [ext_resource type="Script" uid="uid://1gqpr75ri7ke" path="res://status_effects/kick_damage_component.gd" id="1_gp752"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4o3ei"]
 
-[node name="kick_damage_component" type="Area3D"]
+[node name="kick_damage_component" type="Area3D" unique_id=256881041]
 script = ExtResource("1_gp752")
 metadata/_custom_type_script = "uid://dlsydctoxqbwy"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1126279109]
 shape = SubResource("SphereShape3D_4o3ei")

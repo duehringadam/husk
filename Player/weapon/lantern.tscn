@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://2slbcbwd3que"]
+[gd_scene format=3 uid="uid://2slbcbwd3que"]
 
 [ext_resource type="ArrayMesh" uid="uid://d2l3em0lidljf" path="res://Player/weapon/lantern.res" id="1_4mflh"]
 [ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="2_hauun"]
@@ -18,12 +18,12 @@ shader_parameter/uv_scroll_speed = Vector2(0, 0)
 shader_parameter/cull_distance_override = 0.0
 shader_parameter/convert_vertex_colors = false
 
-[node name="lantern" type="MeshInstance3D"]
+[node name="lantern" type="MeshInstance3D" unique_id=509417184]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 mesh = ExtResource("1_4mflh")
 surface_material_override/0 = SubResource("ShaderMaterial_fyyqk")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1709786009]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 2.07352, 3.17521, 2.55927)
 layers = 3
 light_color = Color(0.999999, 0.989036, 0.612531, 1)

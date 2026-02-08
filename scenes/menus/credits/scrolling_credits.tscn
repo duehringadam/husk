@@ -1,25 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://bt2yp4lr4l2we"]
+[gd_scene format=3 uid="uid://bt2yp4lr4l2we"]
 
 [ext_resource type="PackedScene" uid="uid://t2dui8ppm3a4" path="res://addons/maaacks_menus_template/base/scenes/credits/scrolling_credits.tscn" id="1_0gmgx"]
 [ext_resource type="Script" uid="uid://8yrctwvq5hv2" path="res://scenes/menus/credits/scrolling_credits.gd" id="2_r0tfh"]
 
-[node name="ScrollingCredits" instance=ExtResource("1_0gmgx")]
+[node name="ScrollingCredits" unique_id=1311125969 instance=ExtResource("1_0gmgx")]
 script = ExtResource("2_r0tfh")
 
-[node name="ScrollContainer" parent="." index="0"]
+[node name="ScrollContainer" parent="." index="0" unique_id=377728904]
 layout_mode = 1
 anchors_preset = 9
 anchor_right = 0.0
 offset_right = 1920.0
 grow_vertical = 2
 
-[node name="VBoxContainer" parent="ScrollContainer" index="0"]
+[node name="VBoxContainer" parent="ScrollContainer" index="0" unique_id=46943181]
 size_flags_horizontal = 2
 
-[node name="HeaderSpace" parent="ScrollContainer/VBoxContainer" index="0"]
+[node name="HeaderSpace" parent="ScrollContainer/VBoxContainer" index="0" unique_id=1445515188]
 custom_minimum_size = Vector2(0, 1080)
 
-[node name="CreditsLabel" parent="ScrollContainer/VBoxContainer" index="1"]
+[node name="CreditsLabel" parent="ScrollContainer/VBoxContainer" index="1" unique_id=1645126378]
 custom_minimum_size = Vector2(1920, 0)
 text = "[center][font_size=24]Adeel Tariq[/font_size]
 
@@ -682,5 +682,5 @@ Meta Platforms, Inc. and affiliates.
 [/center]"
 attribution_file_path = "res://CREDITS.md"
 
-[node name="FooterSpace" parent="ScrollContainer/VBoxContainer" index="2"]
+[node name="FooterSpace" parent="ScrollContainer/VBoxContainer" index="2" unique_id=1464371704]
 custom_minimum_size = Vector2(0, 1080)

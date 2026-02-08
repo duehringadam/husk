@@ -105,7 +105,7 @@ var mouse_movement: Vector2
 var input_dir: Vector3
 var can_move:=true
 
-const WALK_SPEED_MINIMUM := 3.0
+const WALK_SPEED_MINIMUM := 1.0
 const WALK_SPEED_MAXIMUM := 4.0
 
 const SPRINT_SPEED_MIN := 4.0

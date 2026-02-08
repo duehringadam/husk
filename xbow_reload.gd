@@ -2,12 +2,13 @@ extends Node
 
 @export var weapon: Node3D
 @export var state_chart: StateChart
+@export var reload_speed: float = 1
 @onready var animation_player: AnimationPlayer = $"../../../../AnimationPlayer"
 
 
 func _on_reload_state_entered() -> void:
 	AudioManager.play_sound(load("res://Player/weapon/ALL/Crossbow/crossbow-shot-85570.mp3"),weapon.global_position,20.0)
-	animation_player.play("reload",-1.0,.25)
+	animation_player.play("reload",-1.0,reload_speed)
 	await animation_player.animation_finished
 	state_chart.send_event("idle")
 

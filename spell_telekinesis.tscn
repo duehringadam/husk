@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://b2u7yd1ub8g3l"]
+[gd_scene format=4 uid="uid://b2u7yd1ub8g3l"]
 
 [ext_resource type="Script" uid="uid://cyfmdkochqui0" path="res://spell_telekinesis.gd" id="1_u8dpn"]
 [ext_resource type="PackedScene" uid="uid://ds50iwrb20jys" path="res://spell_telekinesis_projectile.tscn" id="2_ba315"]
@@ -1023,16 +1023,16 @@ _data = {
 &"throw_object": SubResource("Animation_r8xb2")
 }
 
-[node name="spell_telekinesis" type="Node3D"]
+[node name="spell_telekinesis" type="Node3D" unique_id=641708892]
 script = ExtResource("1_u8dpn")
 spell_projectile = ExtResource("2_ba315")
 throw_power_multiplier = 2.5
 weapon_initial_position = Vector3(0.065, -0.29, 0.225)
 
-[node name="arms_armature" type="Node3D" parent="."]
+[node name="arms_armature" type="Node3D" parent="." unique_id=511773972]
 transform = Transform3D(-1.3989435, 0, -0.054377627, 0, 1.4, 0, 0.054377627, 0, -1.3989435, -0.0028182864, -0.5587934, 0.5753888)
 
-[node name="Skeleton3D" type="Skeleton3D" parent="arms_armature"]
+[node name="Skeleton3D" type="Skeleton3D" parent="arms_armature" unique_id=104187941]
 bones/0/name = "spine"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 0.99954224, 0.03025413, 0, -0.03025413, 0.99954224, 0.015252764, 0.03435743, 0.036044255)
@@ -1052,7 +1052,7 @@ bones/2/parent = 1
 bones/2/rest = Transform3D(0.99409413, 0.10810001, -0.009554846, -0.10438447, 0.9284059, -0.35660395, -0.029678112, 0.35549524, 0.9342068, -4.9592927e-08, 0.2862151, 0)
 bones/2/enabled = true
 bones/2/position = Vector3(-4.9592927e-08, 0.2862151, 0)
-bones/2/rotation = Quaternion(0.18130183, 0.005123422, -0.054098956, 0.981925)
+bones/2/rotation = Quaternion(0, 0, 0, 1)
 bones/2/scale = Vector3(1, 0.99999994, 1)
 bones/3/name = "hand.L"
 bones/3/parent = 2
@@ -1356,13 +1356,14 @@ bones/45/position = Vector3(-0.033159632, 0.0507503, -0.061911404)
 bones/45/rotation = Quaternion(0.68400884, 6.043012e-08, 0.014975859, 0.72932)
 bones/45/scale = Vector3(1, 1.0000001, 1)
 
-[node name="arms" type="MeshInstance3D" parent="arms_armature/Skeleton3D"]
+[node name="arms" type="MeshInstance3D" parent="arms_armature/Skeleton3D" unique_id=382560896]
 layers = 2
 mesh = SubResource("ArrayMesh_r8xb2")
 skin = SubResource("Skin_v38cn")
+skeleton = NodePath("..")
 surface_material_override/0 = SubResource("StandardMaterial3D_pd1ne")
 
-[node name="IKLeft" type="SkeletonIK3D" parent="arms_armature/Skeleton3D"]
+[node name="IKLeft" type="SkeletonIK3D" parent="arms_armature/Skeleton3D" unique_id=1270569384]
 transform = Transform3D(-1.3, 1.96295e-07, 8.58031e-15, 0, -5.68248e-08, 1.3, 1.96295e-07, 1.3, 5.68248e-08, 0, 0, 0)
 root_bone = &"upper_arm.L"
 tip_bone = &"hand.L"
@@ -1371,10 +1372,10 @@ magnet = Vector3(0.315, 0.01, 0.315)
 target_node = NodePath("../../../IKLeft")
 script = ExtResource("4_06otd")
 
-[node name="IKLeft" type="Node3D" parent="."]
+[node name="IKLeft" type="Node3D" parent="." unique_id=1355981668]
 transform = Transform3D(0.8424275, 0.24731828, 0.47869575, -0.3501202, 0.9265662, 0.13744454, -0.40955076, -0.2833881, 0.8671559, -0.09321091, 0, 0.025666654)
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="IKLeft"]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="IKLeft" unique_id=1999955052]
 unique_name_in_owner = true
 transform = Transform3D(-0.18213904, -0.78142506, 0.59682554, 0.8815438, -0.39864182, -0.25291342, 0.4355524, 0.48006272, 0.7614683, 0.07380184, 0.108599804, 0.018586958)
 layers = 2
@@ -1384,14 +1385,14 @@ local_coords = true
 process_material = SubResource("ParticleProcessMaterial_3pq0y")
 draw_pass_1 = SubResource("QuadMesh_u8dpn")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="IKLeft/GPUParticles3D"]
+[node name="OmniLight3D" type="OmniLight3D" parent="IKLeft/GPUParticles3D" unique_id=353986375]
 layers = 3
 light_color = Color(1, 0.43529412, 0.9882353, 1)
 light_energy = 0.05
 shadow_enabled = true
 omni_range = 0.1
 
-[node name="hold_particles" type="GPUParticles3D" parent="."]
+[node name="hold_particles" type="GPUParticles3D" parent="." unique_id=729425389]
 unique_name_in_owner = true
 transform = Transform3D(0.6841394, -0.32442564, 0.6532237, 0.58371764, 0.78053534, -0.22368824, -0.43729395, 0.53433263, 0.7233701, 0.028480887, 0.0038656814, -0.19716145)
 layers = 2
@@ -1402,17 +1403,17 @@ local_coords = true
 process_material = SubResource("ParticleProcessMaterial_ald4c")
 draw_pass_1 = SubResource("QuadMesh_c2gyg")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="hold_particles"]
+[node name="OmniLight3D" type="OmniLight3D" parent="hold_particles" unique_id=2109994855]
 layers = 3
 light_color = Color(1, 0.43529412, 0.9882353, 1)
 light_energy = 0.05
 shadow_enabled = true
 omni_range = 0.1
 
-[node name="holdNode" type="StaticBody3D" parent="."]
+[node name="holdNode" type="StaticBody3D" parent="." unique_id=1051965799]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.33741778, -2.3841858e-07, -1.1914109)
 
-[node name="Generic6DOFJoint3D" type="Generic6DOFJoint3D" parent="holdNode"]
+[node name="Generic6DOFJoint3D" type="Generic6DOFJoint3D" parent="holdNode" unique_id=164572022]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00019133091, 0, 0.86860836)
 node_a = NodePath("..")
@@ -1423,112 +1424,110 @@ angular_limit_x/enabled = false
 angular_limit_y/enabled = false
 angular_limit_z/enabled = false
 
-[node name="spell_shapecast" type="ShapeCast3D" parent="holdNode"]
+[node name="spell_shapecast" type="ShapeCast3D" parent="holdNode" unique_id=543485684]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.0006763935, 2.3841858e-07, -2.853097)
 shape = SubResource("CapsuleShape3D_cpawa")
 collision_mask = 8
 debug_shape_custom_color = Color(1, 1, 1, 1)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_3pq0y")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1593617993]
+libraries/ = SubResource("AnimationLibrary_3pq0y")
 
-[node name="StateChart" type="Node" parent="."]
+[node name="StateChart" type="Node" parent="." unique_id=128727459]
 script = ExtResource("7_qryof")
 track_in_editor = true
 metadata/_custom_type_script = "uid://bb3ghyy64k2bd"
 
-[node name="CompoundState" type="Node" parent="StateChart"]
+[node name="CompoundState" type="Node" parent="StateChart" unique_id=50945011]
 script = ExtResource("8_mnimv")
 initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateChart/CompoundState"]
+[node name="Idle" type="Node" parent="StateChart/CompoundState" unique_id=601721816]
 script = ExtResource("9_1eeqy")
 
-[node name="toPull" type="Node" parent="StateChart/CompoundState/Idle"]
+[node name="toPull" type="Node" parent="StateChart/CompoundState/Idle" unique_id=181203687]
 script = ExtResource("10_fulko")
 to = NodePath("../../Pulling")
 event = &"pull"
 delay_in_seconds = "0.0"
 
-[node name="toMissed" type="Node" parent="StateChart/CompoundState/Idle"]
+[node name="toMissed" type="Node" parent="StateChart/CompoundState/Idle" unique_id=2050785512]
 script = ExtResource("10_fulko")
 to = NodePath("../../Missed")
 event = &"missed"
 delay_in_seconds = "0.0"
 
-[node name="idle" type="Node" parent="StateChart/CompoundState/Idle"]
+[node name="idle" type="Node" parent="StateChart/CompoundState/Idle" unique_id=402719605]
 script = ExtResource("11_fulko")
 
-[node name="Pulling" type="Node" parent="StateChart/CompoundState"]
+[node name="Pulling" type="Node" parent="StateChart/CompoundState" unique_id=705901164]
 script = ExtResource("9_1eeqy")
 
-[node name="toHold" type="Node" parent="StateChart/CompoundState/Pulling"]
+[node name="toHold" type="Node" parent="StateChart/CompoundState/Pulling" unique_id=682077467]
 script = ExtResource("10_fulko")
 to = NodePath("../../Holding")
 event = &"hold"
 delay_in_seconds = "0.0"
 
-[node name="toMissed" type="Node" parent="StateChart/CompoundState/Pulling"]
+[node name="toMissed" type="Node" parent="StateChart/CompoundState/Pulling" unique_id=708867973]
 script = ExtResource("10_fulko")
 to = NodePath("../../Missed")
 event = &"missed"
 delay_in_seconds = "0.0"
 
-[node name="pull" type="Node" parent="StateChart/CompoundState/Pulling"]
+[node name="pull" type="Node" parent="StateChart/CompoundState/Pulling" unique_id=1049507653]
 script = ExtResource("12_06otd")
 
-[node name="Holding" type="Node" parent="StateChart/CompoundState"]
+[node name="Holding" type="Node" parent="StateChart/CompoundState" unique_id=1146312111]
 script = ExtResource("9_1eeqy")
 
-[node name="toThrow" type="Node" parent="StateChart/CompoundState/Holding"]
+[node name="toThrow" type="Node" parent="StateChart/CompoundState/Holding" unique_id=942976758]
 script = ExtResource("10_fulko")
 to = NodePath("../../Throw")
 event = &"throw"
 delay_in_seconds = "0.0"
 
-[node name="toIdle" type="Node" parent="StateChart/CompoundState/Holding"]
+[node name="toIdle" type="Node" parent="StateChart/CompoundState/Holding" unique_id=1327042628]
 script = ExtResource("10_fulko")
 to = NodePath("../../Idle")
 event = &"idle"
 delay_in_seconds = "0.0"
 
-[node name="toMissed" type="Node" parent="StateChart/CompoundState/Holding"]
+[node name="toMissed" type="Node" parent="StateChart/CompoundState/Holding" unique_id=1538063254]
 script = ExtResource("10_fulko")
 to = NodePath("../../Missed")
 event = &"missed"
 delay_in_seconds = "0.0"
 
-[node name="hold" type="Node" parent="StateChart/CompoundState/Holding"]
+[node name="hold" type="Node" parent="StateChart/CompoundState/Holding" unique_id=1291588347]
 script = ExtResource("12_g4or4")
 
-[node name="Throw" type="Node" parent="StateChart/CompoundState"]
+[node name="Throw" type="Node" parent="StateChart/CompoundState" unique_id=1134055537]
 script = ExtResource("9_1eeqy")
 
-[node name="toIdle" type="Node" parent="StateChart/CompoundState/Throw"]
+[node name="toIdle" type="Node" parent="StateChart/CompoundState/Throw" unique_id=1538444816]
 script = ExtResource("10_fulko")
 to = NodePath("../../Idle")
 event = &"idle"
 delay_in_seconds = "0.5"
 
-[node name="throw" type="Node" parent="StateChart/CompoundState/Throw"]
+[node name="throw" type="Node" parent="StateChart/CompoundState/Throw" unique_id=735401080]
 script = ExtResource("13_cpawa")
 
-[node name="Missed" type="Node" parent="StateChart/CompoundState"]
+[node name="Missed" type="Node" parent="StateChart/CompoundState" unique_id=794091776]
 script = ExtResource("9_1eeqy")
 
-[node name="toIdle" type="Node" parent="StateChart/CompoundState/Missed"]
+[node name="toIdle" type="Node" parent="StateChart/CompoundState/Missed" unique_id=1725906768]
 script = ExtResource("10_fulko")
 to = NodePath("../../Idle")
 event = &"idle"
 delay_in_seconds = "0.5"
 
-[node name="missed" type="Node" parent="StateChart/CompoundState/Missed"]
+[node name="missed" type="Node" parent="StateChart/CompoundState/Missed" unique_id=926051521]
 script = ExtResource("14_g4or4")
 
-[node name="spell_hold_sound" type="AudioStreamPlayer3D" parent="."]
+[node name="spell_hold_sound" type="AudioStreamPlayer3D" parent="." unique_id=1926948774]
 stream = ExtResource("15_cpawa")
 volume_db = -20.0
 max_db = 0.0

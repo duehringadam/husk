@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://vbpvk8lv7a8m"]
+[gd_scene format=4 uid="uid://vbpvk8lv7a8m"]
 
 [ext_resource type="PackedScene" uid="uid://cqntmbp1q0a81" path="res://addons/game_pieces/amnesia_door/amnesia_door.tscn" id="1_mbxf8"]
 [ext_resource type="Texture2D" uid="uid://bec224ctuh0rr" path="res://assets/models/kaykit-dungeon-remastered/dungeon_texture.png" id="2_dx5n2"]
@@ -46,27 +46,23 @@ shadow_mesh = SubResource("ArrayMesh_podj0")
 [sub_resource type="BoxShape3D" id="BoxShape3D_cs7bg"]
 size = Vector3(2, 2.785, 0.3)
 
-[node name="AmnesiaDoor" instance=ExtResource("1_mbxf8")]
+[node name="AmnesiaDoor" unique_id=190453730 instance=ExtResource("1_mbxf8")]
 
-[node name="RigidBody3D" parent="." index="0"]
-metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Door","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_7bo7m"),"type":0,"override_action_name":false,"_action":&"","action":&"primary_action","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+[node name="RigidBody3D" parent="." index="0" unique_id=1262227158]
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Door","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_7bo7m"),"type":0,"override_action_name":false,"_action":&"","action":&"primary_action","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
 ,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
 ]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
 
 
-[node name="wall_doorway_door" type="MeshInstance3D" parent="RigidBody3D" index="0"]
+[node name="wall_doorway_door" type="MeshInstance3D" parent="RigidBody3D" index="0" unique_id=1450537041]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18, 0, 0)
 mesh = SubResource("ArrayMesh_wupfk")
-skeleton = NodePath("")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" index="1"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" index="1" unique_id=1924801826]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.393, 0)
 shape = SubResource("BoxShape3D_cs7bg")
 
-[node name="primary_action" type="Node" parent="RigidBody3D/InteractionContainer/Grab" index="0"]
+[node name="primary_action" type="Node" parent="RigidBody3D/InteractionContainer/Grab" parent_id_path=PackedInt32Array(1390449693) index="0" unique_id=1355581885]
 script = ExtResource("3_7bo7m")
 action = &"primary_action"
 metadata/_custom_type_script = "uid://bxe74cq2uqemi"
-
-[node name="HingeJoint3D" parent="." index="1"]
-node_a = NodePath("/root/@EditorNode@20438/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@62/@VBoxContainer@63/@EditorMainScreen@103/MainScreen/@CanvasItemEditor@10871/@VSplitContainer@10516/@HSplitContainer@10518/@HSplitContainer@10520/@Control@10521/@SubViewportContainer@10522/@SubViewport@10523")

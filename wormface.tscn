@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=4 uid="uid://b2hee5is2jusx"]
+[gd_scene format=4 uid="uid://b2hee5is2jusx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hadwc"]
 resource_name = "Material.001"
@@ -123,12 +123,12 @@ bind/29/name = &"R.Hoove"
 bind/29/bone = -1
 bind/29/pose = Transform3D(0.00048394033, -0.9615549, -0.2746119, 1, 0.00050325354, 4.839094e-07, 0.0001381017, -0.27461174, 0.9615552, -3.983585, 0.38858318, -1.4305613)
 
-[node name="knight(3)" type="Node3D"]
+[node name="knight(3)" type="Node3D" unique_id=73800879]
 
-[node name="Armature" type="Node3D" parent="."]
+[node name="Armature" type="Node3D" parent="." unique_id=45126645]
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 0, 0, 0)
 
-[node name="Skeleton3D" type="Skeleton3D" parent="Armature"]
+[node name="Skeleton3D" type="Skeleton3D" parent="Armature" unique_id=1955760637]
 bones/0/name = "Base"
 bones/0/parent = -1
 bones/0/rest = Transform3D(-2.3841858e-07, 1.4901161e-08, 1, 0.13264783, 0.99116325, 1.4901161e-08, -0.99116325, 0.13264783, -2.3841858e-07, 5.920284e-09, -0.7054926, 0.1354403)
@@ -340,6 +340,7 @@ bones/29/position = Vector3(-1.7136335e-07, 1.8950901, 0)
 bones/29/rotation = Quaternion(-0.17427653, 1.15689666e-07, 0.6102305, 0.77281725)
 bones/29/scale = Vector3(1.0000001, 1.0000001, 1)
 
-[node name="Cylinder" type="MeshInstance3D" parent="Armature/Skeleton3D"]
+[node name="Cylinder" type="MeshInstance3D" parent="Armature/Skeleton3D" unique_id=94506757]
 mesh = SubResource("ArrayMesh_v73my")
 skin = SubResource("Skin_5u367")
+skeleton = NodePath("..")

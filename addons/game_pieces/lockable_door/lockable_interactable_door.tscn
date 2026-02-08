@@ -1,56 +1,56 @@
-[gd_scene load_steps=5 format=3 uid="uid://d4jwptl66j8c7"]
+[gd_scene format=3 uid="uid://d4jwptl66j8c7"]
 
 [ext_resource type="Script" uid="uid://ck3cei0hvspym" path="res://addons/interaction_system/interaction_container.gd" id="2_p1ici"]
 [ext_resource type="Script" uid="uid://c684mkssofm3a" path="res://addons/game_pieces/lockable_door/lockable_interactable_door.gd" id="2_u0781"]
 [ext_resource type="Script" uid="uid://doc0okecalxnp" path="res://addons/interaction_system/interaction_context.gd" id="3_p1ici"]
 [ext_resource type="Script" uid="uid://5tinbhq6p45k" path="res://addons/interaction_system/interaction.gd" id="4_3bid0"]
 
-[node name="LockableInteractableDoor" type="StaticBody3D"]
+[node name="LockableInteractableDoor" type="StaticBody3D" unique_id=1287376506]
 collision_layer = 3
 script = ExtResource("2_u0781")
-metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("2_p1ici"),"default_context_id":0,"display_name":"Lockable Door","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("4_3bid0")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("4_3bid0"),"hide_while_grabbed":false,"override_display_name":false,"display_name":"","control":null,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
-, Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("4_3bid0"),"hide_while_grabbed":false,"override_display_name":false,"display_name":"","control":null,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("2_p1ici"),"default_context_id":0,"display_name":"Lockable Door","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("4_3bid0")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("4_3bid0"),"hide_while_grabbed":false,"override_display_name":false,"display_name":"","control":null,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+, Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("4_3bid0"),"hide_while_grabbed":false,"override_display_name":false,"display_name":"","control":null,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
 ]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
 
 
-[node name="InteractionContainer" type="Node" parent="."]
+[node name="InteractionContainer" type="Node" parent="." unique_id=1254840064]
 script = ExtResource("2_p1ici")
 display_name = "Lockable Door"
 metadata/_custom_type_script = "uid://ck3cei0hvspym"
 
-[node name="Closed" type="Node" parent="InteractionContainer"]
+[node name="Closed" type="Node" parent="InteractionContainer" unique_id=1391918507]
 script = ExtResource("3_p1ici")
 override_display_name = true
 display_name = "Closed Door"
 metadata/_custom_type_script = "uid://doc0okecalxnp"
 
-[node name="Open" type="Node" parent="InteractionContainer/Closed"]
+[node name="Open" type="Node" parent="InteractionContainer/Closed" unique_id=1413431236]
 script = ExtResource("4_3bid0")
 metadata/_custom_type_script = "uid://5tinbhq6p45k"
 
-[node name="Lock" type="Node" parent="InteractionContainer/Closed"]
+[node name="Lock" type="Node" parent="InteractionContainer/Closed" unique_id=811868139]
 script = ExtResource("4_3bid0")
 metadata/_custom_type_script = "uid://5tinbhq6p45k"
 
-[node name="Open" type="Node" parent="InteractionContainer"]
+[node name="Open" type="Node" parent="InteractionContainer" unique_id=655701430]
 script = ExtResource("3_p1ici")
 context_id = 1
 override_display_name = true
 display_name = "Open Door"
 metadata/_custom_type_script = "uid://doc0okecalxnp"
 
-[node name="Close" type="Node" parent="InteractionContainer/Open"]
+[node name="Close" type="Node" parent="InteractionContainer/Open" unique_id=404129616]
 script = ExtResource("4_3bid0")
 metadata/_custom_type_script = "uid://5tinbhq6p45k"
 
-[node name="Locked" type="Node" parent="InteractionContainer"]
+[node name="Locked" type="Node" parent="InteractionContainer" unique_id=1068364843]
 script = ExtResource("3_p1ici")
 context_id = 2
 override_display_name = true
 display_name = "Locked Door"
 metadata/_custom_type_script = "uid://doc0okecalxnp"
 
-[node name="Unlock" type="Node" parent="InteractionContainer/Locked"]
+[node name="Unlock" type="Node" parent="InteractionContainer/Locked" unique_id=1334602907]
 script = ExtResource("4_3bid0")
 metadata/_custom_type_script = "uid://5tinbhq6p45k"
 

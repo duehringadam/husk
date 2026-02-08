@@ -43,6 +43,7 @@ func collider_changed() -> void:
 	if _is_interactable_available():
 		on_new_object_available(_collider)
 	elif _picked_object == null:
+		SignalBus.emit_signal("hide_interact_rect")
 		_clear_prompts()
 
 

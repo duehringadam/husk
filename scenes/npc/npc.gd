@@ -1,8 +1,10 @@
 class_name npc
 extends CharacterBody3D
+
 @export_category("Variables")
 @export var SPEED: float = 1
 @export_range(0.0,1.0) var aggro := 0.0
+@export var target: Node3D: set = _update_target
 
 @export_category("Components")
 @export var physical_bone_simulator: PhysicalBoneSimulator3D
@@ -13,6 +15,8 @@ extends CharacterBody3D
 
 @export_category("Behavior")
 @export var state_chart: StateChart
+
+@export var mesh: MeshInstance3D
 
 var left_arm := true
 var right_arm := true
@@ -60,4 +64,7 @@ func _on_health_component_died() -> void:
 	pass
 
 func _on_stance_component_stance_broken() -> void:
+	pass
+
+func _update_target(value: Node3D):
 	pass

@@ -14,9 +14,11 @@ signal is_blocking(value:bool)
 signal block_amount(value:float)
 signal status_ended(status: Global.STATUS_TYPE)
 signal telekinesis
-signal update_interact_rect(aabb_3d: AABB)
+signal hide_interact_rect()
 signal npc_interacted(sheet_id: String)
 signal dialogue_ended
 signal dialogue_started
 signal end_madtalk_dialogue_external
+signal weapon_charge_value(value: float)
+signal weapon_charge_bool(value: bool)
 @warning_ignore_restore("unused_signal")

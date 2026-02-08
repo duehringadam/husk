@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dyepkyvo6sodg"]
+[gd_scene format=3 uid="uid://dyepkyvo6sodg"]
 
 [ext_resource type="Texture2D" uid="uid://cae7h22m1o7aw" path="res://addons/madtalk/images/icon_question.png" id="1"]
 [ext_resource type="Script" uid="uid://degiqbehoikc5" path="res://addons/madtalk/components/BtnTip.gd" id="2"]
 
-[node name="BtnTip" type="Button"]
+[node name="BtnTip" type="Button" unique_id=1851920254]
 offset_right = 28.0
 offset_bottom = 26.0
 focus_mode = 0
@@ -11,7 +11,7 @@ icon = ExtResource("1")
 flat = true
 script = ExtResource("2")
 
-[node name="TipDialog" type="AcceptDialog" parent="."]
+[node name="TipDialog" type="AcceptDialog" parent="." unique_id=223818778]
 initial_position = 2
 size = Vector2i(650, 200)
 popup_window = true

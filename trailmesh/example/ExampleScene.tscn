@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://duuj8y4ltnxx4"]
+[gd_scene format=3 uid="uid://duuj8y4ltnxx4"]
 
 [sub_resource type="Animation" id="Animation_f5fpc"]
 resource_name = "Go!"
@@ -64,9 +64,6 @@ _data = {
 }
 point_count = 9
 
-[sub_resource type="Resource" id="Resource_dnoco"]
-metadata/__load_path__ = "res://addons/trailmesh/example/Camera.gd"
-
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jdl6j"]
 
 [sub_resource type="Sky" id="Sky_pvydg"]
@@ -77,25 +74,23 @@ background_mode = 2
 sky = SubResource("Sky_pvydg")
 ambient_light_source = 3
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D" type="Node3D" unique_id=1791390248]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Go!"
-libraries = {
-"": SubResource("AnimationLibrary_qss24")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=377076468]
+libraries/ = SubResource("AnimationLibrary_qss24")
+autoplay = &"Go!"
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1017676963]
 transform = Transform3D(0.728144, 0.439867, -0.525665, 0, 0.766919, 0.641744, 0.685425, -0.467282, 0.558427, 0, 0.751038, 0.79343)
 
-[node name="Path3D" type="Path3D" parent="."]
+[node name="Path3D" type="Path3D" parent="." unique_id=10544047]
 curve = SubResource("Curve3D_1cqmv")
 metadata/_edit_group_ = true
 
-[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(0.818765, 0.0224747, 0.573681, -9.31318e-10, 0.999229, -0.0391462, -0.57412, 0.0320517, 0.818139, -1.27339, 0.403995, 0.598389)
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D" unique_id=1838844246]
+transform = Transform3D(0.8187652, 0.022474702, 0.5736807, -9.3131786e-10, 0.99922895, -0.039146233, -0.5741196, 0.032051694, 0.81813926, -1.27339, 0.403995, 0.598389)
 
-[node name="TrailEmitter" type="TrailEmitter" parent="Path3D/PathFollow3D"]
+[node name="TrailEmitter" type="TrailEmitter" parent="Path3D/PathFollow3D" unique_id=1481730600]
 material = SubResource("StandardMaterial3D_5enqk")
 curve = SubResource("Curve_b5yce")
 gradient = SubResource("Gradient_2bxua")
@@ -105,22 +100,21 @@ size = 0.2
 update_interval = 0.05
 transform = Transform3D(1.31125e-07, -1.26663e-09, -1, 0.999895, -0.0144885, 1.3113e-07, -0.0144885, -0.999895, -6.33313e-10, 0, 0, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D/PathFollow3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D/PathFollow3D" unique_id=196969617]
 transform = Transform3D(1, 0, 0, 0, 1, 1.56815e-15, 0, 1.56815e-15, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_job12")
 
-[node name="Path3D2" type="Path3D" parent="."]
+[node name="Path3D2" type="Path3D" parent="." unique_id=1720857426]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 2.05538, 0)
 curve = SubResource("Curve3D_45udd")
 
-[node name="PathFollow3D" type="PathFollow3D" parent="Path3D2"]
-transform = Transform3D(0.0893659, -2.83092e-05, -0.995993, -9.09489e-13, 1, -2.84227e-05, 0.995993, 2.54005e-06, 0.0893659, 0, 0, 3)
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D2" unique_id=1325086404]
+transform = Transform3D(0.08936594, -2.830915e-05, -0.99599296, -9.094894e-13, 1, -2.842271e-05, 0.99599296, 2.5400527e-06, 0.08936594, 0, 0, 3)
 tilt_enabled = false
 
-[node name="Camera3D" type="Camera3D" parent="Path3D2/PathFollow3D"]
+[node name="Camera3D" type="Camera3D" parent="Path3D2/PathFollow3D" unique_id=1319451808]
 transform = Transform3D(1.00001, 1.49012e-08, -3.72529e-08, -1.49012e-08, 1, 3.72529e-09, -7.45058e-09, -1.86265e-09, 1.00001, 0, 0, 0)
 current = true
-script = SubResource("Resource_dnoco")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=671777774]
 environment = SubResource("Environment_72flp")

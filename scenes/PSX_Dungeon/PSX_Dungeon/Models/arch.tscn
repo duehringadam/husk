@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://02her00b3r8i"]
+[gd_scene format=3 uid="uid://02her00b3r8i"]
 
 [ext_resource type="PackedScene" uid="uid://dcj1fyx7qm513" path="res://scenes/PSX_Dungeon/PSX_Dungeon/Models/Arch.fbx" id="1_vw30s"]
 [ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="2_gxr7i"]
@@ -18,8 +18,8 @@ shader_parameter/uv_scroll_speed = Vector2(0, 0)
 shader_parameter/cull_distance_override = 0.0
 shader_parameter/convert_vertex_colors = false
 
-[node name="Arch" instance=ExtResource("1_vw30s")]
+[node name="Arch" unique_id=355743016 instance=ExtResource("1_vw30s")]
 
-[node name="Cube_031" parent="." index="0"]
+[node name="Cube_031" parent="." index="0" unique_id=387058386]
 transform = Transform3D(-0.2, 0, -3.01992e-08, 0, 0.2, 0, 3.01992e-08, 0, -0.2, 0, -1, 0)
 surface_material_override/0 = SubResource("ShaderMaterial_cs2nd")

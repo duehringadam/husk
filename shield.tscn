@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://baow87b6rrpvl"]
+[gd_scene format=4 uid="uid://baow87b6rrpvl"]
 
 [ext_resource type="PackedScene" uid="uid://cyvu5q0tccd4b" path="res://Player/weapon/ALL/Shield/shield.fbx" id="1_dmnlx"]
 [ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="2_0vxx4"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://clt3bkcujiepo" path="res://addons/godot_state_charts/compound_state.gd" id="6_gdxae"]
 [ext_resource type="Script" uid="uid://1xhujeketj0r" path="res://addons/godot_state_charts/atomic_state.gd" id="7_275sl"]
 [ext_resource type="Script" uid="uid://8kg3tepcr415" path="res://addons/godot_state_charts/transition.gd" id="8_275sl"]
+[ext_resource type="AudioStream" uid="uid://c00ydmf48vj07" path="res://Player/weapon/ALL/Shield/leather_inventory.wav" id="8_n164e"]
 [ext_resource type="Script" uid="uid://dt5v7opc2p6id" path="res://shield_idle.gd" id="9_kjr8o"]
 [ext_resource type="Script" uid="uid://npfkamo7drt1" path="res://shield_raised.gd" id="10_vivl0"]
 [ext_resource type="Script" uid="uid://ek7y31vt65u1" path="res://lower.gd" id="13_1e71e"]
@@ -397,19 +398,17 @@ shader_parameter/uv_scroll_speed = Vector2(0, 0)
 shader_parameter/cull_distance_override = 0.0
 shader_parameter/convert_vertex_colors = false
 
-[node name="shield" instance=ExtResource("1_dmnlx")]
+[node name="shield" unique_id=1839249016 instance=ExtResource("1_dmnlx")]
 script = ExtResource("2_xc41h")
 weapon_initial_position = Vector3(0.155, -0.59, -0.065)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="0"]
-libraries = {
-&"": SubResource("AnimationLibrary_vivl0")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="0" unique_id=1681019490]
+libraries/ = SubResource("AnimationLibrary_vivl0")
 
-[node name="arms_armature" type="Node3D" parent="." index="1"]
+[node name="arms_armature" type="Node3D" parent="." index="1" unique_id=1682120174]
 transform = Transform3D(-1.4, 0, -1.2239188e-07, 0, 1.4, 0, 1.2239188e-07, 0, -1.4, 0, -0.22822288, 0.61659837)
 
-[node name="Skeleton3D" type="Skeleton3D" parent="arms_armature" index="0"]
+[node name="Skeleton3D" type="Skeleton3D" parent="arms_armature" index="0" unique_id=1989710293]
 bones/0/name = "spine"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 0.99954224, 0.03025413, 0, -0.03025413, 0.99954224, 0.015252764, 0.03435743, 0.036044255)
@@ -733,14 +732,15 @@ bones/45/position = Vector3(-0.033159632, 0.0507503, -0.061911404)
 bones/45/rotation = Quaternion(0.68400884, 6.0782284e-08, 0.014975859, 0.72932)
 bones/45/scale = Vector3(1, 1.0000001, 1)
 
-[node name="arms" type="MeshInstance3D" parent="arms_armature/Skeleton3D" index="0"]
+[node name="arms" type="MeshInstance3D" parent="arms_armature/Skeleton3D" index="0" unique_id=1758237491]
 layers = 2
 sorting_offset = 999.0
 mesh = SubResource("ArrayMesh_krg2r")
 skin = SubResource("Skin_0jbsx")
+skeleton = NodePath("..")
 surface_material_override/0 = SubResource("StandardMaterial3D_lcm2x")
 
-[node name="IKLeft" type="SkeletonIK3D" parent="arms_armature/Skeleton3D" index="1"]
+[node name="IKLeft" type="SkeletonIK3D" parent="arms_armature/Skeleton3D" index="1" unique_id=1728788221]
 transform = Transform3D(-1.3, 1.96295e-07, 8.58031e-15, 0, -5.68248e-08, 1.3, 1.96295e-07, 1.3, 5.68248e-08, 0.83737576, -1.7972109, 0.038122356)
 root_bone = &"upper_arm.L"
 tip_bone = &"hand.L"
@@ -748,71 +748,75 @@ magnet = Vector3(-1.245, 0, 0.505)
 target_node = NodePath("../../../Cube/IKTargetLeft")
 script = ExtResource("5_wspo6")
 
-[node name="Cube" parent="." index="2"]
-transform = Transform3D(-22.713667, 15.7244, -3.2588345e-05, 10.580943, 3.4859717, 37.87829, 31.179008, 10.272101, -12.854442, -0.325, -0.15, 0)
+[node name="Cube" parent="." index="2" unique_id=418057393]
+transform = Transform3D(-22.713667, 15.7244, -3.2588352e-05, 10.580943, 3.4859717, 37.878296, 31.179008, 10.272101, -12.854444, -0.325, -0.15, 0)
 layers = 2
 surface_material_override/0 = SubResource("ShaderMaterial_275sl")
 
-[node name="IKTargetLeft" type="Node3D" parent="Cube" index="0"]
-transform = Transform3D(-0.11726717, -0.9656339, -0.23194669, 0.9583802, -0.04882045, -0.28128773, 0.2602975, -0.25527942, 0.9311686, -0.00064912904, 0.002748264, 0.0011492355)
+[node name="IKTargetLeft" type="Node3D" parent="Cube" index="0" unique_id=226752251]
+transform = Transform3D(-0.11726716, -0.96563375, -0.23194669, 0.9583801, -0.048820443, -0.28128773, 0.26029748, -0.25527936, 0.9311686, -0.00064912904, 0.002748264, 0.0011492355)
 
-[node name="StateChart" type="Node" parent="." index="3"]
+[node name="raise" type="AudioStreamPlayer3D" parent="Cube" index="1" unique_id=622986982]
+stream = ExtResource("8_n164e")
+volume_db = -8.0
+
+[node name="StateChart" type="Node" parent="." index="3" unique_id=1218470304]
 script = ExtResource("5_41k7r")
 metadata/_custom_type_script = "uid://bb3ghyy64k2bd"
 
-[node name="CompoundState" type="Node" parent="StateChart" index="0"]
+[node name="CompoundState" type="Node" parent="StateChart" index="0" unique_id=234044339]
 script = ExtResource("6_gdxae")
 initial_state = NodePath("idle")
 
-[node name="idle" type="Node" parent="StateChart/CompoundState" index="0"]
+[node name="idle" type="Node" parent="StateChart/CompoundState" index="0" unique_id=401140178]
 script = ExtResource("7_275sl")
 
-[node name="to_raised" type="Node" parent="StateChart/CompoundState/idle" index="0"]
+[node name="to_raised" type="Node" parent="StateChart/CompoundState/idle" index="0" unique_id=1434112490]
 script = ExtResource("8_275sl")
 to = NodePath("../../raised")
 event = &"secondary_attack"
 delay_in_seconds = "0.0"
 
-[node name="to_lowered" type="Node" parent="StateChart/CompoundState/idle" index="1"]
+[node name="to_lowered" type="Node" parent="StateChart/CompoundState/idle" index="1" unique_id=199350555]
 script = ExtResource("8_275sl")
 to = NodePath("../../lower")
 event = &"lower"
 delay_in_seconds = "0.0"
 
-[node name="idle" type="Node" parent="StateChart/CompoundState/idle" index="2"]
+[node name="idle" type="Node" parent="StateChart/CompoundState/idle" index="2" unique_id=1001065780]
 script = ExtResource("9_kjr8o")
 
-[node name="raised" type="Node" parent="StateChart/CompoundState" index="1"]
+[node name="raised" type="Node" parent="StateChart/CompoundState" index="1" unique_id=786152431]
 script = ExtResource("7_275sl")
 
-[node name="to_idle" type="Node" parent="StateChart/CompoundState/raised" index="0"]
+[node name="to_idle" type="Node" parent="StateChart/CompoundState/raised" index="0" unique_id=268052338]
 script = ExtResource("8_275sl")
 to = NodePath("../../idle")
 event = &"secondary_released"
 delay_in_seconds = "0.0
 "
 
-[node name="to_lowered" type="Node" parent="StateChart/CompoundState/raised" index="1"]
+[node name="to_lowered" type="Node" parent="StateChart/CompoundState/raised" index="1" unique_id=1548115336]
 script = ExtResource("8_275sl")
 to = NodePath("../../lower")
 event = &"lower"
 delay_in_seconds = "0.0"
 
-[node name="raised" type="Node" parent="StateChart/CompoundState/raised" index="2" node_paths=PackedStringArray("weapon")]
+[node name="raised" type="Node" parent="StateChart/CompoundState/raised" index="2" unique_id=234713900 node_paths=PackedStringArray("weapon")]
 script = ExtResource("10_vivl0")
 weapon = NodePath("../../../../Cube")
 
-[node name="lower" type="Node" parent="StateChart/CompoundState" index="2"]
+[node name="lower" type="Node" parent="StateChart/CompoundState" index="2" unique_id=666733545]
 script = ExtResource("7_275sl")
 
-[node name="to_idle" type="Node" parent="StateChart/CompoundState/lower" index="0"]
+[node name="to_idle" type="Node" parent="StateChart/CompoundState/lower" index="0" unique_id=689814800]
 script = ExtResource("8_275sl")
 to = NodePath("../../idle")
 event = &"primary_released"
 delay_in_seconds = "0.0
 "
 
-[node name="lower" type="Node" parent="StateChart/CompoundState/lower" index="1"]
+[node name="lower" type="Node" parent="StateChart/CompoundState/lower" index="1" unique_id=973788288]
 script = ExtResource("13_1e71e")
 
 [connection signal="state_entered" from="StateChart/CompoundState/idle" to="StateChart/CompoundState/idle/idle" method="_on_idle_state_entered"]

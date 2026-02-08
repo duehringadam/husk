@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="item" format=3 uid="uid://smiwqmeohr5s"]
+
+[ext_resource type="Script" uid="uid://c23n4qi4fu7ia" path="res://item/item_required_stats.gd" id="1_dt5tl"]
+[ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/item_stat.gd" id="2_22dhb"]
+[ext_resource type="PackedScene" uid="uid://dvapiuj2llrlq" path="res://crossbow.tscn" id="2_rb4lb"]
+[ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/item.gd" id="3_rb4lb"]
+
+[resource]
+script = ExtResource("3_rb4lb")
+item_name = "Hand Crossbow"
+item_description = "a crossbow designed to be wielded in one's offhand"
+item_type = 1
+item_scene = ExtResource("2_rb4lb")
+metadata/_custom_type_script = "uid://dcfd18dx8x1bm"

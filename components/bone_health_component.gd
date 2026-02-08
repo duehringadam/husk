@@ -11,12 +11,13 @@ signal bones_severed(bones: Array)
 var blood_particles = preload("res://scenes/npc/Ghoul Animated/gore/pickable/limb_sever_bleed.tscn")
 
 var last_damage_taken
+var limb_to_spawn_add
 
 func _ready() -> void:
 	current_health = max_health
 	emit_signal("max_health_changed", 0, max_health)
 	emit_signal("health_changed", 0, current_health)
-	
+	limb_to_spawn_add = limb_to_spawn.instantiate()
 
 func modify_health(amount: float):
 	current_health = clampf(current_health + amount, 0, max_health)
@@ -44,11 +45,9 @@ func break_bones():
 		else:
 			bone_name_array.append(i.bone_name)
 	if bone_name_array.size() > 0:
-		print(bone_name_array)
 		physical_skeleton.physical_bones_start_simulation(bone_name_array)
 
 func sever_bones():
-	var limb_to_spawn_add = limb_to_spawn.instantiate()
 	limb_to_spawn_add.global_transform = self.global_transform
 	get_tree().current_scene.add_child(limb_to_spawn_add)
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bgvnqixhkpgra"]
+[gd_scene format=3 uid="uid://bgvnqixhkpgra"]
 
 [ext_resource type="ArrayMesh" uid="uid://ds5wbeowywqbx" path="res://scenes/gravestones/headstone_7.res" id="1_sqvje"]
 [ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="2_qiomk"]
@@ -111,96 +111,95 @@ shader_parameter/convert_vertex_colors = false
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_wrnjr"]
 points = PackedVector3Array(-68.4344, 350.835, -4849.9, 82.2151, -46.6743, -4464.01, 68.4566, 351.194, -4494.05, -82.3613, -46.6743, -4464.01, 77.536, -87.1655, -4868.5, -77.536, -86.615, -4868.13, 68.3604, 350.989, -4850.09, -68.4202, 496.628, -4640.33, 68.2476, 496.516, -4704.04, -68.5305, 351.04, -4494.23, 77.536, -87.1655, -4475.85, -82.3613, -46.6743, -4880.33, 82.2151, -46.6743, -4880.33, -77.536, -86.615, -4476.22, 68.3133, 496.796, -4640.31, -68.3553, 496.351, -4704.02)
 
-[node name="headstone_1" type="StaticBody3D"]
+[node name="headstone_1" type="StaticBody3D" unique_id=118809191]
 transform = Transform3D(0.002, 0, 0, 0, 0.002, 0, 0, 0, 0.002, 0, 0, 0.687554)
 collision_layer = 2
 collision_mask = 5
 
-[node name="headstone_2" type="StaticBody3D" parent="."]
+[node name="headstone_2" type="StaticBody3D" parent="." unique_id=616543264]
 transform = Transform3D(0.98435, 0.176226, 0, -0.176226, 0.98435, 0, 0, 0, 1, 274.034, -88.1481, 541.854)
 collision_layer = 2
 collision_mask = 5
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="headstone_2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="headstone_2" unique_id=1046613572]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.1828, 0, 1577.4)
 mesh = ExtResource("1_sqvje")
 surface_material_override/0 = SubResource("ShaderMaterial_wrwnj")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="headstone_2"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="headstone_2" unique_id=822633087]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.1828, 0, 1577.4)
 shape = SubResource("ConvexPolygonShape3D_gxr6o")
 
-[node name="headstone_3" type="StaticBody3D" parent="."]
+[node name="headstone_3" type="StaticBody3D" parent="." unique_id=1752241949]
 transform = Transform3D(0.812758, 0.355776, -0.461354, -0.309404, 0.934571, 0.17563, 0.493653, 0, 0.869659, -24.4076, 0.000119209, 864.87)
 collision_layer = 2
 collision_mask = 5
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="headstone_3"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="headstone_3" unique_id=1480399719]
 mesh = ExtResource("4_q0r61")
 surface_material_override/0 = SubResource("ShaderMaterial_4gj0x")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="headstone_3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="headstone_3" unique_id=839178020]
 shape = SubResource("ConvexPolygonShape3D_6s5yb")
 
-[node name="headstone_4" type="StaticBody3D" parent="."]
+[node name="headstone_4" type="StaticBody3D" parent="." unique_id=413986989]
 transform = Transform3D(0.707489, 0, -0.706724, 0, 1, 0, 0.706724, 0, 0.707489, -740.658, 0, 178.839)
 collision_layer = 2
 collision_mask = 5
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="headstone_4"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="headstone_4" unique_id=1421872600]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.1828, 0, 2980.54)
 mesh = ExtResource("5_03ih4")
 surface_material_override/0 = SubResource("ShaderMaterial_foci8")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="headstone_4"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="headstone_4" unique_id=349678267]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.1828, 0, 2980.54)
 shape = SubResource("ConvexPolygonShape3D_w35bu")
 
-[node name="headstone_5" type="StaticBody3D" parent="."]
+[node name="headstone_5" type="StaticBody3D" parent="." unique_id=191269517]
 transform = Transform3D(0.748391, -0.430133, 0.504872, 0.35658, 0.902766, 0.240552, -0.559251, 0, 0.828999, 154.684, 150.802, 828.012)
 collision_layer = 2
 collision_mask = 5
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="headstone_5"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="headstone_5" unique_id=183289686]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.1828, 0, 2209.56)
 mesh = ExtResource("6_cv8f8")
 surface_material_override/0 = SubResource("ShaderMaterial_w4x6y")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="headstone_5"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="headstone_5" unique_id=813635085]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.1828, 0, 2209.56)
 shape = SubResource("ConvexPolygonShape3D_clyg7")
 
-[node name="headstone_6" type="StaticBody3D" parent="."]
+[node name="headstone_6" type="StaticBody3D" parent="." unique_id=2063427387]
 transform = Transform3D(1, 0, 0, 0, 0.885937, 0.463806, 0, -0.463806, 0.885937, 126.272, 309.97, 172.51)
 collision_layer = 2
 collision_mask = 5
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="headstone_6"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="headstone_6" unique_id=1821485770]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -74.9846, 0, -1550.89)
 mesh = ExtResource("7_6fqsd")
 surface_material_override/0 = SubResource("ShaderMaterial_c5nsd")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="headstone_6"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="headstone_6" unique_id=1020372980]
 shape = SubResource("ConvexPolygonShape3D_yn77r")
 
-[node name="headstone_7" type="StaticBody3D" parent="."]
+[node name="headstone_7" type="StaticBody3D" parent="." unique_id=2074389320]
 transform = Transform3D(1, 0, 0, 0, 0.991588, -0.129436, 0, 0.129436, 0.991588, 55.8088, 2.07908, 738.383)
 collision_layer = 2
 collision_mask = 5
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="headstone_7"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="headstone_7" unique_id=1887948842]
 mesh = ExtResource("4_q0r61")
 surface_material_override/0 = SubResource("ShaderMaterial_4gj0x")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="headstone_7"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="headstone_7" unique_id=159335445]
 shape = SubResource("ConvexPolygonShape3D_6s5yb")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1629334823]
 transform = Transform3D(0.883913, 0, 0.467652, 0.110552, 0.971656, -0.208954, -0.454397, 0.236397, 0.858859, 2238.56, -912.055, 4551.87)
 mesh = ExtResource("8_3hl23")
-skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_je6mn")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1605110758]
 transform = Transform3D(0.883913, 0, 0.467652, 0.110552, 0.971656, -0.208954, -0.454397, 0.236397, 0.858859, 2238.56, -912.055, 4551.87)
 shape = SubResource("ConvexPolygonShape3D_wrnjr")

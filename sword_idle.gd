@@ -14,6 +14,7 @@ func _on_idle_state_entered() -> void:
 
 func _on_idle_state_exited() -> void:
 	weapon.can_attack = false
+	GamePiecesEventBus.slow_player_requested(1)
 	var tween = get_tree().create_tween()
 	tween.tween_property(Global.player.camera,"fov",Global.camera_fov+10,.25)
 	animation_tree.set("parameters/conditions/idle", false)
@@ -21,20 +22,21 @@ func _on_idle_state_exited() -> void:
 
 func _on_idle_state_processing(delta: float) -> void:
 	var mouse_movement = Input.get_last_mouse_velocity().normalized()
+	var player_dir = Global.player.input_dir
 	if Input.is_action_pressed("attack_primary") && weapon.can_attack:
-		if mouse_movement.x < -0.8:
-			state_chart.send_event("hold_right")
-			
-		elif mouse_movement.x > 0.8:
-			state_chart.send_event("hold_left")
-			
-		if mouse_movement.y < -0.8:
-			state_chart.send_event("hold_back")
-			
-		elif mouse_movement.y > 0.8:
+		if player_dir.z == -1:
 			state_chart.send_event("hold_forward")
 			
-		elif mouse_movement.x == 0 && mouse_movement.x == 0:
+		elif player_dir.z == 1:
+			state_chart.send_event("hold_back")
+			
+		elif mouse_movement.x < -0.9:
+			state_chart.send_event("hold_right")
+			
+		elif mouse_movement.x > 0.9:
+			state_chart.send_event("hold_left")
+			
+		else:
 			state_chart.send_event("hold_right")
 			
 	if Input.is_action_just_pressed("attack_secondary"):

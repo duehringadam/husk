@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://iarqxfted72l"]
+[gd_scene format=4 uid="uid://iarqxfted72l"]
 
 [ext_resource type="Texture2D" uid="uid://dle0ovf1vrrho" path="res://test texture/kenney_prototype-textures/PNG/Dark/texture_02.png" id="1_ivea3"]
 [ext_resource type="Texture2D" uid="uid://bwnxaeoqowc5f" path="res://test texture/kenney_prototype-textures/PNG/Orange/texture_01.png" id="2_jvck6"]
@@ -12,6 +12,7 @@
 [ext_resource type="Resource" uid="uid://vepy1a10tg28" path="res://item/weapons/polearm.tres" id="10_ivea3"]
 [ext_resource type="Resource" uid="uid://dbk1ijoypy6bl" path="res://item/weapons/heavy crossbow.tres" id="11_jvck6"]
 [ext_resource type="Resource" uid="uid://j2kounr4gxnk" path="res://item/weapons/longsword.tres" id="12_07jwy"]
+[ext_resource type="Resource" uid="uid://smiwqmeohr5s" path="res://item/weapons/hand_crossbow.tres" id="13_urhrq"]
 [ext_resource type="PackedScene" uid="uid://dfl6qgyleyflk" path="res://scenes/physics_pickable/bag_pickable.tscn" id="14_07jwy"]
 [ext_resource type="PackedScene" uid="uid://csc3ojr7benhn" path="res://maptestflesh(2).tscn" id="15_urhrq"]
 
@@ -87,47 +88,46 @@ uv1_scale = Vector3(10, 10, 10)
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_jvck6"]
 data = PackedVector3Array(-25, -0.5421, -25, -25, 34.3819, -25, -25, -0.5421, 25, -25, -0.5421, -25, -25, -0.5421, 25, 25, -0.5421, -25, -25, -0.5421, -25, 25, -0.5421, -25, -25, 34.3819, -25, -25, 34.3819, -25, -23.687, 34.3819, -23.734299, -23.687, 34.3819, 23.6505, -25, 34.3819, -25, 23.668098, 34.3819, -23.734299, -23.687, 34.3819, -23.734299, -25, -0.5421, 25, -25, 34.3819, -25, -25, 34.3819, 25, -25, 34.3819, -25, -23.687, 34.3819, 23.6505, -25, 34.3819, 25, -25, -0.5421, 25, -25, 34.3819, 25, 25, 34.3819, 25, -25, 34.3819, 25, -23.687, 34.3819, 23.6505, 25, 34.3819, 25, -25, -0.5421, 25, 25, -0.5421, 25, 25, -0.5421, -25, -25, -0.5421, 25, 25, 34.3819, 25, 25, -0.5421, 25, 25, -0.5421, -25, 25, -0.5421, 25, 25, 34.3819, 25, -25, 34.3819, -25, 25, -0.5421, -25, 25, 34.3819, -25, -25, 34.3819, -25, 25, 34.3819, -25, 23.668098, 34.3819, -23.734299, 25, -0.5421, -25, 25, 34.3819, 25, 25, 34.3819, -25, 25, 34.3819, -25, 23.668098, 34.3819, 23.6505, 23.668098, 34.3819, -23.734299, 25, 34.3819, 25, -23.687, 34.3819, 23.6505, 23.668098, 34.3819, 23.6505, 25, 34.3819, -25, 25, 34.3819, 25, 23.668098, 34.3819, 23.6505, -23.687, 0.0058999998, -23.734299, -23.687, 0.0058999998, 23.6505, -23.687, 34.3819, -23.734299, -23.687, 0.0058999998, -23.734299, 23.668098, 0.0058999998, -23.734299, -23.687, 0.0058999998, 23.6505, -23.687, 0.0058999998, -23.734299, -23.687, 34.3819, -23.734299, 23.668098, 0.0058999998, -23.734299, -23.687, 0.0058999998, 23.6505, -23.687, 34.3819, 23.6505, -23.687, 34.3819, -23.734299, -23.687, 0.0058999998, 23.6505, 23.668098, 34.3819, 23.6505, -23.687, 34.3819, 23.6505, -23.687, 0.0058999998, 23.6505, 23.668098, 0.0058999998, -23.734299, 23.668098, 0.0058999998, 23.6505, -23.687, 0.0058999998, 23.6505, 23.668098, 0.0058999998, 23.6505, 23.668098, 34.3819, 23.6505, 23.668098, 0.0058999998, -23.734299, 23.668098, 34.3819, 23.6505, 23.668098, 0.0058999998, 23.6505, 23.668098, 0.0058999998, -23.734299, -23.687, 34.3819, -23.734299, 23.668098, 34.3819, -23.734299, 23.668098, 0.0058999998, -23.734299, 23.668098, 34.3819, -23.734299, 23.668098, 34.3819, 23.6505)
 
-[node name="test_world" type="Node3D"]
+[node name="test_world" type="Node3D" unique_id=1619667254]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=771142050]
 environment = SubResource("Environment_dsnr4")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment" unique_id=132790548]
 transform = Transform3D(1, 0, 0, 0, -0.024397261, 0.99970233, 0, -0.99970233, -0.024397261, 0, 1.5199726, 0)
 layers = 3
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=761706030]
 navigation_mesh = SubResource("NavigationMesh_cnaw2")
 
-[node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+[node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D" unique_id=76410689]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 mesh = SubResource("ArrayMesh_ivea3")
 
-[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+[node name="StaticBody3D2" type="StaticBody3D" parent="." unique_id=1676183416]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.561288, 4.9, -6.268134)
 collision_layer = 2
 collision_mask = 0
 
-[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2" unique_id=161003914]
 shape = SubResource("ConcavePolygonShape3D_ivea3")
 
-[node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2"]
+[node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2" unique_id=1718293652]
 mesh = SubResource("ArrayMesh_jvck6")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_urhrq")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=967836965]
 collision_layer = 2
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1385992239]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_jvck6")
 
-[node name="Player2" parent="." instance=ExtResource("5_cnaw2")]
+[node name="Player2" parent="." unique_id=1592911738 instance=ExtResource("5_cnaw2")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.8617, 0, 57.88921)
-collision_mask = 6
-inventory = Array[ExtResource("5_ud3vi")]([ExtResource("6_5457m"), ExtResource("7_ivea3"), ExtResource("8_5457m"), ExtResource("9_ivea3"), ExtResource("9_5457m"), ExtResource("10_ivea3"), ExtResource("11_jvck6"), ExtResource("12_07jwy")])
+inventory = Array[ExtResource("5_ud3vi")]([ExtResource("6_5457m"), ExtResource("7_ivea3"), ExtResource("8_5457m"), ExtResource("9_ivea3"), ExtResource("9_5457m"), ExtResource("10_ivea3"), ExtResource("11_jvck6"), ExtResource("12_07jwy"), ExtResource("13_urhrq")])
 footsteps_sound = null
 head_bob_strength = 0.05
 toggle_crouch = false
@@ -137,8 +137,8 @@ fov_change = 2.0
 crouch_height = 0.65
 camera_lean_position = Vector3(0, 0, 0)
 
-[node name="Armature" parent="." instance=ExtResource("14_07jwy")]
+[node name="Armature" parent="." unique_id=359213326 instance=ExtResource("14_07jwy")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -8.505224, 0.8554988, 5.0823913)
 
-[node name="maptestflesh(2)" parent="." instance=ExtResource("15_urhrq")]
+[node name="maptestflesh(2)" parent="." unique_id=396135325 instance=ExtResource("15_urhrq")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -7.0952625, 0, 57.730106)

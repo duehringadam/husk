@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4p233abdffg3"]
+[gd_scene format=3 uid="uid://b4p233abdffg3"]
 
 [ext_resource type="PackedScene" uid="uid://b6bl3n5mp3m1e" path="res://addons/maaacks_menus_template/base/scenes/menus/options_menu/option_control/list_option_control.tscn" id="1_eloff"]
 [ext_resource type="Script" uid="uid://cd3n31nqy52c4" path="res://scenes/menus/options_menu/audio/audio_input_option_control.gd" id="2_ktq86"]
 
-[node name="AudioInputOptionControl" instance=ExtResource("1_eloff")]
+[node name="AudioInputOptionControl" unique_id=771017708 instance=ExtResource("1_eloff")]
+visible = false
 script = ExtResource("2_ktq86")
 option_name = "Input Device"
 option_section = 2
@@ -11,10 +12,10 @@ key = "InputDevice"
 section = "AudioSettings"
 property_type = 4
 
-[node name="OptionLabel" parent="." index="0"]
+[node name="OptionLabel" parent="." index="0" unique_id=1777046824]
 text = "Input Device :"
 
-[node name="OptionButton" parent="." index="1"]
+[node name="OptionButton" parent="." index="1" unique_id=957037851]
 size_flags_horizontal = 3
 text_overrun_behavior = 1
 clip_text = true

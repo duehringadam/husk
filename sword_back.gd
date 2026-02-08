@@ -5,7 +5,6 @@ extends Node
 
 
 func _on_back_state_entered() -> void:
-	GamePiecesEventBus.slow_player_requested(1)
 	animation_tree.set("parameters/conditions/hold_back", true)
 
 

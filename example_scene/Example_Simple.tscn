@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://xog5yco44i3o"]
+[gd_scene format=3 uid="uid://xog5yco44i3o"]
 
 [ext_resource type="Script" uid="uid://c6av3xe4m2ujl" path="res://addons/madtalk/runtime/madtalk_runtime.gd" id="1_qs3n3"]
 [ext_resource type="Script" uid="uid://crm8hyh7nn5vb" path="res://addons/madtalk/runtime/CharacterData.gd" id="2_ws8fe"]
@@ -57,7 +57,6 @@ script = ExtResource("2_ws8fe")
 id = "foo"
 name = "Maria"
 avatar = ExtResource("3_p1jhp")
-variants = {}
 metadata/_custom_type_script = "uid://crm8hyh7nn5vb"
 
 [sub_resource type="Resource" id="Resource_xfi70"]
@@ -65,10 +64,9 @@ script = ExtResource("2_ws8fe")
 id = "bar"
 name = "Francesco"
 avatar = ExtResource("4_5tatg")
-variants = {}
 metadata/_custom_type_script = "uid://crm8hyh7nn5vb"
 
-[node name="Scene" type="Control"]
+[node name="Scene" type="Control" unique_id=1647024168]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -77,7 +75,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = SubResource("4")
 
-[node name="MadTalk" type="Node" parent="."]
+[node name="MadTalk" type="Node" parent="." unique_id=2110154707]
 script = ExtResource("1_qs3n3")
 ListOfCharacters = Array[ExtResource("2_ws8fe")]([SubResource("Resource_ulk8d"), SubResource("Resource_xfi70")])
 DialogMainControl = NodePath("../Dialog")
@@ -89,7 +87,7 @@ DialogButtonsMenu = NodePath("../Dialog/MenuBox")
 DialogButtonsContainer = NodePath("../Dialog/MenuBox/MenuContainer")
 KeyPressAudioStreamPlayer = NodePath("../Dialog/SFXClick")
 
-[node name="SheetID" type="LineEdit" parent="."]
+[node name="SheetID" type="LineEdit" parent="." unique_id=97382869]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 16.0
@@ -97,37 +95,37 @@ offset_right = 268.0
 offset_bottom = 44.0
 placeholder_text = "Type sheet ID and press Enter"
 
-[node name="PanelSheets" type="Panel" parent="."]
+[node name="PanelSheets" type="Panel" parent="." unique_id=1876318253]
 layout_mode = 0
 offset_left = 338.0
 offset_top = 38.0
 offset_right = 574.0
 offset_bottom = 358.0
 
-[node name="Label" type="Label" parent="PanelSheets"]
+[node name="Label" type="Label" parent="PanelSheets" unique_id=322629979]
 layout_mode = 0
 offset_top = -28.0
 offset_right = 232.0
 offset_bottom = -2.0
 text = "Double click to start the sheet"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="PanelSheets"]
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelSheets" unique_id=1948747]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="ItemList" type="ItemList" parent="PanelSheets/ScrollContainer"]
+[node name="ItemList" type="ItemList" parent="PanelSheets/ScrollContainer" unique_id=605303064]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 allow_reselect = true
 
-[node name="Dialog" type="Control" parent="."]
+[node name="Dialog" type="Control" parent="." unique_id=1267085836]
 anchors_preset = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="DialogBox" type="Panel" parent="Dialog"]
+[node name="DialogBox" type="Panel" parent="Dialog" unique_id=905297588]
 layout_mode = 0
 anchor_left = 0.5
 anchor_top = 1.0
@@ -138,7 +136,7 @@ offset_top = -222.0
 offset_right = 438.5
 offset_bottom = -32.0
 
-[node name="Avatar" type="TextureRect" parent="Dialog/DialogBox"]
+[node name="Avatar" type="TextureRect" parent="Dialog/DialogBox" unique_id=70635611]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 16.0
@@ -148,7 +146,7 @@ texture = ExtResource("4_5tatg")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="LabelName" type="Label" parent="Dialog/DialogBox"]
+[node name="LabelName" type="Label" parent="Dialog/DialogBox" unique_id=1004570150]
 layout_mode = 0
 offset_left = 17.0
 offset_top = 149.0
@@ -156,7 +154,7 @@ offset_right = 144.0
 offset_bottom = 180.0
 clip_text = true
 
-[node name="LabelMessage" type="RichTextLabel" parent="Dialog/DialogBox"]
+[node name="LabelMessage" type="RichTextLabel" parent="Dialog/DialogBox" unique_id=1429517315]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -166,7 +164,7 @@ offset_right = -20.0
 offset_bottom = -18.0
 bbcode_enabled = true
 
-[node name="MenuBox" type="Panel" parent="Dialog"]
+[node name="MenuBox" type="Panel" parent="Dialog" unique_id=317481016]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -180,7 +178,7 @@ offset_bottom = -195.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="MenuContainer" type="VBoxContainer" parent="Dialog/MenuBox"]
+[node name="MenuContainer" type="VBoxContainer" parent="Dialog/MenuBox" unique_id=1206194942]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -190,7 +188,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="SFXClick" type="AudioStreamPlayer" parent="Dialog"]
+[node name="SFXClick" type="AudioStreamPlayer" parent="Dialog" unique_id=1637171497]
 stream = ExtResource("5_ryn23")
 volume_db = -6.0
 

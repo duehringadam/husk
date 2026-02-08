@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://5i8e6fsne4v5"]
+[gd_scene format=4 uid="uid://5i8e6fsne4v5"]
 
 [ext_resource type="Script" uid="uid://gbfdqpek0no8" path="res://spell_fire.gd" id="1_0eavj"]
 [ext_resource type="Texture2D" uid="uid://b4mgsikbc344q" path="res://Player/viewmodel/hands/psx-first-person-arms-free-game-assets/PSX_First_Person_Arms_arms.png" id="2_4h3xe"]
@@ -327,15 +327,15 @@ _data = {
 &"fire_spell_idle": SubResource("Animation_4h3xe")
 }
 
-[node name="spell_fire" type="Node3D"]
+[node name="spell_fire" type="Node3D" unique_id=1881406381]
 script = ExtResource("1_0eavj")
 weapon_initial_position = Vector3(-0.2, -0.665, -0.225)
 spell_projectile = ExtResource("2_rf353")
 
-[node name="arms_armature" type="Node3D" parent="."]
+[node name="arms_armature" type="Node3D" parent="." unique_id=626423674]
 transform = Transform3D(-1.4, 0, -2.1139412e-07, 0, 1.4, 0, 2.1139412e-07, 0, -1.4, -0.012435436, -0.1681863, 0.86541045)
 
-[node name="Skeleton3D" type="Skeleton3D" parent="arms_armature"]
+[node name="Skeleton3D" type="Skeleton3D" parent="arms_armature" unique_id=1203278055]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.36687317, -0.063797414, 0.0822317)
 bones/0/name = "spine"
 bones/0/parent = -1
@@ -356,7 +356,7 @@ bones/2/parent = 1
 bones/2/rest = Transform3D(0.99409413, 0.10810001, -0.009554846, -0.10438447, 0.9284059, -0.35660395, -0.029678112, 0.35549524, 0.9342068, -4.9592927e-08, 0.2862151, 0)
 bones/2/enabled = true
 bones/2/position = Vector3(-4.9592927e-08, 0.2862151, 0)
-bones/2/rotation = Quaternion(0.18130183, 0.005123422, -0.054098956, 0.981925)
+bones/2/rotation = Quaternion(0, 0, 0, 1)
 bones/2/scale = Vector3(1, 0.99999994, 1)
 bones/3/name = "hand.L"
 bones/3/parent = 2
@@ -660,23 +660,24 @@ bones/45/position = Vector3(-0.033159632, 0.0507503, -0.061911404)
 bones/45/rotation = Quaternion(0.68400884, 6.0782284e-08, 0.014975859, 0.72932)
 bones/45/scale = Vector3(1, 1.0000001, 1)
 
-[node name="arms" type="MeshInstance3D" parent="arms_armature/Skeleton3D"]
+[node name="arms" type="MeshInstance3D" parent="arms_armature/Skeleton3D" unique_id=105132552]
 layers = 2
 mesh = SubResource("ArrayMesh_j4gbj")
 skin = SubResource("Skin_16ch1")
+skeleton = NodePath("..")
 surface_material_override/0 = SubResource("StandardMaterial3D_0eavj")
 
-[node name="IKLeft" type="SkeletonIK3D" parent="arms_armature/Skeleton3D"]
+[node name="IKLeft" type="SkeletonIK3D" parent="arms_armature/Skeleton3D" unique_id=999718096]
 transform = Transform3D(-1.3, 1.96295e-07, 8.58031e-15, 0, -5.68248e-08, 1.3, 1.96295e-07, 1.3, 5.68248e-08, 0.83737576, -1.7972109, 0.038122356)
 root_bone = &"upper_arm.L"
 tip_bone = &"hand.L"
 target_node = NodePath("../../../TargetIKLeft")
 script = ExtResource("4_3yxkx")
 
-[node name="TargetIKLeft" type="Node3D" parent="."]
+[node name="TargetIKLeft" type="Node3D" parent="." unique_id=259210336]
 transform = Transform3D(0.5314922, 0.5464886, -0.64719874, -0.38270596, 0.8365438, 0.3920846, 0.7556802, 0.039296944, 0.6537609, 0.30977494, 0.41481572, 0.47409666)
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="TargetIKLeft"]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="TargetIKLeft" unique_id=1342072422]
 transform = Transform3D(0.11995289, -0.11267176, 0.9863653, 0.63165057, 0.77516437, 0.011730708, -0.7659168, 0.621631, 0.16415232, 0.036243796, 0.063952565, 0.017454892)
 layers = 2
 amount = 32
@@ -685,19 +686,17 @@ local_coords = true
 process_material = SubResource("ParticleProcessMaterial_0eavj")
 draw_pass_1 = ExtResource("6_rf353")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="TargetIKLeft/GPUParticles3D"]
+[node name="OmniLight3D" type="OmniLight3D" parent="TargetIKLeft/GPUParticles3D" unique_id=1138468221]
 layers = 3
 light_color = Color(1, 0.3882353, 0, 1)
 light_energy = 0.25
 shadow_enabled = true
 omni_range = 0.2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_rf353")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2106371]
+libraries/ = SubResource("AnimationLibrary_rf353")
 
-[node name="spell_raycast" type="RayCast3D" parent="."]
+[node name="spell_raycast" type="RayCast3D" parent="." unique_id=1311282845]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.36055064, 0.43138123, 0.48367232)
 target_position = Vector3(0, 0, -30)
 collision_mask = 14
