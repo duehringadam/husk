@@ -30,5 +30,7 @@ func _on_holding_state_physics_processing(delta: float) -> void:
 		if not Input.is_action_pressed("attack_secondary") && spell_telekinesis.grabbed_object != null:
 			animation_player.play("throw_object")
 			state_chart.send_event("throw")
+		if Input.is_action_just_pressed("interact"):
+			state_chart.send_event("missed")
 	if !is_instance_valid(spell_telekinesis.grabbed_object):
 		state_chart.send_event("missed")
