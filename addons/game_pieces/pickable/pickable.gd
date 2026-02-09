@@ -91,6 +91,7 @@ func _input(event: InputEvent) -> void:
 func _while_grabbed(controller: InteractionController) -> void:
 	if _interaction_controller != null: return
 	# Again cool down to avoid player flying off
+	Global.player.collision_mask = 6
 	if _delay_timer != null and _delay_timer.is_running(): return
 	_interaction_controller = controller
 	_interaction_controller.grab_object(self)
@@ -101,6 +102,7 @@ func _while_grabbed(controller: InteractionController) -> void:
 	_initial_position = reference_node.to_local(global_position)
 	InteractionContainer.from(self).enable(interaction_context_when_grabbed)
 	set_transparency(self, 0.35)
+	
 	$PickupSound.play()
 	# Bring it closer to reference node but with a delay to avoid player flying off
 	_delay_timer = create_tween()
@@ -120,6 +122,7 @@ func _released(_c: InteractionController) -> void:
 	_interaction_controller = null
 	InteractionContainer.from(self).enable()
 	GamePiecesEventBus.request_camera_lock(false)
+	Global.player.collision_mask = 14
 	set_transparency(self, 0.0)
 
 
