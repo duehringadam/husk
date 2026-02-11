@@ -14,7 +14,6 @@ func target_changed(name: String, _source: Variant, target_max_hp: float, target
 		source = _source
 	self.show()
 	label.text = name
-	health_component.max_health = target_max_hp
 	health_component.modify_max_health(target_max_hp)
 	health_component.current_health = target_current_hp
 	health_component.modify_health(target_current_hp)

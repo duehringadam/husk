@@ -216,34 +216,40 @@ volume_db = -6.0
 max_polyphony = 5
 bus = &"SFX"
 
-[node name="tutorial" type="PanelContainer" parent="Scene" unique_id=482539227]
-visible = false
-custom_minimum_size = Vector2(1280, 720)
+[node name="TabContainer" type="TabContainer" parent="Scene" unique_id=1348377023]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -250.0
-offset_top = -250.0
-offset_right = 250.0
-offset_bottom = 250.0
+offset_left = -640.0
+offset_top = -375.5
+offset_right = 640.0
+offset_bottom = 375.5
 grow_horizontal = 2
 grow_vertical = 2
+focus_behavior_recursive = 1
+tab_alignment = 1
+current_tab = 0
 script = ExtResource("7_xcdg0")
 
-[node name="MarginContainer" type="MarginContainer" parent="Scene/tutorial" unique_id=307110745]
+[node name="Welcome" type="PanelContainer" parent="Scene/TabContainer" unique_id=482539227]
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Scene/TabContainer/Welcome" unique_id=307110745]
 layout_mode = 2
 theme_override_constants/margin_left = 40
 theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 40
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Scene/tutorial/MarginContainer" unique_id=1030064587]
+[node name="VBoxContainer" type="VBoxContainer" parent="Scene/TabContainer/Welcome/MarginContainer" unique_id=1030064587]
 layout_mode = 2
 
-[node name="Label" type="RichTextLabel" parent="Scene/tutorial/MarginContainer/VBoxContainer" unique_id=787616865]
+[node name="Label" type="RichTextLabel" parent="Scene/TabContainer/Welcome/MarginContainer/VBoxContainer" unique_id=787616865]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 24
@@ -264,7 +270,40 @@ Controls:
 
 [color=red]esc[/color] for menu"
 
-[node name="Button" type="Button" parent="Scene/tutorial/MarginContainer/VBoxContainer" unique_id=369757449]
+[node name="How to play" type="PanelContainer" parent="Scene/TabContainer" unique_id=226665432]
+visible = false
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Scene/TabContainer/How to play" unique_id=1185244352]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Scene/TabContainer/How to play/MarginContainer" unique_id=197903602]
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="Scene/TabContainer/How to play/MarginContainer/VBoxContainer" unique_id=1795219466]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "You have directional attacks that are controlled by [color=red]movement and your mouse[/color]
+
+Walking forward or backwards will highlight your crosshair in the [color=red]up[/color] and [color=red]down[/color] directions
+
+Moving your [color=red]mouse[/color] from [color=red]left to right[/color] will highlight the left and right icons on your crosshair.
+
+Depending on which icon is highlighted when you press left click, you will attack differently.
+
+Using these directional attacks are important to succeeding in combat as you can use different attacks to target enemies limbs, attacking a certain limb with a [color=red]bladed[/color] weapon enough will [color=red]dismember[/color] it.
+
+You can press tab to see weapons and spells at your disposal."
+
+[node name="Button" type="Button" parent="Scene/TabContainer/How to play/MarginContainer/VBoxContainer" unique_id=1736454391]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -274,6 +313,7 @@ text = "Close"
 
 [node name="inventory" type="PanelContainer" parent="." unique_id=678313113]
 visible = false
+focus_behavior_recursive = 1
 mouse_filter = 2
 script = ExtResource("8_kthw8")
 
@@ -314,6 +354,8 @@ horizontal_alignment = 1
 
 [node name="playerHealth" parent="enemyhealth/VBoxContainer" unique_id=592960900 instance=ExtResource("11_h0fht")]
 layout_mode = 2
+max_value = 0.0
+value = 0.0
 
 [node name="HealthComponent" type="Node3D" parent="enemyhealth" unique_id=1827357247]
 script = ExtResource("12_h0fht")
@@ -325,6 +367,6 @@ metadata/_custom_type_script = "uid://dgjqgiw3yw42e"
 [connection signal="dialog_finished" from="Scene/MadTalk" to="Scene" method="_on_mad_talk_dialog_finished"]
 [connection signal="dialog_started" from="Scene/MadTalk" to="Scene" method="_on_mad_talk_dialog_started"]
 [connection signal="message_text_shown" from="Scene/MadTalk" to="." method="_on_mad_talk_message_text_shown"]
-[connection signal="pressed" from="Scene/tutorial/MarginContainer/VBoxContainer/Button" to="Scene/tutorial" method="_on_button_pressed"]
+[connection signal="pressed" from="Scene/TabContainer/How to play/MarginContainer/VBoxContainer/Button" to="Scene/TabContainer" method="_on_button_pressed"]
 [connection signal="health_changed" from="enemyhealth/HealthComponent" to="enemyhealth/VBoxContainer/playerHealth" method="_on_health_changed"]
 [connection signal="max_health_changed" from="enemyhealth/HealthComponent" to="enemyhealth/VBoxContainer/playerHealth" method="_on_max_health_changed"]

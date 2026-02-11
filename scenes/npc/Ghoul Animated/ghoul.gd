@@ -41,7 +41,7 @@ func _on_health_component_died() -> void:
 
 func head_lost(value: bool)-> void:
 	if !value:
-		_on_health_component_died()
+		health_component.modify_health(-999)
 
 func _on_stance_component_stance_broken() -> void:
 	pass

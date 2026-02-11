@@ -1,4 +1,4 @@
-extends PanelContainer
+extends TabContainer
 
 func _ready() -> void:
 	self.show()

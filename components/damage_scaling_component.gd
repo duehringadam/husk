@@ -24,8 +24,8 @@ func _ready() -> void:
 			i.state_entered.connect(hold_attack)
 		if !i.state_exited.is_connected(attack):
 			i.state_exited.connect(attack)
-	if !end_swing.state_entered.is_connected(end_attack):
-		end_swing.state_entered.connect(end_attack)
+	if !end_swing.state_exited.is_connected(end_attack):
+		end_swing.state_exited.connect(end_attack)
 	
 func hold_attack():
 	SignalBus.emit_signal("weapon_charge_bool", true)
@@ -35,11 +35,9 @@ func hold_attack():
 func attack():
 	timer.stop()
 	for i in damage_component.damage_types:
-		damage_component.damage_types[i]  *= actual_damage_ratio
+		damage_component.damage_types[i] *= actual_damage_ratio
 	damage_component.stance_damage_value *= actual_damage_ratio
-	print(damage_component.stance_damage_value)
 
-	
 func end_attack():
 	SignalBus.emit_signal("weapon_charge_bool", false)
 	actual_damage_ratio = lerpf(actual_damage_ratio,0,.5)
