@@ -2,6 +2,7 @@ class_name npc
 extends CharacterBody3D
 
 @export_category("Variables")
+@export var npc_name: String
 @export var SPEED: float = 1
 @export_range(0.0,1.0) var aggro := 0.0
 @export var target: Node3D: set = _update_target
@@ -27,7 +28,7 @@ var direction = Vector3()
 var is_leader: bool = false
 
 func _ready() -> void:
-	pass
+	set_physics_process(false)
 
 func _physics_process(delta: float) -> void:
 	direction = navigation_agent.get_next_path_position() - global_transform.origin
@@ -37,7 +38,9 @@ func _physics_process(delta: float) -> void:
 	_push_rigid_bodies()
 	move_and_slide()
 
+
 func _push_rigid_bodies()-> void:
+	if get_slide_collision_count() <= 0: return
 	for i in get_slide_collision_count():
 			var c := get_slide_collision(i)
 			if c.get_collider() is RigidBody3D:

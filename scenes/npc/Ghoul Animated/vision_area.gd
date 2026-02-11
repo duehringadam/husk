@@ -17,8 +17,9 @@ func _on_timer_timeout() -> void:
 				
 				for ray in raycasts.get_children():
 					if ray is RayCast3D:
+						await get_tree().physics_frame
 						ray.force_raycast_update()
-						#ray.look_at(raycast_look.global_position)
+						ray.look_at(raycast_look.global_position)
 						if ray.is_colliding():
 							if ray.get_collider() is Player:
 								aggro_amount = clampf(aggro_amount+.015,0,1.0)

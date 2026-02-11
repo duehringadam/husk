@@ -246,15 +246,13 @@ func handle_movement(delta: float) -> void:
 	
 	var direction: Vector3 = (head.transform.basis * transform.basis * input_dir).normalized()
 	if is_on_floor():
-		
-		#if floor_normal.angle_to(Vector3.UP) > deg_to_rad(floor_max_angle):
-			#velocity.x = 0
-			#velocity.z = 0
 		if direction:
+			camera.rotation_degrees.z = lerpf(camera.rotation_degrees.z,clampf(-(camera.rotation_degrees.z-velocity.x),-1,1),4*delta)
 			velocity.x = direction.x * speed
 			velocity.z = direction.z * speed
 			handle_fov_change(delta)
 		else:
+			camera.rotation_degrees.z = lerpf(camera.rotation_degrees.z,0,1*delta)
 			velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
 			velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
 	else:

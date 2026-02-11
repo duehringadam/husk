@@ -47,6 +47,7 @@ settings/addon_root_folder="res://addons/debug_draw_3d"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/mode=3
 window/size/initial_position_type=2
 
 [editor]
@@ -241,9 +242,10 @@ copy_path="res://scenes/ui/"
 
 [physics]
 
+3d/run_on_separate_thread=true
 3d/physics_engine="Jolt Physics"
+jolt_physics_3d/collisions/collision_margin_fraction=0.02432
 3d/default_gravity=12.0
-3d/solver/solver_iterations=32
 
 [raytraced_audio]
 
@@ -252,7 +254,7 @@ ambient_bus=&"RaytracedAmbient"
 
 [rendering]
 
-occlusion_culling/bvh_build_quality=1
+occlusion_culling/bvh_build_quality=0
 textures/canvas_textures/default_texture_filter=0
 shading/overrides/force_lambert_over_burley=true
 viewport/hdr_2d=true

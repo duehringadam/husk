@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://54gj5htolv56" path="res://status_effects/fire_damage.tscn" id="1_el8fs"]
 [ext_resource type="Script" uid="uid://ca8ha7ig6gshg" path="res://components/status_effect.gd" id="1_p5b5h"]
+[ext_resource type="Material" uid="uid://cq6qjkpjhmbw8" path="res://status_effects/burning_particle_process_material.tres" id="2_ujb7e"]
 [ext_resource type="Texture2D" uid="uid://bgpuc5rjm2yh5" path="res://Textures/T_Fire01_SubUV.png" id="4_al4dh"]
 [ext_resource type="Texture2D" uid="uid://dgnarq1axwhae" path="res://Textures/T_Fire01_Tiled_D_Yellow.png" id="5_ujb7e"]
 
@@ -96,6 +97,7 @@ domain_warp_enabled = true
 noise = SubResource("FastNoiseLite_dpwem")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vju1b"]
+resource_local_to_scene = true
 render_priority = 0
 shader = SubResource("Shader_al4dh")
 shader_parameter/progress = 0.0
@@ -116,11 +118,10 @@ shader_parameter/ash_color = Color(0.2836822, 0.2836822, 0.2836822, 1)
 resource_local_to_scene = true
 transparency = 1
 vertex_color_use_as_albedo = true
-albedo_color = Color(1, 0.3254902, 0, 1)
+vertex_color_is_srgb = true
+albedo_color = Color(1, 0.50956357, 0, 1)
 albedo_texture = ExtResource("4_al4dh")
-emission_enabled = true
-emission = Color(1, 0.21960784, 0, 1)
-emission_energy_multiplier = 7.02
+emission = Color(1, 0.29748532, 0, 1)
 emission_texture = ExtResource("5_ujb7e")
 backlight = Color(1, 1, 1, 1)
 billboard_mode = 3
@@ -129,11 +130,10 @@ particles_anim_h_frames = 6
 particles_anim_v_frames = 6
 particles_anim_loop = true
 grow_amount = -0.264
-proximity_fade_distance = 1117.19
 distance_fade_max_distance = 1.0
 stencil_flags = 2
 
-[sub_resource type="QuadMesh" id="QuadMesh_ujb7e"]
+[sub_resource type="QuadMesh" id="QuadMesh_al4dh"]
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_xcmeu")
 size = Vector2(0.75, 0.75)
@@ -144,7 +144,8 @@ damage_types = Dictionary[int, float]({
 6: 2.0
 })
 damage_component_scene = ExtResource("1_el8fs")
-status_effect_mesh = SubResource("QuadMesh_ujb7e")
+particle_processor = ExtResource("2_ujb7e")
+status_effect_mesh = SubResource("QuadMesh_al4dh")
 affected_target_next_pass = SubResource("ShaderMaterial_vju1b")
 gravity = 2.3999999999999986
 is_animated = true

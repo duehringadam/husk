@@ -10,6 +10,7 @@
 [ext_resource type="Resource" uid="uid://bgq4jclx52jt0" path="res://item/weapons/broken_sword.tres" id="4_d6j5h"]
 [ext_resource type="Resource" uid="uid://c8afm2d4w8gxb" path="res://item/spells/telekinesis.tres" id="5_863th"]
 [ext_resource type="Script" uid="uid://csps0dnf2gf2n" path="res://Player/player_hurtbox_component.gd" id="5_eon52"]
+[ext_resource type="Script" uid="uid://brvxqhk8jpiq2" path="res://addons/player/health_detect.gd" id="6_5fkmn"]
 [ext_resource type="Script" uid="uid://d3vjqiaaxlykb" path="res://Player/offhand.gd" id="6_c1i0s"]
 [ext_resource type="Script" uid="uid://dql5v81gqvdat" path="res://components/status_effect_component.gd" id="6_eon52"]
 [ext_resource type="AudioStream" uid="uid://df2b8w21sb3xf" path="res://sfx/hit-rock-03-266305.mp3" id="8_jux4o"]
@@ -36,6 +37,10 @@ radius = 0.75
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_dverj"]
 length = 0.5
 slide_on_slope = true
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2m5xu"]
+radius = 0.25
+height = 3.0
 
 [sub_resource type="Animation" id="Animation_by45h"]
 length = 0.001
@@ -396,6 +401,12 @@ target_position = Vector3(0, 0, -2)
 collision_mask = 2
 collide_with_areas = true
 
+[node name="HealthDetect" type="ShapeCast3D" parent="Head/Neck/Camera3D" unique_id=361449909]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_2m5xu")
+collision_mask = 4
+script = ExtResource("6_5fkmn")
+
 [node name="CameraAnimationPlayer" type="AnimationPlayer" parent="Head" unique_id=2090545160]
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_by45h")
@@ -461,25 +472,25 @@ transform = Transform3D(-1.2, 0, 1.04907336e-07, 0, 1.2, 0, -1.04907336e-07, 0, 
 top_level = true
 
 [node name="Root" parent="playerBody" index="0" unique_id=227732896]
-transform = Transform3D(0.6448661, 0.76239777, -0.05381993, -0.025142502, 0.09154066, 0.99548364, 0.7638814, -0.64060074, 0.078200094, 0.05117488, -0.09909083, -0.08101089)
+transform = Transform3D(0.9917948, 0.12696438, -0.01491075, -0.0015147886, 0.12830253, 0.9917337, 0.12782794, -0.9835741, 0.12744217, 0.04334361, -0.14194332, -0.12294519)
 
 [node name="Skeleton3D" parent="playerBody/Root" index="0" unique_id=1398321543]
-bones/1/rotation = Quaternion(-0.04448053, 0.038317934, 0.014223951, 0.9981738)
-bones/2/rotation = Quaternion(0.030190896, 0.07274516, 0.03465408, 0.99629104)
-bones/3/rotation = Quaternion(0.061138615, 0.05742664, -0.8414238, 0.53382605)
-bones/4/rotation = Quaternion(0.17037408, 0.008583872, -0.29558447, 0.93996215)
-bones/5/rotation = Quaternion(0.56815344, -0.2869275, -0.24015245, 0.73294014)
-bones/7/rotation = Quaternion(0.12852602, -0.039989296, -0.00024713264, 0.99089956)
-bones/9/rotation = Quaternion(0.12980597, -0.04943893, 0.89542305, 0.4229938)
-bones/10/rotation = Quaternion(0.19667624, 0.19561327, 0.043468308, 0.9597731)
-bones/11/rotation = Quaternion(0.50720245, 0.4124326, 0.45182702, 0.6070399)
-bones/13/rotation = Quaternion(-0.8111845, -0.4210067, 0.26494977, 0.30746508)
-bones/14/rotation = Quaternion(0.19998644, 0.18781675, -0.0051757246, 0.9616151)
-bones/16/rotation = Quaternion(-0.75538003, 0.410061, -0.1162934, 0.49772164)
-bones/17/rotation = Quaternion(0.2720007, 0.019983059, 0.0759685, 0.9590856)
+bones/1/rotation = Quaternion(-0.025104232, 0.11655107, -0.0074657425, 0.9928394)
+bones/2/rotation = Quaternion(0.06713943, 0.23032998, 0.009498679, 0.97074723)
+bones/3/rotation = Quaternion(-0.04000496, 0.13496763, -0.84368265, 0.51805705)
+bones/4/rotation = Quaternion(0.03552724, 0.0670693, -0.3330856, 0.9398369)
+bones/5/rotation = Quaternion(0.32966456, -0.17110485, -0.13274044, 0.91892564)
+bones/7/rotation = Quaternion(0.08872742, -0.024697883, 0.075101465, 0.99291354)
+bones/9/rotation = Quaternion(0.2005627, -0.006412972, 0.8777844, 0.43500376)
+bones/10/rotation = Quaternion(0.37858042, 0.08777446, 0.14253351, 0.9103058)
+bones/11/rotation = Quaternion(0.4637111, -0.0966125, 0.2996119, 0.82817316)
+bones/13/rotation = Quaternion(-0.8655563, -0.21765429, 0.35836384, 0.27388725)
+bones/14/rotation = Quaternion(0.19262876, 0.4285199, 0.037691247, 0.88195485)
+bones/16/rotation = Quaternion(-0.6312878, 0.600053, -0.24181825, 0.42771032)
+bones/17/rotation = Quaternion(0.40360177, 0.07892853, 0.16102923, 0.89718765)
 
 [node name="BoneAttachment3D" parent="playerBody/Root/Skeleton3D" index="1" unique_id=1946967126]
-transform = Transform3D(0.55166256, -0.20282993, 0.8090292, -0.7505721, 0.30229264, 0.5875889, -0.36374417, -0.93138576, 0.014525205, -0.29896268, -0.016243376, 0.57531726)
+transform = Transform3D(-0.051318895, 0.23419905, 0.9708332, -0.87501407, 0.4580193, -0.15674414, -0.48136958, -0.8575367, 0.18142241, -0.31826422, 0.08813329, 0.58233273)
 
 [node name="kick_damage_component" parent="playerBody/Root/Skeleton3D/BoneAttachment3D" index="0" unique_id=1208432582 node_paths=PackedStringArray("source")]
 source = NodePath("../../../../..")

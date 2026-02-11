@@ -96,6 +96,8 @@ environment = SubResource("Environment_dsnr4")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment" unique_id=132790548]
 transform = Transform3D(1, 0, 0, 0, -0.024397261, 0.99970233, 0, -0.99970233, -0.024397261, 0, 1.5199726, 0)
 layers = 3
+light_bake_mode = 1
+shadow_enabled = true
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=761706030]
 navigation_mesh = SubResource("NavigationMesh_cnaw2")

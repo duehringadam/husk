@@ -70,20 +70,16 @@ func _apply_statuses(effects: Array[status_effect]):
 	else:
 		for i in effects:
 			self.draw_pass_1 = i.status_effect_mesh
-			self.process_material["gravity"].y = i.gravity
+			self.process_material = i.particle_processor
 			if mesh_to_affect != null:
 				if i.affected_target_next_pass != null:
 					if mesh_to_affect.get_surface_override_material(0).next_pass == null:
-						mesh_to_affect.get_surface_override_material(0).next_pass = i.affected_target_next_pass.duplicate()
-			if i.turbulence:
-				self.process_material["turbulence_enabled"] = true
+						mesh_to_affect.get_surface_override_material(0).next_pass = i.affected_target_next_pass.duplicate(true)
 			if i.damage_component_scene != null:
 				child_damage_component = i.damage_component_scene.instantiate()
 				add_child(child_damage_component)
 				if !health_component.is_connected("health_changed", increment_shader):
 					health_component.connect("health_changed", increment_shader)
-			if i.is_animated:
-				self.process_material["anim_speed_min"] = 1.0
 			if i.shader_buildup_max > 0:
 				status_buildup_progress_clamp = i.shader_buildup_max
 

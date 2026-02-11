@@ -15,7 +15,7 @@ extends RigidBody3D
 @export var bounding_box: bounding_box_component
 
 @onready var health_component: HealthComponent = $HealthComponent
-
+@onready var collision_shape: CollisionShape3D = $CollisionShape3D
 @onready var grab: Interaction = $InteractionContainer/Grab
 
 var _interaction_controller: InteractionController = null
@@ -31,7 +31,8 @@ var _delay_timer: Tween = null
 
 var shattered_mesh_add
 func _ready() -> void:
-	shattered_mesh_add = shattered_mesh.instantiate()
+	if shattered_mesh:
+		shattered_mesh_add = shattered_mesh.instantiate()
 
 func _physics_process(_delta: float) -> void:
 	if Engine.is_editor_hint(): return
@@ -91,7 +92,6 @@ func _input(event: InputEvent) -> void:
 func _while_grabbed(controller: InteractionController) -> void:
 	if _interaction_controller != null: return
 	# Again cool down to avoid player flying off
-	Global.player.collision_mask = 6
 	if _delay_timer != null and _delay_timer.is_running(): return
 	_interaction_controller = controller
 	_interaction_controller.grab_object(self)
@@ -122,7 +122,6 @@ func _released(_c: InteractionController) -> void:
 	_interaction_controller = null
 	InteractionContainer.from(self).enable()
 	GamePiecesEventBus.request_camera_lock(false)
-	Global.player.collision_mask = 14
 	set_transparency(self, 0.0)
 
 

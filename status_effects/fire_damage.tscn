@@ -58,4 +58,11 @@ autoplay = true
 max_distance = 10.0
 bus = &"SFX"
 
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=652001155]
+layers = 3
+light_color = Color(1, 0.5516501, 0, 1)
+light_energy = 5.0
+light_indirect_energy = 5.0
+light_bake_mode = 1
+
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]

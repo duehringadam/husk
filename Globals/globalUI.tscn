@@ -9,6 +9,9 @@
 [ext_resource type="Script" uid="uid://ckv1vnt3qim3w" path="res://Globals/prototype_tutorial.gd" id="7_xcdg0"]
 [ext_resource type="PackedScene" uid="uid://cndau4qyl56kx" path="res://scenes/menus/overlaid_menus/pause_menu.tscn" id="7_yumqv"]
 [ext_resource type="Script" uid="uid://ds4jqcfrmjpbj" path="res://Player/inventory.gd" id="8_kthw8"]
+[ext_resource type="Script" uid="uid://07ul8a36b4e8" path="res://Globals/enemyhealth.gd" id="10_xguta"]
+[ext_resource type="PackedScene" uid="uid://78q517wrknfe" path="res://player_health.tscn" id="11_h0fht"]
+[ext_resource type="Script" uid="uid://dgjqgiw3yw42e" path="res://components/health_component.gd" id="12_h0fht"]
 
 [sub_resource type="GDScript" id="4"]
 script/source = "extends Control
@@ -214,6 +217,7 @@ max_polyphony = 5
 bus = &"SFX"
 
 [node name="tutorial" type="PanelContainer" parent="Scene" unique_id=482539227]
+visible = false
 custom_minimum_size = Vector2(1280, 720)
 layout_mode = 1
 anchors_preset = 8
@@ -285,6 +289,36 @@ horizontal_scroll_mode = 0
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="enemyhealth" type="MarginContainer" parent="." unique_id=1446100428]
+visible = false
+custom_minimum_size = Vector2(100, 100)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -2.0
+offset_right = 2.0
+offset_bottom = 27.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_top = 40
+script = ExtResource("10_xguta")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="enemyhealth" unique_id=2145979330]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="enemyhealth/VBoxContainer" unique_id=321449224]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "test name"
+horizontal_alignment = 1
+
+[node name="playerHealth" parent="enemyhealth/VBoxContainer" unique_id=592960900 instance=ExtResource("11_h0fht")]
+layout_mode = 2
+
+[node name="HealthComponent" type="Node3D" parent="enemyhealth" unique_id=1827357247]
+script = ExtResource("12_h0fht")
+metadata/_custom_type_script = "uid://dgjqgiw3yw42e"
+
 [connection signal="activate_custom_effect" from="Scene/MadTalk" to="Scene" method="_on_mad_talk_activate_custom_effect"]
 [connection signal="dialog_aborted" from="Scene/MadTalk" to="Scene" method="_on_mad_talk_dialog_aborted"]
 [connection signal="dialog_acknowledged" from="Scene/MadTalk" to="." method="_on_mad_talk_dialog_acknowledged"]
@@ -292,3 +326,5 @@ size_flags_horizontal = 3
 [connection signal="dialog_started" from="Scene/MadTalk" to="Scene" method="_on_mad_talk_dialog_started"]
 [connection signal="message_text_shown" from="Scene/MadTalk" to="." method="_on_mad_talk_message_text_shown"]
 [connection signal="pressed" from="Scene/tutorial/MarginContainer/VBoxContainer/Button" to="Scene/tutorial" method="_on_button_pressed"]
+[connection signal="health_changed" from="enemyhealth/HealthComponent" to="enemyhealth/VBoxContainer/playerHealth" method="_on_health_changed"]
+[connection signal="max_health_changed" from="enemyhealth/HealthComponent" to="enemyhealth/VBoxContainer/playerHealth" method="_on_max_health_changed"]

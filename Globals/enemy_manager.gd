@@ -1,5 +1,8 @@
 extends Node
 
+signal enemy_combat_target_changed(name: String, source: Variant, target_max_hp: float, target_current_hp: float)
+signal enemy_combat_target_take_damage(amount: float)
+
 var leaders : Array[npc]
 var enemies_in_combat : Array[npc]
 
