@@ -10,7 +10,7 @@ func _update_target(value: npc):
 		EnemyManager.emit_signal("enemy_combat_target_changed", target.npc_name, target, target.health_component.max_health, target.health_component.current_health)
 
 func update_health(amount:float, new_value:float):
-	EnemyManager.emit_signal("enemy_combat_target_take_damage", amount)
+	EnemyManager.emit_signal("enemy_combat_target_take_damage", amount, target)
 
 func _physics_process(delta: float) -> void:
 	if is_colliding():

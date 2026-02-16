@@ -2,14 +2,21 @@
 
 [ext_resource type="Script" uid="uid://eborw7q4b07h" path="res://addons/maaacks_menus_template/base/scenes/menus/options_menu/input/input_options_menu.gd" id="1"]
 [ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_menus_template/base/scripts/capture_focus.gd" id="2_wft4x"]
+[ext_resource type="Script" uid="uid://b3bdqqg1ipkpy" path="res://addons/maaacks_menus_template/base/scenes/menus/options_menu/input/directional_combat_option.gd" id="3_5u2bm"]
 [ext_resource type="Script" uid="uid://custha7r0uoic" path="res://addons/maaacks_menus_template/base/scenes/menus/options_menu/input/key_assignment_dialog.gd" id="3_wsh2h"]
 [ext_resource type="PackedScene" uid="uid://bxp45814v6ydv" path="res://addons/maaacks_menus_template/base/scenes/menus/options_menu/input/input_actions_list.tscn" id="4_lf2nw"]
 [ext_resource type="PackedScene" uid="uid://ci6wgl2ngd35n" path="res://addons/maaacks_menus_template/base/scenes/menus/options_menu/input/input_actions_tree.tscn" id="5_b2whh"]
 
 [node name="Controls" type="MarginContainer" unique_id=1169276180]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -312.0
+offset_top = -279.0
+offset_right = 312.0
+offset_bottom = 279.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -27,15 +34,41 @@ size_flags_vertical = 4
 script = ExtResource("2_wft4x")
 search_depth = 5
 
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1174995701]
+layout_mode = 2
+text = "Actions & Inputs"
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer" unique_id=1658565295]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=288949895]
+layout_mode = 2
+script = ExtResource("3_5u2bm")
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=776208667]
+layout_mode = 2
+text = "Directional Combat"
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/HBoxContainer" unique_id=1799878816]
+layout_mode = 2
+size_flags_horizontal = 10
+selected = 0
+item_count = 2
+popup/item_0/text = "Movement"
+popup/item_0/id = 0
+popup/item_1/text = "Mouse"
+popup/item_1/id = 1
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer" unique_id=1212594908]
+layout_mode = 2
+theme_override_constants/separation = 10
+
 [node name="InputMappingContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=1512135122]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
-
-[node name="Label" type="Label" parent="VBoxContainer/InputMappingContainer" unique_id=1174995701]
-layout_mode = 2
-text = "Actions & Inputs"
-horizontal_alignment = 1
 
 [node name="InputActionsList" parent="VBoxContainer/InputMappingContainer" unique_id=944044832 instance=ExtResource("4_lf2nw")]
 unique_name_in_owner = true
@@ -117,6 +150,7 @@ size = Vector2i(398, 100)
 size = Vector2i(486, 100)
 dialog_text = "Are you sure you want to reset controls back to the defaults?"
 
+[connection signal="item_selected" from="VBoxContainer/HBoxContainer/OptionButton" to="VBoxContainer/HBoxContainer" method="_on_option_button_item_selected"]
 [connection signal="already_assigned" from="VBoxContainer/InputMappingContainer/InputActionsList" to="." method="_on_input_actions_list_already_assigned"]
 [connection signal="button_clicked" from="VBoxContainer/InputMappingContainer/InputActionsList" to="." method="_on_input_actions_list_button_clicked"]
 [connection signal="minimum_reached" from="VBoxContainer/InputMappingContainer/InputActionsList" to="." method="_on_input_actions_list_minimum_reached"]

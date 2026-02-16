@@ -17,13 +17,29 @@ extends Node3D
 var can_attack: bool = true
 var secondary_active_bool: bool = false
 var tween: Tween
+var combat_type: int
+var attack_dir
 
 func _ready() -> void:
 	self.position = weapon_initial_position
 	SignalBus.connect("npc_interacted", _on_npc_interacted)
 	SignalBus.connect("dialogue_ended", _on_dialogue_ended)
 	SignalBus.connect("secondary_active", secondary_active)
+	GamePiecesEventBus.connect("combat_type",_on_combat_type_changed)
 	damage_component.source = Global.player
+	combat_type = AppSettings.get_directional_combat_from_config()
+	
+func _process(delta: float) -> void:
+	match combat_type:
+		0:
+			attack_dir = Global.player.input_dir
+			attack_dir.y = Global.player.input_dir.z
+		1:
+			attack_dir = Input.get_last_mouse_velocity().normalized()
+
+func _on_combat_type_changed(value: int):
+	combat_type = value
+	
 	
 func secondary_active(value: bool):
 	secondary_active_bool = value

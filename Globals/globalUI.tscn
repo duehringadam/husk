@@ -340,6 +340,7 @@ offset_right = 2.0
 offset_bottom = 27.0
 grow_horizontal = 2
 size_flags_horizontal = 4
+mouse_filter = 2
 theme_override_constants/margin_top = 40
 script = ExtResource("10_xguta")
 
@@ -354,8 +355,8 @@ horizontal_alignment = 1
 
 [node name="playerHealth" parent="enemyhealth/VBoxContainer" unique_id=592960900 instance=ExtResource("11_h0fht")]
 layout_mode = 2
-max_value = 0.0
-value = 0.0
+max_value = 1.0
+value = 0.5
 
 [node name="HealthComponent" type="Node3D" parent="enemyhealth" unique_id=1827357247]
 script = ExtResource("12_h0fht")

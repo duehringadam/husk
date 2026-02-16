@@ -20,3 +20,7 @@ func close_options_menu() -> void:
 	back_button.hide()
 	options_container.hide()
 	_enable_focus.call_deferred()
+
+
+func _on_options_close_button_pressed() -> void:
+	close_options_menu()

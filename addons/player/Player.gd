@@ -111,9 +111,12 @@ const WALK_SPEED_MAXIMUM := 4.0
 const SPRINT_SPEED_MIN := 4.0
 const SPRINT_SPEED_MAX := 6.0
 
+var combat_type: int = 0
+
 func _ready() -> void:
 	SignalBus.connect("primary_active", _animate_camera_swing)
 	SignalBus.connect("kick_active", _animate_camera_swing)
+	GamePiecesEventBus.combat_type.connect(_on_combat_type_changed)
 	Global.camera_fov = base_fov
 	if Engine.is_editor_hint(): return
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -121,6 +124,9 @@ func _ready() -> void:
 	if inventory.size() > 0:
 		for i in inventory:
 			SignalBus.emit_signal("item_interact", i)
+	
+func _on_combat_type_changed(value: int):
+	combat_type = value
 	
 func _animate_camera_swing(value: bool):
 	if value:

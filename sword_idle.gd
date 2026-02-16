@@ -21,19 +21,18 @@ func _on_idle_state_exited() -> void:
 
 
 func _on_idle_state_processing(delta: float) -> void:
-	var mouse_movement = Input.get_last_mouse_velocity().normalized()
-	var player_dir = Global.player.input_dir
+
 	if Input.is_action_pressed("attack_primary") && weapon.can_attack:
-		if player_dir.z == -1:
+		if weapon.attack_dir.y < -.9:
 			state_chart.send_event("hold_forward")
 			
-		elif player_dir.z == 1:
+		elif weapon.attack_dir.y > .9:
 			state_chart.send_event("hold_back")
 			
-		elif mouse_movement.x < -0.9:
+		elif weapon.attack_dir.x < -0.9:
 			state_chart.send_event("hold_right")
 			
-		elif mouse_movement.x > 0.9:
+		elif weapon.attack_dir.x > 0.9:
 			state_chart.send_event("hold_left")
 			
 		else:

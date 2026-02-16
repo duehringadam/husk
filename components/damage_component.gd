@@ -24,13 +24,13 @@ var amount: float
 var hits: Array
 
 ## Override this to customize damage behavior (scale with velocity, etc)
-func get_damage(target: hurtbox_component):
+func get_damage(_target: hurtbox_component):
 	return damage_types.values()
 
 #func _ready() -> void:
 	#connect("area_entered", self._physics_process)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if monitoring:
 		for other in get_overlapping_areas():
 			if !hits.has(other.owner):

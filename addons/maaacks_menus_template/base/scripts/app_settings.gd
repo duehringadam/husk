@@ -15,6 +15,7 @@ const V_SYNC = &'V-Sync'
 const MUTE_SETTING = &'Mute'
 const MASTER_BUS_INDEX = 0
 const SYSTEM_BUS_NAME_PREFIX = "_"
+const DIRECTIONAL_COMBAT = &'DirectionalCombat'
 
 # Input
 static var default_action_events : Dictionary
@@ -161,6 +162,7 @@ static func get_vsync(window : Window = null) -> DisplayServer.VSyncMode:
 		window_id = window.get_window_id()
 	var vsync_mode = DisplayServer.window_get_vsync_mode(window_id)
 	return vsync_mode
+	
 
 static func _set_v_sync_from_config(window: Window) -> DisplayServer.VSyncMode:
 	var vsync := get_vsync(window)
@@ -175,10 +177,23 @@ static func set_video_from_config(window : Window) -> void:
 		var current_resolution : Vector2i = get_resolution(window)
 		set_resolution(current_resolution, window)
 	_set_v_sync_from_config(window)
+	
+	
+# Gameplay
+static func set_directional_combat(index: int)->void:
+	PlayerConfig.set_config(INPUT_SECTION, DIRECTIONAL_COMBAT, index)
+	print(PlayerConfig.get_config(INPUT_SECTION, DIRECTIONAL_COMBAT))
+	GamePiecesEventBus.emit_signal("combat_type", index)
 
+static func set_directional_combat_from_config():
+	set_directional_combat(PlayerConfig.get_config(INPUT_SECTION, DIRECTIONAL_COMBAT))
+	
+static func get_directional_combat_from_config()->int:
+	return PlayerConfig.get_config(INPUT_SECTION, DIRECTIONAL_COMBAT)
+	
 # All
-
 static func set_from_config() -> void:
+	set_directional_combat_from_config()
 	set_default_inputs()
 	set_inputs_from_config()
 	set_audio_from_config()

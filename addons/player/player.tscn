@@ -472,25 +472,25 @@ transform = Transform3D(-1.2, 0, 1.04907336e-07, 0, 1.2, 0, -1.04907336e-07, 0, 
 top_level = true
 
 [node name="Root" parent="playerBody" index="0" unique_id=227732896]
-transform = Transform3D(0.9917948, 0.12696438, -0.01491075, -0.0015147886, 0.12830253, 0.9917337, 0.12782794, -0.9835741, 0.12744217, 0.04334361, -0.14194332, -0.12294519)
+transform = Transform3D(0.63855755, 0.7645873, -0.08746331, -0.05073716, 0.155231, 0.9865742, 0.7678992, -0.625547, 0.13791698, 0.06091093, -0.109673806, -0.076786645)
 
 [node name="Skeleton3D" parent="playerBody/Root" index="0" unique_id=1398321543]
-bones/1/rotation = Quaternion(-0.025104232, 0.11655107, -0.0074657425, 0.9928394)
-bones/2/rotation = Quaternion(0.06713943, 0.23032998, 0.009498679, 0.97074723)
-bones/3/rotation = Quaternion(-0.04000496, 0.13496763, -0.84368265, 0.51805705)
-bones/4/rotation = Quaternion(0.03552724, 0.0670693, -0.3330856, 0.9398369)
-bones/5/rotation = Quaternion(0.32966456, -0.17110485, -0.13274044, 0.91892564)
-bones/7/rotation = Quaternion(0.08872742, -0.024697883, 0.075101465, 0.99291354)
-bones/9/rotation = Quaternion(0.2005627, -0.006412972, 0.8777844, 0.43500376)
-bones/10/rotation = Quaternion(0.37858042, 0.08777446, 0.14253351, 0.9103058)
-bones/11/rotation = Quaternion(0.4637111, -0.0966125, 0.2996119, 0.82817316)
-bones/13/rotation = Quaternion(-0.8655563, -0.21765429, 0.35836384, 0.27388725)
-bones/14/rotation = Quaternion(0.19262876, 0.4285199, 0.037691247, 0.88195485)
-bones/16/rotation = Quaternion(-0.6312878, 0.600053, -0.24181825, 0.42771032)
-bones/17/rotation = Quaternion(0.40360177, 0.07892853, 0.16102923, 0.89718765)
+bones/1/rotation = Quaternion(-0.054872014, 0.029710874, 0.015222075, 0.99793524)
+bones/2/rotation = Quaternion(0.009697779, 0.054980658, 0.025724655, 0.99810886)
+bones/3/rotation = Quaternion(0.014571104, 0.11316728, -0.8747937, 0.4708681)
+bones/4/rotation = Quaternion(0.12648882, -0.17954955, -0.29814628, 0.92890877)
+bones/5/rotation = Quaternion(0.2999365, -0.09955552, -0.07113948, 0.94607925)
+bones/7/rotation = Quaternion(0.09373827, -0.017290015, -0.0027332206, 0.995443)
+bones/9/rotation = Quaternion(0.054829948, -0.09309297, 0.89224476, 0.4384367)
+bones/10/rotation = Quaternion(0.119482346, 0.12521264, 0.20972402, 0.96232104)
+bones/11/rotation = Quaternion(0.48438686, 0.17943017, 0.17733887, 0.8376903)
+bones/13/rotation = Quaternion(-0.84446955, -0.4206509, 0.24038856, 0.22833589)
+bones/14/rotation = Quaternion(0.366023, 0.1787703, -0.032861304, 0.912682)
+bones/16/rotation = Quaternion(-0.7363849, 0.4201849, -0.11530313, 0.5175782)
+bones/17/rotation = Quaternion(0.22134982, 0.020873254, 0.052287683, 0.97356796)
 
 [node name="BoneAttachment3D" parent="playerBody/Root/Skeleton3D" index="1" unique_id=1946967126]
-transform = Transform3D(-0.051318895, 0.23419905, 0.9708332, -0.87501407, 0.4580193, -0.15674414, -0.48136958, -0.8575367, 0.18142241, -0.31826422, 0.08813329, 0.58233273)
+transform = Transform3D(0.5503186, -0.24324891, 0.7987361, -0.7574932, 0.25694415, 0.6001532, -0.35121715, -0.93531287, -0.042858154, -0.29721326, 0.007210985, 0.5704491)
 
 [node name="kick_damage_component" parent="playerBody/Root/Skeleton3D/BoneAttachment3D" index="0" unique_id=1208432582 node_paths=PackedStringArray("source")]
 source = NodePath("../../../../..")

@@ -6,20 +6,36 @@
 [ext_resource type="PackedScene" uid="uid://b2numvphf2kau" path="res://addons/maaacks_menus_template/base/scenes/menus/options_menu/video/video_options_menu.tscn" id="4_1t848"]
 
 [node name="MasterOptionsMenu" unique_id=2061678598 instance=ExtResource("1_uaidt")]
+size_flags_horizontal = 1
+size_flags_vertical = 1
 
-[node name="TabContainer" parent="." index="0" unique_id=985523763]
+[node name="VBoxContainer" parent="." index="0" unique_id=1369081873]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -312.0
+offset_top = -294.5
+offset_right = 312.0
+offset_bottom = 294.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabContainer" parent="VBoxContainer" index="0" unique_id=985523763]
 current_tab = 0
 
-[node name="Controls" parent="TabContainer" index="1" unique_id=1341031686 instance=ExtResource("2_15wl6")]
+[node name="Controls" parent="VBoxContainer/TabContainer" index="1" unique_id=1341031686 instance=ExtResource("2_15wl6")]
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="Audio" parent="TabContainer" index="2" unique_id=24789326 instance=ExtResource("3_qg4me")]
+[node name="Audio" parent="VBoxContainer/TabContainer" index="2" unique_id=24789326 instance=ExtResource("3_qg4me")]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="Video" parent="TabContainer" index="3" unique_id=958628020 instance=ExtResource("4_1t848")]
+[node name="Video" parent="VBoxContainer/TabContainer" index="3" unique_id=958628020 instance=ExtResource("4_1t848")]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 2

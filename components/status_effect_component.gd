@@ -54,23 +54,18 @@ func _apply_statuses(effects: Array[status_effect]):
 			var additional_particles = GPUParticles3D.new()
 			add_child(additional_particles)
 			additional_particles.emitting = true
-			additional_particles.process_material = self.process_material.duplicate()
 			additional_particles.draw_pass_1 = i.status_effect_mesh
-			additional_particles.process_material["gravity"].y = i.gravity
-			if i.turbulence:
-				additional_particles.process_material["turbulence_enabled"] = true
+			additional_particles.process_material = i.particle_processor
 			if i.damage_component_scene != null:
 				child_damage_component = i.damage_component_scene.instantiate()
 				add_child(child_damage_component)
 				child_damage_component.connect("increment_shader",increment_shader)
-			if i.is_animated:
-				additional_particles.process_material["anim_speed"] = 1
 			if i.shader_buildup_max > 0:
 				status_buildup_progress_clamp = i.shader_buildup_max
 	else:
 		for i in effects:
 			self.draw_pass_1 = i.status_effect_mesh
-			self.process_material = i.particle_processor
+			self.process_material = i.particle_processor.duplicate()
 			if mesh_to_affect != null:
 				if i.affected_target_next_pass != null:
 					if mesh_to_affect.get_surface_override_material(0).next_pass == null:
@@ -113,7 +108,7 @@ func remove_status(effect: status_effect):
 		tween.tween_property(material, "shader_parameter/progress",0,1)
 	
 
-func increment_shader(amount: float, new_value: float):
+func increment_shader(_amount: float, new_value: float):
 	if health_component != null:
 		if new_value <= 0:
 			var material = mesh_to_affect.get_surface_override_material(0).next_pass

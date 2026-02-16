@@ -24,3 +24,8 @@ signal move_disable(enable: bool)
 
 func move_disable_requested(enable: bool):
 	move_disable.emit(enable)
+	
+signal combat_type(value: int)
+
+func combat_type_changed(value: int):
+	combat_type.emit(value)

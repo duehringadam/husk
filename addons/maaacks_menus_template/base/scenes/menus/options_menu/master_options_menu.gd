@@ -11,3 +11,7 @@ func _unhandled_input(event : InputEvent) -> void:
 			$TabContainer.current_tab = $TabContainer.get_tab_count()-1
 		else:
 			$TabContainer.current_tab = $TabContainer.current_tab-1
+
+
+func _on_exit_button_pressed() -> void:
+	self.hide()

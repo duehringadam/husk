@@ -26,3 +26,11 @@ func modify_max_health(amount: float):
 	max_health += amount
 	modify_health(max_health)
 	emit_signal("max_health_changed", amount, max_health)
+
+func set_max_health(amount:float):
+	max_health = amount
+	emit_signal("max_health_changed", amount, max_health)
+
+func set_current_health(amount:float):
+	current_health = clampf(amount, 0, max_health)
+	emit_signal("health_changed", amount, current_health)

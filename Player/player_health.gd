@@ -1,6 +1,7 @@
 extends ProgressBar
 @onready var damage_bar: ProgressBar = $damageBar
 @onready var timer: Timer = $Timer
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 ###################
 # a signal is emitted any time this value is changed to execute _set_health() func
@@ -11,6 +12,8 @@ func _on_health_changed(amount: float, new_value: float) -> void:
 	value = new_value
 	if amount < 0:
 		timer.start()
+	if amount < -(max_value/2):
+		animation_player.play("shake")
 
 func _on_max_health_changed(amount: float, new_value: float) -> void:
 	max_value = new_value
