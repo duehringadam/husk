@@ -1,15 +1,15 @@
 [remap]
 
-importer="scene"
+importer="animation_library"
 importer_version=1
-type="PackedScene"
+type="AnimationLibrary"
 uid="uid://f5vbt62nujxn"
-path="res://.godot/imported/Ghoul.fbx-7aa8e7794ac8c14e82964464152b873b.scn"
+path="res://.godot/imported/Ghoul.fbx-7aa8e7794ac8c14e82964464152b873b.res"
 
 [deps]
 
 source_file="res://scenes/npc/Ghoul Animated/Model/Ghoul.fbx"
-dest_files=["res://.godot/imported/Ghoul.fbx-7aa8e7794ac8c14e82964464152b873b.scn"]
+dest_files=["res://.godot/imported/Ghoul.fbx-7aa8e7794ac8c14e82964464152b873b.res"]
 
 [params]
 
@@ -8267,7 +8267,10 @@ _subresources={
 "nodes": {
 "PATH:Armature/Skeleton3D": {
 "rest_pose/load_pose": 1,
-"rest_pose/selected_animation": "Armature|Ghoul_Idle"
+"rest_pose/selected_animation": "Armature|Ghoul_Idle",
+"retarget/bone_map": Object(BoneMap,"resource_local_to_scene":false,"resource_name":"","profile":Object(SkeletonProfileHumanoid,"resource_local_to_scene":false,"resource_name":"","root_bone":&"Root","scale_base_bone":&"Hips","group_size":4,"bone_size":56,"script":null)
+,"bonemap":null,"bone_map/Root":&"Root","bone_map/Hips":&"Hip","bone_map/Spine":&"Spine","bone_map/Chest":&"Chest","bone_map/UpperChest":&"","bone_map/Neck":&"Neck","bone_map/Head":&"Head","bone_map/LeftEye":&"","bone_map/RightEye":&"","bone_map/Jaw":&"","bone_map/LeftShoulder":&"Shoulder_L","bone_map/LeftUpperArm":&"UpperArm_L","bone_map/LeftLowerArm":&"Forearm_L","bone_map/LeftHand":&"Hand_L","bone_map/LeftThumbMetacarpal":&"Thumb01_L","bone_map/LeftThumbProximal":&"Thumb02_L","bone_map/LeftThumbDistal":&"Thumb02_L_end","bone_map/LeftIndexProximal":&"","bone_map/LeftIndexIntermediate":&"","bone_map/LeftIndexDistal":&"","bone_map/LeftMiddleProximal":&"Middle01_L","bone_map/LeftMiddleIntermediate":&"Middle02_L","bone_map/LeftMiddleDistal":&"Middle02_L_end","bone_map/LeftRingProximal":&"","bone_map/LeftRingIntermediate":&"","bone_map/LeftRingDistal":&"","bone_map/LeftLittleProximal":&"","bone_map/LeftLittleIntermediate":&"","bone_map/LeftLittleDistal":&"","bone_map/RightShoulder":&"Shoulder_R","bone_map/RightUpperArm":&"UpperArm_R","bone_map/RightLowerArm":&"Forearm_R","bone_map/RightHand":&"Hand_R","bone_map/RightThumbMetacarpal":&"Thumb01_R","bone_map/RightThumbProximal":&"Thumb02_R","bone_map/RightThumbDistal":&"Thumb02_R_end","bone_map/RightIndexProximal":&"","bone_map/RightIndexIntermediate":&"","bone_map/RightIndexDistal":&"","bone_map/RightMiddleProximal":&"Middle01_R","bone_map/RightMiddleIntermediate":&"Middle02_R","bone_map/RightMiddleDistal":&"Middle02_R_end","bone_map/RightRingProximal":&"","bone_map/RightRingIntermediate":&"","bone_map/RightRingDistal":&"","bone_map/RightLittleProximal":&"","bone_map/RightLittleIntermediate":&"","bone_map/RightLittleDistal":&"","bone_map/LeftUpperLeg":&"Thigh_L","bone_map/LeftLowerLeg":&"Calf_L","bone_map/LeftFoot":&"Foot_L","bone_map/LeftToes":&"Foot_L_end","bone_map/RightUpperLeg":&"Thigh_R","bone_map/RightLowerLeg":&"Calf_R","bone_map/RightFoot":&"Foot_R","bone_map/RightToes":&"Foot_R_end","script":null)
+
 }
 }
 }

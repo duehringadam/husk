@@ -82,3 +82,7 @@ func block():
 	animation_tree.set("parameters/conditions/block_hit", true)
 	await get_tree().create_timer(.5).timeout
 	animation_tree.set("parameters/conditions/block_hit", false)
+
+func start_block():
+	state_chart.send_event("block")
+	

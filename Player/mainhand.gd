@@ -19,3 +19,8 @@ func unequip():
 	weapon = null
 	for i in get_children():
 		i.queue_free()
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("attack_secondary") && offhand.weapon == null && weapon != null:
+		if get_child(0).has_method("start_block"):
+			get_child(0).start_block()

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_menus_template/base/scripts/capture_focus.gd" id="1_1v5x4"]
 [ext_resource type="PackedScene" uid="uid://cl416gdb1fgwr" path="res://addons/maaacks_menus_template/base/scenes/menus/options_menu/option_control/slider_option_control.tscn" id="2_goqr1"]
+[ext_resource type="Script" uid="uid://b3bdqqg1ipkpy" path="res://addons/maaacks_menus_template/base/scenes/menus/options_menu/input/directional_combat_option.gd" id="2_mc4mw"]
 
 [node name="Inputs" type="MarginContainer" unique_id=569767505]
 anchors_preset = 15
@@ -31,6 +32,44 @@ size_flags_vertical = 3
 theme_override_constants/separation = 8
 alignment = 1
 
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer" unique_id=822420755]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="directionalcombat" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer" unique_id=1730649178]
+layout_mode = 2
+script = ExtResource("2_mc4mw")
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/directionalcombat" unique_id=1368017839]
+layout_mode = 2
+text = "Directional Combat"
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/MarginContainer/VBoxContainer/directionalcombat" unique_id=368998765]
+layout_mode = 2
+size_flags_horizontal = 10
+selected = 0
+item_count = 2
+popup/item_0/text = "Movement"
+popup/item_0/id = 0
+popup/item_1/text = "Mouse"
+popup/item_1/id = 1
+
+[node name="headbob" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer" unique_id=1715380007]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/headbob" unique_id=1879084270]
+layout_mode = 2
+text = "Headbob"
+
+[node name="CheckButton" type="CheckButton" parent="VBoxContainer/MarginContainer/VBoxContainer/headbob" unique_id=1680644595]
+layout_mode = 2
+size_flags_horizontal = 10
+button_pressed = true
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer" unique_id=1085329460]
+layout_mode = 2
+theme_override_constants/separation = 10
+
 [node name="MouseSensitivityControl" parent="VBoxContainer/MarginContainer/VBoxContainer" unique_id=1532518000 instance=ExtResource("2_goqr1")]
 layout_mode = 2
 option_name = "Mouse Sensitivity"
@@ -44,7 +83,6 @@ text = "Mouse Sensitivity :"
 [node name="HSlider" parent="VBoxContainer/MarginContainer/VBoxContainer/MouseSensitivityControl" index="1" unique_id=864094681]
 min_value = 0.25
 max_value = 2.0
-value = 2.0
 tick_count = 8
 
 [node name="JoypadSensitivityControl" parent="VBoxContainer/MarginContainer/VBoxContainer" unique_id=2141070036 instance=ExtResource("2_goqr1")]
@@ -61,6 +99,9 @@ text = "Joypad Sensitivity :"
 min_value = 0.25
 max_value = 2.0
 tick_count = 8
+
+[connection signal="item_selected" from="VBoxContainer/MarginContainer/VBoxContainer/directionalcombat/OptionButton" to="VBoxContainer/MarginContainer/VBoxContainer/directionalcombat" method="_on_option_button_item_selected"]
+[connection signal="toggled" from="VBoxContainer/MarginContainer/VBoxContainer/headbob/CheckButton" to="VBoxContainer/MarginContainer/VBoxContainer/directionalcombat" method="_on_check_button_toggled"]
 
 [editable path="VBoxContainer/MarginContainer/VBoxContainer/MouseSensitivityControl"]
 [editable path="VBoxContainer/MarginContainer/VBoxContainer/JoypadSensitivityControl"]
