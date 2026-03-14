@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dlrbr81ojbnl0"]
+
+[ext_resource type="Texture2D" uid="uid://d2ahtabnwdpbt" path="res://VFX/textures/T_Decal_BloodSplatter49ka.png" id="1_cp3i1"]
+[ext_resource type="Texture2D" uid="uid://jro18r2ovkix" path="res://VFX/textures/T_Decal_BloodSplatter49k_N.png" id="2_1336c"]
+[ext_resource type="Script" uid="uid://b8waas5rrw22o" path="res://blood_decal.gd" id="3_y0d0y"]
+
+[node name="Decal" type="Decal" unique_id=1542109919]
+size = Vector3(0.5, 0.1, 0.5)
+texture_albedo = ExtResource("1_cp3i1")
+texture_normal = ExtResource("2_1336c")
+emission_energy = 17.9
+modulate = Color(0.5137531, 8.3025543e-07, 1.4439226e-07, 1)
+distance_fade_enabled = true
+script = ExtResource("3_y0d0y")

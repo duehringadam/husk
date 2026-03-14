@@ -16,7 +16,7 @@ const MUTE_SETTING = &'Mute'
 const MASTER_BUS_INDEX = 0
 const SYSTEM_BUS_NAME_PREFIX = "_"
 const DIRECTIONAL_COMBAT = &'DirectionalCombat'
-
+const HEAD_BOB = &'HeadBob'
 # Input
 static var default_action_events : Dictionary
 static var initial_bus_volumes : Array
@@ -182,18 +182,27 @@ static func set_video_from_config(window : Window) -> void:
 # Gameplay
 static func set_directional_combat(index: int)->void:
 	PlayerConfig.set_config(INPUT_SECTION, DIRECTIONAL_COMBAT, index)
-	print(PlayerConfig.get_config(INPUT_SECTION, DIRECTIONAL_COMBAT))
 	GamePiecesEventBus.emit_signal("combat_type", index)
 
-static func set_directional_combat_from_config():
+static func set_directional_combat_from_config()->void:
 	set_directional_combat(PlayerConfig.get_config(INPUT_SECTION, DIRECTIONAL_COMBAT))
 	
 static func get_directional_combat_from_config()->int:
 	return PlayerConfig.get_config(INPUT_SECTION, DIRECTIONAL_COMBAT)
 	
+static func set_head_bob(value: bool)->void:
+	PlayerConfig.set_config(INPUT_SECTION, HEAD_BOB, value)
+	
+static func set_head_bob_from_config()->void:
+	set_head_bob(PlayerConfig.get_config(INPUT_SECTION, HEAD_BOB))
+
+static func get_head_bob_from_config()->bool:
+	return PlayerConfig.get_config(INPUT_SECTION, HEAD_BOB)
+	
 # All
 static func set_from_config() -> void:
 	set_directional_combat_from_config()
+	set_head_bob_from_config()
 	set_default_inputs()
 	set_inputs_from_config()
 	set_audio_from_config()

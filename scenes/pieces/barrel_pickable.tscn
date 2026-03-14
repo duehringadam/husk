@@ -104,7 +104,7 @@ emission_point_count = 512
 scale_max = 1.5
 scale_curve = SubResource("CurveTexture_4mmpl")
 
-[node name="Pickable" type="RigidBody3D" unique_id=522044919 node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component") groups=["throwable"]]
+[node name="Pickable" type="RigidBody3D" unique_id=522044919 node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component", "health_component") groups=["throwable"]]
 collision_layer = 8
 collision_mask = 14
 contact_monitor = true
@@ -116,6 +116,7 @@ throwable = NodePath(".")
 damage_component = NodePath("Barrel/DamageComponent")
 shattered_mesh = ExtResource("2_vagou")
 break_sound = ExtResource("3_vlvcf")
+health_component = NodePath("HealthComponent")
 metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("4_r5ysc"),"default_context_id":0,"display_name":"Wooden Crate","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("5_02j0r")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("5_02j0r"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("6_8jlof"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
 ,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
 ]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
@@ -173,12 +174,13 @@ action = &"secondary_action"
 metadata/_custom_type_script = "uid://bxe74cq2uqemi"
 
 [node name="HealthComponent" type="Node3D" parent="." unique_id=349956552]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
 script = ExtResource("8_hpp4u")
 max_health = 20.0
 metadata/_custom_type_script = "uid://dgjqgiw3yw42e"
 
 [node name="hurtbox_component" type="Area3D" parent="." unique_id=2066064318 node_paths=PackedStringArray("health_component", "status_component", "source")]
-transform = Transform3D(1, 0, 0, 0, 1, 7.549791e-08, 0, -7.549791e-08, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 7.549791e-08, 0, -7.549791e-08, 1, 0, -0.4, 0)
 collision_layer = 8
 collision_mask = 13
 script = ExtResource("9_qhumy")
@@ -201,7 +203,7 @@ transform = Transform3D(1, 0, 0, 0, 1, -7.5497915e-08, 0, 7.5497915e-08, 1, 0, 0
 shape = SubResource("SphereShape3D_0q1br")
 
 [node name="Barrel" type="MeshInstance3D" parent="." unique_id=389383104]
-transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 0)
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, -0.4, 0)
 mesh = SubResource("ArrayMesh_hccwh")
 surface_material_override/0 = SubResource("StandardMaterial3D_vagou")
 
@@ -222,10 +224,11 @@ transform = Transform3D(999.9998, 0, 0, 0, 999.9998, 7.549758e-05, 0, -7.549758e
 shape = SubResource("SphereShape3D_hccwh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=502608699]
-transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 0)
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, -0.4, 0)
 shape = SubResource("ConvexPolygonShape3D_vagou")
 
 [node name="status_effect_component2" type="GPUParticles3D" parent="." unique_id=1609794613 node_paths=PackedStringArray("hurtbox", "mesh_to_affect", "health_component")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
 emitting = false
 amount = 32
 process_material = SubResource("ParticleProcessMaterial_bwiwp")
@@ -241,6 +244,7 @@ metadata/_custom_type_script = "uid://dql5v81gqvdat"
 [node name="PickupSound" type="AudioStreamPlayer" parent="." unique_id=222558094]
 
 [node name="CollisionSoundPlayer" type="AudioStreamPlayer3D" parent="." unique_id=1963461651]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
 max_polyphony = 3
 script = ExtResource("15_6kb6w")
 sounds_per_velocity = Dictionary[int, AudioStream]({

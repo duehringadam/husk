@@ -21,4 +21,5 @@ signal dialogue_started
 signal end_madtalk_dialogue_external
 signal weapon_charge_value(value: float)
 signal weapon_charge_bool(value: bool)
+signal raidal_blur(value: bool)
 @warning_ignore_restore("unused_signal")

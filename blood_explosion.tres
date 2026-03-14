@@ -1,0 +1,46 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://co368jldtlx0m"]
+
+[ext_resource type="Shader" uid="uid://bfwwv62cr7k2o" path="res://VFX/shaders/ss_Disolver_subUV_small_Liquid_Treshold_p.gdshader" id="1_xtlww"]
+[ext_resource type="Texture2D" uid="uid://etftten2vtpl" path="res://VFX/textures/T_Blood_MultiUV_f3.png" id="2_6jeuh"]
+[ext_resource type="Texture2D" uid="uid://dbq4afiw01u8h" path="res://VFX/textures/T_Gib_Red_C.PNG" id="3_01vak"]
+[ext_resource type="Texture2D" uid="uid://c3maw4p2qvh0" path="res://VFX/textures/T_Blood_MultiUV_f3_N.png" id="4_alrdg"]
+[ext_resource type="Texture2D" uid="uid://cxsmx407d722t" path="res://VFX/textures/T_NP41.PNG" id="5_kwamh"]
+
+[sub_resource type="Gradient" id="Gradient_8ljku"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.1889401, 0.930599)
+colors = PackedColorArray(0.851769, 0.8517689, 0.85176885, 1, 0.154876, 0.154876, 0.154876, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_j2q1j"]
+gradient = SubResource("Gradient_8ljku")
+
+[sub_resource type="Gradient" id="Gradient_hns52"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.42298642, 2.761502e-06, 0.004889964, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8pp6e"]
+gradient = SubResource("Gradient_hns52")
+
+[sub_resource type="Gradient" id="Gradient_0ixqn"]
+offsets = PackedFloat32Array(0.205607, 0.509346, 0.752336, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.215902, 0.215902, 0.215902, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mab8e"]
+gradient = SubResource("Gradient_0ixqn")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_xtlww")
+shader_parameter/Scale = Vector2(1, 1)
+shader_parameter/Speed_XY = Vector2(0, 0)
+shader_parameter/Disolver_Texture = ExtResource("2_6jeuh")
+shader_parameter/Color_1D_Gradient = SubResource("GradientTexture1D_8pp6e")
+shader_parameter/Metallic_Texture = ExtResource("3_01vak")
+shader_parameter/Texture_Roughtness = ExtResource("5_kwamh")
+shader_parameter/Roughtness_1D_Gradient = SubResource("GradientTexture1D_mab8e")
+shader_parameter/Normal_Texture = ExtResource("4_alrdg")
+shader_parameter/Normal_Map_Depth = 0.5
+shader_parameter/Color_Intensity = 1.0
+shader_parameter/ColorTime_1D_Gradient = SubResource("GradientTexture1D_j2q1j")
+shader_parameter/subuv_grid = Vector2i(2, 2)
+shader_parameter/use_subuv = true

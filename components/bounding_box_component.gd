@@ -2,6 +2,7 @@ class_name bounding_box_component
 extends PanelContainer
 
 @export var mesh: MeshInstance3D
+@export var AABB_Override: VisibleOnScreenNotifier3D
 @onready var label: Label = $Label
 
 var active: bool = false: set = _update_active
@@ -35,8 +36,12 @@ func get_2d_bounding_box(mesh_instance: MeshInstance3D, camera: Camera3D) -> Rec
 	if not mesh:
 		return Rect2()
 	var aabb: AABB = mesh.get_aabb() 
-	
+	if AABB_Override != null:
+		aabb = AABB_Override.aabb
+		
 	var global_transform: Transform3D = mesh_instance.global_transform
+	if AABB_Override:
+		global_transform = AABB_Override.global_transform
 	var min_x = INF
 	var max_x = -INF
 	var min_y = INF

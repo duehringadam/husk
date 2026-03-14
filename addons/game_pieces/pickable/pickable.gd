@@ -6,17 +6,15 @@ extends RigidBody3D
 @export var interaction_context_when_grabbed: int = 1
 @export var change_distance_interaction: Interaction
 @export var release_distance: float = 4.
+@export_range(0,1.0) var hold_duration: float = 0.0
 
 @export var throwable_mesh: MeshInstance3D
 @export var throwable: RigidBody3D
 @export var damage_component: DamageComponent
 @export var shattered_mesh: PackedScene
 @export var break_sound: AudioStream
-@export var bounding_box: bounding_box_component
-
-@onready var health_component: HealthComponent = $HealthComponent
+@export var health_component: HealthComponent
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D
-@onready var grab: Interaction = $InteractionContainer/Grab
 
 var _interaction_controller: InteractionController = null
 var _is_grabbed: bool:
@@ -28,7 +26,8 @@ var _min_offset: float = 0.65
 var _max_offset: float = 1.65
 var _is_rotating: bool = false
 var _delay_timer: Tween = null
-
+var hold_time: float
+var holding_input = false
 var shattered_mesh_add
 func _ready() -> void:
 	if shattered_mesh:
@@ -41,7 +40,7 @@ func _physics_process(_delta: float) -> void:
 		var distance_to_player: float = ray_cast.global_position.distance_to(global_position)
 		if distance_to_player > release_distance * _position_offset:
 			_released(_interaction_controller)
-	if linear_velocity.length() > 10:
+	if linear_velocity.length() > 9:
 		damage_component.monitorable = true
 		damage_component.monitoring = true
 	else:
@@ -171,7 +170,8 @@ func _on_damage_component_damage_dealt(types: Dictionary[DamageTypes.DAMAGE_TYPE
 
 func _on_rigidbody_entered(body: Node) -> void:
 	if throwable.linear_velocity.length() > 3 and body.collision_layer == 2:
-		health_component.modify_health(-(throwable.linear_velocity.length()))
+		if health_component:
+			health_component.modify_health(-(throwable.linear_velocity.length()))
 
 func break_object():
 	if shattered_mesh:

@@ -1,6 +1,6 @@
 extends Node
 
-@export var source_npc: CharacterBody3D
+@export var source_npc: npc
 @export var state_chart: StateChart
 
 func _on_knocked_down_state_entered() -> void:

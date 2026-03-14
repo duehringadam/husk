@@ -6,7 +6,7 @@ extends PhysicalBone3D
 @export var interaction_context_when_grabbed: int = 1
 @export var change_distance_interaction: Interaction
 @export var release_distance: float = 4.
-
+@export var hold_time: float
 @export var throwable_mesh: MeshInstance3D
 @export var throwable: PhysicalBone3D
 @export var damage_component: DamageComponent
@@ -25,6 +25,7 @@ var _min_offset: float = 0.65
 var _max_offset: float = 1.65
 var _is_rotating: bool = false
 var _delay_timer: Tween = null
+var holding_input = true
 
 func _physics_process(_delta: float) -> void:
 	if Engine.is_editor_hint(): return

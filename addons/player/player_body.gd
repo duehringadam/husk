@@ -7,6 +7,7 @@ extends Node3D
 var movement_dir: Vector2
 var is_kicking := false
 var secondary_active_bool:= false
+var sprint: bool = false
 func _ready() -> void:
 	SignalBus.connect("secondary_active", secondary_active)
 
@@ -14,8 +15,9 @@ func secondary_active(value: bool):
 	secondary_active_bool = value
 	
 func _process(delta: float) -> void:
-	animation_tree["parameters/crouchBlendSpace/blend_position"] = lerp(animation_tree["parameters/crouchBlendSpace/blend_position"],movement_dir,10*delta)
-	animation_tree["parameters/standingBlendSpace/blend_position"] = lerp(animation_tree["parameters/standingBlendSpace/blend_position"],movement_dir,10*delta)
+		animation_tree["parameters/SprintingBlendSpace/blend_position"] = lerp(animation_tree["parameters/SprintingBlendSpace/blend_position"], movement_dir,10*delta)
+		animation_tree["parameters/crouchBlendSpace/blend_position"] = lerp(animation_tree["parameters/crouchBlendSpace/blend_position"],movement_dir,10*delta)
+		animation_tree["parameters/standingBlendSpace/blend_position"] = lerp(animation_tree["parameters/standingBlendSpace/blend_position"],movement_dir,10*delta)
 	
 func crouch(value: bool):
 	if value:
@@ -24,6 +26,14 @@ func crouch(value: bool):
 	else:
 		animation_tree.set("parameters/conditions/crouch", false)
 		animation_tree.set("parameters/conditions/stand", true)
+
+func sprint_activate(value: bool):
+	if value:
+		animation_tree.set("parameters/conditions/sprint", true)
+		animation_tree.set("parameters/conditions/walk", false)
+	else:
+		animation_tree.set("parameters/conditions/sprint", false)
+		animation_tree.set("parameters/conditions/walk", true)
 
 func kick():
 	if is_kicking: return

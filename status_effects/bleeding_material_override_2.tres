@@ -1,0 +1,41 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://hnygll7t2it1"]
+
+[ext_resource type="Shader" uid="uid://chv45m88mxrg6" path="res://VFX/shaders/s_Disolver_small_Liquid_pF_Treshold.tres" id="1_ol2qc"]
+[ext_resource type="Texture2D" uid="uid://d1487hs54xk4g" path="res://VFX/textures/T_Blood_bulb_UJ1.png" id="2_ni6o7"]
+[ext_resource type="Texture2D" uid="uid://bs5888n022i54" path="res://VFX/textures/T_Blood_bulb_UJ1_N.png" id="3_2jdry"]
+[ext_resource type="Texture2D" uid="uid://cxsmx407d722t" path="res://VFX/textures/T_NP41.PNG" id="4_m1kja"]
+
+[sub_resource type="Gradient" id="Gradient_a3bcn"]
+interpolation_color_space = 1
+offsets = PackedFloat32Array(0.137931, 0.521073)
+colors = PackedColorArray(0.366101, 0.031567, 0.0366713, 1, 0.773719, 0.140572, 0.170957, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1mueb"]
+gradient = SubResource("Gradient_a3bcn")
+
+[sub_resource type="Gradient" id="Gradient_70xfr"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.0768358, 0.0768358, 0.0768358, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8mnei"]
+gradient = SubResource("Gradient_70xfr")
+
+[sub_resource type="Gradient" id="Gradient_eufx1"]
+offsets = PackedFloat32Array(0.205607, 1)
+colors = PackedColorArray(0.273873, 0.273873, 0.273873, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rrogk"]
+gradient = SubResource("Gradient_eufx1")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ol2qc")
+shader_parameter/Scale = Vector2(1, 1)
+shader_parameter/Speed_XY = Vector2(0, 0)
+shader_parameter/Disolver_Texture = ExtResource("2_ni6o7")
+shader_parameter/Color_1D_Gradient = SubResource("GradientTexture1D_1mueb")
+shader_parameter/Metallic_Texture = SubResource("GradientTexture2D_8mnei")
+shader_parameter/Texture_Roughtness = ExtResource("4_m1kja")
+shader_parameter/Roughtness_1D_Gradient = SubResource("GradientTexture1D_rrogk")
+shader_parameter/Normal_Texture = ExtResource("3_2jdry")
+shader_parameter/Normal_Map_Depth = 1.0

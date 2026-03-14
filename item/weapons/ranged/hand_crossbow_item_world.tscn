@@ -1,0 +1,144 @@
+[gd_scene format=3 uid="uid://bsm5n064l0yro"]
+
+[ext_resource type="Script" uid="uid://dixki0innbjf2" path="res://addons/game_pieces/pickable/item_world_pickable.gd" id="1_414yx"]
+[ext_resource type="Script" uid="uid://ck3cei0hvspym" path="res://addons/interaction_system/interaction_container.gd" id="2_18kn5"]
+[ext_resource type="Script" uid="uid://5tinbhq6p45k" path="res://addons/interaction_system/interaction.gd" id="3_7piyo"]
+[ext_resource type="Script" uid="uid://bxe74cq2uqemi" path="res://addons/game_controls/vanilla/input_map_game_control.gd" id="4_kfuws"]
+[ext_resource type="Script" uid="uid://doc0okecalxnp" path="res://addons/interaction_system/interaction_context.gd" id="5_1nnui"]
+[ext_resource type="AudioStream" uid="uid://dcr4in8lcdk51" path="res://sfx/dark_souls_item.wav" id="6_lp6ag"]
+[ext_resource type="Script" uid="uid://cp0p4yckxtvmw" path="res://addons/game_pieces/collision_sound/collision_sound_player.gd" id="6_x5gpt"]
+[ext_resource type="ArrayMesh" uid="uid://ngourgo4tms5" path="res://Player/weapon/ALL/Crossbow/crossbow.res" id="7_xv32w"]
+[ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="8_6idqk"]
+[ext_resource type="Texture2D" uid="uid://bdewy8hdwe4pq" path="res://Player/weapon/ALL/Crossbow/base2.png" id="8_lp6ag"]
+[ext_resource type="PackedScene" uid="uid://dhws2ueoubwwx" path="res://components/bounding_box_component.tscn" id="9_oi6jk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kwr1h"]
+albedo_texture = ExtResource("8_lp6ag")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2qal2"]
+points = PackedVector3Array(-0.037271407, -0.022231223, -0.00029418245, -0.037271407, -0.022231223, 0.0036175242, -0.036636595, -0.020690387, -0.00029418245, -0.036563627, -0.022231223, -0.001688547, -0.036636595, -0.02377206, -0.00029418245, -0.036563627, -0.022231223, 0.005011888, -0.036636595, -0.020690387, 0.0036175242, -0.036636595, -0.02377206, 0.0036175242, -0.0024808645, 0.03755804, 0.002740197, -0.0024808645, 0.037494175, -0.001309542, -0.036133125, -0.021193353, -0.001688547, -0.036133125, -0.023269093, -0.001688547, -0.00037942082, 0.02680412, -0.004913599, -0.0034367293, 0.006429944, -0.0053557716, -0.004961733, -0.041583497, 8.7162014e-05, -0.036133125, -0.023269093, 0.005011888, -0.0009777509, 0.008817043, 0.0065945853, -0.0009777509, 0.011164226, 0.0065945853, -0.036133125, -0.021193353, 0.005011888, -0.004961733, -0.041583497, 0.0017341962, 0.0024735779, 0.03755804, 0.002740197, 0.0024735779, 0.037494175, -0.001309542, -0.0034367293, -0.034286477, -0.0035519884, -7.290393e-06, -0.044002533, 8.7162014e-05, 0.00037213415, 0.02680412, -0.004913599, 0.0034294426, 0.006429944, -0.0053557716, -0.035097, -0.023700207, 0.005011888, -0.0034367293, -0.019764287, 0.005600282, -7.290393e-06, -0.044002533, 0.0017341962, 0.0009704642, 0.008817043, 0.0065945853, 0.0009704642, 0.011164226, 0.0065945853, 0.036629308, -0.020690387, -0.00029418245, 0.036125835, -0.021193353, 0.005011888, 0.036629308, -0.020690387, 0.0036175242, 0.036125835, -0.021193353, -0.001688547, 0.0034294426, -0.034286477, -0.0035519884, 0.036125835, -0.023269093, -0.001688547, 0.004954446, -0.041583497, 8.7162014e-05, 0.036556344, -0.022231223, -0.001688547, -0.0034367293, -0.034015033, 0.0044679455, -0.0076031294, -0.031101016, 0.0049428716, 0.0034294426, -0.019764287, 0.005600282, 0.0034294426, -0.034015033, 0.0044679455, 0.004954446, -0.041583497, 0.0017341962, 0.036125835, -0.023269093, 0.005011888, 0.035089713, -0.023700207, 0.005011888, 0.036556344, -0.022231223, 0.005011888, 0.03726412, -0.022231223, -0.00029418245, 0.03726412, -0.022231223, 0.0036175242, 0.036629308, -0.02377206, -0.00029418245, 0.007595841, -0.031101016, 0.0049428716, 0.036629308, -0.02377206, 0.0036175242)
+
+[node name="Pickable" type="RigidBody3D" unique_id=2119350781 node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component")]
+collision_layer = 8
+collision_mask = 15
+contact_monitor = true
+max_contacts_reported = 1
+angular_damp = 5.0
+script = ExtResource("1_414yx")
+change_distance_interaction = NodePath("InteractionContainer/WhileGrabbed/Change Distance")
+throwable_mesh = NodePath("Crossbow")
+throwable = NodePath(".")
+damage_component = NodePath("DamageComponent")
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("2_18kn5"),"default_context_id":0,"display_name":"Hand Crossbow","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("3_7piyo")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_7piyo"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("4_kfuws"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+, Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_7piyo"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("4_kfuws"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="InteractionContainer" type="Node" parent="." unique_id=675653858]
+script = ExtResource("2_18kn5")
+display_name = "Hand Crossbow"
+metadata/_custom_type_script = "uid://ck3cei0hvspym"
+
+[node name="Take" type="Node" parent="InteractionContainer" unique_id=1494656254]
+script = ExtResource("3_7piyo")
+hide_while_grabbed = true
+display_name = "Grab"
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="interact" type="Node" parent="InteractionContainer/Take" unique_id=658629802]
+script = ExtResource("4_kfuws")
+action = &"interact"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="Hold" type="Node" parent="InteractionContainer" unique_id=2043500295]
+script = ExtResource("3_7piyo")
+hide_while_grabbed = true
+display_name = "Grab"
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="interact" type="Node" parent="InteractionContainer/Hold" unique_id=47041581]
+script = ExtResource("4_kfuws")
+action = &"interact"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="WhileGrabbed" type="Node" parent="InteractionContainer" unique_id=1598984081]
+script = ExtResource("5_1nnui")
+context_id = 1
+metadata/_custom_type_script = "uid://doc0okecalxnp"
+
+[node name="Change Distance" type="Node" parent="InteractionContainer/WhileGrabbed" unique_id=1387568767]
+script = ExtResource("3_7piyo")
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="scroll" type="Node" parent="InteractionContainer/WhileGrabbed/Change Distance" unique_id=2094094583]
+script = ExtResource("4_kfuws")
+type = 1
+action = &"scroll"
+negative_x = &"scroll_down"
+positive_x = &"scroll_up"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="Rotate" type="Node" parent="InteractionContainer/WhileGrabbed" unique_id=802756841]
+script = ExtResource("3_7piyo")
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="rotate" type="Node" parent="InteractionContainer/WhileGrabbed/Rotate" unique_id=1279692524]
+script = ExtResource("4_kfuws")
+action = &"rotate"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="Throw" type="Node" parent="InteractionContainer/WhileGrabbed" unique_id=696603547]
+script = ExtResource("3_7piyo")
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="secondary_action" type="Node" parent="InteractionContainer/WhileGrabbed/Throw" unique_id=629675826]
+script = ExtResource("4_kfuws")
+action = &"secondary_action"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="PickupSound" type="AudioStreamPlayer" parent="." unique_id=290488532]
+stream = ExtResource("6_lp6ag")
+
+[node name="CollisionSoundPlayer" type="AudioStreamPlayer3D" parent="." unique_id=135415267]
+max_polyphony = 3
+script = ExtResource("6_x5gpt")
+sounds_per_velocity = Dictionary[int, AudioStream]({
+2: null,
+6: null,
+12: null
+})
+metadata/_custom_type_script = "uid://cp0p4yckxtvmw"
+
+[node name="Crossbow" type="MeshInstance3D" parent="." unique_id=1316351081]
+transform = Transform3D(-8, 6.993822e-07, 3.0570967e-14, 0, -3.496911e-07, 8, 6.993822e-07, 8, 3.496911e-07, 0, 0, 0)
+mesh = ExtResource("7_xv32w")
+surface_material_override/0 = SubResource("StandardMaterial3D_kwr1h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1628189319]
+transform = Transform3D(-8, 6.993822e-07, 3.0570967e-14, 0, -3.496911e-07, 8, 6.993822e-07, 8, 3.496911e-07, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_2qal2")
+
+[node name="DamageComponent" type="Area3D" parent="." unique_id=1429514769 node_paths=PackedStringArray("source")]
+collision_mask = 13
+script = ExtResource("8_6idqk")
+damage_types = Dictionary[int, float]({
+1: 10.0
+})
+source = NodePath("..")
+metadata/_custom_type_script = "uid://dlsydctoxqbwy"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent" unique_id=36506725]
+transform = Transform3D(-8, 6.993822e-07, 3.0570967e-14, 0, -3.496911e-07, 8, 6.993822e-07, 8, 3.496911e-07, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_2qal2")
+
+[node name="bounding_box_component" parent="." unique_id=326409759 node_paths=PackedStringArray("mesh") instance=ExtResource("9_oi6jk")]
+mesh = NodePath("../Crossbow")
+
+[connection signal="on_complete" from="InteractionContainer/Take" to="." method="_released"]
+[connection signal="on_trigger" from="InteractionContainer/Take" to="." method="_while_grabbed"]
+[connection signal="on_trigger" from="InteractionContainer/WhileGrabbed/Change Distance" to="." method="_on_change_distance"]
+[connection signal="on_complete" from="InteractionContainer/WhileGrabbed/Rotate" to="." method="_stopped_rotating"]
+[connection signal="on_trigger" from="InteractionContainer/WhileGrabbed/Rotate" to="." method="_while_rotating"]
+[connection signal="on_complete" from="InteractionContainer/WhileGrabbed/Throw" to="." method="_on_throw"]

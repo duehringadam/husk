@@ -1,0 +1,140 @@
+[gd_scene format=3 uid="uid://dqcwnuc6rmxtd"]
+
+[ext_resource type="Script" uid="uid://dixki0innbjf2" path="res://addons/game_pieces/pickable/item_world_pickable.gd" id="1_v235k"]
+[ext_resource type="Script" uid="uid://ck3cei0hvspym" path="res://addons/interaction_system/interaction_container.gd" id="2_v235k"]
+[ext_resource type="Script" uid="uid://5tinbhq6p45k" path="res://addons/interaction_system/interaction.gd" id="3_guvum"]
+[ext_resource type="Script" uid="uid://doc0okecalxnp" path="res://addons/interaction_system/interaction_context.gd" id="4_7cjlg"]
+[ext_resource type="Script" uid="uid://bxe74cq2uqemi" path="res://addons/game_controls/vanilla/input_map_game_control.gd" id="4_v235k"]
+[ext_resource type="Script" uid="uid://cp0p4yckxtvmw" path="res://addons/game_pieces/collision_sound/collision_sound_player.gd" id="5_xbs6s"]
+[ext_resource type="AudioStream" uid="uid://dcr4in8lcdk51" path="res://sfx/dark_souls_item.wav" id="6_uo387"]
+[ext_resource type="ArrayMesh" uid="uid://fiodbacyepa" path="res://Player/weapon/ALL/BrokenSword/sword_final_anime_if_you_change_it_again_i_kill_you.tres" id="7_guvum"]
+[ext_resource type="PackedScene" uid="uid://dhws2ueoubwwx" path="res://components/bounding_box_component.tscn" id="8_7cjlg"]
+[ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="8_xbs6s"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7cjlg"]
+points = PackedVector3Array(-0.08772572, -0.16816428, -0.0032793228, -0.033933744, -0.42371607, -0.013335722, -0.08772572, -0.16816428, 0.0032761265, -0.08772572, -0.15258995, -0.0032793228, -0.0013933405, -0.45363015, -0.013335722, -0.033933744, -0.42371607, 0.013332525, -0.033933744, -0.40842664, -0.013335722, -1.6234815e-05, -0.18620768, -0.016406279, -0.08772572, -0.15258995, 0.0032761265, -0.03673895, 0.516536, 7.450581e-09, -0.019533679, 0.4569927, -0.0044291755, -1.6234815e-05, -0.15258995, -0.016406279, 0.016202964, -0.4518258, -0.013335722, -0.0013933405, -0.45363015, 0.013332525, -0.033933744, -0.40842664, 0.013332525, -1.6234815e-05, -0.18620768, 0.016406294, 0.03480234, -0.41573897, -0.013335722, 0.031113066, -0.43929037, -0.013335722, -1.6234815e-05, -0.15258995, 0.016406294, -0.019533679, 0.4569927, 0.00442598, 0.000374794, 0.45651788, 7.450581e-09, 0.04836934, 0.3693397, 7.450581e-09, 0.08595913, -0.15258995, -0.0032793228, 0.016202964, -0.4518258, 0.013332525, 0.031113066, -0.43929037, 0.013332525, 0.03480234, -0.41573897, 0.013332525, 0.08595913, -0.16816428, -0.0032793228, 0.08595913, -0.15258995, 0.0032761265, 0.08595913, -0.16816428, 0.0032761265)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xbs6s"]
+size = Vector3(0.18457031, 0.9707031, 0.05834961)
+
+[node name="Pickable" type="RigidBody3D" unique_id=2119350781 node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component")]
+collision_layer = 8
+collision_mask = 15
+contact_monitor = true
+max_contacts_reported = 1
+angular_damp = 5.0
+script = ExtResource("1_v235k")
+change_distance_interaction = NodePath("InteractionContainer/WhileGrabbed/Change Distance")
+throwable_mesh = NodePath("Broken Sword")
+throwable = NodePath(".")
+damage_component = NodePath("DamageComponent")
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("2_v235k"),"default_context_id":0,"display_name":"Broken Sword","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("3_guvum")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_guvum"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("4_v235k"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+, Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_guvum"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("4_v235k"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="InteractionContainer" type="Node" parent="." unique_id=675653858]
+script = ExtResource("2_v235k")
+display_name = "Broken Sword"
+metadata/_custom_type_script = "uid://ck3cei0hvspym"
+
+[node name="Take" type="Node" parent="InteractionContainer" unique_id=1494656254]
+script = ExtResource("3_guvum")
+hide_while_grabbed = true
+display_name = "Grab"
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="interact" type="Node" parent="InteractionContainer/Take" unique_id=658629802]
+script = ExtResource("4_v235k")
+action = &"interact"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="Hold" type="Node" parent="InteractionContainer" unique_id=2043500295]
+script = ExtResource("3_guvum")
+hide_while_grabbed = true
+display_name = "Grab"
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="interact" type="Node" parent="InteractionContainer/Hold" unique_id=47041581]
+script = ExtResource("4_v235k")
+action = &"interact"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="WhileGrabbed" type="Node" parent="InteractionContainer" unique_id=1598984081]
+script = ExtResource("4_7cjlg")
+context_id = 1
+metadata/_custom_type_script = "uid://doc0okecalxnp"
+
+[node name="Change Distance" type="Node" parent="InteractionContainer/WhileGrabbed" unique_id=1387568767]
+script = ExtResource("3_guvum")
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="scroll" type="Node" parent="InteractionContainer/WhileGrabbed/Change Distance" unique_id=2094094583]
+script = ExtResource("4_v235k")
+type = 1
+action = &"scroll"
+negative_x = &"scroll_down"
+positive_x = &"scroll_up"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="Rotate" type="Node" parent="InteractionContainer/WhileGrabbed" unique_id=802756841]
+script = ExtResource("3_guvum")
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="rotate" type="Node" parent="InteractionContainer/WhileGrabbed/Rotate" unique_id=1279692524]
+script = ExtResource("4_v235k")
+action = &"rotate"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="Throw" type="Node" parent="InteractionContainer/WhileGrabbed" unique_id=696603547]
+script = ExtResource("3_guvum")
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="secondary_action" type="Node" parent="InteractionContainer/WhileGrabbed/Throw" unique_id=629675826]
+script = ExtResource("4_v235k")
+action = &"secondary_action"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="PickupSound" type="AudioStreamPlayer" parent="." unique_id=290488532]
+stream = ExtResource("6_uo387")
+
+[node name="CollisionSoundPlayer" type="AudioStreamPlayer3D" parent="." unique_id=135415267]
+max_polyphony = 3
+script = ExtResource("5_xbs6s")
+sounds_per_velocity = Dictionary[int, AudioStream]({
+2: null,
+6: null,
+12: null
+})
+metadata/_custom_type_script = "uid://cp0p4yckxtvmw"
+
+[node name="Broken Sword" type="MeshInstance3D" parent="." unique_id=1316351081]
+mesh = ExtResource("7_guvum")
+
+[node name="DamageComponent" type="Area3D" parent="." unique_id=1429514769 node_paths=PackedStringArray("source")]
+collision_mask = 13
+script = ExtResource("8_xbs6s")
+damage_types = Dictionary[int, float]({
+1: 10.0
+})
+source = NodePath("..")
+metadata/_custom_type_script = "uid://dlsydctoxqbwy"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent" unique_id=1216415775]
+shape = SubResource("ConvexPolygonShape3D_7cjlg")
+
+[node name="bounding_box_component" parent="." unique_id=326409759 node_paths=PackedStringArray("mesh") instance=ExtResource("8_7cjlg")]
+mesh = NodePath("../Broken Sword")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2041675035]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0146484375, 0)
+shape = SubResource("BoxShape3D_xbs6s")
+
+[connection signal="on_complete" from="InteractionContainer/Take" to="." method="_released"]
+[connection signal="on_trigger" from="InteractionContainer/Take" to="." method="_while_grabbed"]
+[connection signal="on_trigger" from="InteractionContainer/WhileGrabbed/Change Distance" to="." method="_on_change_distance"]
+[connection signal="on_complete" from="InteractionContainer/WhileGrabbed/Rotate" to="." method="_stopped_rotating"]
+[connection signal="on_trigger" from="InteractionContainer/WhileGrabbed/Rotate" to="." method="_while_rotating"]
+[connection signal="on_complete" from="InteractionContainer/WhileGrabbed/Throw" to="." method="_on_throw"]

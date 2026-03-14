@@ -2,7 +2,7 @@ extends Node
 
 @export var patrol_speed: float = 3
 
-@export var source_npc: CharacterBody3D
+@export var source_npc: npc
 @export var animation_tree: AnimationTree
 @export var state_chart: StateChart
 

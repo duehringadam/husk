@@ -14,10 +14,15 @@ func _on_pulling_state_exited() -> void:
 
 func _on_pulling_state_physics_processing(delta: float) -> void:
 	if is_instance_valid(spell.grabbed_object):
+		spell.grabbed_object.hold_time = 1.0
+		spell.grabbed_object.holding_input = true
 		if not Input.is_action_pressed("attack_secondary"):
+			spell.grabbed_object.hold_time = 0.0
+			spell.grabbed_object.holding_input = false
 			state_chart.send_event("missed")
 			return
-			
+		if spell.grabbed_object.global_position.distance_to(spell.hold_node.global_position) < 3:
+			animation_player.play("hold_object")
 		if spell.grabbed_object.global_position.distance_to(spell.hold_node.global_position) < 2:
 			spell.grabbed_object._is_grabbed = true
 			Global.player.hold_joint.node_b = spell.grabbed_object.get_path()
@@ -28,6 +33,6 @@ func _on_pulling_state_physics_processing(delta: float) -> void:
 			state_chart.send_event("hold")
 		else:
 			spell.grabbed_object.apply_central_impulse(-(spell.grabbed_object.global_position - Global.player.head.global_position) * (spell.grabbed_object.pull_force * delta)) #- (spell.grabbed_object.linear_velocity)* delta)
-			spell.grabbed_object.apply_torque_impulse(-((spell.grabbed_object.global_position - spell.global_position) + (spell.grabbed_object.linear_velocity * delta))/30)
+			#spell.grabbed_object.apply_torque_impulse(-((spell.grabbed_object.global_position - spell.global_position) + (spell.grabbed_object.linear_velocity * delta))/30)
 	else:
 		state_chart.send_event("missed")

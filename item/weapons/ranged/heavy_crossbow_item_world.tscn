@@ -1,0 +1,144 @@
+[gd_scene format=3 uid="uid://cawmpm5wfafuh"]
+
+[ext_resource type="Script" uid="uid://dixki0innbjf2" path="res://addons/game_pieces/pickable/item_world_pickable.gd" id="1_n8xfk"]
+[ext_resource type="Script" uid="uid://ck3cei0hvspym" path="res://addons/interaction_system/interaction_container.gd" id="2_uh0rs"]
+[ext_resource type="Script" uid="uid://5tinbhq6p45k" path="res://addons/interaction_system/interaction.gd" id="3_ithqy"]
+[ext_resource type="Script" uid="uid://bxe74cq2uqemi" path="res://addons/game_controls/vanilla/input_map_game_control.gd" id="4_d84if"]
+[ext_resource type="Script" uid="uid://doc0okecalxnp" path="res://addons/interaction_system/interaction_context.gd" id="5_kg6qy"]
+[ext_resource type="Script" uid="uid://cp0p4yckxtvmw" path="res://addons/game_pieces/collision_sound/collision_sound_player.gd" id="6_d65ts"]
+[ext_resource type="AudioStream" uid="uid://dcr4in8lcdk51" path="res://sfx/dark_souls_item.wav" id="6_uh0rs"]
+[ext_resource type="ArrayMesh" uid="uid://g8nhxbgs3sh7" path="res://Player/weapon/ALL/HeavyCrossbow/heavyxbow.res" id="7_n8xfk"]
+[ext_resource type="Texture2D" uid="uid://hio7ka8q4l81" path="res://Player/weapon/ALL/HeavyCrossbow/base2.png" id="8_uh0rs"]
+[ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="9_h0k1k"]
+[ext_resource type="PackedScene" uid="uid://dhws2ueoubwwx" path="res://components/bounding_box_component.tscn" id="10_j7wme"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ithqy"]
+albedo_texture = ExtResource("8_uh0rs")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_n8xfk"]
+points = PackedVector3Array(-0.049393315, -0.06795208, -0.012729589, 0.049393307, -0.06795208, -0.012729589, -0.049393315, -0.06795208, 0.0050480254, -0.049393315, -0.06290172, -0.012729589, -0.0012570769, 0.022334673, -0.020961307, -0.0012570769, 0.015311681, -0.020855242, -0.0034424476, -0.051293135, -0.018247582, 0.049393307, -0.06290172, -0.012729589, 0.049393307, -0.06795208, 0.0050480254, 0.0034327768, -0.051293135, -0.018247582, 0.0012474023, 0.015311681, -0.020855242, 0.0012474023, 0.022334673, -0.020961307, -0.04068083, -0.0651119, 0.0054593515, -0.049393315, -0.06290172, 0.0050480254, -0.0024754703, 0.03755804, 0.0042046737, -0.0024754703, 0.037496075, -0.0051601343, 0.049393307, -0.06290172, 0.0050480254, 0.0024657957, 0.037496075, -0.0051601343, 0.0024657957, 0.03755804, 0.0042046737, 0.04067116, -0.0651119, 0.0054593515, -0.0009766519, 0.005995892, 0.005467113, -0.0009766519, 0.008350655, 0.005467113, 0.0009669773, 0.008350655, 0.005467113, 0.0009669773, 0.005995892, 0.005467113)
+
+[node name="Pickable" type="RigidBody3D" unique_id=2119350781 node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component")]
+collision_layer = 8
+collision_mask = 15
+contact_monitor = true
+max_contacts_reported = 1
+angular_damp = 5.0
+script = ExtResource("1_n8xfk")
+change_distance_interaction = NodePath("InteractionContainer/WhileGrabbed/Change Distance")
+throwable_mesh = NodePath("Crossbow")
+throwable = NodePath(".")
+damage_component = NodePath("DamageComponent")
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("2_uh0rs"),"default_context_id":0,"display_name":"Heavy Crossbow","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("3_ithqy")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_ithqy"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("4_d84if"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+, Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_ithqy"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("4_d84if"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="InteractionContainer" type="Node" parent="." unique_id=675653858]
+script = ExtResource("2_uh0rs")
+display_name = "Heavy Crossbow"
+metadata/_custom_type_script = "uid://ck3cei0hvspym"
+
+[node name="Take" type="Node" parent="InteractionContainer" unique_id=1494656254]
+script = ExtResource("3_ithqy")
+hide_while_grabbed = true
+display_name = "Grab"
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="interact" type="Node" parent="InteractionContainer/Take" unique_id=658629802]
+script = ExtResource("4_d84if")
+action = &"interact"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="Hold" type="Node" parent="InteractionContainer" unique_id=2043500295]
+script = ExtResource("3_ithqy")
+hide_while_grabbed = true
+display_name = "Grab"
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="interact" type="Node" parent="InteractionContainer/Hold" unique_id=47041581]
+script = ExtResource("4_d84if")
+action = &"interact"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="WhileGrabbed" type="Node" parent="InteractionContainer" unique_id=1598984081]
+script = ExtResource("5_kg6qy")
+context_id = 1
+metadata/_custom_type_script = "uid://doc0okecalxnp"
+
+[node name="Change Distance" type="Node" parent="InteractionContainer/WhileGrabbed" unique_id=1387568767]
+script = ExtResource("3_ithqy")
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="scroll" type="Node" parent="InteractionContainer/WhileGrabbed/Change Distance" unique_id=2094094583]
+script = ExtResource("4_d84if")
+type = 1
+action = &"scroll"
+negative_x = &"scroll_down"
+positive_x = &"scroll_up"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="Rotate" type="Node" parent="InteractionContainer/WhileGrabbed" unique_id=802756841]
+script = ExtResource("3_ithqy")
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="rotate" type="Node" parent="InteractionContainer/WhileGrabbed/Rotate" unique_id=1279692524]
+script = ExtResource("4_d84if")
+action = &"rotate"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="Throw" type="Node" parent="InteractionContainer/WhileGrabbed" unique_id=696603547]
+script = ExtResource("3_ithqy")
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="secondary_action" type="Node" parent="InteractionContainer/WhileGrabbed/Throw" unique_id=629675826]
+script = ExtResource("4_d84if")
+action = &"secondary_action"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="PickupSound" type="AudioStreamPlayer" parent="." unique_id=290488532]
+stream = ExtResource("6_uh0rs")
+
+[node name="CollisionSoundPlayer" type="AudioStreamPlayer3D" parent="." unique_id=135415267]
+max_polyphony = 3
+script = ExtResource("6_d65ts")
+sounds_per_velocity = Dictionary[int, AudioStream]({
+2: null,
+6: null,
+12: null
+})
+metadata/_custom_type_script = "uid://cp0p4yckxtvmw"
+
+[node name="Crossbow" type="MeshInstance3D" parent="." unique_id=1316351081]
+transform = Transform3D(-8.5, 1.2834644e-06, 5.6102008e-14, 0, -3.715468e-07, 8.5, 1.2834644e-06, 8.5, 3.715468e-07, 0, 0, 0)
+mesh = ExtResource("7_n8xfk")
+surface_material_override/0 = SubResource("StandardMaterial3D_ithqy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1298049973]
+transform = Transform3D(-8.5, 1.2834644e-06, 5.6102008e-14, 0, -3.715468e-07, 8.5, 1.2834644e-06, 8.5, 3.715468e-07, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_n8xfk")
+
+[node name="DamageComponent" type="Area3D" parent="." unique_id=1429514769 node_paths=PackedStringArray("source")]
+collision_mask = 13
+script = ExtResource("9_h0k1k")
+damage_types = Dictionary[int, float]({
+1: 10.0
+})
+source = NodePath("..")
+metadata/_custom_type_script = "uid://dlsydctoxqbwy"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent" unique_id=184934679]
+transform = Transform3D(-8.5, 1.2834644e-06, 5.6102008e-14, 0, -3.715468e-07, 8.5, 1.2834644e-06, 8.5, 3.715468e-07, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_n8xfk")
+
+[node name="bounding_box_component" parent="." unique_id=326409759 node_paths=PackedStringArray("mesh") instance=ExtResource("10_j7wme")]
+mesh = NodePath("../Crossbow")
+
+[connection signal="on_complete" from="InteractionContainer/Take" to="." method="_released"]
+[connection signal="on_trigger" from="InteractionContainer/Take" to="." method="_while_grabbed"]
+[connection signal="on_trigger" from="InteractionContainer/WhileGrabbed/Change Distance" to="." method="_on_change_distance"]
+[connection signal="on_complete" from="InteractionContainer/WhileGrabbed/Rotate" to="." method="_stopped_rotating"]
+[connection signal="on_trigger" from="InteractionContainer/WhileGrabbed/Rotate" to="." method="_while_rotating"]
+[connection signal="on_complete" from="InteractionContainer/WhileGrabbed/Throw" to="." method="_on_throw"]

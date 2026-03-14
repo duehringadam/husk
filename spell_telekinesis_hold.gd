@@ -10,11 +10,13 @@ extends Node
 var timer = Timer.new()
 
 func _ready() -> void:
+	
 	timer.wait_time = .25
 	timer.one_shot = true
 	add_child(timer)
 
 func _on_holding_state_entered() -> void:
+	SignalBus.emit_signal("raidal_blur", true)
 	timer.start()
 	Global.player.camera.apply_shake()
 	spell_hold_sound.playing = true
@@ -22,6 +24,7 @@ func _on_holding_state_entered() -> void:
 
 
 func _on_holding_state_exited() -> void:
+	SignalBus.emit_signal("raidal_blur", false)
 	spell_hold_sound.playing = false
 
 func _on_holding_state_physics_processing(delta: float) -> void:

@@ -3,22 +3,30 @@
 [ext_resource type="Texture2D" uid="uid://dbhfmyr2wcf82" path="res://Player/weapon/ALL/Mace3/Metal046B_1K-JPG_Color.png" id="1_mv2jc"]
 [ext_resource type="Material" uid="uid://c5w2i4ors51to" path="res://blood_buildup.tres" id="2_mukux"]
 [ext_resource type="Texture2D" uid="uid://cuyxw6umvlbb1" path="res://Player/weapon/ALL/Mace3/Wood060_1K-JPG_Color.png" id="2_whmfr"]
+[ext_resource type="Texture2D" uid="uid://bbbw52nyt5wet" path="res://Player/weapon/ALL/Mace3/Metal046B_1K-JPG_NormalDX.jpg" id="3_8rx3x"]
+[ext_resource type="Texture2D" uid="uid://bmhly2dns67br" path="res://Player/weapon/ALL/Mace3/Wood060_1K-JPG_Color_normal.png" id="5_sfxv3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mukux"]
+resource_local_to_scene = true
 resource_name = "metal"
 next_pass = ExtResource("2_mukux")
 cull_mode = 2
 albedo_texture = ExtResource("1_mv2jc")
 metallic = 0.48623854
 roughness = 0.5825688
-texture_filter = 2
+normal_enabled = true
+normal_scale = 1.5
+normal_texture = ExtResource("3_8rx3x")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8rx3x"]
+resource_local_to_scene = true
 resource_name = "Material.002"
 next_pass = ExtResource("2_mukux")
 cull_mode = 2
 albedo_texture = ExtResource("2_whmfr")
-texture_filter = 2
+normal_enabled = true
+normal_scale = 0.25
+normal_texture = ExtResource("5_sfxv3")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_sfxv3"]
 _surfaces = [{
@@ -46,6 +54,7 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [resource]
+resource_local_to_scene = true
 resource_name = "mace_Cube_004"
 _surfaces = [{
 "aabb": AABB(-0.13663685, -0.64504516, -0.13608125, 0.27216244, 1.0343773, 0.27216238),

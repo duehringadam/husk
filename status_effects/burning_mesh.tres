@@ -2,16 +2,21 @@
 
 [ext_resource type="Texture2D" uid="uid://bgpuc5rjm2yh5" path="res://Textures/T_Fire01_SubUV.png" id="1_eljah"]
 [ext_resource type="Texture2D" uid="uid://dgnarq1axwhae" path="res://Textures/T_Fire01_Tiled_D_Yellow.png" id="2_cl58w"]
+[ext_resource type="Texture2D" uid="uid://185sjxt7oawt" path="res://Textures/T_Fire01_SubUV_normal.png" id="3_cl58w"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xcmeu"]
 resource_local_to_scene = true
 transparency = 1
+diffuse_mode = 3
+specular_mode = 1
 vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
 albedo_color = Color(1, 0.51584375, 0, 1)
 albedo_texture = ExtResource("1_eljah")
 emission = Color(1, 0.29748532, 0, 1)
 emission_texture = ExtResource("2_cl58w")
+normal_enabled = true
+normal_texture = ExtResource("3_cl58w")
 backlight = Color(1, 1, 1, 1)
 billboard_mode = 3
 billboard_keep_scale = true
@@ -19,10 +24,10 @@ particles_anim_h_frames = 6
 particles_anim_v_frames = 6
 particles_anim_loop = true
 grow_amount = -0.264
+proximity_fade_distance = 0.01
 distance_fade_max_distance = 1.0
 stencil_flags = 2
 
 [resource]
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_xcmeu")
-size = Vector2(0.75, 0.75)

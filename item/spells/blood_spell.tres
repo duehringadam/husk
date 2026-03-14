@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="item" format=3 uid="uid://b2anxjkr7f46w"]
+
+[ext_resource type="Script" uid="uid://c23n4qi4fu7ia" path="res://item/item_required_stats.gd" id="1_kl4sx"]
+[ext_resource type="PackedScene" uid="uid://ctfq2toui1ut" path="res://spell_blood.tscn" id="2_f7vag"]
+[ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/item_stat.gd" id="2_jb7se"]
+[ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/item.gd" id="3_f7vag"]
+
+[resource]
+script = ExtResource("3_f7vag")
+item_name = "Accursed Blood"
+item_description = "Expel the cursed blood within, damaging yourself and knocking back nearby enemies"
+item_type = 1
+item_scene = ExtResource("2_f7vag")
+metadata/_custom_type_script = "uid://dcfd18dx8x1bm"

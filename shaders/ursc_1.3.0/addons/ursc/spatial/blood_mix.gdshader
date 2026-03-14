@@ -17,9 +17,9 @@ void fragment() {
 	ALPHA = color.a * step(noise_texture.r, progress);
 }
 
-void vertex(){
-	VERTEX = VERTEX + NORMAL * 0.003;
-}
+//void vertex(){
+	//VERTEX = VERTEX + NORMAL * 0.003;
+//}
 
 //void light() {
 //	// Called for every pixel for every light affecting the CanvasItem.

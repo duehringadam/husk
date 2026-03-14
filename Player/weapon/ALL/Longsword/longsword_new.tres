@@ -2,13 +2,15 @@
 
 [ext_resource type="Texture2D" uid="uid://dqogqwsdb4ws2" path="res://Player/weapon/ALL/Longsword/552.png" id="1_f68pl"]
 [ext_resource type="Material" uid="uid://c5w2i4ors51to" path="res://blood_buildup.tres" id="2_beded"]
+[ext_resource type="Texture2D" uid="uid://bkne7sjjjrso7" path="res://Player/weapon/ALL/Longsword/552_specular(1).png" id="3_4ab85"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_beded"]
 resource_name = "Material.002"
 next_pass = ExtResource("2_beded")
 cull_mode = 2
 albedo_texture = ExtResource("1_f68pl")
-texture_filter = 2
+normal_enabled = true
+normal_texture = ExtResource("3_4ab85")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_4ab85"]
 _surfaces = [{

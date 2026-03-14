@@ -25,10 +25,11 @@ const LEAN_SPEED: float = 0.1
 @export_group("Player Body")
 @export var player_body: Node3D
 @export_group("Movement")
-@export var walk_speed = 3.0: set = _set_walk_speed
+@export var walk_speed: float = 3.0: set = _set_walk_speed
 @export var sprint_speed: float = 6.0: set = _set_sprint_speed
-@export var crouch_speed = 1.5
+@export var crouch_speed: float = 1.5
 @export var jump_power: float = 4
+@export var climb_speed: float = 3
 ## How much fov changes from base value based on current velocity
 @export var fov_change: float = 1
 ## To disable sprint for when player runs out of stamina for example
@@ -105,11 +106,11 @@ var mouse_movement: Vector2
 var input_dir: Vector3
 var can_move:=true
 
-const WALK_SPEED_MINIMUM := 1.0
-const WALK_SPEED_MAXIMUM := 4.0
+const WALK_SPEED_MINIMUM := 1.5
+const WALK_SPEED_MAXIMUM := 2.5
 
 const SPRINT_SPEED_MIN := 4.0
-const SPRINT_SPEED_MAX := 6.0
+const SPRINT_SPEED_MAX := 4.0
 
 var combat_type: int = 0
 
@@ -140,19 +141,21 @@ func _set_sprint_speed(value:float):
 
 func _physics_process(delta) -> void:
 	if Engine.is_editor_hint(): return
-	handle_effects(delta)
-	handle_falling(delta)
-	handle_jump()
-	handle_crouch(delta)
-	set_movement_speed()
-	handle_movement(delta)
-	handle_head_bob(delta)
-	handle_zoom(delta)
-	handle_switch_hands()
-	handle_lean(delta)
-	move_and_slide()
-	weapon_sway(delta)
-	handle_kick()
+	if not _handle_ladder_physics():
+		handle_effects(delta)
+		handle_falling(delta)
+		handle_jump()
+		handle_crouch(delta)
+		set_movement_speed()
+		handle_movement(delta)
+		handle_head_bob(delta)
+		handle_zoom(delta)
+		handle_switch_hands()
+		handle_lean(delta)
+		move_and_slide()
+		weapon_sway(delta)
+		handle_kick()
+	_handle_ladder_physics()
 
 
 func _input(event: InputEvent) -> void:
@@ -161,7 +164,6 @@ func _input(event: InputEvent) -> void:
 		look_around()
 		
 func handle_effects(delta) -> void:
-	
 	if is_on_floor():
 		var horizontal_velocity: Vector2 = Vector2(velocity.x, velocity.z)
 		var speed_factor: float = horizontal_velocity.length() / BASE_WALK_SPEED
@@ -228,8 +230,10 @@ func set_movement_speed() -> void:
 		return
 	if get_node_or_null("%sprint") != null and %sprint.is_triggered() and not disable_sprint:
 		speed = sprint_speed
+		player_body.sprint_activate(true)
 	else:
 		speed = walk_speed
+		player_body.sprint_activate(false)
 	
 	if crouching:
 		speed = crouch_speed
@@ -253,7 +257,8 @@ func handle_movement(delta: float) -> void:
 	var direction: Vector3 = (head.transform.basis * transform.basis * input_dir).normalized()
 	if is_on_floor():
 		if direction:
-			camera.rotation_degrees.z = lerpf(camera.rotation_degrees.z,clampf(-(camera.rotation_degrees.z-velocity.x),-1,1),4*delta)
+			if AppSettings.get_head_bob_from_config():
+				camera.rotation_degrees.z = lerpf(camera.rotation_degrees.z,clampf(-(camera.rotation_degrees.z-direction.x),-1,1),4*delta)
 			velocity.x = direction.x * speed
 			velocity.z = direction.z * speed
 			handle_fov_change(delta)
@@ -267,13 +272,14 @@ func handle_movement(delta: float) -> void:
 
 
 func handle_head_bob(delta: float) -> void:
-	bob_time += delta * velocity.length() * float(is_on_floor())
-	var pos: Vector3 = Vector3.ZERO
-	pos.y = sin(bob_time * BOB_FREQ) * head_bob_strength
-	pos.x = cos(bob_time * BOB_FREQ / 2) * head_bob_strength
-	neck.transform.origin =  pos
-	%RightHand.transform.origin = right_hand_pos - pos / 4
-	%LeftHand.transform.origin = left_hand_pos - pos / 4
+	if AppSettings.get_head_bob_from_config():
+		bob_time += delta * velocity.length() * float(is_on_floor())
+		var pos: Vector3 = Vector3.ZERO
+		pos.y = sin(bob_time * BOB_FREQ) * head_bob_strength
+		pos.x = cos(bob_time * BOB_FREQ / 2) * head_bob_strength
+		neck.transform.origin =  pos
+		%RightHand.transform.origin = right_hand_pos - pos / 4
+		%LeftHand.transform.origin = left_hand_pos - pos / 4
 
 
 func handle_fov_change(delta: float) -> void:
@@ -381,3 +387,74 @@ func weapon_sway(delta):
 
 func _on_hurtbox_component_damage_taken(actual: float, source: DamageComponent, hit_dir: Vector3) -> void:
 	camera_animation_player.play("swing_left",-1,1.5)
+
+var _cur_ladder_climbing : Area3D = null
+
+func _handle_ladder_physics() -> bool:
+	# Keep track of whether already on ladder. If not already, check if overlapping a ladder area3d.
+	var was_climbing_ladder := _cur_ladder_climbing and _cur_ladder_climbing.overlaps_body(self)
+	if not was_climbing_ladder:
+		_cur_ladder_climbing = null
+		for ladder in get_tree().get_nodes_in_group("ladder"):
+			if ladder.overlaps_body(self):
+				_cur_ladder_climbing = ladder
+				break
+	if _cur_ladder_climbing == null:
+		return false
+	
+	# Set up variables. Most of this is going to be dependent on the player's relative position/velocity/input to the ladder.
+	var ladder_gtransform : Transform3D = _cur_ladder_climbing.global_transform
+	var pos_rel_to_ladder := ladder_gtransform.affine_inverse() * self.global_position
+	
+	var forward_move := Input.get_action_strength("move_forward") - Input.get_action_strength("move_back")
+	var side_move := Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	var ladder_forward_move = ladder_gtransform.affine_inverse().basis * camera.global_transform.basis * Vector3(0, 0, -forward_move)
+	var ladder_side_move = ladder_gtransform.affine_inverse().basis * camera.global_transform.basis * Vector3(side_move, 0, 0)
+	
+	# Strafe velocity is simple. Just take x component rel to ladder of both
+	var ladder_strafe_vel : float = climb_speed * (ladder_side_move.x + ladder_forward_move.x)
+	# For climb velocity, there are a few things to take into account:
+	# If strafing directly into the ladder, go up, if strafing away, go down
+	var ladder_climb_vel : float = climb_speed * -ladder_side_move.z
+	# When pressing forward & facing the ladder, the player likely wants to move up. Vice versa with down.
+	# So we will bias the direction (up/down) towards where we are looking by 45 degrees to give a greater margin for up/down detect.
+	var up_wish := Vector3.UP.rotated(Vector3(1,0,0), deg_to_rad(-45)).dot(ladder_forward_move)
+	ladder_climb_vel += climb_speed * up_wish
+	
+	# Only begin climbing ladders when moving towards them & prevent sticking to top of ladder when dismounting
+	# Trying to best match the player's intention when climbing on ladder
+	var should_dismount = false
+	if not was_climbing_ladder:
+		var mounting_from_top = pos_rel_to_ladder.y > _cur_ladder_climbing.get_node("ladderTop").position.y
+		if mounting_from_top:
+			# They could be trying to get on from the top of the ladder, or trying to leave the ladder.
+			if ladder_climb_vel > 0: should_dismount = true
+		else:
+			# If not mounting from top, they are either falling or on floor.
+			# In which case, only stick to ladder if intentionally moving towards
+			if (ladder_gtransform.affine_inverse().basis * velocity).z >= 0: should_dismount = false
+		# Only stick to ladder if very close. Helps make it easier to get off top & prevents camera jitter
+		if abs(pos_rel_to_ladder.z) > 0.1: should_dismount = false
+	
+	# Let player step off onto floor
+	if is_on_floor() and ladder_climb_vel <= 0: should_dismount = true
+	
+	if should_dismount:
+		_cur_ladder_climbing = null
+		return false
+	
+	# Allow jump off ladder mid climb
+	if was_climbing_ladder and Input.is_action_just_pressed("jump"):
+		self.velocity = _cur_ladder_climbing.global_transform.basis.z * jump_power * 1.5
+		_cur_ladder_climbing = null
+		return false
+	
+	self.velocity = ladder_gtransform.basis * Vector3(ladder_strafe_vel, ladder_climb_vel, 0)
+	#self.velocity = self.velocity.limit_length(climb_speed) # Uncomment to turn off ladder boosting
+	
+	# Snap player onto ladder
+	#pos_rel_to_ladder.z = 0
+	self.global_position = ladder_gtransform * pos_rel_to_ladder
+	
+	move_and_slide()
+	return true

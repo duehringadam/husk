@@ -1,10 +1,103 @@
 [gd_scene format=3 uid="uid://cc8ry1rvctgv1"]
 
-[ext_resource type="Texture2D" uid="uid://cjl4qfjmnnm1w" path="res://shaders/blood_splatter.png" id="1_6sl8c"]
+[ext_resource type="Shader" uid="uid://t3xv4d68ld77" path="res://VFX/shaders/s_Disolver_small_Liquid_p_Treshold.tres" id="1_kraic"]
 [ext_resource type="Script" uid="uid://b8waas5rrw22o" path="res://blood_decal.gd" id="2_rh7ah"]
+[ext_resource type="Texture2D" uid="uid://d1487hs54xk4g" path="res://VFX/textures/T_Blood_bulb_UJ1.png" id="2_uhdv6"]
+[ext_resource type="Texture2D" uid="uid://bs5888n022i54" path="res://VFX/textures/T_Blood_bulb_UJ1_N.png" id="3_b2ucj"]
 
-[node name="Decal" type="Decal" unique_id=1542109919]
-size = Vector3(1, 0.218, 1)
-texture_albedo = ExtResource("1_6sl8c")
-modulate = Color(0.38039216, 0, 0, 1)
+[sub_resource type="Gradient" id="Gradient_xonhh"]
+interpolation_color_space = 1
+colors = PackedColorArray(0.66, 0, 0.0879999, 1, 0.341442, 0, 0.0783819, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_n5vmk"]
+gradient = SubResource("Gradient_xonhh")
+
+[sub_resource type="Gradient" id="Gradient_x0i23"]
+interpolation_color_space = 1
+colors = PackedColorArray(0.154876, 0.154876, 0.154876, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_aqier"]
+gradient = SubResource("Gradient_x0i23")
+
+[sub_resource type="Gradient" id="Gradient_kauha"]
+interpolation_color_space = 1
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4itwh"]
+gradient = SubResource("Gradient_kauha")
+
+[sub_resource type="Gradient" id="Gradient_aegtd"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.0142752, 0.0142752, 0.0142752, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_c7ha7"]
+gradient = SubResource("Gradient_aegtd")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1idaf"]
+render_priority = 0
+shader = ExtResource("1_kraic")
+shader_parameter/Scale = Vector2(1, 1)
+shader_parameter/Speed_XY = Vector2(0, 0)
+shader_parameter/Disolver_Texture = ExtResource("2_uhdv6")
+shader_parameter/Color_1D_Gradient = SubResource("GradientTexture1D_n5vmk")
+shader_parameter/Metallic_Texture = SubResource("GradientTexture1D_aqier")
+shader_parameter/Texture_Roughtness = SubResource("GradientTexture2D_c7ha7")
+shader_parameter/Roughtness_1D_Gradient = SubResource("GradientTexture1D_4itwh")
+shader_parameter/Specular = 0.5
+shader_parameter/Normal_Texture = ExtResource("3_b2ucj")
+shader_parameter/Normal_Map_Depth = 1.0
+
+[sub_resource type="Curve" id="Curve_chirk"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.109848, 0), 0.0, 0.0, 0, 0, Vector2(0.670455, 0.0219437), 0.0, 0.100812, 0, 0, Vector2(1, 0.978022), 5.35081, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_ssvfo"]
+texture_mode = 1
+curve = SubResource("Curve_chirk")
+
+[sub_resource type="Gradient" id="Gradient_oj72d"]
+colors = PackedColorArray(0.8819366, 0.8819366, 0.88193655, 1, 0.244776, 0.244776, 0.244776, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_tt5ek"]
+gradient = SubResource("Gradient_oj72d")
+
+[sub_resource type="Curve" id="Curve_bup3d"]
+_data = [Vector2(0.0043290034, 1), 0.0, 0.23595499, 0, 0, Vector2(0.17316018, 1), 0.0, 0.0, 0, 0, Vector2(0.842391, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -11.9297, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_mn0uf"]
+curve = SubResource("Curve_bup3d")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_glsvi"]
+particle_flag_rotate_y = true
+emission_shape_scale = Vector3(0.1, 0.1, 0.1)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.2
+emission_ring_radius = 0.8
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+angle_min = -180.0
+angle_max = 180.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.3
+scale_max = 0.6
+scale_curve = SubResource("CurveTexture_mn0uf")
+color = Color(0.74138474, 0.7413847, 0.74138457, 1)
+color_ramp = SubResource("GradientTexture1D_tt5ek")
+alpha_curve = SubResource("CurveTexture_ssvfo")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_tahni"]
+size = Vector2(1, 1)
+
+[node name="submarks" type="GPUParticles3D" unique_id=373229309]
+material_override = SubResource("ShaderMaterial_1idaf")
+cast_shadow = 0
+emitting = false
+amount = 1
+lifetime = 5.0
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_glsvi")
+draw_pass_1 = SubResource("PlaneMesh_tahni")
 script = ExtResource("2_rh7ah")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

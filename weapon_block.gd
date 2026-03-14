@@ -5,6 +5,7 @@ extends Node
 @export var animation_tree: AnimationTree
 
 func _on_block_state_entered() -> void:
+	GamePiecesEventBus.slow_player_requested(2)
 	animation_tree.set("parameters/conditions/block", true)
 	SignalBus.emit_signal("block_amount", weapon.block_amount)
 	SignalBus.emit_signal("is_blocking", true)
@@ -13,6 +14,7 @@ func _on_block_state_entered() -> void:
 
 
 func _on_block_state_exited() -> void:
+	GamePiecesEventBus.slow_player_requested(-2)
 	SignalBus.emit_signal("block_amount", -weapon.block_amount)
 	SignalBus.emit_signal("is_blocking", false)
 	GamePiecesEventBus.request_sprint_lock(false)

@@ -1,9 +1,4 @@
-extends Decal
+extends GPUParticles3D
 
-func _ready() -> void:
-	await get_tree().create_timer(60).timeout
-	var tween = get_tree().create_tween()
-	tween.tween_property(self, "modulate:a", 0,1)
-	await tween.finished
-	queue_free()
-	
+func _on_finished() -> void:
+	self.queue_free()

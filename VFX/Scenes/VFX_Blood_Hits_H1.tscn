@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://ca7uph32ueiu1"]
+
+[ext_resource type="Shader" uid="uid://bfwwv62cr7k2o" path="res://VFX/shaders/ss_Disolver_subUV_small_Liquid_Treshold_p.gdshader" id="1_u3a0t"]
+[ext_resource type="Texture2D" uid="uid://etftten2vtpl" path="res://VFX/textures/T_Blood_MultiUV_f3.png" id="2_yxhjl"]
+[ext_resource type="Texture2D" uid="uid://dbq4afiw01u8h" path="res://VFX/textures/T_Gib_Red_C.PNG" id="3_asygr"]
+[ext_resource type="Texture2D" uid="uid://c3maw4p2qvh0" path="res://VFX/textures/T_Blood_MultiUV_f3_N.png" id="4_hb2oe"]
+[ext_resource type="Texture2D" uid="uid://cxsmx407d722t" path="res://VFX/textures/T_NP41.PNG" id="5_5a0n4"]
+[ext_resource type="Material" uid="uid://crt6qdotfpqtl" path="res://status_effects/blood_effect_particle_process_new.tres" id="6_8sagb"]
+[ext_resource type="QuadMesh" uid="uid://bmbbwx82k5jgv" path="res://status_effects/blood_effect_mesh_new.tres" id="6_ax747"]
+
+[sub_resource type="Gradient" id="Gradient_37c5c"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.191589, 0.523364)
+colors = PackedColorArray(1, 1, 1, 1, 0.366595, 0.366595, 0.366595, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_scfw4"]
+gradient = SubResource("Gradient_37c5c")
+
+[sub_resource type="Gradient" id="Gradient_qf0bv"]
+offsets = PackedFloat32Array(0, 0.560748)
+colors = PackedColorArray(0.42, 0.042, 0.0482999, 1, 0.91, 0.2002, 0.22386, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ec0l5"]
+gradient = SubResource("Gradient_qf0bv")
+
+[sub_resource type="Gradient" id="Gradient_buev4"]
+offsets = PackedFloat32Array(0.205607, 0.509346, 0.752336, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.215902, 0.215902, 0.215902, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6l3mh"]
+gradient = SubResource("Gradient_buev4")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tm5be"]
+render_priority = 0
+shader = ExtResource("1_u3a0t")
+shader_parameter/Scale = Vector2(1, 1)
+shader_parameter/Speed_XY = Vector2(0, 0)
+shader_parameter/Disolver_Texture = ExtResource("2_yxhjl")
+shader_parameter/Color_1D_Gradient = SubResource("GradientTexture1D_ec0l5")
+shader_parameter/Metallic_Texture = ExtResource("3_asygr")
+shader_parameter/Texture_Roughtness = ExtResource("5_5a0n4")
+shader_parameter/Roughtness_1D_Gradient = SubResource("GradientTexture1D_6l3mh")
+shader_parameter/Normal_Texture = ExtResource("4_hb2oe")
+shader_parameter/Normal_Map_Depth = 1.0
+shader_parameter/Color_Intensity = 1.0
+shader_parameter/ColorTime_1D_Gradient = SubResource("GradientTexture1D_scfw4")
+shader_parameter/subuv_grid = Vector2i(2, 2)
+shader_parameter/use_subuv = true
+
+[node name="VFX_Blood_Hits_H1" type="Node3D" unique_id=974060862]
+
+[node name="Blood_Hits_H1" type="GPUParticles3D" parent="." unique_id=1070103251]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0017595589)
+material_override = SubResource("ShaderMaterial_tm5be")
+amount = 25
+lifetime = 0.37
+randomness = 1.0
+fixed_fps = 60
+transform_align = 3
+process_material = ExtResource("6_8sagb")
+draw_pass_1 = ExtResource("6_ax747")

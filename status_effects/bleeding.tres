@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://ca8ha7ig6gshg" path="res://components/status_effect.gd" id="1_b7kcr"]
 [ext_resource type="Material" uid="uid://c5w2i4ors51to" path="res://blood_buildup.tres" id="1_dr34u"]
 [ext_resource type="PackedScene" uid="uid://dibtgpxf2w0ie" path="res://status_effects/bleed_damage.tscn" id="1_kpjdm"]
-[ext_resource type="QuadMesh" uid="uid://ddda2n4s6em7f" path="res://status_effects/blood_drip_mesh.tres" id="2_66non"]
-[ext_resource type="Material" uid="uid://d12aew5fbyyqh" path="res://status_effects/blood_particle_process.tres" id="3_vgbxm"]
+[ext_resource type="Material" uid="uid://crt6qdotfpqtl" path="res://status_effects/blood_effect_particle_process_new.tres" id="3_vgbxm"]
+[ext_resource type="QuadMesh" uid="uid://bmbbwx82k5jgv" path="res://status_effects/blood_effect_mesh_new.tres" id="5_vgbxm"]
 
 [resource]
 resource_local_to_scene = true
@@ -15,7 +15,7 @@ damage_types = Dictionary[int, float]({
 })
 damage_component_scene = ExtResource("1_kpjdm")
 particle_processor = ExtResource("3_vgbxm")
-status_effect_mesh = ExtResource("2_66non")
+status_effect_mesh = ExtResource("5_vgbxm")
 affected_target_next_pass = ExtResource("1_dr34u")
 gravity = -9.8
 shader_buildup_max = 0.3

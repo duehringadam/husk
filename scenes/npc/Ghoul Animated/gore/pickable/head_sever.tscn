@@ -73,7 +73,7 @@ radius = 0.16189936
 [node name="head" type="RigidBody3D" unique_id=689027593 node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component") groups=["disable_collision_while_grabbed"]]
 transform = Transform3D(1, 0, 0, 0, 1, 2.910383e-09, 0, -7.712515e-10, 1, 0, 0, 0)
 collision_layer = 8
-collision_mask = 7
+collision_mask = 15
 contact_monitor = true
 max_contacts_reported = 1
 angular_damp = 5.0
@@ -166,14 +166,8 @@ metadata/_custom_type_script = "uid://dlsydctoxqbwy"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent" unique_id=1253936693]
 shape = SubResource("SphereShape3D_7fqif")
 
-[node name="RemoteTransform3D" type="RemoteTransform3D" parent="." unique_id=996941935]
-transform = Transform3D(1, 2.3283064e-10, 7.450581e-09, 8.731149e-10, 1, -9.313226e-10, -7.450581e-09, 9.313226e-10, 1, -0.0954035, -0.13869101, -1.0696565e-10)
-remote_path = NodePath("../GPUParticles3D")
-update_rotation = false
-
-[node name="GPUParticles3D" parent="." unique_id=339668811 instance=ExtResource("13_rr114")]
-transform = Transform3D(1, -6.4028427e-10, 0, 1.571607e-09, 1, 1.0360963e-08, 4.6566134e-10, -8.221832e-09, 1, -0.0954035, -0.13869101, 0)
-top_level = true
+[node name="limb_sever_bleed" parent="." unique_id=339668811 instance=ExtResource("13_rr114")]
+transform = Transform3D(0.9387459, 0.34461018, 1.6590227e-09, -0.34461018, 0.9387459, 5.09933e-09, 1.9988028e-10, -7.497824e-09, 1, -0.06650848, -0.088755384, -6.845272e-11)
 
 [node name="HealthComponent" type="Node3D" parent="." unique_id=279123928]
 script = ExtResource("8_clpk5")
@@ -187,4 +181,4 @@ mesh = NodePath("../head")
 [connection signal="on_trigger" from="InteractionContainer/WhileGrabbed/Change Distance" to="." method="_on_change_distance"]
 [connection signal="on_complete" from="InteractionContainer/WhileGrabbed/Rotate" to="." method="_stopped_rotating"]
 [connection signal="on_trigger" from="InteractionContainer/WhileGrabbed/Rotate" to="." method="_while_rotating"]
-[connection signal="on_trigger" from="InteractionContainer/WhileGrabbed/Throw" to="." method="_on_throw"]
+[connection signal="on_complete" from="InteractionContainer/WhileGrabbed/Throw" to="." method="_on_throw"]

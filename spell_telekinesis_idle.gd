@@ -8,7 +8,7 @@ extends Node
 @onready var spell_shapecast: ShapeCast3D = %spell_shapecast
 
 func _on_idle_state_entered() -> void:
-	animation_player.play("RESET")
+	animation_player.play("idle")
 	var tween = get_tree().create_tween()
 	tween.tween_property(Global.player.camera,"fov",Global.camera_fov,.25)
 	SignalBus.emit_signal("can_attack", true)
@@ -33,7 +33,7 @@ func _on_idle_state_physics_processing(delta: float) -> void:
 			var colliders =  spell_shapecast.get_collision_count()
 			var base_object := spell_shapecast.get_collider(0)
 			for i in colliders:
-				if spell_shapecast.get_collider(i).is_in_group("throwable"):
+				if spell_shapecast.get_collider(i).is_in_group("throwable") or spell_shapecast.get_collider(i) is Pickable:
 					var check_dist = spell_shapecast.get_collider(i).global_position.distance_to(Global.player.global_position)
 					if check_dist < base_object.global_position.distance_to(Global.player.global_position):
 						base_object = spell_shapecast.get_collider(i)

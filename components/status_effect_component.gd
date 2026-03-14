@@ -46,6 +46,7 @@ func _on_status_increment(status_type: Global.STATUS_TYPE, application_amount: f
 					times_applied += 1
 
 func _apply_statuses(effects: Array[status_effect]):
+	mesh_to_affect.get_surface_override_material(0).next_pass = null
 	if effects.size() == 0:
 		return
 		
@@ -109,17 +110,19 @@ func remove_status(effect: status_effect):
 	
 
 func increment_shader(_amount: float, new_value: float):
-	if health_component != null:
-		if new_value <= 0:
-			var material = mesh_to_affect.get_surface_override_material(0).next_pass
-			var tween = get_tree().create_tween()
-			tween.tween_property(material, "shader_parameter/progress",clampf(material["shader_parameter/progress"]+1,0,status_buildup_progress_clamp),.5)
-		else:
-			var ratio = 1-(health_component.current_health/health_component.max_health)
-			var material = mesh_to_affect.get_surface_override_material(0).next_pass
-			var tween = get_tree().create_tween()
-			tween.tween_property(material, "shader_parameter/progress",clampf(material["shader_parameter/progress"]+ratio,0,status_buildup_progress_clamp),.5)
+	if mesh_to_affect.get_surface_override_material(0).next_pass:
+		if health_component != null:
+			if new_value <= 0:
+				var material = mesh_to_affect.get_surface_override_material(0).next_pass
+				var tween = get_tree().create_tween()
+				tween.tween_property(material, "shader_parameter/progress",clampf(material["shader_parameter/progress"]+1,0,status_buildup_progress_clamp),.5)
+			else:
+				var ratio = 1-(health_component.current_health/health_component.max_health)
+				var material = mesh_to_affect.get_surface_override_material(0).next_pass
+				var tween = get_tree().create_tween()
+				tween.tween_property(material, "shader_parameter/progress",clampf(material["shader_parameter/progress"]+ratio,0,status_buildup_progress_clamp),.5)
 
 func _on_death():
-	for i in statuses.values():
-		remove_status(i)
+	pass
+	#for i in statuses.values():
+		#remove_status(i)

@@ -5,8 +5,10 @@ extends Node
 @export var swing_audio: AudioStreamPlayer3D
 @export var trail: GPUTrail3D
 @onready var animation_tree: AnimationTree = $"../../../../AnimationTree"
+@onready var block: AudioStreamPlayer3D = $"../../../../block"
 
 func _on_block_state_entered() -> void:
+	
 	SignalBus.emit_signal("primary_active", true)
 	GamePiecesEventBus.slow_player_requested(2)
 	SignalBus.emit_signal("is_blocking",true)

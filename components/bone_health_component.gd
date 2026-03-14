@@ -7,8 +7,7 @@ signal bones_severed(bones: Array)
 @export var physical_skeleton: PhysicalBoneSimulator3D
 @export var skeleton: Skeleton3D
 @export var limb_to_spawn: PackedScene
-
-var blood_particles = preload("res://scenes/npc/Ghoul Animated/gore/pickable/limb_sever_bleed.tscn")
+@export var blood_particles: BloodParticles
 
 var last_damage_taken
 var limb_to_spawn_add
@@ -50,7 +49,8 @@ func break_bones():
 func sever_bones():
 	limb_to_spawn_add.global_transform = self.global_transform
 	get_tree().current_scene.add_child(limb_to_spawn_add)
-	
+	if blood_particles:
+		blood_particles.bleed()
 	var bone_names : Array
 	if limb_to_spawn_add.is_inside_tree():
 		for i in bones_to_affect:

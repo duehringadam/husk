@@ -5,9 +5,12 @@ extends npc
 @onready var ghoul_parent: Node3D = %Skeleton3D
 @onready var aggro_look_at: LookAtModifier3D = $Ghoul/Armature/Skeleton3D/aggroLookAt
 @onready var stance_component: StanceComponent = $StanceComponent
+@onready var ragdoll_collision1: CollisionShape3D = $Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/PickableRagdollHip/CollisionShape3D
+@onready var ragdoll_collision2: CollisionShape3D = $Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/PickableRagdollChest/CollisionShape3D
 
 var timer: float = 0.0
 var search_position : Vector3
+
 
 func _ready() -> void:
 	animation_tree.active = true
@@ -37,6 +40,9 @@ func fall():
 	
 func _on_health_component_died() -> void:
 	fall()
+	ragdoll_collision1.disabled = false
+	ragdoll_collision2.disabled = false
+	collision_layer = 0
 	state_chart.send_event("dead")
 
 func head_lost(value: bool)-> void:

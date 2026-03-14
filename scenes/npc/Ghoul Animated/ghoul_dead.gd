@@ -1,12 +1,11 @@
 extends Node
 
-@export var source_npc: CharacterBody3D
+@export var source_npc: npc
 @export var animation_tree: AnimationTree
 @export var state_chart: StateChart
 
 func _on_dead_state_entered() -> void:
 	source_npc.ghoul_parent.top_level = true
-	source_npc.collision_layer = 0
 	source_npc.SPEED = 0
 	animation_tree.active = false
 	await get_tree().create_timer(60).timeout

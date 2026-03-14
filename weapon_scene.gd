@@ -13,6 +13,7 @@ extends Node3D
 @export var weapon_mesh: MeshInstance3D
 @export var state_chart: StateChart
 @onready var animation_tree: AnimationTree = $AnimationTree
+@onready var block_sound: AudioStreamPlayer3D = $block
 
 var can_attack: bool = true
 var secondary_active_bool: bool = false
@@ -65,7 +66,7 @@ func _on_damage_component_damage_dealt(types: Dictionary[DamageTypes.DAMAGE_TYPE
 		return
 		
 	var weapon_mesh_shader = weapon_mesh.get_active_material(0)
-	weapon_mesh_shader.next_pass["shader_parameter/progress"] = clampf(weapon_mesh_shader.next_pass["shader_parameter/progress"]+.005,0,.5)
+	weapon_mesh_shader.next_pass["shader_parameter/progress"] = clampf(weapon_mesh_shader.next_pass["shader_parameter/progress"]+.05,0,.5)
 	if weapon_mesh_shader.next_pass["shader_parameter/progress"] >= .2 && blood_drip != null:
 		blood_drip.emitting = true
 		bloodtimer.start()
@@ -79,6 +80,7 @@ func remove_blood():
 	tween.tween_property(weapon_mesh_shader.next_pass,"shader_parameter/progress",0,60)
 
 func block():
+	block_sound.pitch_scale = randf_range(.9,1.2)
 	animation_tree.set("parameters/conditions/block_hit", true)
 	await get_tree().create_timer(.5).timeout
 	animation_tree.set("parameters/conditions/block_hit", false)
