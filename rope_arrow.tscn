@@ -1,0 +1,158 @@
+[gd_scene format=3 uid="uid://cognqrp5ye22k"]
+
+[ext_resource type="Script" uid="uid://1js27vkofl40" path="res://rope_arrow.gd" id="1_f01kd"]
+[ext_resource type="PackedScene" uid="uid://cvlrs5xd5rjqj" path="res://rope_arrow_creation.tscn" id="2_anwt6"]
+[ext_resource type="ArrayMesh" uid="uid://bmftl4efstwmo" path="res://Player/weapon/ALL/Arrows/arrow_new.tres" id="3_anwt6"]
+[ext_resource type="Texture2D" uid="uid://7406rkdcg7h1" path="res://Player/weapon/ALL/Arrows/arrowtexture.png" id="4_f01kd"]
+[ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="4_lylhm"]
+[ext_resource type="Shader" uid="uid://bd6eynp1qsy0g" path="res://addons/GPUTrail-main/shaders/trail.gdshader" id="5_oc65y"]
+[ext_resource type="AudioStream" uid="uid://cx36285plpdod" path="res://item/weapons/ranged/rope_bow/arrow_hit.ogg" id="6_f01kd"]
+[ext_resource type="Shader" uid="uid://bnbfs08hp70x0" path="res://addons/GPUTrail-main/shaders/trail_draw_pass.gdshader" id="6_hauki"]
+[ext_resource type="Script" uid="uid://dwsn7gxfshtf8" path="res://addons/GPUTrail-main/GPUTrail3D.gd" id="7_j2237"]
+[ext_resource type="Script" uid="uid://dca3pj424qjk6" path="res://pin_area.gd" id="10_gf6if"]
+[ext_resource type="AudioStream" uid="uid://hm6q5bh3fe04" path="res://scenes/traps/rope2.ogg" id="11_2ouqr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wkmag"]
+albedo_texture = ExtResource("4_f01kd")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1swpe"]
+shader = ExtResource("5_oc65y")
+
+[sub_resource type="Gradient" id="Gradient_eha57"]
+colors = PackedColorArray(0.40392157, 0.40392157, 0.40392157, 0.5137255, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_l3ccd"]
+gradient = SubResource("Gradient_eha57")
+width = 64
+
+[sub_resource type="Curve" id="Curve_5u3yu"]
+bake_resolution = 16
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_v100t"]
+curve = SubResource("Curve_5u3yu")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_d4jfj"]
+noise_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_l3ccd"]
+noise = SubResource("FastNoiseLite_d4jfj")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qbim7"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("6_hauki")
+shader_parameter/tex = SubResource("NoiseTexture2D_l3ccd")
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/color_ramp = SubResource("GradientTexture1D_l3ccd")
+shader_parameter/curve = SubResource("CurveTexture_v100t")
+shader_parameter/emmission_transform = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/flags = 42
+
+[sub_resource type="QuadMesh" id="QuadMesh_fmpjr"]
+material = SubResource("ShaderMaterial_qbim7")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_md0um"]
+radius = 0.17089844
+height = 1.1948242
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f01kd"]
+radius = 0.77490234
+height = 1.5498047
+
+[node name="bolt" type="Node3D" unique_id=506285793 node_paths=PackedStringArray("damage_component", "ray_cast_3d", "gpu_trail")]
+top_level = true
+script = ExtResource("1_f01kd")
+rope_to_create = ExtResource("2_anwt6")
+speed = 60
+damage_component = NodePath("DamageComponent")
+ray_cast_3d = NodePath("RayCast3D")
+gpu_trail = NodePath("MeshInstance3D/GPUTrail3D")
+lifetime = 15.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1570379003]
+transform = Transform3D(0.0026436269, 0, 0.2549863, 0, 0.255, 0, -0.2549863, 0, 0.0026436269, 0, 0, 0)
+mesh = ExtResource("3_anwt6")
+surface_material_override/0 = SubResource("StandardMaterial3D_wkmag")
+
+[node name="GPUTrail3D" type="GPUParticles3D" parent="MeshInstance3D" unique_id=713023065]
+transform = Transform3D(0.003, 0, -3.637979e-12, 0, 0.0030000003, 0, 3.637979e-12, 0, 0.003, -0.008579336, 0, 8.8947854e-05)
+amount = 24
+lifetime = 24.0
+explosiveness = 1.0
+fixed_fps = 164
+process_material = SubResource("ShaderMaterial_1swpe")
+draw_pass_1 = SubResource("QuadMesh_fmpjr")
+script = ExtResource("7_j2237")
+length = 24
+length_seconds = 0.14634146341463414
+texture = SubResource("NoiseTexture2D_l3ccd")
+color_ramp = SubResource("GradientTexture1D_l3ccd")
+curve = SubResource("CurveTexture_v100t")
+use_red_as_alpha = true
+_defaults_have_been_set = true
+metadata/_custom_type_script = "uid://dwsn7gxfshtf8"
+
+[node name="RayCast3D" type="RayCast3D" parent="." unique_id=659835651]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.13605879)
+target_position = Vector3(0, 0, -1.205)
+collision_mask = 14
+collide_with_areas = true
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="ropeRaycast" type="RayCast3D" parent="." unique_id=1277450890]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.6)
+top_level = true
+target_position = Vector3(0, -20, 0)
+collision_mask = 2
+
+[node name="rope_point" type="Marker3D" parent="." unique_id=46329415]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.6)
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="." unique_id=2104289176]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.6)
+remote_path = NodePath("../ropeRaycast")
+update_rotation = false
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=266394228]
+transform = Transform3D(0.021727482, 0, -0.9997639, 0, 1, 0, 0.9997639, 0, 0.021727482, 0, 0, 0)
+stream = ExtResource("6_f01kd")
+panning_strength = 2.0
+bus = &"SFX"
+
+[node name="DamageComponent" type="Area3D" parent="." unique_id=811748669 node_paths=PackedStringArray("hit_sound")]
+transform = Transform3D(0.021727478, 0, -0.9997639, 0, 1, 0, 0.9997639, 0, 0.021727478, 0, 0, 0)
+collision_mask = 14
+script = ExtResource("4_lylhm")
+hit_sound = NodePath("../AudioStreamPlayer3D")
+can_knockback = false
+damage_types = Dictionary[int, float]({
+2: 20.0
+})
+stance_damage_value = 0.1
+metadata/_custom_type_script = "uid://dlsydctoxqbwy"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent" unique_id=344335226]
+transform = Transform3D(-0.006841769, -0.9999766, 2.775329e-07, 0.9999766, -0.006841769, 2.2536606e-10, 1.6734552e-09, 2.7752793e-07, 1, 0.0020980632, 1.4375662e-05, -9.1928086e-07)
+shape = SubResource("CapsuleShape3D_md0um")
+
+[node name="pinArea" type="Area3D" parent="." unique_id=672001805]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+collision_mask = 15
+script = ExtResource("10_gf6if")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="pinArea" unique_id=687957162]
+transform = Transform3D(-0.006841769, -0.9999766, 2.775329e-07, 0.9999766, -0.006841769, 2.2536606e-10, 1.6734552e-09, 2.7752793e-07, 1, 0.0020980632, 1.4375662e-05, -9.1928086e-07)
+shape = SubResource("CapsuleShape3D_f01kd")
+
+[node name="rope_sound" type="AudioStreamPlayer3D" parent="." unique_id=403774311]
+stream = ExtResource("11_2ouqr")
+max_db = 6.0
+max_distance = 20.0
+bus = &"SFX"
+
+[connection signal="area_entered" from="DamageComponent" to="." method="_on_damage_component_area_entered"]
+[connection signal="body_entered" from="DamageComponent" to="." method="_on_damage_component_body_entered"]
+[connection signal="damage_dealt" from="DamageComponent" to="." method="_on_damage_component_damage_dealt"]
+[connection signal="body_entered" from="pinArea" to="." method="_on_pin_area_body_entered"]

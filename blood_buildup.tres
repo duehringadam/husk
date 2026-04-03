@@ -10,7 +10,10 @@ domain_warp_fractal_lacunarity = 9.815
 domain_warp_fractal_gain = 1.11
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_r4yw3"]
+width = 256
+height = 256
 noise = SubResource("FastNoiseLite_lk3q0")
+seamless = true
 as_normal_map = true
 
 [resource]
@@ -20,4 +23,4 @@ shader = ExtResource("1_r4yw3")
 shader_parameter/noise = SubResource("NoiseTexture2D_r4yw3")
 shader_parameter/noise_shading = 1.0
 shader_parameter/progress = 0.0
-shader_parameter/color = Color(0.76020277, 3.706068e-06, 4.813075e-07, 1)
+shader_parameter/color = Color(0.67230505, 1.8169359e-06, 3.85046e-07, 1)

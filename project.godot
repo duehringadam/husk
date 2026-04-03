@@ -50,13 +50,17 @@ window/size/viewport_height=1080
 window/size/mode=3
 window/size/initial_position_type=2
 
+[dotnet]
+
+project/assembly_name="Husk"
+
 [editor]
 
 movie_writer/movie_file="C:/Users/adamf/Documents/husk/movie.avi"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/GPUTrail-main/plugin.cfg", "res://addons/convex_cone_shape3d_plugin/plugin.cfg", "res://addons/credits_generator/plugin.cfg", "res://addons/deformablemesh/plugin.cfg", "res://addons/freecam_3D/plugin.cfg", "res://addons/game_pieces/plugin.cfg", "res://addons/godot_material_footsteps/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/maaacks_menus_template/plugin.cfg", "res://addons/madtalk/plugin.cfg", "res://addons/prompt_formatters/plugin.cfg", "res://addons/raytraced_audio/plugin.cfg", "res://addons/zylann.hterrain/plugin.cfg")
+enabled=PackedStringArray("res://addons/GPUTrail-main/plugin.cfg", "res://addons/convex_cone_shape3d_plugin/plugin.cfg", "res://addons/credits_generator/plugin.cfg", "res://addons/deformablemesh/plugin.cfg", "res://addons/freecam_3D/plugin.cfg", "res://addons/game_pieces/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/maaacks_menus_template/plugin.cfg", "res://addons/madtalk/plugin.cfg", "res://addons/prompt_formatters/plugin.cfg", "res://addons/raytraced_audio/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
 
 [global_group]
 
@@ -68,6 +72,9 @@ tree=""
 throwable=""
 traps=""
 ladder=""
+rope=""
+limb_sever=""
+water=""
 
 [input]
 
@@ -233,6 +240,7 @@ locale/translations=PackedStringArray("res://addons/maaacks_menus_template/base/
 3d_physics/layer_3="enemy"
 3d_physics/layer_4="interact"
 3d_physics/layer_5="traps"
+3d_physics/layer_6="rope_climbing"
 
 [maaacks_menus_template]
 
@@ -256,64 +264,32 @@ ambient_bus=&"RaytracedAmbient"
 [rendering]
 
 occlusion_culling/bvh_build_quality=0
-textures/canvas_textures/default_texture_filter=0
+textures/canvas_textures/default_texture_filter=3
+global_illumination/gi/use_half_resolution=true
 shading/overrides/force_lambert_over_burley=true
+textures/default_filters/use_nearest_mipmap_filter=true
+textures/default_filters/anisotropic_filtering_level=0
+environment/ssao/quality=1
 viewport/hdr_2d=true
-anti_aliasing/quality/msaa_2d=1
-anti_aliasing/quality/msaa_3d=1
+anti_aliasing/quality/use_debanding=true
 textures/decals/filter=2
 textures/light_projectors/filter=2
+environment/glow/upscale_mode=0
 lightmapping/primitive_meshes/texel_size=1.0
 lightmapping/lightmap_gi/use_bicubic_filter=false
 environment/volumetric_fog/use_filter=0
-anti_aliasing/quality/screen_space_aa=1
 occlusion_culling/use_occlusion_culling=true
+mesh_lod/lod_change/threshold_pixels=0.1
 vrs/decals/filter=3
 vrs/canvas_textures/default_texture_filter=3
 
 [shader_globals]
 
-affine_texture_mapping={
-"type": "bool",
-"value": false
+tree_wind_power={
+"type": "vec3",
+"value": Vector3(0.001, 0.001, 0.001)
 }
-cull_distance={
-"type": "float",
-"value": 0.0
-}
-fog_color={
-"type": "color",
-"value": Color(0.764706, 1, 0.807843, 1)
-}
-fog_end_distance={
-"type": "float",
-"value": 0.0
-}
-fog_start_distance={
-"type": "float",
-"value": 0.0
-}
-texture_filtering={
-"type": "bool",
-"value": false
-}
-texture_lod_halve_distance={
-"type": "float",
-"value": 1.0
-}
-vertex_snap_intensity={
-"type": "int",
-"value": 0
-}
-dither_scale={
-"type": "float",
-"value": 1.0
-}
-dither_strength={
-"type": "float",
-"value": 1.0
-}
-dither_levels={
-"type": "float",
-"value": 1.0
+tree_wind_size={
+"type": "vec4",
+"value": Vector4(1, 1, 1, 1)
 }

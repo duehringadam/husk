@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://blhbji210er4q" path="res://crossbow.gd" id="1_seim3"]
 [ext_resource type="AudioStream" uid="uid://c8riien6g2ofy" path="res://Player/weapon/ALL/Crossbow/crossbow-firing-95020.mp3" id="2_yg30w"]
 [ext_resource type="Texture2D" uid="uid://b4mgsikbc344q" path="res://Player/viewmodel/hands/psx-first-person-arms-free-game-assets/PSX_First_Person_Arms_arms.png" id="3_hacco"]
-[ext_resource type="ArrayMesh" uid="uid://g8nhxbgs3sh7" path="res://Player/weapon/ALL/HeavyCrossbow/heavyxbow.res" id="3_seim3"]
-[ext_resource type="Texture2D" uid="uid://hio7ka8q4l81" path="res://Player/weapon/ALL/HeavyCrossbow/base2.png" id="4_cx7js"]
 [ext_resource type="Material" uid="uid://c5w2i4ors51to" path="res://blood_buildup.tres" id="4_rofvw"]
+[ext_resource type="ArrayMesh" uid="uid://c743pxv8r7qbn" path="res://Player/weapon/ALL/HeavyCrossbow/crossbow_new.tres" id="5_rofvw"]
 [ext_resource type="Texture2D" uid="uid://udidug1u1tlm" path="res://Player/weapon/ALL/Belt/Material_Base_color.png" id="6_seim3"]
+[ext_resource type="Texture2D" uid="uid://b8bf2jgpnraxf" path="res://item/weapons/ranged/textures/lowpoly_crossbow.png" id="6_yxt5k"]
 [ext_resource type="ArrayMesh" uid="uid://unepod5rwmun" path="res://Player/weapon/ALL/Belt/bolt.res" id="7_fy2dd"]
 [ext_resource type="Script" uid="uid://dwhlx7r1lhgny" path="res://ray.gd" id="9_fgoaw"]
 [ext_resource type="AudioStream" uid="uid://6cnfpmt5x52g" path="res://Player/weapon/ALL/HeavyCrossbow/heavy_equip.wav" id="9_seim3"]
@@ -198,11 +198,14 @@ next_pass = ExtResource("4_rofvw")
 albedo_color = Color(0.7411765, 0.7411765, 0.7411765, 1)
 albedo_texture = ExtResource("3_hacco")
 
-[sub_resource type="JointLimitationCone3D" id="JointLimitationCone3D_u1ghp"]
-angle = 2.0943952
+[sub_resource type="JointLimitationCone3D" id="JointLimitationCone3D_yxt5k"]
+angle = 6.2831855
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_seim3"]
-albedo_texture = ExtResource("4_cx7js")
+[sub_resource type="JointLimitationCone3D" id="JointLimitationCone3D_rofvw"]
+angle = 6.2831855
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fy2dd"]
+albedo_texture = ExtResource("6_yxt5k")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yg30w"]
 albedo_texture = ExtResource("6_seim3")
@@ -216,10 +219,10 @@ tracks/0/path = NodePath("MeshInstance3D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.001),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-0.08, 0, 0)]
+"values": [Vector3(0, 0, -0.345)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -228,35 +231,97 @@ tracks/1/path = NodePath("MeshInstance3D:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.001),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-1.5708, -3.14159, 0.122173)]
+"values": [Vector3(1.4401217, 0.41867277, -1.1448861)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MeshInstance3D/bolt:visible")
+tracks/2/path = NodePath("MeshInstance3D/bolt:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"update": 0,
+"values": [Vector3(-0.021247149, 0.009273991, -0.17128819)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("MeshInstance3D/bolt:position")
+tracks/3/path = NodePath("MeshInstance3D/bolt:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(1.32274e-09, -0.000365422, 0.00624091)]
+"values": [Vector3(-1.5639691, 0.07519082, 0.07520687)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MeshInstance3D/bolt:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MeshInstance3D/IKLeft:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.4392388, 0.16870894, 0.51310617)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MeshInstance3D/IKRight:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-2.3260858, 0.42176336, 0.7701211)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("MeshInstance3D/IKRight:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.35933083, -1.4031303, -2.5495698)]
+}
+tracks/8/type = "rotation_3d"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("arms_armature/Skeleton3D:upper_arm.L")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = PackedFloat32Array(0, 1, -0.052289978, 0.10351326, -0.85081935, 0.512501)
+tracks/9/type = "rotation_3d"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("arms_armature/Skeleton3D:hand.L")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = PackedFloat32Array(0, 1, 0.032, 0.407, 0.212, 0.888)
 
 [sub_resource type="Animation" id="Animation_yg30w"]
 resource_name = "block"
@@ -268,10 +333,10 @@ tracks/0/path = NodePath("MeshInstance3D:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.13333334, 0.33333334),
+"times": PackedFloat32Array(0, 0.13333334, 0.23333333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(-0.451, 0.145, 0), Vector3(-0.451, 0.145, 0.333), Vector3(-0.451, 0.145, 0)]
+"values": [Vector3(-0.451, 0.25178653, 0), Vector3(-0.43992582, 0.25178653, 0.06232518), Vector3(-0.451, 0.25178653, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -280,10 +345,10 @@ tracks/1/path = NodePath("MeshInstance3D:rotation")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.13333333, 0.33333334),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-1.09024, -0.734603, -1.03471), Vector3(-1.04545, -0.802851, -1.11352), Vector3(-1.09024, -0.734603, -1.03471)]
+"values": [Vector3(-0.15222217, -3.058074, 0.06118576)]
 }
 tracks/2/type = "audio"
 tracks/2/imported = false
@@ -300,6 +365,30 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0)
 }
 tracks/2/use_blend = true
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MeshInstance3D/IKRight:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-3.045567, 0.07709813, 0.11380535)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MeshInstance3D/IKLeft:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.52296734, -0.17434919, -0.3641323)]
+}
 
 [sub_resource type="Animation" id="Animation_cx7js"]
 resource_name = "equip"
@@ -311,10 +400,10 @@ tracks/0/path = NodePath("MeshInstance3D:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.566667),
+"times": PackedFloat32Array(0, 0.36666667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(-0.08, -0.932759, 0), Vector3(0, 0, 0)]
+"values": [Vector3(-0.08, -0.932759, 0), Vector3(0, 0, -0.345)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -323,10 +412,10 @@ tracks/1/path = NodePath("MeshInstance3D:rotation")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.7),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.36666667, 0.46666667),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(-0.964036, -1.57079, -0.467312), Vector3(-1.4341419, -1.6134312, -1.4356115)]
+"values": [Vector3(0.7941248, 1.9146262, -0.12915437), Vector3(1.5707964, 1.3962634, -0.12915437), Vector3(1.4401217, 0.41867277, -1.1448861)]
 }
 tracks/2/type = "audio"
 tracks/2/imported = false
@@ -343,9 +432,157 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0.333333)
 }
 tracks/2/use_blend = true
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MeshInstance3D/IKLeft:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.6202002),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.397, 0.047, 0.387)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MeshInstance3D/IKRight:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.6894611),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-2.4000523, 0.2842601, 0.9716486)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MeshInstance3D/IKRight:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.6894611),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.35933083, -1.4031303, -2.5495698)]
+}
 
-[sub_resource type="Animation" id="Animation_seim3"]
+[sub_resource type="Animation" id="Animation_yxt5k"]
 resource_name = "raise_xbow"
+length = 0.45
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -0.345), Vector3(-0.34, 0.06, -0.06)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.4401217, 0.41867277, -1.1448861), Vector3(0.008607494, 2.984508, -0.107871905)]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MeshInstance3D/raise")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [],
+"times": PackedFloat32Array()
+}
+tracks/2/use_blend = true
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MeshInstance3D/IKRight:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.39769122),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-3.5336237, 0.3840425, 0.48127663)]
+}
+tracks/4/type = "rotation_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("arms_armature/Skeleton3D:upper_arm.L")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, -0.916, -0.291, 0.276, 0.021)
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MeshInstance3D/IKLeft:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.40699393),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.102535486, -0.16800189, 0.48431873), Vector3(0.80398417, -0.18120006, -0.64828575)]
+}
+tracks/6/type = "rotation_3d"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("arms_armature/Skeleton3D:forearm.L")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/7/type = "rotation_3d"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("arms_armature/Skeleton3D:hand.L")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, 0.032, 0.407, 0.212, 0.888)
+
+[sub_resource type="Animation" id="Animation_rofvw"]
+resource_name = "reload"
+length = 1.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.36666667, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -0.345), Vector3(-0.08, -0.932759, 0), Vector3(0, 0, -0.345)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.36666667, 1.1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1.5707964, 1.3962634, -0.12915437), Vector3(1.4401217, 0.41867277, -1.1448861), Vector3(0.7941248, 1.9146262, -0.12915437), Vector3(1.5707964, 1.3962634, -0.12915437), Vector3(1.4401217, 0.41867277, -1.1448861)]
+}
+
+[sub_resource type="Animation" id="Animation_gw1vj"]
+resource_name = "shoot"
 length = 0.7
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -354,10 +591,10 @@ tracks/0/path = NodePath("MeshInstance3D:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.500568),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.23333333, 0.36666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(-0.08, 0, 0), Vector3(-0.301, 0.145, 0.035)]
+"values": [Vector3(0, 0, -0.345), Vector3(-0.005, 0.046671465, -0.32639104), Vector3(-0.0050000027, 0.13890484, -0.32639104), Vector3(-0.0050000027, 0.21183538, -0.32639104), Vector3(0, 0, -0.345)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -366,91 +603,26 @@ tracks/1/path = NodePath("MeshInstance3D:rotation")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.033333335, 0.666667),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.13333334, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(-1.4341419, -1.6134312, -1.4356115), Vector3(-1.09024, -0.734603, -1.03471)]
+"values": [Vector3(1.4401217, 0.41867277, -1.1448861), Vector3(1.479456, 1.9729465, 0.32049465), Vector3(1.3655492, 2.365987, 0.71381235), Vector3(1.3655492, 2.365987, 0.71381235), Vector3(1.4401217, 0.41867277, -1.1448861)]
 }
-
-[sub_resource type="Animation" id="Animation_sygcw"]
-resource_name = "reload"
-length = 0.75
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.75),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.08, 0, 0), Vector3(0, -0.755175, 0), Vector3(-0.08, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MeshInstance3D:rotation")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.73333335),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(-1.5708, -3.14159, 0.122173), Vector3(-0.794945, -1.07762, 0.122173), Vector3(-1.4341419, -1.6134312, -1.4356115)]
-}
-tracks/2/type = "value"
+tracks/2/type = "audio"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MeshInstance3D/bolt:visible")
+tracks/2/path = NodePath("shoot")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.266667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
+"clips": [{
+"end_offset": 0.77999985,
+"start_offset": 0.034630466,
+"stream": ExtResource("2_yg30w")
+}],
+"times": PackedFloat32Array(0)
 }
-
-[sub_resource type="Animation" id="Animation_0s0e8"]
-resource_name = "shoot"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.08, 0, 0), Vector3(-0.0712729, 0.00345627, 0.0138251), Vector3(-0.0261773, 0.0213159, 0.0852636), Vector3(0.021, 0.04, 0.16), Vector3(0.0552832, 0.0535775, 0.21431), Vector3(0.0744536, 0.0611697, 0.244679), Vector3(0.0828181, 0.0644824, 0.25793), Vector3(0.0827742, 0.064465, 0.25786), Vector3(0.0753317, 0.0615175, 0.24607), Vector3(0.0619424, 0.0562148, 0.224859), Vector3(0.0482719, 0.0508008, 0.203203), Vector3(0.0260967, 0.0420185, 0.168074), Vector3(0.004291, 0.0333826, 0.13353), Vector3(-0.0165287, 0.0251372, 0.100549), Vector3(-0.043971, 0.0142689, 0.0570756), Vector3(-0.08, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MeshInstance3D:rotation")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(-1.4341419, -1.6134312, -1.4356115), Vector3(-1.61204, -3.14159, 0.128292), Vector3(-1.69755, -3.14159, 0.140979), Vector3(-1.80252, -3.14159, 0.156553), Vector3(-1.91826, -3.14159, 0.173726), Vector3(-2.00312, -3.14159, 0.186316), Vector3(-2.15897, -3.14159, 0.20944), Vector3(-2.24067, -3.14159, 0.221562), Vector3(-2.26313, -3.14159, 0.224894), Vector3(-2.21554, -3.14159, 0.217833), Vector3(-2.17413, -3.14159, 0.211689), Vector3(-2.10691, -3.14159, 0.201717), Vector3(-1.96731, -3.14159, 0.181003), Vector3(-1.787, -3.14159, 0.154251), Vector3(-1.62961, -3.14159, 0.130899), Vector3(-1.4341419, -1.6134312, -1.4356115)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("MeshInstance3D/bolt:visible")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.0333333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
+tracks/2/use_blend = true
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
@@ -458,10 +630,34 @@ tracks/3/path = NodePath("MeshInstance3D/bolt:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0674242),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.03777869),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(1.32274e-09, -0.000365422, 0.00624091), Vector3(-0.000411357, -0.126616, -0.00731001), Vector3(1.32274e-09, -0.000365422, 0.00624091)]
+"values": [Vector3(-0.021247149, 0.009273991, -0.17128819), Vector3(12.035767, 0.9483192, 0.18547446)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MeshInstance3D/bolt:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.03777869),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1.5639691, 0.07519083, 0.07520687), Vector3(-1.4135131, -0.9583578, 0.89244646)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MeshInstance3D/bolt:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.034630466),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sygcw"]
@@ -469,17 +665,18 @@ _data = {
 &"RESET": SubResource("Animation_0i1vk"),
 &"block": SubResource("Animation_yg30w"),
 &"equip": SubResource("Animation_cx7js"),
-&"raise_xbow": SubResource("Animation_seim3"),
-&"reload": SubResource("Animation_sygcw"),
-&"shoot": SubResource("Animation_0s0e8")
+&"raise_xbow": SubResource("Animation_yxt5k"),
+&"reload": SubResource("Animation_rofvw"),
+&"shoot": SubResource("Animation_gw1vj")
 }
 
-[node name="heavy_crossbow" type="Node3D" unique_id=1402601407 node_paths=PackedStringArray("weapon_mesh")]
+[node name="heavy_crossbow" type="Node3D" unique_id=1402601407 node_paths=PackedStringArray("weapon_mesh", "state_chart")]
 script = ExtResource("1_seim3")
 weapon_initial_position = Vector3(0.04, -0.255, 0.415)
 two_handed = true
 swing_sound = ExtResource("2_yg30w")
 weapon_mesh = NodePath("MeshInstance3D")
+state_chart = NodePath("StateChart")
 
 [node name="arms_armature" type="Node3D" parent="." unique_id=1776617524]
 transform = Transform3D(-1.4, 0, -1.2239188e-07, 0, 1.4, 0, 1.2239188e-07, 0, -1.4, 0, -0.12549952, 0.37996113)
@@ -498,70 +695,70 @@ bones/1/parent = 0
 bones/1/rest = Transform3D(-0.46921688, 0.861266, 0.19507992, -0.8829167, -0.45325544, -0.12254482, -0.017122647, -0.22973946, 0.97310156, 0.1953, 0.29236248, -0.017462814)
 bones/1/enabled = true
 bones/1/position = Vector3(0.19472018, -0.035180505, -0.0010648416)
-bones/1/rotation = Quaternion(-8.618418e-08, -0.02894672, 0.9563477, -0.29079401)
+bones/1/rotation = Quaternion(-0.052289978, 0.10351326, -0.85081935, 0.512501)
 bones/1/scale = Vector3(1.0000001, 0.9999999, 1.0000001)
 bones/2/name = "forearm.L"
 bones/2/parent = 1
 bones/2/rest = Transform3D(0.99409413, 0.10810001, -0.009554846, -0.10438447, 0.9284059, -0.35660395, -0.029678112, 0.35549524, 0.9342068, -4.9592927e-08, 0.2862151, 0)
 bones/2/enabled = true
 bones/2/position = Vector3(-0.0029807058, 0.25355822, 0.002971707)
-bones/2/rotation = Quaternion(3.7252885e-09, 4.5503867e-10, 2.522614e-09, 1)
+bones/2/rotation = Quaternion(0, 0, 0, 1)
 bones/2/scale = Vector3(1, 1.0000005, 1.0000017)
 bones/3/name = "hand.L"
 bones/3/parent = 2
 bones/3/rest = Transform3D(0.99796367, 0.059665512, -0.022556037, -0.05753244, 0.9946634, 0.08564486, 0.027545707, -0.084172755, 0.9960704, -4.8356014e-08, 0.28621513, -1.8626451e-09)
 bones/3/enabled = true
-bones/3/position = Vector3(4.3164984e-08, 0.28621525, 6.211661e-08)
-bones/3/rotation = Quaternion(-0.053274438, -0.67296, 0.055409186, 0.73567426)
-bones/3/scale = Vector3(1, 1, 0.9999996)
+bones/3/position = Vector3(4.316498e-08, 0.28621525, 7.3287346e-08)
+bones/3/rotation = Quaternion(0.03199742, 0.4069672, 0.21198292, 0.8879285)
+bones/3/scale = Vector3(1.0000014, 1.0000007, 1.0000001)
 bones/4/name = "palm.01.L"
 bones/4/parent = 3
 bones/4/rest = Transform3D(-0.22659168, 0.118442416, 0.9667614, 0.21858287, 0.973444, -0.06802923, -0.9491457, 0.1959026, -0.24646387, -0.004536802, 0.018485073, 0.027550329)
 bones/4/enabled = true
 bones/4/position = Vector3(-0.004536859, 0.018485071, 0.027550302)
-bones/4/rotation = Quaternion(0.11107823, 0.7833807, 0.10488761, 0.60247403)
+bones/4/rotation = Quaternion(-0.097, 0.713, 0.12, 0.684)
 bones/4/scale = Vector3(0.9999999, 0.9999998, 1.0000005)
 bones/5/name = "f_index.01.L"
 bones/5/parent = 4
 bones/5/rest = Transform3D(0.9984268, 0.05270256, -0.019138765, -0.052877136, 0.9985628, -0.008732697, 0.018651024, 0.009730962, 0.9997787, 4.656613e-10, 0.03716648, 3.085006e-08)
 bones/5/enabled = true
 bones/5/position = Vector3(3.565889e-08, 0.037166465, -8.151932e-08)
-bones/5/rotation = Quaternion(0.20433848, -0.068676814, 0.009930114, 0.97643775)
+bones/5/rotation = Quaternion(0.338, -0.066, 0.02, 0.939)
 bones/5/scale = Vector3(1.0000001, 0.99999994, 1.0000004)
 bones/6/name = "f_index.02.L"
 bones/6/parent = 5
 bones/6/rest = Transform3D(0.9990511, -0.020927878, -0.03819904, 0.012044836, 0.9755494, -0.21944991, 0.04185768, 0.21878153, 0.9748757, 5.005859e-09, 0.04794278, -2.1740561e-08)
 bones/6/enabled = true
 bones/6/position = Vector3(5.005859e-09, 0.04794278, -2.1740561e-08)
-bones/6/rotation = Quaternion(0.631, 0, 0, 0.775)
+bones/6/rotation = Quaternion(0.261, 0, 0, 0.965)
 bones/6/scale = Vector3(1, 0.99999934, 1.0000007)
 bones/7/name = "f_index.03.L"
 bones/7/parent = 6
 bones/7/rest = Transform3D(0.99831593, -0.01681489, 0.05552013, 0.019011939, 0.9990471, -0.03928403, -0.05480666, 0.040273417, 0.9976846, -1.3969839e-09, 0.02905954, -2.6077032e-08)
 bones/7/enabled = true
 bones/7/position = Vector3(-1.3969839e-09, 0.02905954, -2.6077032e-08)
-bones/7/rotation = Quaternion(0.774, 0, 0, 0.633)
+bones/7/rotation = Quaternion(0.569, 0, 0, 0.822)
 bones/7/scale = Vector3(0.99999994, 0.9999999, 1.0000001)
 bones/8/name = "thumb.01.L"
 bones/8/parent = 3
 bones/8/rest = Transform3D(-0.5602767, 0.70181483, 0.4399383, 0.8200809, 0.39534095, 0.41373044, 0.11643658, 0.5925884, -0.79704535, 0.005771143, 0.004518117, 0.027069667)
 bones/8/enabled = true
 bones/8/position = Vector3(0.005771143, 0.004518117, 0.027069667)
-bones/8/rotation = Quaternion(0.42, 0.806, 0.351, -0.224)
+bones/8/rotation = Quaternion(-0.443, -0.883, -0.11, 0.11)
 bones/8/scale = Vector3(1, 0.99999976, 0.99999994)
 bones/9/name = "thumb.02.L"
 bones/9/parent = 8
 bones/9/rest = Transform3D(0.9993749, -0.008707171, -0.034262817, -0.005071942, 0.92385244, -0.38271555, 0.03498615, 0.38265017, 0.9232307, -7.485505e-08, 0.041304335, -6.519258e-08)
 bones/9/enabled = true
 bones/9/position = Vector3(-7.485505e-08, 0.041304335, -6.519258e-08)
-bones/9/rotation = Quaternion(0.193, 0.035, -0.258, 0.946)
+bones/9/rotation = Quaternion(-0.208, -0.076, -0.264, 0.939)
 bones/9/scale = Vector3(1, 1.0000001, 1)
 bones/10/name = "thumb.03.L"
 bones/10/parent = 9
 bones/10/rest = Transform3D(0.9991206, 0.010837302, -0.040504444, -0.012198698, 0.9993637, -0.033516414, 0.040115442, 0.03398104, 0.99861705, -5.6345016e-08, 0.033490103, -6.3329935e-08)
 bones/10/enabled = true
 bones/10/position = Vector3(-5.6345016e-08, 0.033490103, -6.3329935e-08)
-bones/10/rotation = Quaternion(0.414, -0.016, 0.003, 0.91)
+bones/10/rotation = Quaternion(-0.131, -0.021, -0.009, 0.991)
 bones/10/scale = Vector3(1, 1, 1)
 bones/11/name = "palm.02.L"
 bones/11/parent = 3
@@ -575,21 +772,21 @@ bones/12/parent = 11
 bones/12/rest = Transform3D(0.9995348, -0.006927052, 0.029697752, 0.0049138917, 0.9977186, 0.067333035, -0.03009641, -0.067155786, 0.9972885, 4.656613e-10, 0.055626173, 1.3577665e-07)
 bones/12/enabled = true
 bones/12/position = Vector3(-0.005, 0.056, 0)
-bones/12/rotation = Quaternion(0.204, 0.168, 0.18, 0.947)
+bones/12/rotation = Quaternion(0.105, 0.08, -0.063, 0.989)
 bones/12/scale = Vector3(0.9999999, 1.0000001, 1)
 bones/13/name = "f_middle.02.L"
 bones/13/parent = 12
 bones/13/rest = Transform3D(0.999176, -0.015818894, -0.037378173, 0.008578756, 0.98242676, -0.18645151, 0.03967077, 0.1859772, 0.981753, -5.5879354e-09, 0.034910604, 1.2671808e-07)
 bones/13/enabled = true
 bones/13/position = Vector3(-5.5879354e-09, 0.034910604, 1.2671808e-07)
-bones/13/rotation = Quaternion(0.775, -0.079, -0.062, 0.624)
+bones/13/rotation = Quaternion(0.618, 0.033, 0.051, 0.784)
 bones/13/scale = Vector3(1, 1, 1.0000001)
 bones/14/name = "f_middle.03.L"
 bones/14/parent = 13
 bones/14/rest = Transform3D(0.99911183, -0.006642213, -0.041611254, 0.004475332, 0.9986394, -0.051952776, 0.04189973, 0.05172041, 0.9977821, 1.8626451e-09, 0.029195387, 3.8475264e-08)
 bones/14/enabled = true
 bones/14/position = Vector3(1.8626451e-09, 0.029195387, 3.8475264e-08)
-bones/14/rotation = Quaternion(0.495, -0.017, 0.006, 0.868)
+bones/14/rotation = Quaternion(0.099, -0.023, -0.004, 0.995)
 bones/14/scale = Vector3(1, 0.9999999, 0.9999999)
 bones/15/name = "palm.03.L"
 bones/15/parent = 3
@@ -610,7 +807,7 @@ bones/17/parent = 16
 bones/17/rest = Transform3D(0.9989761, -0.04352335, -0.012349176, 0.040955693, 0.98596483, -0.16185182, 0.019220186, 0.1611803, 0.9867379, -4.4237822e-09, 0.035518046, -2.8521754e-09)
 bones/17/enabled = true
 bones/17/position = Vector3(-4.4237822e-09, 0.035518046, -2.8521754e-09)
-bones/17/rotation = Quaternion(0.884, -0.003, 0.01, 0.468)
+bones/17/rotation = Quaternion(0.721, -0.007, 0.007, 0.693)
 bones/17/scale = Vector3(1, 1, 1.0000001)
 bones/18/name = "f_ring.03.L"
 bones/18/parent = 17
@@ -829,11 +1026,11 @@ settings/0/end_bone = 3
 settings/0/extend_end_bone = false
 settings/0/joint_count = 3
 settings/0/joints/0/rotation_axis = 3
-settings/0/joints/0/limitation = SubResource("JointLimitationCone3D_u1ghp")
-settings/0/joints/0/limitation/right_axis = 0
-settings/0/joints/0/limitation/rotation_offset = Quaternion(0, 0, 0, 1)
+settings/0/joints/0/limitation = null
 settings/0/joints/1/rotation_axis = 3
-settings/0/joints/1/limitation = null
+settings/0/joints/1/limitation = SubResource("JointLimitationCone3D_yxt5k")
+settings/0/joints/1/limitation/right_axis = 0
+settings/0/joints/1/limitation/rotation_offset = Quaternion(0, 0, 0, 1)
 settings/0/joints/2/rotation_axis = 3
 settings/0/joints/2/limitation = null
 
@@ -851,19 +1048,21 @@ settings/0/joint_count = 3
 settings/0/joints/0/rotation_axis = 3
 settings/0/joints/0/limitation = null
 settings/0/joints/1/rotation_axis = 3
-settings/0/joints/1/limitation = null
+settings/0/joints/1/limitation = SubResource("JointLimitationCone3D_rofvw")
+settings/0/joints/1/limitation/right_axis = 0
+settings/0/joints/1/limitation/rotation_offset = Quaternion(0, 0, 0, 1)
 settings/0/joints/2/rotation_axis = 3
 settings/0/joints/2/limitation = null
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1427852690]
-transform = Transform3D(-8.436638, 1.0359101, 7.80073e-11, -3.7499071e-06, -3.0540552e-05, 8.499997, 1.0359101, 8.436637, 3.0769905e-05, -0.08, 0, 0)
+transform = Transform3D(0.0018708945, 0.17973748, 0.0095354095, -0.021359202, 0.009690245, -0.17846538, -0.17871845, 0.0007234506, 0.021428775, 0, 0, -0.345)
 layers = 2
 gi_mode = 2
-mesh = ExtResource("3_seim3")
-surface_material_override/0 = SubResource("StandardMaterial3D_seim3")
+mesh = ExtResource("5_rofvw")
+surface_material_override/0 = SubResource("StandardMaterial3D_fy2dd")
 
 [node name="bolt" type="MeshInstance3D" parent="MeshInstance3D" unique_id=1380086853]
-transform = Transform3D(5.43147e-06, -6.55869e-08, 1.5, -1.5, 5.47766e-06, 5.43147e-06, -5.47767e-06, -1.5, -6.55671e-08, 1.32274e-09, -0.000365422, 0.00624091)
+transform = Transform3D(93.280075, -14.135694, 0.048385292, 0.048395604, 0.6422866, 94.342865, -14.135684, -93.27795, 0.6422869, -0.021247149, 0.009273991, -0.17128819)
 layers = 2
 mesh = ExtResource("7_fy2dd")
 skeleton = NodePath("../..")
@@ -880,14 +1079,13 @@ script = ExtResource("9_fgoaw")
 transform = Transform3D(-0.0827118, -3.67637e-08, 0.0101559, 0.0101559, -2.99416e-07, 0.0827118, 7.66328e-13, 0.0833333, 3.01666e-07, 0, 0, 0)
 
 [node name="IKLeft" type="Node3D" parent="MeshInstance3D" unique_id=1457840670]
-transform = Transform3D(-0.0674307, -0.9845209, 0.16177846, -0.17704168, -0.1477676, -0.97304666, 0.9818906, -0.09425474, -0.16433674, 0.005878645, -0.034425, -0.017539598)
+transform = Transform3D(-0.06743117, -0.98452103, 0.16177869, -0.17704184, -0.14776734, -0.9730467, 0.9818915, -0.094255276, -0.16433713, 0.4392388, 0.16870894, 0.51310617)
 
 [node name="IKRight" type="Node3D" parent="MeshInstance3D" unique_id=1428032639]
-transform = Transform3D(-0.99931, 0.031040877, 0.020334065, -0.02725187, -0.9858159, 0.16560394, 0.02518636, 0.16493547, 0.9859825, 0.0002733813, 0.021569772, -0.018461341)
+transform = Transform3D(-0.33196244, -0.19458343, -0.92300344, -0.52239966, -0.776815, 0.35164732, -0.78542864, 0.59891146, 0.156223, -2.3260858, 0.42176336, 0.7701211)
 
 [node name="shoot" type="AudioStreamPlayer3D" parent="." unique_id=238862203]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12893087, 0, -0.3995844)
-stream = ExtResource("2_yg30w")
 volume_db = -20.0
 
 [node name="block" type="AudioStreamPlayer3D" parent="." unique_id=1905014751]
@@ -952,7 +1150,7 @@ delay_in_seconds = "0.0"
 script = ExtResource("16_jjqaa")
 weapon = NodePath("../../../..")
 state_chart = NodePath("../../..")
-reload_speed = 0.25
+reload_speed = 0.5
 
 [node name="block" type="Node" parent="StateChart/CompoundState" unique_id=460658358]
 script = ExtResource("12_s76p3")

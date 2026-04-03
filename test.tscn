@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://bia32vkq1a5i" path="res://scenes/player/player.tscn" id="4_6qlrc"]
 [ext_resource type="Shader" uid="uid://lm1gw4o3cyyh" path="res://shaders/ursc_1.3.0/addons/ursc/spatial/standard_opaque.gdshader" id="4_ehkex"]
 [ext_resource type="Texture2D" uid="uid://dg2xkmk61sbk0" path="res://scenes/Assets - PS1 Dungeon Pack/Assets - PS1 Dungeon Pack/Environment/Textures/Floor_Texture.png" id="4_vbegm"]
-[ext_resource type="Texture2D" uid="uid://bqp1temtxnq34" path="res://scenes/Assets - PS1 Dungeon Pack/Assets - PS1 Dungeon Pack/Environment/Textures/Ceiling_Texture.png" id="5_ehkex"]
 [ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/item.gd" id="5_shobf"]
 [ext_resource type="Resource" uid="uid://dmv7he43amthj" path="res://item/weapons/mace_2_hand/morning_star.tres" id="6_lb1cv"]
 [ext_resource type="Texture2D" uid="uid://c4ocfkcj2ioi3" path="res://scenes/Assets - PS1 Dungeon Pack/Assets - PS1 Dungeon Pack/Environment/Textures/Column&Doors_Texture.png" id="6_xersf"]
@@ -14,17 +13,12 @@
 [ext_resource type="Resource" uid="uid://c8afm2d4w8gxb" path="res://item/spells/telekinesis.tres" id="8_adp8l"]
 [ext_resource type="PackedScene" uid="uid://be6nrf0b8j4l0" path="res://demo/assets/models/RockA.tscn" id="8_xersf"]
 [ext_resource type="Texture2D" uid="uid://5tssuyok06t3" path="res://scenes/Assets - PS1 Dungeon Pack/Assets - PS1 Dungeon Pack/Props/Coffin_0.png" id="9_00tp4"]
-[ext_resource type="AudioStream" uid="uid://bhauxowkg5f45" path="res://Player/sfx/footsteps.tres" id="9_15c7i"]
-[ext_resource type="Resource" uid="uid://dhgsftnl3tw13" path="res://item/spells/flame.tres" id="9_dvnpp"]
+[ext_resource type="AudioStream" uid="uid://bhauxowkg5f45" path="res://Player/sfx/dirt_footsteps.tres" id="9_15c7i"]
+[ext_resource type="Resource" uid="uid://dhgsftnl3tw13" path="res://item/spells/flame_spray/flame.tres" id="9_dvnpp"]
 [ext_resource type="Texture2D" uid="uid://wwnrrvuhdir8" path="res://scenes/Assets - PS1 Dungeon Pack/Assets - PS1 Dungeon Pack/Props/Wall_Chain_0.png" id="13_0m0f1"]
-[ext_resource type="Texture2D" uid="uid://cn1m0evyu1dny" path="res://scenes/PSX_Dungeon/PSX_Dungeon/Textures/TEX_Chain_02.png" id="14_b0q6j"]
 [ext_resource type="PackedScene" uid="uid://dhi6nfpilue8d" path="res://physics_break_component.tscn" id="15_a6gra"]
 [ext_resource type="ArrayMesh" uid="uid://jb5c3h5nr7gv" path="res://scenes/gravestones/sarcophagus.res" id="15_uty7l"]
-[ext_resource type="Texture2D" uid="uid://qwqgw5gnny7h" path="res://scenes/gravestones/grave_stones(1)_0.jpg" id="16_45l4g"]
-[ext_resource type="Texture2D" uid="uid://b1bl3b52o7p22" path="res://scenes/PSX_Dungeon/PSX_Dungeon/Textures/TEX_Candle_01.png" id="17_uty7l"]
-[ext_resource type="Texture2D" uid="uid://4cksqkib661w" path="res://scenes/PSX_Dungeon/PSX_Dungeon/Textures/TEX_Planks_01.png" id="18_45l4g"]
 [ext_resource type="LightmapGIData" uid="uid://dqvr652fosi38" path="res://test.lmbake" id="24_dwqlq"]
-[ext_resource type="Texture2D" uid="uid://cdrj7cqne6hqt" path="res://scenes/PSX_Dungeon/PSX_Dungeon/Textures/TEX_Door_02.png" id="30_rrpoi"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_00tp4"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -70,16 +64,6 @@ albedo_texture = ExtResource("4_vbegm")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b0q6j"]
 render_priority = 0
 shader = ExtResource("4_ehkex")
-shader_parameter/albedo_color = Color(1, 1, 1, 1)
-shader_parameter/albedo_texture = ExtResource("5_ehkex")
-shader_parameter/albedo_texture_as_primary_color = true
-shader_parameter/mix_factor = 1.0
-shader_parameter/texture_lod_halve_distance_override = 0.0
-shader_parameter/uv_offset = Vector2(0, 0)
-shader_parameter/uv_scale = Vector2(1, 1)
-shader_parameter/uv_scroll_speed = Vector2(0, 0)
-shader_parameter/cull_distance_override = 0.0
-shader_parameter/convert_vertex_colors = false
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5tkv4"]
 albedo_color = Color(0, 0, 0, 1)
@@ -136,16 +120,6 @@ points = PackedVector3Array(-0.0152381, -0.000238094, 0.000239214, 0.015, 0.0299
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uty7l"]
 render_priority = 0
 shader = ExtResource("4_ehkex")
-shader_parameter/albedo_color = Color(1, 1, 1, 1)
-shader_parameter/albedo_texture = ExtResource("7_5tkv4")
-shader_parameter/albedo_texture_as_primary_color = true
-shader_parameter/mix_factor = 1.0
-shader_parameter/texture_lod_halve_distance_override = 0.0
-shader_parameter/uv_offset = Vector2(0, 0)
-shader_parameter/uv_scale = Vector2(1, 1)
-shader_parameter/uv_scroll_speed = Vector2(0, 0)
-shader_parameter/cull_distance_override = 0.0
-shader_parameter/convert_vertex_colors = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v3a3f"]
 
@@ -251,16 +225,6 @@ shadow_mesh = SubResource("ArrayMesh_u75pl")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a3se8"]
 render_priority = 0
 shader = ExtResource("4_ehkex")
-shader_parameter/albedo_color = Color(1, 1, 1, 1)
-shader_parameter/albedo_texture = ExtResource("6_xersf")
-shader_parameter/albedo_texture_as_primary_color = true
-shader_parameter/mix_factor = 1.0
-shader_parameter/texture_lod_halve_distance_override = 0.0
-shader_parameter/uv_offset = Vector2(0, 0)
-shader_parameter/uv_scale = Vector2(1, 1)
-shader_parameter/uv_scroll_speed = Vector2(0, 0)
-shader_parameter/cull_distance_override = 0.0
-shader_parameter/convert_vertex_colors = false
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5gwmb"]
 resource_name = "DungeonProps_Mat"
@@ -305,16 +269,6 @@ shadow_mesh = SubResource("ArrayMesh_sa3cn")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_45l4g"]
 render_priority = 0
 shader = ExtResource("4_ehkex")
-shader_parameter/albedo_color = Color(1, 1, 1, 1)
-shader_parameter/albedo_texture = ExtResource("9_00tp4")
-shader_parameter/albedo_texture_as_primary_color = true
-shader_parameter/mix_factor = 1.0
-shader_parameter/texture_lod_halve_distance_override = 0.0
-shader_parameter/uv_offset = Vector2(0, 0)
-shader_parameter/uv_scale = Vector2(1, 1)
-shader_parameter/uv_scroll_speed = Vector2(0, 0)
-shader_parameter/cull_distance_override = 0.0
-shader_parameter/convert_vertex_colors = false
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_xpeyw"]
 points = PackedVector3Array(-0.00436586, -0.005, 0.016196, 0.00429911, 0, 0.0157041, 0.0036443, 0, 0.0193079, -0.00290218, 0, 0.00228373, 0.00275686, -0.005, 0.000595907, 0.00309612, -0.005, 0.0223064, -0.00290218, 0, 0.0219271, -0.00266956, -0.005, 0.000595907, 0.00266208, 0, 0.000975128, -0.00300882, -0.005, 0.0223064, 0.00443558, -0.00498986, 0.0158405, -0.00421181, 1.30104e-18, 0.013413, 0.00298948, 4.33681e-19, 0.0219271, -0.00257477, 0, 0.000975128, 0.00429911, 0, 0.0140694, -0.00426023, -0.00493905, 0.0134353, -0.0038844, 4.33681e-19, 0.0179972, -0.0033438, -0.00499679, 0.0216113, 0.00433654, -0.0049327, 0.0140924, -0.00294848, -0.0049497, 0.00213966, 0.00298948, 0, 0.00293803, -0.00421181, 0, 0.0160302, 0.00341571, -0.00498524, 0.0212313, -0.00322959, 0, 0.0212687, 0.00331689, 4.33681e-19, 0.0209447, 0.0030282, -0.00494338, 0.00282615)
@@ -362,16 +316,6 @@ shadow_mesh = SubResource("ArrayMesh_h7coj")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4uo0j"]
 render_priority = 0
 shader = ExtResource("4_ehkex")
-shader_parameter/albedo_color = Color(0.827451, 1, 0.807843, 1)
-shader_parameter/albedo_texture = ExtResource("13_0m0f1")
-shader_parameter/albedo_texture_as_primary_color = true
-shader_parameter/mix_factor = 1.0
-shader_parameter/texture_lod_halve_distance_override = 0.0
-shader_parameter/uv_offset = Vector2(0, 0)
-shader_parameter/uv_scale = Vector2(1, 1)
-shader_parameter/uv_scroll_speed = Vector2(0, 0)
-shader_parameter/cull_distance_override = 0.0
-shader_parameter/convert_vertex_colors = false
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mf8e0"]
 resource_name = "Chain"
@@ -414,16 +358,6 @@ shadow_mesh = SubResource("ArrayMesh_6immb")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vxl6d"]
 render_priority = 0
 shader = ExtResource("4_ehkex")
-shader_parameter/albedo_color = Color(1, 1, 1, 1)
-shader_parameter/albedo_texture = ExtResource("14_b0q6j")
-shader_parameter/albedo_texture_as_primary_color = true
-shader_parameter/mix_factor = 1.0
-shader_parameter/texture_lod_halve_distance_override = 0.0
-shader_parameter/uv_offset = Vector2(0, 0)
-shader_parameter/uv_scale = Vector2(1, 1)
-shader_parameter/uv_scroll_speed = Vector2(0, 0)
-shader_parameter/cull_distance_override = 0.0
-shader_parameter/convert_vertex_colors = false
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7gcvj"]
 resource_name = "N64"
@@ -473,16 +407,6 @@ data = PackedVector3Array(17.3205, 8, -10, 0, 8, -20, 0, 0, -20, 0, 0, -20, 17.3
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xpeyw"]
 render_priority = 0
 shader = ExtResource("4_ehkex")
-shader_parameter/albedo_color = Color(0.827451, 1, 0.807843, 1)
-shader_parameter/albedo_texture = ExtResource("5_ehkex")
-shader_parameter/albedo_texture_as_primary_color = true
-shader_parameter/mix_factor = 1.0
-shader_parameter/texture_lod_halve_distance_override = 0.0
-shader_parameter/uv_offset = Vector2(0, 0)
-shader_parameter/uv_scale = Vector2(15, 15)
-shader_parameter/uv_scroll_speed = Vector2(0, 0)
-shader_parameter/cull_distance_override = 0.0
-shader_parameter/convert_vertex_colors = false
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_pdf00"]
 points = PackedVector3Array(-16.3681, 8.88178e-16, -10.0184, 17.3205, 7.19448, 9.81177, 16.6478, 8.88178e-16, 9.42757, -16.3681, 8.88178e-16, 10.0184, -0.961127, 8, -17.6983, -15.3522, 8, 9.40189, 16.0563, 0, -10.0184, 0.728, 0, 18.8588, 15.6288, 8, -8.84741, -0.961127, 8, 17.6983, 0.728, 0, -18.8588, -15.3522, 8, -9.40189, 17.3205, 7.19448, -9.81177, 15.6288, 8, 8.84741, -1.03332, 8.88178e-16, 18.8588, -1.03332, 8.88178e-16, -18.8588, 0.691804, 8, -17.6983, 0.691804, 8, 17.6983, 16.6478, 8.88178e-16, -9.42757, 14.2886, 0, 11.1964, 7.21419, 0, -15.3249, 3.0872, 0, 17.6808, 14.2886, 0, -11.1964, -5.1603, -8.88178e-16, -16.5029, -5.1603, -8.88178e-16, 16.5029, 3.0872, 8.88178e-16, -17.6808, 13.4179, 8, -10.5074, 13.4179, 8, 10.5074, 7.21419, 0, 15.3249, -4.83414, 8, -15.4873, -4.83414, 8, 15.4873, 16.0563, 0, 10.0184)
@@ -591,16 +515,6 @@ points = PackedVector3Array(-0.00248212, -0.00248212, 0.0242054, 0.00526349, 0.0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_15c7i"]
 render_priority = 0
 shader = ExtResource("4_ehkex")
-shader_parameter/albedo_color = Color(0.827451, 1, 0.807843, 1)
-shader_parameter/albedo_texture = ExtResource("16_45l4g")
-shader_parameter/albedo_texture_as_primary_color = true
-shader_parameter/mix_factor = 1.0
-shader_parameter/texture_lod_halve_distance_override = 0.0
-shader_parameter/uv_offset = Vector2(0, 0)
-shader_parameter/uv_scale = Vector2(1, 1)
-shader_parameter/uv_scroll_speed = Vector2(0, 0)
-shader_parameter/cull_distance_override = 0.0
-shader_parameter/convert_vertex_colors = true
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_nr2dp"]
 points = PackedVector3Array(326.157, 256.358, -6278.44, -386.635, -105.97, -6483.74, -368.147, -97.3074, -6130.01, 386.635, -105.97, -6483.74, -326.081, 256.358, -6326.72, 386.635, -69.7516, -6121.34, -338.192, 111.413, -6145.57, 335.953, 98.3569, -6453.12, -335.881, 98.3569, -6453.12, 338.268, 111.413, -6145.57, 368.147, -97.3074, -6130.01, -386.635, -69.7516, -6121.34, 326.157, 256.358, -6326.72, -326.081, 256.358, -6278.44, -386.635, -69.7516, -6483.74, 386.635, -69.7516, -6483.74)
@@ -691,16 +605,6 @@ shadow_mesh = SubResource("ArrayMesh_5saiw")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_40r3g"]
 render_priority = 0
 shader = ExtResource("4_ehkex")
-shader_parameter/albedo_color = Color(1, 1, 1, 1)
-shader_parameter/albedo_texture = ExtResource("17_uty7l")
-shader_parameter/albedo_texture_as_primary_color = true
-shader_parameter/mix_factor = 1.0
-shader_parameter/texture_lod_halve_distance_override = 0.0
-shader_parameter/uv_offset = Vector2(0, 0)
-shader_parameter/uv_scale = Vector2(1, 1)
-shader_parameter/uv_scroll_speed = Vector2(0, 0)
-shader_parameter/cull_distance_override = 0.0
-shader_parameter/convert_vertex_colors = false
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2su8e"]
 resource_name = "N64"
@@ -773,30 +677,10 @@ shadow_mesh = SubResource("ArrayMesh_jepuj")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7ifx1"]
 render_priority = 0
 shader = ExtResource("4_ehkex")
-shader_parameter/albedo_color = Color(1, 1, 1, 1)
-shader_parameter/albedo_texture = ExtResource("18_45l4g")
-shader_parameter/albedo_texture_as_primary_color = true
-shader_parameter/mix_factor = 1.0
-shader_parameter/texture_lod_halve_distance_override = 0.0
-shader_parameter/uv_offset = Vector2(0, 0)
-shader_parameter/uv_scale = Vector2(1, 1)
-shader_parameter/uv_scroll_speed = Vector2(0, 0)
-shader_parameter/cull_distance_override = 0.0
-shader_parameter/convert_vertex_colors = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_von5a"]
 render_priority = 0
 shader = ExtResource("4_ehkex")
-shader_parameter/albedo_color = Color(1, 1, 1, 1)
-shader_parameter/albedo_texture = ExtResource("14_b0q6j")
-shader_parameter/albedo_texture_as_primary_color = true
-shader_parameter/mix_factor = 1.0
-shader_parameter/texture_lod_halve_distance_override = 0.0
-shader_parameter/uv_offset = Vector2(0, 0)
-shader_parameter/uv_scale = Vector2(1, 1)
-shader_parameter/uv_scroll_speed = Vector2(0, 0)
-shader_parameter/cull_distance_override = 0.0
-shader_parameter/convert_vertex_colors = false
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cmki6"]
 resource_name = "Wall_mat"
@@ -880,16 +764,6 @@ shadow_mesh = SubResource("ArrayMesh_udhfv")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ppv7d"]
 render_priority = 0
 shader = ExtResource("4_ehkex")
-shader_parameter/albedo_color = Color(1, 1, 1, 1)
-shader_parameter/albedo_texture = ExtResource("30_rrpoi")
-shader_parameter/albedo_texture_as_primary_color = true
-shader_parameter/mix_factor = 1.0
-shader_parameter/texture_lod_halve_distance_override = 0.0
-shader_parameter/uv_offset = Vector2(0, 0)
-shader_parameter/uv_scale = Vector2(1, 1)
-shader_parameter/uv_scroll_speed = Vector2(0, 0)
-shader_parameter/cull_distance_override = 0.0
-shader_parameter/convert_vertex_colors = false
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_naet1"]
 points = PackedVector3Array(-10, 0.755996, -0.494696, -10.119, 0.595425, 0.684524, 0.119047, 0.595425, 0.684524, -10.119, 14.4046, 0.684524, -0.83401, -0.119047, -0.505766, -9.16599, 15.119, -0.505766, 0.119047, 14.4046, 0.684524, 0, 14.244, -0.494696, -7.26088, 6.07404, -0.744048, -10, 14.244, -0.494696, 0, 0.755996, -0.494696, -9.16599, -0.119047, 0.446382, -0.83401, 15.119, 0.446382, -0.83401, 15.119, -0.505766, -9.16599, -0.119047, -0.505766, -7.26088, 8.92745, -0.744048, -9.16599, 15.119, 0.446382, -0.83401, -0.119047, 0.446382, -8.86835, 8.68954, -0.625, -8.86835, 6.3117, -0.625)

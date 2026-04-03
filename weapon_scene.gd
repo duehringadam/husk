@@ -2,7 +2,6 @@ class_name Weapon
 extends Node3D
 
 @export var weapon_initial_position: Vector3
-@export var two_handed: bool = false
 @export_range(0.0,1.0) var block_amount: float
 @export var hit_particles_add: PackedScene
 @export var swing_sound: AudioStream
@@ -13,7 +12,7 @@ extends Node3D
 @export var weapon_mesh: MeshInstance3D
 @export var state_chart: StateChart
 @onready var animation_tree: AnimationTree = $AnimationTree
-@onready var block_sound: AudioStreamPlayer3D = $block
+@export var block_sound: AudioStreamPlayer3D
 
 var can_attack: bool = true
 var secondary_active_bool: bool = false
@@ -80,11 +79,11 @@ func remove_blood():
 	tween.tween_property(weapon_mesh_shader.next_pass,"shader_parameter/progress",0,60)
 
 func block():
-	block_sound.pitch_scale = randf_range(.9,1.2)
+	if block_sound:
+		block_sound.pitch_scale = randf_range(.9,1.2)
 	animation_tree.set("parameters/conditions/block_hit", true)
-	await get_tree().create_timer(.5).timeout
+	await get_tree().create_timer(.1).timeout
 	animation_tree.set("parameters/conditions/block_hit", false)
 
 func start_block():
 	state_chart.send_event("block")
-	

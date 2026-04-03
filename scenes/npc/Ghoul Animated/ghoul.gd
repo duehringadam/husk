@@ -95,3 +95,7 @@ func _update_target(value: Node3D):
 	if value is Player:
 		aggro_look_at.target_node = Global.player.enemy_look_at.get_path()
 		state_chart.send_event("attack")
+
+
+func _on_navigation_agent_3d_link_reached(details: Dictionary) -> void:
+	pass # Replace with function body.

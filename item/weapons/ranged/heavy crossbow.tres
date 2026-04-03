@@ -1,14 +1,24 @@
 [gd_resource type="Resource" script_class="item" format=3 uid="uid://dbk1ijoypy6bl"]
 
-[ext_resource type="Script" uid="uid://c23n4qi4fu7ia" path="res://item/item_required_stats.gd" id="1_vb50m"]
 [ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/item_stat.gd" id="2_1gat8"]
 [ext_resource type="PackedScene" uid="uid://casagqutbfyv6" path="res://heavy_crossbow.tscn" id="2_6ce8a"]
 [ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/item.gd" id="3_6ce8a"]
+
+[sub_resource type="Resource" id="Resource_dyygh"]
+script = ExtResource("2_1gat8")
+damage_types = Dictionary[int, float]({
+2: 40.0
+})
+metadata/_custom_type_script = "uid://bbtfrupllo3w6"
 
 [resource]
 script = ExtResource("3_6ce8a")
 item_name = "heavy crossbow"
 item_description = "a heavy two handed crossbow"
+item_stats = SubResource("Resource_dyygh")
+item_required_stats = Dictionary[int, float]({
+0: 10.0
+})
 item_scene = ExtResource("2_6ce8a")
 two_handed = true
 metadata/_custom_type_script = "uid://dcfd18dx8x1bm"

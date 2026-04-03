@@ -22,7 +22,7 @@ func _on_idle_state_exited() -> void:
 
 func _on_idle_state_processing(delta: float) -> void:
 
-	if Input.is_action_pressed("attack_primary") && weapon.can_attack:
+	if Input.is_action_pressed("attack_primary") && Global.player.can_attack:
 		if weapon.attack_dir.y < -.9:
 			state_chart.send_event("hold_forward")
 			

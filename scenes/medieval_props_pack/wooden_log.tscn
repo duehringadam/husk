@@ -1,0 +1,62 @@
+[gd_scene format=4 uid="uid://cqmiub6ddc6lb"]
+
+[ext_resource type="Texture2D" uid="uid://bid4878a4ybiv" path="res://scenes/nature/mossybark02.png" id="1_qrfet"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0etee"]
+resource_name = "mat_wooden_log"
+cull_mode = 2
+albedo_color = Color(0.9063318, 0.9063318, 0.9063318, 1)
+roughness = 0.5
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_aohiv"]
+_surfaces = [{
+"aabb": AABB(-0.5706339, -0.6000001, -3.0000005, 1.1412678, 1.2000002, 6.000001),
+"format": 34896613377,
+"index_count": 120,
+"index_data": PackedByteArray("DAAFAA0ADQAFAA4ABQACAA4ABQAPAAIADAAPAAUABwAOAAIADQAOAAQABwAEAA4AAAANAAQADAANAAAAAAAEAAgABwAIAAQAEAAAAAgADAAAABAAEAAIABEABwARAAgACQAQABEADAAQAAkACQARAAYABwAGABEAEgAJAAYADAAJABIAEgAGABMABwATAAYADAASAAEAAQASABMABwADABMAAQATAAMAFAABAAMADAABABQABwALAAMAFAADAAsADAAUAAoACgAUAAsADAAKAA8ABwAVAAsACgALABUADwAKABUABwACABUADwAVAAIA"),
+"lods": [0.45667154, PackedByteArray("BwAEAAIABwAIAAQABQACAAQAAAAEAAgAAAAFAAQAAAAIAAYABwAGAAgABQAAAAkACQAAAAYABQAKAAIACQAGAAMABwADAAYABQAJAAEAAQAJAAMABQABAAoABwALAAMABwACAAsAAQADAAsACgALAAIACgABAAsA"), 1.5392591, PackedByteArray("AwAEAAIABQACAAQAAwAGAAQAAAAFAAQAAAAEAAYAAQAGAAMAAQAAAAYAAQADAAIABQAAAAEABQABAAIA"), 2.3088884, PackedByteArray("AAABAAIAAQADAAIAAAACAAMAAQAAAAMA")],
+"name": "mat_wooden_log",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 22,
+"vertex_data": PackedByteArray("5DCM5wAAAAD/fwAAAAAAAP//jaf+/wAA/38AAP//AAD/f////v8AABrPjOcAAAAAAABxWP7/AAD/f/9//v8AAOQwjOf+/wAAAABxWAAAAAD//3FYAAAAABrPchj//wAA/3//fwAAAAD/f/7/AAAAABrPjOf+/wAA//+NpwAAAAAAAI2nAAAAAAAAjaf+/wAA5DByGAAAAADkMHIY//8AABrPchgAAAAA//9xWP7/AAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_oj8ke"]
+resource_name = "props_wooden_log"
+_surfaces = [{
+"aabb": AABB(-0.5706339, -0.6000001, -3.0000005, 1.1412678, 1.2000002, 6.000001),
+"attribute_data": PackedByteArray("a/5si2v+9P2TAbDEkwH0/ZMBET9r/hE/E9NHO5OsrgI58n0Nbo14MGv+mbGTAYKekwE+ZcgrrgJtcX0NyCtHO9O/+x5ujX0NOfJ4MGv+x9eTAd3qkwFsi2v+PmW8APsebXF4MAg/+x5IUq4Cogx9DVN9+x6iDHgwSFJHOxPTrgKIgfseHv77HpOsRztr/oKekwGZsWv+sMRr/lV4kwHH15MBVXhr/t3qa/4oUpMBJ1I="),
+"format": 34896613399,
+"index_count": 120,
+"index_data": PackedByteArray("GQANABoAGQAbAA0AGQAaAA4AGQAXABsAGQAOABwAGQAdABcAGQAcABgAGQAPAB0AGQAYAB4AGQAeAA8AEAAHAB8AEAARAAcAEAAfAAgAEAAgABEAEAAIACEAEAAJACAAEAAhABIAEAAiAAkAEAASAAYAEAAGACIAIwAkAAsAIwAKACQAAAAjAAsACgACACQAAAALABUACgAlAAIAJgAAABUAJQAnAAIAJgAVACgAJQATACcAFgAmACgAEwAUACcAFgAoAAwAEwApABQAKQADABQAKQABAAMAKgAWAAwAKgAMACsABQAqACsABQArAAQA"),
+"lods": [0.45667154, PackedByteArray("EAAHAAgAEAARAAcAEAAIABIAEAAJABEAEAASAAYAEAAGAAkACgACAAsACgATAAIAAAAKAAsAEwAUAAIAEwABABQAAQADABQAAAALABUAAAAVAAwAFgAAAAwAFgAMAAQABQAWAAQADQAPABcADQAYAA8ADQAOABgA"), 1.5392591, PackedByteArray("BgAHAAgABgAJAAcACgACAAsACgABAAIAAQADAAIAAAAKAAsAAAALAAwABQAAAAwABQAMAAQADQAOAA8A"), 2.3088884, PackedByteArray("AAABAAIAAQADAAIAAAACAAQABQAAAAQA")],
+"material": SubResource("StandardMaterial3D_0etee"),
+"name": "mat_wooden_log",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 44,
+"vertex_data": PackedByteArray("5DCM5wAASPD/fwAAAABM5///jaf+/5ml/38AAP//S8f/fwAA//9Lx/9/AAAAAEzn/38AAP//bKT/f////v9spP//jaf+/zmpAABxWP7/Oakaz4znAACU4P9////+/0vHAABxWP7/ZvQaz4znAAD98eQwjOcAADPq/38AAAAAdPz/f/9//v/LjOQwjOf+/7WjGs9yGP//taP//3FYAAD03BrPchj//1+z5DCM5/7/bt0AAHFYAACd+v//cVgAAPTcAABxWAAAl+L/f/9/AAD///9//v8AAHT8//+NpwAAl+IAAI2nAAD03BrPchgAADPq5DByGAAA/fEaz4zn/v81pwAAjaf+/5ml//9xWP7/maXkMHIY//81p/9//v8AAEznGs+M5/7/X7P//42nAAD03AAAjacAAJ36//9xWP7/maUAAI2n/v9m9BrPchgAAJTg5DByGAAASPDkMHIY//9u3fnezkAVTBVMlaqHDSNhI2EjYSNhFUwVTHIfAXaM4P2J/qMNSQBc8ba3tlYlI+HbHklZ3HmYTZ8QYoSo2o53bC7/f/9/GcIXteU950qLbx0Y82bXTiru/yIvMYJzi28dGLKsUul/kX/ucIiS0UxTrBZzkOHnnHtWJWayX+8hwq5ih41o1XdylirdPVCdFczpM9fOCxkcmHMQgvPQTndylirc+bYmqVq4NjA/+l4AXSpu")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_aohiv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_18clu"]
+albedo_color = Color(0.48570347, 0.48570353, 0.48570347, 1)
+albedo_texture = ExtResource("1_qrfet")
+texture_filter = 4
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4wdv8"]
+size = Vector3(1.1412678, 1.2000002, 6.000001)
+
+[node name="wooden_log" type="MeshInstance3D" unique_id=979034867]
+transform = Transform3D(0.86256665, 0, -0.5059434, 0, 1, 0, 0.5059434, 0, 0.86256665, 0, 0, 0)
+mesh = SubResource("ArrayMesh_oj8ke")
+surface_material_override/0 = SubResource("StandardMaterial3D_18clu")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=637892799]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1233951533]
+shape = SubResource("BoxShape3D_4wdv8")

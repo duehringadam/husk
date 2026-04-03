@@ -23,7 +23,10 @@ func modify_health(amount: float):
 	emit_signal("health_changed", amount, current_health)
 	if current_health <= 0:
 		emit_signal("died")
+		print(last_damage_taken)
 		match last_damage_taken:
+			DamageTypes.DAMAGE_TYPES.THRUST:
+				sever_bones()
 			DamageTypes.DAMAGE_TYPES.SLASH:
 				sever_bones()
 			DamageTypes.DAMAGE_TYPES.STRIKE:

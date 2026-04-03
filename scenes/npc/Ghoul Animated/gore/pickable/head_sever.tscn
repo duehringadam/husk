@@ -70,7 +70,7 @@ points = PackedVector3Array(-0.13433504, -0.07612507, -1.7888844e-05, -0.0904939
 [sub_resource type="SphereShape3D" id="SphereShape3D_7fqif"]
 radius = 0.16189936
 
-[node name="head" type="RigidBody3D" unique_id=689027593 node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component") groups=["disable_collision_while_grabbed"]]
+[node name="head" type="RigidBody3D" unique_id=689027593 node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component") groups=["disable_collision_while_grabbed", "limb_sever"]]
 transform = Transform3D(1, 0, 0, 0, 1, 2.910383e-09, 0, -7.712515e-10, 1, 0, 0, 0)
 collision_layer = 8
 collision_mask = 15
@@ -156,7 +156,7 @@ mesh = SubResource("ArrayMesh_o21da")
 surface_material_override/0 = SubResource("StandardMaterial3D_ba1s8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=828865351]
-transform = Transform3D(0.9999999, 0, 0, 0, 1, -8.2945917e-10, -3.7252903e-09, -7.712515e-10, 0.9999999, -7.450581e-09, 0, 0)
+transform = Transform3D(1.54, -4.4246296e-18, 5.736948e-09, 0, 1.54, 1.1877272e-09, -5.736948e-09, -1.1877272e-09, 1.54, -7.450581e-09, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_abqsd")
 
 [node name="DamageComponent" type="Area3D" parent="." unique_id=1527411438]

@@ -1,5 +1,4 @@
 class_name DialogueInteractComponent
-extends interact
 
 @export_multiline var dialogue: Array[String]
 @export var dialogue_interact_sound: AudioStream

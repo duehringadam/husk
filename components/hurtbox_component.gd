@@ -73,6 +73,8 @@ func take_damage(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float], stat
 					bone_health_component.last_damage_taken = DamageTypes.DAMAGE_TYPES.STRIKE
 				if damage_types.keys().has(DamageTypes.DAMAGE_TYPES.SLASH):
 					bone_health_component.last_damage_taken = DamageTypes.DAMAGE_TYPES.SLASH
+				if damage_types.keys().has(DamageTypes.DAMAGE_TYPES.THRUST):
+					bone_health_component.last_damage_taken = DamageTypes.DAMAGE_TYPES.THRUST
 				bone_health_component.modify_health(-actual)
 			sum += actual
 	if stance_component != null:

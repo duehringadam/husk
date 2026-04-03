@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://dwsn7gxfshtf8" path="res://addons/GPUTrail-main/GPUTrail3D.gd" id="13_5f2v5"]
 [ext_resource type="Script" uid="uid://8kg3tepcr415" path="res://addons/godot_state_charts/transition.gd" id="13_esq3p"]
 [ext_resource type="Script" uid="uid://1xhujeketj0r" path="res://addons/godot_state_charts/atomic_state.gd" id="13_nubjm"]
+[ext_resource type="AudioStream" uid="uid://4gpqo7ppe3nx" path="res://Player/weapon/ALL/Longsword/cyberwave-orchestra-fantasy-game-sword-cut-sound-effect-get-more-on-my-patreon-339824.mp3" id="14_5f2v5"]
 [ext_resource type="Script" uid="uid://d3uud607qvbfb" path="res://sword_idle.gd" id="15_dyrgm"]
 [ext_resource type="Script" uid="uid://c3csf7xo741r7" path="res://sword_left.gd" id="16_poik2"]
 [ext_resource type="Script" uid="uid://4edxvrrmei6h" path="res://sword_right.gd" id="17_6g2vp"]
@@ -357,6 +358,73 @@ tracks/5/keys = {
 "update": 0,
 "values": [Vector3(0, -1.5707964, 0)]
 }
+
+[sub_resource type="Animation" id="Animation_dlln3"]
+resource_name = "block_hit"
+length = 0.45
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("weapon:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.14660765, -1.4398966, -1.9722221)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("weapon:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.26977885),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.246, 0.224, 0.39), Vector3(0.37141097, 0.224, 0.38999996), Vector3(0.246, 0.224, 0.39)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/path = NodePath("arms_armature:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.52, -0.674, 0.148)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = false
+tracks/3/path = NodePath("arms_armature:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1.5707964, 0)]
+}
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("block")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 1.4535497,
+"start_offset": 0.05814199,
+"stream": ExtResource("14_5f2v5")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_6g2vp"]
 resource_name = "hold_back"
@@ -825,6 +893,7 @@ tracks/5/use_blend = true
 _data = {
 &"RESET": SubResource("Animation_r3ix7"),
 &"block": ExtResource("12_5f2v5"),
+&"block_hit": SubResource("Animation_dlln3"),
 &"hold_back": SubResource("Animation_6g2vp"),
 &"hold_forward": SubResource("Animation_dyrgm"),
 &"hold_left": SubResource("Animation_5rel0"),
@@ -838,6 +907,9 @@ _data = {
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ye2y0"]
 animation = &"block"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5f2v5"]
+animation = &"block_hit"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dyrgm"]
 animation = &"hold_back"
@@ -954,9 +1026,21 @@ xfade_time = 0.1
 advance_mode = 2
 advance_condition = &"block"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_peihp"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"block_hit"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kefbi"]
+xfade_time = 0.25
+switch_mode = 2
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_5rel0"]
 states/block/node = SubResource("AnimationNodeAnimation_ye2y0")
 states/block/position = Vector2(95, 210.03839)
+states/block_hit/node = SubResource("AnimationNodeAnimation_5f2v5")
+states/block_hit/position = Vector2(20.641129, 287.75098)
 states/hold_back/node = SubResource("AnimationNodeAnimation_dyrgm")
 states/hold_back/position = Vector2(323, 275.18518)
 states/hold_forward/node = SubResource("AnimationNodeAnimation_poik2")
@@ -975,10 +1059,10 @@ states/swing_left/node = SubResource("AnimationNodeAnimation_qls8k")
 states/swing_left/position = Vector2(492, -15)
 states/swing_right/node = SubResource("AnimationNodeAnimation_nubjm")
 states/swing_right/position = Vector2(660, 100)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_r3ix7"), "idle", "hold_left", SubResource("AnimationNodeStateMachineTransition_lovjf"), "idle", "hold_right", SubResource("AnimationNodeStateMachineTransition_5i4en"), "hold_left", "swing_left", SubResource("AnimationNodeStateMachineTransition_apf4h"), "hold_right", "swing_right", SubResource("AnimationNodeStateMachineTransition_dgbig"), "swing_left", "idle", SubResource("AnimationNodeStateMachineTransition_nd8xh"), "swing_right", "idle", SubResource("AnimationNodeStateMachineTransition_5rel0"), "idle", "hold_forward", SubResource("AnimationNodeStateMachineTransition_5bi7k"), "idle", "hold_back", SubResource("AnimationNodeStateMachineTransition_58tc3"), "swing_back", "idle", SubResource("AnimationNodeStateMachineTransition_f1ebq"), "hold_forward", "swing_forward", SubResource("AnimationNodeStateMachineTransition_erlhr"), "hold_back", "swing_back", SubResource("AnimationNodeStateMachineTransition_w1kgq"), "swing_forward", "idle", SubResource("AnimationNodeStateMachineTransition_fabhx"), "idle", "block", SubResource("AnimationNodeStateMachineTransition_rrms8"), "block", "idle", SubResource("AnimationNodeStateMachineTransition_niu1w"), "hold_left", "block", SubResource("AnimationNodeStateMachineTransition_5f2v5"), "hold_back", "block", SubResource("AnimationNodeStateMachineTransition_dlln3"), "hold_forward", "block", SubResource("AnimationNodeStateMachineTransition_e1hci"), "hold_right", "block", SubResource("AnimationNodeStateMachineTransition_5wy1c")]
-graph_offset = Vector2(-184.35887, 18.88486)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_r3ix7"), "idle", "hold_left", SubResource("AnimationNodeStateMachineTransition_lovjf"), "idle", "hold_right", SubResource("AnimationNodeStateMachineTransition_5i4en"), "hold_left", "swing_left", SubResource("AnimationNodeStateMachineTransition_apf4h"), "hold_right", "swing_right", SubResource("AnimationNodeStateMachineTransition_dgbig"), "swing_left", "idle", SubResource("AnimationNodeStateMachineTransition_nd8xh"), "swing_right", "idle", SubResource("AnimationNodeStateMachineTransition_5rel0"), "idle", "hold_forward", SubResource("AnimationNodeStateMachineTransition_5bi7k"), "idle", "hold_back", SubResource("AnimationNodeStateMachineTransition_58tc3"), "swing_back", "idle", SubResource("AnimationNodeStateMachineTransition_f1ebq"), "hold_forward", "swing_forward", SubResource("AnimationNodeStateMachineTransition_erlhr"), "hold_back", "swing_back", SubResource("AnimationNodeStateMachineTransition_w1kgq"), "swing_forward", "idle", SubResource("AnimationNodeStateMachineTransition_fabhx"), "idle", "block", SubResource("AnimationNodeStateMachineTransition_rrms8"), "block", "idle", SubResource("AnimationNodeStateMachineTransition_niu1w"), "hold_left", "block", SubResource("AnimationNodeStateMachineTransition_5f2v5"), "hold_back", "block", SubResource("AnimationNodeStateMachineTransition_dlln3"), "hold_forward", "block", SubResource("AnimationNodeStateMachineTransition_e1hci"), "hold_right", "block", SubResource("AnimationNodeStateMachineTransition_5wy1c"), "block", "block_hit", SubResource("AnimationNodeStateMachineTransition_peihp"), "block_hit", "block", SubResource("AnimationNodeStateMachineTransition_kefbi")]
+graph_offset = Vector2(-184.35887, 141.75096)
 
-[node name="sword_viewmodel" type="Node3D" unique_id=1595762450 node_paths=PackedStringArray("damage_component", "blood_drip", "bloodtimer", "weapon_mesh", "state_chart")]
+[node name="sword_viewmodel" type="Node3D" unique_id=1595762450 node_paths=PackedStringArray("damage_component", "blood_drip", "bloodtimer", "weapon_mesh", "state_chart", "block_sound")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 script = ExtResource("1_3bige")
 weapon_initial_position = Vector3(0.125, -0.36, 0.035)
@@ -988,6 +1072,7 @@ blood_drip = NodePath("weapon/blood drip")
 bloodtimer = NodePath("bloodtimer")
 weapon_mesh = NodePath("weapon")
 state_chart = NodePath("StateChart")
+block_sound = NodePath("block")
 
 [node name="arms_armature" type="Node3D" parent="." unique_id=1206310355]
 transform = Transform3D(-6.119594e-08, 0, -1.4, 0, 1.4, 0, 1.4, 0, -6.119594e-08, 0.68, -0.811, 0)
@@ -1391,6 +1476,11 @@ volume_db = 6.0
 max_db = 6.0
 bus = &"SFX"
 
+[node name="block" type="AudioStreamPlayer3D" parent="." unique_id=1741842003]
+volume_db = 6.0
+max_db = 6.0
+bus = &"SFX"
+
 [node name="bloodtimer" type="Timer" parent="." unique_id=722876048]
 wait_time = 15.0
 one_shot = true
@@ -1402,6 +1492,7 @@ libraries/ = SubResource("AnimationLibrary_r3ix7")
 tree_root = SubResource("AnimationNodeStateMachine_5rel0")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/block = false
+parameters/conditions/block_hit = false
 parameters/conditions/hold_back = false
 parameters/conditions/hold_forward = false
 parameters/conditions/hold_left = false

@@ -10,6 +10,9 @@ extends Path3D
 @export var material : Material
 @onready var mesh := $CSGPolygon3D
 @onready var distance = curve.get_baked_length()
+@onready var collider: StaticBody3D = $collider
+@onready var ladder_area: Rope = $ladderArea
+
 # instances
 var segments : Array
 var joints : Array
@@ -17,6 +20,8 @@ var curve_points : Array
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if get_tree().get_nodes_in_group("rope").size() > 5:
+		get_tree().get_nodes_in_group("rope")[0].queue_free()
 	# store position and rotation
 	var rotation_buffer = rotation
 	rotation = Vector3(0,0,0)
@@ -41,6 +46,7 @@ func _ready() -> void:
 		# position rigidbodies between the joints
 		segments[i].position = curve_points[i] + (curve_points[i+1] - curve_points[i])/2
 		# create collision shape 3Ds
+		segments[i].mass = 10
 		segments[i].add_child(CollisionShape3D.new())
 		# add capsule shape
 		segments[i].get_child(0).shape = CapsuleShape3D.new()
@@ -58,6 +64,7 @@ func _ready() -> void:
 			joints.append(PinJoint3D.new())
 			self.add_child(joints[i])
 			joints[i].position = curve_points[i]
+			joints[i].set_param(PinJoint3D.Param.PARAM_DAMPING,10.0)
 		else:
 			#joints.append(ConeTwistJoint3D.new())
 			joints.append(PinJoint3D.new())
@@ -115,7 +122,19 @@ func _physics_process(_delta: float) -> void:
 	for p in (curve.point_count):
 		if  p < (number_of_segments):
 			# get the first segment and subtract it's basis * distance to point at the endpoint 
+			#print(segments[p].global_position)
 			curve.set_point_position(p, segments[p].position + segments[p].transform.basis.y * segments[p].get_child(0).shape.height/2)
 		else:
 			# get the last segment and add it's basis * distance to point at the endpoint 
 			curve.set_point_position(p, segments[p-1].position - segments[p-1].transform.basis.y * segments[p-1].get_child(0).shape.height/2)
+
+
+func _on_timer_timeout() -> void:
+	for i in segments:
+		i.linear_damp = 10
+		i.angular_damp = 10
+		var timer = Timer.new()
+		add_child(timer)
+		timer.wait_time = 10
+		timer.autostart = true
+		timer.timeout.connect(func(): i.freeze = true; i.sleeping = true)

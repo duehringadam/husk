@@ -1,13 +1,10 @@
-extends PanelContainer
+extends Button
+
+signal item_info(item_inv: item)
 
 @export var item_inventory: item
-@onready var texture_rect: TextureRect = $HBoxContainer/TextureRect
-@onready var item_name: RichTextLabel = $HBoxContainer/item_name
-@onready var description: RichTextLabel = $HBoxContainer/description
-@onready var button: Button = $HBoxContainer/Button
 
-
-func _on_button_pressed() -> void:
+func _on_pressed() -> void:
 	match item_inventory.item_type:
 			ItemEquippableType.ITEM_EQUIPPABLE_TYPES.WEAPON:
 				Global.player.mainhand.weapon = item_inventory
@@ -21,4 +18,7 @@ func _on_button_pressed() -> void:
 				pass
 			ItemEquippableType.ITEM_EQUIPPABLE_TYPES.KEY:
 				pass
-	
+
+
+func _on_mouse_entered() -> void:
+	item_info.emit(item_inventory)

@@ -105,14 +105,17 @@ var look_target: Node3D
 var mouse_movement: Vector2
 var input_dir: Vector3
 var can_move:=true
+var can_attack:bool = true
 
 const WALK_SPEED_MINIMUM := 1.5
 const WALK_SPEED_MAXIMUM := 2.5
 
-const SPRINT_SPEED_MIN := 4.0
+const SPRINT_SPEED_MIN := 2.0
 const SPRINT_SPEED_MAX := 4.0
 
 var combat_type: int = 0
+var slowed :bool = false
+var slow_speed = 0
 
 func _ready() -> void:
 	SignalBus.connect("primary_active", _animate_camera_swing)
@@ -167,7 +170,7 @@ func handle_effects(delta) -> void:
 	if is_on_floor():
 		var horizontal_velocity: Vector2 = Vector2(velocity.x, velocity.z)
 		var speed_factor: float = horizontal_velocity.length() / BASE_WALK_SPEED
-		foot_steps_animation_player.speed_scale = speed_factor
+		foot_steps_animation_player.speed_scale = speed_factor * 1.5
 	else:
 		foot_steps_animation_player.speed_scale = 0.0
 
@@ -225,18 +228,25 @@ func set_crouch(enable: bool) -> void:
 func set_movement_speed() -> void:
 	if !can_move: speed = 0; return
 	
+	if slowed == true:
+		slow_speed = 2
+	else:
+		slow_speed = 0
+			
 	if player_body.is_kicking:
 		speed = 0
 		return
+	
 	if get_node_or_null("%sprint") != null and %sprint.is_triggered() and not disable_sprint:
-		speed = sprint_speed
+		speed = clampf(sprint_speed - slow_speed, SPRINT_SPEED_MIN, SPRINT_SPEED_MAX)
 		player_body.sprint_activate(true)
 	else:
-		speed = walk_speed
+		speed = clampf(walk_speed - slow_speed, WALK_SPEED_MINIMUM, WALK_SPEED_MAXIMUM)
 		player_body.sprint_activate(false)
 	
 	if crouching:
-		speed = crouch_speed
+		speed = clampf(crouch_speed - slow_speed, WALK_SPEED_MINIMUM, WALK_SPEED_MAXIMUM)
+		
 	footsteps.volume_linear = speed / walk_speed
 
 
@@ -378,7 +388,7 @@ func weapon_tilt(input_x, delta):
 func weapon_sway(delta):
 	mouse_movement = lerp(mouse_movement,Vector2.ZERO,10*delta)
 	if mainhand:
-		mainhand.rotation.x = lerpf(mainhand.rotation.x, clampf(mouse_movement.y * weapon_rotation_amount * (-1 if invert_weapon_sway else 1),-.4,.4), delta)
+		mainhand.rotation.x = lerpf(mainhand.rotation.x, clampf(mouse_movement.y * weapon_rotation_amount * (-1 if invert_weapon_sway else 1),-.2,.2), delta)
 		#mainhand.rotation.y = lerpf(mainhand.rotation.y, clampf(mouse_movement.y * weapon_rotation_amount * (-1 if invert_weapon_sway else 1),-.4,.4), delta)
 	if offhand:
 		offhand.rotation.x = lerpf(offhand.rotation.x, clampf(mouse_movement.y * weapon_rotation_amount * (1 if invert_weapon_sway else -1),-.04,.04), delta)
@@ -432,9 +442,9 @@ func _handle_ladder_physics() -> bool:
 		else:
 			# If not mounting from top, they are either falling or on floor.
 			# In which case, only stick to ladder if intentionally moving towards
-			if (ladder_gtransform.affine_inverse().basis * velocity).z >= 0: should_dismount = false
+			if (ladder_gtransform.affine_inverse().basis * velocity).z >= 0: should_dismount = true
 		# Only stick to ladder if very close. Helps make it easier to get off top & prevents camera jitter
-		if abs(pos_rel_to_ladder.z) > 0.1: should_dismount = false
+		if abs(pos_rel_to_ladder.z) > 0.1: should_dismount = true
 	
 	# Let player step off onto floor
 	if is_on_floor() and ladder_climb_vel <= 0: should_dismount = true
@@ -456,5 +466,22 @@ func _handle_ladder_physics() -> bool:
 	#pos_rel_to_ladder.z = 0
 	self.global_position = ladder_gtransform * pos_rel_to_ladder
 	
+	move_and_slide()
+	return true
+
+var _cur_rope_climbing: Area3D = null
+
+func _handle_rope_climb(delta: float) -> bool:
+	# Keep track of whether already on rope. If not already, check if overlapping a rope area3d.
+	var was_climbing_rope := _cur_rope_climbing and _cur_rope_climbing.overlaps_body(self)
+	if not was_climbing_rope:
+		_cur_rope_climbing = null
+		for rope in get_tree().get_nodes_in_group("rope"):
+			if rope.overlaps_body(self):
+				_cur_rope_climbing = rope
+				break
+	if _cur_rope_climbing == null:
+		return false
+		
 	move_and_slide()
 	return true

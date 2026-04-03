@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://lga6ytspbaaa"]
+
+[ext_resource type="Script" uid="uid://c8m575j3d3br8" path="res://rope.gd" id="1_g48y6"]
+[ext_resource type="Script" uid="uid://c4v44p5gadqto" path="res://rope_ladder.gd" id="2_8l2fj"]
+
+[sub_resource type="Curve3D" id="Curve3D_e1rka"]
+resource_local_to_scene = true
+bake_interval = 512.0
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, -2, 0, 0, 0, 0, 0, 0, 0, 0.6000004, -0.5, 0.29999924, 0, 0, 0, 0, 0, 0, 1.704977, 1.5322087, 0.9773445),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Resource" id="Resource_jvck6"]
+metadata/__load_path__ = "res://materials/orange_rope.tres"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5457m"]
+size = Vector3(0.1, 2, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ivea3"]
+size = Vector3(0.2, 2, 0.2)
+
+[node name="Path3DRope" type="Path3D" unique_id=2023378544]
+curve = SubResource("Curve3D_e1rka")
+script = ExtResource("1_g48y6")
+cable_thickness = 0.025
+fixed_end_point = false
+material = SubResource("Resource_jvck6")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="." unique_id=38727048]
+calculate_tangents = false
+polygon = PackedVector2Array()
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 0.2
+path_simplify_angle = 0.0
+path_rotation = 2
+path_rotation_accurate = false
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+smooth_faces = true
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="." unique_id=933412830]
+transform = Transform3D(-8.742278e-08, 0, -2, 0, 2, 0, 2, 0, -8.742278e-08, -13, 2.2, 59)
+top_level = true
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D3" unique_id=13773989]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0030155182, 0.10134888, 0.00014638901)
+shape = SubResource("BoxShape3D_5457m")
+debug_color = Color(1, 0, 0, 0.42000002)
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1123700383 groups=["ladder"]]
+transform = Transform3D(-8.742278e-08, 0, -2, 0, 2, 0, 2, 0, -8.742278e-08, -13, 2.2, 59.000004)
+top_level = true
+collision_layer = 2
+script = ExtResource("2_8l2fj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1199268763]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0030155182, 0.10134888, 0.00014638901)
+shape = SubResource("BoxShape3D_ivea3")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="ladderTop" type="Marker3D" parent="Area3D" unique_id=1889203429]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95227885, 0)

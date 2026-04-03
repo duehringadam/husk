@@ -16,7 +16,7 @@ func _ready() -> void:
 
 func hit_stop(timeScale, duration, priority: int):
 	timer.start()
-	if times_activated > 1: return
+	if times_activated > 2: return
 	times_activated += 1
 	if priority > current_priority:
 		current_priority = priority

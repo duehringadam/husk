@@ -1,9 +1,10 @@
 [gd_scene format=4 uid="uid://iarqxfted72l"]
 
+[ext_resource type="AudioStream" uid="uid://bhauxowkg5f45" path="res://Player/sfx/dirt_footsteps.tres" id="3_ivea3"]
 [ext_resource type="PackedScene" uid="uid://bia32vkq1a5i" path="res://scenes/player/player.tscn" id="5_cnaw2"]
 [ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/item.gd" id="5_ud3vi"]
 [ext_resource type="PackedScene" uid="uid://ymiu2vsxluj2" path="res://scenes/ladders/ladder.tscn" id="10_ud3vi"]
-[ext_resource type="PackedScene" uid="uid://x4xnc85khpl5" path="res://path_3d_rope.tscn" id="11_5457m"]
+[ext_resource type="PackedScene" uid="uid://cqebuck4snj2y" path="res://scenes/cleanser_knight/pyramid_final.tscn" id="12_jvck6"]
 [ext_resource type="PackedScene" uid="uid://dde8d0d27fgyo" path="res://scenes/npc/undead/shambler.tscn" id="13_jvck6"]
 [ext_resource type="Texture2D" uid="uid://cxnd1w61unt4o" path="res://scenes/shambler_armored/textures/textures/soldier_Base_color.png" id="14_kfu6g"]
 [ext_resource type="Texture2D" uid="uid://bjunm86fm2kvl" path="res://scenes/shambler_armored/textures/textures/soldier_Mixed_AO.png" id="15_6mf5r"]
@@ -11,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://47kf5dqv4xvg" path="res://scenes/shambler_armored/textures/textures/soldier_Normal_OpenGL.png" id="16_blr6d"]
 [ext_resource type="Texture2D" uid="uid://bpyuecyduy6u2" path="res://scenes/npc/howler/howler textures/howler_Base_color.png" id="17_blr6d"]
 [ext_resource type="Texture2D" uid="uid://dyg67rjl2h6j0" path="res://scenes/npc/howler/howler textures/howler_normal.jpg" id="18_f2a6c"]
+[ext_resource type="PackedScene" uid="uid://d3q3gr3em3pku" path="res://Player/weapon/ALL/Longsword/sword(1).blend" id="20_8wsjh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gy3sr"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -150,23 +152,10 @@ _data = {
 &"Take 001": SubResource("Animation_jo7ff")
 }
 
-[sub_resource type="Curve3D" id="Curve3D_5457m"]
-resource_local_to_scene = true
-bake_interval = 512.0
-_data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, -2, 0, 0, 0, 0, 0, 0, 0, 0.6000004, -0.5, 0.29999924, 0, 0, 0, 0, 0, 0, 1.704977, 1.5322087, 0.9773445),
-"tilts": PackedFloat32Array(0, 0, 0)
-}
-point_count = 3
+[sub_resource type="BoxMesh" id="BoxMesh_5457m"]
 
-[sub_resource type="Resource" id="Resource_jvck6"]
-metadata/__load_path__ = "res://materials/orange_rope.tres"
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_5457m"]
-size = Vector3(0.1, 2, 0.1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ivea3"]
-size = Vector3(0.2, 2, 0.2)
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ivea3"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
 
 [node name="test_world" type="Node3D" unique_id=1619667254]
 
@@ -182,19 +171,11 @@ shadow_enabled = true
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=761706030]
 navigation_mesh = SubResource("NavigationMesh_cnaw2")
 
-[node name="StaticBody3D2" type="StaticBody3D" parent="." unique_id=1676183416]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.561288, 4.9, -6.268134)
-collision_layer = 2
-collision_mask = 0
-
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=967836965]
-collision_layer = 2
-collision_mask = 0
-
 [node name="Player2" parent="." unique_id=1592911738 instance=ExtResource("5_cnaw2")]
-transform = Transform3D(-0.99971205, 0, -0.023996044, 0, 1, 0, 0.023996044, 0, -0.99971205, -5.8617, 0, 57.88921)
+transform = Transform3D(-0.99971205, 0, -0.023996044, 0, 1, 0, 0.023996044, 0, -0.99971205, -8.8617, 0.2, 56.889206)
+collision_mask = 46
 inventory = Array[ExtResource("5_ud3vi")]([])
-footsteps_sound = null
+footsteps_sound = ExtResource("3_ivea3")
 head_bob_strength = 0.05
 toggle_crouch = false
 walk_speed = 2.5
@@ -237,33 +218,18 @@ transform = Transform3D(-8.742278e-08, 0, -2, 0, 2, 0, 2, 0, -8.742278e-08, -18,
 [node name="ladder2" parent="." unique_id=1170092630 instance=ExtResource("10_ud3vi")]
 transform = Transform3D(-8.742278e-08, 0, -2, 0, 2, 0, 2, 0, -8.742278e-08, -18, 6.8, 70.4)
 
-[node name="Path3DRope" parent="." unique_id=309435782 instance=ExtResource("11_5457m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 6, 59)
-curve = SubResource("Curve3D_5457m")
-cable_thickness = 0.025
-fixed_end_point = false
-material = SubResource("Resource_jvck6")
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1528275583]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 8.8, 62)
+mesh = SubResource("BoxMesh_5457m")
 
-[node name="StaticBody3D3" type="StaticBody3D" parent="Path3DRope" unique_id=2141620873]
-transform = Transform3D(-8.742278e-08, 0, -2, 0, 2, 0, 2, 0, -8.742278e-08, -13, 2.2, 59)
-top_level = true
-collision_layer = 2
-collision_mask = 0
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Path3DRope/StaticBody3D3" unique_id=1695935320]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0030155182, 0.10134888, 0.00014638901)
-shape = SubResource("BoxShape3D_5457m")
-debug_color = Color(1, 0, 0, 0.42000002)
-
-[node name="Area3D" type="Area3D" parent="Path3DRope" unique_id=361262362 groups=["ladder"]]
-transform = Transform3D(-8.742278e-08, 0, -2, 0, 2, 0, 2, 0, -8.742278e-08, -13, 2.2, 59.000004)
-top_level = true
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2" unique_id=1942237724]
 collision_layer = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Path3DRope/Area3D" unique_id=108046741]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0030155182, 0.10134888, 0.00014638901)
-shape = SubResource("BoxShape3D_ivea3")
-debug_color = Color(1, 0, 0, 0.42000002)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D" unique_id=1553713888]
+shape = SubResource("ConvexPolygonShape3D_ivea3")
 
-[node name="ladderTop" type="Marker3D" parent="Path3DRope/Area3D" unique_id=1484921763]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95227885, 0)
+[node name="pyramid_final" parent="." unique_id=1488241507 instance=ExtResource("12_jvck6")]
+transform = Transform3D(-1.75, 0, 2.6424266e-07, 0, 1.75, 0, -2.6424266e-07, 0, -1.75, -14, 9, 86)
+
+[node name="sword(1)" parent="." unique_id=1629618071 instance=ExtResource("20_8wsjh")]
+transform = Transform3D(0.1572791, 0.5648554, -0.8100627, 0.9875542, -0.08995958, 0.12901159, 0, -0.8202717, -0.5719741, -14.398417, 10.131123, 86.52436)

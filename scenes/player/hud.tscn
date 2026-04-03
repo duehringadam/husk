@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cfrncsoneogy8" path="res://scenes/player/hud.gd" id="1_5bwha"]
 [ext_resource type="FontFile" uid="uid://ip8tcqh7uxmx" path="res://fonts/Alkhemikal.ttf" id="2_xivtj"]
-[ext_resource type="Script" uid="uid://ds4jqcfrmjpbj" path="res://Player/inventory.gd" id="3_xivtj"]
+[ext_resource type="PackedScene" uid="uid://l2q2on8dxrq5" path="res://Globals/inventory.tscn" id="3_xivtj"]
 
 [sub_resource type="Gradient" id="Gradient_x2tju"]
 offsets = PackedFloat32Array(0, 0.125, 0.14375)
@@ -48,6 +48,8 @@ _data = {
 &"RESET": SubResource("Animation_ugbui"),
 &"showtuttext": SubResource("Animation_gx1jg")
 }
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xivtj"]
 
 [node name="HUD" type="Control" unique_id=932650427]
 layout_mode = 3
@@ -133,27 +135,8 @@ fit_content = true
 autowrap_mode = 2
 horizontal_alignment = 1
 
-[node name="inventory" type="PanelContainer" parent="." unique_id=2048607073]
+[node name="inventory" parent="." unique_id=227349631 instance=ExtResource("3_xivtj")]
 unique_name_in_owner = true
 visible = false
-layout_mode = 0
-offset_left = 100.0
-offset_top = 100.0
-offset_right = 1820.0
-offset_bottom = 980.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-script = ExtResource("3_xivtj")
-
-[node name="PanelContainer" type="PanelContainer" parent="inventory" unique_id=723780849]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="ScrollContainer" type="ScrollContainer" parent="inventory/PanelContainer" unique_id=1987552883]
-layout_mode = 2
-horizontal_scroll_mode = 0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="inventory/PanelContainer/ScrollContainer" unique_id=1868460227]
-layout_mode = 2
-size_flags_horizontal = 3
+layout_mode = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_xivtj")

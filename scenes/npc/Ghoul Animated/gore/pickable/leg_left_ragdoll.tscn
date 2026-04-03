@@ -113,7 +113,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_wibwg")
 
 [node name="PhysicalBoneSimulator3D" type="PhysicalBoneSimulator3D" parent="Skeleton3D" unique_id=1000728362]
 
-[node name="Physical Bone UpperArm_R" type="PhysicalBone3D" parent="Skeleton3D/PhysicalBoneSimulator3D" unique_id=92069783 node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component") groups=["throwable"]]
+[node name="Physical Bone UpperArm_R" type="PhysicalBone3D" parent="Skeleton3D/PhysicalBoneSimulator3D" unique_id=92069783 node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component") groups=["limb_sever", "throwable"]]
 transform = Transform3D(-0.024396436, 0.9931382, -0.11437499, 0.023946619, 0.1149567, 0.99308145, 0.9994155, 0.02148876, -0.026586844, -0.04800372, 0.43224102, -0.0076205777)
 collision_layer = 8
 collision_mask = 15
@@ -277,13 +277,13 @@ shape = SubResource("CapsuleShape3D_6kh1r")
 transform = Transform3D(0.99999994, 0, 1.8626451e-09, 0, 0.99999994, -2.910383e-10, 0, -7.683411e-09, 0.9999999, -0.00969966, -0.0029048533, -0.3669639)
 aabb = AABB(-0.2232442, -0.12732121, -0.62217367, 0.4464884, 0.25464243, 1.2443473)
 
-[node name="Physical Bone UpperArm_R2" type="PhysicalBone3D" parent="Skeleton3D/PhysicalBoneSimulator3D" unique_id=2124185404 node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component") groups=["throwable"]]
-transform = Transform3D(-0.02624312, 0.9934653, -0.111078516, -0.11380488, 0.10742519, 0.9876779, 0.99315643, 0.03856104, 0.11024205, -0.0026943984, 0.035396934, -0.017101508)
+[node name="Physical Bone UpperArm_R2" type="PhysicalBone3D" parent="Skeleton3D/PhysicalBoneSimulator3D" unique_id=2124185404 node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component") groups=["limb_sever", "throwable"]]
+transform = Transform3D(-0.02624312, 0.9934653, -0.111078516, -0.11380488, 0.10742519, 0.9876779, 0.99315643, 0.03856104, 0.11024205, -0.00269077, 0.035364598, -0.017108407)
 collision_layer = 8
 collision_mask = 15
 joint_type = 5
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00021163895, 1.34917245e-05, 0.14553405)
-body_offset = Transform3D(1.0000004, -1.5683472e-06, -7.83056e-06, -7.912517e-06, -7.2829425e-07, -0.99999994, 1.5385449e-06, 1.0000004, -8.624047e-07, -0.00021049939, 0.14553404, -1.3366545e-05)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00021490442, 1.3628362e-05, 0.14556716)
+body_offset = Transform3D(1.0000004, -1.5683472e-06, -7.83056e-06, -7.912517e-06, -7.2829425e-07, -0.99999994, 1.5385449e-06, 1.0000004, -8.624047e-07, -0.00021376461, 0.14556715, -1.3503159e-05)
 bone_name = "Calf_L"
 joint_constraints/x/linear_limit_enabled = true
 joint_constraints/x/linear_limit_upper = 0.0
@@ -415,7 +415,7 @@ metadata/_custom_type_script = "uid://bxe74cq2uqemi"
 
 [node name="PickupSound" type="AudioStreamPlayer" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R2" unique_id=1347855717]
 
-[node name="Physical Bone UpperArm_R3" type="PhysicalBone3D" parent="Skeleton3D/PhysicalBoneSimulator3D" unique_id=1150075747 node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component") groups=["throwable"]]
+[node name="Physical Bone UpperArm_R3" type="PhysicalBone3D" parent="Skeleton3D/PhysicalBoneSimulator3D" unique_id=1150075747 node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component") groups=["limb_sever", "throwable"]]
 transform = Transform3D(-1.0000001, -7.097787e-06, -3.4974264e-06, -7.844378e-06, 0.94722044, 0.32058164, 1.0374138e-06, 0.32058173, -0.9472209, 0.033598356, -0.33331993, 0.08198044)
 collision_layer = 8
 collision_mask = 15

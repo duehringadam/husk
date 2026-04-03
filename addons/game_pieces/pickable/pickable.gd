@@ -178,7 +178,7 @@ func break_object():
 		get_tree().current_scene.add_child(shattered_mesh_add)
 		shattered_mesh_add.global_transform = self.global_transform
 		shattered_mesh_add.break_mesh(throwable.linear_velocity, throwable_mesh.get_surface_override_material(0))
-		AudioManager.play_sound(break_sound, self.global_position, 0)
+		AudioManager.play_sound(break_sound, self.global_position, -10)
 		get_tree().create_timer(.05).timeout.connect(func(): self.queue_free())
 
 
