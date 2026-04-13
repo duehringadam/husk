@@ -1,59 +1,27 @@
 class_name Weapon
 extends Node3D
 
-@export var weapon_initial_position: Vector3
-@export_range(0.0,1.0) var block_amount: float
+signal damage_dealt
+
 @export var hit_particles_add: PackedScene
-@export var swing_sound: AudioStream
-@export var hit_sound: AudioStream
+@export var swing_sound: AudioStreamPlayer3D
+@export var block_sound: AudioStreamPlayer3D
+@export var equip_sound: AudioStreamPlayer3D
 @export var damage_component: DamageComponent
 @export var blood_drip: GPUParticles3D
 @export var bloodtimer: Timer
 @export var weapon_mesh: MeshInstance3D
-@export var state_chart: StateChart
-@onready var animation_tree: AnimationTree = $AnimationTree
-@export var block_sound: AudioStreamPlayer3D
+
+@export var trail: GPUTrail3D
 
 var can_attack: bool = true
 var secondary_active_bool: bool = false
 var tween: Tween
-var combat_type: int
-var attack_dir
 
 func _ready() -> void:
-	self.position = weapon_initial_position
-	SignalBus.connect("npc_interacted", _on_npc_interacted)
-	SignalBus.connect("dialogue_ended", _on_dialogue_ended)
-	SignalBus.connect("secondary_active", secondary_active)
-	GamePiecesEventBus.connect("combat_type",_on_combat_type_changed)
 	damage_component.source = Global.player
-	combat_type = AppSettings.get_directional_combat_from_config()
-	
-func _process(delta: float) -> void:
-	match combat_type:
-		0:
-			attack_dir = Global.player.input_dir
-			attack_dir.y = Global.player.input_dir.z
-		1:
-			attack_dir = Input.get_last_mouse_velocity().normalized()
+	equip_sound.play()
 
-func _on_combat_type_changed(value: int):
-	combat_type = value
-	
-	
-func secondary_active(value: bool):
-	secondary_active_bool = value
-	
-	if secondary_active_bool:
-		can_attack = false
-	else:
-		can_attack = true
-
-func _on_npc_interacted(_sheet_id):
-	can_attack = false
-
-func _on_dialogue_ended():
-	can_attack = true
 
 func _on_bloodtimer_timeout() -> void:
 	blood_drip.emitting = false
@@ -77,13 +45,3 @@ func remove_blood():
 	var weapon_mesh_shader = weapon_mesh.get_active_material(0)
 	tween = get_tree().create_tween()
 	tween.tween_property(weapon_mesh_shader.next_pass,"shader_parameter/progress",0,60)
-
-func block():
-	if block_sound:
-		block_sound.pitch_scale = randf_range(.9,1.2)
-	animation_tree.set("parameters/conditions/block_hit", true)
-	await get_tree().create_timer(.1).timeout
-	animation_tree.set("parameters/conditions/block_hit", false)
-
-func start_block():
-	state_chart.send_event("block")

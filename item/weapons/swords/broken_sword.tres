@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="item" format=3 uid="uid://bgq4jclx52jt0"]
 
+[ext_resource type="AnimationNodeStateMachine" uid="uid://bjj1ust2y45ae" path="res://Player/viewmodel/animations/hands/animation_state_machines/one_handed_sword_animation_state_machine.tres" id="1_yfysy"]
 [ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/item_stat.gd" id="2_umlii"]
 [ext_resource type="PackedScene" uid="uid://wbbu81bn30xc" path="res://scenes/player/sword_viewmodel.tscn" id="2_xayhp"]
 [ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/item.gd" id="3_xayhp"]
@@ -21,4 +22,7 @@ item_required_stats = Dictionary[int, float]({
 0: 5.0
 })
 item_scene = ExtResource("2_xayhp")
+animation_state_machine = ExtResource("1_yfysy")
+position = Vector3(-0.02, 0.122, 0.01)
+rotation = Vector3(2.8, -87.2, -91.6)
 metadata/_custom_type_script = "uid://dcfd18dx8x1bm"

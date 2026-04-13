@@ -1,0 +1,26 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://u5y3hm327roa"]
+
+[ext_resource type="Shader" uid="uid://h02g3rvsbjdw" path="res://scenes/tiling.gdshader" id="1_rl7lu"]
+[ext_resource type="Texture2D" uid="uid://cr5a" path="res://scenes/MedievalTown/URP/Art/Textures/Castle/T_Stone_Walls_normal.png" id="2_vk6pu"]
+[ext_resource type="Texture2D" uid="uid://cr47" path="res://scenes/MedievalTown/URP/Art/Textures/Castle/T_Stone_wall_ID.png" id="3_t7ikx"]
+[ext_resource type="Texture2D" uid="uid://cr5c" path="res://scenes/MedievalTown/URP/Art/Textures/Castle/T_Stone_basecolor.png" id="4_t7xo4"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_rl7lu")
+shader_parameter/center_texture = ExtResource("4_t7xo4")
+shader_parameter/center_normal = ExtResource("2_vk6pu")
+shader_parameter/center_roughness = ExtResource("3_t7ikx")
+shader_parameter/tint_color = Color(0.14767182, 0.14767179, 0.14767179, 1)
+shader_parameter/center_slope = 0.0
+shader_parameter/bottom_slope = 0.1
+shader_parameter/use_world_normal = true
+shader_parameter/uv_top_blend_sharpness = 1.0
+shader_parameter/uv_top_scale = Vector3(1, 1, 1)
+shader_parameter/uv_top_offset = Vector3(0, 0, 0)
+shader_parameter/uv_center_blend_sharpness = 1.0
+shader_parameter/uv_center_scale = Vector3(0.255, 0.275, 0.16)
+shader_parameter/uv_center_offset = Vector3(0, 0, 0)
+shader_parameter/uv_bottom_blend_sharpness = 1.0
+shader_parameter/uv_bottom_scale = Vector3(1, 1, 1)
+shader_parameter/uv_bottom_offset = Vector3(0, 0, 0)

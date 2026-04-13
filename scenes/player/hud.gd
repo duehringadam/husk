@@ -8,9 +8,10 @@ extends Control
 var inventory_open: bool = false
 
 func _ready() -> void:
-	_nothing_interactable()
-	InteractionController.current.clear_action_prompts.connect(_nothing_interactable)
-	InteractionController.current.display_action_prompts.connect(_something_interactable)
+	if Global.player:
+		_nothing_interactable()
+		InteractionController.current.clear_action_prompts.connect(_nothing_interactable)
+		InteractionController.current.display_action_prompts.connect(_something_interactable)
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("inventory"):

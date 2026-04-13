@@ -37,8 +37,6 @@ func _on_knocked_back_state_entered() -> void:
 					state_chart.send_event("knocked_down")
 					state_chart.send_event("knocked_down")
 	
-	
-	
 	if kb_source:
 		var kb :Vector3 = kb_source.source.global_position - source_npc.global_position
 		var kb_dir = kb.normalized()

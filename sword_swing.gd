@@ -1,28 +1,49 @@
 extends Node
 
 @export var state_chart: StateChart
-@export var weapon: Node3D
-@export var swing_audio: AudioStreamPlayer3D
-@export var trail: GPUTrail3D
-@onready var animation_tree: AnimationTree = $"../../../../AnimationTree"
+@export var bone_attach: BoneAttachment3D
+@export var animation_tree: AnimationTree
+
+var weapon
+
+func _ready() -> void:
+	animation_tree["parameters/playback"].connect("state_finished", _anim_finished)
 
 func _on_swing_left_state_entered() -> void:
-	trail.visible = true
-	swing_audio.pitch_scale = randf_range(0.8,1.2)
+	animation_tree.set("parameters/conditions/swing", true)
+	for i in bone_attach.get_children():
+		if i is Weapon:
+			weapon = i
+	weapon.swing_sound.pitch_scale = randf_range(0.9,1)
+	weapon.swing_sound.play()
+	weapon.trail.visible = true
+	weapon.damage_component.monitoring = true
+	weapon.damage_component.monitorable = true
 	SignalBus.emit_signal("primary_active", true)
 	var tween = get_tree().create_tween()
 	tween.tween_property(Global.player.camera,"fov", Global.camera_fov,.25)
 	get_tree().create_timer(1).timeout.connect(func(): state_chart.send_event("idle"))
-	animation_tree.set("parameters/conditions/swing", true)
-	await animation_tree.animation_finished
-	state_chart.send_event("idle")
 	
 
 func _on_swing_left_state_exited() -> void:
 	GamePiecesEventBus.slow_player_requested(-2)
 	SignalBus.emit_signal("primary_active", false)
 	animation_tree.set("parameters/conditions/swing", false)
+	weapon.trail.visible = false
+	weapon.damage_component.monitoring = false
+	weapon.damage_component.monitorable = false
 
 
 func _on_swing_left_state_processing(delta: float) -> void:
 	pass
+
+func _anim_finished(state: StringName):
+	if state == "swing_right":
+		state_chart.send_event("idle")
+	if state == "swing_left":
+		state_chart.send_event("idle")
+	if state == "swing_forward":
+		state_chart.send_event("idle")
+	if state == "swing_back":
+		state_chart.send_event("idle")
+	

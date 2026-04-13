@@ -12,11 +12,10 @@ resource_name = "metal"
 next_pass = ExtResource("2_mukux")
 cull_mode = 2
 albedo_texture = ExtResource("1_mv2jc")
-metallic = 0.48623854
-roughness = 0.5825688
+metallic = 1.0
 normal_enabled = true
-normal_scale = 1.5
 normal_texture = ExtResource("3_8rx3x")
+texture_filter = 4
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8rx3x"]
 resource_local_to_scene = true
@@ -27,6 +26,7 @@ albedo_texture = ExtResource("2_whmfr")
 normal_enabled = true
 normal_scale = 0.25
 normal_texture = ExtResource("5_sfxv3")
+texture_filter = 4
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_sfxv3"]
 _surfaces = [{

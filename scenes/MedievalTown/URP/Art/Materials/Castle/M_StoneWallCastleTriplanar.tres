@@ -1,0 +1,41 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cr43"]
+
+[ext_resource type="Shader" uid="uid://via5mp" path="res://scenes/MedievalTown/URP/Art/Shaders/S_AssetMaster.tres" id="1_cr45"]
+[ext_resource type="Texture2D" uid="uid://cr47" path="res://scenes/MedievalTown/URP/Art/Textures/Castle/T_Stone_wall_ID.png" id="1_cr47"]
+[ext_resource type="Texture2D" uid="uid://cr5c" path="res://scenes/MedievalTown/URP/Art/Textures/Castle/T_Stone_basecolor.png" id="2_cr5c"]
+[ext_resource type="Texture2D" uid="uid://cr5e" path="res://scenes/MedievalTown/URP/Art/Textures/Castle/T_Stone_normal.png" id="3_cr5e"]
+[ext_resource type="Texture2D" uid="uid://cr5a" path="res://scenes/MedievalTown/URP/Art/Textures/Castle/T_Stone_Walls_normal.png" id="4_cr5a"]
+
+[resource]
+resource_name = "M_StoneWallCastleTriplanar"
+render_priority = 0
+shader = ExtResource("1_cr45")
+shader_parameter/ColorA = Color(0.127, 0.147, 0.112, 0)
+shader_parameter/ColorB = Color(0.07, 0.12, 0, 0)
+shader_parameter/UseTriplanar_ = true
+shader_parameter/IDMap = ExtResource("1_cr47")
+shader_parameter/BaseMapTiling = 5.655
+shader_parameter/ColorC = Color(0.571, 0.571, 0.571, 0)
+shader_parameter/ColorD = Color(0.44, 0.558, 0.216, 0)
+shader_parameter/ColorE = Color(0.235, 0.178, 0.22, 1)
+shader_parameter/ColorEForce = 0.0
+shader_parameter/PatternColor_A = Color(0.638, 0.638, 0.638, 0)
+shader_parameter/PatternColor_B = Color(0.337, 0.337, 0.337, 0)
+shader_parameter/PatternID = ExtResource("2_cr5c")
+shader_parameter/PatternTiling = 80.0
+shader_parameter/PatternUseUV1_ = false
+shader_parameter/RotateUV = 13.84
+shader_parameter/Metallic = 0.0
+shader_parameter/UseDefaultRoughness_ = false
+shader_parameter/Roughness = 0.0
+shader_parameter/RoughnessA = 0.5
+shader_parameter/RoughnessB = 1.0
+shader_parameter/RoughnessC = 0.2
+shader_parameter/RoughnessD = 1.0
+shader_parameter/RoughnessE1 = 0.18
+shader_parameter/RoughnessE2 = 1.479
+shader_parameter/PatternRoughnessA = 0.5
+shader_parameter/PatternRoughnessB = 1.0
+shader_parameter/NormalMap = ExtResource("4_cr5a")
+shader_parameter/PatternNormal = ExtResource("3_cr5e")
+shader_parameter/PatternNormalForce = 9.885

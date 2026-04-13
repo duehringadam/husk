@@ -3028,18 +3028,13 @@ shader_parameter/flags = 42
 [sub_resource type="QuadMesh" id="QuadMesh_dshsm"]
 material = SubResource("ShaderMaterial_g46rh")
 
-[node name="mace" type="Node3D" unique_id=70380426 node_paths=PackedStringArray("damage_component", "blood_drip", "bloodtimer", "weapon_mesh", "state_chart")]
+[node name="mace" type="Node3D" unique_id=70380426 node_paths=PackedStringArray("swing_sound", "damage_component", "blood_drip", "bloodtimer", "weapon_mesh")]
 script = ExtResource("1_b8kcf")
-weapon_initial_position = Vector3(-0.306, -0.634, 0.397)
-two_handed = true
-block_amount = 0.25
-swing_sound = ExtResource("2_b8kcf")
-hit_sound = ExtResource("3_1qvh1")
+swing_sound = NodePath("mace_mesh/swing")
 damage_component = NodePath("mace_mesh/DamageComponent")
 blood_drip = NodePath("mace_mesh/blood drip")
 bloodtimer = NodePath("bloodtimer")
 weapon_mesh = NodePath("mace_mesh")
-state_chart = NodePath("StateChart")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1775955989]
 libraries/ = SubResource("AnimationLibrary_1qvh1")
@@ -3543,12 +3538,11 @@ to = NodePath("../../block")
 event = &"block"
 delay_in_seconds = "0.0"
 
-[node name="idle" type="Node" parent="StateChart/CompoundState/idle" unique_id=1984261774 node_paths=PackedStringArray("weapon", "state_chart", "animation_tree", "trail")]
+[node name="idle" type="Node" parent="StateChart/CompoundState/idle" unique_id=1984261774 node_paths=PackedStringArray("weapon", "state_chart", "animation_tree")]
 script = ExtResource("12_hql1m")
 weapon = NodePath("../../../..")
 state_chart = NodePath("../../..")
 animation_tree = NodePath("../../../../AnimationTree")
-trail = NodePath("../../../../mace_mesh/GPUTrail3D")
 
 [node name="left" type="Node" parent="StateChart/CompoundState" unique_id=1924216288]
 script = ExtResource("11_syktl")
@@ -3681,10 +3675,9 @@ animation_tree = NodePath("../../../../AnimationTree")
 [node name="swing" type="Node" parent="StateChart/CompoundState" unique_id=1839910527]
 script = ExtResource("11_syktl")
 
-[node name="swing" type="Node" parent="StateChart/CompoundState/swing" unique_id=674271046 node_paths=PackedStringArray("state_chart", "weapon", "swing_audio", "trail")]
+[node name="swing" type="Node" parent="StateChart/CompoundState/swing" unique_id=674271046 node_paths=PackedStringArray("state_chart", "swing_audio", "trail")]
 script = ExtResource("18_2aoi0")
 state_chart = NodePath("../../..")
-weapon = NodePath("../../../..")
 swing_audio = NodePath("../../../../mace_mesh/swing")
 trail = NodePath("../../../../mace_mesh/GPUTrail3D")
 

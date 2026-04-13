@@ -1,0 +1,41 @@
+[gd_resource type = "ShaderMaterial" load_steps=5 format=3 uid="uid://csl7"]
+
+[ext_resource type="Shader" uid="uid://via5mp" path="res://Hivemind/MedievalTown/URP/Art/Shaders/S_AssetMaster.tres" id="1_cr45"]
+[ext_resource type="Texture2D" uid="uid://crv5" path="res://Hivemind/MedievalTown/URP/Art/Textures/Castle/Wood_Tile_ID.png" id="1_crv5"]
+[ext_resource type="Texture2D" uid="uid://cr8a" path="res://Hivemind/MedievalTown/URP/Art/Textures/Castle/Wood_basecolor.png" id="2_cr8a"]
+[ext_resource type="Texture2D" uid="uid://cr8c" path="res://Hivemind/MedievalTown/URP/Art/Textures/Castle/Wood_normal.png" id="3_cr8c"]
+[ext_resource type="Texture2D" uid="uid://crv7" path="res://Hivemind/MedievalTown/URP/Art/Textures/Castle/Wood_Tile_normal.png" id="4_crv7"]
+
+[resource]
+resource_name = "M_WoodCastle"
+render_priority = 0
+shader = ExtResource("1_cr45")
+shader_parameter/BaseMapTiling = 1.000
+shader_parameter/IDMap = ExtResource("1_crv5")
+shader_parameter/ColorA = Color( 0.255, 0.142, 0.073, 1.000)
+shader_parameter/ColorB = Color( 0.472, 0.333, 0.238, 0.000)
+shader_parameter/ColorC = Color( 0.413, 0.397, 0.301, 0.000)
+shader_parameter/ColorD = Color( 0.500, 0.182, 0.000, 0.000)
+shader_parameter/ColorE = Color( 0.515, 0.361, 0.342, 1.000)
+shader_parameter/ColorEForce = 0.715
+shader_parameter/PatternColor_A = Color( 0.450, 0.462, 0.438, 0.000)
+shader_parameter/PatternColor_B = Color( 1.000, 1.000, 1.000, 0.000)
+shader_parameter/PatternUseUV1_ = false
+shader_parameter/RotateUV = 0.000
+shader_parameter/PatternTiling = 0.338
+shader_parameter/PatternID = ExtResource("2_cr8a")
+shader_parameter/PatternNormal = ExtResource("3_cr8c")
+shader_parameter/PatternNormalForce = 0.000
+shader_parameter/NormalMap = ExtResource("4_crv7")
+shader_parameter/PatternRoughnessA = 0.500
+shader_parameter/PatternRoughnessB = 0.500
+shader_parameter/RoughnessA = 0.700
+shader_parameter/RoughnessB = 1.000
+shader_parameter/RoughnessC = 0.200
+shader_parameter/RoughnessD = 0.800
+shader_parameter/RoughnessE1 = 0.500
+shader_parameter/RoughnessE2 = 0.500
+shader_parameter/Metallic = 0.000
+shader_parameter/UseTriplanar_ = false
+shader_parameter/Roughness = 0.000
+shader_parameter/UseDefaultRoughness_ = false

@@ -116,7 +116,7 @@ const SPRINT_SPEED_MAX := 4.0
 var combat_type: int = 0
 var slowed :bool = false
 var slow_speed = 0
-
+var attack_dir
 func _ready() -> void:
 	SignalBus.connect("primary_active", _animate_camera_swing)
 	SignalBus.connect("kick_active", _animate_camera_swing)
@@ -158,6 +158,13 @@ func _physics_process(delta) -> void:
 		move_and_slide()
 		weapon_sway(delta)
 		handle_kick()
+		match combat_type:
+			0:
+				attack_dir = Global.player.input_dir
+				attack_dir.y = Global.player.input_dir.z
+				
+			1:
+				attack_dir = Input.get_last_mouse_velocity().normalized()
 	_handle_ladder_physics()
 
 
@@ -268,7 +275,7 @@ func handle_movement(delta: float) -> void:
 	if is_on_floor():
 		if direction:
 			if AppSettings.get_head_bob_from_config():
-				camera.rotation_degrees.z = lerpf(camera.rotation_degrees.z,clampf(-(camera.rotation_degrees.z-direction.x),-1,1),4*delta)
+				camera.rotation_degrees.z = lerpf(camera.rotation_degrees.z,clampf((camera.rotation_degrees.z-input_dir.x),-1,1),4*delta)
 			velocity.x = direction.x * speed
 			velocity.z = direction.z * speed
 			handle_fov_change(delta)
@@ -277,6 +284,7 @@ func handle_movement(delta: float) -> void:
 			velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
 			velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
 	else:
+		camera.rotation_degrees.z = lerpf(camera.rotation_degrees.z,0,1*delta)
 		velocity.x = lerp(velocity.x, direction.x * speed, delta * 3.0)
 		velocity.z = lerp(velocity.z, direction.z * speed, delta * 3.0)
 
@@ -380,19 +388,21 @@ func smooth_lookat():
 		tween.tween_property(self, "rotation", new_rotation, LOOK_AT_DURATION)
 		
 func weapon_tilt(input_x, delta):
-	if mainhand:
-		mainhand.rotation.z = lerpf(mainhand.rotation.z, clampf(-input_x * weapon_rotation_amount * 10,-.05,.05), 5 * delta)
-	if offhand:
-		offhand.rotation.z = lerpf(offhand.rotation.z, clampf(-input_x * weapon_rotation_amount * 10,-.05,.05), 5 * delta)
-	
+	if can_attack:
+		if mainhand:
+			mainhand.rotation.z = lerpf(mainhand.rotation.z, clampf(-input_x * weapon_sway_amount * 10,-.05,.05), 5 * delta)
+		if offhand:
+			offhand.rotation.z = lerpf(offhand.rotation.z, clampf(-input_x * weapon_sway_amount * 10,-.05,.05), 5 * delta)
+		
 func weapon_sway(delta):
-	mouse_movement = lerp(mouse_movement,Vector2.ZERO,10*delta)
-	if mainhand:
-		mainhand.rotation.x = lerpf(mainhand.rotation.x, clampf(mouse_movement.y * weapon_rotation_amount * (-1 if invert_weapon_sway else 1),-.2,.2), delta)
-		#mainhand.rotation.y = lerpf(mainhand.rotation.y, clampf(mouse_movement.y * weapon_rotation_amount * (-1 if invert_weapon_sway else 1),-.4,.4), delta)
-	if offhand:
-		offhand.rotation.x = lerpf(offhand.rotation.x, clampf(mouse_movement.y * weapon_rotation_amount * (1 if invert_weapon_sway else -1),-.04,.04), delta)
-		offhand.rotation.y = lerpf(offhand.rotation.y, clampf(mouse_movement.y * weapon_rotation_amount * (1 if invert_weapon_sway else -1),-.04,.04), delta)
+	if can_attack:
+		mouse_movement = lerp(mouse_movement,Vector2.ZERO,10*delta)
+		if mainhand:
+			mainhand.rotation.x = lerpf(mainhand.rotation.x, clampf(mouse_movement.y * weapon_rotation_amount * (-1 if invert_weapon_sway else 1),-.2,.2), delta)
+			mainhand.rotation.y = lerpf(mainhand.rotation.y, clampf(mouse_movement.y * weapon_rotation_amount * (-1 if invert_weapon_sway else 1),-.02,.02), delta)
+		if offhand:
+			offhand.rotation.x = lerpf(offhand.rotation.x, clampf(mouse_movement.y * weapon_rotation_amount * (1 if invert_weapon_sway else -1),-.02,.02), delta)
+			offhand.rotation.y = lerpf(offhand.rotation.y, clampf(mouse_movement.y * weapon_rotation_amount * (1 if invert_weapon_sway else -1),-.02,.02), delta)
 
 
 func _on_hurtbox_component_damage_taken(actual: float, source: DamageComponent, hit_dir: Vector3) -> void:

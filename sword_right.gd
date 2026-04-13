@@ -9,10 +9,19 @@ func _on_right_state_entered() -> void:
 
 
 func _on_right_state_exited() -> void:
-	
-	animation_tree.set("parameters/conditions/hold_right", false)
+	pass
 
 
-func _on_right_state_processing(delta: float) -> void:
-		if not (Input.is_action_pressed("attack_primary") and animation_tree.animation_finished):
-			state_chart.send_event("swing")
+func _on_right_state_input(event: InputEvent) -> void:
+	if event.is_action_released("attack_primary"):
+		animation_tree.set("parameters/conditions/hold_right", false)
+		state_chart.send_event("swing")
+
+
+func _on_right_state_physics_processing(delta: float) -> void:
+	if not (Input.is_action_pressed("attack_primary")):
+		animation_tree.set("parameters/conditions/hold_right", false)
+		state_chart.send_event("swing")
+	if !animation_tree["parameters/playback"].is_playing:
+		animation_tree.set("parameters/conditions/hold_right", false)
+		state_chart.send_event("swing")
