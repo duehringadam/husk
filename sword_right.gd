@@ -2,7 +2,7 @@ extends Node
 
 @export var state_chart: StateChart
 @export var animation_tree: AnimationTree
-
+@export var right_hand: Marker3D
 
 func _on_right_state_entered() -> void:
 	animation_tree.set("parameters/conditions/hold_right", true)

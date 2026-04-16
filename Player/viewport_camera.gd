@@ -38,7 +38,7 @@ func apply_shake():
 func randomOffset():
 	return Vector2(rng.randf_range(-shake_strength,shake_strength),rng.randf_range(-shake_strength,shake_strength))
 
-
 func _on_hurtbox_component_damage_taken(actual: float, source: DamageComponent, hit_dir: Vector3) -> void:
 	if actual >0:
 		apply_shake()
+	

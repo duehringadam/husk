@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://3ppi7j5cr31r"]
 
 [ext_resource type="Shader" uid="uid://d27b2172ftpib" path="res://scenes/skyshader.gdshader" id="1_l137e"]
-[ext_resource type="Texture2D" uid="uid://bsi2i0lsi8337" path="res://AllSkyFree/mayhem/sky.png" id="2_ygn2i"]
+[ext_resource type="Texture2D" uid="uid://cu3nf7bvj5418" path="res://AllSkyFree/mayhem/scorched_sky.png" id="2_swu3i"]
 [ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/item.gd" id="3_f17e3"]
 [ext_resource type="AudioStream" uid="uid://bhauxowkg5f45" path="res://Player/sfx/dirt_footsteps.tres" id="3_pm21f"]
 [ext_resource type="PackedScene" uid="uid://bia32vkq1a5i" path="res://scenes/player/player.tscn" id="4_k0juu"]
@@ -84,10 +84,10 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oexs8"]
 shader = ExtResource("1_l137e")
-shader_parameter/source_panorama = ExtResource("2_ygn2i")
+shader_parameter/source_panorama = ExtResource("2_swu3i")
 shader_parameter/add_clouds = true
 shader_parameter/clouds_below = false
-shader_parameter/cloud_scale = 0.58999998681232
+shader_parameter/cloud_scale = 0.13999999687072
 shader_parameter/speed = 0.0050000002375
 shader_parameter/cloud_dark = 0.58999998681232
 shader_parameter/cloud_light = 0.41999999061216
@@ -104,7 +104,7 @@ radiance_size = 2
 [sub_resource type="Environment" id="Environment_qfnet"]
 background_mode = 2
 sky = SubResource("Sky_71j4m")
-sky_rotation = Vector3(0, -3.0700343, 0)
+sky_rotation = Vector3(0, -2.9234264, 0)
 ambient_light_source = 3
 ambient_light_color = Color(0.98982507, 1, 0.7561199, 1)
 reflected_light_source = 2
@@ -120,8 +120,9 @@ fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0.999999, 0.99651915, 0.8153177, 1)
 fog_light_energy = 0.15
+fog_sun_scatter = 0.04
 fog_density = 0.6761
-fog_sky_affect = 0.401
+fog_aerial_perspective = 0.908
 fog_height = 40.0
 fog_height_density = 0.4754
 fog_depth_curve = 1.1891894
@@ -218,7 +219,7 @@ material_override = SubResource("ShaderMaterial_7t5mc")
 generated_size = Vector2(16, 16)
 last_lod = 0
 last_shadow_lod = 0
-lod0_range = 128.0
+lod0_range = 64.0
 
 [sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_xo05s"]
 name = "tree_dead_billboard"
@@ -339,7 +340,7 @@ shadow_mesh = SubResource("ArrayMesh_83pej")
 [sub_resource type="BoxShape3D" id="BoxShape3D_hi6a0"]
 size = Vector3(1, 8.489231, 2.8420105)
 
-[sub_resource type="Curve3D" id="Curve3D_n78cu"]
+[sub_resource type="Curve3D" id="Curve3D_swu3i"]
 resource_local_to_scene = true
 bake_interval = 512.0
 _data = {
@@ -353,25 +354,25 @@ albedo_texture = ExtResource("38_l8ah6")
 uv1_scale = Vector3(2, 2, 2)
 uv1_triplanar_sharpness = 150.0
 
+[sub_resource type="Curve3D" id="Curve3D_oexs8"]
+resource_local_to_scene = true
+bake_interval = 512.0
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.0032456517, -0.00052165985, -0.005450487, 0, 0, 0, 0, 0, 0, -0.00390625, -1.5940933, 0.0058288574, 0, 0, 0, 0, 0, 0, -0.022247314, -3.1537704, 0.013153076),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve3D" id="Curve3D_n78cu"]
+resource_local_to_scene = true
+bake_interval = 512.0
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.0032456517, -0.00052165985, -0.005450487, 0, 0, 0, 0, 0, 0, -0.00390625, -1.5940933, 0.0058288574, 0, 0, 0, 0, 0, 0, -0.022247314, -3.1537704, 0.013153076),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
 [sub_resource type="Curve3D" id="Curve3D_kcpaj"]
-resource_local_to_scene = true
-bake_interval = 512.0
-_data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.0032456517, -0.00052165985, -0.005450487, 0, 0, 0, 0, 0, 0, -0.00390625, -1.5940933, 0.0058288574, 0, 0, 0, 0, 0, 0, -0.022247314, -3.1537704, 0.013153076),
-"tilts": PackedFloat32Array(0, 0, 0)
-}
-point_count = 3
-
-[sub_resource type="Curve3D" id="Curve3D_c15v2"]
-resource_local_to_scene = true
-bake_interval = 512.0
-_data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.0032456517, -0.00052165985, -0.005450487, 0, 0, 0, 0, 0, 0, -0.00390625, -1.5940933, 0.0058288574, 0, 0, 0, 0, 0, 0, -0.022247314, -3.1537704, 0.013153076),
-"tilts": PackedFloat32Array(0, 0, 0)
-}
-point_count = 3
-
-[sub_resource type="Curve3D" id="Curve3D_grmox"]
 resource_local_to_scene = true
 bake_interval = 512.0
 _data = {
@@ -599,7 +600,7 @@ directional_shadow_mode = 0
 environment = SubResource("Environment_qfnet")
 
 [node name="Player" parent="." unique_id=926426044 instance=ExtResource("4_k0juu")]
-transform = Transform3D(-0.42363042, 0, 0.90583515, 0, 1, 0, -0.90583515, 0, -0.42363042, 192.87866, 59.534317, 301.69574)
+transform = Transform3D(-0.42363042, 0, 0.90583515, 0, 1, 0, -0.90583515, 0, -0.42363042, 194.78111, 65.39471, 295.2315)
 collision_mask = 46
 inventory = Array[ExtResource("3_f17e3")]([ExtResource("4_x2olw"), ExtResource("5_817gm"), ExtResource("6_ggc52"), ExtResource("7_l8ah6"), ExtResource("8_e75v4")])
 footsteps_sound = ExtResource("3_pm21f")
@@ -1079,7 +1080,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 176.47614, 55.820805, 312.555
 
 [node name="Path3DRope" parent="." unique_id=1810696511 node_paths=PackedStringArray("rigidbody_attached_to_end") instance=ExtResource("37_l8ah6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 176.02864, 68.22682, 305.60385)
-curve = SubResource("Curve3D_n78cu")
+curve = SubResource("Curve3D_swu3i")
 number_of_segments = 3
 mesh_sides = 3
 cable_thickness = 0.025
@@ -1092,7 +1093,7 @@ can_sleep = false
 
 [node name="Path3DRope2" parent="." unique_id=1644884360 node_paths=PackedStringArray("rigidbody_attached_to_end") instance=ExtResource("37_l8ah6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 182.9904, 69.72085, 310.26035)
-curve = SubResource("Curve3D_kcpaj")
+curve = SubResource("Curve3D_oexs8")
 number_of_segments = 3
 mesh_sides = 3
 cable_thickness = 0.025
@@ -1104,7 +1105,7 @@ transform = Transform3D(-0.9679989, 0, -0.2509544, 0, 1, 0, 0.2509544, 0, -0.967
 
 [node name="Path3DRope3" parent="." unique_id=860533748 node_paths=PackedStringArray("rigidbody_attached_to_end") instance=ExtResource("37_l8ah6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 181.41663, 68.87126, 315.73386)
-curve = SubResource("Curve3D_c15v2")
+curve = SubResource("Curve3D_n78cu")
 number_of_segments = 3
 mesh_sides = 3
 cable_thickness = 0.025
@@ -1117,7 +1118,7 @@ can_sleep = false
 
 [node name="Path3DRope4" parent="." unique_id=1892138340 node_paths=PackedStringArray("rigidbody_attached_to_end") instance=ExtResource("37_l8ah6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 174.0994, 68.22078, 316.0205)
-curve = SubResource("Curve3D_grmox")
+curve = SubResource("Curve3D_kcpaj")
 number_of_segments = 3
 mesh_sides = 3
 cable_thickness = 0.025
@@ -1922,7 +1923,7 @@ transform = Transform3D(97.38811, 22.705929, 2.7067576e-06, 0, -1.1920929e-05, 1
 transform = Transform3D(97.95964, 20.097536, 2.395813e-06, 0, -1.1920929e-05, 100.00001, 20.097538, -97.95963, -1.1677697e-05, 208.49103, 52.71608, 309.1581)
 
 [node name="scaffolding_new_18" parent="." unique_id=1545694920 instance=ExtResource("67_40xph")]
-transform = Transform3D(99.02803, 13.908669, 1.6580425e-06, 0, -1.1920929e-05, 100.00001, 13.90867, -99.02802, -1.1805059e-05, 208.95314, 52.66966, 305.73856)
+transform = Transform3D(99.02803, 13.908669, 1.6580425e-06, 0, -1.1920929e-05, 100.00001, 13.90867, -99.02802, -1.1805059e-05, 208.95314, 52.66966, 305.72958)
 
 [node name="scaffolding_new_19" parent="." unique_id=1274851810 instance=ExtResource("68_8lgfd")]
 transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, 209.07077, 52.568142, 302.089)

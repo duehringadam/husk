@@ -3,7 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://ucxwr7bym8kx" path="res://scenes/medieval_tavern_props_pack/textures/Wood.jpg" id="2_0voxd"]
 [ext_resource type="PackedScene" uid="uid://dx6ni5ci8aeep" path="res://scenes/support_beam.tscn" id="3_0voxd"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xv1gi"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uvdbn"]
+albedo_texture = ExtResource("2_0voxd")
+texture_filter = 4
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_7kif8"]
 _surfaces = [{
@@ -27,7 +29,7 @@ _surfaces = [{
 "format": 34359742519,
 "index_count": 432,
 "index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABgAHAAQACAAJAAoACgALAAgADAANAA4ADgAPAAwAEAARABIAEgATABAAFAAVABYAFgAXABQAGAAZABoAGgAbABgAHAAdAB4AHgAfABwAIAAhACIAIgAjACAAJAAlACYAJgAnACQAKAApACoAKgArACgALAAtAC4ALgAvACwAMAAxADIAMgAzADAANAA1ADYANgA3ADQAOAA5ADoAOgA7ADgAPAA9AD4APgA/ADwAQABBAEIAQgBDAEAARABFAEYARgBHAEQASABJAEoASgBLAEgATABNAE4ATgBPAEwAUABRAFIAUgBTAFAAVABVAFYAVgBXAFQAWABZAFoAWgBbAFgAXABdAF4AXgBfAFwAYABhAGIAYgBjAGAAZABlAGYAZgBnAGQAaABpAGoAagBrAGgAbABtAG4AbgBvAGwAcABxAHIAcgBzAHAAdAB1AHYAdgB3AHQAeAB5AHoAegB7AHgAfAB9AH4AfgB/AHwAgACBAIIAggCDAIAAhACFAIYAhgCHAIQAiACJAIoAigCLAIgAjACNAI4AjgCPAIwAkACRAJIAkgCTAJAAlACVAJYAlgCXAJQAmACZAJoAmgCbAJgAnACdAJ4AngCfAJwAoAChAKIAogCjAKAApAClAKYApgCnAKQAqACpAKoAqgCrAKgArACtAK4ArgCvAKwAsACxALIAsgCzALAAtAC1ALYAtgC3ALQAuAC5ALoAugC7ALgAvAC9AL4AvgC/ALwAwADBAMIAwgDDAMAAxADFAMYAxgDHAMQAyADJAMoAygDLAMgAzADNAM4AzgDPAMwA0ADRANIA0gDTANAA1ADVANYA1gDXANQA2ADZANoA2gDbANgA3ADdAN4A3gDfANwA4ADhAOIA4gDjAOAA5ADlAOYA5gDnAOQA6ADpAOoA6gDrAOgA7ADtAO4A7gDvAOwA8ADxAPIA8gDzAPAA9AD1APYA9gD3APQA+AD5APoA+gD7APgA/AD9AP4A/gD/APwAAAEBAQIBAgEDAQABBAEFAQYBBgEHAQQBCAEJAQoBCgELAQgBDAENAQ4BDgEPAQwBEAERARIBEgETARABFAEVARYBFgEXARQBGAEZARoBGgEbARgBHAEdAR4BHgEfARwB"),
-"material": SubResource("StandardMaterial3D_xv1gi"),
+"material": SubResource("StandardMaterial3D_uvdbn"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 288,
@@ -36,16 +38,12 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_7kif8")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uvdbn"]
-albedo_texture = ExtResource("2_0voxd")
-
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_071io"]
 points = PackedVector3Array(-0.01869127, -0.0036537172, -0.00044382192, 0.018591268, 0.01614841, 0.00072142837, 0.018591268, -0.012977716, 0.00072142837, 0.011598967, 0.015565073, -0.0021912698, -0.017523453, 0.01614841, 0.00072142837, -0.011698969, -0.015891269, -0.0021912698, -0.018107362, -0.015891269, 0.00072142837, -0.011698969, 0.015565073, -0.0021912698, 0.011598967, -0.015891269, -0.0021912698, 0.01800736, -0.015891269, -0.00044382192, 0.018591268, 0.01614841, -0.00044382192, -0.017523453, 0.01614841, -0.00044382192, 0.01800736, -0.015891269, 0.00072142837, -0.018107362, -0.015891269, -0.00044382192, -0.01869127, 0.006244211, 0.00072142837, 0.018591268, -0.012977716, -0.00044382192, -0.01869127, 0.0068275486, -0.00044382192, -0.01869127, -0.0030703791, 0.00072142837, -0.018107362, 0.01265152, -0.00044382192, -0.018107362, 0.01265152, 0.00072142837)
 
 [node name="scaffolding_new_4" type="MeshInstance3D" unique_id=1566734257]
 transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, 0, 0, 0)
 mesh = SubResource("ArrayMesh_071io")
-surface_material_override/0 = SubResource("StandardMaterial3D_uvdbn")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1803585106]
 collision_layer = 2

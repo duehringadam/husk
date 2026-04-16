@@ -2,7 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://ucxwr7bym8kx" path="res://scenes/medieval_tavern_props_pack/textures/Wood.jpg" id="2_hp1n8"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jqj6n"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3blym"]
+albedo_texture = ExtResource("2_hp1n8")
+texture_filter = 4
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_xo0jp"]
 _surfaces = [{
@@ -26,7 +28,7 @@ _surfaces = [{
 "format": 34359742519,
 "index_count": 36,
 "index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABgAHAAQACAAJAAoACgALAAgADAANAA4ADgAPAAwAEAARABIAEgATABAAFAAVABYAFgAXABQA"),
-"material": SubResource("StandardMaterial3D_jqj6n"),
+"material": SubResource("StandardMaterial3D_3blym"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 24,
@@ -35,16 +37,12 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_xo0jp")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3blym"]
-albedo_texture = ExtResource("2_hp1n8")
-
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_s1a4i"]
 points = PackedVector3Array(-0.0012496298, -0.0012496298, -0.02034963, 0.0011444443, 0.0011444443, 0.02034963, 0.0011444443, -0.0012496298, 0.02034963, 0.0011444443, 0.0011444443, -0.02034963, -0.0012496298, 0.0011444443, 0.02034963, -0.0012496298, -0.0012496298, 0.02034963, 0.0011444443, -0.0012496298, -0.02034963, -0.0012496298, 0.0011444443, -0.02034963)
 
 [node name="support_beam" type="MeshInstance3D" unique_id=80789061]
 transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, 0, 0, 0)
 mesh = SubResource("ArrayMesh_l2vit")
-surface_material_override/0 = SubResource("StandardMaterial3D_3blym")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=211259384]
 collision_layer = 2

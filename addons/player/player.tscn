@@ -420,25 +420,25 @@ script = ExtResource("6_5fkmn")
 transform = Transform3D(-1.2, 0, 1.04907336e-07, 0, 1.2, 0, -1.04907336e-07, 0, -1.2, 0, -1.8152095, 0.25213236)
 
 [node name="Root" parent="Head/Neck/Camera3D/playerBody" index="0" unique_id=227732896]
-transform = Transform3D(0.6203096, 0.78128344, -0.06935741, -0.037598297, 0.11794249, 0.9923068, 0.78345424, -0.6129307, 0.10253581, 0.061361205, -0.102296114, -0.096883)
+transform = Transform3D(0.737278, 0.6728355, -0.06092598, -0.05293522, 0.14743835, 0.98765206, 0.6735113, -0.7249502, 0.14431973, 0.0440927, -0.108534135, -0.081181325)
 
 [node name="Skeleton3D" parent="Head/Neck/Camera3D/playerBody/Root" index="0" unique_id=1398321543]
-bones/1/rotation = Quaternion(-0.045873187, 0.030596744, 0.0073285284, 0.9984517)
-bones/2/rotation = Quaternion(0.027494062, 0.058328856, 0.018574838, 0.99774593)
-bones/3/rotation = Quaternion(0.060725477, 0.054091018, -0.8347066, 0.5446571)
-bones/4/rotation = Quaternion(0.12912163, 0.03568519, -0.26591492, 0.95464313)
-bones/5/rotation = Quaternion(0.6510746, -0.21656473, -0.35431987, 0.6353417)
-bones/7/rotation = Quaternion(0.13708952, 0.035213612, -0.0055119386, 0.9899173)
-bones/9/rotation = Quaternion(0.06987777, -0.07826478, 0.884538, 0.45451567)
-bones/10/rotation = Quaternion(0.26919985, 0.11435329, 0.09620177, 0.95142)
-bones/11/rotation = Quaternion(0.6005555, 0.20241909, 0.23416984, 0.7372409)
-bones/13/rotation = Quaternion(-0.8214096, -0.42597154, 0.25003955, 0.28515738)
-bones/14/rotation = Quaternion(0.24297456, 0.16800086, -0.016381858, 0.95523334)
-bones/16/rotation = Quaternion(-0.77226543, 0.3974409, -0.1151795, 0.4820586)
-bones/17/rotation = Quaternion(0.29043743, 0.0062741768, 0.076975055, 0.95377237)
+bones/1/rotation = Quaternion(-0.055957913, 0.05005514, 0.0088597275, 0.9971383)
+bones/2/rotation = Quaternion(0.007265054, 0.09664552, 0.016225042, 0.99516016)
+bones/3/rotation = Quaternion(0.0029535438, 0.12336522, -0.87421846, 0.46958965)
+bones/4/rotation = Quaternion(0.1556434, -0.19612773, -0.31787527, 0.91447496)
+bones/5/rotation = Quaternion(0.06206391, -0.07204582, -0.019004479, 0.9952871)
+bones/7/rotation = Quaternion(0.09965245, -0.067463085, 0.01495975, 0.99261993)
+bones/9/rotation = Quaternion(0.11957552, -0.058219694, 0.90049547, 0.414029)
+bones/10/rotation = Quaternion(0.33643526, 0.24716777, 0.09100317, 0.9041227)
+bones/11/rotation = Quaternion(0.33263248, 0.54589313, 0.36707628, 0.6757302)
+bones/13/rotation = Quaternion(-0.8520772, -0.39536488, 0.2557485, 0.22856906)
+bones/14/rotation = Quaternion(0.34762844, 0.22452927, -0.01443656, 0.91023767)
+bones/16/rotation = Quaternion(-0.71024895, 0.4224216, -0.12177388, 0.5497978)
+bones/17/rotation = Quaternion(0.21249267, 0.07368739, 0.058514625, 0.9726218)
 
 [node name="BoneAttachment3D" parent="Head/Neck/Camera3D/playerBody/Root/Skeleton3D" index="1" unique_id=1946967126]
-transform = Transform3D(0.59241486, -0.19478828, 0.7817302, -0.72787946, 0.2864856, 0.62299067, -0.3453057, -0.93807447, 0.027936101, -0.29858208, -0.03721103, 0.57991695)
+transform = Transform3D(0.45941943, -0.20247865, 0.86483306, -0.8068885, 0.31188273, 0.5016574, -0.37130126, -0.92829514, -0.020092577, -0.28352934, 0.036995392, 0.5603107)
 
 [node name="kick_damage_component" parent="Head/Neck/Camera3D/playerBody/Root/Skeleton3D/BoneAttachment3D" index="0" unique_id=1208432582 node_paths=PackedStringArray("source")]
 source = NodePath("../../../../../../../..")
@@ -471,6 +471,7 @@ script = ExtResource("3_6oqec")
 main_camera = NodePath("../../../Neck/Camera3D")
 randomStrength = 0.02
 hurtbox = NodePath("../../../../hurtbox_component")
+spread_angle = 100
 
 [node name="RightHand" parent="Head/SubViewportContainer/SubViewport/Camera3D" unique_id=1178015951 node_paths=PackedStringArray("offhand") instance=ExtResource("9_hqsyx")]
 unique_name_in_owner = true

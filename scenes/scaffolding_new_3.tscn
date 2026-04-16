@@ -3,7 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://ucxwr7bym8kx" path="res://scenes/medieval_tavern_props_pack/textures/Wood.jpg" id="2_os7vp"]
 [ext_resource type="PackedScene" uid="uid://dx6ni5ci8aeep" path="res://scenes/support_beam.tscn" id="3_os7vp"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lh5m7"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pqvdy"]
+albedo_texture = ExtResource("2_os7vp")
+texture_filter = 4
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_c02pw"]
 _surfaces = [{
@@ -27,7 +29,7 @@ _surfaces = [{
 "format": 34359742519,
 "index_count": 432,
 "index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABgAHAAQACAAJAAoACgALAAgADAANAA4ADgAPAAwAEAARABIAEgATABAAFAAVABYAFgAXABQAGAAZABoAGgAbABgAHAAdAB4AHgAfABwAIAAhACIAIgAjACAAJAAlACYAJgAnACQAKAApACoAKgArACgALAAtAC4ALgAvACwAMAAxADIAMgAzADAANAA1ADYANgA3ADQAOAA5ADoAOgA7ADgAPAA9AD4APgA/ADwAQABBAEIAQgBDAEAARABFAEYARgBHAEQASABJAEoASgBLAEgATABNAE4ATgBPAEwAUABRAFIAUgBTAFAAVABVAFYAVgBXAFQAWABZAFoAWgBbAFgAXABdAF4AXgBfAFwAYABhAGIAYgBjAGAAZABlAGYAZgBnAGQAaABpAGoAagBrAGgAbABtAG4AbgBvAGwAcABxAHIAcgBzAHAAdAB1AHYAdgB3AHQAeAB5AHoAegB7AHgAfAB9AH4AfgB/AHwAgACBAIIAggCDAIAAhACFAIYAhgCHAIQAiACJAIoAigCLAIgAjACNAI4AjgCPAIwAkACRAJIAkgCTAJAAlACVAJYAlgCXAJQAmACZAJoAmgCbAJgAnACdAJ4AngCfAJwAoAChAKIAogCjAKAApAClAKYApgCnAKQAqACpAKoAqgCrAKgArACtAK4ArgCvAKwAsACxALIAsgCzALAAtAC1ALYAtgC3ALQAuAC5ALoAugC7ALgAvAC9AL4AvgC/ALwAwADBAMIAwgDDAMAAxADFAMYAxgDHAMQAyADJAMoAygDLAMgAzADNAM4AzgDPAMwA0ADRANIA0gDTANAA1ADVANYA1gDXANQA2ADZANoA2gDbANgA3ADdAN4A3gDfANwA4ADhAOIA4gDjAOAA5ADlAOYA5gDnAOQA6ADpAOoA6gDrAOgA7ADtAO4A7gDvAOwA8ADxAPIA8gDzAPAA9AD1APYA9gD3APQA+AD5APoA+gD7APgA/AD9AP4A/gD/APwAAAEBAQIBAgEDAQABBAEFAQYBBgEHAQQBCAEJAQoBCgELAQgBDAENAQ4BDgEPAQwBEAERARIBEgETARABFAEVARYBFgEXARQBGAEZARoBGgEbARgBHAEdAR4BHgEfARwB"),
-"material": SubResource("StandardMaterial3D_lh5m7"),
+"material": SubResource("StandardMaterial3D_pqvdy"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 288,
@@ -36,16 +38,12 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_c02pw")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pqvdy"]
-albedo_texture = ExtResource("2_os7vp")
-
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_i2ipm"]
 points = PackedVector3Array(-0.020316668, -0.003247706, -0.00031685265, 0.020216666, 0.016383333, 0.00031641865, 0.020216666, 0.016383333, -0.00031685265, 0.01831617, -0.015916666, 0.00094968994, 0.0113490075, -0.015916666, -0.0022163566, -0.011445041, 0.01574783, -0.0022163566, -0.016515676, 0.016383333, 0.00094968994, -0.018412204, -0.015916666, 0.00094968994, -0.011445041, -0.015916666, -0.0022163566, 0.0113490075, 0.01574783, -0.0022163566, 0.019581845, 0.016383333, 0.00094968994, 0.020216666, -0.012748636, -0.00031685265, -0.019047026, 0.0125829615, -0.00031685265, -0.020316668, 0.0062469007, 0.00094968994, -0.018412204, -0.015916666, -0.00031685265, 0.019581845, -0.012748636, 0.00094968994, -0.016515676, 0.016383333, -0.00031685265, -0.020316668, 0.0068824035, -0.00031685265, 0.01831617, -0.015916666, -0.00031685265, -0.019047026, 0.013215303, 0.00094968994, 0.020216666, -0.012748636, 0.00031641865, -0.020316668, -0.003247706, 0.00031641865, -0.020316668, 0.0030820316, 0.00094968994, -0.020316668, 0.0068824035, 0.00031641865)
 
 [node name="scaffolding_new_3" type="MeshInstance3D" unique_id=603091064]
 transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, 0, 0, 0)
 mesh = SubResource("ArrayMesh_i2ipm")
-surface_material_override/0 = SubResource("StandardMaterial3D_pqvdy")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1084128190]
 collision_layer = 2
@@ -55,6 +53,8 @@ shape = SubResource("ConvexPolygonShape3D_i2ipm")
 
 [node name="support_beam" parent="." unique_id=80789061 instance=ExtResource("3_os7vp")]
 transform = Transform3D(0.7071069, -8.429371e-08, 0.7071069, 8.4293774e-08, 1.0000007, 3.4915573e-08, -0.70710695, 3.4915644e-08, 0.70710695, -0.0050000004, -0.014000007, -0.015000014)
+surface_material_override/0 = null
 
 [node name="support_beam2" parent="." unique_id=527872252 instance=ExtResource("3_os7vp")]
 transform = Transform3D(0.7071069, -8.429371e-08, 0.7071069, 8.429379e-08, 1.0000007, 3.4915573e-08, -0.70710695, 3.4915644e-08, 0.70710695, -0.005000001, 0.013999996, -0.015000012)
+surface_material_override/0 = null

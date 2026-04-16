@@ -17,25 +17,26 @@ func _on_idle_state_exited() -> void:
 
 
 func _on_idle_state_processing(delta: float) -> void:
-	if Input.is_action_just_pressed("attack_primary") && weapon.can_attack && Global.player.can_attack:
-		if weapon.attack_dir.y < -.9:
-			state_chart.send_event("hold_forward")
+	if weapon.bone_attachment.get_child_count() > 0:
+		if Input.is_action_just_pressed("attack_primary") && weapon.can_attack && Global.player.can_attack:
+			if weapon.attack_dir.y < -.9:
+				state_chart.send_event("hold_forward")
+				
+				
+			elif weapon.attack_dir.y > .9:
+				state_chart.send_event("hold_back")
+				
+			elif weapon.attack_dir.x < -0.9:
+				state_chart.send_event("hold_right")
+				
+			elif weapon.attack_dir.x > 0.9:
+				state_chart.send_event("hold_left")
+				
+			else:
+				state_chart.send_event("hold_right")
+				
+		if Input.is_action_just_pressed("attack_secondary"):
+			if weapon.weapon.two_handed:
 			
-			
-		elif weapon.attack_dir.y > .9:
-			state_chart.send_event("hold_back")
-			
-		elif weapon.attack_dir.x < -0.9:
-			state_chart.send_event("hold_right")
-			
-		elif weapon.attack_dir.x > 0.9:
-			state_chart.send_event("hold_left")
-			
-		else:
-			state_chart.send_event("hold_right")
-			
-	if Input.is_action_just_pressed("attack_secondary"):
-		if weapon.weapon.two_handed:
-		
-			state_chart.send_event("block")
+				state_chart.send_event("block")
 		

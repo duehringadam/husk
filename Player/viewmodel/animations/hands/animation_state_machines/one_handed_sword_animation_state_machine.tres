@@ -1,34 +1,34 @@
 [gd_resource type="AnimationNodeStateMachine" format=3 uid="uid://bjj1ust2y45ae"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dwmnf"]
-animation = &"one_handed_sword_equip"
+animation = &"brokenS_TO"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x02gr"]
-animation = &"one_handed_sword_right_library/one_handed_sword_hold_down"
+animation = &"brokenS_CD"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mvuec"]
-animation = &"one_handed_sword_right_library/one_handed_sword_hold_up"
+animation = &"brokenS_CU"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oopu1"]
-animation = &"one_handed_sword_hold_left"
+animation = &"brokenS_CR"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ljm4p"]
-animation = &"one_handed_sword_hold_right"
+animation = &"brokenS_CL"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uv5j5"]
-animation = &"one_handed_sword_idle"
+animation = &"brokenS_Idle"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g1qd6"]
-animation = &"one_handed_sword_right_library/one_handed_sword_swing_down"
+animation = &"brokenS_SD"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qniyt"]
-animation = &"one_handed_sword_right_library/one_handed_sword_swing_up"
+animation = &"brokenS_SU"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kifjd"]
-animation = &"one_handed_sword_swing_left"
+animation = &"brokenS_SR"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_er56e"]
-animation = &"one_handed_sword_swing_right"
+animation = &"brokenS_SL"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sfya3"]
 advance_mode = 2
@@ -118,6 +118,6 @@ states/swing_forward/position = Vector2(477, -102.51841)
 states/swing_left/node = SubResource("AnimationNodeAnimation_kifjd")
 states/swing_left/position = Vector2(195, -70.600006)
 states/swing_right/node = SubResource("AnimationNodeAnimation_er56e")
-states/swing_right/position = Vector2(623, 124.0612)
+states/swing_right/position = Vector2(622, 124.0612)
 transitions = ["Start", "equip", SubResource("AnimationNodeStateMachineTransition_sfya3"), "hold_left", "swing_left", SubResource("AnimationNodeStateMachineTransition_uv5j5"), "equip", "idle", SubResource("AnimationNodeStateMachineTransition_x02gr"), "idle", "hold_left", SubResource("AnimationNodeStateMachineTransition_mvuec"), "swing_left", "idle", SubResource("AnimationNodeStateMachineTransition_er56e"), "idle", "hold_right", SubResource("AnimationNodeStateMachineTransition_g1qd6"), "hold_right", "swing_right", SubResource("AnimationNodeStateMachineTransition_qniyt"), "swing_right", "idle", SubResource("AnimationNodeStateMachineTransition_h8l3j"), "idle", "hold_forward", SubResource("AnimationNodeStateMachineTransition_xfbl3"), "hold_forward", "swing_forward", SubResource("AnimationNodeStateMachineTransition_oopu1"), "swing_forward", "idle", SubResource("AnimationNodeStateMachineTransition_kifjd"), "idle", "hold_back", SubResource("AnimationNodeStateMachineTransition_ljm4p"), "hold_back", "swing_back", SubResource("AnimationNodeStateMachineTransition_frrgv"), "swing_back", "idle", SubResource("AnimationNodeStateMachineTransition_8hunc")]
-graph_offset = Vector2(0, 86.04538)
+graph_offset = Vector2(0, -156.44487)

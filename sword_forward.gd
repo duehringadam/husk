@@ -2,7 +2,7 @@ extends Node
 
 @export var state_chart: StateChart
 @export var animation_tree: AnimationTree
-
+@export var right_hand: Marker3D
 var camera
 var viewport_camera
 
@@ -11,7 +11,6 @@ func _on_forward_state_entered() -> void:
 
 
 func _on_forward_state_exited() -> void:
-	
 	animation_tree.set("parameters/conditions/hold_forward", false)
 
 

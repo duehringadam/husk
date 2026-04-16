@@ -109,6 +109,8 @@ mesh = ExtResource("5_rrms8")
 [node name="DamageComponent" type="Area3D" parent="weapon" unique_id=1922912389 node_paths=PackedStringArray("hit_sound")]
 transform = Transform3D(1, -1.1680913e-09, 1.2344703e-10, -9.3974055e-09, 1, -1.4901161e-08, 2.057563e-10, 0, 1, -0.03604628, 0.2894909, -0.016105497)
 collision_mask = 14
+monitoring = false
+monitorable = false
 script = ExtResource("10_cngb6")
 hit_sound = NodePath("../../hit")
 damage_types = Dictionary[int, float]({

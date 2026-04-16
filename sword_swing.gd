@@ -3,7 +3,7 @@ extends Node
 @export var state_chart: StateChart
 @export var bone_attach: BoneAttachment3D
 @export var animation_tree: AnimationTree
-
+@export var hand: Node3D
 var weapon
 
 func _ready() -> void:
@@ -17,8 +17,6 @@ func _on_swing_left_state_entered() -> void:
 	weapon.swing_sound.pitch_scale = randf_range(0.9,1)
 	weapon.swing_sound.play()
 	weapon.trail.visible = true
-	weapon.damage_component.monitoring = true
-	weapon.damage_component.monitorable = true
 	SignalBus.emit_signal("primary_active", true)
 	var tween = get_tree().create_tween()
 	tween.tween_property(Global.player.camera,"fov", Global.camera_fov,.25)
@@ -30,8 +28,6 @@ func _on_swing_left_state_exited() -> void:
 	SignalBus.emit_signal("primary_active", false)
 	animation_tree.set("parameters/conditions/swing", false)
 	weapon.trail.visible = false
-	weapon.damage_component.monitoring = false
-	weapon.damage_component.monitorable = false
 
 
 func _on_swing_left_state_processing(delta: float) -> void:
