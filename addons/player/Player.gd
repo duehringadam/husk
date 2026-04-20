@@ -80,6 +80,7 @@ Optional: %jump, %sprint, %crouch, %lean, %zoom, %switch_hands
 @onready var right_hand_pos: Vector3 = %RightHand.transform.origin
 @onready var left_hand_pos: Vector3 = %LeftHand.transform.origin
 @onready var enemy_look_at: Node3D = $enemy_look_at
+@onready var hurtbox: Area3D = $hurtbox_component
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -182,7 +183,9 @@ func handle_effects(delta) -> void:
 		foot_steps_animation_player.speed_scale = 0.0
 
 func handle_kick():
-	if get_node_or_null("%kick") != null and %kick.is_triggered() and is_on_floor():
+	if get_node_or_null("%kick") != null and %kick.is_triggered():
+		if %crouch.is_triggered():
+			set_crouch(false)
 		player_body.kick()
 
 func handle_falling(delta: float) -> void:
@@ -205,6 +208,7 @@ func handle_jump() -> void:
 
 func handle_crouch(delta: float) -> void:
 	var crouch_pressed: bool = get_node_or_null("%crouch") != null and %crouch.is_triggered()
+	if player_body.is_kicking: return
 	if toggle_crouch:
 		if crouch_pressed:
 			toggle_crouch_state()
@@ -401,8 +405,8 @@ func weapon_sway(delta):
 			mainhand.rotation.x = lerpf(mainhand.rotation.x, clampf(mouse_movement.y * weapon_rotation_amount * (-1 if invert_weapon_sway else 1),-.2,.2), delta)
 			mainhand.rotation.y = lerpf(mainhand.rotation.y, clampf(mouse_movement.y * weapon_rotation_amount * (-1 if invert_weapon_sway else 1),-.02,.02), delta)
 		if offhand:
-			offhand.rotation.x = lerpf(offhand.rotation.x, clampf(mouse_movement.y * weapon_rotation_amount * (1 if invert_weapon_sway else -1),-.02,.02), delta)
-			offhand.rotation.y = lerpf(offhand.rotation.y, clampf(mouse_movement.y * weapon_rotation_amount * (1 if invert_weapon_sway else -1),-.02,.02), delta)
+			offhand.rotation.x = lerpf(offhand.rotation.x, clampf(mouse_movement.y * weapon_rotation_amount * (-1 if invert_weapon_sway else 1),-.2,.2), delta)
+			offhand.rotation.y = lerpf(offhand.rotation.y, clampf(mouse_movement.y * weapon_rotation_amount * (-1 if invert_weapon_sway else 1),-.02,.02), delta)
 
 
 func _on_hurtbox_component_damage_taken(actual: float, source: DamageComponent, hit_dir: Vector3) -> void:
@@ -495,3 +499,14 @@ func _handle_rope_climb(delta: float) -> bool:
 		
 	move_and_slide()
 	return true
+
+
+func _on_health_component_died() -> void:
+	camera_animation_player.play("death")
+	mainhand.lower()
+	hurtbox.monitoring = false
+	hurtbox.monitorable = false
+	can_move = false
+	can_attack = false
+	await camera_animation_player.animation_finished
+	get_tree().reload_current_scene()

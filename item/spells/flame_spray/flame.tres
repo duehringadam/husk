@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="item" format=3 uid="uid://dhgsftnl3tw13"]
 
+[ext_resource type="AnimationNodeStateMachine" uid="uid://btqetk34l0eah" path="res://Player/viewmodel/animations/hands/animation_state_machines/offhand_fire_spell_animation_state.tres" id="1_tx6k7"]
 [ext_resource type="PackedScene" uid="uid://5i8e6fsne4v5" path="res://spell_fire.tscn" id="2_kbpfs"]
 [ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/item_stat.gd" id="3_dgh5r"]
 [ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/item.gd" id="4_yj7e3"]
@@ -21,4 +22,7 @@ item_required_stats = Dictionary[int, float]({
 3: 15.0
 })
 item_scene = ExtResource("2_kbpfs")
+animation_state_machine = ExtResource("1_tx6k7")
+position = Vector3(0.104, 0.081, -0.004)
+rotation = Vector3(-12.9, -66.5, 3.1)
 metadata/_custom_type_script = "uid://dcfd18dx8x1bm"

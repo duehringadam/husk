@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="item" format=3 uid="uid://crf08k5nswvsi"]
 
+[ext_resource type="AnimationNodeStateMachine" uid="uid://csvndnaewcyo4" path="res://Player/viewmodel/animations/hands/animation_state_machines/shield_state_machine.tres" id="1_ua4wm"]
 [ext_resource type="PackedScene" uid="uid://baow87b6rrpvl" path="res://shield.tscn" id="2_lo0wc"]
 [ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/item_stat.gd" id="2_ua4wm"]
 [ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/item.gd" id="3_lo0wc"]
@@ -21,4 +22,7 @@ item_required_stats = Dictionary[int, float]({
 0: 10.0
 })
 item_scene = ExtResource("2_lo0wc")
+animation_state_machine = ExtResource("1_ua4wm")
+position = Vector3(-0.061, -0.366, 0.159)
+rotation = Vector3(85.8, -94.6, -82.3)
 metadata/_custom_type_script = "uid://dcfd18dx8x1bm"

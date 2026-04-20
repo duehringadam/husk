@@ -17,8 +17,6 @@ func _ready() -> void:
 	add_child(timer)
 	timer.wait_time = 1.25
 	timer.one_shot = true
-	stored_damage_values = damage_component.damage_types.values()
-	stored_stance_damage = damage_component.stance_damage_value
 	for i in weapon_states:
 		if !i.state_entered.is_connected(hold_attack):
 			i.state_entered.connect(hold_attack)
@@ -36,6 +34,7 @@ func attack():
 	timer.stop()
 	for i in damage_component.damage_types:
 		damage_component.damage_types[i] *= actual_damage_ratio
+		
 	damage_component.stance_damage_value *= actual_damage_ratio
 
 func end_attack():

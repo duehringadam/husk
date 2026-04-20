@@ -139,9 +139,9 @@ contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("1_hccwh")
 change_distance_interaction = NodePath("InteractionContainer/WhileGrabbed/Change Distance")
-throwable_mesh = NodePath("Barrel1_1")
+throwable_mesh = NodePath("Barrel")
 throwable = NodePath(".")
-damage_component = NodePath("Barrel1_1/DamageComponent")
+damage_component = NodePath("Barrel/DamageComponent")
 shattered_mesh = ExtResource("2_vagou")
 break_sound = ExtResource("3_vlvcf")
 health_component = NodePath("HealthComponent")
@@ -230,13 +230,13 @@ metadata/_custom_type_script = "uid://c2i6qdosp0h2"
 transform = Transform3D(1, 0, 0, 0, 1, -7.5497915e-08, 0, 7.5497915e-08, 1, 0, 0.434103, 3.2773873e-08)
 shape = SubResource("SphereShape3D_0q1br")
 
-[node name="Barrel1_1" type="MeshInstance3D" parent="." unique_id=776846388]
+[node name="Barrel" type="MeshInstance3D" parent="." unique_id=776846388]
 transform = Transform3D(1.495, 0, 0, 0, -6.534852e-08, -1.495, 0, 1.495, -6.534852e-08, 0, 0.6, 0)
 mesh = SubResource("ArrayMesh_b8rsm")
 surface_material_override/0 = SubResource("StandardMaterial3D_r5ysc")
 surface_material_override/1 = SubResource("StandardMaterial3D_02j0r")
 
-[node name="DamageComponent" type="Area3D" parent="Barrel1_1" unique_id=1399205467 node_paths=PackedStringArray("source")]
+[node name="DamageComponent" type="Area3D" parent="Barrel" unique_id=1399205467 node_paths=PackedStringArray("source")]
 transform = Transform3D(0.0006688964, 0, 0, 0, 2.1261683e-11, 0.0006688964, 0, -0.0006688964, 2.1261683e-11, 0, 1.1695355e-08, 0.26755854)
 collision_layer = 8
 collision_mask = 5
@@ -248,7 +248,7 @@ stance_damage_value = 1.0
 source = NodePath("../..")
 metadata/_custom_type_script = "uid://dlsydctoxqbwy"
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Barrel1_1/DamageComponent" unique_id=917068451]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Barrel/DamageComponent" unique_id=917068451]
 transform = Transform3D(999.9998, 0, 0, 0, 999.9998, 7.549758e-05, 0, -7.549758e-05, 999.9998, 0, 434.10294, -3.2773725e-05)
 shape = SubResource("SphereShape3D_hccwh")
 
@@ -256,7 +256,7 @@ shape = SubResource("SphereShape3D_hccwh")
 transform = Transform3D(1.495, 0, 0, 0, -6.534852e-08, -1.495, 0, 1.495, -6.534852e-08, 0, 0.6, 0)
 shape = SubResource("ConvexPolygonShape3D_vagou")
 
-[node name="status_effect_component2" type="GPUParticles3D" parent="." unique_id=1609794613 node_paths=PackedStringArray("hurtbox", "health_component")]
+[node name="status_effect_component2" type="GPUParticles3D" parent="." unique_id=1609794613 node_paths=PackedStringArray("hurtbox", "mesh_to_affect", "health_component")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
 emitting = false
 amount = 32
@@ -266,6 +266,7 @@ available_statuses = Dictionary[int, float]({
 0: 0.0
 })
 hurtbox = NodePath("../hurtbox_component")
+mesh_to_affect = NodePath("../Barrel")
 health_component = NodePath("../HealthComponent")
 metadata/_custom_type_script = "uid://dql5v81gqvdat"
 
@@ -283,7 +284,7 @@ sounds_per_velocity = Dictionary[int, AudioStream]({
 metadata/_custom_type_script = "uid://cp0p4yckxtvmw"
 
 [node name="bounding_box_component" parent="." unique_id=1009893641 node_paths=PackedStringArray("mesh") instance=ExtResource("16_vagou")]
-mesh = NodePath("../Barrel1_1")
+mesh = NodePath("../Barrel")
 
 [node name="ContainersUpload" type="Node3D" parent="." unique_id=721980976]
 
@@ -295,4 +296,4 @@ mesh = NodePath("../Barrel1_1")
 [connection signal="on_trigger" from="InteractionContainer/WhileGrabbed/Rotate" to="." method="_while_rotating"]
 [connection signal="on_complete" from="InteractionContainer/WhileGrabbed/Throw" to="." method="_on_throw"]
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
-[connection signal="damage_dealt" from="Barrel1_1/DamageComponent" to="." method="_on_damage_component_damage_dealt"]
+[connection signal="damage_dealt" from="Barrel/DamageComponent" to="." method="_on_damage_component_damage_dealt"]

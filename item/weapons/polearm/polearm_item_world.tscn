@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://doc0okecalxnp" path="res://addons/interaction_system/interaction_context.gd" id="5_6w0xp"]
 [ext_resource type="AudioStream" uid="uid://dcr4in8lcdk51" path="res://sfx/dark_souls_item.wav" id="6_166ur"]
 [ext_resource type="Script" uid="uid://cp0p4yckxtvmw" path="res://addons/game_pieces/collision_sound/collision_sound_player.gd" id="6_vumcv"]
-[ext_resource type="ArrayMesh" uid="uid://b1v1mq2bwyaar" path="res://Player/weapon/ALL/Poleaxe2/polearm_final_final.tres" id="7_awb22"]
+[ext_resource type="ArrayMesh" uid="uid://kt4ernxm7cn" path="res://scenes/Hivemind/MedievalWeapons/Art/Models/SM_Poleaxe/SM_poleaxe_mesh.tres" id="8_166ur"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="8_ephwy"]
 [ext_resource type="PackedScene" uid="uid://dhws2ueoubwwx" path="res://components/bounding_box_component.tscn" id="9_7q7sk"]
 
@@ -108,8 +108,8 @@ sounds_per_velocity = Dictionary[int, AudioStream]({
 metadata/_custom_type_script = "uid://cp0p4yckxtvmw"
 
 [node name="Polearm" type="MeshInstance3D" parent="." unique_id=1316351081]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
-mesh = ExtResource("7_awb22")
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.51958215, 0)
+mesh = ExtResource("8_166ur")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1566164612]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.043701172, -0.954834, 0)

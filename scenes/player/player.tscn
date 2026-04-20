@@ -27,10 +27,13 @@ emission_shape = 4
 emission_point_texture = SubResource("ImageTexture_qek5x")
 emission_point_count = 512
 
-[node name="Player" unique_id=926426044 instance=ExtResource("1_lvxji")]
+[node name="Player" unique_id=926426044 node_paths=PackedStringArray("offhand") instance=ExtResource("1_lvxji")]
 collision_mask = 14
 script = ExtResource("2_qek5x")
 footsteps_sound = SubResource("AudioStreamRandomizer_h17s1")
+walk_speed = 2.5
+sprint_speed = 4.0
+offhand = NodePath("Head/SubViewportContainer/SubViewport/Camera3D/LeftHand")
 
 [node name="InputMapControls" type="Node" parent="." index="4" unique_id=54602357]
 
@@ -131,31 +134,47 @@ angular_limit_x/enabled = false
 angular_limit_y/enabled = false
 angular_limit_z/enabled = false
 
+[node name="Root" parent="Head/Neck/Camera3D/playerBody" parent_id_path=PackedInt32Array(764290862) index="0" unique_id=227732896]
+transform = Transform3D(0.7362482, 0.6741681, -0.05861221, -0.05241152, 0.14316149, 0.9883103, 0.6746786, -0.7245698, 0.1407366, 0.041869845, -0.10925619, -0.08051763)
+
+[node name="Skeleton3D" parent="Head/Neck/Camera3D/playerBody/Root" index="0" unique_id=1398321543]
+bones/1/rotation = Quaternion(-0.05554447, 0.04966269, 0.008280731, 0.997186)
+bones/2/rotation = Quaternion(0.008417032, 0.09550577, 0.015737813, 0.99526894)
+bones/3/rotation = Quaternion(0.004851761, 0.12178977, -0.87270045, 0.4727979)
+bones/4/rotation = Quaternion(0.13667218, -0.20306143, -0.3180371, 0.91593623)
+bones/5/rotation = Quaternion(0.08187012, -0.07012229, -0.025838366, 0.9938373)
+bones/7/rotation = Quaternion(0.10584583, -0.061972797, 0.015735235, 0.99232477)
+bones/9/rotation = Quaternion(0.12165264, -0.057028577, 0.9009003, 0.41270706)
+bones/10/rotation = Quaternion(0.3372957, 0.24151793, 0.09326184, 0.9050984)
+bones/11/rotation = Quaternion(0.32461792, 0.5530724, 0.36629927, 0.67420995)
+bones/13/rotation = Quaternion(-0.85095996, -0.39547685, 0.2558843, 0.2323542)
+bones/14/rotation = Quaternion(0.34495723, 0.22470777, -0.014190938, 0.9112132)
+bones/16/rotation = Quaternion(-0.713383, 0.42165935, -0.12060526, 0.5465735)
+bones/17/rotation = Quaternion(0.22262464, 0.07115283, 0.062050972, 0.97032225)
+
+[node name="BoneAttachment3D" parent="Head/Neck/Camera3D/playerBody/Root/Skeleton3D" index="1" unique_id=1946967126]
+transform = Transform3D(0.46297634, -0.1951164, 0.86462843, -0.8024123, 0.32213682, 0.50235695, -0.3765467, -0.9263682, -0.0074220896, -0.28501666, 0.033564538, 0.56126535)
+
 [node name="Camera3D" parent="Head/SubViewportContainer/SubViewport" parent_id_path=PackedInt32Array(1702353845) index="0" unique_id=804073396]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8071404, 0)
 
-[node name="Root" parent="playerBody" parent_id_path=PackedInt32Array(764290862) index="0" unique_id=227732896]
-transform = Transform3D(0.7069859, 0.70507854, -0.05509074, -0.05022079, 0.12775122, 0.9905337, 0.70544213, -0.6975268, 0.1257279, 0.055282384, -0.12070699, -0.10225882)
+[node name="Skeleton3D" parent="Head/SubViewportContainer/SubViewport/Camera3D/LeftHand/ghoul_arms/Armature" parent_id_path=PackedInt32Array(412198594, 1792312933) index="0" unique_id=1061083497]
+bones/25/position = Vector3(0.009647703, 0.27215296, -0.19992214)
+bones/25/rotation = Quaternion(-0.50165033, -0.019595966, -0.055830184, 0.8630446)
+bones/26/scale = Vector3(1.0588081, 1.0588082, 1.0588081)
+bones/27/rotation = Quaternion(0.30919608, -0.6140945, -0.15740503, 0.708879)
+bones/29/position = Vector3(0.016635805, 0.05584082, 0.049251482)
+bones/29/rotation = Quaternion(0.39426845, 0.34037778, -0.1533234, 0.8397544)
+bones/30/rotation = Quaternion(-0.20127633, -0.12292695, -0.12345509, 0.96391684)
+bones/31/rotation = Quaternion(-0.10538411, 0.216947, -0.055515327, 0.9688893)
+bones/32/position = Vector3(0.016193036, 0.15027028, 0.04235094)
+bones/36/position = Vector3(0.013686596, 0.15982136, 0.015002651)
+bones/40/position = Vector3(0.0077180676, 0.15006056, -0.019199729)
 
-[node name="Skeleton3D" parent="playerBody/Root" index="0" unique_id=1398321543]
-bones/1/rotation = Quaternion(-0.051436674, 0.046432525, 0.007396642, 0.9975689)
-bones/2/rotation = Quaternion(0.01644802, 0.08886157, 0.017621128, 0.9957523)
-bones/3/rotation = Quaternion(0.007215585, 0.118376344, -0.86773664, 0.48266777)
-bones/4/rotation = Quaternion(0.13882783, -0.18948895, -0.31179705, 0.9206538)
-bones/5/rotation = Quaternion(0.12006897, -0.09979444, -0.04897302, 0.9865223)
-bones/7/rotation = Quaternion(0.12654117, -0.042824335, 0.026723063, 0.9906762)
-bones/9/rotation = Quaternion(0.11849794, -0.06018966, 0.9027182, 0.4091888)
-bones/10/rotation = Quaternion(0.36055407, 0.22984003, 0.077366844, 0.9006602)
-bones/11/rotation = Quaternion(0.32957342, 0.37877095, 0.23262846, 0.83294547)
-bones/13/rotation = Quaternion(-0.8523113, -0.39797166, 0.25472453, 0.22427572)
-bones/14/rotation = Quaternion(0.3301604, 0.21162276, -0.017004408, 0.9197395)
-bones/16/rotation = Quaternion(-0.7585851, 0.41144258, -0.11555063, 0.49184528)
-bones/17/rotation = Quaternion(0.3064804, 0.04771089, 0.09611277, 0.9458096)
+[node name="BoneAttachment3D" parent="Head/SubViewportContainer/SubViewport/Camera3D/LeftHand/ghoul_arms/Armature/Skeleton3D" index="1" unique_id=618378062]
+transform = Transform3D(1.0321438, 0.16969122, -0.16420038, -0.1268124, 1.0194376, 0.25640115, 0.1991872, -0.23027755, 1.0140877, -0.5817239, -0.2628097, -0.96169794)
 
-[node name="BoneAttachment3D" parent="playerBody/Root/Skeleton3D" index="1" unique_id=1946967126]
-transform = Transform3D(0.49417654, -0.16045561, 0.8544258, -0.77879125, 0.35507557, 0.5171123, -0.38635916, -0.92096436, 0.050508738, -0.30176333, -0.02008596, 0.57778656)
-
-[node name="status_effect_component" parent="." index="14" unique_id=1465415421]
+[node name="status_effect_component" parent="." index="12" unique_id=1465415421]
 process_material = SubResource("ParticleProcessMaterial_5gtgg")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." index="20" unique_id=1276511056]
@@ -167,4 +186,5 @@ light_energy = 0.5
 shadow_enabled = true
 omni_range = 10.0
 
-[editable path="playerBody"]
+[editable path="Head/Neck/Camera3D/playerBody"]
+[editable path="Head/SubViewportContainer/SubViewport/Camera3D/LeftHand"]

@@ -1,0 +1,63 @@
+[gd_resource type="AnimationNodeStateMachine" format=3 uid="uid://csvndnaewcyo4"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_eqgq3"]
+animation = &"lower"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_av143"]
+animation = &"shield_TO"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0t2wf"]
+animation = &"shield_block"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sf3ds"]
+animation = &"shield_idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sf3ds"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2qmfu"]
+xfade_time = 0.1
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2dmgv"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"activate"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_eqgq3"]
+xfade_time = 0.25
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fi1dk"]
+xfade_time = 0.25
+advance_mode = 2
+advance_condition = &"lower"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rc6hk"]
+xfade_time = 0.25
+advance_mode = 2
+advance_condition = &"lower"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xpsvu"]
+xfade_time = 0.25
+advance_mode = 2
+advance_condition = &"lower"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_grioy"]
+xfade_time = 0.25
+advance_mode = 2
+advance_condition = &"idle"
+
+[resource]
+states/lower/node = SubResource("AnimationNodeAnimation_eqgq3")
+states/lower/position = Vector2(531.8544, 189)
+states/shield_TO/node = SubResource("AnimationNodeAnimation_av143")
+states/shield_TO/position = Vector2(340, 100)
+states/shield_block/node = SubResource("AnimationNodeAnimation_0t2wf")
+states/shield_block/position = Vector2(733, 100)
+states/shield_idle/node = SubResource("AnimationNodeAnimation_sf3ds")
+states/shield_idle/position = Vector2(512.068, 100)
+transitions = ["Start", "shield_TO", SubResource("AnimationNodeStateMachineTransition_sf3ds"), "shield_TO", "shield_idle", SubResource("AnimationNodeStateMachineTransition_2qmfu"), "shield_idle", "shield_block", SubResource("AnimationNodeStateMachineTransition_2dmgv"), "shield_block", "shield_idle", SubResource("AnimationNodeStateMachineTransition_eqgq3"), "shield_idle", "lower", SubResource("AnimationNodeStateMachineTransition_fi1dk"), "shield_block", "lower", SubResource("AnimationNodeStateMachineTransition_rc6hk"), "shield_TO", "lower", SubResource("AnimationNodeStateMachineTransition_xpsvu"), "lower", "shield_TO", SubResource("AnimationNodeStateMachineTransition_grioy")]
+graph_offset = Vector2(-119.1456, 0)

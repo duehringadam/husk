@@ -1,0 +1,1489 @@
+[gd_resource type="VisualShader" format=3 uid="uid://d4n4ub6djcv7l"]
+
+[ext_resource type="Texture2D" uid="uid://hqes" path="res://scenes/Hivemind/MedievalWeapons/Art/Models/1_Blood/T_Blood_C.png" id="1_hqes"]
+[ext_resource type="Texture2D" uid="uid://hqeq" path="res://scenes/Hivemind/MedievalWeapons/Art/Models/1_Blood/T_Blood_ORM.png" id="2_hqeq"]
+
+[sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_d4n4ub6eqk03a"]
+size = Vector2(980, 500)
+expression = "//TilingAndOffsetNode:10
+output0 = input0 * input1 + input2;
+"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_1iiqdr"]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeVec2Constant" id="VisualShaderNodeVec2Constant_d4n4ub53eseio"]
+expanded_output_ports = [0]
+constant = Vector2(1, 1)
+
+[sub_resource type="VisualShaderNodeVec2Constant" id="VisualShaderNodeVec2Constant_d4n4ub53eseip"]
+expanded_output_ports = [0]
+constant = Vector2(1, 1)
+
+[sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_d4n4ub5o3itc5"]
+size = Vector2(980, 420)
+expression = "//NormalStrengthNode:14
+output0 = vec3( input0.rg * input1, mix(1.0, input0.b, saturate(input1)));
+"
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_d4n4ub6bux303"]
+constant = 1.0
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_d4n4ub5kxqjme"]
+parameter_name = "C"
+texture_type = 1
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_d4n4ub5k0itoa"]
+parameter_name = "ORM"
+texture_type = 1
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_54tnr1"]
+expanded_output_ports = [0]
+source = 5
+texture_type = 1
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_d4n4ub6bux304"]
+
+[sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_d4n4ub5mo0s33"]
+size = Vector2(980, 340)
+expression = "//InvertColorsNode:2
+vec4 InvertColors = vec4( 1, 0, 0, 0);
+output0 = abs(InvertColors.x - input0 );"
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_llnq15"]
+expanded_output_ports = [0]
+source = 5
+texture_type = 1
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_1iiqdw"]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_d4n4ub6bux306"]
+
+[sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_d4n4ub5b2p7uk"]
+size = Vector2(980, 340)
+expression = "//InvertColorsNode:23
+vec4 InvertColors = vec4( 1, 0, 0, 0);
+output0 = abs(InvertColors.x - input0 );"
+
+[sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_f2asr7"]
+size = Vector2(980, 340)
+expression = "//InvertColorsNode:24
+vec4 InvertColors = vec4( 1, 0, 0, 0);
+output0 = abs(InvertColors.x - input0 );"
+
+[sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_d4n4ub5ik4i3u"]
+size = Vector2(980, 340)
+expression = "//InvertColorsNode:25
+vec4 InvertColors = vec4( 1, 0, 0, 0);
+output0 = abs(InvertColors.x - input0 );"
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_v7xdbo"]
+default_input_values = [0, 0.0, 1, 2.0]
+operator = 3
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_d4n4ub6bux307"]
+constant = 1.45
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_d4n4ub6h8hv7m"]
+parameter_name = "N"
+texture_type = 2
+
+[sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_d4n4ub5676pty"]
+size = Vector2(980, 1120)
+expression = "//NormalTexture:29:
+vec4 Normal29 = texture( input2, input0 );
+Normal29.xyz = UnpackNormalmap( Normal29 );
+output0 = Normal29;
+output1 = Normal29.r;
+output2 = Normal29.g;
+output3 = Normal29.b;
+output4 = Normal29.a;
+"
+
+[sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_i65qs3"]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(0, 0, 0), 2, Vector3(0, 0, 0)]
+op_type = 3
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_d4n4ub6bux308"]
+
+[sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_d4n4ub5f6mius"]
+default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0), 2, Quaternion(0, 0, 0, 0)]
+op_type = 5
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_d4n4ub6amop21"]
+input_name = "color"
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_d4n4ub50vw5n3"]
+expanded_output_ports = [0]
+texture = ExtResource("1_hqes")
+texture_type = 1
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_i7qhas"]
+parameter_name = "T_Blood_C"
+texture_type = 1
+color_default = 1
+texture_filter = 6
+texture_repeat = 1
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_d4n4ub6g421cc"]
+expanded_output_ports = [0]
+texture = ExtResource("2_hqeq")
+texture_type = 1
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_i7qhat"]
+parameter_name = "T_Blood_ORM"
+texture_type = 1
+color_default = 1
+texture_filter = 6
+texture_repeat = 1
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_d4n4ub6bux31c"]
+
+[sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_bk4ml8y"]
+default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0), 2, Quaternion(0, 0, 0, 0)]
+op_type = 5
+
+[sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_d4n4ub5okoa3y"]
+default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0), 2, Quaternion(0, 0, 0, 0)]
+op_type = 5
+
+[sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_d4n4ub50psflo"]
+size = Vector2(980, 1120)
+expression = "//NormalTexture:4:
+vec4 Normal4 = texture( input2, input0 );
+Normal4.xyz = UnpackNormalmap( Normal4 );
+output0 = Normal4;
+output1 = Normal4.r;
+output2 = Normal4.g;
+output3 = Normal4.b;
+output4 = Normal4.a;
+"
+
+[sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_d4n4ub48n77mi"]
+default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0), 2, Quaternion(0, 0, 0, 0)]
+op_type = 5
+
+[sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_63t0re"]
+size = Vector2(980, 500)
+expression = "//TilingAndOffsetNode:41
+output0 = input0 * input1 + input2;
+"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_1iiqd4"]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeVec2Constant" id="VisualShaderNodeVec2Constant_d4n4ub53esei1"]
+expanded_output_ports = [0]
+constant = Vector2(10, 10)
+
+[sub_resource type="VisualShaderNodeVec2Constant" id="VisualShaderNodeVec2Constant_d4n4ub53esei2"]
+expanded_output_ports = [0]
+constant = Vector2(1, 1)
+
+[sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_mkn31i"]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(0, 0, 0), 2, Vector3(0, 0, 0)]
+op_type = 3
+
+[sub_resource type="VisualShaderNodeVec3Constant" id="VisualShaderNodeVec3Constant_d4n4ub5soeerv"]
+expanded_output_ports = [0]
+
+[sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_corgks"]
+default_input_values = [0, 0.0, 1, 0.0, 2, 0.0]
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_d4n4ub6bux31h"]
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_i7qhaf"]
+parameter_name = "None"
+texture_type = 1
+color_default = 1
+texture_filter = 6
+texture_repeat = 1
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_d4n4ub6bux30w"]
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_d4n4ub6bux31i"]
+constant = 0.5
+
+[sub_resource type="VisualShaderNodeVectorFunc" id="VisualShaderNodeVectorFunc_d4n4ub5x3admf"]
+
+[sub_resource type="VisualShaderNodeMultiplyAdd" id="VisualShaderNodeMultiplyAdd_d4n4ub5gn2w8u"]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(0.5, 0.5, 0.5), 2, Vector3(0.5, 0.5, 0.5)]
+op_type = 2
+
+[sub_resource type="VisualShaderNodeClamp" id="VisualShaderNodeClamp_d4n4ub5wrdjvr"]
+
+[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_d4n4ub5s0wig0"]
+function = 31
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_i7qhah"]
+parameter_name = "None2"
+texture_type = 1
+color_default = 1
+texture_filter = 6
+texture_repeat = 1
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_e3agsu"]
+default_input_values = [0, Vector2(0, 0), 1, Vector2(1, 1)]
+op_type = 0
+operator = 2
+
+[sub_resource type="VisualShaderNodeVec2Constant" id="VisualShaderNodeVec2Constant_d4n4ub53eseim"]
+expanded_output_ports = [0]
+constant = Vector2(1, 1)
+
+[sub_resource type="VisualShaderNodeGlobalExpression" id="VisualShaderNodeGlobalExpression_d4n4ub5je68xw"]
+size = Vector2(940, 380)
+expression = "//Exported with UnityToGodot 1.03 Get it from https://relativegames.gumroad.com/l/unitytogodot
+
+float saturate(float val)
+{
+    return clamp( val, 0.0, 1.0 );
+}
+vec2 saturate2(vec2 val)
+{
+    return clamp( val, 0.0, 1.0 );
+}
+vec3 saturate3(vec3 val)
+{
+    return clamp( val, 0.0, 1.0 );
+}
+void Unity_Hue(vec3 In, float pOffset, bool Normalized, out vec3 Out)
+{
+    // RGB to HSV
+    vec4 K = vec4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);
+    vec4 P = mix(vec4(In.bg, K.wz), vec4(In.gb, K.xy), step(In.b, In.g));
+    vec4 Q = mix(vec4(P.xyw, In.r), vec4(In.r, P.yzx), step(P.x, In.r));
+    float D = Q.x - min(Q.w, Q.y);
+    float E2 = 1e-10;
+    float V = (D == 0.0) ? Q.x : (Q.x + E2);
+    vec3 hsv = vec3(abs(Q.z + (Q.w - Q.y)/(6.0 * D + E2)), D / (Q.x + E2), V);
+
+    float hue = hsv.x + pOffset / 360.0;
+    if ( Normalized )
+        hue = hsv.x + pOffset;
+
+    float temp = (hue > 1.0)
+                ? hue - 1.0
+                : hue;
+    hsv.x = (hue < 0.0)
+            ? hue + 1.0
+            : temp;
+
+    // HSV to RGB
+    vec4 K2 = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
+    vec3 P2 = abs(fract(hsv.xxx + K2.xyz) * 6.0 - K2.www);
+    Out = hsv.z * mix(K2.xxx, saturate3(P2 - K2.xxx), hsv.y);
+}
+void Unity_Remap_float(float In, vec2 InMinMax, vec2 OutMinMax, out float Out)
+{
+    Out = OutMinMax.x + (In - InMinMax.x) * (OutMinMax.y - OutMinMax.x) / (InMinMax.y - InMinMax.x);
+}
+float Unity_SimpleNoise_RandomValue_float (vec2 uv)
+{
+    float angle = dot(uv, vec2(12.9898, 78.233));
+    //#if defined(SHADER_API_MOBILE) && (defined(SHADER_API_GLES) || defined(SHADER_API_GLES3) || defined(SHADER_API_VULKAN))
+        // 'sin()' has bad precision on Mali GPUs for inputs > 10000
+        //angle = mod(angle, 2.0 * PI); // Avoid large inputs to sin()
+    //#endif
+    return fract(sin(angle)*43758.5453);
+}
+        
+float Unity_SimpleNnoise_Interpolate_float (float a, float b, float t)
+{
+    return (1.0-t)*a + (t*b);
+}
+        
+        
+float Unity_SimpleNoise_ValueNoise_float (vec2 uv)
+{
+    vec2 i = floor(uv);
+    vec2 f = fract(uv);
+    f = f * f * (3.0 - 2.0 * f);
+        
+    uv = abs(fract(uv) - 0.5);
+    vec2 c0 = i + vec2(0.0, 0.0);
+    vec2 c1 = i + vec2(1.0, 0.0);
+    vec2 c2 = i + vec2(0.0, 1.0);
+    vec2 c3 = i + vec2(1.0, 1.0);
+    float r0 = Unity_SimpleNoise_RandomValue_float(c0);
+    float r1 = Unity_SimpleNoise_RandomValue_float(c1);
+    float r2 = Unity_SimpleNoise_RandomValue_float(c2);
+    float r3 = Unity_SimpleNoise_RandomValue_float(c3);
+        
+    float bottomOfGrid = Unity_SimpleNnoise_Interpolate_float(r0, r1, f.x);
+    float topOfGrid = Unity_SimpleNnoise_Interpolate_float(r2, r3, f.x);
+    float t = Unity_SimpleNnoise_Interpolate_float(bottomOfGrid, topOfGrid, f.y);
+    return t;
+}
+void Unity_SimpleNoise_float(vec2 pUV, float pScale, out float Out)
+{
+    float t = 0.0;
+        
+    float freq = pow(2.0, float(0));
+    float amp = pow(0.5, float(3-0));
+    t += Unity_SimpleNoise_ValueNoise_float(vec2(pUV.x*pScale/freq, pUV.y*pScale/freq))*amp;
+        
+    freq = pow(2.0, float(1));
+    amp = pow(0.5, float(3-1));
+    t += Unity_SimpleNoise_ValueNoise_float(vec2(pUV.x*pScale/freq, pUV.y*pScale/freq))*amp;
+        
+    freq = pow(2.0, float(2));
+    amp = pow(0.5, float(3-2));
+    t += Unity_SimpleNoise_ValueNoise_float(vec2(pUV.x*pScale/freq, pUV.y*pScale/freq))*amp;
+        
+    Out = t;
+}
+void Unity_Blend_Burn_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    Out =  vec4(1,1,1,1) - (vec4(1,1,1,1) - pBlend)/pBase;
+    Out = mix(pBase, Out, pOpacity);
+}
+void Unity_Blend_Darken_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    Out = min(pBlend, pBase);
+    Out = mix(pBase, Out, pOpacity);
+}
+void Unity_Blend_Difference_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    Out = abs(pBlend - pBase);
+    Out = mix(pBase, Out, pOpacity);
+}
+void Unity_Blend_Dodge_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    Out = pBase / (vec4(1,1,1,1) - pBlend);
+    Out = mix(pBase, Out, pOpacity);
+}
+void Unity_Blend_Divide_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    Out = pBase / (pBlend + 0.000000000001);
+    Out = mix(pBase, Out, pOpacity);
+}
+void Unity_Blend_Exclusion_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    Out = pBlend + pBase - (vec4(2.0,2.0,2.0,2.0) * pBlend * pBase);
+    Out = mix(pBase, Out, pOpacity);
+}
+void Unity_Blend_HardLight_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    vec4 result1 = vec4(1,1,1,1) - vec4(2.0,2.0,2.0,2.0) * (vec4(1,1,1,1) - pBase) * (vec4(1,1,1,1) - pBlend);
+    vec4 result2 = vec4(2.0,2.0,2.0,2.0) * pBase * pBlend;
+    vec4 zeroOrOne = step(pBlend, vec4(0.5,0.5,0.5,0.5));
+    Out = result2 * zeroOrOne + ( vec4(1,1,1,1) - zeroOrOne) * result1;
+    Out = mix(pBase, Out, pOpacity);
+}
+void Unity_Blend_HardMix_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    Out = step( vec4(1,1,1,1) - pBase, pBlend);
+    Out = mix(pBase, Out, pOpacity);
+}
+void Unity_Blend_Lighten_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    Out = max(pBlend, pBase);
+    Out = mix(pBase, Out, pOpacity);
+}
+void Unity_Blend_LinearBurn_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    Out = pBase + pBlend - vec4(1,1,1,1);
+    Out = mix(pBase, Out, pOpacity);
+}
+void Unity_Blend_LinearDodge_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    Out = pBase + pBlend;
+    Out = mix(pBase, Out, pOpacity);
+}
+void Unity_Blend_LinearLight_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    //Out = pBlend < vec4(0.5,0.5,0.5,0.5) ? max(pBase + (vec4(2,2,2,2) * pBlend) - vec4(1,1,1,1), vec4(0,0,0,0)) : min(pBase + vec4(2,2,2,2) * (pBlend - vec4(0.5,0.5,0.5,0.5)), vec4(1,1,1,1));
+    Out.x = pBlend.x < 0.5 ? max(pBase.x + (2.0 * pBlend.x) - 1.0, 0.0) : min(pBase.x + 2.0 * (pBlend.x - 0.5), 1.0);
+    Out.y = pBlend.y < 0.5 ? max(pBase.y + (2.0 * pBlend.y) - 1.0, 0.0) : min(pBase.y + 2.0 * (pBlend.y - 0.5), 1.0);
+    Out.z = pBlend.z < 0.5 ? max(pBase.z + (2.0 * pBlend.z) - 1.0, 0.0) : min(pBase.z + 2.0 * (pBlend.z - 0.5), 1.0);
+    Out.w = pBlend.w < 0.5 ? max(pBase.w + (2.0 * pBlend.w) - 1.0, 0.0) : min(pBase.w + 2.0 * (pBlend.w - 0.5), 1.0);
+    Out = mix(pBase, Out, pOpacity);
+}
+void Unity_Blend_LinearLightAddSub_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    Out = pBlend + vec4(2.0,2.0,2.0,2.0) * pBase - vec4(1,1,1,1);
+    Out = mix(pBase, Out, pOpacity);
+}
+void Unity_Blend_Multiply_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    Out = pBase * pBlend;
+    Out = mix(pBase, Out, pOpacity);
+}
+void Unity_Blend_Negation_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    Out = vec4(1,1,1,1) - abs(vec4(1,1,1,1) - pBlend - pBase);
+    Out = mix(pBase, Out, pOpacity);
+}
+void Unity_Blend_Overlay_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    vec4 result1 = vec4(1,1,1,1) - vec4(2.0,2.0,2.0,2.0) * (vec4(1,1,1,1) - pBase) * (vec4(1,1,1,1) - pBlend);
+    vec4 result2 = vec4(2.0,2.0,2.0,2.0) * pBase * pBlend;
+    vec4 zeroOrOne = step(pBase, vec4(0.5,0.5,0.5,0.5));
+    Out = result2 * zeroOrOne + ( vec4(1,1,1,1) - zeroOrOne) * result1;
+    Out = mix(pBase, Out, pOpacity);
+}
+void Unity_Blend_PinLight_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    vec4 check = step( vec4(0.5,0.5,0.5,0.5), pBlend);
+    vec4 result1 = check * max(vec4(2.0,2.0,2.0,2.0) * (pBase - vec4(0.5,0.5,0.5,0.5)), pBlend);
+    Out = result1 + (vec4(1,1,1,1) - check) * min(vec4(2.0,2.0,2.0,2.0) * pBase, pBlend);
+    Out = mix(pBase, Out, pOpacity);
+}
+void Unity_Blend_Screen_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    Out = vec4(1,1,1,1) - (vec4(1,1,1,1) - pBlend) * (vec4(1,1,1,1) - pBase);
+    Out = mix(pBase, Out, pOpacity);
+}
+void Unity_Blend_SoftLight_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    vec4 result1 = vec4(2.0,2.0,2.0,2.0) * pBase * pBlend + pBase * pBase * (vec4(1,1,1,1) - vec4(2.0,2.0,2.0,2.0) * pBlend);
+    vec4 result2 = sqrt(pBase) * (vec4(2.0,2.0,2.0,2.0) * pBlend - vec4(1,1,1,1)) + vec4(2.0,2.0,2.0,2.0) * pBase * (vec4(1,1,1,1) - pBlend);
+    vec4 zeroOrOne = step( vec4(0.5,0.5,0.5,0.5), pBlend);
+    Out = result2 * zeroOrOne + ( vec4(1,1,1,1) - zeroOrOne) * result1;
+    Out = mix(pBase, Out, pOpacity);
+}
+void Unity_Blend_Subtract_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    Out = pBase - pBlend;
+    Out = mix(pBase, Out, pOpacity);
+}
+void Unity_Blend_VividLight_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    vec4 result1 = vec4(1,1,1,1) - (vec4(1,1,1,1) - pBlend) / (vec4(2.0,2.0,2.0,2.0) * pBase);
+    vec4 result2 = pBlend / (vec4(2.0,2.0,2.0,2.0) * (vec4(1,1,1,1) - pBase));
+    vec4 zeroOrOne = step( vec4(0.5,0.5,0.5,0.5), pBase);
+    Out = result2 * zeroOrOne + (vec4(1,1,1,1) - zeroOrOne) * result1;
+    Out = mix(pBase, Out, pOpacity);
+}
+void Unity_Blend_Overwrite_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    Out = mix(pBase, pBlend, pOpacity);
+}
+void Unity_Rotate_About_Axis_Degrees_float(vec3 In, vec3 Axis, float pRotation, out vec3 Out)
+{    
+    float s = sin(pRotation);
+    float c = cos(pRotation);
+    float one_minus_c = 1.0 - c;
+        
+    Axis = normalize(Axis);
+        
+    mat3 rot_mat = mat3( vec3( one_minus_c * Axis.x * Axis.x + c,            one_minus_c * Axis.x * Axis.y - Axis.z * s,     one_minus_c * Axis.z * Axis.x + Axis.y * s ),
+                        vec3( one_minus_c * Axis.x * Axis.y + Axis.z * s,   one_minus_c * Axis.y * Axis.y + c,              one_minus_c * Axis.y * Axis.z - Axis.x * s ),
+                        vec3( one_minus_c * Axis.z * Axis.x - Axis.y * s,   one_minus_c * Axis.y * Axis.z + Axis.x * s,     one_minus_c * Axis.z * Axis.z + c )
+                            );
+        
+    Out = In * rot_mat;
+}
+void Unity_Rotate_Radians_float(vec2 pUV, vec2 Center, float pRotation, out vec2 Out)
+{
+    //rotation matrix
+    pUV -= Center;
+    float s = sin(pRotation);
+    float c = cos(pRotation);
+        
+    //center rotation matrix
+    mat2 rMatrix = mat2( vec2(c, -s), vec2(s, c) );
+    rMatrix *= 0.5;
+    rMatrix += 0.5;
+    rMatrix = rMatrix*2.0 - 1.0;
+        
+    //multiply the UVs by the rotation matrix
+    pUV.xy = pUV.xy * rMatrix;
+    pUV += Center;
+        
+    Out = pUV;
+}
+const float FLT_MIN = 1.175494351e-38F;
+vec3 SafeNormalize(vec3 inVec)
+{
+    float dp3 = max(FLT_MIN, dot(inVec, inVec));
+    return inVec * inversesqrt(dp3);
+}
+vec3 TransformWorldToTangent(vec3 normalWS, mat3 tangentToWorld )
+{
+    bool doNormalize = true;
+    // Note matrix is in row major convention with left multiplication as it is build on the fly
+    vec3 row0 = tangentToWorld[0];
+    vec3 row1 = tangentToWorld[1];
+    vec3 row2 = tangentToWorld[2];
+
+    // these are the columns of the inverse matrix but scaled by the determinant
+    vec3 col0 = cross(row1, row2);
+    vec3 col1 = cross(row2, row0);
+    vec3 col2 = cross(row0, row1);
+
+    float determinant = dot(row0, col0);
+
+    // inverse transposed but scaled by determinant
+    // Will remove transpose part by using matrix as the first arg in the mul() below
+    // this makes it the exact inverse of what TransformTangentToWorld() does.
+    mat3 matTBN_I_T = mat3(col0, col1, col2);
+    vec3 result = normalWS * matTBN_I_T;
+    if (doNormalize)
+    {
+        float sgn = determinant < 0.0 ? (-1.0) : 1.0;
+        return SafeNormalize(sgn * result);
+    }
+    else
+        return result / determinant;
+}
+void Hash_Tchou_2_2_uint(uvec2 v, out uvec2 o)
+{
+    // ~8 alu (2 mul)
+    v.y ^= 1103515245U;
+    v.x += v.y;
+    v.x *= v.y;
+    v.x ^= v.x >> 5u;
+    v.x *= 0x27d4eb2du;
+    v.y ^= (v.x << 3u);
+    o = v;
+}
+void Hash_Tchou_2_2_float(vec2 i, out vec2 o)
+{
+    uvec2 r;
+    uvec2 v = uvec2(ivec2(round(i)));
+    Hash_Tchou_2_2_uint(v, r);
+    o.x = float(r.x >> 8u) * (1.0 / float(0x00ffffff));
+    o.y = float(r.y >> 8u) * (1.0 / float(0x00ffffff));
+}
+vec2 Unity_Voronoi_RandomVector_Deterministic_float(vec2 uv, float offset)
+{
+    Hash_Tchou_2_2_float(uv, uv);
+    return vec2(sin(uv.y * offset), cos(uv.x * offset)) * 0.5 + 0.5;
+}
+void Hash_LegacySine_2_2_float(vec2 i, out vec2 o)
+{
+    mat2 m = mat2( vec2( 15.27, 47.63), vec2( 99.41, 89.98) );
+    vec2 angles = i * m;
+
+    o = fract(sin(angles));
+}
+vec2 Unity_Voronoi_RandomVector_LegacySine_float(vec2 uv, float offset)
+{
+    Hash_LegacySine_2_2_float(uv, uv);
+    return vec2(sin(uv.y * offset), cos(uv.x * offset)) * 0.5 + 0.5;
+}
+float SafePositivePow_float( float pBase, float power)
+{
+    float FLT_EPS =  5.960464478e-8;
+    return pow(max(abs(pBase), float(FLT_EPS)), power);
+}
+struct Gradient
+{
+    int type;
+    int colorsLength;
+    int alphasLength;
+    vec4 colors[8];
+    vec2 alphas[8];
+};
+
+Gradient NewGradient(int type, int colorsLength, int alphasLength,
+    vec4 colors0, vec4 colors1, vec4 colors2, vec4 colors3, vec4 colors4, vec4 colors5, vec4 colors6, vec4 colors7,
+    vec2 alphas0, vec2 alphas1, vec2 alphas2, vec2 alphas3, vec2 alphas4, vec2 alphas5, vec2 alphas6, vec2 alphas7)
+{
+    vec4 colors[8] = { colors0, colors1, colors2, colors3, colors4, colors5, colors6, colors7 };
+	vec2 alphas[8] = { alphas0, alphas1, alphas2, alphas3, alphas4, alphas5, alphas6, alphas7 };
+    Gradient output = Gradient(    
+        type, colorsLength, alphasLength,
+        colors, alphas        
+    );
+    return output;
+}
+vec3 LinearToOklab(vec3 rgb)
+{
+    float l = 0.4122214708f * rgb.r + 0.5363325363f * rgb.g + 0.0514459929f * rgb.b;
+    float m = 0.2119034982f * rgb.r + 0.6806995451f * rgb.g + 0.1073969566f * rgb.b;
+    float s = 0.0883024619f * rgb.r + 0.2817188376f * rgb.g + 0.6299787005f * rgb.b;
+
+    float l_ = pow(l, 0.333333f);
+    float m_ = pow(m, 0.333333f);
+    float s_ = pow(s, 0.333333f);
+
+    return vec3(
+        0.2104542553f * l_ + 0.7936177850f * m_ - 0.0040720468f * s_,
+        1.9779984951f * l_ - 2.4285922050f * m_ + 0.4505937099f * s_,
+        0.0259040371f * l_ + 0.7827717662f * m_ - 0.8086757660f * s_);
+}
+
+vec3 OklabToLinear(vec3 lab)
+{
+    float l_ = lab.r + 0.3963377774f * lab.g + 0.2158037573f * lab.b;
+    float m_ = lab.r - 0.1055613458f * lab.g - 0.0638541728f * lab.b;
+    float s_ = lab.r - 0.0894841775f * lab.g - 1.2914855480f * lab.b;
+
+    float l = l_ * l_ * l_;
+    float m = m_ * m_ * m_;
+    float s = s_ * s_ * s_;
+
+    return vec3(
+         4.0767416621f * l - 3.3077115913f * m + 0.2309699292f * s,
+		-1.2684380046f * l + 2.6097574011f * m - 0.3413193965f * s,
+		-0.0041960863f * l - 0.7034186147f * m + 1.7076147010f * s);
+}
+void Hash_Tchou_2_1_uint(uvec2 v, out uint o)
+{
+    // ~6 alu (2 mul)
+    v.y ^= 1103515245U;
+    v.x += v.y;
+    v.x *= v.y;
+    v.x ^= v.x >> 5u;
+    v.x *= 0x27d4eb2du;
+    o = v.x;
+}
+void Hash_Tchou_2_1_float(vec2 i, out float o)
+{
+    uint r;
+    uvec2 v = uvec2(ivec2( round(i) ));
+    Hash_Tchou_2_1_uint(v, r);
+    o = float(r >> 8u) * (1.0 / float(0x00ffffff));
+}
+vec2 Unity_GradientNoise_Deterministic_Dir_float(vec2 p)
+{
+    float x; Hash_Tchou_2_1_float(p, x);
+    return normalize(vec2(x - floor(x + 0.5), abs(x) - 0.5));
+}
+vec3 UnpackNormalmap(vec4 packednormal)
+{
+    // This do the trick
+   //packednormal.x *= packednormal.w;
+
+    vec3 normal;
+    normal.xy = packednormal.xy * vec2( 2.0, 2.0 ) - vec2( 1.0, 1.0 );
+    normal.z = sqrt(1.0 - saturate(dot(normal.xy, normal.xy)));
+    return normalize( normal );
+}
+vec4 SampleNormalMap( sampler2D pNormalMap, vec2 puv )
+{
+    vec4 Ret = texture( pNormalMap, puv );
+    Ret.xyz = UnpackNormalmap( Ret );
+    return Ret;
+}
+float ComputeFogFactorZ0ToFar(float z, float RenderSettingsDensity)
+{
+    float start = 0.0;
+    float end = 1000.0;
+    vec4 unity_FogParams = vec4( RenderSettingsDensity / sqrt(log(2.0)),
+    RenderSettingsDensity / log(2.0),
+    -1.0/(end-start),
+    end/(end-start)
+    );
+
+    #if 1//defined(FOG_LINEAR)
+    // factor = (end-z)/(end-start) = z * (-1/(end-start)) + (end/(end-start))
+    float fogFactor = saturate(z * unity_FogParams.z + unity_FogParams.w);
+    return float(fogFactor);
+    #elif defined(FOG_EXP) || defined(FOG_EXP2)
+    // factor = exp(-(density*z)^2)
+    // -density * z computed at vertex
+    return float(unity_FogParams.x * z);
+    #else
+        return float(0.0);
+    #endif
+}
+float ComputeFogIntensity(float fogFactor)
+{
+    float fogIntensity = 0.0;
+    #if defined(FOG_LINEAR) || defined(FOG_EXP) || defined(FOG_EXP2)
+        #if defined(FOG_EXP)
+            // factor = exp(-density*z)
+            // fogFactor = density*z compute at vertex
+            fogIntensity = saturate(exp2(-fogFactor));
+        #elif defined(FOG_EXP2)
+            // factor = exp(-(density*z)^2)
+            // fogFactor = density*z compute at vertex
+            fogIntensity = saturate(exp2(-fogFactor * fogFactor));
+        #else//if defined(FOG_LINEAR)
+            fogIntensity = fogFactor;
+        #endif
+    #endif
+    return fogIntensity;
+}
+vec4 TransformWorldToShadowCoord(vec3 WorldPos)
+{
+	return vec4(0,0,0,0);
+}
+struct Light
+{
+    vec3 direction;
+    vec3 color;
+    float distanceAttenuation;
+    float shadowAttenuation;
+};
+Light GetMainLight(vec4 shadowCoord)
+{
+    Light MainLight;
+    MainLight.direction = vec3(0,-1,0);
+    MainLight.color = vec3(1,1,1);
+    MainLight.distanceAttenuation = 1.0f;
+    MainLight.shadowAttenuation = 1.0f;
+    return MainLight;
+}
+vec3 SHEvalLinearL0L1(vec3 N, vec4 shAr, vec4 shAg, vec4 shAb)
+{
+    vec4 vA = vec4(N, 1.0);
+
+    vec3 x1;
+    // Linear (L1) + constant (L0) polynomial terms
+    x1.r = dot(shAr, vA);
+    x1.g = dot(shAg, vA);
+    x1.b = dot(shAb, vA);
+
+    return x1;
+}
+vec3 SHEvalLinearL2(vec3 N, vec4 shBr, vec4 shBg, vec4 shBb, vec4 shC)
+{
+    vec3 x2;
+    // 4 of the quadratic (L2) polynomials
+    vec4 vB = N.xyzz * N.yzzx;
+    x2.r = dot(shBr, vB);
+    x2.g = dot(shBg, vB);
+    x2.b = dot(shBb, vB);
+
+    // Final (5th) quadratic (L2) polynomial
+    float vC = N.x * N.x - N.y * N.y;
+    vec3 x3 = shC.rgb * vC;
+
+    return x2 + x3;
+}
+vec3 SampleSH9(vec4 SHCoefficients[7], vec3 N)
+{
+    vec4 shAr = SHCoefficients[0];
+    vec4 shAg = SHCoefficients[1];
+    vec4 shAb = SHCoefficients[2];
+    vec4 shBr = SHCoefficients[3];
+    vec4 shBg = SHCoefficients[4];
+    vec4 shBb = SHCoefficients[5];
+    vec4 shCr = SHCoefficients[6];
+
+    // Linear + constant polynomial terms
+    vec3 res = SHEvalLinearL0L1(N, shAr, shAg, shAb);
+
+    // Quadratic polynomials
+    res += SHEvalLinearL2(N, shBr, shBg, shBb, shCr);
+
+#ifdef UNITY_COLORSPACE_GAMMA
+    res = LinearToSRGB(res);
+#endif
+
+    return res;
+}
+"
+
+[resource]
+flags/depth_prepass_alpha = true
+nodes/vertex/0/position = Vector2(0, 0)
+nodes/vertex/63/node = SubResource("VisualShaderNodeGlobalExpression_d4n4ub5je68xw")
+nodes/vertex/63/position = Vector2(264, 288)
+nodes/vertex/63/size = Vector2(940, 380)
+nodes/vertex/63/input_ports = ""
+nodes/vertex/63/output_ports = ""
+nodes/vertex/63/expression = "//Exported with UnityToGodot 1.03 Get it from https://relativegames.gumroad.com/l/unitytogodot
+
+float saturate(float val)
+{
+    return clamp( val, 0.0, 1.0 );
+}
+vec2 saturate2(vec2 val)
+{
+    return clamp( val, 0.0, 1.0 );
+}
+vec3 saturate3(vec3 val)
+{
+    return clamp( val, 0.0, 1.0 );
+}
+void Unity_Hue(vec3 In, float pOffset, bool Normalized, out vec3 Out)
+{
+    // RGB to HSV
+    vec4 K = vec4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);
+    vec4 P = mix(vec4(In.bg, K.wz), vec4(In.gb, K.xy), step(In.b, In.g));
+    vec4 Q = mix(vec4(P.xyw, In.r), vec4(In.r, P.yzx), step(P.x, In.r));
+    float D = Q.x - min(Q.w, Q.y);
+    float E2 = 1e-10;
+    float V = (D == 0.0) ? Q.x : (Q.x + E2);
+    vec3 hsv = vec3(abs(Q.z + (Q.w - Q.y)/(6.0 * D + E2)), D / (Q.x + E2), V);
+
+    float hue = hsv.x + pOffset / 360.0;
+    if ( Normalized )
+        hue = hsv.x + pOffset;
+
+    float temp = (hue > 1.0)
+                ? hue - 1.0
+                : hue;
+    hsv.x = (hue < 0.0)
+            ? hue + 1.0
+            : temp;
+
+    // HSV to RGB
+    vec4 K2 = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
+    vec3 P2 = abs(fract(hsv.xxx + K2.xyz) * 6.0 - K2.www);
+    Out = hsv.z * mix(K2.xxx, saturate3(P2 - K2.xxx), hsv.y);
+}
+void Unity_Remap_float(float In, vec2 InMinMax, vec2 OutMinMax, out float Out)
+{
+    Out = OutMinMax.x + (In - InMinMax.x) * (OutMinMax.y - OutMinMax.x) / (InMinMax.y - InMinMax.x);
+}
+float Unity_SimpleNoise_RandomValue_float (vec2 uv)
+{
+    float angle = dot(uv, vec2(12.9898, 78.233));
+    //#if defined(SHADER_API_MOBILE) && (defined(SHADER_API_GLES) || defined(SHADER_API_GLES3) || defined(SHADER_API_VULKAN))
+        // 'sin()' has bad precision on Mali GPUs for inputs > 10000
+        //angle = mod(angle, 2.0 * PI); // Avoid large inputs to sin()
+    //#endif
+    return fract(sin(angle)*43758.5453);
+}
+        
+float Unity_SimpleNnoise_Interpolate_float (float a, float b, float t)
+{
+    return (1.0-t)*a + (t*b);
+}
+        
+        
+float Unity_SimpleNoise_ValueNoise_float (vec2 uv)
+{
+    vec2 i = floor(uv);
+    vec2 f = fract(uv);
+    f = f * f * (3.0 - 2.0 * f);
+        
+    uv = abs(fract(uv) - 0.5);
+    vec2 c0 = i + vec2(0.0, 0.0);
+    vec2 c1 = i + vec2(1.0, 0.0);
+    vec2 c2 = i + vec2(0.0, 1.0);
+    vec2 c3 = i + vec2(1.0, 1.0);
+    float r0 = Unity_SimpleNoise_RandomValue_float(c0);
+    float r1 = Unity_SimpleNoise_RandomValue_float(c1);
+    float r2 = Unity_SimpleNoise_RandomValue_float(c2);
+    float r3 = Unity_SimpleNoise_RandomValue_float(c3);
+        
+    float bottomOfGrid = Unity_SimpleNnoise_Interpolate_float(r0, r1, f.x);
+    float topOfGrid = Unity_SimpleNnoise_Interpolate_float(r2, r3, f.x);
+    float t = Unity_SimpleNnoise_Interpolate_float(bottomOfGrid, topOfGrid, f.y);
+    return t;
+}
+void Unity_SimpleNoise_float(vec2 pUV, float pScale, out float Out)
+{
+    float t = 0.0;
+        
+    float freq = pow(2.0, float(0));
+    float amp = pow(0.5, float(3-0));
+    t += Unity_SimpleNoise_ValueNoise_float(vec2(pUV.x*pScale/freq, pUV.y*pScale/freq))*amp;
+        
+    freq = pow(2.0, float(1));
+    amp = pow(0.5, float(3-1));
+    t += Unity_SimpleNoise_ValueNoise_float(vec2(pUV.x*pScale/freq, pUV.y*pScale/freq))*amp;
+        
+    freq = pow(2.0, float(2));
+    amp = pow(0.5, float(3-2));
+    t += Unity_SimpleNoise_ValueNoise_float(vec2(pUV.x*pScale/freq, pUV.y*pScale/freq))*amp;
+        
+    Out = t;
+}
+void Unity_Blend_Burn_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    Out =  vec4(1,1,1,1) - (vec4(1,1,1,1) - pBlend)/pBase;
+    Out = mix(pBase, Out, pOpacity);
+}
+void Unity_Blend_Darken_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    Out = min(pBlend, pBase);
+    Out = mix(pBase, Out, pOpacity);
+}
+void Unity_Blend_Difference_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    Out = abs(pBlend - pBase);
+    Out = mix(pBase, Out, pOpacity);
+}
+void Unity_Blend_Dodge_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    Out = pBase / (vec4(1,1,1,1) - pBlend);
+    Out = mix(pBase, Out, pOpacity);
+}
+void Unity_Blend_Divide_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    Out = pBase / (pBlend + 0.000000000001);
+    Out = mix(pBase, Out, pOpacity);
+}
+void Unity_Blend_Exclusion_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    Out = pBlend + pBase - (vec4(2.0,2.0,2.0,2.0) * pBlend * pBase);
+    Out = mix(pBase, Out, pOpacity);
+}
+void Unity_Blend_HardLight_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    vec4 result1 = vec4(1,1,1,1) - vec4(2.0,2.0,2.0,2.0) * (vec4(1,1,1,1) - pBase) * (vec4(1,1,1,1) - pBlend);
+    vec4 result2 = vec4(2.0,2.0,2.0,2.0) * pBase * pBlend;
+    vec4 zeroOrOne = step(pBlend, vec4(0.5,0.5,0.5,0.5));
+    Out = result2 * zeroOrOne + ( vec4(1,1,1,1) - zeroOrOne) * result1;
+    Out = mix(pBase, Out, pOpacity);
+}
+void Unity_Blend_HardMix_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    Out = step( vec4(1,1,1,1) - pBase, pBlend);
+    Out = mix(pBase, Out, pOpacity);
+}
+void Unity_Blend_Lighten_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    Out = max(pBlend, pBase);
+    Out = mix(pBase, Out, pOpacity);
+}
+void Unity_Blend_LinearBurn_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    Out = pBase + pBlend - vec4(1,1,1,1);
+    Out = mix(pBase, Out, pOpacity);
+}
+void Unity_Blend_LinearDodge_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    Out = pBase + pBlend;
+    Out = mix(pBase, Out, pOpacity);
+}
+void Unity_Blend_LinearLight_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    //Out = pBlend < vec4(0.5,0.5,0.5,0.5) ? max(pBase + (vec4(2,2,2,2) * pBlend) - vec4(1,1,1,1), vec4(0,0,0,0)) : min(pBase + vec4(2,2,2,2) * (pBlend - vec4(0.5,0.5,0.5,0.5)), vec4(1,1,1,1));
+    Out.x = pBlend.x < 0.5 ? max(pBase.x + (2.0 * pBlend.x) - 1.0, 0.0) : min(pBase.x + 2.0 * (pBlend.x - 0.5), 1.0);
+    Out.y = pBlend.y < 0.5 ? max(pBase.y + (2.0 * pBlend.y) - 1.0, 0.0) : min(pBase.y + 2.0 * (pBlend.y - 0.5), 1.0);
+    Out.z = pBlend.z < 0.5 ? max(pBase.z + (2.0 * pBlend.z) - 1.0, 0.0) : min(pBase.z + 2.0 * (pBlend.z - 0.5), 1.0);
+    Out.w = pBlend.w < 0.5 ? max(pBase.w + (2.0 * pBlend.w) - 1.0, 0.0) : min(pBase.w + 2.0 * (pBlend.w - 0.5), 1.0);
+    Out = mix(pBase, Out, pOpacity);
+}
+void Unity_Blend_LinearLightAddSub_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    Out = pBlend + vec4(2.0,2.0,2.0,2.0) * pBase - vec4(1,1,1,1);
+    Out = mix(pBase, Out, pOpacity);
+}
+void Unity_Blend_Multiply_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    Out = pBase * pBlend;
+    Out = mix(pBase, Out, pOpacity);
+}
+void Unity_Blend_Negation_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    Out = vec4(1,1,1,1) - abs(vec4(1,1,1,1) - pBlend - pBase);
+    Out = mix(pBase, Out, pOpacity);
+}
+void Unity_Blend_Overlay_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    vec4 result1 = vec4(1,1,1,1) - vec4(2.0,2.0,2.0,2.0) * (vec4(1,1,1,1) - pBase) * (vec4(1,1,1,1) - pBlend);
+    vec4 result2 = vec4(2.0,2.0,2.0,2.0) * pBase * pBlend;
+    vec4 zeroOrOne = step(pBase, vec4(0.5,0.5,0.5,0.5));
+    Out = result2 * zeroOrOne + ( vec4(1,1,1,1) - zeroOrOne) * result1;
+    Out = mix(pBase, Out, pOpacity);
+}
+void Unity_Blend_PinLight_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    vec4 check = step( vec4(0.5,0.5,0.5,0.5), pBlend);
+    vec4 result1 = check * max(vec4(2.0,2.0,2.0,2.0) * (pBase - vec4(0.5,0.5,0.5,0.5)), pBlend);
+    Out = result1 + (vec4(1,1,1,1) - check) * min(vec4(2.0,2.0,2.0,2.0) * pBase, pBlend);
+    Out = mix(pBase, Out, pOpacity);
+}
+void Unity_Blend_Screen_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    Out = vec4(1,1,1,1) - (vec4(1,1,1,1) - pBlend) * (vec4(1,1,1,1) - pBase);
+    Out = mix(pBase, Out, pOpacity);
+}
+void Unity_Blend_SoftLight_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    vec4 result1 = vec4(2.0,2.0,2.0,2.0) * pBase * pBlend + pBase * pBase * (vec4(1,1,1,1) - vec4(2.0,2.0,2.0,2.0) * pBlend);
+    vec4 result2 = sqrt(pBase) * (vec4(2.0,2.0,2.0,2.0) * pBlend - vec4(1,1,1,1)) + vec4(2.0,2.0,2.0,2.0) * pBase * (vec4(1,1,1,1) - pBlend);
+    vec4 zeroOrOne = step( vec4(0.5,0.5,0.5,0.5), pBlend);
+    Out = result2 * zeroOrOne + ( vec4(1,1,1,1) - zeroOrOne) * result1;
+    Out = mix(pBase, Out, pOpacity);
+}
+void Unity_Blend_Subtract_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    Out = pBase - pBlend;
+    Out = mix(pBase, Out, pOpacity);
+}
+void Unity_Blend_VividLight_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    vec4 result1 = vec4(1,1,1,1) - (vec4(1,1,1,1) - pBlend) / (vec4(2.0,2.0,2.0,2.0) * pBase);
+    vec4 result2 = pBlend / (vec4(2.0,2.0,2.0,2.0) * (vec4(1,1,1,1) - pBase));
+    vec4 zeroOrOne = step( vec4(0.5,0.5,0.5,0.5), pBase);
+    Out = result2 * zeroOrOne + (vec4(1,1,1,1) - zeroOrOne) * result1;
+    Out = mix(pBase, Out, pOpacity);
+}
+void Unity_Blend_Overwrite_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+{
+    Out = mix(pBase, pBlend, pOpacity);
+}
+void Unity_Rotate_About_Axis_Degrees_float(vec3 In, vec3 Axis, float pRotation, out vec3 Out)
+{    
+    float s = sin(pRotation);
+    float c = cos(pRotation);
+    float one_minus_c = 1.0 - c;
+        
+    Axis = normalize(Axis);
+        
+    mat3 rot_mat = mat3( vec3( one_minus_c * Axis.x * Axis.x + c,            one_minus_c * Axis.x * Axis.y - Axis.z * s,     one_minus_c * Axis.z * Axis.x + Axis.y * s ),
+                        vec3( one_minus_c * Axis.x * Axis.y + Axis.z * s,   one_minus_c * Axis.y * Axis.y + c,              one_minus_c * Axis.y * Axis.z - Axis.x * s ),
+                        vec3( one_minus_c * Axis.z * Axis.x - Axis.y * s,   one_minus_c * Axis.y * Axis.z + Axis.x * s,     one_minus_c * Axis.z * Axis.z + c )
+                            );
+        
+    Out = In * rot_mat;
+}
+void Unity_Rotate_Radians_float(vec2 pUV, vec2 Center, float pRotation, out vec2 Out)
+{
+    //rotation matrix
+    pUV -= Center;
+    float s = sin(pRotation);
+    float c = cos(pRotation);
+        
+    //center rotation matrix
+    mat2 rMatrix = mat2( vec2(c, -s), vec2(s, c) );
+    rMatrix *= 0.5;
+    rMatrix += 0.5;
+    rMatrix = rMatrix*2.0 - 1.0;
+        
+    //multiply the UVs by the rotation matrix
+    pUV.xy = pUV.xy * rMatrix;
+    pUV += Center;
+        
+    Out = pUV;
+}
+const float FLT_MIN = 1.175494351e-38F;
+vec3 SafeNormalize(vec3 inVec)
+{
+    float dp3 = max(FLT_MIN, dot(inVec, inVec));
+    return inVec * inversesqrt(dp3);
+}
+vec3 TransformWorldToTangent(vec3 normalWS, mat3 tangentToWorld )
+{
+    bool doNormalize = true;
+    // Note matrix is in row major convention with left multiplication as it is build on the fly
+    vec3 row0 = tangentToWorld[0];
+    vec3 row1 = tangentToWorld[1];
+    vec3 row2 = tangentToWorld[2];
+
+    // these are the columns of the inverse matrix but scaled by the determinant
+    vec3 col0 = cross(row1, row2);
+    vec3 col1 = cross(row2, row0);
+    vec3 col2 = cross(row0, row1);
+
+    float determinant = dot(row0, col0);
+
+    // inverse transposed but scaled by determinant
+    // Will remove transpose part by using matrix as the first arg in the mul() below
+    // this makes it the exact inverse of what TransformTangentToWorld() does.
+    mat3 matTBN_I_T = mat3(col0, col1, col2);
+    vec3 result = normalWS * matTBN_I_T;
+    if (doNormalize)
+    {
+        float sgn = determinant < 0.0 ? (-1.0) : 1.0;
+        return SafeNormalize(sgn * result);
+    }
+    else
+        return result / determinant;
+}
+void Hash_Tchou_2_2_uint(uvec2 v, out uvec2 o)
+{
+    // ~8 alu (2 mul)
+    v.y ^= 1103515245U;
+    v.x += v.y;
+    v.x *= v.y;
+    v.x ^= v.x >> 5u;
+    v.x *= 0x27d4eb2du;
+    v.y ^= (v.x << 3u);
+    o = v;
+}
+void Hash_Tchou_2_2_float(vec2 i, out vec2 o)
+{
+    uvec2 r;
+    uvec2 v = uvec2(ivec2(round(i)));
+    Hash_Tchou_2_2_uint(v, r);
+    o.x = float(r.x >> 8u) * (1.0 / float(0x00ffffff));
+    o.y = float(r.y >> 8u) * (1.0 / float(0x00ffffff));
+}
+vec2 Unity_Voronoi_RandomVector_Deterministic_float(vec2 uv, float offset)
+{
+    Hash_Tchou_2_2_float(uv, uv);
+    return vec2(sin(uv.y * offset), cos(uv.x * offset)) * 0.5 + 0.5;
+}
+void Hash_LegacySine_2_2_float(vec2 i, out vec2 o)
+{
+    mat2 m = mat2( vec2( 15.27, 47.63), vec2( 99.41, 89.98) );
+    vec2 angles = i * m;
+
+    o = fract(sin(angles));
+}
+vec2 Unity_Voronoi_RandomVector_LegacySine_float(vec2 uv, float offset)
+{
+    Hash_LegacySine_2_2_float(uv, uv);
+    return vec2(sin(uv.y * offset), cos(uv.x * offset)) * 0.5 + 0.5;
+}
+float SafePositivePow_float( float pBase, float power)
+{
+    float FLT_EPS =  5.960464478e-8;
+    return pow(max(abs(pBase), float(FLT_EPS)), power);
+}
+struct Gradient
+{
+    int type;
+    int colorsLength;
+    int alphasLength;
+    vec4 colors[8];
+    vec2 alphas[8];
+};
+
+Gradient NewGradient(int type, int colorsLength, int alphasLength,
+    vec4 colors0, vec4 colors1, vec4 colors2, vec4 colors3, vec4 colors4, vec4 colors5, vec4 colors6, vec4 colors7,
+    vec2 alphas0, vec2 alphas1, vec2 alphas2, vec2 alphas3, vec2 alphas4, vec2 alphas5, vec2 alphas6, vec2 alphas7)
+{
+    vec4 colors[8] = { colors0, colors1, colors2, colors3, colors4, colors5, colors6, colors7 };
+	vec2 alphas[8] = { alphas0, alphas1, alphas2, alphas3, alphas4, alphas5, alphas6, alphas7 };
+    Gradient output = Gradient(    
+        type, colorsLength, alphasLength,
+        colors, alphas        
+    );
+    return output;
+}
+vec3 LinearToOklab(vec3 rgb)
+{
+    float l = 0.4122214708f * rgb.r + 0.5363325363f * rgb.g + 0.0514459929f * rgb.b;
+    float m = 0.2119034982f * rgb.r + 0.6806995451f * rgb.g + 0.1073969566f * rgb.b;
+    float s = 0.0883024619f * rgb.r + 0.2817188376f * rgb.g + 0.6299787005f * rgb.b;
+
+    float l_ = pow(l, 0.333333f);
+    float m_ = pow(m, 0.333333f);
+    float s_ = pow(s, 0.333333f);
+
+    return vec3(
+        0.2104542553f * l_ + 0.7936177850f * m_ - 0.0040720468f * s_,
+        1.9779984951f * l_ - 2.4285922050f * m_ + 0.4505937099f * s_,
+        0.0259040371f * l_ + 0.7827717662f * m_ - 0.8086757660f * s_);
+}
+
+vec3 OklabToLinear(vec3 lab)
+{
+    float l_ = lab.r + 0.3963377774f * lab.g + 0.2158037573f * lab.b;
+    float m_ = lab.r - 0.1055613458f * lab.g - 0.0638541728f * lab.b;
+    float s_ = lab.r - 0.0894841775f * lab.g - 1.2914855480f * lab.b;
+
+    float l = l_ * l_ * l_;
+    float m = m_ * m_ * m_;
+    float s = s_ * s_ * s_;
+
+    return vec3(
+         4.0767416621f * l - 3.3077115913f * m + 0.2309699292f * s,
+		-1.2684380046f * l + 2.6097574011f * m - 0.3413193965f * s,
+		-0.0041960863f * l - 0.7034186147f * m + 1.7076147010f * s);
+}
+void Hash_Tchou_2_1_uint(uvec2 v, out uint o)
+{
+    // ~6 alu (2 mul)
+    v.y ^= 1103515245U;
+    v.x += v.y;
+    v.x *= v.y;
+    v.x ^= v.x >> 5u;
+    v.x *= 0x27d4eb2du;
+    o = v.x;
+}
+void Hash_Tchou_2_1_float(vec2 i, out float o)
+{
+    uint r;
+    uvec2 v = uvec2(ivec2( round(i) ));
+    Hash_Tchou_2_1_uint(v, r);
+    o = float(r >> 8u) * (1.0 / float(0x00ffffff));
+}
+vec2 Unity_GradientNoise_Deterministic_Dir_float(vec2 p)
+{
+    float x; Hash_Tchou_2_1_float(p, x);
+    return normalize(vec2(x - floor(x + 0.5), abs(x) - 0.5));
+}
+vec3 UnpackNormalmap(vec4 packednormal)
+{
+    // This do the trick
+   //packednormal.x *= packednormal.w;
+
+    vec3 normal;
+    normal.xy = packednormal.xy * vec2( 2.0, 2.0 ) - vec2( 1.0, 1.0 );
+    normal.z = sqrt(1.0 - saturate(dot(normal.xy, normal.xy)));
+    return normalize( normal );
+}
+vec4 SampleNormalMap( sampler2D pNormalMap, vec2 puv )
+{
+    vec4 Ret = texture( pNormalMap, puv );
+    Ret.xyz = UnpackNormalmap( Ret );
+    return Ret;
+}
+float ComputeFogFactorZ0ToFar(float z, float RenderSettingsDensity)
+{
+    float start = 0.0;
+    float end = 1000.0;
+    vec4 unity_FogParams = vec4( RenderSettingsDensity / sqrt(log(2.0)),
+    RenderSettingsDensity / log(2.0),
+    -1.0/(end-start),
+    end/(end-start)
+    );
+
+    #if 1//defined(FOG_LINEAR)
+    // factor = (end-z)/(end-start) = z * (-1/(end-start)) + (end/(end-start))
+    float fogFactor = saturate(z * unity_FogParams.z + unity_FogParams.w);
+    return float(fogFactor);
+    #elif defined(FOG_EXP) || defined(FOG_EXP2)
+    // factor = exp(-(density*z)^2)
+    // -density * z computed at vertex
+    return float(unity_FogParams.x * z);
+    #else
+        return float(0.0);
+    #endif
+}
+float ComputeFogIntensity(float fogFactor)
+{
+    float fogIntensity = 0.0;
+    #if defined(FOG_LINEAR) || defined(FOG_EXP) || defined(FOG_EXP2)
+        #if defined(FOG_EXP)
+            // factor = exp(-density*z)
+            // fogFactor = density*z compute at vertex
+            fogIntensity = saturate(exp2(-fogFactor));
+        #elif defined(FOG_EXP2)
+            // factor = exp(-(density*z)^2)
+            // fogFactor = density*z compute at vertex
+            fogIntensity = saturate(exp2(-fogFactor * fogFactor));
+        #else//if defined(FOG_LINEAR)
+            fogIntensity = fogFactor;
+        #endif
+    #endif
+    return fogIntensity;
+}
+vec4 TransformWorldToShadowCoord(vec3 WorldPos)
+{
+	return vec4(0,0,0,0);
+}
+struct Light
+{
+    vec3 direction;
+    vec3 color;
+    float distanceAttenuation;
+    float shadowAttenuation;
+};
+Light GetMainLight(vec4 shadowCoord)
+{
+    Light MainLight;
+    MainLight.direction = vec3(0,-1,0);
+    MainLight.color = vec3(1,1,1);
+    MainLight.distanceAttenuation = 1.0f;
+    MainLight.shadowAttenuation = 1.0f;
+    return MainLight;
+}
+vec3 SHEvalLinearL0L1(vec3 N, vec4 shAr, vec4 shAg, vec4 shAb)
+{
+    vec4 vA = vec4(N, 1.0);
+
+    vec3 x1;
+    // Linear (L1) + constant (L0) polynomial terms
+    x1.r = dot(shAr, vA);
+    x1.g = dot(shAg, vA);
+    x1.b = dot(shAb, vA);
+
+    return x1;
+}
+vec3 SHEvalLinearL2(vec3 N, vec4 shBr, vec4 shBg, vec4 shBb, vec4 shC)
+{
+    vec3 x2;
+    // 4 of the quadratic (L2) polynomials
+    vec4 vB = N.xyzz * N.yzzx;
+    x2.r = dot(shBr, vB);
+    x2.g = dot(shBg, vB);
+    x2.b = dot(shBb, vB);
+
+    // Final (5th) quadratic (L2) polynomial
+    float vC = N.x * N.x - N.y * N.y;
+    vec3 x3 = shC.rgb * vC;
+
+    return x2 + x3;
+}
+vec3 SampleSH9(vec4 SHCoefficients[7], vec3 N)
+{
+    vec4 shAr = SHCoefficients[0];
+    vec4 shAg = SHCoefficients[1];
+    vec4 shAb = SHCoefficients[2];
+    vec4 shBr = SHCoefficients[3];
+    vec4 shBg = SHCoefficients[4];
+    vec4 shBb = SHCoefficients[5];
+    vec4 shCr = SHCoefficients[6];
+
+    // Linear + constant polynomial terms
+    vec3 res = SHEvalLinearL0L1(N, shAr, shAg, shAb);
+
+    // Quadratic polynomials
+    res += SHEvalLinearL2(N, shBr, shBg, shBb, shCr);
+
+#ifdef UNITY_COLORSPACE_GAMMA
+    res = LinearToSRGB(res);
+#endif
+
+    return res;
+}
+"
+nodes/fragment/0/position = Vector2(0, 0)
+nodes/fragment/2/node = SubResource("VisualShaderNodeExpression_d4n4ub5mo0s33")
+nodes/fragment/2/position = Vector2(-350, -3)
+nodes/fragment/2/size = Vector2(980, 340)
+nodes/fragment/2/input_ports = "0,0,input0;"
+nodes/fragment/2/output_ports = "0,0,output0;"
+nodes/fragment/2/expression = "//InvertColorsNode:2
+vec4 InvertColors = vec4( 1, 0, 0, 0);
+output0 = abs(InvertColors.x - input0 );"
+nodes/fragment/3/node = SubResource("VisualShaderNodeMix_i65qs3")
+nodes/fragment/3/position = Vector2(583, 682)
+nodes/fragment/4/node = SubResource("VisualShaderNodeExpression_d4n4ub50psflo")
+nodes/fragment/4/position = Vector2(-578, 1195)
+nodes/fragment/4/size = Vector2(980, 1120)
+nodes/fragment/4/input_ports = "0,3,input0;1,0,input1;2,8,input2;"
+nodes/fragment/4/output_ports = "0,5,output0;1,0,output1;2,0,output2;3,0,output3;4,0,output4;"
+nodes/fragment/4/expression = "//NormalTexture:4:
+vec4 Normal4 = texture( input2, input0 );
+Normal4.xyz = UnpackNormalmap( Normal4 );
+output0 = Normal4;
+output1 = Normal4.r;
+output2 = Normal4.g;
+output3 = Normal4.b;
+output4 = Normal4.a;
+"
+nodes/fragment/5/node = SubResource("VisualShaderNodeTexture2DParameter_i7qhaf")
+nodes/fragment/5/position = Vector2(-1178, 1435)
+nodes/fragment/6/node = SubResource("VisualShaderNodeFloatConstant_d4n4ub6bux30w")
+nodes/fragment/6/position = Vector2(-1178, 1915)
+nodes/fragment/7/node = SubResource("VisualShaderNodeTexture2DParameter_i7qhah")
+nodes/fragment/7/position = Vector2(-1178, 1435)
+nodes/fragment/8/node = SubResource("VisualShaderNodeVectorOp_e3agsu")
+nodes/fragment/8/position = Vector2(-2011, -27)
+nodes/fragment/9/node = SubResource("VisualShaderNodeVec2Constant_d4n4ub53eseim")
+nodes/fragment/9/position = Vector2(-2611, 212)
+nodes/fragment/10/node = SubResource("VisualShaderNodeExpression_d4n4ub6eqk03a")
+nodes/fragment/10/position = Vector2(-2383, -31)
+nodes/fragment/10/size = Vector2(980, 500)
+nodes/fragment/10/input_ports = "0,3,input0;1,3,input1;2,3,input2;"
+nodes/fragment/10/output_ports = "0,3,output0;"
+nodes/fragment/10/expression = "//TilingAndOffsetNode:10
+output0 = input0 * input1 + input2;
+"
+nodes/fragment/11/node = SubResource("VisualShaderNodeInput_1iiqdr")
+nodes/fragment/11/position = Vector2(-2983, 208)
+nodes/fragment/12/node = SubResource("VisualShaderNodeVec2Constant_d4n4ub53eseio")
+nodes/fragment/12/position = Vector2(-2983, 448)
+nodes/fragment/13/node = SubResource("VisualShaderNodeVec2Constant_d4n4ub53eseip")
+nodes/fragment/13/position = Vector2(-2983, 688)
+nodes/fragment/14/node = SubResource("VisualShaderNodeExpression_d4n4ub5o3itc5")
+nodes/fragment/14/position = Vector2(-289, 864)
+nodes/fragment/14/size = Vector2(980, 420)
+nodes/fragment/14/input_ports = "0,4,input0;1,0,input1;"
+nodes/fragment/14/output_ports = "0,4,output0;"
+nodes/fragment/14/expression = "//NormalStrengthNode:14
+output0 = vec3( input0.rg * input1, mix(1.0, input0.b, saturate(input1)));
+"
+nodes/fragment/15/node = SubResource("VisualShaderNodeFloatConstant_d4n4ub6bux303")
+nodes/fragment/15/position = Vector2(-889, 1104)
+nodes/fragment/16/node = SubResource("VisualShaderNodeTexture2DParameter_d4n4ub5kxqjme")
+nodes/fragment/16/position = Vector2(-846, -572)
+nodes/fragment/17/node = SubResource("VisualShaderNodeTexture2DParameter_d4n4ub5k0itoa")
+nodes/fragment/17/position = Vector2(-1322, -7)
+nodes/fragment/18/node = SubResource("VisualShaderNodeTexture_54tnr1")
+nodes/fragment/18/position = Vector2(-655, -628)
+nodes/fragment/19/node = SubResource("VisualShaderNodeFloatConstant_d4n4ub6bux304")
+nodes/fragment/19/position = Vector2(-1255, -148)
+nodes/fragment/20/node = SubResource("VisualShaderNodeTexture_llnq15")
+nodes/fragment/20/position = Vector2(-1111, -51)
+nodes/fragment/21/node = SubResource("VisualShaderNodeInput_1iiqdw")
+nodes/fragment/21/position = Vector2(-1711, 188)
+nodes/fragment/22/node = SubResource("VisualShaderNodeFloatConstant_d4n4ub6bux306")
+nodes/fragment/22/position = Vector2(-1711, 668)
+nodes/fragment/23/node = SubResource("VisualShaderNodeExpression_d4n4ub5b2p7uk")
+nodes/fragment/23/position = Vector2(-608, 519)
+nodes/fragment/23/size = Vector2(980, 340)
+nodes/fragment/23/input_ports = "0,0,input0;"
+nodes/fragment/23/output_ports = "0,0,output0;"
+nodes/fragment/23/expression = "//InvertColorsNode:23
+vec4 InvertColors = vec4( 1, 0, 0, 0);
+output0 = abs(InvertColors.x - input0 );"
+nodes/fragment/24/node = SubResource("VisualShaderNodeExpression_f2asr7")
+nodes/fragment/24/position = Vector2(-615, -146)
+nodes/fragment/24/size = Vector2(980, 340)
+nodes/fragment/24/input_ports = "0,0,input0;"
+nodes/fragment/24/output_ports = "0,0,output0;"
+nodes/fragment/24/expression = "//InvertColorsNode:24
+vec4 InvertColors = vec4( 1, 0, 0, 0);
+output0 = abs(InvertColors.x - input0 );"
+nodes/fragment/25/node = SubResource("VisualShaderNodeExpression_d4n4ub5ik4i3u")
+nodes/fragment/25/position = Vector2(-614, 230)
+nodes/fragment/25/size = Vector2(980, 340)
+nodes/fragment/25/input_ports = "0,0,input0;"
+nodes/fragment/25/output_ports = "0,0,output0;"
+nodes/fragment/25/expression = "//InvertColorsNode:25
+vec4 InvertColors = vec4( 1, 0, 0, 0);
+output0 = abs(InvertColors.x - input0 );"
+nodes/fragment/26/node = SubResource("VisualShaderNodeFloatOp_v7xdbo")
+nodes/fragment/26/position = Vector2(-260, 530)
+nodes/fragment/27/node = SubResource("VisualShaderNodeFloatConstant_d4n4ub6bux307")
+nodes/fragment/27/position = Vector2(-860, 770)
+nodes/fragment/28/node = SubResource("VisualShaderNodeTexture2DParameter_d4n4ub6h8hv7m")
+nodes/fragment/28/position = Vector2(-777, 910)
+nodes/fragment/29/node = SubResource("VisualShaderNodeExpression_d4n4ub5676pty")
+nodes/fragment/29/position = Vector2(-582, 862)
+nodes/fragment/29/size = Vector2(980, 1120)
+nodes/fragment/29/input_ports = "0,3,input0;1,0,input1;2,8,input2;"
+nodes/fragment/29/output_ports = "0,5,output0;1,0,output1;2,0,output2;3,0,output3;4,0,output4;"
+nodes/fragment/29/expression = "//NormalTexture:29:
+vec4 Normal29 = texture( input2, input0 );
+Normal29.xyz = UnpackNormalmap( Normal29 );
+output0 = Normal29;
+output1 = Normal29.r;
+output2 = Normal29.g;
+output3 = Normal29.b;
+output4 = Normal29.a;
+"
+nodes/fragment/30/node = SubResource("VisualShaderNodeFloatConstant_d4n4ub6bux308")
+nodes/fragment/30/position = Vector2(-1182, 1342)
+nodes/fragment/31/node = SubResource("VisualShaderNodeMix_d4n4ub5f6mius")
+nodes/fragment/31/position = Vector2(-133, -670)
+nodes/fragment/32/node = SubResource("VisualShaderNodeInput_d4n4ub6amop21")
+nodes/fragment/32/position = Vector2(-442, -1076)
+nodes/fragment/33/node = SubResource("VisualShaderNodeTexture_d4n4ub50vw5n3")
+nodes/fragment/33/position = Vector2(-399, -469)
+nodes/fragment/34/node = SubResource("VisualShaderNodeTexture2DParameter_i7qhas")
+nodes/fragment/34/position = Vector2(-999, -229)
+nodes/fragment/35/node = SubResource("VisualShaderNodeTexture_d4n4ub6g421cc")
+nodes/fragment/35/position = Vector2(-1112, 264)
+nodes/fragment/36/node = SubResource("VisualShaderNodeTexture2DParameter_i7qhat")
+nodes/fragment/36/position = Vector2(-1712, 504)
+nodes/fragment/37/node = SubResource("VisualShaderNodeFloatConstant_d4n4ub6bux31c")
+nodes/fragment/37/position = Vector2(-1712, 984)
+nodes/fragment/38/node = SubResource("VisualShaderNodeMix_bk4ml8y")
+nodes/fragment/38/position = Vector2(294, -182)
+nodes/fragment/39/node = SubResource("VisualShaderNodeMix_d4n4ub5okoa3y")
+nodes/fragment/39/position = Vector2(303, 122)
+nodes/fragment/40/node = SubResource("VisualShaderNodeMix_d4n4ub48n77mi")
+nodes/fragment/40/position = Vector2(313, 402)
+nodes/fragment/41/node = SubResource("VisualShaderNodeExpression_63t0re")
+nodes/fragment/41/position = Vector2(-1786, 796)
+nodes/fragment/41/size = Vector2(980, 500)
+nodes/fragment/41/input_ports = "0,3,input0;1,3,input1;2,3,input2;"
+nodes/fragment/41/output_ports = "0,3,output0;"
+nodes/fragment/41/expression = "//TilingAndOffsetNode:41
+output0 = input0 * input1 + input2;
+"
+nodes/fragment/42/node = SubResource("VisualShaderNodeInput_1iiqd4")
+nodes/fragment/42/position = Vector2(-2386, 1036)
+nodes/fragment/43/node = SubResource("VisualShaderNodeVec2Constant_d4n4ub53esei1")
+nodes/fragment/43/position = Vector2(-2386, 1276)
+nodes/fragment/44/node = SubResource("VisualShaderNodeVec2Constant_d4n4ub53esei2")
+nodes/fragment/44/position = Vector2(-2386, 1516)
+nodes/fragment/45/node = SubResource("VisualShaderNodeMix_mkn31i")
+nodes/fragment/45/position = Vector2(-19, 950)
+nodes/fragment/46/node = SubResource("VisualShaderNodeVec3Constant_d4n4ub5soeerv")
+nodes/fragment/46/position = Vector2(-619, 1190)
+nodes/fragment/47/node = SubResource("VisualShaderNodeMix_corgks")
+nodes/fragment/47/position = Vector2(-87, -66)
+nodes/fragment/48/node = SubResource("VisualShaderNodeFloatConstant_d4n4ub6bux31h")
+nodes/fragment/48/position = Vector2(-687, 174)
+nodes/fragment/62/node = SubResource("VisualShaderNodeFloatConstant_d4n4ub6bux31i")
+nodes/fragment/62/position = Vector2(-600, 240)
+nodes/fragment/64/node = SubResource("VisualShaderNodeVectorFunc_d4n4ub5x3admf")
+nodes/fragment/64/position = Vector2(-240, 0)
+nodes/fragment/65/node = SubResource("VisualShaderNodeMultiplyAdd_d4n4ub5gn2w8u")
+nodes/fragment/65/position = Vector2(-240, 0)
+nodes/fragment/66/node = SubResource("VisualShaderNodeClamp_d4n4ub5wrdjvr")
+nodes/fragment/66/position = Vector2(-360, 0)
+nodes/fragment/67/node = SubResource("VisualShaderNodeFloatFunc_d4n4ub5s0wig0")
+nodes/fragment/67/position = Vector2(-240, 0)
+nodes/fragment/connections = PackedInt32Array(5, 0, 4, 2, 6, 0, 4, 1, 7, 0, 4, 2, 9, 0, 8, 1, 11, 0, 10, 0, 12, 0, 10, 1, 13, 0, 10, 2, 15, 0, 14, 1, 19, 0, 18, 1, 21, 0, 20, 0, 22, 0, 20, 1, 27, 0, 26, 1, 30, 0, 29, 1, 34, 0, 33, 2, 36, 0, 35, 2, 37, 0, 35, 1, 42, 0, 41, 0, 43, 0, 41, 1, 44, 0, 41, 2, 46, 0, 45, 2, 48, 0, 47, 2, 18, 0, 31, 1, 20, 1, 24, 0, 20, 2, 23, 0, 20, 3, 39, 1, 17, 0, 20, 2, 8, 0, 18, 0, 8, 0, 29, 0, 35, 1, 2, 0, 35, 2, 25, 0, 35, 3, 39, 0, 32, 0, 3, 2, 32, 0, 31, 2, 32, 0, 40, 2, 32, 0, 38, 2, 32, 0, 39, 2, 14, 0, 3, 1, 14, 0, 45, 0, 25, 0, 40, 0, 23, 0, 26, 0, 26, 0, 40, 1, 16, 0, 18, 2, 3, 0, 64, 0, 47, 0, 38, 0, 33, 0, 31, 0, 10, 0, 8, 0, 29, 0, 14, 0, 4, 0, 45, 1, 2, 0, 47, 0, 31, 0, 0, 0, 40, 0, 66, 0, 38, 0, 0, 6, 41, 0, 35, 0, 41, 0, 33, 0, 41, 0, 4, 0, 45, 0, 3, 0, 24, 0, 47, 1, 24, 0, 38, 1, 28, 0, 29, 2, 39, 0, 0, 2, 64, 0, 65, 0, 65, 0, 0, 9, 66, 0, 67, 0, 67, 0, 0, 3)

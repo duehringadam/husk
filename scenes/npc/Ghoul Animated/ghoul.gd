@@ -7,6 +7,7 @@ extends npc
 @onready var stance_component: StanceComponent = $StanceComponent
 @onready var ragdoll_collision1: CollisionShape3D = $Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/PickableRagdollHip/CollisionShape3D
 @onready var ragdoll_collision2: CollisionShape3D = $Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/PickableRagdollChest/CollisionShape3D
+@onready var bounding_box_ragdoll: bounding_box_ragdoll_component = $Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/PickableRagdollHip/bounding_box_ragdoll_component
 
 var timer: float = 0.0
 var search_position : Vector3
@@ -42,6 +43,7 @@ func _on_health_component_died() -> void:
 	fall()
 	ragdoll_collision1.disabled = false
 	ragdoll_collision2.disabled = false
+	bounding_box_ragdoll.process_mode = Node.PROCESS_MODE_INHERIT
 	collision_layer = 0
 	state_chart.send_event("dead")
 

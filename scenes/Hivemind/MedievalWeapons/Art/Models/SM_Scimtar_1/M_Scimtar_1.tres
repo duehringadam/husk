@@ -1,0 +1,18 @@
+[gd_resource type = "ShaderMaterial" load_steps=6 format=3 uid="uid://hqjq"]
+
+[ext_resource type="Shader" uid="uid://d4n4ub6djcv7l" path="res://Hivemind/MedievalWeapons/Art/Shaders/HDRP_Lit_ORM.tres" id="1_hqei"]
+[ext_resource type="Texture2D" uid="uid://hqj1" path="res://Hivemind/MedievalWeapons/Art/Models/SM_Scimtar_1/T_Scimtar_1_C.png" id="1_hqj1"]
+[ext_resource type="Texture2D" uid="uid://hqjw" path="res://Hivemind/MedievalWeapons/Art/Models/SM_Scimtar_1/T_Scimtar_1_ORM.png" id="2_hqjw"]
+[ext_resource type="Texture2D" uid="uid://hqjy" path="res://Hivemind/MedievalWeapons/Art/Models/SM_Scimtar_1/T_Scimtar_1_N.png" id="3_hqjy"]
+[ext_resource type="Texture2D" uid="uid://hqes" path="res://Hivemind/MedievalWeapons/Art/Models/1_Blood/T_Blood_C.png" id="4_hqes"]
+[ext_resource type="Texture2D" uid="uid://hqeq" path="res://Hivemind/MedievalWeapons/Art/Models/1_Blood/T_Blood_ORM.png" id="5_hqeq"]
+
+[resource]
+resource_name = "M_Scimtar_1"
+render_priority = 0
+shader = ExtResource("1_hqei")
+shader_parameter/C = ExtResource("1_hqj1")
+shader_parameter/ORM = ExtResource("2_hqjw")
+shader_parameter/N = ExtResource("3_hqjy")
+shader_parameter/T_Blood_C = ExtResource("4_hqes")
+shader_parameter/T_Blood_ORM = ExtResource("5_hqeq")

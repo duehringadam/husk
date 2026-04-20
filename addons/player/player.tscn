@@ -10,12 +10,12 @@
 [ext_resource type="Resource" uid="uid://c8afm2d4w8gxb" path="res://item/spells/telekinesis.tres" id="5_863th"]
 [ext_resource type="Script" uid="uid://csps0dnf2gf2n" path="res://Player/player_hurtbox_component.gd" id="5_eon52"]
 [ext_resource type="Script" uid="uid://brvxqhk8jpiq2" path="res://addons/player/health_detect.gd" id="6_5fkmn"]
-[ext_resource type="Script" uid="uid://d3vjqiaaxlykb" path="res://Player/offhand.gd" id="6_c1i0s"]
 [ext_resource type="Script" uid="uid://dql5v81gqvdat" path="res://components/status_effect_component.gd" id="6_eon52"]
 [ext_resource type="AudioStream" uid="uid://df2b8w21sb3xf" path="res://sfx/hit-rock-03-266305.mp3" id="8_jux4o"]
 [ext_resource type="Shader" uid="uid://dgt3e85o3avu2" path="res://Player/damage.gdshader" id="9_4ng6s"]
 [ext_resource type="Script" uid="uid://dmju02n5xp4s0" path="res://addons/player/step_detect.gd" id="9_863th"]
 [ext_resource type="PackedScene" uid="uid://b5corv5nqshay" path="res://addons/player/player_arm_right.tscn" id="9_hqsyx"]
+[ext_resource type="PackedScene" uid="uid://bplg0u3sd3j28" path="res://addons/player/player_arm_left.tscn" id="10_hqsyx"]
 [ext_resource type="Script" uid="uid://6h8f2qhrbtt6" path="res://Player/damage_overlay.gd" id="10_jux4o"]
 [ext_resource type="AudioStream" uid="uid://bhauxowkg5f45" path="res://Player/sfx/dirt_footsteps.tres" id="11_d6j5h"]
 [ext_resource type="Script" uid="uid://sj3mml8ulasu" path="res://Player/crosshair.gd" id="12_qk8yx"]
@@ -89,6 +89,106 @@ tracks/3/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(0, -0.15, 0, 0.15, 0),
 "times": PackedFloat32Array(0)
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("%Camera3D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("%Camera3D:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("%Head/../damage:material:shader_parameter/line_density")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("%Head/../radial_blur:blur")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_hqsyx"]
+resource_name = "death"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Camera3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.45, 0.54, 1, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.5, 0), Vector3(0, -0.5347787, 0), Vector3(0, -0.5347787, 0), Vector3(-0.93723667, -1.2816442, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%Camera3D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.17, 0.46, 0.54, 1, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.034906585, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0.029199358), Vector3(0, 0, 0.029199358), Vector3(0, 0, 0.8679173)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%Head/../damage:material:shader_parameter/line_density")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.45, 1, 1.42, 4.94171, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.538000025555, 0.538000025555, 1.0, 1.0, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%Head/../radial_blur:blur")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.03333334, 4.9666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_kgtn1"]
@@ -183,6 +283,7 @@ tracks/2/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_by45h"]
 _data = {
 &"RESET": SubResource("Animation_by45h"),
+&"death": SubResource("Animation_hqsyx"),
 &"jump": SubResource("Animation_kgtn1"),
 &"land": SubResource("Animation_n47sy"),
 &"swing_left": SubResource("Animation_863th")
@@ -330,7 +431,7 @@ _data = {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hqsyx"]
 shader = ExtResource("25_k1tkb")
 shader_parameter/blur_center = Vector2(0.5, 0.5)
-shader_parameter/blur_power = 0.0050000002375
+shader_parameter/blur_power = 0.01
 shader_parameter/sampling_count = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k1tkb"]
@@ -350,13 +451,12 @@ shader_parameter/rotation_offset = 3.14000014915
 length = 0.5
 slide_on_slope = true
 
-[node name="Player" type="CharacterBody3D" unique_id=1383979839 node_paths=PackedStringArray("player_body", "mainhand", "offhand") groups=["player"]]
+[node name="Player" type="CharacterBody3D" unique_id=1383979839 node_paths=PackedStringArray("player_body", "mainhand") groups=["player"]]
 collision_mask = 35
 script = ExtResource("1_cyojo")
 inventory = Array[ExtResource("2_863th")]([ExtResource("3_e6ia4"), ExtResource("4_d6j5h"), ExtResource("5_863th")])
 player_body = NodePath("Head/Neck/Camera3D/playerBody")
 mainhand = NodePath("Head/SubViewportContainer/SubViewport/Camera3D/RightHand")
-offhand = NodePath("Head/SubViewportContainer/SubViewport/Camera3D/LeftHand")
 weapon_rotation_amount = 0.25
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1092821169]
@@ -401,6 +501,7 @@ unique_name_in_owner = true
 
 [node name="Camera3D" type="Camera3D" parent="Head/Neck" unique_id=1569056309]
 unique_name_in_owner = true
+transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 1, 0, 0, 0)
 cull_mask = 524285
 current = true
 
@@ -420,25 +521,25 @@ script = ExtResource("6_5fkmn")
 transform = Transform3D(-1.2, 0, 1.04907336e-07, 0, 1.2, 0, -1.04907336e-07, 0, -1.2, 0, -1.8152095, 0.25213236)
 
 [node name="Root" parent="Head/Neck/Camera3D/playerBody" index="0" unique_id=227732896]
-transform = Transform3D(0.737278, 0.6728355, -0.06092598, -0.05293522, 0.14743835, 0.98765206, 0.6735113, -0.7249502, 0.14431973, 0.0440927, -0.108534135, -0.081181325)
+transform = Transform3D(0.7383452, 0.6724654, -0.05132603, -0.05392587, 0.13472608, 0.98941237, 0.6722618, -0.72776157, 0.13573769, 0.04056052, -0.11071307, -0.08532324)
 
 [node name="Skeleton3D" parent="Head/Neck/Camera3D/playerBody/Root" index="0" unique_id=1398321543]
-bones/1/rotation = Quaternion(-0.055957913, 0.05005514, 0.0088597275, 0.9971383)
-bones/2/rotation = Quaternion(0.007265054, 0.09664552, 0.016225042, 0.99516016)
-bones/3/rotation = Quaternion(0.0029535438, 0.12336522, -0.87421846, 0.46958965)
-bones/4/rotation = Quaternion(0.1556434, -0.19612773, -0.31787527, 0.91447496)
-bones/5/rotation = Quaternion(0.06206391, -0.07204582, -0.019004479, 0.9952871)
-bones/7/rotation = Quaternion(0.09965245, -0.067463085, 0.01495975, 0.99261993)
-bones/9/rotation = Quaternion(0.11957552, -0.058219694, 0.90049547, 0.414029)
-bones/10/rotation = Quaternion(0.33643526, 0.24716777, 0.09100317, 0.9041227)
-bones/11/rotation = Quaternion(0.33263248, 0.54589313, 0.36707628, 0.6757302)
-bones/13/rotation = Quaternion(-0.8520772, -0.39536488, 0.2557485, 0.22856906)
-bones/14/rotation = Quaternion(0.34762844, 0.22452927, -0.01443656, 0.91023767)
-bones/16/rotation = Quaternion(-0.71024895, 0.4224216, -0.12177388, 0.5497978)
-bones/17/rotation = Quaternion(0.21249267, 0.07368739, 0.058514625, 0.9726218)
+bones/1/rotation = Quaternion(-0.053937484, 0.04898085, 0.008073411, 0.9973097)
+bones/2/rotation = Quaternion(0.011619124, 0.09424366, 0.016230682, 0.99534905)
+bones/3/rotation = Quaternion(0.007502766, 0.11932393, -0.8700706, 0.47820792)
+bones/4/rotation = Quaternion(0.15136313, -0.19786818, -0.3220933, 0.9133419)
+bones/5/rotation = Quaternion(0.09095498, -0.086034186, -0.03185141, 0.99162036)
+bones/7/rotation = Quaternion(0.13369654, -0.051307116, 0.024877774, 0.98938066)
+bones/9/rotation = Quaternion(0.12806898, -0.053038396, 0.90023506, 0.4127495)
+bones/10/rotation = Quaternion(0.34293687, 0.23591998, 0.086630195, 0.90511405)
+bones/11/rotation = Quaternion(0.29704028, 0.5828379, 0.36270103, 0.6637131)
+bones/13/rotation = Quaternion(-0.8506614, -0.39610267, 0.2553044, 0.23301822)
+bones/14/rotation = Quaternion(0.33651778, 0.22467466, -0.013213272, 0.91438645)
+bones/16/rotation = Quaternion(-0.7226252, 0.41847682, -0.12089815, 0.536725)
+bones/17/rotation = Quaternion(0.24294266, 0.06958722, 0.07221473, 0.96484274)
 
 [node name="BoneAttachment3D" parent="Head/Neck/Camera3D/playerBody/Root/Skeleton3D" index="1" unique_id=1946967126]
-transform = Transform3D(0.45941943, -0.20247865, 0.86483306, -0.8068885, 0.31188273, 0.5016574, -0.37130126, -0.92829514, -0.020092577, -0.28352934, 0.036995392, 0.5603107)
+transform = Transform3D(0.46389222, -0.18071142, 0.8672643, -0.79945934, 0.33637163, 0.49771348, -0.38166553, -0.92422825, 0.011568755, -0.28717428, 0.022609372, 0.56317556)
 
 [node name="kick_damage_component" parent="Head/Neck/Camera3D/playerBody/Root/Skeleton3D/BoneAttachment3D" index="0" unique_id=1208432582 node_paths=PackedStringArray("source")]
 source = NodePath("../../../../../../../..")
@@ -471,15 +572,14 @@ script = ExtResource("3_6oqec")
 main_camera = NodePath("../../../Neck/Camera3D")
 randomStrength = 0.02
 hurtbox = NodePath("../../../../hurtbox_component")
-spread_angle = 100
 
 [node name="RightHand" parent="Head/SubViewportContainer/SubViewport/Camera3D" unique_id=1178015951 node_paths=PackedStringArray("offhand") instance=ExtResource("9_hqsyx")]
 unique_name_in_owner = true
 offhand = NodePath("../LeftHand")
 
-[node name="LeftHand" type="Marker3D" parent="Head/SubViewportContainer/SubViewport/Camera3D" unique_id=801051411]
+[node name="LeftHand" parent="Head/SubViewportContainer/SubViewport/Camera3D" unique_id=412198594 node_paths=PackedStringArray("mainhand") instance=ExtResource("10_hqsyx")]
 unique_name_in_owner = true
-script = ExtResource("6_c1i0s")
+mainhand = NodePath("../RightHand")
 
 [node name="stepDetect" type="Node3D" parent="Head" unique_id=838693918 node_paths=PackedStringArray("separation_ray", "player")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5979036, 0)
@@ -518,7 +618,7 @@ autoplay = &"footsteps"
 
 [node name="HealthComponent" type="Node3D" parent="." unique_id=669479295]
 script = ExtResource("4_7ek8b")
-max_health = 100.0
+max_health = 1.0
 metadata/_custom_type_script = "uid://dgjqgiw3yw42e"
 
 [node name="hurtbox_component" type="Area3D" parent="." unique_id=802643040 node_paths=PackedStringArray("player_camera", "viewport_camera", "health_component", "status_component", "source")]
@@ -653,6 +753,7 @@ debug_color = Color(1, 0, 0, 1)
 [node name="enemy_look_at" type="Node3D" parent="." unique_id=1527806411]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.297422, 0)
 
+[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="damage_taken" from="hurtbox_component" to="." method="_on_hurtbox_component_damage_taken"]
 [connection signal="damage_taken" from="hurtbox_component" to="radial_blur" method="_on_hurtbox_component_damage_taken"]
 

@@ -245,7 +245,7 @@ shape = SubResource("SphereShape3D_0q1br")
 transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, 0, -0.5, 0)
 shape = SubResource("ConvexPolygonShape3D_tnybn")
 
-[node name="status_effect_component2" type="GPUParticles3D" parent="." unique_id=848298093 node_paths=PackedStringArray("hurtbox", "health_component")]
+[node name="status_effect_component2" type="GPUParticles3D" parent="." unique_id=848298093 node_paths=PackedStringArray("hurtbox", "mesh_to_affect", "health_component")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 emitting = false
 amount = 32
@@ -255,6 +255,7 @@ available_statuses = Dictionary[int, float]({
 0: 0.0
 })
 hurtbox = NodePath("../hurtbox_component")
+mesh_to_affect = NodePath("../Crate")
 health_component = NodePath("../HealthComponent")
 metadata/_custom_type_script = "uid://dql5v81gqvdat"
 

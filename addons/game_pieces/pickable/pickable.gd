@@ -1,6 +1,7 @@
 class_name Pickable
 extends RigidBody3D
 
+
 @export var pull_force: float = 15
 @export var throw_power: float = 10
 @export var interaction_context_when_grabbed: int = 1
@@ -29,6 +30,7 @@ var _delay_timer: Tween = null
 var hold_time: float
 var holding_input = false
 var shattered_mesh_add
+
 func _ready() -> void:
 	if shattered_mesh:
 		shattered_mesh_add = shattered_mesh.instantiate()

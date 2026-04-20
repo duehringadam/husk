@@ -9,11 +9,13 @@ enum ItemStatName {
 }
 
 @export var damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float]
+@export_range(0.0,1.0) var stance_damage: float
 @export_range(0, 10) var upgrade_levels: int
 @export var strength_scale: float
 @export var will_scale: float
 @export var intelligence_scale: float
 @export var faith_scale: float
+@export var range: float
 
 
 func calculate_damage():

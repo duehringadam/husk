@@ -1,0 +1,16 @@
+[gd_resource type = "ShaderMaterial" load_steps=5 format=3 uid="uid://hqis"]
+
+[ext_resource type="Shader" uid="uid://d4n4ub6djcv7l" path="res://Hivemind/MedievalWeapons/Art/Shaders/HDRP_Lit_ORM.tres" id="1_hqei"]
+[ext_resource type="Texture2D" uid="uid://hqi3" path="res://Hivemind/MedievalWeapons/Art/Models/SM_ThrowingKnife/Throwingknife_C.png" id="1_hqi3"]
+[ext_resource type="Texture2D" uid="uid://hqiy" path="res://Hivemind/MedievalWeapons/Art/Models/SM_ThrowingKnife/Throwingknife_ORM.png" id="2_hqiy"]
+[ext_resource type="Texture2D" uid="uid://hqes" path="res://Hivemind/MedievalWeapons/Art/Models/1_Blood/T_Blood_C.png" id="3_hqes"]
+[ext_resource type="Texture2D" uid="uid://hqeq" path="res://Hivemind/MedievalWeapons/Art/Models/1_Blood/T_Blood_ORM.png" id="4_hqeq"]
+
+[resource]
+resource_name = "M_ThrowingKnife"
+render_priority = 0
+shader = ExtResource("1_hqei")
+shader_parameter/C = ExtResource("1_hqi3")
+shader_parameter/ORM = ExtResource("2_hqiy")
+shader_parameter/T_Blood_C = ExtResource("3_hqes")
+shader_parameter/T_Blood_ORM = ExtResource("4_hqeq")

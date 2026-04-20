@@ -8,7 +8,6 @@ extends Control
 var inventory_open: bool = false
 
 func _ready() -> void:
-	if Global.player:
 		_nothing_interactable()
 		InteractionController.current.clear_action_prompts.connect(_nothing_interactable)
 		InteractionController.current.display_action_prompts.connect(_something_interactable)

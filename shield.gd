@@ -1,28 +1,19 @@
 extends Offhand
 
-@onready var state_chart: StateChart = $StateChart
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
-
 var primary_active_bool: bool = false
+@onready var raise: AudioStreamPlayer3D = $Cube/raise
+@onready var equip: AudioStreamPlayer3D = $equip
+
 
 func _ready() -> void:
-	SignalBus.connect("primary_active", primary_active)
-	self.position = weapon_initial_position
-	
-func primary_active(value: bool):
-	primary_active_bool = value
-	
-	if primary_active_bool:
-		state_chart.send_event("lower")
-	else:
-		state_chart.send_event("primary_released")
+	equip.play()
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("attack_secondary") && !primary_active_bool:
-		state_chart.send_event("secondary_attack")
+func activate():
+	SignalBus.emit_signal("is_blocking", true)
+	raise.pitch_scale = randf_range(.9,1.2)
+	raise.play()
 
-func block():
-	animation_player.play("blocked")
-	AudioManager.play_sound(load("res://sfx/shield-guard-6963.mp3"),self.global_position,-10)
-	await animation_player.animation_finished
-	animation_player.play("blocked",-1,-1,true)
+func deactivate():
+	SignalBus.emit_signal("is_blocking", false)
+	raise.pitch_scale = randf_range(.9,1.2)
+	raise.play()

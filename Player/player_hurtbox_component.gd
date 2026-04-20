@@ -17,7 +17,6 @@ func _update_blocking(value:bool):
 
 func take_damage(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float], status_types: Dictionary[Global.STATUS_TYPE, float], stance_damage: float, source: DamageComponent):
 	if timer.time_left > 0: return 0
-	
 	if is_blocking && is_facing(source): 
 		player_camera.apply_shake()
 		viewport_camera.apply_shake()

@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://3ppi7j5cr31r"]
 
 [ext_resource type="Shader" uid="uid://d27b2172ftpib" path="res://scenes/skyshader.gdshader" id="1_l137e"]
-[ext_resource type="Texture2D" uid="uid://cu3nf7bvj5418" path="res://AllSkyFree/mayhem/scorched_sky.png" id="2_swu3i"]
+[ext_resource type="Texture2D" uid="uid://bsi2i0lsi8337" path="res://AllSkyFree/mayhem/sky.png" id="2_swu3i"]
 [ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/item.gd" id="3_f17e3"]
 [ext_resource type="AudioStream" uid="uid://bhauxowkg5f45" path="res://Player/sfx/dirt_footsteps.tres" id="3_pm21f"]
 [ext_resource type="PackedScene" uid="uid://bia32vkq1a5i" path="res://scenes/player/player.tscn" id="4_k0juu"]
@@ -340,7 +340,7 @@ shadow_mesh = SubResource("ArrayMesh_83pej")
 [sub_resource type="BoxShape3D" id="BoxShape3D_hi6a0"]
 size = Vector3(1, 8.489231, 2.8420105)
 
-[sub_resource type="Curve3D" id="Curve3D_swu3i"]
+[sub_resource type="Curve3D" id="Curve3D_oexs8"]
 resource_local_to_scene = true
 bake_interval = 512.0
 _data = {
@@ -354,15 +354,6 @@ albedo_texture = ExtResource("38_l8ah6")
 uv1_scale = Vector3(2, 2, 2)
 uv1_triplanar_sharpness = 150.0
 
-[sub_resource type="Curve3D" id="Curve3D_oexs8"]
-resource_local_to_scene = true
-bake_interval = 512.0
-_data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.0032456517, -0.00052165985, -0.005450487, 0, 0, 0, 0, 0, 0, -0.00390625, -1.5940933, 0.0058288574, 0, 0, 0, 0, 0, 0, -0.022247314, -3.1537704, 0.013153076),
-"tilts": PackedFloat32Array(0, 0, 0)
-}
-point_count = 3
-
 [sub_resource type="Curve3D" id="Curve3D_n78cu"]
 resource_local_to_scene = true
 bake_interval = 512.0
@@ -373,6 +364,15 @@ _data = {
 point_count = 3
 
 [sub_resource type="Curve3D" id="Curve3D_kcpaj"]
+resource_local_to_scene = true
+bake_interval = 512.0
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.0032456517, -0.00052165985, -0.005450487, 0, 0, 0, 0, 0, 0, -0.00390625, -1.5940933, 0.0058288574, 0, 0, 0, 0, 0, 0, -0.022247314, -3.1537704, 0.013153076),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve3D" id="Curve3D_c15v2"]
 resource_local_to_scene = true
 bake_interval = 512.0
 _data = {
@@ -1080,7 +1080,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 176.47614, 55.820805, 312.555
 
 [node name="Path3DRope" parent="." unique_id=1810696511 node_paths=PackedStringArray("rigidbody_attached_to_end") instance=ExtResource("37_l8ah6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 176.02864, 68.22682, 305.60385)
-curve = SubResource("Curve3D_swu3i")
+curve = SubResource("Curve3D_oexs8")
 number_of_segments = 3
 mesh_sides = 3
 cable_thickness = 0.025
@@ -1093,7 +1093,7 @@ can_sleep = false
 
 [node name="Path3DRope2" parent="." unique_id=1644884360 node_paths=PackedStringArray("rigidbody_attached_to_end") instance=ExtResource("37_l8ah6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 182.9904, 69.72085, 310.26035)
-curve = SubResource("Curve3D_oexs8")
+curve = SubResource("Curve3D_n78cu")
 number_of_segments = 3
 mesh_sides = 3
 cable_thickness = 0.025
@@ -1105,7 +1105,7 @@ transform = Transform3D(-0.9679989, 0, -0.2509544, 0, 1, 0, 0.2509544, 0, -0.967
 
 [node name="Path3DRope3" parent="." unique_id=860533748 node_paths=PackedStringArray("rigidbody_attached_to_end") instance=ExtResource("37_l8ah6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 181.41663, 68.87126, 315.73386)
-curve = SubResource("Curve3D_n78cu")
+curve = SubResource("Curve3D_kcpaj")
 number_of_segments = 3
 mesh_sides = 3
 cable_thickness = 0.025
@@ -1118,7 +1118,7 @@ can_sleep = false
 
 [node name="Path3DRope4" parent="." unique_id=1892138340 node_paths=PackedStringArray("rigidbody_attached_to_end") instance=ExtResource("37_l8ah6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 174.0994, 68.22078, 316.0205)
-curve = SubResource("Curve3D_kcpaj")
+curve = SubResource("Curve3D_c15v2")
 number_of_segments = 3
 mesh_sides = 3
 cable_thickness = 0.025

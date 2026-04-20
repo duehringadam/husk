@@ -1,0 +1,88 @@
+[gd_resource type="AnimationNodeStateMachine" format=3 uid="uid://btqetk34l0eah"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wuhxb"]
+animation = &"fire_equip"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nelli"]
+animation = &"fire_idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7fmws"]
+animation = &"fire_nomana"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x3y7m"]
+animation = &"fire_use"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w62gh"]
+animation = &"fire_use_loop"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mhf8l"]
+animation = &"lower"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x3y7m"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7fmws"]
+xfade_time = 0.25
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_upic4"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"activate"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4it18"]
+advance_mode = 2
+advance_condition = &"cant_use"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2br13"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mhf8l"]
+xfade_time = 0.1
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tdg00"]
+xfade_time = 0.25
+advance_mode = 2
+advance_condition = &"cant_use"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w62gh"]
+xfade_time = 0.25
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_l5uw3"]
+advance_mode = 2
+advance_condition = &"lower"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_idut1"]
+advance_mode = 2
+advance_condition = &"lower"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_52apu"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"lower"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4urup"]
+advance_mode = 2
+advance_condition = &"lower"
+
+[resource]
+states/fire_equip/node = SubResource("AnimationNodeAnimation_wuhxb")
+states/fire_equip/position = Vector2(327, 100)
+states/fire_idle/node = SubResource("AnimationNodeAnimation_nelli")
+states/fire_idle/position = Vector2(471, 100)
+states/fire_nomana/node = SubResource("AnimationNodeAnimation_7fmws")
+states/fire_nomana/position = Vector2(545, 192)
+states/fire_use/node = SubResource("AnimationNodeAnimation_x3y7m")
+states/fire_use/position = Vector2(606, 100)
+states/fire_use_loop/node = SubResource("AnimationNodeAnimation_w62gh")
+states/fire_use_loop/position = Vector2(670, 16)
+states/lower/node = SubResource("AnimationNodeAnimation_mhf8l")
+states/lower/position = Vector2(713, 207.68234)
+transitions = ["Start", "fire_equip", SubResource("AnimationNodeStateMachineTransition_x3y7m"), "fire_equip", "fire_idle", SubResource("AnimationNodeStateMachineTransition_7fmws"), "fire_idle", "fire_use", SubResource("AnimationNodeStateMachineTransition_upic4"), "fire_idle", "fire_nomana", SubResource("AnimationNodeStateMachineTransition_4it18"), "fire_nomana", "fire_idle", SubResource("AnimationNodeStateMachineTransition_2br13"), "fire_use", "fire_use_loop", SubResource("AnimationNodeStateMachineTransition_mhf8l"), "fire_use_loop", "fire_nomana", SubResource("AnimationNodeStateMachineTransition_tdg00"), "fire_use_loop", "fire_idle", SubResource("AnimationNodeStateMachineTransition_w62gh"), "fire_idle", "lower", SubResource("AnimationNodeStateMachineTransition_l5uw3"), "fire_use", "lower", SubResource("AnimationNodeStateMachineTransition_idut1"), "fire_use_loop", "lower", SubResource("AnimationNodeStateMachineTransition_52apu"), "fire_nomana", "lower", SubResource("AnimationNodeStateMachineTransition_4urup")]
+graph_offset = Vector2(0, -3.3176591)

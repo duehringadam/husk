@@ -178,7 +178,7 @@ tracks/0/path = NodePath("bloodflow:emitting")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.4),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
@@ -190,7 +190,7 @@ tracks/1/path = NodePath("dynamicmarks:emitting")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.366667),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
@@ -202,7 +202,7 @@ tracks/2/path = NodePath("mist:emitting")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.133333),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
@@ -383,6 +383,7 @@ _data = {
 }
 
 [node name="VFX_fire_Constant_A3" type="Node3D" unique_id=1748177694]
+top_level = true
 script = ExtResource("1_8gvjg")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1908619577]
@@ -397,7 +398,6 @@ emitting = false
 amount = 32
 randomness = 1.0
 fixed_fps = 60
-transform_align = 3
 process_material = SubResource("ParticleProcessMaterial_ts6dq")
 draw_pass_1 = ExtResource("2_8gvjg")
 
@@ -418,7 +418,6 @@ amount = 4
 lifetime = 0.7
 randomness = 1.0
 fixed_fps = 60
-local_coords = true
 process_material = SubResource("ParticleProcessMaterial_qaom6")
 draw_pass_1 = SubResource("QuadMesh_ipfrt")
 

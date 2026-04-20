@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="item" format=3 uid="uid://ccbqtln0f3o4n"]
+
+[ext_resource type="AnimationNodeStateMachine" uid="uid://bnag3oppwh7b3" path="res://Player/viewmodel/animations/hands/animation_state_machines/two_handed_mace_state_machine.tres" id="1_fsmfs"]
+[ext_resource type="PackedScene" uid="uid://dc3khinm74hrb" path="res://Player/viewmodel/animations/hands/animation_state_machines/war_scythe.tscn" id="2_gk4ln"]
+[ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/item_stat.gd" id="3_pv6c1"]
+[ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/item.gd" id="4_n81ue"]
+
+[sub_resource type="Resource" id="Resource_pmu86"]
+script = ExtResource("3_pv6c1")
+damage_types = Dictionary[int, float]({
+1: 40.0
+})
+strength_scale = 60.0
+range = 3.0
+metadata/_custom_type_script = "uid://bbtfrupllo3w6"
+
+[resource]
+script = ExtResource("4_n81ue")
+item_name = "War Scythe"
+item_description = "haha weiner"
+item_stats = SubResource("Resource_pmu86")
+item_scene = ExtResource("2_gk4ln")
+two_handed = true
+animation_state_machine = ExtResource("1_fsmfs")
+position = Vector3(-0.009, 0.005, -0.042)
+rotation = Vector3(0, 0, 1.5)
+metadata/_custom_type_script = "uid://dcfd18dx8x1bm"

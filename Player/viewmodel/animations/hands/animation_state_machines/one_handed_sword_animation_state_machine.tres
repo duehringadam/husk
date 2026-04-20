@@ -18,6 +18,9 @@ animation = &"brokenS_CL"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uv5j5"]
 animation = &"brokenS_Idle"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_imjhw"]
+animation = &"one_handed_lower"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g1qd6"]
 animation = &"brokenS_SD"
 
@@ -97,6 +100,16 @@ xfade_time = 0.25
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nyare"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"lower"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tjdkn"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"idle"
+
 [resource]
 states/End/position = Vector2(1079, 35)
 states/equip/node = SubResource("AnimationNodeAnimation_dwmnf")
@@ -111,6 +124,8 @@ states/hold_right/node = SubResource("AnimationNodeAnimation_ljm4p")
 states/hold_right/position = Vector2(669, 49)
 states/idle/node = SubResource("AnimationNodeAnimation_uv5j5")
 states/idle/position = Vector2(435, 100)
+states/one_handed_lower/node = SubResource("AnimationNodeAnimation_imjhw")
+states/one_handed_lower/position = Vector2(653, 225.33339)
 states/swing_back/node = SubResource("AnimationNodeAnimation_g1qd6")
 states/swing_back/position = Vector2(462, 290.4816)
 states/swing_forward/node = SubResource("AnimationNodeAnimation_qniyt")
@@ -118,6 +133,6 @@ states/swing_forward/position = Vector2(477, -102.51841)
 states/swing_left/node = SubResource("AnimationNodeAnimation_kifjd")
 states/swing_left/position = Vector2(195, -70.600006)
 states/swing_right/node = SubResource("AnimationNodeAnimation_er56e")
-states/swing_right/position = Vector2(622, 124.0612)
-transitions = ["Start", "equip", SubResource("AnimationNodeStateMachineTransition_sfya3"), "hold_left", "swing_left", SubResource("AnimationNodeStateMachineTransition_uv5j5"), "equip", "idle", SubResource("AnimationNodeStateMachineTransition_x02gr"), "idle", "hold_left", SubResource("AnimationNodeStateMachineTransition_mvuec"), "swing_left", "idle", SubResource("AnimationNodeStateMachineTransition_er56e"), "idle", "hold_right", SubResource("AnimationNodeStateMachineTransition_g1qd6"), "hold_right", "swing_right", SubResource("AnimationNodeStateMachineTransition_qniyt"), "swing_right", "idle", SubResource("AnimationNodeStateMachineTransition_h8l3j"), "idle", "hold_forward", SubResource("AnimationNodeStateMachineTransition_xfbl3"), "hold_forward", "swing_forward", SubResource("AnimationNodeStateMachineTransition_oopu1"), "swing_forward", "idle", SubResource("AnimationNodeStateMachineTransition_kifjd"), "idle", "hold_back", SubResource("AnimationNodeStateMachineTransition_ljm4p"), "hold_back", "swing_back", SubResource("AnimationNodeStateMachineTransition_frrgv"), "swing_back", "idle", SubResource("AnimationNodeStateMachineTransition_8hunc")]
-graph_offset = Vector2(0, -156.44487)
+states/swing_right/position = Vector2(623, 127.0612)
+transitions = ["Start", "equip", SubResource("AnimationNodeStateMachineTransition_sfya3"), "hold_left", "swing_left", SubResource("AnimationNodeStateMachineTransition_uv5j5"), "equip", "idle", SubResource("AnimationNodeStateMachineTransition_x02gr"), "idle", "hold_left", SubResource("AnimationNodeStateMachineTransition_mvuec"), "swing_left", "idle", SubResource("AnimationNodeStateMachineTransition_er56e"), "idle", "hold_right", SubResource("AnimationNodeStateMachineTransition_g1qd6"), "hold_right", "swing_right", SubResource("AnimationNodeStateMachineTransition_qniyt"), "swing_right", "idle", SubResource("AnimationNodeStateMachineTransition_h8l3j"), "idle", "hold_forward", SubResource("AnimationNodeStateMachineTransition_xfbl3"), "hold_forward", "swing_forward", SubResource("AnimationNodeStateMachineTransition_oopu1"), "swing_forward", "idle", SubResource("AnimationNodeStateMachineTransition_kifjd"), "idle", "hold_back", SubResource("AnimationNodeStateMachineTransition_ljm4p"), "hold_back", "swing_back", SubResource("AnimationNodeStateMachineTransition_frrgv"), "swing_back", "idle", SubResource("AnimationNodeStateMachineTransition_8hunc"), "idle", "one_handed_lower", SubResource("AnimationNodeStateMachineTransition_nyare"), "one_handed_lower", "idle", SubResource("AnimationNodeStateMachineTransition_tjdkn")]
+graph_offset = Vector2(0, 60.333385)

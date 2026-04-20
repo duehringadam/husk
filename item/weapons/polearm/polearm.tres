@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="item" format=3 uid="uid://vepy1a10tg28"]
 
+[ext_resource type="AnimationNodeStateMachine" uid="uid://bnag3oppwh7b3" path="res://Player/viewmodel/animations/hands/animation_state_machines/two_handed_mace_state_machine.tres" id="1_u6xpx"]
 [ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/item_stat.gd" id="2_5qc40"]
 [ext_resource type="PackedScene" uid="uid://df41i80a5nrxd" path="res://item/weapons/polearm/polearm.tscn" id="2_u6xpx"]
 [ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/item.gd" id="3_4y8nl"]
@@ -10,6 +11,7 @@ damage_types = Dictionary[int, float]({
 1: 30.0
 })
 strength_scale = 0.45
+range = 3.0
 metadata/_custom_type_script = "uid://bbtfrupllo3w6"
 
 [resource]
@@ -19,4 +21,7 @@ item_description = "a polearm"
 item_stats = SubResource("Resource_cibir")
 item_scene = ExtResource("2_u6xpx")
 two_handed = true
+animation_state_machine = ExtResource("1_u6xpx")
+position = Vector3(-0.026, 0.238, 0)
+rotation = Vector3(0, 0, 2.1)
 metadata/_custom_type_script = "uid://dcfd18dx8x1bm"

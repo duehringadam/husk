@@ -10,6 +10,9 @@ extends Node3D
 @onready var attack_timer: Timer = $attackTimer
 @onready var hands: MeshInstance3D = $ghoul_arms_new/Armature/Skeleton3D/hands
 @onready var stab_damage: DamageComponent = $stabDamage
+@onready var state_chart: StateChart = $ghoul_arms_new/StateChart
+@onready var stab_collision: CollisionShape3D = $stabDamage/CollisionShape3D
+@onready var damage_scaling: damage_scaling_component = $damage_scaling_component
 
 @export var ray_length :float = 2
 @export var ray_count: int = 16
@@ -25,6 +28,7 @@ var hits: Array
 var tween: Tween
 var result
 var query
+var damage_component: DamageComponent
 func _ready() -> void:
 	if bone_attachment.get_child_count() > 0:
 		animation_tree.active = true
@@ -43,6 +47,7 @@ func _set_item(new_item: item):
 				skeleton.set_bone_pose_scale(left_arm_idx, (Vector3(0.01,0.01,0.01)))
 		if bone_attachment.get_child_count() != 0:
 			unequip()
+		state_chart.send_event("idle")
 		item_add.position = weapon.position
 		item_add.rotation_degrees = weapon.rotation
 		animation_state_machine = weapon.animation_state_machine
@@ -51,16 +56,26 @@ func _set_item(new_item: item):
 		await get_tree().create_timer(.1).timeout
 		animation_tree.active = true
 		bone_attachment.add_child(item_add)
-		stab_damage.damage_types = item_add.damage_component.damage_types
+		damage_component = bone_attachment.get_child(0).damage_component
+		bone_attachment.get_child(0).damage_component.damage_types = new_item.item_stats.damage_types
+		stab_damage.damage_types = new_item.item_stats.damage_types
 		stab_damage.status_types = item_add.damage_component.status_types
-		stab_damage.stance_damage_value = item_add.damage_component.stance_damage_value
+		stab_damage.stance_damage_value = new_item.item_stats.stance_damage
 		stab_damage.hit_sound = item_add.damage_component.hit_sound
+		ray_length = new_item.item_stats.range
+		stab_collision.shape.height = new_item.item_stats.range
+		damage_scaling.damage_component = damage_component
+		damage_scaling.stored_damage_values = new_item.item_stats.damage_types.values()
+		damage_scaling.stored_stance_damage = new_item.item_stats.stance_damage
+		
+		
 
 func unequip():
+	state_chart.send_event("lower")
 	weapon = null
 	for i in bone_attachment.get_children():
-		if i is not RemoteTransform3D:
-			i.queue_free()
+		i.queue_free()
+	
 
 
 func _on_bloodtimer_timeout() -> void:
@@ -76,7 +91,7 @@ func _on_damage_dealt(target: hurtbox_component) -> void:
 	var hand_mesh_shader = hands.get_active_material(0)
 	weapon_mesh_shader.next_pass["shader_parameter/progress"] = clampf(weapon_mesh_shader.next_pass["shader_parameter/progress"]+.05,0,.5)
 	hand_mesh_shader.next_pass["shader_parameter/progress"] = clampf(hand_mesh_shader.next_pass["shader_parameter/progress"]+.05,0,.5)
-	if weapon_mesh_shader.next_pass["shader_parameter/progress"] >= .2 && bone_attachment.get_child(0).blood_drip != null:
+	if weapon_mesh_shader.next_pass["shader_parameter/progress"] >= .4 && bone_attachment.get_child(0).blood_drip != null:
 		bone_attachment.get_child(0).blood_drip.emitting = true
 		bone_attachment.get_child(0).bloodtimer.start()
 	else:
@@ -169,7 +184,6 @@ func _perform_raycast(origin: Vector3, target: Vector3):
 		if is_instance_valid(result.collider):
 			if result.collider is hurtbox_component && !hits.has(result.collider.owner.get_rid()):
 				hits.append(result.collider.owner.get_rid())
-				var damage_component: DamageComponent = bone_attachment.get_child(0).damage_component
 				result.collider.take_damage(damage_component.damage_types, damage_component.status_types, damage_component.stance_damage_value, damage_component)
 				_on_damage_dealt(result.collider)
 				if damage_component.hit_sound:
@@ -180,3 +194,7 @@ func _perform_raycast(origin: Vector3, target: Vector3):
 
 func _on_swing_state_exited() -> void:
 	hits.clear()
+
+
+func lower():
+	state_chart.send_event("lower")
