@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4n4ub6iql2pk"]
+
+[ext_resource type="PackedScene" uid="uid://jnuq" path="res://ExportedTerrain/terrain_export.glb" id="1_jnuq"]
+[ext_resource type="Material" uid="uid://d4n4ub6iql2pc" path="res://ExportedTerrain/TerrainMaterial.tres" id="2_d4n4u"]
+
+[node name="terrain_export" instance=ExtResource("1_jnuq")]
+
+[node name="TerrainGeom" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_d4n4u")

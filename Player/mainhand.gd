@@ -4,20 +4,22 @@ extends Node3D
 @export var offhand: Node3D
 @export var animation_state_machine: AnimationNodeStateMachine
 @export var bone_attachment: BoneAttachment3D
+@export var left_bone_attachment: BoneAttachment3D
 
-@onready var animation_tree: AnimationTree = $ghoul_arms_new/AnimationTree
-@onready var skeleton: Skeleton3D = $ghoul_arms_new/Armature/Skeleton3D
-@onready var attack_timer: Timer = $attackTimer
-@onready var hands: MeshInstance3D = $ghoul_arms_new/Armature/Skeleton3D/hands
-@onready var stab_damage: DamageComponent = $stabDamage
-@onready var state_chart: StateChart = $ghoul_arms_new/StateChart
-@onready var stab_collision: CollisionShape3D = $stabDamage/CollisionShape3D
-@onready var damage_scaling: damage_scaling_component = $damage_scaling_component
+@export var animation_tree: AnimationTree
+@export var skeleton: Skeleton3D
+@export var hands: MeshInstance3D
+@export var state_chart: StateChart
+
 
 @export var ray_length :float = 2
 @export var ray_count: int = 16
 @export_range(0,360) var spread_angle: float = 30 # Spread 30 degrees
 
+@onready var stab_damage: DamageComponent = $stabDamage
+@onready var attack_timer: Timer = $"ghoul_arms2(1)/attackTimer"
+@onready var stab_collision: CollisionShape3D = $stabDamage/CollisionShape3D
+@onready var damage_scaling: damage_scaling_component = $damage_scaling_component
 var space_state
 var attack_dir
 var can_attack = true
@@ -29,6 +31,7 @@ var tween: Tween
 var result
 var query
 var damage_component: DamageComponent
+
 func _ready() -> void:
 	if bone_attachment.get_child_count() > 0:
 		animation_tree.active = true
@@ -68,6 +71,11 @@ func _set_item(new_item: item):
 		damage_scaling.stored_damage_values = new_item.item_stats.damage_types.values()
 		damage_scaling.stored_stance_damage = new_item.item_stats.stance_damage
 		
+		if new_item.item_left_scene:
+			var item_left_add = new_item.item_left_scene.instantiate()
+			item_left_add.position = weapon.left_position
+			item_left_add.rotation_degrees = weapon.left_rotation
+			left_bone_attachment.add_child(item_left_add)
 		
 
 func unequip():
@@ -75,7 +83,8 @@ func unequip():
 	weapon = null
 	for i in bone_attachment.get_children():
 		i.queue_free()
-	
+	for i in left_bone_attachment.get_children():
+		i.queue_free()
 
 
 func _on_bloodtimer_timeout() -> void:
@@ -195,6 +204,14 @@ func _perform_raycast(origin: Vector3, target: Vector3):
 func _on_swing_state_exited() -> void:
 	hits.clear()
 
-
 func lower():
 	state_chart.send_event("lower")
+
+func activate_left():
+	left_bone_attachment.get_child(0).activate()
+
+func activate_right():
+	bone_attachment.get_child(0).activate()
+
+func shoot_left():
+	left_bone_attachment.get_child(0).shoot()

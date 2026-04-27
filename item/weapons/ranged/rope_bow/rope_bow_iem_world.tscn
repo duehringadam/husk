@@ -1,0 +1,152 @@
+[gd_scene format=3 uid="uid://rjlf8cn6x2yh"]
+
+[ext_resource type="Script" uid="uid://dixki0innbjf2" path="res://addons/game_pieces/pickable/item_world_pickable.gd" id="1_6spbc"]
+[ext_resource type="Script" uid="uid://ck3cei0hvspym" path="res://addons/interaction_system/interaction_container.gd" id="2_n4mpo"]
+[ext_resource type="Script" uid="uid://5tinbhq6p45k" path="res://addons/interaction_system/interaction.gd" id="3_vwtar"]
+[ext_resource type="Script" uid="uid://bxe74cq2uqemi" path="res://addons/game_controls/vanilla/input_map_game_control.gd" id="4_0qv4s"]
+[ext_resource type="Script" uid="uid://doc0okecalxnp" path="res://addons/interaction_system/interaction_context.gd" id="5_4w17j"]
+[ext_resource type="AudioStream" uid="uid://dcr4in8lcdk51" path="res://sfx/dark_souls_item.wav" id="6_woqmr"]
+[ext_resource type="Script" uid="uid://cp0p4yckxtvmw" path="res://addons/game_pieces/collision_sound/collision_sound_player.gd" id="7_wkl33"]
+[ext_resource type="ArrayMesh" uid="uid://crg716m1jta00" path="res://Player/weapon/ALL/Bow3/bow3.tres" id="10_875qp"]
+[ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="10_cac1b"]
+[ext_resource type="PackedScene" uid="uid://dhws2ueoubwwx" path="res://components/bounding_box_component.tscn" id="11_krpeu"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2cedq"]
+points = PackedVector3Array(-0.56852585, -2.38752, -2.1107495e-05, -0.47358423, -2.4662857, -0.07425526, -0.42195538, -2.6125648, -2.1107495e-05, -0.47358423, -2.4662857, 0.07423417, -0.56852585, 2.3870084, -2.1107495e-05, 0.26873922, -0.22095299, -0.10790779, 0.5391266, -0.8132299, -0.086867034, -0.47358423, 2.4657743, -0.07425526, 0.42766827, -1.0612905, -0.06033371, 0.46312708, -1.0986274, -2.1107495e-05, 0.42766827, -1.0612905, 0.06031263, 0.5391266, -0.8132299, 0.08684595, 0.26873922, -0.22095299, 0.10790782, -0.47358423, 2.4657743, 0.07423417, -0.42195538, 2.6125648, -2.1107495e-05, 0.26873922, 0.22044158, -0.10790779, 0.61143, -0.8132299, -2.1107495e-05, 0.5391266, 0.8127184, -0.086867034, 0.5391266, 0.8127184, 0.08684595, 0.26873922, 0.22044158, 0.10790782, 0.46312708, 1.0981159, -2.1107495e-05, 0.42766827, 1.0607791, -0.06033371, 0.42766827, 1.0607791, 0.06031263, 0.61143, 0.8127184, -2.1107495e-05)
+
+[sub_resource type="Skin" id="Skin_8idt6"]
+resource_name = "Skin"
+bind_count = 2
+bind/0/name = &"Bow"
+bind/0/bone = -1
+bind/0/pose = Transform3D(7.54979e-08, -1, 0, 1, 7.54979e-08, 0, 0, 0, 1, -2.810225e-09, -0.33966547, 0)
+bind/1/name = &"String"
+bind/1/bone = -1
+bind/1/pose = Transform3D(7.54979e-08, -1, 0, 1, 7.54979e-08, 0, 0, 0, 1, 7.659349e-08, 1.0145116, 0)
+
+[node name="Pickable" type="RigidBody3D" unique_id=2119350781 node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component")]
+collision_layer = 8
+collision_mask = 15
+contact_monitor = true
+max_contacts_reported = 1
+angular_damp = 5.0
+script = ExtResource("1_6spbc")
+change_distance_interaction = NodePath("InteractionContainer/WhileGrabbed/Change Distance")
+throwable_mesh = NodePath("Rope Bow")
+throwable = NodePath(".")
+damage_component = NodePath("DamageComponent")
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("2_n4mpo"),"default_context_id":0,"display_name":"Heavy Crossbow","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("3_vwtar")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_vwtar"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("4_0qv4s"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+, Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_vwtar"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("4_0qv4s"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="InteractionContainer" type="Node" parent="." unique_id=675653858]
+script = ExtResource("2_n4mpo")
+display_name = "Heavy Crossbow"
+metadata/_custom_type_script = "uid://ck3cei0hvspym"
+
+[node name="Take" type="Node" parent="InteractionContainer" unique_id=1494656254]
+script = ExtResource("3_vwtar")
+hide_while_grabbed = true
+display_name = "Grab"
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="interact" type="Node" parent="InteractionContainer/Take" unique_id=658629802]
+script = ExtResource("4_0qv4s")
+action = &"interact"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="Hold" type="Node" parent="InteractionContainer" unique_id=2043500295]
+script = ExtResource("3_vwtar")
+hide_while_grabbed = true
+display_name = "Grab"
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="interact" type="Node" parent="InteractionContainer/Hold" unique_id=47041581]
+script = ExtResource("4_0qv4s")
+action = &"interact"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="WhileGrabbed" type="Node" parent="InteractionContainer" unique_id=1598984081]
+script = ExtResource("5_4w17j")
+context_id = 1
+metadata/_custom_type_script = "uid://doc0okecalxnp"
+
+[node name="Change Distance" type="Node" parent="InteractionContainer/WhileGrabbed" unique_id=1387568767]
+script = ExtResource("3_vwtar")
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="scroll" type="Node" parent="InteractionContainer/WhileGrabbed/Change Distance" unique_id=2094094583]
+script = ExtResource("4_0qv4s")
+type = 1
+action = &"scroll"
+negative_x = &"scroll_down"
+positive_x = &"scroll_up"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="Rotate" type="Node" parent="InteractionContainer/WhileGrabbed" unique_id=802756841]
+script = ExtResource("3_vwtar")
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="rotate" type="Node" parent="InteractionContainer/WhileGrabbed/Rotate" unique_id=1279692524]
+script = ExtResource("4_0qv4s")
+action = &"rotate"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="Throw" type="Node" parent="InteractionContainer/WhileGrabbed" unique_id=696603547]
+script = ExtResource("3_vwtar")
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="secondary_action" type="Node" parent="InteractionContainer/WhileGrabbed/Throw" unique_id=629675826]
+script = ExtResource("4_0qv4s")
+action = &"secondary_action"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="PickupSound" type="AudioStreamPlayer" parent="." unique_id=290488532]
+stream = ExtResource("6_woqmr")
+
+[node name="CollisionSoundPlayer" type="AudioStreamPlayer3D" parent="." unique_id=135415267]
+max_polyphony = 3
+script = ExtResource("7_wkl33")
+sounds_per_velocity = Dictionary[int, AudioStream]({
+2: null,
+6: null,
+12: null
+})
+metadata/_custom_type_script = "uid://cp0p4yckxtvmw"
+
+[node name="DamageComponent" type="Area3D" parent="." unique_id=1429514769 node_paths=PackedStringArray("source")]
+collision_mask = 13
+script = ExtResource("10_cac1b")
+damage_types = Dictionary[int, float]({
+1: 10.0
+})
+source = NodePath("..")
+metadata/_custom_type_script = "uid://dlsydctoxqbwy"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent" unique_id=505847502]
+transform = Transform3D(0.345, 0, 0, 0, -1.508043e-08, 0.345, 0, -0.345, -1.508043e-08, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_2cedq")
+
+[node name="bounding_box_component" parent="." unique_id=326409759 node_paths=PackedStringArray("mesh") instance=ExtResource("11_krpeu")]
+mesh = NodePath("../Rope Bow")
+
+[node name="Rope Bow" type="MeshInstance3D" parent="." unique_id=1975496816]
+transform = Transform3D(0.345, 0, 0, 0, -1.508043e-08, 0.345, 0, -0.345, -1.508043e-08, 0, 0, 0)
+layers = 2
+mesh = ExtResource("10_875qp")
+skin = SubResource("Skin_8idt6")
+skeleton = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=129962691]
+transform = Transform3D(0.345, 0, 0, 0, -1.508043e-08, 0.345, 0, -0.345, -1.508043e-08, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_2cedq")
+
+[connection signal="on_complete" from="InteractionContainer/Take" to="." method="_released"]
+[connection signal="on_trigger" from="InteractionContainer/Take" to="." method="_while_grabbed"]
+[connection signal="on_trigger" from="InteractionContainer/WhileGrabbed/Change Distance" to="." method="_on_change_distance"]
+[connection signal="on_complete" from="InteractionContainer/WhileGrabbed/Rotate" to="." method="_stopped_rotating"]
+[connection signal="on_trigger" from="InteractionContainer/WhileGrabbed/Rotate" to="." method="_while_rotating"]
+[connection signal="on_complete" from="InteractionContainer/WhileGrabbed/Throw" to="." method="_on_throw"]

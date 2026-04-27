@@ -14,9 +14,11 @@ func _on_swing_left_state_entered() -> void:
 	for i in bone_attach.get_children():
 		if i is Weapon:
 			weapon = i
-	weapon.swing_sound.pitch_scale = randf_range(0.9,1)
-	weapon.swing_sound.play()
-	weapon.trail.visible = true
+	if weapon:
+		if weapon.swing_sound:
+			weapon.swing_sound.pitch_scale = randf_range(0.9,1)
+			weapon.swing_sound.play()
+			weapon.trail.visible = true
 	SignalBus.emit_signal("primary_active", true)
 	var tween = get_tree().create_tween()
 	tween.tween_property(Global.player.camera,"fov", Global.camera_fov,.25)
@@ -27,7 +29,8 @@ func _on_swing_left_state_exited() -> void:
 	GamePiecesEventBus.slow_player_requested(-2)
 	SignalBus.emit_signal("primary_active", false)
 	animation_tree.set("parameters/conditions/swing", false)
-	weapon.trail.visible = false
+	if weapon:
+		weapon.trail.visible = false
 
 
 func _on_swing_left_state_processing(delta: float) -> void:

@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://d4n4ub6iqv8w3"]
+
+[ext_resource type="PackedScene" uid="uid://jaoi" path="res://scenes/SM_SM_Cloud.glb" id="1_jaoi"]
+[ext_resource type="Texture2D" uid="uid://ba7" path="res://scenes/T_Clouds_v1.PNG" id="2_5vpr6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yaolo"]
+transparency = 1
+cull_mode = 2
+albedo_color = Color(1, 1, 1, 0.386)
+albedo_texture = ExtResource("2_5vpr6")
+albedo_texture_msdf = true
+texture_filter = 4
+
+[node name="SM_SM_Cloud" unique_id=2111989671 instance=ExtResource("1_jaoi")]
+
+[node name="SM_SM_Cloud_LOD0" parent="." index="0" unique_id=817990831]
+surface_material_override/0 = SubResource("StandardMaterial3D_yaolo")

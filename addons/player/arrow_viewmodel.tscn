@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dq8lwiea6fmgn"]
+
+[ext_resource type="Script" uid="uid://x0madvgbj456" path="res://addons/player/arrow_viewmodel.gd" id="1_spwng"]
+[ext_resource type="ArrayMesh" uid="uid://bmftl4efstwmo" path="res://Player/weapon/ALL/Arrows/arrow_new.tres" id="1_vcamg"]
+[ext_resource type="Texture2D" uid="uid://7406rkdcg7h1" path="res://Player/weapon/ALL/Arrows/arrowtexture.png" id="2_wmc18"]
+[ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="4_g4grm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cm5a7"]
+albedo_texture = ExtResource("2_wmc18")
+
+[node name="arrows" type="Node3D" unique_id=919288172]
+transform = Transform3D(0.19951291, 0.013951298, 0, -0.013942802, 0.19939134, 0.006979901, 0.00048689335, -0.0069628987, 0.19987822, 0, 0, 0)
+script = ExtResource("1_spwng")
+
+[node name="Cube_001" type="MeshInstance3D" parent="." unique_id=338909663]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999998, 0, 0, 0)
+layers = 2
+mesh = ExtResource("1_vcamg")
+surface_material_override/0 = SubResource("StandardMaterial3D_cm5a7")
+
+[node name="DamageComponent" type="Area3D" parent="." unique_id=1099102977]
+script = ExtResource("4_g4grm")
+metadata/_custom_type_script = "uid://dlsydctoxqbwy"

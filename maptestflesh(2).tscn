@@ -24,14 +24,15 @@
 [ext_resource type="Resource" uid="uid://vepy1a10tg28" path="res://item/weapons/polearm/polearm.tres" id="19_wp7ny"]
 [ext_resource type="PackedScene" uid="uid://bsm5n064l0yro" path="res://item/weapons/ranged/hand_crossbow_item_world.tscn" id="20_oyoqq"]
 [ext_resource type="Resource" uid="uid://smiwqmeohr5s" path="res://item/weapons/ranged/hand_crossbow.tres" id="21_relod"]
-[ext_resource type="PackedScene" uid="uid://cawmpm5wfafuh" path="res://item/weapons/ranged/heavy_crossbow_item_world.tscn" id="22_0euqr"]
-[ext_resource type="Resource" uid="uid://dbk1ijoypy6bl" path="res://item/weapons/ranged/heavy crossbow.tres" id="23_7eofo"]
 [ext_resource type="PackedScene" uid="uid://d4mr6pgmbentk" path="res://item/shield/shield_item_world.tscn" id="24_0euqr"]
 [ext_resource type="Resource" uid="uid://crf08k5nswvsi" path="res://item/shield/shield.tres" id="25_7eofo"]
+[ext_resource type="PackedScene" uid="uid://byf4i5nftusng" path="res://item/weapons/war_scythe/war_scythe_item_world.tscn" id="25_dqe7k"]
 [ext_resource type="PackedScene" uid="uid://chaku7dvtclv4" path="res://item/spells/spell_item_world.tscn" id="26_iql7a"]
 [ext_resource type="Resource" uid="uid://b2anxjkr7f46w" path="res://item/spells/blood_spell.tres" id="27_fqkk3"]
 [ext_resource type="Resource" uid="uid://dhgsftnl3tw13" path="res://item/spells/flame_spray/flame.tres" id="28_idyej"]
 [ext_resource type="Resource" uid="uid://c8afm2d4w8gxb" path="res://item/spells/telekinesis.tres" id="29_j2i1c"]
+[ext_resource type="PackedScene" uid="uid://rjlf8cn6x2yh" path="res://item/weapons/ranged/rope_bow/rope_bow_iem_world.tscn" id="32_0jyqm"]
+[ext_resource type="Resource" uid="uid://d2eebovadb1ap" path="res://item/weapons/ranged/rope_bow/rope_bow.tres" id="33_npow4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_12ayy"]
 resource_name = "Material.008"
@@ -2061,11 +2062,9 @@ metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"proce
 ]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
 
 
-[node name="Pickable6" parent="." unique_id=137981524 instance=ExtResource("22_0euqr")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 4.6, 2, -6)
-item_to_loot = ExtResource("23_7eofo")
-hold_duration = 0.3
-metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Heavy Crossbow","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+[node name="Pickable11" parent="." unique_id=453743010 instance=ExtResource("25_dqe7k")]
+transform = Transform3D(2, 0, 0, 0, -8.742276e-08, 1.9999998, 0, -1.9999998, -8.742276e-08, 3.4, 2, -6.6)
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Morning Star","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
 ,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
 , Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
 ,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
@@ -2126,6 +2125,17 @@ metadata/ground_type = "stone"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CSGBakedMeshInstance3D/StaticBody3D" unique_id=24573296]
 shape = SubResource("ConcavePolygonShape3D_ndxcn")
+
+[node name="Pickable6" parent="." unique_id=1596359009 instance=ExtResource("32_0jyqm")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 4.6, 2, -6.6)
+item_to_loot = ExtResource("33_npow4")
+hold_duration = 0.3
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Heavy Crossbow","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+, Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
 
 [connection signal="body_entered" from="NavigationRegion3D/CSGBakedMeshInstance3D/water/Area3D" to="NavigationRegion3D/CSGBakedMeshInstance3D/water/Area3D" method="_on_body_entered"]
 [connection signal="body_exited" from="NavigationRegion3D/CSGBakedMeshInstance3D/water/Area3D" to="NavigationRegion3D/CSGBakedMeshInstance3D/water/Area3D" method="_on_body_exited"]

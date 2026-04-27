@@ -36,6 +36,7 @@ func _on_idle_state_processing(delta: float) -> void:
 				state_chart.send_event("hold_right")
 				
 		if Input.is_action_just_pressed("attack_secondary"):
-			if weapon.weapon.two_handed:
-				state_chart.send_event("block")
+			if weapon.weapon:
+				if weapon.weapon.two_handed:
+					state_chart.send_event("block")
 		

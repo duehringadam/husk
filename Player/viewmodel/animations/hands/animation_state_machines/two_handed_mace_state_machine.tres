@@ -10,13 +10,13 @@ animation = &"mace_CD"
 animation = &"mace_CU"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oopu1"]
-animation = &"mace_two_handed_charge_right"
+animation = &"mace_CR"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ljm4p"]
-animation = &"mace_two_handed_charge_left"
+animation = &"mace_CL"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uv5j5"]
-animation = &"mace_Idle"
+animation = &"mace_idle"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g1qd6"]
 animation = &"mace_SD"
@@ -25,10 +25,10 @@ animation = &"mace_SD"
 animation = &"mace_SU"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kifjd"]
-animation = &"mace_two_handed_swing_right"
+animation = &"mace_SR"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_er56e"]
-animation = &"mace_two_handed_swing_left"
+animation = &"mace_SL"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r2unw"]
 animation = &"two_handed_mace_lower"
@@ -155,9 +155,9 @@ advance_condition = &"lower"
 states/End/position = Vector2(1079, 35)
 states/Start/position = Vector2(-73, 169)
 states/equip/node = SubResource("AnimationNodeAnimation_dwmnf")
-states/equip/position = Vector2(39, 169)
+states/equip/position = Vector2(30, 169)
 states/hold_back/node = SubResource("AnimationNodeAnimation_x02gr")
-states/hold_back/position = Vector2(162, 271.4816)
+states/hold_back/position = Vector2(162, 269.4816)
 states/hold_forward/node = SubResource("AnimationNodeAnimation_mvuec")
 states/hold_forward/position = Vector2(331, 12)
 states/hold_left/node = SubResource("AnimationNodeAnimation_oopu1")
@@ -177,4 +177,4 @@ states/swing_right/position = Vector2(622, 169)
 states/two_handed_mace_lower/node = SubResource("AnimationNodeAnimation_r2unw")
 states/two_handed_mace_lower/position = Vector2(596.2055, 348.4816)
 transitions = ["Start", "equip", SubResource("AnimationNodeStateMachineTransition_sfya3"), "hold_left", "swing_left", SubResource("AnimationNodeStateMachineTransition_uv5j5"), "equip", "idle", SubResource("AnimationNodeStateMachineTransition_x02gr"), "idle", "hold_left", SubResource("AnimationNodeStateMachineTransition_mvuec"), "swing_left", "idle", SubResource("AnimationNodeStateMachineTransition_er56e"), "idle", "hold_right", SubResource("AnimationNodeStateMachineTransition_g1qd6"), "hold_right", "swing_right", SubResource("AnimationNodeStateMachineTransition_qniyt"), "swing_right", "idle", SubResource("AnimationNodeStateMachineTransition_h8l3j"), "idle", "hold_forward", SubResource("AnimationNodeStateMachineTransition_xfbl3"), "hold_forward", "swing_forward", SubResource("AnimationNodeStateMachineTransition_oopu1"), "swing_forward", "idle", SubResource("AnimationNodeStateMachineTransition_kifjd"), "idle", "hold_back", SubResource("AnimationNodeStateMachineTransition_ljm4p"), "hold_back", "swing_back", SubResource("AnimationNodeStateMachineTransition_frrgv"), "swing_back", "idle", SubResource("AnimationNodeStateMachineTransition_8hunc"), "idle", "two_handed_mace_lower", SubResource("AnimationNodeStateMachineTransition_e6hmn"), "two_handed_mace_lower", "idle", SubResource("AnimationNodeStateMachineTransition_0ffgv"), "swing_right", "two_handed_mace_lower", SubResource("AnimationNodeStateMachineTransition_r2unw"), "hold_right", "two_handed_mace_lower", SubResource("AnimationNodeStateMachineTransition_yl4bv"), "hold_back", "two_handed_mace_lower", SubResource("AnimationNodeStateMachineTransition_6rtva"), "swing_back", "two_handed_mace_lower", SubResource("AnimationNodeStateMachineTransition_mjop3"), "hold_left", "two_handed_mace_lower", SubResource("AnimationNodeStateMachineTransition_qbfr6"), "hold_forward", "two_handed_mace_lower", SubResource("AnimationNodeStateMachineTransition_3bg8r"), "swing_left", "two_handed_mace_lower", SubResource("AnimationNodeStateMachineTransition_w2ud2"), "swing_forward", "two_handed_mace_lower", SubResource("AnimationNodeStateMachineTransition_w4j4y")]
-graph_offset = Vector2(-241.7945, -0.6161455)
+graph_offset = Vector2(-241.7945, 170.54704)

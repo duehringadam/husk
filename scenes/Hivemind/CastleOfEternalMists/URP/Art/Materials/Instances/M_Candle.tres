@@ -1,0 +1,15 @@
+[gd_resource type = "StandardMaterial3D" load_steps=3 format=3 uid="uid://bids"]
+
+[ext_resource type="Texture2D" uid="uid://kx1w" path="res://Hivemind/CastleOfEternalMists/URP/Art/Textures/T_Candle_02_BaseColor.png" id="1_kx1w"]
+[ext_resource type="Texture2D" uid="uid://kx1y" path="res://Hivemind/CastleOfEternalMists/URP/Art/Textures/T_Candle_02_Normal.png" id="2_kx1y"]
+
+[resource]
+resource_name = "M_Candle"
+albedo_color = Color(1.000, 1.000, 1.000, 1.000)
+blend_mode = 0 albedo_texture = ExtResource("1_kx1w")
+normal_enabled = true
+normal_texture = ExtResource("2_kx1y")
+normal_enabled = true
+normal_texture = ExtResource("2_kx1y")
+albedo_texture = ExtResource("1_kx1w")
+roughness = 0.5

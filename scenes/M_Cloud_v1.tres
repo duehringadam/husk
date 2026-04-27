@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bjd7"]
+
+[ext_resource type="Shader" uid="uid://d4n4ub6aggodm" path="res://scenes/Hivemind/CastleOfEternalMists/URP/Art/Shaders/S_VolumetricFog.tres" id="1_v5"]
+[ext_resource type="Texture2D" uid="uid://ba7" path="res://scenes/T_Clouds_v1.PNG" id="2_ba7"]
+
+[resource]
+resource_name = "M_Cloud_v1"
+render_priority = 0
+shader = ExtResource("1_v5")
+shader_parameter/Color = Color(0.918, 0.992, 0.992, 1)
+shader_parameter/Hardness = 0.6
+shader_parameter/Scale = 1.0
+shader_parameter/T_Clouds_v1 = ExtResource("2_ba7")
+shader_parameter/Opacity = 1.0

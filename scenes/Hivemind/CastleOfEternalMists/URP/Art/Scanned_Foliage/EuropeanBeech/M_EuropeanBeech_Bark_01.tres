@@ -1,0 +1,33 @@
+[gd_resource type = "ShaderMaterial" load_steps=4 format=3 uid="uid://biuo"]
+
+[ext_resource type="Shader" uid="uid://d4n4ub57w28vd" path="res://Hivemind/CastleOfEternalMists/URP/Art/Shaders/S_Foliage.tres" id="1_vw"]
+[ext_resource type="Texture2D" uid="uid://jqfi" path="res://Hivemind/CastleOfEternalMists/URP/Art/Textures/T_EuropeanBeech_Bark_01_A.PNG" id="1_jqfi"]
+[ext_resource type="Texture2D" uid="uid://jqfk" path="res://Hivemind/CastleOfEternalMists/URP/Art/Textures/T_EuropeanBeech_Bark_01_M.PNG" id="2_jqfk"]
+[ext_resource type="Texture2D" uid="uid://jqfm" path="res://Hivemind/CastleOfEternalMists/URP/Art/Textures/T_EuropeanBeech_Bark_01_N.PNG" id="3_jqfm"]
+
+[resource]
+resource_name = "M_EuropeanBeech_Bark_01"
+render_priority = 0
+shader = ExtResource("1_vw")
+shader_parameter/Tiling = Vector2( 1.000, 1.000 )
+shader_parameter/BaseMap = ExtResource("1_jqfi")
+shader_parameter/Mask = ExtResource("2_jqfk")
+shader_parameter/NormalMap = ExtResource("3_jqfm")
+shader_parameter/NormalStrength = 1.000
+shader_parameter/Roughness = 1.000
+shader_parameter/Tint = Color( 1.000, 1.000, 1.000, 0.000)
+shader_parameter/Saturation = 1.000
+shader_parameter/Contrast = 1.000
+shader_parameter/AlphaClipping = 0.250
+shader_parameter/AOIntensity = 1.000
+shader_parameter/Scale = 0.500
+shader_parameter/WindSpeed = 5.000
+shader_parameter/WindDirection = Vector3( 1.000, 0.000, 1.000 )
+shader_parameter/WindIntensity = 0.100
+shader_parameter/WindStep = Vector2( 0.100, 1.000 )
+shader_parameter/WindIntensity = 0.100
+shader_parameter/WindStep = Vector2( 0.100, 1.000 )
+shader_parameter/WindDirection = Vector3( 1.000, 0.000, 1.000 )
+shader_parameter/WindSpeed = 5.000
+shader_parameter/Scale = 0.500
+shader_parameter/EnableAlphaClipping = false

@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://ymiu2vsxluj2" path="res://scenes/ladders/ladder.tscn" id="10_ud3vi"]
 [ext_resource type="PackedScene" uid="uid://cqebuck4snj2y" path="res://scenes/cleanser_knight/pyramid_final.tscn" id="12_jvck6"]
 [ext_resource type="PackedScene" uid="uid://dde8d0d27fgyo" path="res://scenes/npc/undead/shambler.tscn" id="13_jvck6"]
-[ext_resource type="PackedScene" uid="uid://byf4i5nftusng" path="res://item/weapons/war_scythe/war_scythe_item_world.tscn" id="14_07jwy"]
 [ext_resource type="Texture2D" uid="uid://cxnd1w61unt4o" path="res://scenes/shambler_armored/textures/textures/soldier_Base_color.png" id="14_kfu6g"]
 [ext_resource type="Texture2D" uid="uid://bjunm86fm2kvl" path="res://scenes/shambler_armored/textures/textures/soldier_Mixed_AO.png" id="15_6mf5r"]
 [ext_resource type="PackedScene" uid="uid://csc3ojr7benhn" path="res://maptestflesh(2).tscn" id="15_urhrq"]
@@ -232,12 +231,3 @@ transform = Transform3D(-1.75, 0, 2.6424266e-07, 0, 1.75, 0, -2.6424266e-07, 0, 
 
 [node name="sword(1)" parent="." unique_id=1629618071 instance=ExtResource("20_8wsjh")]
 transform = Transform3D(0.1572791, 0.5648554, -0.8100627, 0.9875542, -0.08995958, 0.12901159, 0, -0.8202717, -0.5719741, -14.398417, 10.131123, 86.52436)
-
-[node name="Pickable" parent="." unique_id=2119350781 instance=ExtResource("14_07jwy")]
-transform = Transform3D(1, 0, 0, 0, 0.104163975, 0.9945601, 0, -0.9945601, 0.104163975, -5.287882, 1.780024, 54.626316)
-metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Morning Star","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
-,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
-, Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
-,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
-]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
-

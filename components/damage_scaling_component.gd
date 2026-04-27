@@ -32,19 +32,21 @@ func hold_attack():
 	
 func attack():
 	timer.stop()
-	for i in damage_component.damage_types:
-		damage_component.damage_types[i] *= actual_damage_ratio
-		
-	damage_component.stance_damage_value *= actual_damage_ratio
+	if damage_component:
+		for i in damage_component.damage_types:
+			damage_component.damage_types[i] *= actual_damage_ratio
+			
+		damage_component.stance_damage_value *= actual_damage_ratio
 
 func end_attack():
 	SignalBus.emit_signal("weapon_charge_bool", false)
 	actual_damage_ratio = 0
 	swing_ended = true
-	for i in damage_component.damage_types:
-		for v in stored_damage_values:
-			damage_component.damage_types[i] = v
-	damage_component.stance_damage_value = stored_stance_damage
+	if damage_component:
+		for i in damage_component.damage_types:
+			for v in stored_damage_values:
+				damage_component.damage_types[i] = v
+		damage_component.stance_damage_value = stored_stance_damage
 	
 func _process(delta: float) -> void:
 	if swing_ended:
