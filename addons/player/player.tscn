@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://b5corv5nqshay" path="res://addons/player/player_arm_right.tscn" id="9_hqsyx"]
 [ext_resource type="PackedScene" uid="uid://bplg0u3sd3j28" path="res://addons/player/player_arm_left.tscn" id="10_hqsyx"]
 [ext_resource type="Script" uid="uid://6h8f2qhrbtt6" path="res://Player/damage_overlay.gd" id="10_jux4o"]
-[ext_resource type="AudioStream" uid="uid://bhauxowkg5f45" path="res://Player/sfx/dirt_footsteps.tres" id="11_d6j5h"]
+[ext_resource type="AudioStream" uid="uid://br26jgupi66u0" path="res://Player/sfx/footsteps/stone/footstep_stone.tres" id="12_hqsyx"]
 [ext_resource type="Script" uid="uid://sj3mml8ulasu" path="res://Player/crosshair.gd" id="12_qk8yx"]
 [ext_resource type="Shader" uid="uid://b6aaasr8tdyr5" path="res://Player/distort.gdshader" id="12_vnn13"]
 [ext_resource type="Script" uid="uid://b74g26tt85wqw" path="res://Player/launch.gd" id="13_tio5b"]
@@ -138,6 +138,54 @@ tracks/7/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("%RightHand:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("%RightHand:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("%LeftHand:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("%LeftHand:rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_hqsyx"]
 resource_name = "death"
@@ -227,6 +275,54 @@ tracks/2/keys = {
 "points": PackedFloat32Array(0, 0, 0, 0.023466667, 0, 0.0034906585, -0.023466667, 0, 0.16586667, 0, -0.0017453292, -0.16586667, 0, 0.07733333, 0, 0, -0.07733333, 0, 0, 0),
 "times": PackedFloat32Array(0, 0.0704, 0.4544, 0.8)
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%RightHand:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.07083505, 0.45334432, 0.7916667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.027249336, 0), Vector3(-0.01256454, 0.027249336, 0), Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("%RightHand:rotation")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.7916667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.05235988), Vector3(0, 0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("%LeftHand:position")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.07083505, 0.45334432, 0.7916667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.027249336, 0), Vector3(-0.01256454, 0.027249336, 0), Vector3(0, 0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("%LeftHand:rotation")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.07083505, 0.7916667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -0.06274459), Vector3(0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_n47sy"]
 resource_name = "land"
@@ -314,16 +410,62 @@ tracks/0/path = NodePath("Head/FootSteps:playing")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.033333335),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false, true]
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3br5i"]
 _data = {
 &"RESET": SubResource("Animation_3br5i"),
 &"footsteps": SubResource("Animation_0l22m")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cqqbj"]
+shader = ExtResource("12_vnn13")
+shader_parameter/strength = 0.08
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/radius = 0.0
+shader_parameter/aberration = 0.0490000023275
+shader_parameter/width = 0.04
+shader_parameter/feather = 0.2470000117325
+
+[sub_resource type="Animation" id="Animation_3dmg4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_c1i0s"]
+resource_name = "shockwave"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.23),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_863th"]
+_data = {
+&"RESET": SubResource("Animation_3dmg4"),
+&"shockwave": SubResource("Animation_c1i0s")
 }
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_qk8yx"]
@@ -380,52 +522,6 @@ tracks/0/keys = {
 _data = {
 &"RESET": SubResource("Animation_jux4o"),
 &"damage": SubResource("Animation_4ng6s")
-}
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_cqqbj"]
-shader = ExtResource("12_vnn13")
-shader_parameter/strength = 0.08
-shader_parameter/center = Vector2(0.5, 0.5)
-shader_parameter/radius = 0.0
-shader_parameter/aberration = 0.0490000023275
-shader_parameter/width = 0.04
-shader_parameter/feather = 0.2470000117325
-
-[sub_resource type="Animation" id="Animation_3dmg4"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/radius")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
-[sub_resource type="Animation" id="Animation_c1i0s"]
-resource_name = "shockwave"
-length = 0.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/radius")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.23),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_863th"]
-_data = {
-&"RESET": SubResource("Animation_3dmg4"),
-&"shockwave": SubResource("Animation_c1i0s")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hqsyx"]
@@ -518,34 +614,7 @@ collision_mask = 4
 script = ExtResource("6_5fkmn")
 
 [node name="playerBody" parent="Head/Neck/Camera3D" unique_id=764290862 instance=ExtResource("3_tio5b")]
-transform = Transform3D(-1.2, 0, 1.04907336e-07, 0, 1.2, 0, -1.04907336e-07, 0, -1.2, 0, -1.8152095, 0.25213236)
-
-[node name="Root" parent="Head/Neck/Camera3D/playerBody" index="0" unique_id=227732896]
-transform = Transform3D(0.64949775, 0.7577786, -0.06262477, -0.02875511, 0.106781885, 0.99386454, 0.75981784, -0.64371336, 0.09114464, 0.06136409, -0.12852064, -0.08819105)
-
-[node name="Skeleton3D" parent="Head/Neck/Camera3D/playerBody/Root" index="0" unique_id=1398321543]
-bones/1/rotation = Quaternion(-0.05227079, 0.028984867, 0.010500759, 0.998157)
-bones/2/rotation = Quaternion(0.014692036, 0.05400104, 0.024594678, 0.99812984)
-bones/3/rotation = Quaternion(0.02165188, 0.10316488, -0.8656271, 0.48946717)
-bones/4/rotation = Quaternion(0.064800635, -0.22502992, -0.28495306, 0.9294968)
-bones/5/rotation = Quaternion(0.19561377, -0.1490904, -0.08936722, 0.9651533)
-bones/7/rotation = Quaternion(0.13167313, -0.03245377, 0.008787802, 0.99072284)
-bones/9/rotation = Quaternion(0.09114296, -0.07400423, 0.8877971, 0.44500852)
-bones/10/rotation = Quaternion(0.34835306, 0.24781193, 0.020348957, 0.903784)
-bones/11/rotation = Quaternion(0.24214572, 0.057215262, 0.058402818, 0.96678907)
-bones/13/rotation = Quaternion(-0.8426747, -0.41367462, 0.24349426, 0.24389221)
-bones/14/rotation = Quaternion(0.3217629, 0.17993444, -0.025277004, 0.92922187)
-bones/16/rotation = Quaternion(-0.79112303, 0.4021197, -0.097883396, 0.45038107)
-bones/17/rotation = Quaternion(0.36665723, 0.008126275, 0.1051243, 0.9243622)
-
-[node name="BoneAttachment3D" parent="Head/Neck/Camera3D/playerBody/Root/Skeleton3D" index="1" unique_id=1946967126]
-transform = Transform3D(0.5651295, -0.16106376, 0.80912733, -0.723237, 0.37515318, 0.5798175, -0.39693418, -0.9128629, 0.09552297, -0.31716675, -0.05839172, 0.59829795)
-
-[node name="kick_damage_component" parent="Head/Neck/Camera3D/playerBody/Root/Skeleton3D/BoneAttachment3D" index="0" unique_id=1208432582 node_paths=PackedStringArray("source")]
-source = NodePath("../../../../../../../..")
-
-[node name="AnimationTree" parent="Head/Neck/Camera3D/playerBody" index="2" unique_id=1589278789]
-parameters/SprintingBlendSpace/blend_position = Vector2(0, 0)
+transform = Transform3D(-1.2, 0, 1.04907336e-07, 0, 1.2, 0, -1.04907336e-07, 0, -1.2, -0.09, -1.735, 0.477)
 
 [node name="CameraAnimationPlayer" type="AnimationPlayer" parent="Head" unique_id=2090545160]
 unique_name_in_owner = true
@@ -579,6 +648,7 @@ offhand = NodePath("../LeftHand")
 
 [node name="LeftHand" parent="Head/SubViewportContainer/SubViewport/Camera3D" unique_id=412198594 node_paths=PackedStringArray("mainhand") instance=ExtResource("10_hqsyx")]
 unique_name_in_owner = true
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
 mainhand = NodePath("../RightHand")
 
 [node name="stepDetect" type="Node3D" parent="Head" unique_id=838693918 node_paths=PackedStringArray("separation_ray", "player")]
@@ -588,7 +658,6 @@ separation_ray = NodePath("../../autostep")
 player = NodePath("../..")
 
 [node name="stepBase" type="RayCast3D" parent="Head/stepDetect" unique_id=1607411453]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08176395, 0)
 target_position = Vector3(0, 0, -0.6)
 collision_mask = 2
 
@@ -600,13 +669,14 @@ collision_mask = 2
 [node name="FootSteps" type="AudioStreamPlayer3D" parent="Head" unique_id=241221636]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 7.105428e-15, 0, 1, 0, -7.105428e-15, 0, 1, 0, -1.6, -0.8)
-stream = ExtResource("11_d6j5h")
+stream = ExtResource("12_hqsyx")
+volume_db = -20.0
 panning_strength = 2.0
 bus = &"SFX"
 
 [node name="groundMaterialDetector" type="RayCast3D" parent="Head" unique_id=51581699 node_paths=PackedStringArray("footstep_sounds")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-collision_mask = 2
+collision_mask = 10
 collide_with_areas = true
 script = ExtResource("14_y1ty0")
 footstep_sounds = NodePath("../FootSteps")
@@ -618,10 +688,11 @@ autoplay = &"footsteps"
 
 [node name="HealthComponent" type="Node3D" parent="." unique_id=669479295]
 script = ExtResource("4_7ek8b")
-max_health = 1.0
+max_health = 30.0
 metadata/_custom_type_script = "uid://dgjqgiw3yw42e"
 
 [node name="hurtbox_component" type="Area3D" parent="." unique_id=802643040 node_paths=PackedStringArray("player_camera", "viewport_camera", "health_component", "status_component", "source")]
+collision_mask = 13
 script = ExtResource("5_eon52")
 player_camera = NodePath("../Head/Neck/Camera3D")
 viewport_camera = NodePath("../Head/SubViewportContainer/SubViewport/Camera3D")
@@ -652,6 +723,19 @@ mesh_to_affect = NodePath("../MeshInstance3D")
 health_component = NodePath("../HealthComponent")
 metadata/_custom_type_script = "uid://dql5v81gqvdat"
 
+[node name="launch" type="ColorRect" parent="." unique_id=1681020044]
+material = SubResource("ShaderMaterial_cqqbj")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("13_tio5b")
+
+[node name="shockwave" type="AnimationPlayer" parent="launch" unique_id=1285983707]
+libraries/ = SubResource("AnimationLibrary_863th")
+
 [node name="damage" type="ColorRect" parent="." unique_id=634867585 node_paths=PackedStringArray("hurtbox")]
 material = SubResource("ShaderMaterial_vhccx")
 anchors_preset = 15
@@ -666,20 +750,8 @@ hurtbox = NodePath("../hurtbox_component")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="damage" unique_id=1537257084]
 libraries/ = SubResource("AnimationLibrary_qk8yx")
 
-[node name="launch" type="ColorRect" parent="." unique_id=1681020044]
-material = SubResource("ShaderMaterial_cqqbj")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-script = ExtResource("13_tio5b")
-
-[node name="shockwave" type="AnimationPlayer" parent="launch" unique_id=1285983707]
-libraries/ = SubResource("AnimationLibrary_863th")
-
 [node name="radial_blur" type="ColorRect" parent="." unique_id=1404859838]
+visible = false
 material = SubResource("ShaderMaterial_hqsyx")
 anchors_preset = 15
 anchor_right = 1.0
@@ -756,5 +828,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.297422, 0)
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="damage_taken" from="hurtbox_component" to="." method="_on_hurtbox_component_damage_taken"]
 [connection signal="damage_taken" from="hurtbox_component" to="radial_blur" method="_on_hurtbox_component_damage_taken"]
-
-[editable path="Head/Neck/Camera3D/playerBody"]

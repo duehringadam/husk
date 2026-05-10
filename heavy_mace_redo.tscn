@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dtuv0q76720mr" path="res://weapon_scene.gd" id="1_0n7a8"]
 [ext_resource type="ArrayMesh" uid="uid://dwog46h0k0ogj" path="res://scenes/Hivemind/MedievalWeapons/Art/Models/SM_Mace_2/M_Mace_2_Mesh.tres" id="2_t17qj"]
+[ext_resource type="Texture2D" uid="uid://hqse" path="res://scenes/Hivemind/MedievalWeapons/Art/Models/SM_Mace_2/T_Mace_2_C.png" id="3_agm2q"]
+[ext_resource type="Material" uid="uid://c5w2i4ors51to" path="res://blood_buildup.tres" id="4_byoc4"]
+[ext_resource type="Texture2D" uid="uid://hqsc" path="res://scenes/Hivemind/MedievalWeapons/Art/Models/SM_Mace_2/T_Mace_2_N.png" id="5_7djvm"]
 [ext_resource type="AudioStream" uid="uid://b6vei2si51we2" path="res://item/weapons/mace_2_hand/mace_2_hand_world_item/heavy_mace_hit.ogg" id="8_5rq6k"]
 [ext_resource type="AudioStream" uid="uid://dggi023amxonk" path="res://item/weapons/mace_2_hand/mace_2_hand_world_item/heavy_mace_swing.ogg" id="9_56r40"]
 [ext_resource type="AudioStream" uid="uid://xo31asa3koeu" path="res://item/weapons/mace_2_hand/mace_2_hand_world_item/heavy_mace_equip.ogg" id="10_56r40"]
@@ -9,6 +12,13 @@
 [ext_resource type="Shader" uid="uid://bnbfs08hp70x0" path="res://addons/GPUTrail-main/shaders/trail_draw_pass.gdshader" id="12_xh1ef"]
 [ext_resource type="Script" uid="uid://dwsn7gxfshtf8" path="res://addons/GPUTrail-main/GPUTrail3D.gd" id="13_a33j2"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="15_yt5xc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tyu38"]
+next_pass = ExtResource("4_byoc4")
+albedo_texture = ExtResource("3_agm2q")
+normal_enabled = true
+normal_texture = ExtResource("5_7djvm")
+texture_filter = 4
 
 [sub_resource type="Image" id="Image_t17qj"]
 data = {
@@ -105,6 +115,7 @@ transform = Transform3D(2.38, 0, 0, 0, 2.38, 0, 0, 0, 2.38, -0.015459359, 0.1317
 layers = 2
 sorting_offset = 999.0
 mesh = ExtResource("2_t17qj")
+surface_material_override/0 = SubResource("StandardMaterial3D_tyu38")
 
 [node name="DamageComponent" type="Area3D" parent="mace_mesh" unique_id=2024112235 node_paths=PackedStringArray("hit_sound")]
 transform = Transform3D(0.99996394, -0.008536556, 3.0176254e-05, 0.008536607, 0.99996, -0.0028047187, -6.2324093e-06, 0.0028048751, 0.99999595, 0, 0, 0)

@@ -20,6 +20,7 @@ extends Node3D
 @onready var attack_timer: Timer = $"ghoul_arms2(1)/attackTimer"
 @onready var stab_collision: CollisionShape3D = $stabDamage/CollisionShape3D
 @onready var damage_scaling: damage_scaling_component = $damage_scaling_component
+
 var space_state
 var attack_dir
 var can_attack = true
@@ -98,8 +99,8 @@ func _on_damage_dealt(target: hurtbox_component) -> void:
 		
 	var weapon_mesh_shader = bone_attachment.get_child(0).weapon_mesh.get_active_material(0)
 	var hand_mesh_shader = hands.get_active_material(0)
-	weapon_mesh_shader.next_pass["shader_parameter/progress"] = clampf(weapon_mesh_shader.next_pass["shader_parameter/progress"]+.05,0,.5)
-	hand_mesh_shader.next_pass["shader_parameter/progress"] = clampf(hand_mesh_shader.next_pass["shader_parameter/progress"]+.05,0,.5)
+	weapon_mesh_shader.next_pass["shader_parameter/progress"] = clampf(weapon_mesh_shader.next_pass["shader_parameter/progress"]+.05,0,.6)
+	hand_mesh_shader.next_pass["shader_parameter/progress"] = clampf(hand_mesh_shader.next_pass["shader_parameter/progress"]+.05,0,.6)
 	if weapon_mesh_shader.next_pass["shader_parameter/progress"] >= .4 && bone_attachment.get_child(0).blood_drip != null:
 		bone_attachment.get_child(0).blood_drip.emitting = true
 		bone_attachment.get_child(0).bloodtimer.start()
@@ -204,8 +205,12 @@ func _perform_raycast(origin: Vector3, target: Vector3):
 func _on_swing_state_exited() -> void:
 	hits.clear()
 
-func lower():
-	state_chart.send_event("lower")
+func disable():
+	can_attack = false
+	#state_chart.send_event("lower")
+
+func enable():
+	can_attack = true
 
 func activate_left():
 	left_bone_attachment.get_child(0).activate()
@@ -215,3 +220,11 @@ func activate_right():
 
 func shoot_left():
 	left_bone_attachment.get_child(0).shoot()
+
+
+func _on_ray_cast_3d_interaction_controller_pickable_grabbed(value: bool) -> void:
+	if value:
+		disable()
+	else:
+		enable()
+		state_chart.send_event("idle")

@@ -5,7 +5,11 @@ extends Node
 @export var animation_tree: AnimationTree
 
 func _on_cant_use_state_entered() -> void:
-	pass # Replace with function body.
+	animation_tree.set("parameters/conditions/activate", false)
+	animation_tree.set("parameters/conditions/fail", true)
+	await animation_tree["parameters/playback"].state_finished
+	animation_tree.set("parameters/conditions/fail", false)
+	state_chart.send_event("idle")
 
 
 func _on_cant_use_state_exited() -> void:

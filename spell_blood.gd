@@ -1,6 +1,5 @@
-extends Node3D
+extends Offhand
 
-@export var weapon_initial_position: Vector3
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var target_ik_left: Node3D = $TargetIKLeft
 @onready var bloodanim: AnimationPlayer = $TargetIKLeft/VFX_BloodExplosion_O1/bloodanim
@@ -10,14 +9,14 @@ extends Node3D
 @onready var splatter_2: GPUParticles3D = $splatter2
 @onready var bloodsfx: AudioStreamPlayer3D = $TargetIKLeft/bloodsfx
 
+var is_active: bool = false
+
 func _ready() -> void:
 	animation_player.play("spell_blood_idle")
 	damage_component.source = Global.player
-	self.position = weapon_initial_position
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("attack_secondary"):
-		
+func activate():
+	if !is_active:
 		bloodanim.play("Init")
 		animation_player.play("spell_blood_aoe")
 

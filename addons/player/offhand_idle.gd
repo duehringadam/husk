@@ -6,7 +6,13 @@ extends Node
 @export var bone_attach: BoneAttachment3D
 
 func _on_idle_state_entered() -> void:
+	animation_tree.set("parameters/conditions/activate", false)
+	animation_tree.set("parameters/conditions/fail", false)
+	animation_tree.set("parameters/conditions/hold", false)
+	animation_tree.set("parameters/conditions/lower", false)
+	animation_tree.set("parameters/conditions/throw", false)
 	animation_tree.set("parameters/conditions/idle", true)
+	left_hand.can_activate = true
 
 
 func _on_idle_state_exited() -> void:

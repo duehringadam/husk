@@ -2,9 +2,11 @@
 
 [ext_resource type="Texture2D" uid="uid://ce7cu3sx54kac" path="res://Player/weapon/ALL/Bow3/bow3_Screenshot_20260315_102915_Google.png" id="1_sysm0"]
 [ext_resource type="Texture2D" uid="uid://d4fc2ow2ss3eo" path="res://Player/weapon/ALL/Bow3/Screenshot_20260315_102915_Google_normal.png" id="2_6k2sc"]
+[ext_resource type="Material" uid="uid://dknlo816p4xyr" path="res://item/item_world_shine.tres" id="2_7v7so"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6k2sc"]
 resource_name = "Material.002"
+next_pass = ExtResource("2_7v7so")
 cull_mode = 2
 albedo_texture = ExtResource("1_sysm0")
 normal_enabled = true

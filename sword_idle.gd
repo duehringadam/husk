@@ -22,7 +22,6 @@ func _on_idle_state_processing(delta: float) -> void:
 			if weapon.attack_dir.y < -.9:
 				state_chart.send_event("hold_forward")
 				
-				
 			elif weapon.attack_dir.y > .9:
 				state_chart.send_event("hold_back")
 				

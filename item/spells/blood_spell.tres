@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="item" format=3 uid="uid://b2anxjkr7f46w"]
 
+[ext_resource type="AnimationNodeStateMachine" uid="uid://c5baskkuqckvs" path="res://Player/viewmodel/animations/hands/animation_state_machines/offhand_accursed_blood_spell_animation_state_machine.tres" id="1_jb7se"]
 [ext_resource type="PackedScene" uid="uid://ctfq2toui1ut" path="res://spell_blood.tscn" id="2_f7vag"]
 [ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/item_stat.gd" id="2_jb7se"]
 [ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/item.gd" id="3_f7vag"]
@@ -21,4 +22,7 @@ item_required_stats = Dictionary[int, float]({
 1: 20.0
 })
 item_scene = ExtResource("2_f7vag")
+animation_state_machine = ExtResource("1_jb7se")
+position = Vector3(0.131, 0.073, -0.002)
+rotation = Vector3(-53.5, -142.9, -163.8)
 metadata/_custom_type_script = "uid://dcfd18dx8x1bm"

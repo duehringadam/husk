@@ -1,0 +1,38 @@
+[gd_resource type="AnimationNodeStateMachine" format=3 uid="uid://c5baskkuqckvs"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wuhxb"]
+animation = &"spell_anims/blood_TO"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nelli"]
+animation = &"spell_anims/blood_idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l7u53"]
+animation = &"spell_anims/blood_use"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x3y7m"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7fmws"]
+xfade_time = 0.1
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_aqtvb"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"activate"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_l7u53"]
+xfade_time = 0.1
+switch_mode = 2
+advance_mode = 2
+
+[resource]
+states/End/position = Vector2(1206, 100)
+states/spell_anims_blood_TO/node = SubResource("AnimationNodeAnimation_wuhxb")
+states/spell_anims_blood_TO/position = Vector2(373, 100)
+states/spell_anims_blood_idle/node = SubResource("AnimationNodeAnimation_nelli")
+states/spell_anims_blood_idle/position = Vector2(600, 100)
+states/spell_anims_blood_use/node = SubResource("AnimationNodeAnimation_l7u53")
+states/spell_anims_blood_use/position = Vector2(855, 100)
+transitions = ["Start", "spell_anims_blood_TO", SubResource("AnimationNodeStateMachineTransition_x3y7m"), "spell_anims_blood_TO", "spell_anims_blood_idle", SubResource("AnimationNodeStateMachineTransition_7fmws"), "spell_anims_blood_idle", "spell_anims_blood_use", SubResource("AnimationNodeStateMachineTransition_aqtvb"), "spell_anims_blood_use", "spell_anims_blood_idle", SubResource("AnimationNodeStateMachineTransition_l7u53")]

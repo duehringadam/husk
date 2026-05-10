@@ -20,10 +20,10 @@ func take_damage(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float], stat
 	if is_blocking && is_facing(source): 
 		player_camera.apply_shake()
 		viewport_camera.apply_shake()
-		if Global.player.offhand.get_child_count() > 0:
-			Global.player.offhand.get_child(0).block()
-		else:
-			Global.player.mainhand.get_child(0).block()
+		#if Global.player.offhand.get_child_count() > 0:
+			#Global.player.offhand.get_child(0).block()
+		#else:
+			#Global.player.mainhand.get_child(0).block()
 		invulnerability(invulnerability_duration)
 		return 0 
 	# invulnerability on damage

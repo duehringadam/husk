@@ -1,0 +1,18 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://ccjem4uniqo0n"]
+
+[ext_resource type="Texture2D" uid="uid://5aclna47kqx" path="res://Player/viewmodel/ghoul_arms2(1)_Color.png" id="1_ofr8q"]
+[ext_resource type="Texture2D" uid="uid://dkrgefuhsm3lf" path="res://Player/viewmodel/Normal.png" id="2_ccikd"]
+[ext_resource type="Texture2D" uid="uid://bwjhu0ogxbjgf" path="res://Player/viewmodel/Occlusion.TGA.png" id="2_w2ndx"]
+[ext_resource type="Material" uid="uid://c5w2i4ors51to" path="res://blood_buildup.tres" id="3_w2ndx"]
+
+[resource]
+resource_name = "Material.002"
+next_pass = ExtResource("3_w2ndx")
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_ofr8q")
+normal_enabled = true
+normal_texture = ExtResource("2_ccikd")
+ao_enabled = true
+ao_texture = ExtResource("2_w2ndx")
+texture_filter = 4

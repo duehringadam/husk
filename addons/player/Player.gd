@@ -503,7 +503,8 @@ func _handle_rope_climb(delta: float) -> bool:
 
 func _on_health_component_died() -> void:
 	camera_animation_player.play("death")
-	mainhand.lower()
+	mainhand.disable()
+	offhand.disable()
 	hurtbox.monitoring = false
 	hurtbox.monitorable = false
 	can_move = false

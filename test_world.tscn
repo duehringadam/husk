@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ymiu2vsxluj2" path="res://scenes/ladders/ladder.tscn" id="10_ud3vi"]
 [ext_resource type="PackedScene" uid="uid://cqebuck4snj2y" path="res://scenes/cleanser_knight/pyramid_final.tscn" id="12_jvck6"]
 [ext_resource type="PackedScene" uid="uid://dde8d0d27fgyo" path="res://scenes/npc/undead/shambler.tscn" id="13_jvck6"]
+[ext_resource type="PackedScene" uid="uid://3q8vtcnv2eei" path="res://scenes/pieces/explosive_barrel_pickable.tscn" id="14_07jwy"]
 [ext_resource type="Texture2D" uid="uid://cxnd1w61unt4o" path="res://scenes/shambler_armored/textures/textures/soldier_Base_color.png" id="14_kfu6g"]
 [ext_resource type="Texture2D" uid="uid://bjunm86fm2kvl" path="res://scenes/shambler_armored/textures/textures/soldier_Mixed_AO.png" id="15_6mf5r"]
 [ext_resource type="PackedScene" uid="uid://csc3ojr7benhn" path="res://maptestflesh(2).tscn" id="15_urhrq"]
@@ -26,10 +27,6 @@ background_mode = 2
 sky = SubResource("Sky_1lwx6")
 tonemap_mode = 2
 glow_enabled = true
-
-[sub_resource type="NavigationMesh" id="NavigationMesh_cnaw2"]
-geometry_collision_mask = 4294967293
-cell_height = 0.01
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2yjim"]
 resource_name = "soldier"
@@ -168,9 +165,6 @@ layers = 3
 light_bake_mode = 1
 shadow_enabled = true
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=761706030]
-navigation_mesh = SubResource("NavigationMesh_cnaw2")
-
 [node name="Player2" parent="." unique_id=1592911738 instance=ExtResource("5_cnaw2")]
 transform = Transform3D(-0.99971205, 0, -0.023996044, 0, 1, 0, 0.023996044, 0, -0.99971205, -8.8617, 0.2, 56.889206)
 collision_mask = 46
@@ -231,3 +225,10 @@ transform = Transform3D(-1.75, 0, 2.6424266e-07, 0, 1.75, 0, -2.6424266e-07, 0, 
 
 [node name="sword(1)" parent="." unique_id=1629618071 instance=ExtResource("20_8wsjh")]
 transform = Transform3D(0.1572791, 0.5648554, -0.8100627, 0.9875542, -0.08995958, 0.12901159, 0, -0.8202717, -0.5719741, -14.398417, 10.131123, 86.52436)
+
+[node name="Pickable" parent="." unique_id=522044919 instance=ExtResource("14_07jwy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.303022, 0.72772443, 62.047043)
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Wooden Crate","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+

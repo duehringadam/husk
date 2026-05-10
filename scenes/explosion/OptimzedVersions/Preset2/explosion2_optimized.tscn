@@ -1,0 +1,567 @@
+[gd_scene format=3 uid="uid://kf4yojikxnr3"]
+
+[ext_resource type="Script" uid="uid://bquhjk734s4pc" path="res://scenes/explosion/OptimzedVersions/Preset2/pyro_explosion.gd" id="1_re1i4"]
+[ext_resource type="Material" uid="uid://bialwkfdvcs0d" path="res://scenes/explosion/OptimzedVersions/Preset2/shockwave_mat.tres" id="2_3wecg"]
+[ext_resource type="Shader" uid="uid://bpxy1q3hx151f" path="res://scenes/explosion/OptimzedVersions/Preset2/pyro_explosion.gdshader" id="3_t8m3q"]
+[ext_resource type="Shader" uid="uid://bk40ugq7734bl" path="res://scenes/explosion/OptimzedVersions/Preset2/smoke.gdshader" id="4_1ew6g"]
+[ext_resource type="Shader" uid="uid://dir0uivf52vb8" path="res://scenes/explosion/OptimzedVersions/Preset2/spark_trail.gdshader" id="5_g62oy"]
+[ext_resource type="AudioStream" uid="uid://c8x3gl0348xsp" path="res://scenes/explosion/OptimzedVersions/Preset2/explosion.ogg" id="6_tqdll"]
+[ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="7_e4ap7"]
+
+[sub_resource type="Curve" id="Curve_q6x1n"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.1, 1), 0.0, 0.0, 0, 0, Vector2(1, 1.5), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_t8m2w"]
+curve = SubResource("Curve_q6x1n")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_expl"]
+direction = Vector3(0, 1, 0)
+spread = 80.0
+initial_velocity_min = 4.0
+initial_velocity_max = 8.0
+gravity = Vector3(0, 1.5, 0)
+damping_min = 3.0
+damping_max = 5.0
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_t8m2w")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rb6jk"]
+noise_type = 2
+frequency = 0.03
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_1huve"]
+noise = SubResource("FastNoiseLite_rb6jk")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pyro"]
+render_priority = 0
+shader = ExtResource("3_t8m3q")
+shader_parameter/noise_texture = SubResource("NoiseTexture3D_1huve")
+shader_parameter/time_scale = 1.0
+shader_parameter/fire_intensity = 64.0
+shader_parameter/lava_intensity = 8.0
+shader_parameter/smoke_color = Vector3(0.04, 0.015, 0.015)
+shader_parameter/fire_to_lava_time = 0.3
+shader_parameter/lava_to_smoke_time = 0.72
+shader_parameter/color_curve = 1.5
+shader_parameter/world_space_scale = 0.5
+shader_parameter/fbm_evolution_speed = 0.6
+shader_parameter/fbm_lacunarity = 2.1
+shader_parameter/fbm_gain = 0.5
+shader_parameter/texture_outward_push = 2.0
+shader_parameter/texture_outward_friction = 6.0
+shader_parameter/dissolve_start = 0.3
+shader_parameter/dissolve_curve = 2.0
+shader_parameter/proximity_fade_distance = 2.0
+shader_parameter/edge_transparency = 0.5
+
+[sub_resource type="SphereMesh" id="SphereMesh_pyro"]
+material = SubResource("ShaderMaterial_pyro")
+radial_segments = 32
+rings = 16
+
+[sub_resource type="Gradient" id="Gradient_smoke_alpha"]
+offsets = PackedFloat32Array(0, 0.2, 0.8, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_smoke_alpha"]
+gradient = SubResource("Gradient_smoke_alpha")
+
+[sub_resource type="Curve" id="Curve_smoke_damping"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_smoke_damping"]
+curve = SubResource("Curve_smoke_damping")
+
+[sub_resource type="Curve" id="Curve_smoke_scale"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 0.6), 0.0, 8.0, 0, 0, Vector2(0.25, 3), 0.0, 0.0, 0, 0, Vector2(1, 3), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_smoke_scale"]
+curve = SubResource("Curve_smoke_scale")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_smoke"]
+direction = Vector3(0, 1, 0)
+spread = 70.0
+initial_velocity_min = 8.0
+initial_velocity_max = 15.0
+gravity = Vector3(0, 0.8, 0)
+damping_min = 60.0
+damping_max = 100.0
+damping_curve = SubResource("CurveTexture_smoke_damping")
+scale_curve = SubResource("CurveTexture_smoke_scale")
+color_ramp = SubResource("GradientTexture1D_smoke_alpha")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_smoke"]
+render_priority = 0
+shader = ExtResource("4_1ew6g")
+shader_parameter/noise_texture = SubResource("NoiseTexture3D_1huve")
+shader_parameter/time_scale = 1.0
+shader_parameter/smoke_color_dark = Color(0.1, 0.1, 0.12, 1)
+shader_parameter/smoke_color_light = Color(0.3665946, 0.3665946, 0.36659455, 1)
+shader_parameter/lava_intensity = 3.0
+shader_parameter/lava_to_smoke_time = 0.350000016625
+shader_parameter/color_curve = 1.5
+shader_parameter/spatial_scale = 1.5
+shader_parameter/fbm_evolution_speed = 0.010000000475
+shader_parameter/fbm_lacunarity = 2.1
+shader_parameter/fbm_gain = 0.5
+shader_parameter/texture_outward_push = 1.8
+shader_parameter/texture_outward_friction = 7.0
+shader_parameter/dissolve_start = 0.2
+shader_parameter/dissolve_curve = 2.0
+shader_parameter/proximity_fade_distance = 1.5
+shader_parameter/fresnel_power = 3.0
+shader_parameter/edge_transparency = 0.70000003325
+shader_parameter/emission_energy = 0.1
+shader_parameter/wobble_frequency = 0.74700003222262
+shader_parameter/wobble_speed = 1.0
+shader_parameter/wobble_amount = 0.05
+
+[sub_resource type="SphereMesh" id="SphereMesh_smoke"]
+material = SubResource("ShaderMaterial_smoke")
+radial_segments = 32
+rings = 16
+
+[sub_resource type="Gradient" id="Gradient_lingering_alpha"]
+offsets = PackedFloat32Array(0, 0.1, 0.6, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.35, 1, 1, 1, 0.15, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_lingering_alpha"]
+gradient = SubResource("Gradient_lingering_alpha")
+
+[sub_resource type="Curve" id="Curve_lingering_scale"]
+_data = [Vector2(0, 2), 0.0, 0.0, 0, 0, Vector2(0.2, 8), 0.0, 0.0, 0, 0, Vector2(1, 15), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_lingering_scale"]
+curve = SubResource("Curve_lingering_scale")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lingering"]
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 2.0
+initial_velocity_max = 5.0
+gravity = Vector3(0, 0.4, 0)
+damping_min = 1.0
+damping_max = 3.0
+scale_curve = SubResource("CurveTexture_lingering_scale")
+color_ramp = SubResource("GradientTexture1D_lingering_alpha")
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_uhlmr"]
+noise = SubResource("FastNoiseLite_rb6jk")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lingering"]
+render_priority = 0
+shader = ExtResource("4_1ew6g")
+shader_parameter/noise_texture = SubResource("NoiseTexture3D_uhlmr")
+shader_parameter/time_scale = 0.3
+shader_parameter/smoke_color_dark = Color(0.1, 0.1, 0.12, 1)
+shader_parameter/smoke_color_light = Color(0.4, 0.4, 0.4, 1)
+shader_parameter/lava_intensity = 0.0
+shader_parameter/lava_to_smoke_time = 0.0
+shader_parameter/color_curve = 1.5
+shader_parameter/spatial_scale = 0.8
+shader_parameter/fbm_evolution_speed = 0.01
+shader_parameter/fbm_lacunarity = 2.1
+shader_parameter/fbm_gain = 0.5
+shader_parameter/texture_outward_push = 1.8
+shader_parameter/texture_outward_friction = 7.0
+shader_parameter/dissolve_start = 0.1
+shader_parameter/dissolve_curve = 1.5
+shader_parameter/proximity_fade_distance = 2.0
+shader_parameter/fresnel_power = 3.0
+shader_parameter/edge_transparency = 0.6000000285
+shader_parameter/emission_energy = 0.1
+shader_parameter/wobble_frequency = 2.0
+shader_parameter/wobble_speed = 0.2
+shader_parameter/wobble_amount = 0.05
+
+[sub_resource type="SphereMesh" id="SphereMesh_lingering"]
+material = SubResource("ShaderMaterial_lingering")
+radial_segments = 16
+rings = 8
+
+[sub_resource type="Gradient" id="Gradient_scorch"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0.1, 0.1, 0.12, 0.9, 0.1, 0.1, 0.12, 0.4, 0.1, 0.1, 0.12, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_scorch"]
+gradient = SubResource("Gradient_scorch")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_spark_alpha"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_spark_alpha"]
+gradient = SubResource("Gradient_spark_alpha")
+
+[sub_resource type="Curve" id="Curve_spark_scale"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_spark_scale"]
+curve = SubResource("Curve_spark_scale")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_spark"]
+direction = Vector3(0, 1, 0)
+spread = 80.0
+initial_velocity_min = 10.0
+initial_velocity_max = 25.0
+damping_min = 5.0
+damping_max = 10.0
+scale_min = 2.0
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_spark_scale")
+color_ramp = SubResource("GradientTexture1D_spark_alpha")
+
+[sub_resource type="Curve" id="Curve_trail_width"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_spark_noise"]
+noise_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_spark_noise"]
+noise = SubResource("FastNoiseLite_spark_noise")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_spark_trail"]
+render_priority = 0
+shader = ExtResource("5_g62oy")
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_spark_noise")
+shader_parameter/scroll_speed = Vector2(0.2, 1.5)
+shader_parameter/distortion_strength = 0.3
+shader_parameter/fire_intensity = 64.0
+shader_parameter/lava_intensity = 8.0
+shader_parameter/smoke_color = Vector3(0.04, 0.015, 0.015)
+shader_parameter/fire_to_lava_time = 0.15
+shader_parameter/lava_to_smoke_time = 0.5
+shader_parameter/color_curve = 1.5
+shader_parameter/head_taper_length = 0.2
+shader_parameter/head_taper_start_width = 0.0
+shader_parameter/edge_softness = 0.1
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_debris"]
+material = SubResource("ShaderMaterial_spark_trail")
+size = 0.08
+curve = SubResource("Curve_trail_width")
+
+[sub_resource type="SphereMesh" id="SphereMesh_rb6jk"]
+radius = 50.0
+height = 100.0
+
+[sub_resource type="Animation" id="Animation_exvvj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Core:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ExplosionCloud:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LingeringSmoke:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sparks:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Shockwave:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Shockwave:material_override:shader_parameter/progress")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("DamageComponent:monitoring")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("DamageComponent:monitorable")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_tqdll"]
+resource_name = "explode"
+length = 3.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Core:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ExplosionCloud:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LingeringSmoke:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sparks:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Shockwave:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Shockwave:material_override:shader_parameter/progress")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.9666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/6/type = "audio"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AudioStreamPlayer3D")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.15,
+"stream": ExtResource("6_tqdll")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/6/use_blend = true
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("DamageComponent:monitoring")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.65),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("DamageComponent:monitorable")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.65),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e4ap7"]
+_data = {
+&"RESET": SubResource("Animation_exvvj"),
+&"explode": SubResource("Animation_tqdll")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_e4ap7"]
+radius = 4.0
+
+[node name="PyroExplosion" type="Node3D" unique_id=1926176714 node_paths=PackedStringArray("shockwave_node")]
+script = ExtResource("1_re1i4")
+shockwave_node = NodePath("Shockwave")
+
+[node name="Core" type="GPUParticles3D" parent="." unique_id=881036929]
+sorting_offset = 0.2
+emitting = false
+amount = 32
+lifetime = 0.2
+one_shot = true
+explosiveness = 0.8
+process_material = SubResource("ParticleProcessMaterial_expl")
+draw_pass_1 = SubResource("SphereMesh_pyro")
+
+[node name="ExplosionCloud" type="GPUParticles3D" parent="." unique_id=1486869026]
+sorting_offset = 0.1
+emitting = false
+amount = 28
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.95
+process_material = SubResource("ParticleProcessMaterial_smoke")
+draw_pass_1 = SubResource("SphereMesh_smoke")
+
+[node name="LingeringSmoke" type="GPUParticles3D" parent="." unique_id=2081510200]
+sorting_offset = 0.05
+emitting = false
+amount = 12
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_lingering")
+draw_pass_1 = SubResource("SphereMesh_lingering")
+
+[node name="ScorchDecal" type="Decal" parent="." unique_id=-1149348845]
+size = Vector3(6, 6, 6)
+texture_albedo = SubResource("GradientTexture2D_scorch")
+albedo_mix = 0.0
+
+[node name="Sparks" type="GPUParticles3D" parent="." unique_id=612372772]
+sorting_offset = 0.1
+emitting = false
+amount = 16
+lifetime = 4.0
+one_shot = true
+explosiveness = 1.0
+transform_align = 3
+trail_enabled = true
+trail_lifetime = 0.45
+process_material = SubResource("ParticleProcessMaterial_spark")
+draw_pass_1 = SubResource("RibbonTrailMesh_debris")
+
+[node name="Shockwave" type="MeshInstance3D" parent="." unique_id=1793024653]
+visible = false
+material_override = ExtResource("2_3wecg")
+extra_cull_margin = 10000.0
+mesh = SubResource("SphereMesh_rb6jk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1473802666]
+libraries/ = SubResource("AnimationLibrary_e4ap7")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1534929689]
+volume_db = 6.0
+max_db = 6.0
+bus = &"SFX"
+
+[node name="DamageComponent" type="Area3D" parent="." unique_id=1897102317 node_paths=PackedStringArray("source")]
+collision_mask = 15
+monitoring = false
+monitorable = false
+script = ExtResource("7_e4ap7")
+damage_types = Dictionary[int, float]({
+6: 1.0
+})
+status_types = Dictionary[int, float]({
+0: 1.0
+})
+stance_damage_value = 1.0
+source = NodePath("..")
+metadata/_custom_type_script = "uid://dlsydctoxqbwy"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent" unique_id=2072027882]
+shape = SubResource("SphereShape3D_e4ap7")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="DamageComponent" to="." method="_on_damage_component_body_entered"]
+[connection signal="damage_dealt" from="DamageComponent" to="." method="_on_damage_component_damage_dealt"]

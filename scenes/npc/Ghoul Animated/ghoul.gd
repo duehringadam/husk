@@ -86,18 +86,17 @@ func _on_stance_component_stance_changed(amount: float, new_value: float, source
 			state_chart.set_expression_property("knockback_source", source)
 			state_chart.send_event("knocked_down")
 			
+
 func _update_target(value: Node3D):
 	target = value
 	if value == null: return
 	
 	if value is npc:
-		aggro_look_at.target_node = target.get_path()
-		state_chart.send_event("attack")
+		#aggro_look_at.target_node = target.get_path()
+		#state_chart.send_event("attack")
+		pass
 		
 	if value is Player:
-		aggro_look_at.target_node = Global.player.enemy_look_at.get_path()
-		state_chart.send_event("attack")
-
-
-func _on_navigation_agent_3d_link_reached(details: Dictionary) -> void:
-	pass # Replace with function body.
+		#aggro_look_at.target_node = Global.player.enemy_look_at.get_path()
+		#state_chart.send_event("attack")
+		pass

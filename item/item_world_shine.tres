@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dknlo816p4xyr"]
+
+[ext_resource type="Shader" uid="uid://dh18iib33tpov" path="res://item/weapons/swords/sword_world_items/item_world.gdshader" id="1_1sqw0"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1sqw0"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vfn3q"]
+noise = SubResource("FastNoiseLite_1sqw0")
+seamless = true
+in_3d_space = true
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_1sqw0")
+shader_parameter/main_texture = SubResource("NoiseTexture2D_vfn3q")

@@ -5,9 +5,10 @@ extends Node
 @export var animation_tree: AnimationTree
 
 func _on_block_state_entered() -> void:
+	animation_tree.set("parameters/conditions/end_block", false)
 	GamePiecesEventBus.slow_player_requested(2)
 	animation_tree.set("parameters/conditions/block", true)
-	SignalBus.emit_signal("block_amount", weapon.block_amount)
+	SignalBus.emit_signal("block_amount", 0)
 	SignalBus.emit_signal("is_blocking", true)
 	GamePiecesEventBus.request_sprint_lock(true)
 
@@ -15,7 +16,7 @@ func _on_block_state_entered() -> void:
 
 func _on_block_state_exited() -> void:
 	GamePiecesEventBus.slow_player_requested(-2)
-	SignalBus.emit_signal("block_amount", -weapon.block_amount)
+	SignalBus.emit_signal("block_amount", 0)
 	SignalBus.emit_signal("is_blocking", false)
 	GamePiecesEventBus.request_sprint_lock(false)
 
@@ -23,7 +24,9 @@ func _on_block_state_exited() -> void:
 func _on_block_state_processing(delta: float) -> void:
 	if not Input.is_action_pressed("secondary_action") and animation_tree.animation_finished:
 		animation_tree.set("parameters/conditions/block", false)
+		animation_tree.set("parameters/conditions/end_block", true)
 		state_chart.send_event("idle")
 	if Input.is_action_just_pressed("sprint"):
 		animation_tree.set("parameters/conditions/block", false)
+		animation_tree.set("parameters/conditions/end_block", true)
 		state_chart.send_event("idle")

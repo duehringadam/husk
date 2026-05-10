@@ -6,6 +6,7 @@ extends Node
 
 func _on_lower_state_entered() -> void:
 	animation_tree.set("parameters/conditions/lower", true)
+	animation_tree.set("parameters/conditions/idle", false)
 
 
 func _on_lower_state_exited() -> void:

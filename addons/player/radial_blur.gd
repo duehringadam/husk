@@ -2,12 +2,18 @@ extends ColorRect
 
 @export_range(0,0.01) var blur_amount: float
 @export var blur: bool = false
+@onready var launch: ColorRect = $"../launch"
+
 func _ready() -> void:
 	SignalBus.connect("raidal_blur", _update_blur)
 	
 
 func _update_blur(value: bool):
 	blur = value
+	
+	if value:
+		launch.visible = false
+		self.visible = true
 		
 func _process(delta: float) -> void:
 	if blur:

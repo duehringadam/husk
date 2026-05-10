@@ -1,10 +1,8 @@
 extends Node
 
-@onready var animation_player: AnimationPlayer = $"../../../../AnimationPlayer"
-@onready var spell_telekinesis: Node3D = $"../../../.."
-@onready var state_chart: StateChart = $"../../.."
+@export var spell_telekinesis: Node3D
+@export var state_chart: StateChart
 @onready var hold_particles: GPUParticles3D = %hold_particles
-
 @onready var spell_hold_sound: AudioStreamPlayer3D = $"../../../../spell_hold_sound"
 
 var timer = Timer.new()
@@ -17,6 +15,7 @@ func _ready() -> void:
 
 func _on_holding_state_entered() -> void:
 	SignalBus.emit_signal("raidal_blur", true)
+	SignalBus.emit_signal("telekinesis_hold")
 	timer.start()
 	Global.player.camera.apply_shake()
 	spell_hold_sound.playing = true
@@ -29,11 +28,10 @@ func _on_holding_state_exited() -> void:
 
 func _on_holding_state_physics_processing(delta: float) -> void:
 	if spell_telekinesis.grabbed_object != null:
-		spell_telekinesis.grabbed_object._while_grabbed(Global.player._interaction_controller)
+		spell_telekinesis.grabbed_object.telekinesis_grab(Global.player._interaction_controller)
 		if not Input.is_action_pressed("attack_secondary") && spell_telekinesis.grabbed_object != null:
-			animation_player.play("throw_object")
 			state_chart.send_event("throw")
 		if Input.is_action_just_pressed("interact"):
-			state_chart.send_event("missed")
+			state_chart.send_event("fail")
 	if !is_instance_valid(spell_telekinesis.grabbed_object):
-		state_chart.send_event("missed")
+		state_chart.send_event("fail")

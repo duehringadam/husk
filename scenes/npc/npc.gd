@@ -28,7 +28,7 @@ var direction = Vector3()
 var is_leader: bool = false
 
 func _ready() -> void:
-	set_physics_process(false)
+	pass
 
 func _physics_process(delta: float) -> void:
 	direction = navigation_agent.get_next_path_position() - global_transform.origin

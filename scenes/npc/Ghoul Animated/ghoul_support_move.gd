@@ -19,6 +19,8 @@ func _ready() -> void:
 func _on_move_state_entered() -> void:
 	animation_tree.set("parameters/conditions/idle", false)
 	animation_tree.set("parameters/conditions/walk", true)
+	animation_tree.set("parameters/conditions/chargeRight", false)
+	animation_tree.set("parameters/conditions/chargeLeft", false)
 	source_npc.SPEED = patrol_speed
 
 
@@ -37,7 +39,7 @@ func _on_move_state_physics_processing(delta: float) -> void:
 		source_npc.search_position = random_pos
 		
 		if timer.time_left <= 0:
-			if source_npc.global_position.distance_to(source_npc.target.global_position) < 1.5:
+			if source_npc.global_position.distance_to(source_npc.target.global_position) < 2:
 				timer.start()
 				state_chart.send_event("swing")
 		

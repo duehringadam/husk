@@ -3,9 +3,11 @@
 [ext_resource type="Texture2D" uid="uid://srx7tk0if3iq" path="res://item/spells/scroll_0.png" id="1_ys2p5"]
 [ext_resource type="Texture2D" uid="uid://b7r4l0xscbogn" path="res://item/spells/scroll_1.png" id="2_qsrt0"]
 [ext_resource type="Texture2D" uid="uid://d0umwgv42cnf" path="res://item/spells/scroll_2.png" id="3_f2brl"]
+[ext_resource type="Material" uid="uid://dknlo816p4xyr" path="res://item/item_world_shine.tres" id="3_qsrt0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hnlw0"]
 resource_name = "01_-_Default"
+next_pass = ExtResource("3_qsrt0")
 transparency = 4
 albedo_texture = ExtResource("1_ys2p5")
 metallic_texture = ExtResource("2_qsrt0")

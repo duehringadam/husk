@@ -1,5 +1,8 @@
 [gd_resource type="AnimationNodeStateMachine" format=3 uid="uid://276w4pt2bown"]
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c2wkd"]
+animation = &"RESET"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0s4wy"]
 animation = &"bow_TO"
 
@@ -102,7 +105,34 @@ xfade_time = 0.25
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u1xxo"]
+xfade_time = 0.25
+advance_mode = 2
+advance_condition = &"lower"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qxbio"]
+xfade_time = 0.25
+advance_mode = 2
+advance_condition = &"lower"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_eww7l"]
+xfade_time = 0.25
+advance_mode = 2
+advance_condition = &"lower"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g1mc4"]
+xfade_time = 0.25
+advance_mode = 2
+advance_condition = &"lower"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ju3ya"]
+xfade_time = 0.25
+advance_mode = 2
+advance_condition = &"lower"
+
 [resource]
+states/RESET/node = SubResource("AnimationNodeAnimation_c2wkd")
+states/RESET/position = Vector2(339, -10.899178)
 states/bow_TO/node = SubResource("AnimationNodeAnimation_0s4wy")
 states/bow_TO/position = Vector2(356, 100)
 states/bow_aim/node = SubResource("AnimationNodeAnimation_5kuli")
@@ -120,8 +150,8 @@ states/bow_shoot/position = Vector2(596, -84.9749)
 "states/bow_shoot 2/node" = SubResource("AnimationNodeAnimation_hkunp")
 "states/bow_shoot 2/position" = Vector2(819, 5.8169403)
 "states/bow_shoot 3/node" = SubResource("AnimationNodeAnimation_yjtgc")
-"states/bow_shoot 3/position" = Vector2(765, 208.01776)
+"states/bow_shoot 3/position" = Vector2(766, 204.01776)
 "states/bow_shoot 4/node" = SubResource("AnimationNodeAnimation_l0ppy")
 "states/bow_shoot 4/position" = Vector2(353, 254.01776)
-transitions = ["Start", "bow_TO", SubResource("AnimationNodeStateMachineTransition_hkunp"), "bow_TO", "bow_idle", SubResource("AnimationNodeStateMachineTransition_brly5"), "bow_idle", "bow_aim", SubResource("AnimationNodeStateMachineTransition_4t0tm"), "bow_aim", "bow_shoot", SubResource("AnimationNodeStateMachineTransition_0s4wy"), "bow_shoot", "bow_idle", SubResource("AnimationNodeStateMachineTransition_yjtgc"), "bow_idle", "bow_aim 2", SubResource("AnimationNodeStateMachineTransition_cm5a7"), "bow_aim 2", "bow_shoot 2", SubResource("AnimationNodeStateMachineTransition_l0ppy"), "bow_shoot 2", "bow_idle", SubResource("AnimationNodeStateMachineTransition_r25yv"), "bow_idle", "bow_aim 3", SubResource("AnimationNodeStateMachineTransition_uqleb"), "bow_aim 3", "bow_shoot 3", SubResource("AnimationNodeStateMachineTransition_gk53t"), "bow_shoot 3", "bow_idle", SubResource("AnimationNodeStateMachineTransition_5c7h4"), "bow_idle", "bow_aim 4", SubResource("AnimationNodeStateMachineTransition_8kes2"), "bow_aim 4", "bow_shoot 4", SubResource("AnimationNodeStateMachineTransition_e7rlq"), "bow_shoot 4", "bow_idle", SubResource("AnimationNodeStateMachineTransition_3t0co")]
-graph_offset = Vector2(0, 39.01777)
+transitions = ["Start", "bow_TO", SubResource("AnimationNodeStateMachineTransition_hkunp"), "bow_TO", "bow_idle", SubResource("AnimationNodeStateMachineTransition_brly5"), "bow_idle", "bow_aim", SubResource("AnimationNodeStateMachineTransition_4t0tm"), "bow_aim", "bow_shoot", SubResource("AnimationNodeStateMachineTransition_0s4wy"), "bow_shoot", "bow_idle", SubResource("AnimationNodeStateMachineTransition_yjtgc"), "bow_idle", "bow_aim 2", SubResource("AnimationNodeStateMachineTransition_cm5a7"), "bow_aim 2", "bow_shoot 2", SubResource("AnimationNodeStateMachineTransition_l0ppy"), "bow_shoot 2", "bow_idle", SubResource("AnimationNodeStateMachineTransition_r25yv"), "bow_idle", "bow_aim 3", SubResource("AnimationNodeStateMachineTransition_uqleb"), "bow_aim 3", "bow_shoot 3", SubResource("AnimationNodeStateMachineTransition_gk53t"), "bow_shoot 3", "bow_idle", SubResource("AnimationNodeStateMachineTransition_5c7h4"), "bow_idle", "bow_aim 4", SubResource("AnimationNodeStateMachineTransition_8kes2"), "bow_aim 4", "bow_shoot 4", SubResource("AnimationNodeStateMachineTransition_e7rlq"), "bow_shoot 4", "bow_idle", SubResource("AnimationNodeStateMachineTransition_3t0co"), "bow_idle", "RESET", SubResource("AnimationNodeStateMachineTransition_u1xxo"), "bow_aim", "RESET", SubResource("AnimationNodeStateMachineTransition_qxbio"), "bow_aim 2", "RESET", SubResource("AnimationNodeStateMachineTransition_eww7l"), "bow_aim 4", "RESET", SubResource("AnimationNodeStateMachineTransition_g1mc4"), "bow_aim 3", "RESET", SubResource("AnimationNodeStateMachineTransition_ju3ya")]
+graph_offset = Vector2(0, -66.89918)

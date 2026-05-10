@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://ced23a5lsfb1x"]
+
+[ext_resource type="Shader" uid="uid://rt71odr4xb3d" path="res://OptimzedVersions/Preset1/shockwave.gdshader" id="1_so37b"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_so37b")
+shader_parameter/wave_speed = 50.0
+shader_parameter/wave_amplitude = 0.06
+shader_parameter/elastic_frequency = 25.0
+shader_parameter/damping_time = 4.0
+shader_parameter/damping_spatial = 0.1
+shader_parameter/chromatic_aberration = 1.0
+shader_parameter/progress = 0.75

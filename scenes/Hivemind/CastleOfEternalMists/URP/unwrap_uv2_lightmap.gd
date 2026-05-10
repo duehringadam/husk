@@ -14,7 +14,6 @@ func _run():
 	var file_name = dir.get_next()
 	
 	while file_name != "":
-		# Only process .tscn scene files
 		if not dir.current_is_dir() and file_name.ends_with(".tscn"):
 			var full_path = TARGET_FOLDER + file_name
 			process_scene_file(full_path)
@@ -59,12 +58,10 @@ func unwrap_mesh(node: MeshInstance3D):
 	var old_mesh = node.mesh
 	if not old_mesh: return
 	
-	# 1. Preserve materials by duplicating and re-assigning slots
 	var new_mesh = old_mesh.duplicate()
 	for i in range(old_mesh.get_surface_count()):
 		new_mesh.surface_set_material(i, old_mesh.surface_get_material(i))
 	
-	# 2. Perform UV2 Unwrap
 	var err = new_mesh.lightmap_unwrap(node.global_transform, TEXEL_SIZE)
 	
 	if err == OK:

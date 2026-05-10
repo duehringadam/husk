@@ -13,7 +13,9 @@ signal kick_active(value:bool)
 signal is_blocking(value:bool)
 signal block_amount(value:float)
 signal status_ended(status: Global.STATUS_TYPE)
-signal telekinesis
+signal telekinesis_throw
+signal telekinesis_hold
+signal telekinesis_fail
 signal hide_interact_rect()
 signal npc_interacted(sheet_id: String)
 signal dialogue_ended

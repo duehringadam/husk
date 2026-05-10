@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bialwkfdvcs0d"]
+
+[ext_resource type="Shader" uid="uid://cjfysr0b5jsx1" path="res://scenes/explosion/OptimzedVersions/Preset2/shockwave.gdshader" id="1_m5oa8"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_m5oa8")
+shader_parameter/wave_speed = 50.0
+shader_parameter/wave_amplitude = 0.06
+shader_parameter/elastic_frequency = 25.0
+shader_parameter/damping_time = 4.0
+shader_parameter/damping_spatial = 0.1
+shader_parameter/chromatic_aberration = 1.0
+shader_parameter/shockwave_tint = Color(0.26936316, 0.23064971, 0, 1)
+shader_parameter/tint_intensity = 0.3
+shader_parameter/progress = 0.0

@@ -15,6 +15,7 @@ func _on_knocked_back_state_entered() -> void:
 	if ledge_check.is_colliding():
 		for i in ledge_check.get_collision_count():
 			var collider = ledge_check.get_collider(i)
+			if !is_instance_valid(collider): return
 			if collider.owner.is_in_group("traps"):
 				if kb_source:
 					var kb :Vector3 = kb_source.source.global_position - source_npc.global_position

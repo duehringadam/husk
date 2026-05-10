@@ -111,6 +111,26 @@ func _while_grabbed(controller: InteractionController) -> void:
 	await _delay_timer.finished
 	_initial_position *= 0.8
 
+func telekinesis_grab(controller: InteractionController):
+	if _interaction_controller != null: return
+	# Again cool down to avoid player flying off
+	if _delay_timer != null and _delay_timer.is_running(): return
+	_interaction_controller = controller
+	_interaction_controller.grab_object(self)
+	apply_central_force(Vector3.ONE)
+	_position_offset = 1.0
+	var reference_node: Node3D = _interaction_controller.get_parent()
+	_initial_basis = reference_node.global_transform.basis.inverse() * global_transform.basis
+	_initial_position = reference_node.to_local(global_position)
+	InteractionContainer.from(self).enable(interaction_context_when_grabbed)
+	set_transparency(self, 0.35)
+	
+	$PickupSound.play()
+	# Bring it closer to reference node but with a delay to avoid player flying off
+	_delay_timer = create_tween()
+	_delay_timer.tween_interval(.1)
+	await _delay_timer.finished
+	_initial_position *= 0.8
 
 func _released(_c: InteractionController) -> void:
 	if _c != _interaction_controller: return

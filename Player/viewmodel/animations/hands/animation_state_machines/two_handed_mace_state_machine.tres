@@ -18,6 +18,9 @@ animation = &"mace_CL"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uv5j5"]
 animation = &"mace_idle"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_e6hmn"]
+animation = &"mace_block"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g1qd6"]
 animation = &"mace_SD"
 
@@ -151,6 +154,17 @@ xfade_time = 0.1
 advance_mode = 2
 advance_condition = &"lower"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dg8lx"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"block"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dbvxd"]
+xfade_time = 0.25
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"end_block"
+
 [resource]
 states/End/position = Vector2(1079, 35)
 states/Start/position = Vector2(-73, 169)
@@ -166,6 +180,8 @@ states/hold_right/node = SubResource("AnimationNodeAnimation_ljm4p")
 states/hold_right/position = Vector2(386, 169)
 states/idle/node = SubResource("AnimationNodeAnimation_uv5j5")
 states/idle/position = Vector2(162, 169)
+states/mace_block/node = SubResource("AnimationNodeAnimation_e6hmn")
+states/mace_block/position = Vector2(574.2055, 41.214653)
 states/swing_back/node = SubResource("AnimationNodeAnimation_g1qd6")
 states/swing_back/position = Vector2(162, 354.4816)
 states/swing_forward/node = SubResource("AnimationNodeAnimation_qniyt")
@@ -176,5 +192,5 @@ states/swing_right/node = SubResource("AnimationNodeAnimation_er56e")
 states/swing_right/position = Vector2(622, 169)
 states/two_handed_mace_lower/node = SubResource("AnimationNodeAnimation_r2unw")
 states/two_handed_mace_lower/position = Vector2(596.2055, 348.4816)
-transitions = ["Start", "equip", SubResource("AnimationNodeStateMachineTransition_sfya3"), "hold_left", "swing_left", SubResource("AnimationNodeStateMachineTransition_uv5j5"), "equip", "idle", SubResource("AnimationNodeStateMachineTransition_x02gr"), "idle", "hold_left", SubResource("AnimationNodeStateMachineTransition_mvuec"), "swing_left", "idle", SubResource("AnimationNodeStateMachineTransition_er56e"), "idle", "hold_right", SubResource("AnimationNodeStateMachineTransition_g1qd6"), "hold_right", "swing_right", SubResource("AnimationNodeStateMachineTransition_qniyt"), "swing_right", "idle", SubResource("AnimationNodeStateMachineTransition_h8l3j"), "idle", "hold_forward", SubResource("AnimationNodeStateMachineTransition_xfbl3"), "hold_forward", "swing_forward", SubResource("AnimationNodeStateMachineTransition_oopu1"), "swing_forward", "idle", SubResource("AnimationNodeStateMachineTransition_kifjd"), "idle", "hold_back", SubResource("AnimationNodeStateMachineTransition_ljm4p"), "hold_back", "swing_back", SubResource("AnimationNodeStateMachineTransition_frrgv"), "swing_back", "idle", SubResource("AnimationNodeStateMachineTransition_8hunc"), "idle", "two_handed_mace_lower", SubResource("AnimationNodeStateMachineTransition_e6hmn"), "two_handed_mace_lower", "idle", SubResource("AnimationNodeStateMachineTransition_0ffgv"), "swing_right", "two_handed_mace_lower", SubResource("AnimationNodeStateMachineTransition_r2unw"), "hold_right", "two_handed_mace_lower", SubResource("AnimationNodeStateMachineTransition_yl4bv"), "hold_back", "two_handed_mace_lower", SubResource("AnimationNodeStateMachineTransition_6rtva"), "swing_back", "two_handed_mace_lower", SubResource("AnimationNodeStateMachineTransition_mjop3"), "hold_left", "two_handed_mace_lower", SubResource("AnimationNodeStateMachineTransition_qbfr6"), "hold_forward", "two_handed_mace_lower", SubResource("AnimationNodeStateMachineTransition_3bg8r"), "swing_left", "two_handed_mace_lower", SubResource("AnimationNodeStateMachineTransition_w2ud2"), "swing_forward", "two_handed_mace_lower", SubResource("AnimationNodeStateMachineTransition_w4j4y")]
-graph_offset = Vector2(-241.7945, 170.54704)
+transitions = ["Start", "equip", SubResource("AnimationNodeStateMachineTransition_sfya3"), "hold_left", "swing_left", SubResource("AnimationNodeStateMachineTransition_uv5j5"), "equip", "idle", SubResource("AnimationNodeStateMachineTransition_x02gr"), "idle", "hold_left", SubResource("AnimationNodeStateMachineTransition_mvuec"), "swing_left", "idle", SubResource("AnimationNodeStateMachineTransition_er56e"), "idle", "hold_right", SubResource("AnimationNodeStateMachineTransition_g1qd6"), "hold_right", "swing_right", SubResource("AnimationNodeStateMachineTransition_qniyt"), "swing_right", "idle", SubResource("AnimationNodeStateMachineTransition_h8l3j"), "idle", "hold_forward", SubResource("AnimationNodeStateMachineTransition_xfbl3"), "hold_forward", "swing_forward", SubResource("AnimationNodeStateMachineTransition_oopu1"), "swing_forward", "idle", SubResource("AnimationNodeStateMachineTransition_kifjd"), "idle", "hold_back", SubResource("AnimationNodeStateMachineTransition_ljm4p"), "hold_back", "swing_back", SubResource("AnimationNodeStateMachineTransition_frrgv"), "swing_back", "idle", SubResource("AnimationNodeStateMachineTransition_8hunc"), "idle", "two_handed_mace_lower", SubResource("AnimationNodeStateMachineTransition_e6hmn"), "two_handed_mace_lower", "idle", SubResource("AnimationNodeStateMachineTransition_0ffgv"), "swing_right", "two_handed_mace_lower", SubResource("AnimationNodeStateMachineTransition_r2unw"), "hold_right", "two_handed_mace_lower", SubResource("AnimationNodeStateMachineTransition_yl4bv"), "hold_back", "two_handed_mace_lower", SubResource("AnimationNodeStateMachineTransition_6rtva"), "swing_back", "two_handed_mace_lower", SubResource("AnimationNodeStateMachineTransition_mjop3"), "hold_left", "two_handed_mace_lower", SubResource("AnimationNodeStateMachineTransition_qbfr6"), "hold_forward", "two_handed_mace_lower", SubResource("AnimationNodeStateMachineTransition_3bg8r"), "swing_left", "two_handed_mace_lower", SubResource("AnimationNodeStateMachineTransition_w2ud2"), "swing_forward", "two_handed_mace_lower", SubResource("AnimationNodeStateMachineTransition_w4j4y"), "idle", "mace_block", SubResource("AnimationNodeStateMachineTransition_dg8lx"), "mace_block", "idle", SubResource("AnimationNodeStateMachineTransition_dbvxd")]
+graph_offset = Vector2(-241.7945, -63.785347)

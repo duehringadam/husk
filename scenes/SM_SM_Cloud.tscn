@@ -6,6 +6,9 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yaolo"]
 transparency = 1
 cull_mode = 2
+shading_mode = 2
+diffuse_mode = 3
+specular_mode = 1
 albedo_color = Color(1, 1, 1, 0.386)
 albedo_texture = ExtResource("2_5vpr6")
 albedo_texture_msdf = true
@@ -13,5 +16,5 @@ texture_filter = 4
 
 [node name="SM_SM_Cloud" unique_id=2111989671 instance=ExtResource("1_jaoi")]
 
-[node name="SM_SM_Cloud_LOD0" parent="." index="0" unique_id=817990831]
+[node name="SM_SM_Cloud_LOD0" parent="." index="0" unique_id=1877634729]
 surface_material_override/0 = SubResource("StandardMaterial3D_yaolo")
