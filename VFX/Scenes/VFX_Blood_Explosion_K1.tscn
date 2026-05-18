@@ -1,6 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://bi4oekh6pl3s6"]
+[gd_scene format=3 uid="uid://bi4oekh6pl3s6"]
 
-[ext_resource type="Shader" path="res://VFX/shaders/ss_Disolver_subUV_small_Liquid_Tresh_p_us.gdshader" id="1_f5nu6"]
+[ext_resource type="Shader" uid="uid://b12xkugsj15ox" path="res://VFX/shaders/ss_Disolver_subUV_small_Liquid_Tresh_p_us.gdshader" id="1_f5nu6"]
 [ext_resource type="Texture2D" uid="uid://etftten2vtpl" path="res://VFX/textures/T_Blood_MultiUV_f3.png" id="2_5xf0v"]
 
 [sub_resource type="Gradient" id="Gradient_4nlk8"]
@@ -23,11 +23,11 @@ render_priority = 0
 shader = ExtResource("1_f5nu6")
 shader_parameter/Scale = Vector2(1, 1)
 shader_parameter/Speed_XY = Vector2(0, 0)
-shader_parameter/subuv_grid = Vector2i(2, 2)
-shader_parameter/use_subuv = true
 shader_parameter/Disolver_Texture = ExtResource("2_5xf0v")
 shader_parameter/Color_1D_Gradient = SubResource("GradientTexture1D_cyguc")
 shader_parameter/ColorTime_1D_Gradient = SubResource("GradientTexture1D_nlwov")
+shader_parameter/subuv_grid = Vector2i(2, 2)
+shader_parameter/use_subuv = true
 
 [sub_resource type="Curve" id="Curve_5tjjd"]
 _data = [Vector2(0, 0.054945), 0.0, -0.0668502, 0, 0, Vector2(1, 1), 3.5682, 0.0, 0, 0]
@@ -92,12 +92,12 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ffgab"]
 _data = {
-"Init": SubResource("Animation_g8tma")
+&"Init": SubResource("Animation_g8tma")
 }
 
-[node name="VFX_Blood_Explosion_K1" type="Node3D"]
+[node name="VFX_Blood_Explosion_K1" type="Node3D" unique_id=1113293498]
 
-[node name="Blood_Explosion_K1" type="GPUParticles3D" parent="."]
+[node name="Blood_Explosion_K1" type="GPUParticles3D" parent="." unique_id=266628135]
 layers = 4
 material_override = SubResource("ShaderMaterial_4bqov")
 emitting = false
@@ -110,8 +110,6 @@ transform_align = 3
 process_material = SubResource("ParticleProcessMaterial_k45jt")
 draw_pass_1 = SubResource("QuadMesh_mvfgu")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_ffgab")
-}
-autoplay = "Init"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1021336026]
+libraries/ = SubResource("AnimationLibrary_ffgab")
+autoplay = &"Init"

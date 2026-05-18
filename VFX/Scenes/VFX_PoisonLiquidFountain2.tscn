@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://2fpuas1xclcu"]
+[gd_scene format=3 uid="uid://2fpuas1xclcu"]
 
 [ext_resource type="Texture2D" uid="uid://brnp67jnwwro6" path="res://VFX/textures/T_smoke_K97.png" id="1_wiqjp"]
 [ext_resource type="Texture2D" uid="uid://dbolhruq43rtu" path="res://VFX/textures/T_Blood_bulb_UJ1_testtyyxx.png" id="2_dmeof"]
@@ -119,6 +119,33 @@ collision_use_scale = true
 sub_emitter_mode = 3
 sub_emitter_amount_at_collision = 1
 
+[sub_resource type="Animation" id="Animation_asvxh"]
+resource_name = "End"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VFX_Smoke_A15:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("acidcone:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_hm18l"]
 resource_name = "Init"
 length = 1.5
@@ -147,42 +174,15 @@ tracks/1/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_asvxh"]
-resource_name = "End"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("VFX_Smoke_A15:emitting")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.2),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("acidcone:emitting")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.0666667),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_r3p8b"]
 _data = {
-"End": SubResource("Animation_asvxh"),
-"Init": SubResource("Animation_hm18l")
+&"End": SubResource("Animation_asvxh"),
+&"Init": SubResource("Animation_hm18l")
 }
 
-[node name="VFX_PoisonLiquidFountain2" type="Node3D"]
+[node name="VFX_PoisonLiquidFountain2" type="Node3D" unique_id=1112056956]
 
-[node name="VFX_Smoke_A15" type="GPUParticles3D" parent="."]
+[node name="VFX_Smoke_A15" type="GPUParticles3D" parent="." unique_id=259849290]
 transform = Transform3D(1, 0, 0, 0, 0.098955, 0.995092, 0, -0.995092, 0.098955, 0, 0, 0)
 layers = 4
 material_override = SubResource("StandardMaterial3D_ye07i")
@@ -193,7 +193,7 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_qbkmh")
 draw_pass_1 = SubResource("QuadMesh_ipfrt")
 
-[node name="acidcone" type="GPUParticles3D" parent="."]
+[node name="acidcone" type="GPUParticles3D" parent="." unique_id=540996645]
 transform = Transform3D(1, 0, 0, 0, 0.990085, -0.140469, 0, 0.140469, 0.990085, 0, 0, 0)
 layers = 4
 material_override = SubResource("StandardMaterial3D_b6emw")
@@ -203,8 +203,6 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_hr1pf")
 draw_pass_1 = ExtResource("4_vtddk")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_r3p8b")
-}
-autoplay = "Init"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=75784869]
+libraries/ = SubResource("AnimationLibrary_r3p8b")
+autoplay = &"Init"

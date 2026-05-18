@@ -10,6 +10,7 @@
 [ext_resource type="ArrayMesh" uid="uid://cniwmdth0irdb" path="res://scenes/Hivemind/MedievalWeapons/Art/Models/SM_Kite_Wood_Shield/SM_Kite_wood_shield_mesh.tres" id="8_kj0rm"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="8_thjlx"]
 [ext_resource type="PackedScene" uid="uid://dhws2ueoubwwx" path="res://components/bounding_box_component.tscn" id="9_30ay5"]
+[ext_resource type="PackedScene" uid="uid://bvb1ic1mm6bap" path="res://item/item_glint.tscn" id="10_h876u"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_h876u"]
 points = PackedVector3Array(0.02887418, 0.4321839, 0.3291, 0.02887418, 0.47331357, 0.30840623, 0.111200005, -0.20577729, -0.12364867, -0.03284249, -0.6585905, 0.040869996, -0.053407326, 0.61733186, -0.18540764, -0.115190476, 0.37042493, 0.040869996, 0.02887418, 0.47331357, -0.3088611, 0.111200005, -0.16464762, 0.10262896, -0.03284249, 0.08225934, 0.28790587, -0.053407326, -0.18514799, -0.20597248, -0.053407326, 0.5968315, 0.2055176, -0.012255494, 0.6585905, 0.08206413, -0.03284249, 0.08225934, -0.28829628, -0.115190476, 0.28803664, -0.041324873, -0.03284249, -0.6585905, -0.041324873, 0.02887418, 0.18514799, 0.30840623, -0.053407326, -0.30866593, 0.16438793, 0.02887418, 0.18514799, -0.3088611, 0.049439017, 0.3909253, -0.14421351, -0.03284249, 0.5144432, -0.28829628, -0.049306903, -0.60606396, -0.038044535, 0.111200005, -0.20577729, 0.10262896, -0.03284249, 0.5144432, 0.28790587, -0.012255494, -0.49394286, 0.10262896, -0.049377616, -0.6069698, 0.03765128, -0.012255494, -0.49394286, -0.10308384, 0.008287182, 0.5762022, -0.2265373, -0.115190476, 0.28803664, 0.040869996, -0.012255494, 0.4321839, -0.32949042, -0.053407326, 0.6379612, 0.14375862, 0.02887418, 0.49394286, 0.28790587, 0.111200005, -0.16464762, -0.12364867)
@@ -127,6 +128,9 @@ metadata/_custom_type_script = "uid://dlsydctoxqbwy"
 [node name="Shield" type="MeshInstance3D" parent="DamageComponent" unique_id=827124669]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 mesh = ExtResource("8_kj0rm")
+
+[node name="OmniLight3D" parent="DamageComponent" unique_id=1151187837 instance=ExtResource("10_h876u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 
 [node name="bounding_box_component" parent="." unique_id=326409759 node_paths=PackedStringArray("mesh") instance=ExtResource("9_30ay5")]
 mesh = NodePath("../Shield")

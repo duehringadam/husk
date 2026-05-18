@@ -11,7 +11,7 @@ extends npc
 
 var timer: float = 0.0
 var search_position : Vector3
-
+var first_aggro: bool = true
 
 func _ready() -> void:
 	animation_tree.active = true
@@ -24,8 +24,10 @@ func _on_hurtbox_component_damage_taken(actual: float, source: DamageComponent, 
 	animation_tree.set("parameters/conditions/flinch", true)
 	if source.source is npc: 
 			target = source.source
-	if source.source == Global.player:
+			_on_vision_area_aggro_changed(1.0,target)
+	else:
 			target = source.source
+			_on_vision_area_aggro_changed(1.0,target)
 	
 	get_tree().create_timer(.1).timeout.connect(func(): animation_tree.set("parameters/conditions/flinch", false))
 	if hurtboxes:
@@ -67,7 +69,11 @@ func _on_bones_severed(bones: Array) -> void:
 
 
 func _on_vision_area_aggro_changed(aggro_amount: float, aggro_node: Node3D) -> void:
+		
 	if aggro_amount >= 1.0:
+		if first_aggro:
+			first_aggro = false
+			state_chart.send_event("taunt")
 		state_chart.send_event("attack")
 		target = aggro_node
 		return

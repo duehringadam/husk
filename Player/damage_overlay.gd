@@ -4,6 +4,7 @@ extends ColorRect
 @export var hurtbox: hurtbox_component
 
 func _ready() -> void:
+	material["shader_parameter/line_density"] = 0
 	if !hurtbox.is_connected("damage_taken", _on_hurtbox_component_damage_taken):
 		hurtbox.connect("damage_taken", _on_hurtbox_component_damage_taken)
 

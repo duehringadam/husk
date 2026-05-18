@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://b34rd7ppoid2l"]
+[gd_scene format=3 uid="uid://b34rd7ppoid2l"]
 
 [ext_resource type="Shader" uid="uid://cxwh4tdds7nvc" path="res://VFX/shaders/s_Disolver_small_Liquid_p_Treshold_ds.tres" id="1_btj8i"]
 [ext_resource type="Texture2D" uid="uid://d1487hs54xk4g" path="res://VFX/textures/T_Blood_bulb_UJ1.png" id="2_kiffj"]
@@ -29,14 +29,14 @@ render_priority = -1
 shader = ExtResource("1_btj8i")
 shader_parameter/Scale = Vector2(1, 1)
 shader_parameter/Speed_XY = Vector2(0, 0)
-shader_parameter/Specular = 0.5
-shader_parameter/Normal_Map_Depth = 0.5
 shader_parameter/Disolver_Texture = ExtResource("2_kiffj")
 shader_parameter/Color_1D_Gradient = SubResource("GradientTexture1D_n61tj")
 shader_parameter/Metallic_Texture = ExtResource("3_anl6s")
 shader_parameter/Texture_Roughtness = ExtResource("5_h5lf3")
 shader_parameter/Roughtness_1D_Gradient = SubResource("GradientTexture1D_7te3y")
+shader_parameter/Specular = 0.5
 shader_parameter/Normal_Texture = ExtResource("4_82f60")
+shader_parameter/Normal_Map_Depth = 0.5
 
 [sub_resource type="Curve" id="Curve_f7xje"]
 _data = [Vector2(0, 0.0332527), 0.0, -0.191947, 0, 0, Vector2(0.93578, 1), 0.476703, 0.0, 0, 0]
@@ -86,14 +86,14 @@ render_priority = 0
 shader = ExtResource("7_ottme")
 shader_parameter/Scale = Vector2(1, 1)
 shader_parameter/Speed_XY = Vector2(0, 0)
-shader_parameter/Specular = 0.5
-shader_parameter/Normal_Map_Depth = 0.5
 shader_parameter/Disolver_Texture = ExtResource("8_2wadj")
 shader_parameter/Color_1D_Gradient = SubResource("GradientTexture1D_ul6r4")
 shader_parameter/Metallic_Texture = ExtResource("3_anl6s")
 shader_parameter/Texture_Roughtness = ExtResource("5_h5lf3")
 shader_parameter/Roughtness_1D_Gradient = SubResource("GradientTexture1D_wg7ey")
+shader_parameter/Specular = 0.5
 shader_parameter/Normal_Texture = ExtResource("9_t334v")
+shader_parameter/Normal_Map_Depth = 0.5
 
 [sub_resource type="Curve" id="Curve_gj7ae"]
 _data = [Vector2(0, 0.0398818), 0.0, -0.0668502, 0, 0, Vector2(1, 1), 3.03946, 0.0, 0, 0]
@@ -224,7 +224,7 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uq341"]
 _data = {
-"Init": SubResource("Animation_gaol2")
+&"Init": SubResource("Animation_gaol2")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nswt1"]
@@ -232,14 +232,14 @@ render_priority = 0
 shader = ExtResource("1_btj8i")
 shader_parameter/Scale = Vector2(1, 1)
 shader_parameter/Speed_XY = Vector2(0, 0)
-shader_parameter/Specular = 0.5
-shader_parameter/Normal_Map_Depth = 2.0
 shader_parameter/Disolver_Texture = ExtResource("11_droo1")
 shader_parameter/Color_1D_Gradient = SubResource("GradientTexture1D_n61tj")
 shader_parameter/Metallic_Texture = ExtResource("3_anl6s")
 shader_parameter/Texture_Roughtness = ExtResource("5_h5lf3")
 shader_parameter/Roughtness_1D_Gradient = SubResource("GradientTexture1D_7te3y")
+shader_parameter/Specular = 0.5
 shader_parameter/Normal_Texture = ExtResource("12_puuvl")
+shader_parameter/Normal_Map_Depth = 2.0
 
 [sub_resource type="Curve" id="Curve_yh6wa"]
 _data = [Vector2(0, 0.076923), 0.0, 0.141167, 0, 0, Vector2(0.868263, 1), 0.0424073, 0.0, 0, 0]
@@ -266,9 +266,9 @@ scale_max = 0.5
 scale_curve = SubResource("CurveTexture_3dqcn")
 alpha_curve = SubResource("CurveTexture_8rmbq")
 
-[node name="VFX_Blood_Hit_A7" type="Node3D"]
+[node name="VFX_Blood_Hit_A7" type="Node3D" unique_id=429140925]
 
-[node name="innersplash" type="GPUParticles3D" parent="."]
+[node name="innersplash" type="GPUParticles3D" parent="." unique_id=1748560825]
 transform = Transform3D(1, 0, 0, 0, -0.102202, 0.994764, 0, -0.994764, -0.102202, 0, 0, -0.210842)
 layers = 4
 material_override = SubResource("ShaderMaterial_y4wgm")
@@ -282,7 +282,7 @@ local_coords = true
 process_material = SubResource("ParticleProcessMaterial_viqqx")
 draw_pass_1 = ExtResource("6_ma6ra")
 
-[node name="blooddrops" type="GPUParticles3D" parent="."]
+[node name="blooddrops" type="GPUParticles3D" parent="." unique_id=1890349891]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.210842)
 layers = 4
 material_override = SubResource("ShaderMaterial_mu4ku")
@@ -297,7 +297,7 @@ transform_align = 3
 process_material = SubResource("ParticleProcessMaterial_lqumj")
 draw_pass_1 = SubResource("QuadMesh_0kbvf")
 
-[node name="mist" type="GPUParticles3D" parent="."]
+[node name="mist" type="GPUParticles3D" parent="." unique_id=2022816638]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.210842)
 layers = 4
 material_override = SubResource("StandardMaterial3D_emcqu")
@@ -313,13 +313,11 @@ local_coords = true
 process_material = SubResource("ParticleProcessMaterial_8yyr4")
 draw_pass_1 = SubResource("QuadMesh_rgtib")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_uq341")
-}
-autoplay = "Init"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1824348467]
+libraries/ = SubResource("AnimationLibrary_uq341")
+autoplay = &"Init"
 
-[node name="splatter2" type="GPUParticles3D" parent="."]
+[node name="splatter2" type="GPUParticles3D" parent="." unique_id=991717320]
 transform = Transform3D(0.999504, -0.031498, -4.83239e-09, -0.00100805, -0.0319876, -0.999488, 0.0314819, 0.998992, -0.0320035, 0.00441742, 0.00113964, 0.00804284)
 layers = 4
 material_override = SubResource("ShaderMaterial_nswt1")

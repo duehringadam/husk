@@ -1,6 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://bdj85vhkiucof"]
+[gd_scene format=3 uid="uid://bdj85vhkiucof"]
 
-[ext_resource type="Shader" path="res://VFX/shaders/ss_decal3double_treshold.gdshader" id="1_dav5g"]
+[ext_resource type="Shader" uid="uid://b7giainql4g2c" path="res://VFX/shaders/ss_decal3double_treshold.gdshader" id="1_dav5g"]
 [ext_resource type="Texture2D" uid="uid://3j5j5q46qcl5" path="res://VFX/textures/T_Blood_DECAL_g4x.png" id="2_gd6nt"]
 [ext_resource type="Texture2D" uid="uid://boe46mbsdbehg" path="res://VFX/textures/T_Blood_DECAL_g4.png" id="3_xgl6e"]
 [ext_resource type="Texture2D" uid="uid://xh4ntpy3mh7i" path="res://VFX/textures/T_Blood_DECAL_g4x_N.png" id="4_s35r0"]
@@ -17,7 +17,12 @@ gradient = SubResource("Gradient_chkta")
 render_priority = 0
 shader = ExtResource("1_dav5g")
 shader_parameter/Scale = Vector2(1, 1)
+shader_parameter/Color_1D_gradient = SubResource("GradientTexture1D_sbdqa")
 shader_parameter/use_textures_alpha = false
+shader_parameter/Albedo = ExtResource("2_gd6nt")
+shader_parameter/Albedo_Dissipation = ExtResource("3_xgl6e")
+shader_parameter/Normal = ExtResource("4_s35r0")
+shader_parameter/Roughtness = ExtResource("5_l042c")
 shader_parameter/cube_half_size = 0.5
 shader_parameter/enable_y_fade = true
 shader_parameter/fade_start = 0.3
@@ -26,11 +31,6 @@ shader_parameter/fade_power = 2.0
 shader_parameter/normal_intensity = 1.0
 shader_parameter/alpha_treshold = 1.0
 shader_parameter/blend_texture2 = 0.0
-shader_parameter/Color_1D_gradient = SubResource("GradientTexture1D_sbdqa")
-shader_parameter/Albedo = ExtResource("2_gd6nt")
-shader_parameter/Albedo_Dissipation = ExtResource("3_xgl6e")
-shader_parameter/Normal = ExtResource("4_s35r0")
-shader_parameter/Roughtness = ExtResource("5_l042c")
 
 [sub_resource type="BoxMesh" id="BoxMesh_wil8o"]
 
@@ -92,21 +92,19 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u8a5d"]
 _data = {
-"Init": SubResource("Animation_nxouv"),
-"RESET": SubResource("Animation_wm3aa")
+&"Init": SubResource("Animation_nxouv"),
+&"RESET": SubResource("Animation_wm3aa")
 }
 
-[node name="VFX_Blood_Mark_J1" type="Node3D"]
+[node name="VFX_Blood_Mark_J1" type="Node3D" unique_id=1822872270]
 
-[node name="mark2" type="MeshInstance3D" parent="."]
+[node name="mark2" type="MeshInstance3D" parent="." unique_id=1282793951]
 transform = Transform3D(1.619, 0, 0, 0, -3.0598e-08, -0.405, 0, 0.7, -1.77031e-08, 0, 1.25342e-08, 0.198233)
 material_override = SubResource("ShaderMaterial_kmanb")
 cast_shadow = 0
 mesh = SubResource("BoxMesh_wil8o")
 skeleton = NodePath("../..")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_u8a5d")
-}
-autoplay = "Init"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1267585300]
+libraries/ = SubResource("AnimationLibrary_u8a5d")
+autoplay = &"Init"

@@ -20,6 +20,7 @@ extends Node3D
 @onready var attack_timer: Timer = $"ghoul_arms2(1)/attackTimer"
 @onready var stab_collision: CollisionShape3D = $stabDamage/CollisionShape3D
 @onready var damage_scaling: damage_scaling_component = $damage_scaling_component
+@onready var arms_base: Node3D = $"ghoul_arms2(1)"
 
 var space_state
 var attack_dir
@@ -187,10 +188,11 @@ func _perform_raycast(origin: Vector3, target: Vector3):
 	# Optional: exclude the player from hitting themselves
 	query.exclude = [self.owner.get_rid()] 
 	query.collide_with_areas = true
-	query.collide_with_bodies = true
+	query.collide_with_bodies = false
 	query.collision_mask = 14
 	
 	if result:
+		print(result)
 		if is_instance_valid(result.collider):
 			if result.collider is hurtbox_component && !hits.has(result.collider.owner.get_rid()):
 				hits.append(result.collider.owner.get_rid())
@@ -207,10 +209,16 @@ func _on_swing_state_exited() -> void:
 
 func disable():
 	can_attack = false
+	@warning_ignore("shadowed_variable")
+	var tween = get_tree().create_tween()
+	tween.tween_property(arms_base, "rotation_degrees:x", -90, .25)
 	#state_chart.send_event("lower")
 
 func enable():
 	can_attack = true
+	@warning_ignore("shadowed_variable")
+	var tween = get_tree().create_tween()
+	tween.tween_property(arms_base, "rotation_degrees:x", 0, .25)
 
 func activate_left():
 	left_bone_attachment.get_child(0).activate()

@@ -462,13 +462,9 @@ _data = {
 &"shoot": SubResource("Animation_0s0e8")
 }
 
-[node name="crossbow" type="Node3D" unique_id=290695416 node_paths=PackedStringArray("weapon_mesh", "state_chart")]
+[node name="crossbow" type="Node3D" unique_id=290695416 node_paths=PackedStringArray("weapon_mesh")]
 script = ExtResource("1_0i1vk")
-weapon_initial_position = Vector3(0.015, -0.295, 0.075)
-two_handed = null
-swing_sound = ExtResource("2_sygcw")
 weapon_mesh = NodePath("MeshInstance3D")
-state_chart = NodePath("StateChart")
 
 [node name="arms_armature" type="Node3D" parent="." unique_id=736347875]
 transform = Transform3D(-1.4, 0, -1.2239188e-07, 0, 1.4, 0, 1.2239188e-07, 0, -1.4, 0.24576414, -0.2154224, 0.88005346)

@@ -4,15 +4,20 @@ extends Node
 @export var animation_tree: AnimationTree
 @export var state_chart: StateChart
 
+var has_taunted: bool = false
+
 func _on_idle_state_entered() -> void:
 	animation_tree.set("parameters/conditions/idle", true)
 	animation_tree.set("parameters/conditions/walk", false)
 	source_npc.SPEED = 0
-
+	state_chart.send_event("patrol")
 
 func _on_idle_state_exited() -> void:
 	pass # Replace with function body.
 
-
 func _on_idle_state_physics_processing(delta: float) -> void:
-	pass
+	if source_npc.target != null && !has_taunted:
+		has_taunted = true
+		state_chart.send_event("taunt")
+	if source_npc.target != null && has_taunted:
+		state_chart.send_event("attack")

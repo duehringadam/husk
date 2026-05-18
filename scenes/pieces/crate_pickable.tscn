@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://dr38p0k3ko4ks"]
 
 [ext_resource type="Script" uid="uid://bkjjobtn3b4bj" path="res://addons/game_pieces/pickable/pickable.gd" id="1_423ow"]
-[ext_resource type="PackedScene" uid="uid://dobqqemymqi86" path="res://scenes/Assets - PS1 Dungeon Pack/Assets - PS1 Dungeon Pack/Props/crate_broken.tscn" id="2_3sk2v"]
+[ext_resource type="PackedScene" uid="uid://dxv26u4k3vle" path="res://scenes/physics_pickable/crate_broken.tscn" id="2_3sk2v"]
 [ext_resource type="Script" uid="uid://dgjqgiw3yw42e" path="res://components/health_component.gd" id="2_kgtx4"]
 [ext_resource type="Script" uid="uid://ck3cei0hvspym" path="res://addons/interaction_system/interaction_container.gd" id="2_ujo0g"]
 [ext_resource type="Script" uid="uid://c2i6qdosp0h2" path="res://components/hurtbox_component.gd" id="3_1f4sk"]
 [ext_resource type="Script" uid="uid://5tinbhq6p45k" path="res://addons/interaction_system/interaction.gd" id="3_7bafa"]
-[ext_resource type="AudioStream" uid="uid://c8hus44syddha" path="res://scenes/PSX_Dungeon/PSX_Dungeon/Models/wood-smash-5-170421.mp3" id="3_lryxn"]
+[ext_resource type="AudioStream" uid="uid://bcpfkufcfjdcq" path="res://scenes/pieces/wood_pickable_break.ogg" id="3_h5od2"]
 [ext_resource type="Script" uid="uid://doc0okecalxnp" path="res://addons/interaction_system/interaction_context.gd" id="4_1kn8e"]
 [ext_resource type="AudioStream" uid="uid://bcriecbp33ym8" path="res://sfx/hit-tree-01-266310.mp3" id="4_julnd"]
 [ext_resource type="Script" uid="uid://cp0p4yckxtvmw" path="res://addons/game_pieces/collision_sound/collision_sound_player.gd" id="5_u463q"]
@@ -58,7 +58,7 @@ emission_point_count = 512
 scale_max = 1.5
 scale_curve = SubResource("CurveTexture_4mmpl")
 
-[node name="Pickable" type="RigidBody3D" unique_id=398447372 node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component", "health_component") groups=["throwable"]]
+[node name="Pickable" type="RigidBody3D" unique_id=398447372 node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component", "health_component") groups=["disable_collision_while_grabbed", "throwable"]]
 collision_layer = 8
 collision_mask = 14
 contact_monitor = true
@@ -70,7 +70,7 @@ throwable_mesh = NodePath("Crate")
 throwable = NodePath(".")
 damage_component = NodePath("Crate/DamageComponent")
 shattered_mesh = ExtResource("2_3sk2v")
-break_sound = ExtResource("3_lryxn")
+break_sound = ExtResource("3_h5od2")
 health_component = NodePath("HealthComponent")
 metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("2_ujo0g"),"default_context_id":0,"display_name":"Wooden Crate","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("3_7bafa")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_7bafa"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("11_1f4sk"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
 ,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
@@ -158,6 +158,7 @@ shape = SubResource("SphereShape3D_0q1br")
 
 [node name="Crate" type="MeshInstance3D" parent="." unique_id=485048629]
 transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, -0.3, 0)
+gi_mode = 0
 mesh = ExtResource("11_lryxn")
 surface_material_override/0 = SubResource("StandardMaterial3D_lryxn")
 
@@ -205,7 +206,7 @@ script = ExtResource("5_u463q")
 sounds_per_velocity = Dictionary[int, AudioStream]({
 2: ExtResource("4_julnd"),
 6: ExtResource("4_julnd"),
-12: ExtResource("4_julnd")
+12: ExtResource("3_h5od2")
 })
 metadata/_custom_type_script = "uid://cp0p4yckxtvmw"
 

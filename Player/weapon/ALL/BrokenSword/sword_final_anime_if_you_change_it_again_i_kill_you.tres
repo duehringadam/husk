@@ -5,13 +5,11 @@
 [ext_resource type="Texture2D" uid="uid://dk3fnk8nqropx" path="res://Player/weapon/ALL/BrokenSword/2026-02-18_114227_specular(1).png" id="2_ej7j2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rdx2s"]
-resource_local_to_scene = true
 resource_name = "Material.003"
 next_pass = ExtResource("2_crdr4")
 cull_mode = 2
 albedo_texture = ExtResource("1_0l2xf")
 normal_enabled = true
-normal_scale = 2.0
 normal_texture = ExtResource("2_ej7j2")
 texture_filter = 4
 
@@ -31,7 +29,6 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [resource]
-resource_local_to_scene = true
 resource_name = "sword(3)_Cube"
 _surfaces = [{
 "aabb": AABB(-0.08772572, -0.45363015, -0.016406279, 0.17368484, 0.97016615, 0.032812573),

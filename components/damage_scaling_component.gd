@@ -7,6 +7,7 @@ var stored_stance_damage: float
 
 var timer = Timer.new()
 var swing_ended:= false
+var charging:= false
 
 @export var damage_component: DamageComponent
 @export var weapon_states: Array[StateChartState]
@@ -28,10 +29,13 @@ func _ready() -> void:
 func hold_attack():
 	SignalBus.emit_signal("weapon_charge_bool", true)
 	swing_ended = false
+	charging = true
+	timer.paused = false
 	timer.start()
 	
 func attack():
-	timer.stop()
+	
+	timer.paused = true
 	if damage_component:
 		for i in damage_component.damage_types:
 			damage_component.damage_types[i] *= actual_damage_ratio
@@ -42,6 +46,7 @@ func end_attack():
 	SignalBus.emit_signal("weapon_charge_bool", false)
 	actual_damage_ratio = 0
 	swing_ended = true
+	charging = false
 	if damage_component:
 		for i in damage_component.damage_types:
 			for v in stored_damage_values:
@@ -52,6 +57,7 @@ func _process(delta: float) -> void:
 	if swing_ended:
 		actual_damage_ratio = 0
 		SignalBus.emit_signal("weapon_charge_value", actual_damage_ratio)
-	else:
+	elif !swing_ended && charging:
 		actual_damage_ratio = clampf(1.25-timer.time_left,.25,1.25)
+		print(timer.time_left)
 		SignalBus.emit_signal("weapon_charge_value", actual_damage_ratio)

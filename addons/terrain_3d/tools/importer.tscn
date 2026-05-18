@@ -42,6 +42,7 @@ _shader_parameters = {
 "noise_texture": SubResource("NoiseTexture2D_ve0yk"),
 &"projection_threshold": 0.8
 }
+show_checkered = true
 show_colormap = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8rvqy"]
@@ -66,6 +67,7 @@ data_directory = "res://terrain/Terrain3D"
 material = SubResource("Terrain3DMaterial_p55u0")
 assets = SubResource("Terrain3DAssets_op32e")
 mesh_lods = 8
+show_checkered = true
 show_colormap = true
 top_level = true
 script = ExtResource("1_60b8f")

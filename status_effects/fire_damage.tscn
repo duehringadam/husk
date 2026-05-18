@@ -28,7 +28,7 @@ section_length = 0.01
 cap_top = false
 cap_bottom = false
 
-[node name="DamageComponent" type="Area3D" unique_id=1308059359]
+[node name="DamageComponent" type="Area3D" unique_id=1308059359 node_paths=PackedStringArray("source")]
 collision_layer = 8
 collision_mask = 13
 script = ExtResource("1_ohhyp")
@@ -38,6 +38,7 @@ damage_types = Dictionary[int, float]({
 status_types = Dictionary[int, float]({
 0: 0.25
 })
+source = NodePath(".")
 metadata/_custom_type_script = "uid://dlsydctoxqbwy"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1948319198]

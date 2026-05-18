@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c5sy2qp0c8l40"]
+[gd_scene format=3 uid="uid://c5sy2qp0c8l40"]
 
 [ext_resource type="Shader" uid="uid://t3xv4d68ld77" path="res://VFX/shaders/s_Disolver_small_Liquid_p_Treshold.tres" id="1_sxmhb"]
 [ext_resource type="Texture2D" uid="uid://dv6fsjgo3oep8" path="res://VFX/textures/T_Blood_Leash_FE1.png" id="2_lm8cx"]
@@ -32,14 +32,15 @@ gradient = SubResource("Gradient_kxvib")
 render_priority = 0
 shader = ExtResource("1_sxmhb")
 shader_parameter/Scale = Vector2(1, 1)
-shader_parameter/Speed_XY = null
-shader_parameter/Normal_Map_Depth = 0.2
+shader_parameter/Speed_XY = Vector2(0, 0)
 shader_parameter/Disolver_Texture = ExtResource("2_lm8cx")
 shader_parameter/Color_1D_Gradient = SubResource("GradientTexture1D_phbnn")
 shader_parameter/Metallic_Texture = SubResource("GradientTexture2D_0v5gj")
 shader_parameter/Texture_Roughtness = ExtResource("4_cojy6")
 shader_parameter/Roughtness_1D_Gradient = SubResource("GradientTexture1D_mlb8h")
+shader_parameter/Specular = 0.5
 shader_parameter/Normal_Texture = ExtResource("3_k6qqf")
+shader_parameter/Normal_Map_Depth = 0.2
 
 [sub_resource type="Curve" id="Curve_aijeu"]
 _data = [Vector2(0, 0.979624), 0.0, 0.0, 0, 0, Vector2(0.109848, 0.0321318), 0.0, 0.0, 0, 0, Vector2(0.712121, 0.0321318), 0.0, 0.100812, 0, 0, Vector2(1, 0.978022), 5.35081, 0.0, 0, 0]
@@ -60,9 +61,9 @@ alpha_curve = SubResource("CurveTexture_tgffs")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_b5ub2"]
 
-[node name="VFX_Blood_PlainMarks_A3" type="Node3D"]
+[node name="VFX_Blood_PlainMarks_A3" type="Node3D" unique_id=583258558]
 
-[node name="Blood_PlainMarks_A3" type="GPUParticles3D" parent="."]
+[node name="Blood_PlainMarks_A3" type="GPUParticles3D" parent="." unique_id=862099318]
 transform = Transform3D(0.935463, 0, 0.353426, 0, 1, 0, -0.353426, 0, 0.935463, 0, 0.083, 0)
 layers = 4
 material_override = SubResource("ShaderMaterial_qy1q6")

@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dtuv0q76720mr" path="res://weapon_scene.gd" id="1_pv43d"]
 [ext_resource type="ArrayMesh" uid="uid://kt4ernxm7cn" path="res://scenes/Hivemind/MedievalWeapons/Art/Models/SM_Poleaxe/SM_poleaxe_mesh.tres" id="2_sde2x"]
+[ext_resource type="Texture2D" uid="uid://hqeo" path="res://scenes/Hivemind/MedievalWeapons/Art/Models/SM_Poleaxe/T_Poleaxe_C.png" id="3_blyh4"]
+[ext_resource type="Material" uid="uid://c5w2i4ors51to" path="res://blood_buildup.tres" id="4_k2tch"]
+[ext_resource type="Texture2D" uid="uid://hqem" path="res://scenes/Hivemind/MedievalWeapons/Art/Models/SM_Poleaxe/T_Poleaxe_N.png" id="4_xnuko"]
 [ext_resource type="AudioStream" uid="uid://donhsodoaab7k" path="res://scenes/Hivemind/MedievalWeapons/Art/Models/SM_Poleaxe/poleaxe-hit.ogg" id="7_7p0xf"]
 [ext_resource type="AudioStream" uid="uid://xo31asa3koeu" path="res://item/weapons/mace_2_hand/mace_2_hand_world_item/heavy_mace_equip.ogg" id="8_6d2dx"]
 [ext_resource type="AudioStream" uid="uid://dggi023amxonk" path="res://item/weapons/mace_2_hand/mace_2_hand_world_item/heavy_mace_swing.ogg" id="8_7p0xf"]
@@ -9,6 +12,14 @@
 [ext_resource type="Shader" uid="uid://bd6eynp1qsy0g" path="res://addons/GPUTrail-main/shaders/trail.gdshader" id="11_eha57"]
 [ext_resource type="Shader" uid="uid://bnbfs08hp70x0" path="res://addons/GPUTrail-main/shaders/trail_draw_pass.gdshader" id="12_hcxg3"]
 [ext_resource type="Script" uid="uid://dwsn7gxfshtf8" path="res://addons/GPUTrail-main/GPUTrail3D.gd" id="13_hdvn0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_220h6"]
+resource_name = "M_Poleaxe"
+next_pass = ExtResource("4_k2tch")
+albedo_texture = ExtResource("3_blyh4")
+normal_enabled = true
+normal_texture = ExtResource("4_xnuko")
+texture_filter = 4
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7rsol"]
 shader = ExtResource("11_eha57")
@@ -103,6 +114,7 @@ trail = NodePath("polearm_mesh/GPUTrail3D")
 transform = Transform3D(1.2079664e-07, 0, -1.6, 0, 1.6, 0, 1.6, 0, 1.2079664e-07, 0, 0, 0)
 layers = 2
 mesh = ExtResource("2_sde2x")
+surface_material_override/0 = SubResource("StandardMaterial3D_220h6")
 
 [node name="GPUTrail3D" type="GPUParticles3D" parent="polearm_mesh" unique_id=1216441108]
 transform = Transform3D(0.99934936, 4.81357e-09, 2.2351742e-08, 7.450581e-09, 0.3604169, -1.3620593e-07, -4.470349e-08, 3.048595e-08, 0.95886624, -0.0016361289, 0.2860884, -1.2352423e-10)

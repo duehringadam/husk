@@ -232,11 +232,10 @@ grow_horizontal = 2
 grow_vertical = 2
 focus_behavior_recursive = 1
 tab_alignment = 1
-current_tab = 1
+current_tab = 0
 script = ExtResource("7_xcdg0")
 
 [node name="Welcome" type="PanelContainer" parent="Scene/TabContainer" unique_id=482539227]
-visible = false
 custom_minimum_size = Vector2(1280, 720)
 layout_mode = 2
 metadata/_tab_index = 0
@@ -273,6 +272,7 @@ Controls:
 [color=red]esc[/color] for menu"
 
 [node name="How to play" type="PanelContainer" parent="Scene/TabContainer" unique_id=226665432]
+visible = false
 custom_minimum_size = Vector2(1280, 720)
 layout_mode = 2
 metadata/_tab_index = 1
@@ -300,9 +300,9 @@ With mouse movement based combat, moving your [color=red]mouse[/color] will high
 
 Depending on which icon is highlighted when you press left click, you will attack differently.
 
-Using these directional attacks are important to succeeding in combat as you can use different attacks to target enemies limbs, attacking a certain limb with a [color=red]bladed[/color] weapon enough will [color=red]dismember[/color] it.
+Holding left click will charge your attack, charged attacks deal significantly more damage as opposed to just tapping it.
 
-[pulse][color=red]PRESS TAB TO VIEW ALL ITEMS AVAILABLE IN THE PLAYTEST.[/color][/pulse]"
+Using these directional attacks are important to succeeding in combat as you can use different attacks to target enemies limbs, attacking a certain limb with a [color=red]bladed[/color] weapon enough will [color=red]dismember[/color] it."
 
 [node name="Button" type="Button" parent="Scene/TabContainer/How to play/MarginContainer/VBoxContainer" unique_id=1736454391]
 custom_minimum_size = Vector2(200, 100)
@@ -345,6 +345,9 @@ value = 0.5
 script = ExtResource("12_h0fht")
 metadata/_custom_type_script = "uid://dgjqgiw3yw42e"
 
+[node name="hideTimer" type="Timer" parent="enemyhealth" unique_id=2053060383]
+wait_time = 3.0
+
 [connection signal="activate_custom_effect" from="Scene/MadTalk" to="Scene" method="_on_mad_talk_activate_custom_effect"]
 [connection signal="dialog_aborted" from="Scene/MadTalk" to="Scene" method="_on_mad_talk_dialog_aborted"]
 [connection signal="dialog_acknowledged" from="Scene/MadTalk" to="." method="_on_mad_talk_dialog_acknowledged"]
@@ -352,5 +355,7 @@ metadata/_custom_type_script = "uid://dgjqgiw3yw42e"
 [connection signal="dialog_started" from="Scene/MadTalk" to="Scene" method="_on_mad_talk_dialog_started"]
 [connection signal="message_text_shown" from="Scene/MadTalk" to="." method="_on_mad_talk_message_text_shown"]
 [connection signal="pressed" from="Scene/TabContainer/How to play/MarginContainer/VBoxContainer/Button" to="Scene/TabContainer" method="_on_button_pressed"]
+[connection signal="died" from="enemyhealth/HealthComponent" to="enemyhealth" method="_on_health_component_died"]
 [connection signal="health_changed" from="enemyhealth/HealthComponent" to="enemyhealth/VBoxContainer/playerHealth" method="_on_health_changed"]
 [connection signal="max_health_changed" from="enemyhealth/HealthComponent" to="enemyhealth/VBoxContainer/playerHealth" method="_on_max_health_changed"]
+[connection signal="timeout" from="enemyhealth/hideTimer" to="enemyhealth" method="_on_hide_timer_timeout"]

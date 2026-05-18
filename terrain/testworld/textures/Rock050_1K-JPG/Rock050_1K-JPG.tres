@@ -1,19 +1,20 @@
-[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="acg_q7tlyjxm"]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bihajk7bvkjw0"]
 
-[ext_resource type="Texture2D" uid="uid://acg_i9674gma" id="Color" path="./Rock050_1K-JPG_Color.jpg"]
-[ext_resource type="Texture2D" uid="uid://acg_ow5078dj" id="AmbientOcclusion" path="./Rock050_1K-JPG_AmbientOcclusion.jpg"]
-[ext_resource type="Texture2D" uid="uid://acg_ae0o74v8" id="Displacement" path="./Rock050_1K-JPG_Displacement.jpg"]
-[ext_resource type="Texture2D" uid="uid://acg_szj2li7q" id="Roughness" path="./Rock050_1K-JPG_Roughness.jpg"]
-[ext_resource type="Texture2D" uid="uid://acg_4mu3tehc" id="NormalGL" path="./Rock050_1K-JPG_NormalGL.jpg"]
+[ext_resource type="Texture2D" uid="uid://dkyff5h41m47k" path="res://terrain/testworld/textures/Rock050_1K-JPG/Rock050_1K-JPG_AmbientOcclusion.jpg" id="AmbientOcclusion"]
+[ext_resource type="Texture2D" uid="uid://cgtknai6r5tc2" path="res://terrain/testworld/textures/Rock050_1K-JPG/Rock050_1K-JPG_Color.jpg" id="Color"]
+[ext_resource type="Texture2D" uid="uid://cog5mrfp1nw1c" path="res://terrain/testworld/textures/Rock050_1K-JPG/Rock050_1K-JPG_Displacement.jpg" id="Displacement"]
+[ext_resource type="Texture2D" uid="uid://bm0qrd7belm5j" path="res://terrain/testworld/textures/Rock050_1K-JPG/Rock050_1K-JPG_NormalGL.jpg" id="NormalGL"]
+[ext_resource type="Texture2D" uid="uid://bwaxf8pkwmg5v" path="res://terrain/testworld/textures/Rock050_1K-JPG/Rock050_1K-JPG_Roughness.jpg" id="Roughness"]
+
 [resource]
 albedo_texture = ExtResource("Color")
+roughness_texture = ExtResource("Roughness")
+roughness_texture_channel = 4
+normal_enabled = true
+normal_texture = ExtResource("NormalGL")
 ao_enabled = true
 ao_texture = ExtResource("AmbientOcclusion")
 ao_texture_channel = 4
-roughness_texture = ExtResource("Roughness")
-roughness_texture_channel = 4
-normal_texture = ExtResource("NormalGL")
-normal_enabled = true
-heightmap_texture = ExtResource("Displacement")
-heightmap_scale = 1.0
 heightmap_enabled = true
+heightmap_scale = 1.0
+heightmap_texture = ExtResource("Displacement")

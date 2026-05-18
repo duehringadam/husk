@@ -20,7 +20,6 @@ func _on_searching_state_exited() -> void:
 func _on_searching_state_physics_processing(delta: float) -> void:
 	source_npc.rotation.y = lerp_angle(source_npc.rotation.y, atan2(source_npc.direction.x, source_npc.direction.z),10*delta)
 	
-		
 	if source_npc.search_position:
 		var current_location = source_npc.global_position
 		var desired_location = source_npc.navigation_agent.get_next_path_position()

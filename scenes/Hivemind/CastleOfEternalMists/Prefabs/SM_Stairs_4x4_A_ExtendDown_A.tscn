@@ -8,31 +8,6 @@ resource_name = "M_BrickStoneWall_Disp"
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gunb7"]
 resource_name = "M_StoneDamage"
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_krkpq"]
-_surfaces = [{
-"aabb": AABB(-4.8671858e-08, -4.867183e-08, 0, 4, 4, 4),
-"format": 34896654337,
-"index_count": 96,
-"index_data": PackedByteArray("AAAMAAIACQACAAwAAgAJAAcAAAANAAwABwAJAAoACgANAAAACgADAAcAAAADAAoADgANAAoADQAIAAwADQAOAAgADAAPAAkADwAMAAgAEAAKAAkACQAPABAACgAQAA4ACAARAA8AEgAQAA8ADwARABIAEwAOABAAEAASABMADgALAAgADgATAAsAEQAIAAsAEwAEAAsAEQALAAQAEwABAAQAAQATABIABAAGABEAEgAFAAEAEQAGAAUABQASABEA"),
-"lods": [0.00029580377, PackedByteArray("AAAIAAIACQACAAgAAgAJAAcABwAJAAoACgADAAcAAAADAAoACQAGAAoACAAGAAkABQAKAAYABgAIAAsABgALAAQACgAFAAEAAQAAAAoAAAABAAgAAQAEAAsAAQALAAgA"), 0.00044370565, PackedByteArray("AAABAAIAAQAAAAMAAQAEAAIAAwAFAAEABgACAAQABQADAAYAAgAGAAcABwAGAAMA")],
-"name": "M_BrickStoneWall_Disp",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 20,
-"vertex_data": PackedByteArray("//8AAP//AAD///////8AAP//AAAAAAAAAAAAAP//AAD/////AAAAAAAA/////wAAAAD//wAAAAAAAAAAAAAAAP///38AAAAAAAD/PwAAAAAAAP8///8AAP///78AAAAA////PwAAAAD///8///8AAP///3///wAAAAD/fwAAAAAAAP9///8AAAAA/78AAAAAAAD/v///AAD///+///8AAA==")
-}, {
-"aabb": AABB(-4.8671858e-08, -4.867183e-08, 0, 4, 4, 4),
-"format": 34896654337,
-"index_count": 12,
-"index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABQAHAAYA"),
-"name": "M_StoneDamage",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 8,
-"vertex_data": PackedByteArray("AAAAAAAAAAAAAAAA//8AAP//AAD//wAA//8AAAAAAAAAAP////8AAAAA//8AAAAA////////AAD/////AAAAAA==")
-}]
-blend_shape_mode = 0
-
 [sub_resource type="ArrayMesh" id="ArrayMesh_vp5pd"]
 resource_local_to_scene = true
 resource_name = "SM_Stairs_4x4_A_ExtendDown_A_SM_Stairs_4x4_A_ExtendDown_A_LOD0"
@@ -61,10 +36,10 @@ _surfaces = [{
 "vertex_data": PackedByteArray("RgtRsz4LUbMAAAAARgtRsz4LUbMAAIBAAACAQD4LUbMAAIBAAACAQD4LUbMAAAAARgtRswAAgEAAAIBARgtRswAAgEAAAAAAAACAQAAAgEAAAIBAAACAQAAAgEAAAAAAAIAAAAGA/78AgAAAAYD/vwCAAAABgP+/AIAAAAGA/78BgP7//n//PwGA/v/+f/8/AYD+//5//z8BgP7//n//Pw==")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_krkpq")
 
 [node name="SM_Stairs_4x4_A_ExtendDown_A" type="Node3D" unique_id=1563604965]
 
 [node name="SM_Stairs_4x4_A_ExtendDown_A_LOD0" type="MeshInstance3D" parent="." unique_id=121583238]
+lod_bias = 0.05
 mesh = SubResource("ArrayMesh_vp5pd")
 surface_material_override/0 = ExtResource("2_bi8k")

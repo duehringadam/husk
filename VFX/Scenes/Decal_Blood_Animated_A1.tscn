@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bqoyhxdq6ytnt"]
+[gd_scene format=3 uid="uid://bqoyhxdq6ytnt"]
 
 [ext_resource type="Shader" uid="uid://ddeewaeivkcyw" path="res://VFX/shaders/s_Disolver_small_Liquid.tres" id="1_j32k3"]
 [ext_resource type="Texture2D" uid="uid://c8ih8gkcbv510" path="res://VFX/textures/T_Decal_BloodSplatter45k.png" id="2_6gcfc"]
@@ -40,16 +40,16 @@ gradient = SubResource("Gradient_u2rsr")
 render_priority = 0
 shader = ExtResource("1_j32k3")
 shader_parameter/Scale = Vector2(1, 1)
-shader_parameter/Speed_XY = null
-shader_parameter/ColorParameter = Color(1, 0.11, 0.11, 1)
-shader_parameter/Opacity = 1.0
-shader_parameter/Normal_Map_Depth = 0.5
+shader_parameter/Speed_XY = Vector2(0, 0)
 shader_parameter/Color_Texture = ExtResource("2_6gcfc")
+shader_parameter/ColorParameter = Color(1, 0.11, 0.11, 1)
+shader_parameter/Opacity = 0.0
 shader_parameter/Dissolver_Texture = SubResource("GradientTexture2D_5voo8")
 shader_parameter/Metallic_Texture = SubResource("GradientTexture1D_dp606")
 shader_parameter/Texture_Roughtness = SubResource("GradientTexture1D_nrr1d")
 shader_parameter/Roughtness_1D_Gradient = SubResource("GradientTexture1D_m8qrt")
 shader_parameter/Normal_Texture = ExtResource("3_r1nar")
+shader_parameter/Normal_Map_Depth = 0.5
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_md82d"]
 size = Vector2(6, 6)
@@ -147,13 +147,13 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cb8pu"]
 _data = {
-"Init": SubResource("Animation_b2ekx"),
-"RESET": SubResource("Animation_4xld0")
+&"Init": SubResource("Animation_b2ekx"),
+&"RESET": SubResource("Animation_4xld0")
 }
 
-[node name="Decal_Blood_Animated_A1" type="Node3D"]
+[node name="Decal_Blood_Animated_A1" type="Node3D" unique_id=596649988]
 
-[node name="Blood_Animated_1" type="MeshInstance3D" parent="."]
+[node name="Blood_Animated_1" type="MeshInstance3D" parent="." unique_id=1386926052]
 transform = Transform3D(0.49, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0.0879795, -1.8917)
 layers = 4
 material_override = SubResource("ShaderMaterial_53n7d")
@@ -161,8 +161,6 @@ cast_shadow = 0
 mesh = SubResource("PlaneMesh_md82d")
 skeleton = NodePath("../..")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_cb8pu")
-}
-autoplay = "Init"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=248375548]
+libraries/ = SubResource("AnimationLibrary_cb8pu")
+autoplay = &"Init"

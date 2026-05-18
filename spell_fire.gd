@@ -9,6 +9,7 @@ var is_active: bool = false
 
 func activate():
 	if !is_active:
+		damage_component.source = Global.player
 		particles.local_coords = false
 		SignalBus.emit_signal("raidal_blur", true)
 		is_active = true

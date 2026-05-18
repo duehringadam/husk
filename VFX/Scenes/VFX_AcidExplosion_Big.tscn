@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=3 uid="uid://cf6ljelpwp2ot"]
+[gd_scene format=3 uid="uid://cf6ljelpwp2ot"]
 
 [ext_resource type="Shader" uid="uid://cxwh4tdds7nvc" path="res://VFX/shaders/s_Disolver_small_Liquid_p_Treshold_ds.tres" id="1_0rctl"]
 [ext_resource type="Texture2D" uid="uid://bp3jd4ijfc0vr" path="res://VFX/textures/T_Bloodx134.png" id="2_re83t"]
@@ -49,13 +49,14 @@ render_priority = 0
 shader = ExtResource("1_0rctl")
 shader_parameter/Scale = Vector2(3, 6)
 shader_parameter/Speed_XY = Vector2(0.1, -2)
-shader_parameter/Normal_Map_Depth = 1.0
 shader_parameter/Disolver_Texture = ExtResource("2_re83t")
 shader_parameter/Color_1D_Gradient = SubResource("GradientTexture1D_k54m1")
 shader_parameter/Metallic_Texture = SubResource("GradientTexture1D_utpcr")
 shader_parameter/Texture_Roughtness = SubResource("GradientTexture1D_lsgje")
 shader_parameter/Roughtness_1D_Gradient = SubResource("GradientTexture1D_jfu7o")
+shader_parameter/Specular = 0.5
 shader_parameter/Normal_Texture = ExtResource("3_gnyye")
+shader_parameter/Normal_Map_Depth = 1.0
 
 [sub_resource type="Curve" id="Curve_t5o88"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.248062, 0.0534433), 0.641608, 0.641608, 0, 0, Vector2(1, 1), 0.0491029, 0.0, 0, 0]
@@ -72,15 +73,25 @@ colors = PackedColorArray(0.244776, 0.244776, 0.244776, 1, 1, 1, 1, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_pi5ho"]
 gradient = SubResource("Gradient_yqiws")
 
+[sub_resource type="Curve" id="Curve_pwa2i"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="Curve" id="Curve_ma3va"]
 _data = [Vector2(0.421739, 0), 0.0, 3.74066, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="Curve" id="Curve_twvbs"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="CurveXYZTexture" id="CurveXYZTexture_y0dph"]
+curve_x = SubResource("Curve_pwa2i")
 curve_y = SubResource("Curve_ma3va")
+curve_z = SubResource("Curve_twvbs")
 
 [sub_resource type="Curve" id="Curve_fjixi"]
-max_value = 2.0
+_limits = [0.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 0.0747664), 0.0, 1.29382, 0, 0, Vector2(0.30814, 0.2934), 1.60748, 1.60748, 0, 0, Vector2(1, 1.40659), 0.40986, 0.0, 0, 0]
 point_count = 3
 
@@ -109,8 +120,8 @@ alpha_curve = SubResource("CurveTexture_ywfs0")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_854lx"]
 render_priority = 0
 shader = ExtResource("5_lrm6y")
-shader_parameter/power = 0.5
 shader_parameter/Alpha_Texture = ExtResource("6_rwfuw")
+shader_parameter/power = 0.5
 
 [sub_resource type="Curve" id="Curve_0i4t6"]
 _data = [Vector2(0, 1), 0.0, 0.315934, 0, 0, Vector2(0.83913, 0), -0.248603, 0.0, 0, 0]
@@ -183,14 +194,15 @@ gradient = SubResource("Gradient_2dj8t")
 render_priority = 0
 shader = ExtResource("7_hmf2b")
 shader_parameter/Scale = Vector2(1, 1)
-shader_parameter/Speed_XY = null
-shader_parameter/Normal_Map_Depth = -1.0
+shader_parameter/Speed_XY = Vector2(0, 0)
 shader_parameter/Disolver_Texture = ExtResource("8_06xdt")
 shader_parameter/Color_1D_Gradient = SubResource("GradientTexture1D_fidp5")
 shader_parameter/Metallic_Texture = SubResource("GradientTexture1D_2rflh")
 shader_parameter/Texture_Roughtness = SubResource("GradientTexture2D_ys5wh")
 shader_parameter/Roughtness_1D_Gradient = SubResource("GradientTexture1D_5ln1k")
+shader_parameter/Specular = 0.5
 shader_parameter/Normal_Texture = ExtResource("9_jb66m")
+shader_parameter/Normal_Map_Depth = -1.0
 
 [sub_resource type="Curve" id="Curve_r5umo"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.103261, 0), 0.0, 0.0, 0, 0, Vector2(0.668478, 0.010989), 0.0, 0.100812, 0, 0, Vector2(1, 0.978022), 5.35081, 0.0, 0, 0]
@@ -221,6 +233,7 @@ emission_ring_axis = Vector3(0, 1, 0)
 emission_ring_height = 0.3
 emission_ring_radius = 3.5
 emission_ring_inner_radius = 0.3
+emission_ring_cone_angle = 90.0
 angle_min = -180.0
 angle_max = 180.0
 gravity = Vector3(0, 0, 0)
@@ -311,7 +324,7 @@ tracks/5/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2prpo"]
 _data = {
-"Init": SubResource("Animation_01g6i")
+&"Init": SubResource("Animation_01g6i")
 }
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8fkh8"]
@@ -349,6 +362,7 @@ emission_ring_axis = Vector3(0, 1, 0)
 emission_ring_height = 0.2
 emission_ring_radius = 3.5
 emission_ring_inner_radius = 1.5
+emission_ring_cone_angle = 90.0
 angle_min = -180.0
 angle_max = 180.0
 direction = Vector3(0, 1, 0)
@@ -378,15 +392,15 @@ gradient = SubResource("Gradient_b7gg2")
 render_priority = 0
 shader = ExtResource("11_gaokj")
 shader_parameter/Scale = Vector2(1, 1)
-shader_parameter/Speed = null
+shader_parameter/Speed = Vector2(0, 0)
+shader_parameter/Texture = SubResource("GradientTexture2D_avxsq")
+shader_parameter/Texture_Substract = ExtResource("12_m2y38")
 shader_parameter/Opacity = 1.0
 shader_parameter/Use_Fresnel = true
 shader_parameter/Fresnel_Invert = false
 shader_parameter/Fresnel_Power = 0.4
 shader_parameter/Roughness = 0.2
 shader_parameter/Specular = 0.579
-shader_parameter/Texture = SubResource("GradientTexture2D_avxsq")
-shader_parameter/Texture_Substract = ExtResource("12_m2y38")
 
 [sub_resource type="Curve" id="Curve_k7kxl"]
 _data = [Vector2(0.670455, 0.0525079), 0.0, 6.95826, 0, 0, Vector2(0.996212, 1), 0.0, 0.0, 0, 0]
@@ -410,6 +424,7 @@ emission_ring_axis = Vector3(0, 1, 0)
 emission_ring_height = 0.0
 emission_ring_radius = 3.2
 emission_ring_inner_radius = 1.5
+emission_ring_cone_angle = 90.0
 radial_velocity_min = -0.100022
 radial_velocity_max = 0.299978
 gravity = Vector3(0, 0, 0)
@@ -436,13 +451,14 @@ render_priority = 0
 shader = ExtResource("1_0rctl")
 shader_parameter/Scale = Vector2(1, 1)
 shader_parameter/Speed_XY = Vector2(0, 0)
-shader_parameter/Normal_Map_Depth = 1.0
 shader_parameter/Disolver_Texture = ExtResource("8_06xdt")
 shader_parameter/Color_1D_Gradient = SubResource("GradientTexture1D_r2f8n")
 shader_parameter/Metallic_Texture = ExtResource("13_mjxvr")
 shader_parameter/Texture_Roughtness = ExtResource("14_vlxsn")
 shader_parameter/Roughtness_1D_Gradient = SubResource("GradientTexture1D_0xgqo")
+shader_parameter/Specular = 0.5
 shader_parameter/Normal_Texture = ExtResource("9_jb66m")
+shader_parameter/Normal_Map_Depth = 1.0
 
 [sub_resource type="Curve" id="Curve_jjlfn"]
 _data = [Vector2(0, 0.0219779), 0.0, 0.189561, 0, 0, Vector2(1, 1), 3.65079, 0.0, 0, 0]
@@ -453,17 +469,17 @@ texture_mode = 1
 curve = SubResource("Curve_jjlfn")
 
 [sub_resource type="Curve" id="Curve_c416q"]
-max_value = 2.0
+_limits = [0.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 0.206167), 0.0, 0.340165, 0, 0, Vector2(0.66055, 2), 0.279362, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_aynes"]
-max_value = 3.0
+_limits = [0.0, 3.0, 0.0, 1.0]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.373913, 3), 0.0, 0.0, 0, 0, Vector2(1, 0.626374), -5.59655, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="Curve" id="Curve_j01go"]
-max_value = 2.0
+_limits = [0.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 0.206167), 0.0, 0.340165, 0, 0, Vector2(0.66055, 2), 0.279362, 0.0, 0, 0]
 point_count = 2
 
@@ -479,6 +495,7 @@ emission_ring_axis = Vector3(0, 1, 0)
 emission_ring_height = 0.0
 emission_ring_radius = 3.0
 emission_ring_inner_radius = 0.7
+emission_ring_cone_angle = 90.0
 angle_min = -180.0
 angle_max = 180.0
 gravity = Vector3(0, 0, 0)
@@ -488,9 +505,9 @@ scale_curve = SubResource("CurveXYZTexture_jh4nd")
 color = Color(1.2, 1.2, 1.2, 1)
 alpha_curve = SubResource("CurveTexture_ipx51")
 
-[node name="VFX_AcidExplosion_Big" type="Node3D"]
+[node name="VFX_AcidExplosion_Big" type="Node3D" unique_id=1609198365]
 
-[node name="spheres" type="GPUParticles3D" parent="."]
+[node name="spheres" type="GPUParticles3D" parent="." unique_id=1998727409]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 layers = 4
 material_override = SubResource("ShaderMaterial_bk7yq")
@@ -502,7 +519,7 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_x2bdw")
 draw_pass_1 = ExtResource("4_d5g8d")
 
-[node name="mist" type="GPUParticles3D" parent="."]
+[node name="mist" type="GPUParticles3D" parent="." unique_id=254785537]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.336, 0)
 layers = 4
 material_override = SubResource("ShaderMaterial_854lx")
@@ -516,7 +533,7 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_yqq8h")
 draw_pass_1 = SubResource("QuadMesh_v3gub")
 
-[node name="splatter" type="GPUParticles3D" parent="."]
+[node name="splatter" type="GPUParticles3D" parent="." unique_id=749709181]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.055, 0)
 layers = 4
 material_override = SubResource("ShaderMaterial_rtvt0")
@@ -529,13 +546,11 @@ explosiveness = 0.9
 process_material = SubResource("ParticleProcessMaterial_ldfeg")
 draw_pass_1 = SubResource("PlaneMesh_qwwl7")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_2prpo")
-}
-autoplay = "Init"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1654553161]
+libraries/ = SubResource("AnimationLibrary_2prpo")
+autoplay = &"Init"
 
-[node name="VFX_Smoke_B_green" type="GPUParticles3D" parent="."]
+[node name="VFX_Smoke_B_green" type="GPUParticles3D" parent="." unique_id=352809784]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.301471, 0)
 layers = 4
 material_override = SubResource("StandardMaterial3D_8fkh8")
@@ -548,7 +563,7 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_nt2ro")
 draw_pass_1 = SubResource("QuadMesh_lrg1m")
 
-[node name="bubblesx" type="GPUParticles3D" parent="."]
+[node name="bubblesx" type="GPUParticles3D" parent="." unique_id=1399056401]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.065, 0)
 layers = 4
 material_override = SubResource("ShaderMaterial_1c67x")
@@ -558,7 +573,7 @@ one_shot = true
 process_material = SubResource("ParticleProcessMaterial_4oedr")
 draw_pass_1 = ExtResource("4_d5g8d")
 
-[node name="splatter2" type="GPUParticles3D" parent="."]
+[node name="splatter2" type="GPUParticles3D" parent="." unique_id=392140441]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0155954, 0.184597, -4.76837e-07)
 layers = 4
 material_override = SubResource("ShaderMaterial_378x4")

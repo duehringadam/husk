@@ -670,13 +670,9 @@ _data = {
 &"shoot": SubResource("Animation_gw1vj")
 }
 
-[node name="heavy_crossbow" type="Node3D" unique_id=1402601407 node_paths=PackedStringArray("weapon_mesh", "state_chart")]
+[node name="heavy_crossbow" type="Node3D" unique_id=1402601407 node_paths=PackedStringArray("weapon_mesh")]
 script = ExtResource("1_seim3")
-weapon_initial_position = Vector3(0.04, -0.255, 0.415)
-two_handed = true
-swing_sound = ExtResource("2_yg30w")
 weapon_mesh = NodePath("MeshInstance3D")
-state_chart = NodePath("StateChart")
 
 [node name="arms_armature" type="Node3D" parent="." unique_id=1776617524]
 transform = Transform3D(-1.4, 0, -1.2239188e-07, 0, 1.4, 0, 1.2239188e-07, 0, -1.4, 0, -0.12549952, 0.37996113)
@@ -1055,7 +1051,7 @@ settings/0/joints/2/rotation_axis = 3
 settings/0/joints/2/limitation = null
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1427852690]
-transform = Transform3D(0.0018708945, 0.17973748, 0.0095354095, -0.021359202, 0.009690245, -0.17846538, -0.17871845, 0.0007234506, 0.021428775, 0, 0, -0.345)
+transform = Transform3D(0.0018708945, 0.17973746, 0.0095354095, -0.021359202, 0.009690244, -0.17846538, -0.17871845, 0.00072345056, 0.021428775, 0, 0, -0.345)
 layers = 2
 gi_mode = 2
 mesh = ExtResource("5_rofvw")

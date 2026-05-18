@@ -1,4 +1,4 @@
-extends Offhand
+extends Node3D
 
 
 @export var throw_power_multiplier: float

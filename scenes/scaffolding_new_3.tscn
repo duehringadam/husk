@@ -47,14 +47,13 @@ mesh = SubResource("ArrayMesh_i2ipm")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1084128190]
 collision_layer = 2
+metadata/ground_type = "wood"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1558021381]
 shape = SubResource("ConvexPolygonShape3D_i2ipm")
 
 [node name="support_beam" parent="." unique_id=80789061 instance=ExtResource("3_os7vp")]
 transform = Transform3D(0.7071069, -8.429371e-08, 0.7071069, 8.4293774e-08, 1.0000007, 3.4915573e-08, -0.70710695, 3.4915644e-08, 0.70710695, -0.0050000004, -0.014000007, -0.015000014)
-surface_material_override/0 = null
 
 [node name="support_beam2" parent="." unique_id=527872252 instance=ExtResource("3_os7vp")]
 transform = Transform3D(0.7071069, -8.429371e-08, 0.7071069, 8.429379e-08, 1.0000007, 3.4915573e-08, -0.70710695, 3.4915644e-08, 0.70710695, -0.005000001, 0.013999996, -0.015000012)
-surface_material_override/0 = null

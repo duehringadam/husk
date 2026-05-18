@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="8_yp5h5"]
 [ext_resource type="ArrayMesh" uid="uid://fd1rydysq0aq" path="res://scenes/Hivemind/MedievalWeapons/Art/Models/SM_Sword_2/M_Sword_2_Mesh.tres" id="9_gy6y3"]
 [ext_resource type="PackedScene" uid="uid://dhws2ueoubwwx" path="res://components/bounding_box_component.tscn" id="9_k6q4i"]
+[ext_resource type="PackedScene" uid="uid://bvb1ic1mm6bap" path="res://item/item_glint.tscn" id="10_hxpeq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xbs6s"]
 size = Vector3(0.18457031, 1.3070923, 0.05834961)
@@ -113,6 +114,9 @@ metadata/_custom_type_script = "uid://cp0p4yckxtvmw"
 [node name="Longsword" type="MeshInstance3D" parent="." unique_id=1316351081]
 transform = Transform3D(-1.55, 1.355053e-07, 0, -1.355053e-07, -1.55, 0, 0, 0, 1.55, 0, 0.33761027, 0)
 mesh = ExtResource("9_gy6y3")
+
+[node name="OmniLight3D" parent="Longsword" unique_id=1151187837 instance=ExtResource("10_hxpeq")]
+transform = Transform3D(1, 5.5067065e-15, 0, -5.5067065e-15, 1, 0, 0, 0, 1, 2.3339801e-08, 0.2669762, 0.00028728836)
 
 [node name="DamageComponent" type="Area3D" parent="." unique_id=1429514769 node_paths=PackedStringArray("source")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.20540297, 0)

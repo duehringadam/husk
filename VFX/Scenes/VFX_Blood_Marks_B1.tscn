@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://q1lat4qc4fuk"]
+[gd_scene format=3 uid="uid://q1lat4qc4fuk"]
 
 [ext_resource type="Shader" uid="uid://t3xv4d68ld77" path="res://VFX/shaders/s_Disolver_small_Liquid_p_Treshold.tres" id="1_lwmqk"]
 [ext_resource type="Texture2D" uid="uid://bp3jd4ijfc0vr" path="res://VFX/textures/T_Bloodx134.png" id="2_3q138"]
@@ -35,15 +35,15 @@ gradient = SubResource("Gradient_fu8od")
 render_priority = 0
 shader = ExtResource("1_lwmqk")
 shader_parameter/Scale = Vector2(1, 1)
-shader_parameter/Speed_XY = null
-shader_parameter/Specular = 0.5
-shader_parameter/Normal_Map_Depth = 0.2
+shader_parameter/Speed_XY = Vector2(0, 0)
 shader_parameter/Disolver_Texture = ExtResource("2_3q138")
 shader_parameter/Color_1D_Gradient = SubResource("GradientTexture1D_n5vmk")
 shader_parameter/Metallic_Texture = SubResource("GradientTexture1D_aqier")
 shader_parameter/Texture_Roughtness = SubResource("GradientTexture2D_c7ha7")
 shader_parameter/Roughtness_1D_Gradient = SubResource("GradientTexture1D_4itwh")
+shader_parameter/Specular = 0.5
 shader_parameter/Normal_Texture = ExtResource("3_ebx03")
+shader_parameter/Normal_Map_Depth = 0.2
 
 [sub_resource type="Curve" id="Curve_rsbp5"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.197479, 0.0204082), 0.0, 0.0, 0, 0, Vector2(0.758403, 0.0357143), 0.0, 0.0, 0, 0, Vector2(1, 0.978022), 5.35081, 0.0, 0, 0]
@@ -74,6 +74,7 @@ emission_ring_axis = Vector3(0, 1, 0)
 emission_ring_height = 0.3
 emission_ring_radius = 3.5
 emission_ring_inner_radius = 0.3
+emission_ring_cone_angle = 90.0
 angle_min = -180.0
 angle_max = 180.0
 gravity = Vector3(0, 0, 0)
@@ -85,9 +86,9 @@ alpha_curve = SubResource("CurveTexture_x2837")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_qwwl7"]
 
-[node name="VFX_Blood_Marks_B1" type="Node3D"]
+[node name="VFX_Blood_Marks_B1" type="Node3D" unique_id=1823242872]
 
-[node name="Blood_Marks_B1" type="GPUParticles3D" parent="."]
+[node name="Blood_Marks_B1" type="GPUParticles3D" parent="." unique_id=1822615655]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.055, 0)
 layers = 4
 material_override = SubResource("ShaderMaterial_bhij0")

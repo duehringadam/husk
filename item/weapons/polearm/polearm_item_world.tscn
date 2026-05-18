@@ -10,6 +10,7 @@
 [ext_resource type="ArrayMesh" uid="uid://kt4ernxm7cn" path="res://scenes/Hivemind/MedievalWeapons/Art/Models/SM_Poleaxe/SM_poleaxe_mesh.tres" id="8_166ur"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="8_ephwy"]
 [ext_resource type="PackedScene" uid="uid://dhws2ueoubwwx" path="res://components/bounding_box_component.tscn" id="9_7q7sk"]
+[ext_resource type="PackedScene" uid="uid://bvb1ic1mm6bap" path="res://item/item_glint.tscn" id="9_15jnf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_awb22"]
 size = Vector3(0.18041992, 1.510498, 0.05859375)
@@ -110,6 +111,8 @@ metadata/_custom_type_script = "uid://cp0p4yckxtvmw"
 [node name="Polearm" type="MeshInstance3D" parent="." unique_id=1316351081]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.51958215, 0)
 mesh = ExtResource("8_166ur")
+
+[node name="OmniLight3D" parent="Polearm" unique_id=1151187837 instance=ExtResource("9_15jnf")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1566164612]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.043701172, -0.954834, 0)

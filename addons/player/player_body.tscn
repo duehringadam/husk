@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://cvg458im1bqqq" path="res://addons/player/player_body.gd" id="1_vpomc"]
 [ext_resource type="Script" uid="uid://1gqpr75ri7ke" path="res://status_effects/kick_damage_component.gd" id="2_3s51s"]
-[ext_resource type="Texture2D" uid="uid://b33gmcidkljt8" path="res://Player/viewmodel/Iron_Armor_Set/ironarmor_difusospecular_512x512.tga" id="2_4oonb"]
-[ext_resource type="AudioStream" uid="uid://d22jacvyf25bm" path="res://sfx/punch-04-383965.mp3" id="3_m7ye7"]
+[ext_resource type="Texture2D" uid="uid://d1ifjeke4twp1" path="res://Player/viewmodel/Iron_Armor_Set/player_legs.jpg" id="2_cyivd"]
 [ext_resource type="Texture2D" uid="uid://ckggsoo3gv4bd" path="res://scenes/npc/Iron_Armor_Set/ironarmor_difusospecular_512x512_normal.png" id="3_vqr2h"]
+[ext_resource type="AudioStream" uid="uid://dcv2w0otyprn3" path="res://sfx/kick.ogg" id="5_cyivd"]
 [ext_resource type="Animation" uid="uid://bntybjxsnql1g" path="res://Player/viewmodel/animations/body/kick_new.tres" id="6_cyivd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_240rc"]
@@ -263,7 +263,7 @@ bind/74/bone = -1
 bind/74/pose = Transform3D(-6.896544, 5.5582785e-07, -4.11066e-07, -5.558284e-07, -6.8965516, -6.0629757e-10, -4.1106645e-07, -6.062645e-10, 6.896552, -0.14752376, -0.47225288, -0.5070679)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vqr2h"]
-albedo_texture = ExtResource("2_4oonb")
+albedo_texture = ExtResource("2_cyivd")
 normal_enabled = true
 normal_scale = 0.25
 normal_texture = ExtResource("3_vqr2h")
@@ -290,7 +290,7 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cyivd"]
-albedo_texture = ExtResource("2_4oonb")
+albedo_texture = ExtResource("2_cyivd")
 normal_enabled = true
 normal_scale = 0.25
 normal_texture = ExtResource("3_vqr2h")
@@ -21837,7 +21837,7 @@ transform = Transform3D(0.46467143, 0.87546974, -0.13278958, -0.017884104, 0.159
 transform = Transform3D(0.035707187, -0.003662018, 0.06585277, 0.065547064, 0.010281255, -0.034969684, -0.007319857, 0.07420165, 0.00809532, 0, 0, 0)
 
 [node name="varsoi_male" type="Node3D" parent="Root/Standing Melee Attack Kick Ver_ 1" unique_id=85423772]
-transform = Transform3D(14.238241, -1.1575156, 0.65015626, -0.8964667, -3.2172296, 13.904526, -0.9792311, -13.885232, -3.2758992, -0.018631058, -0.264834, 6.748821)
+transform = Transform3D(14.238242, -1.1575156, 0.6501563, -0.89646673, -3.2172298, 13.904527, -0.9792312, -13.885232, -3.2758994, -0.018631058, -0.264834, 6.748821)
 
 [node name="Skeleton3D" type="Skeleton3D" parent="Root/Standing Melee Attack Kick Ver_ 1/varsoi_male" unique_id=1167163448]
 bones/0/name = "root"
@@ -22666,7 +22666,9 @@ shape = SubResource("CapsuleShape3D_xg154")
 debug_color = Color(1, 0, 0, 0.41960785)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Root/Standing Melee Attack Kick Ver_ 1/varsoi_male/Skeleton3D/BoneAttachment3D/kick_damage_component" unique_id=2087642050]
-stream = ExtResource("3_m7ye7")
+stream = ExtResource("5_cyivd")
+volume_db = 6.0
+max_db = 6.0
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Root/Standing Melee Attack Kick Ver_ 1/varsoi_male/Skeleton3D/BoneAttachment3D" unique_id=918722723]
 collision_mask = 12
@@ -22678,5 +22680,7 @@ debug_color = Color(1, 0, 0, 0.41960785)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Root/Standing Melee Attack Kick Ver_ 1" unique_id=1406935326]
 libraries/ = SubResource("AnimationLibrary_rnngo")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1832335950]
 
 [connection signal="damage_dealt" from="Root/Standing Melee Attack Kick Ver_ 1/varsoi_male/Skeleton3D/BoneAttachment3D/kick_damage_component" to="." method="_on_kick_damage_component_damage_dealt"]

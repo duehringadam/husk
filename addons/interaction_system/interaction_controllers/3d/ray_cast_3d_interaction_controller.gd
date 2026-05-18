@@ -55,7 +55,7 @@ func _is_interactable_available() -> bool:
 
 func grab_object(object: Node) -> void:
 	super.grab_object(object)
-	if object is Pickable:
+	if object is Pickable or object is PickableRagdoll:
 		pickable_grabbed.emit(true)
 	if not object.is_in_group(DISABLE_COLLISION_GROUP): return
 	if collision_excluding_joint == null: return

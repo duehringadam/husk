@@ -300,7 +300,6 @@ script = ExtResource("1_4pk4x")
 
 [node name="BloodPlane" type="GPUParticles3D" parent="." unique_id=1865855389]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.259502)
-layers = 4
 material_override = SubResource("ShaderMaterial_fktg4")
 emitting = false
 amount = 2
@@ -314,7 +313,6 @@ draw_pass_1 = SubResource("QuadMesh_5r6tw")
 
 [node name="bloodspikes" type="GPUParticles3D" parent="." unique_id=1134661380]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.259502)
-layers = 4
 material_override = SubResource("ShaderMaterial_0ou6p")
 emitting = false
 amount = 3
@@ -328,7 +326,6 @@ draw_pass_1 = SubResource("QuadMesh_vppue")
 
 [node name="mist" type="GPUParticles3D" parent="." unique_id=209057282]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.259502)
-layers = 4
 material_override = SubResource("StandardMaterial3D_emcqu")
 cast_shadow = 0
 emitting = false
@@ -347,7 +344,6 @@ autoplay = &"Init"
 
 [node name="splatter2" type="GPUParticles3D" parent="." unique_id=1230482050]
 transform = Transform3D(2.76851, -0.0335077, 0.153929, 1.1517, -0.083298, -0.368974, 0.0944456, 1.99798, -0.0128014, 0.00441742, 0.010955, -0.00289154)
-layers = 4
 material_override = SubResource("ShaderMaterial_nswt1")
 emitting = false
 amount = 2

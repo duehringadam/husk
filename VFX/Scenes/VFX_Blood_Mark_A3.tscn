@@ -1,6 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://cfw3lv8v5r3i1"]
+[gd_scene format=3 uid="uid://cfw3lv8v5r3i1"]
 
-[ext_resource type="Shader" path="res://VFX/shaders/ss_decal2_treshold_p.gdshader" id="1_h14px"]
+[ext_resource type="Shader" uid="uid://co7jgochvp3jd" path="res://VFX/shaders/ss_decal2_treshold_p.gdshader" id="1_h14px"]
 [ext_resource type="Texture2D" uid="uid://d1487hs54xk4g" path="res://VFX/textures/T_Blood_bulb_UJ1.png" id="2_y4sva"]
 [ext_resource type="Texture2D" uid="uid://bs5888n022i54" path="res://VFX/textures/T_Blood_bulb_UJ1_N.png" id="3_01oox"]
 [ext_resource type="Texture2D" uid="uid://cxsmx407d722t" path="res://VFX/textures/T_NP41.PNG" id="4_xf0bh"]
@@ -17,16 +17,16 @@ gradient = SubResource("Gradient_r82we")
 render_priority = 0
 shader = ExtResource("1_h14px")
 shader_parameter/Scale = Vector2(1, 1)
+shader_parameter/Color_1D_gradient = SubResource("GradientTexture1D_gjw3t")
+shader_parameter/Albedo = ExtResource("2_y4sva")
+shader_parameter/Normal = ExtResource("3_01oox")
+shader_parameter/Roughtness = ExtResource("4_xf0bh")
 shader_parameter/cube_half_size = 0.5
 shader_parameter/enable_y_fade = true
 shader_parameter/fade_start = 0.01
 shader_parameter/fade_end = 0.385
 shader_parameter/fade_power = 3.0
 shader_parameter/normal_intensity = 1.0
-shader_parameter/Color_1D_gradient = SubResource("GradientTexture1D_gjw3t")
-shader_parameter/Albedo = ExtResource("2_y4sva")
-shader_parameter/Normal = ExtResource("3_01oox")
-shader_parameter/Roughtness = ExtResource("4_xf0bh")
 
 [sub_resource type="Curve" id="Curve_8solv"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.0544042, 0.0353585), 0.0, 0.0, 0, 0, Vector2(0.43128, 0.032967), 0.0, 0.0, 0, 0, Vector2(1, 0.978022), 5.35081, 0.0, 0, 0]
@@ -50,6 +50,7 @@ emission_ring_axis = Vector3(0, 1, 0)
 emission_ring_height = 0.4
 emission_ring_radius = 0.1
 emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
 angle_min = -180.0
 angle_max = 180.0
 gravity = Vector3(0, 0, 0)
@@ -60,9 +61,9 @@ alpha_curve = SubResource("CurveTexture_r7lbi")
 
 [sub_resource type="BoxMesh" id="BoxMesh_3t31v"]
 
-[node name="VFX_Blood_Mark_A3" type="Node3D"]
+[node name="VFX_Blood_Mark_A3" type="Node3D" unique_id=528592489]
 
-[node name="Blood_Mark_A3" type="GPUParticles3D" parent="."]
+[node name="Blood_Mark_A3" type="GPUParticles3D" parent="." unique_id=403984570]
 transform = Transform3D(1, 0, 0, 0, 0.98762, 0.156865, 0, -0.156865, 0.98762, 0, 0.086, 0)
 layers = 4
 material_override = SubResource("ShaderMaterial_aobnp")

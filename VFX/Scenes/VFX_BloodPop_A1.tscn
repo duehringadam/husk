@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://b6k3mong2247l"]
+[gd_scene format=3 uid="uid://b6k3mong2247l"]
 
 [ext_resource type="Shader" uid="uid://t3xv4d68ld77" path="res://VFX/shaders/s_Disolver_small_Liquid_p_Treshold.tres" id="1_7ba1o"]
 [ext_resource type="Texture2D" uid="uid://d1487hs54xk4g" path="res://VFX/textures/T_Blood_bulb_UJ1.png" id="2_pp0wj"]
@@ -36,15 +36,15 @@ gradient = SubResource("Gradient_fu8od")
 render_priority = 0
 shader = ExtResource("1_7ba1o")
 shader_parameter/Scale = Vector2(1, 1)
-shader_parameter/Speed_XY = null
-shader_parameter/Specular = 0.5
-shader_parameter/Normal_Map_Depth = 0.4
+shader_parameter/Speed_XY = Vector2(0, 0)
 shader_parameter/Disolver_Texture = ExtResource("2_pp0wj")
 shader_parameter/Color_1D_Gradient = SubResource("GradientTexture1D_n5vmk")
 shader_parameter/Metallic_Texture = SubResource("GradientTexture1D_aqier")
 shader_parameter/Texture_Roughtness = SubResource("GradientTexture2D_c7ha7")
 shader_parameter/Roughtness_1D_Gradient = SubResource("GradientTexture1D_4itwh")
+shader_parameter/Specular = 0.5
 shader_parameter/Normal_Texture = ExtResource("3_y8ubw")
+shader_parameter/Normal_Map_Depth = 0.4
 
 [sub_resource type="Curve" id="Curve_hx1oo"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.109848, 0), 0.0, 0.0, 0, 0, Vector2(0.670455, 0.0219437), 0.0, 0.100812, 0, 0, Vector2(1, 0.978022), 5.35081, 0.0, 0, 0]
@@ -168,12 +168,12 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mjpx0"]
 _data = {
-"Init": SubResource("Animation_poh2s")
+&"Init": SubResource("Animation_poh2s")
 }
 
-[node name="VFX_BloodPop_A1" type="Node3D"]
+[node name="VFX_BloodPop_A1" type="Node3D" unique_id=1854733680]
 
-[node name="submarks" type="GPUParticles3D" parent="."]
+[node name="submarks" type="GPUParticles3D" parent="." unique_id=1220698658]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.05603, 0)
 material_override = SubResource("ShaderMaterial_cw0k8")
 cast_shadow = 0
@@ -184,7 +184,7 @@ one_shot = true
 process_material = SubResource("ParticleProcessMaterial_c74pg")
 draw_pass_1 = SubResource("PlaneMesh_3qeul")
 
-[node name="bdrops" type="GPUParticles3D" parent="."]
+[node name="bdrops" type="GPUParticles3D" parent="." unique_id=465135275]
 layers = 4
 material_override = SubResource("StandardMaterial3D_e6g80")
 amount = 20
@@ -194,12 +194,10 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_ixcjx")
 draw_pass_1 = SubResource("QuadMesh_32i3l")
 
-[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="."]
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="." unique_id=1022172531]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.32508, 0)
 size = Vector3(20, 0.45, 20)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_mjpx0")
-}
-autoplay = "Init"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=18522090]
+libraries/ = SubResource("AnimationLibrary_mjpx0")
+autoplay = &"Init"

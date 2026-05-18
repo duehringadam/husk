@@ -1,7 +1,8 @@
 extends Node3D
 
 @onready var static_body: StaticBody3D = $spike/Cube_001/StaticBody3D
-@onready var metal: AudioStreamPlayer3D = $metal
+@onready var metal: AudioStreamPlayer3D = $spikes/Plane_002/metal
+
 
 func _on_damage_component_damage_dealt(types: Dictionary, actual: float, stance_damage: float, target: hurtbox_component) -> void:
 	if target.get_parent() is PhysicalBone3D:

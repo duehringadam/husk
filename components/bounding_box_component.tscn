@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://251jy5xhr53n" path="res://components/bounding_box_component.gd" id="1_sp5yl"]
 [ext_resource type="Texture2D" uid="uid://bsdwvs1ul86qm" path="res://components/bounding_box_texture/image0039.png" id="2_nvaig"]
+[ext_resource type="FontFile" uid="uid://bgwsxfa2fbvel" path="res://addons/madtalk/fonts/ShipporiMincho-Regular.ttf" id="3_nvaig"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wop0f"]
 
@@ -29,5 +30,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("3_nvaig")
+theme_override_font_sizes/font_size = 24
 text = "test name"
 horizontal_alignment = 1

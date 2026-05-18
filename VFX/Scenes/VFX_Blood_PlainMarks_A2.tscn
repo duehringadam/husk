@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bfeykt71dw1or"]
+[gd_scene format=3 uid="uid://bfeykt71dw1or"]
 
 [ext_resource type="Shader" uid="uid://t3xv4d68ld77" path="res://VFX/shaders/s_Disolver_small_Liquid_p_Treshold.tres" id="1_umhob"]
 [ext_resource type="Texture2D" uid="uid://bsopqvpvnymkk" path="res://VFX/textures/T_Blood_Puddle2411.png" id="2_cvsxu"]
@@ -37,15 +37,15 @@ gradient = SubResource("Gradient_e8p7r")
 render_priority = 0
 shader = ExtResource("1_umhob")
 shader_parameter/Scale = Vector2(1, 1)
-shader_parameter/Speed_XY = null
-shader_parameter/Specular = 0.5
-shader_parameter/Normal_Map_Depth = 1.0
+shader_parameter/Speed_XY = Vector2(0, 0)
 shader_parameter/Disolver_Texture = ExtResource("2_cvsxu")
 shader_parameter/Color_1D_Gradient = SubResource("GradientTexture1D_hayci")
 shader_parameter/Metallic_Texture = SubResource("GradientTexture2D_0v5gj")
 shader_parameter/Texture_Roughtness = ExtResource("4_0gnyc")
 shader_parameter/Roughtness_1D_Gradient = SubResource("GradientTexture1D_n1ghs")
+shader_parameter/Specular = 0.5
 shader_parameter/Normal_Texture = ExtResource("3_vbh7h")
+shader_parameter/Normal_Map_Depth = 1.0
 
 [sub_resource type="Curve" id="Curve_ka0e4"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.0815217, 0), 0.0, 0.0, 0, 0, Vector2(0.831522, 0.043956), 0.0, 0.100812, 0, 0, Vector2(1, 0.978022), 5.35081, 0.0, 0, 0]
@@ -69,6 +69,7 @@ emission_ring_axis = Vector3(0, 1, 0)
 emission_ring_height = 0.2
 emission_ring_radius = 1.0
 emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
 angle_min = -180.0
 angle_max = 180.0
 gravity = Vector3(0, 0, 0)
@@ -94,14 +95,14 @@ render_priority = 0
 shader = ExtResource("5_wbha4")
 shader_parameter/Scale = Vector2(1, 1)
 shader_parameter/Speed_XY = Vector2(0, 0)
-shader_parameter/Specular = 0.253
-shader_parameter/Normal_Map_Depth = 0.5
 shader_parameter/Disolver_Texture = ExtResource("6_1dhoc")
 shader_parameter/Color_1D_Gradient = SubResource("GradientTexture1D_n61tj")
 shader_parameter/Metallic_Texture = ExtResource("7_2g6oe")
 shader_parameter/Texture_Roughtness = ExtResource("4_0gnyc")
 shader_parameter/Roughtness_1D_Gradient = SubResource("GradientTexture1D_7te3y")
+shader_parameter/Specular = 0.253
 shader_parameter/Normal_Texture = ExtResource("8_xu68p")
+shader_parameter/Normal_Map_Depth = 0.5
 
 [sub_resource type="Curve" id="Curve_mqdpj"]
 _data = [Vector2(0, 0.0219779), 0.0, 0.189561, 0, 0, Vector2(1, 1), 3.65079, 0.0, 0, 0]
@@ -112,17 +113,17 @@ texture_mode = 1
 curve = SubResource("Curve_mqdpj")
 
 [sub_resource type="Curve" id="Curve_cvggr"]
-max_value = 2.0
+_limits = [0.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 0.206167), 0.0, 0.340165, 0, 0, Vector2(0.66055, 2), 0.279362, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_ejw20"]
-max_value = 3.0
+_limits = [0.0, 3.0, 0.0, 1.0]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.373913, 3), 0.0, 0.0, 0, 0, Vector2(1, 0.626374), -5.59655, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="Curve" id="Curve_pvbrt"]
-max_value = 2.0
+_limits = [0.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 0.206167), 0.0, 0.340165, 0, 0, Vector2(0.66055, 2), 0.279362, 0.0, 0, 0]
 point_count = 2
 
@@ -138,6 +139,7 @@ emission_ring_axis = Vector3(0, 1, 0)
 emission_ring_height = 0.1
 emission_ring_radius = 0.5
 emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
 angle_min = -180.0
 angle_max = 180.0
 gravity = Vector3(0, 0, 0)
@@ -146,9 +148,9 @@ scale_max = 0.3
 scale_curve = SubResource("CurveXYZTexture_gimnn")
 alpha_curve = SubResource("CurveTexture_6xmw7")
 
-[node name="VFX_Blood_PlainMarks_A2" type="Node3D"]
+[node name="VFX_Blood_PlainMarks_A2" type="Node3D" unique_id=1405539541]
 
-[node name="Blood_PlainMarks_A2" type="GPUParticles3D" parent="."]
+[node name="Blood_PlainMarks_A2" type="GPUParticles3D" parent="." unique_id=1340261204]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.083, 0)
 layers = 4
 material_override = SubResource("ShaderMaterial_0f0ys")
@@ -158,7 +160,7 @@ lifetime = 1.2
 process_material = SubResource("ParticleProcessMaterial_4vv5l")
 draw_pass_1 = SubResource("PlaneMesh_g4vr0")
 
-[node name="well" type="GPUParticles3D" parent="."]
+[node name="well" type="GPUParticles3D" parent="." unique_id=2011084785]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.067, 0)
 layers = 4
 material_override = SubResource("ShaderMaterial_gv218")

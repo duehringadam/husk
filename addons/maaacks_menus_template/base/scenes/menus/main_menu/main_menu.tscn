@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://b5oej1q4h7jvh" path="res://addons/maaacks_menus_template/base/scripts/ui_sound_controller.gd" id="6_bs342"]
 [ext_resource type="Script" uid="uid://dmkubt2nsnsbn" path="res://addons/maaacks_menus_template/base/scenes/menus/main_menu/config_version_label.gd" id="6_pdiij"]
 [ext_resource type="Script" uid="uid://bkwlopi4qn32o" path="res://addons/maaacks_menus_template/base/scenes/menus/main_menu/config_name_label.gd" id="7_j7612"]
+[ext_resource type="FontFile" uid="uid://bgwsxfa2fbvel" path="res://addons/madtalk/fonts/ShipporiMincho-Regular.ttf" id="7_w26no"]
 
 [node name="MainMenu" type="Control" unique_id=1543452948]
 layout_mode = 3
@@ -89,6 +90,7 @@ offset_left = 92.0
 offset_top = 260.0
 offset_right = 652.0
 offset_bottom = 380.0
+theme_override_fonts/font = ExtResource("7_w26no")
 theme_override_font_sizes/font_size = 128
 text = "Husk"
 horizontal_alignment = 1
@@ -132,9 +134,10 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -104.0
-offset_right = 128.0
-offset_bottom = 104.0
+offset_left = -21.0
+offset_top = -122.0
+offset_right = 239.0
+offset_bottom = 222.0
 grow_vertical = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 16
@@ -145,24 +148,35 @@ script = ExtResource("4_l1ebe")
 [node name="NewGameButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" unique_id=1080793885]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_fonts/font = ExtResource("7_w26no")
 theme_override_font_sizes/font_size = 32
-text = "New Game"
+text = "Play Demo"
+
+[node name="Playground" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" unique_id=1307533319]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_w26no")
+theme_override_font_sizes/font_size = 32
+text = "Test Playground"
 
 [node name="OptionsButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" unique_id=800286059]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_fonts/font = ExtResource("7_w26no")
 theme_override_font_sizes/font_size = 32
 text = "Options"
 
 [node name="CreditsButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" unique_id=1167045673]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_fonts/font = ExtResource("7_w26no")
 theme_override_font_sizes/font_size = 32
 text = "Credits"
 
 [node name="ExitButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" unique_id=1084948370]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_fonts/font = ExtResource("7_w26no")
 theme_override_font_sizes/font_size = 32
 text = "Exit"
 
@@ -218,6 +232,7 @@ grow_vertical = 0
 text = "Back"
 
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/Playground" to="." method="_on_playground_pressed"]
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

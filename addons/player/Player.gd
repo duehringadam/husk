@@ -30,6 +30,7 @@ const LEAN_SPEED: float = 0.1
 @export var crouch_speed: float = 1.5
 @export var jump_power: float = 4
 @export var climb_speed: float = 3
+@export var vault_duration: float = 0.4
 ## How much fov changes from base value based on current velocity
 @export var fov_change: float = 1
 ## To disable sprint for when player runs out of stamina for example
@@ -81,6 +82,9 @@ Optional: %jump, %sprint, %crouch, %lean, %zoom, %switch_hands
 @onready var left_hand_pos: Vector3 = %LeftHand.transform.origin
 @onready var enemy_look_at: Node3D = $enemy_look_at
 @onready var hurtbox: Area3D = $hurtbox_component
+@onready var fall_damage_component: DamageComponent = $fallDamageComponent
+@onready var radial_blur: ColorRect = %radial_blur
+@onready var vault_ray_cast: RayCast3D = %vaultRayCast
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -107,7 +111,7 @@ var mouse_movement: Vector2
 var input_dir: Vector3
 var can_move:=true
 var can_attack:bool = true
-
+var previous_fall_velocity: float
 const WALK_SPEED_MINIMUM := 1.5
 const WALK_SPEED_MAXIMUM := 2.5
 
@@ -118,6 +122,8 @@ var combat_type: int = 0
 var slowed :bool = false
 var slow_speed = 0
 var attack_dir
+var is_vaulting: bool = false
+
 func _ready() -> void:
 	SignalBus.connect("primary_active", _animate_camera_swing)
 	SignalBus.connect("kick_active", _animate_camera_swing)
@@ -129,6 +135,7 @@ func _ready() -> void:
 	if inventory.size() > 0:
 		for i in inventory:
 			SignalBus.emit_signal("item_interact", i)
+	SignalBus.emit_signal("player_ready")
 	
 func _on_combat_type_changed(value: int):
 	combat_type = value
@@ -145,7 +152,7 @@ func _set_sprint_speed(value:float):
 
 func _physics_process(delta) -> void:
 	if Engine.is_editor_hint(): return
-	if not _handle_ladder_physics():
+	if not _handle_ladder_physics() or is_vaulting:
 		handle_effects(delta)
 		handle_falling(delta)
 		handle_jump()
@@ -192,11 +199,24 @@ func handle_falling(delta: float) -> void:
 	if not on_floor_last_frame and is_on_floor():
 		footsteps.play()
 		camera_animation_player.play("land")
+		if abs(previous_fall_velocity) >= 10:
+			camera_animation_player.play("land_damage")
+			fall_damage_component.monitorable = true
+			fall_damage_component.monitoring = true
+			for i in fall_damage_component.damage_types:
+				fall_damage_component.damage_types[i] = abs(previous_fall_velocity)
+			await get_tree().create_timer(.1).timeout
+			fall_damage_component.monitorable = false
+			fall_damage_component.monitoring = false
+			radial_blur.blur = false
 	on_floor_last_frame = is_on_floor()
+
 	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
+		previous_fall_velocity = velocity.y
+		radial_blur.blur = true
 
 
 func handle_jump() -> void:
@@ -204,8 +224,49 @@ func handle_jump() -> void:
 		velocity.y = jump_power
 		footsteps.play()
 		camera_animation_player.play("jump")
+	if vault_ray_cast.is_colliding() && velocity.y > 0 && !is_vaulting && !ceiling.is_colliding():
+		#camera_animation_player.play("vault")
+		_handle_vault(vault_ray_cast.get_collision_point())
 
-
+func _handle_vault(ledge_point: Vector3):
+	
+	var space_state = get_world_3d().direct_space_state
+	var query = PhysicsRayQueryParameters3D.create(
+		ledge_point,
+		ledge_point + Vector3(0.0,2.0,0.0),
+		collision_mask
+	)
+	query.exclude = [self]
+	query.collide_with_bodies = true
+	query.collide_with_areas = false
+	query.collision_mask = collision_mask
+	
+	var result = space_state.intersect_ray(query)
+	
+	if result: return
+	
+	is_vaulting = true
+	lock_camera = true
+	velocity = Vector3.ZERO
+	mainhand.disable()
+	offhand.disable()
+	var forward = -camera.global_transform.basis.z
+	var destination = ledge_point + forward * 0.1
+	
+	var start = global_position
+	var mid = start.lerp(destination,0.5) + Vector3(0.0,.5,0.0)
+	
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_IN)
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.tween_method(bezier_move.bind(start, mid, destination + Vector3(0.0,0.2,0.0)), 0.0, 1.0, vault_duration)
+	tween.tween_callback(func(): is_vaulting = false;lock_camera = false;mainhand.enable(); offhand.enable())
+	
+func bezier_move(t: float, start: Vector3, mid: Vector3, end:Vector3) -> void:
+	var a = start.lerp(mid, t)
+	var b = mid.lerp(end, t)
+	global_position = a.lerp(b, t)
+	
 func handle_crouch(delta: float) -> void:
 	var crouch_pressed: bool = get_node_or_null("%crouch") != null and %crouch.is_triggered()
 	if player_body.is_kicking: return
@@ -257,8 +318,9 @@ func set_movement_speed() -> void:
 	
 	if crouching:
 		speed = clampf(crouch_speed - slow_speed, WALK_SPEED_MINIMUM, WALK_SPEED_MAXIMUM)
-		
-	footsteps.volume_linear = speed / walk_speed
+	
+	if !is_vaulting:	
+		footsteps.volume_linear = speed / walk_speed
 
 
 func look_around() -> void:
@@ -415,6 +477,8 @@ func _on_hurtbox_component_damage_taken(actual: float, source: DamageComponent, 
 var _cur_ladder_climbing : Area3D = null
 
 func _handle_ladder_physics() -> bool:
+	if is_vaulting: 
+		return false
 	# Keep track of whether already on ladder. If not already, check if overlapping a ladder area3d.
 	var was_climbing_ladder := _cur_ladder_climbing and _cur_ladder_climbing.overlaps_body(self)
 	if not was_climbing_ladder:
@@ -425,7 +489,10 @@ func _handle_ladder_physics() -> bool:
 				break
 	if _cur_ladder_climbing == null:
 		return false
-	
+		
+	if vault_ray_cast.is_colliding(): 
+		_handle_vault(vault_ray_cast.get_collision_point())
+		
 	# Set up variables. Most of this is going to be dependent on the player's relative position/velocity/input to the ladder.
 	var ladder_gtransform : Transform3D = _cur_ladder_climbing.global_transform
 	var pos_rel_to_ladder := ladder_gtransform.affine_inverse() * self.global_position
@@ -483,23 +550,6 @@ func _handle_ladder_physics() -> bool:
 	move_and_slide()
 	return true
 
-var _cur_rope_climbing: Area3D = null
-
-func _handle_rope_climb(delta: float) -> bool:
-	# Keep track of whether already on rope. If not already, check if overlapping a rope area3d.
-	var was_climbing_rope := _cur_rope_climbing and _cur_rope_climbing.overlaps_body(self)
-	if not was_climbing_rope:
-		_cur_rope_climbing = null
-		for rope in get_tree().get_nodes_in_group("rope"):
-			if rope.overlaps_body(self):
-				_cur_rope_climbing = rope
-				break
-	if _cur_rope_climbing == null:
-		return false
-		
-	move_and_slide()
-	return true
-
 
 func _on_health_component_died() -> void:
 	camera_animation_player.play("death")
@@ -509,5 +559,6 @@ func _on_health_component_died() -> void:
 	hurtbox.monitorable = false
 	can_move = false
 	can_attack = false
+	lock_camera = true
 	await camera_animation_player.animation_finished
 	get_tree().reload_current_scene()

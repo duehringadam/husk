@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Husk"
-run/main_scene="uid://iarqxfted72l"
+run/main_scene="uid://crmlnhcgs2n4i"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -58,7 +58,7 @@ movie_writer/movie_file="C:/Users/adamf/Documents/husk/movie.avi"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/GPUTrail-main/plugin.cfg", "res://addons/convex_cone_shape3d_plugin/plugin.cfg", "res://addons/credits_generator/plugin.cfg", "res://addons/deformablemesh/plugin.cfg", "res://addons/freecam_3D/plugin.cfg", "res://addons/game_pieces/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/maaacks_menus_template/plugin.cfg", "res://addons/madtalk/plugin.cfg", "res://addons/prompt_formatters/plugin.cfg", "res://addons/raytraced_audio/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
+enabled=PackedStringArray("res://addons/GPUTrail-main/plugin.cfg", "res://addons/convex_cone_shape3d_plugin/plugin.cfg", "res://addons/credits_generator/plugin.cfg", "res://addons/deformablemesh/plugin.cfg", "res://addons/freecam_3D/plugin.cfg", "res://addons/game_pieces/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/maaacks_menus_template/plugin.cfg", "res://addons/madtalk/plugin.cfg", "res://addons/meshcombiner/plugin.cfg", "res://addons/prompt_formatters/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
 
 [global_group]
 
@@ -74,6 +74,7 @@ rope=""
 limb_sever=""
 water=""
 navigation_mesh_source_group=""
+disable_collision_while_grabbed=""
 
 [input]
 
@@ -255,17 +256,12 @@ copy_path="res://scenes/ui/"
 jolt_physics_3d/collisions/collision_margin_fraction=0.02432
 3d/default_gravity=12.0
 
-[raytraced_audio]
-
-reverb_bus=&"RaytracedReverb"
-ambient_bus=&"RaytracedAmbient"
-
 [rendering]
 
 occlusion_culling/bvh_build_quality=0
 textures/canvas_textures/default_texture_filter=3
 global_illumination/gi/use_half_resolution=true
-shading/overrides/force_lambert_over_burley=true
+shading/overrides/force_vertex_shading=true
 textures/default_filters/use_nearest_mipmap_filter=true
 textures/default_filters/anisotropic_filtering_level=0
 environment/ssao/quality=1
@@ -277,6 +273,7 @@ environment/glow/upscale_mode=0
 lightmapping/lightmap_gi/use_bicubic_filter=false
 environment/volumetric_fog/use_filter=0
 occlusion_culling/use_occlusion_culling=true
+mesh_lod/lod_change/threshold_pixels=0.1
 vrs/decals/filter=3
 vrs/canvas_textures/default_texture_filter=3
 

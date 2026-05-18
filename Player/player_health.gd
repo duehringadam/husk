@@ -3,11 +3,6 @@ extends ProgressBar
 @onready var timer: Timer = $Timer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-###################
-# a signal is emitted any time this value is changed to execute _set_health() func
-###################
-#var health = 0 : set = _set_health
-
 func _on_health_changed(amount: float, new_value: float) -> void:
 	value = new_value
 	if amount < 0:

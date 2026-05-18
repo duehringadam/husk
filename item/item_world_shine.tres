@@ -1,15 +1,17 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://dknlo816p4xyr"]
 
 [ext_resource type="Shader" uid="uid://dh18iib33tpov" path="res://item/weapons/swords/sword_world_items/item_world.gdshader" id="1_1sqw0"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_1sqw0"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vfn3q"]
-noise = SubResource("FastNoiseLite_1sqw0")
-seamless = true
-in_3d_space = true
+[ext_resource type="Texture2D" uid="uid://cn3rahsj18x1o" path="res://item/weapons/swords/sword_world_items/Texturelabs_LensFX_255S.jpg" id="2_vfn3q"]
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_1sqw0")
-shader_parameter/main_texture = SubResource("NoiseTexture2D_vfn3q")
+shader_parameter/depth_offset = 0.1
+shader_parameter/sample_offset = 0.1
+shader_parameter/flare_spread = Vector2(0.3, 0.3)
+shader_parameter/distance_fade_start = 20.0
+shader_parameter/distance_fade_end = 30.0
+shader_parameter/near_fade_start = 3.0
+shader_parameter/near_fade_end = 0.1
+shader_parameter/screen_mult = 1.0
+shader_parameter/display_texture = ExtResource("2_vfn3q")

@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://dcr4in8lcdk51" path="res://sfx/dark_souls_item.wav" id="6_g350x"]
 [ext_resource type="ArrayMesh" uid="uid://d0yu8cem6bvh2" path="res://item/spells/scroll.tres" id="7_pkfse"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="9_0stnq"]
+[ext_resource type="PackedScene" uid="uid://bvb1ic1mm6bap" path="res://item/item_glint.tscn" id="9_2cous"]
 [ext_resource type="PackedScene" uid="uid://dhws2ueoubwwx" path="res://components/bounding_box_component.tscn" id="10_fwyb7"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_pkfse"]
@@ -110,6 +111,9 @@ metadata/_custom_type_script = "uid://cp0p4yckxtvmw"
 [node name="Spell" type="MeshInstance3D" parent="." unique_id=1316351081]
 transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
 mesh = ExtResource("7_pkfse")
+
+[node name="OmniLight3D" parent="Spell" unique_id=1151187837 instance=ExtResource("9_2cous")]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 3.200838)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1456827359]
 transform = Transform3D(0.012023031, 0, 0, 0, 0.019113693, 0, 0, 0, 0.01748093, -0.0021306835, 0, -0.016956449)

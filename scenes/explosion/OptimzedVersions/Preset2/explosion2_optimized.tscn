@@ -184,12 +184,12 @@ material = SubResource("ShaderMaterial_lingering")
 radial_segments = 16
 rings = 8
 
-[sub_resource type="Gradient" id="Gradient_scorch"]
-offsets = PackedFloat32Array(0, 0.5, 1)
-colors = PackedColorArray(0.1, 0.1, 0.12, 0.9, 0.1, 0.1, 0.12, 0.4, 0.1, 0.1, 0.12, 0)
+[sub_resource type="Gradient" id="Gradient_e4ap7"]
+offsets = PackedFloat32Array(0.11111111, 0.5, 1)
+colors = PackedColorArray(0.09985284, 0.09985284, 0.11774104, 1, 0.1, 0.1, 0.12, 0.4, 0.1, 0.1, 0.12, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_scorch"]
-gradient = SubResource("Gradient_scorch")
+gradient = SubResource("Gradient_e4ap7")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
@@ -424,7 +424,7 @@ tracks/5/path = NodePath("Shockwave:material_override:shader_parameter/progress"
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.9666667),
+"times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 1.0]
@@ -515,7 +515,6 @@ draw_pass_1 = SubResource("SphereMesh_lingering")
 [node name="ScorchDecal" type="Decal" parent="." unique_id=-1149348845]
 size = Vector3(6, 6, 6)
 texture_albedo = SubResource("GradientTexture2D_scorch")
-albedo_mix = 0.0
 
 [node name="Sparks" type="GPUParticles3D" parent="." unique_id=612372772]
 sorting_offset = 0.1
@@ -550,7 +549,8 @@ monitoring = false
 monitorable = false
 script = ExtResource("7_e4ap7")
 damage_types = Dictionary[int, float]({
-6: 1.0
+1: 100.0,
+6: 100.0
 })
 status_types = Dictionary[int, float]({
 0: 1.0

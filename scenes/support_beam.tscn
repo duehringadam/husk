@@ -46,6 +46,7 @@ mesh = SubResource("ArrayMesh_l2vit")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=211259384]
 collision_layer = 2
+metadata/ground_type = "wood"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1015011468]
 shape = SubResource("ConvexPolygonShape3D_s1a4i")

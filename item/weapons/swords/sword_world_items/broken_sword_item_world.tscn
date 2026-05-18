@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dqcwnuc6rmxtd"]
 
 [ext_resource type="Script" uid="uid://dixki0innbjf2" path="res://addons/game_pieces/pickable/item_world_pickable.gd" id="1_v235k"]
+[ext_resource type="Resource" uid="uid://bgq4jclx52jt0" path="res://item/weapons/swords/broken_sword.tres" id="2_ga4lm"]
 [ext_resource type="Script" uid="uid://ck3cei0hvspym" path="res://addons/interaction_system/interaction_container.gd" id="2_v235k"]
 [ext_resource type="Script" uid="uid://5tinbhq6p45k" path="res://addons/interaction_system/interaction.gd" id="3_guvum"]
 [ext_resource type="Script" uid="uid://doc0okecalxnp" path="res://addons/interaction_system/interaction_context.gd" id="4_7cjlg"]
@@ -10,6 +11,7 @@
 [ext_resource type="ArrayMesh" uid="uid://fiodbacyepa" path="res://Player/weapon/ALL/BrokenSword/sword_final_anime_if_you_change_it_again_i_kill_you.tres" id="7_guvum"]
 [ext_resource type="PackedScene" uid="uid://dhws2ueoubwwx" path="res://components/bounding_box_component.tscn" id="8_7cjlg"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="8_xbs6s"]
+[ext_resource type="PackedScene" uid="uid://bvb1ic1mm6bap" path="res://item/item_glint.tscn" id="10_ga4lm"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7cjlg"]
 points = PackedVector3Array(-0.08772572, -0.16816428, -0.0032793228, -0.033933744, -0.42371607, -0.013335722, -0.08772572, -0.16816428, 0.0032761265, -0.08772572, -0.15258995, -0.0032793228, -0.0013933405, -0.45363015, -0.013335722, -0.033933744, -0.42371607, 0.013332525, -0.033933744, -0.40842664, -0.013335722, -1.6234815e-05, -0.18620768, -0.016406279, -0.08772572, -0.15258995, 0.0032761265, -0.03673895, 0.516536, 7.450581e-09, -0.019533679, 0.4569927, -0.0044291755, -1.6234815e-05, -0.15258995, -0.016406279, 0.016202964, -0.4518258, -0.013335722, -0.0013933405, -0.45363015, 0.013332525, -0.033933744, -0.40842664, 0.013332525, -1.6234815e-05, -0.18620768, 0.016406294, 0.03480234, -0.41573897, -0.013335722, 0.031113066, -0.43929037, -0.013335722, -1.6234815e-05, -0.15258995, 0.016406294, -0.019533679, 0.4569927, 0.00442598, 0.000374794, 0.45651788, 7.450581e-09, 0.04836934, 0.3693397, 7.450581e-09, 0.08595913, -0.15258995, -0.0032793228, 0.016202964, -0.4518258, 0.013332525, 0.031113066, -0.43929037, 0.013332525, 0.03480234, -0.41573897, 0.013332525, 0.08595913, -0.16816428, -0.0032793228, 0.08595913, -0.15258995, 0.0032761265, 0.08595913, -0.16816428, 0.0032761265)
@@ -24,6 +26,7 @@ contact_monitor = true
 max_contacts_reported = 1
 angular_damp = 5.0
 script = ExtResource("1_v235k")
+item_to_loot = ExtResource("2_ga4lm")
 change_distance_interaction = NodePath("InteractionContainer/WhileGrabbed/Change Distance")
 throwable_mesh = NodePath("Broken Sword")
 throwable = NodePath(".")
@@ -112,6 +115,9 @@ metadata/_custom_type_script = "uid://cp0p4yckxtvmw"
 
 [node name="Broken Sword" type="MeshInstance3D" parent="." unique_id=1316351081]
 mesh = ExtResource("7_guvum")
+
+[node name="OmniLight3D" parent="Broken Sword" unique_id=1151187837 instance=ExtResource("10_ga4lm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009974502, -0.15082838, 0.005729839)
 
 [node name="DamageComponent" type="Area3D" parent="." unique_id=1429514769 node_paths=PackedStringArray("source")]
 collision_mask = 13

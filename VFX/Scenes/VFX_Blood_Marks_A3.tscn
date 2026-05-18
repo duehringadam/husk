@@ -1,8 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://bu0jbgn6d7ej2"]
+[gd_scene format=3 uid="uid://bu0jbgn6d7ej2"]
 
-[ext_resource type="Shader" path="res://VFX/shaders/ss_decal7_treshold_p.gdshader" id="1_bxj2l"]
+[ext_resource type="Shader" uid="uid://dpqkq8xi5ac7s" path="res://VFX/shaders/ss_decal7_treshold_p.gdshader" id="1_bxj2l"]
 [ext_resource type="Texture2D" uid="uid://dbolhruq43rtu" path="res://VFX/textures/T_Blood_bulb_UJ1_testtyyxx.png" id="2_pnfhs"]
-[ext_resource type="Texture2D" uid="uid://bs5888n022i54" path="res://VFX/textures/T_Blood_bulb_UJ1_N.png" id="3_orb3n"]
 
 [sub_resource type="Gradient" id="Gradient_r82we"]
 interpolation_color_space = 1
@@ -12,18 +11,12 @@ colors = PackedColorArray(0.853051, 0, 0.136786, 1, 0.468572, 0.0221131, 0.02226
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_gjw3t"]
 gradient = SubResource("Gradient_r82we")
 
-[sub_resource type="Gradient" id="Gradient_gsu78"]
-interpolation_color_space = 1
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0.0430392, 0.0430392, 0.0430392, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_mr083"]
-gradient = SubResource("Gradient_gsu78")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_le8wj"]
 render_priority = 0
 shader = ExtResource("1_bxj2l")
 shader_parameter/Scale = Vector2(1, 1)
+shader_parameter/Color_1D_gradient = SubResource("GradientTexture1D_gjw3t")
+shader_parameter/Albedo = ExtResource("2_pnfhs")
 shader_parameter/cube_half_size = 0.5
 shader_parameter/enable_y_fade = true
 shader_parameter/fade_start = 0.01
@@ -31,10 +24,6 @@ shader_parameter/fade_end = 0.4
 shader_parameter/fade_power = 1.0
 shader_parameter/use_red_channel_as_alpha = false
 shader_parameter/normal_intensity = 1.0
-shader_parameter/Color_1D_gradient = SubResource("GradientTexture1D_gjw3t")
-shader_parameter/Albedo = ExtResource("2_pnfhs")
-shader_parameter/Normal = ExtResource("3_orb3n")
-shader_parameter/Roughtness = SubResource("GradientTexture1D_mr083")
 
 [sub_resource type="Curve" id="Curve_iqmo2"]
 _data = [Vector2(0, 0.062696), 0.0, 0.320197, 0, 0, Vector2(1, 0.978022), 3.74437, 0.0, 0, 0]
@@ -65,6 +54,7 @@ emission_ring_axis = Vector3(0, 1, 0)
 emission_ring_height = 0.0
 emission_ring_radius = 1.0
 emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
 angle_min = -180.0
 angle_max = 180.0
 gravity = Vector3(0, 0, 0)
@@ -78,9 +68,9 @@ alpha_curve = SubResource("CurveTexture_v4kf7")
 [sub_resource type="PlaneMesh" id="PlaneMesh_h542t"]
 size = Vector2(4, 4)
 
-[node name="VFX_Blood_Marks_A3" type="Node3D"]
+[node name="VFX_Blood_Marks_A3" type="Node3D" unique_id=1951186015]
 
-[node name="Blood_Marks_A3" type="GPUParticles3D" parent="."]
+[node name="Blood_Marks_A3" type="GPUParticles3D" parent="." unique_id=271459776]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.384, 0)
 layers = 4
 material_override = SubResource("ShaderMaterial_le8wj")

@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://csps0dnf2gf2n" path="res://Player/player_hurtbox_component.gd" id="5_eon52"]
 [ext_resource type="Script" uid="uid://brvxqhk8jpiq2" path="res://addons/player/health_detect.gd" id="6_5fkmn"]
 [ext_resource type="Script" uid="uid://dql5v81gqvdat" path="res://components/status_effect_component.gd" id="6_eon52"]
+[ext_resource type="AudioStream" uid="uid://b4ajsd7gilmx" path="res://sfx/huskdeathlongerlouder.wav" id="8_jaogv"]
 [ext_resource type="AudioStream" uid="uid://df2b8w21sb3xf" path="res://sfx/hit-rock-03-266305.mp3" id="8_jux4o"]
 [ext_resource type="Shader" uid="uid://dgt3e85o3avu2" path="res://Player/damage.gdshader" id="9_4ng6s"]
 [ext_resource type="Script" uid="uid://dmju02n5xp4s0" path="res://addons/player/step_detect.gd" id="9_863th"]
@@ -22,10 +23,19 @@
 [ext_resource type="Shader" uid="uid://b6aaasr8tdyr5" path="res://Player/distort.gdshader" id="12_vnn13"]
 [ext_resource type="Script" uid="uid://b74g26tt85wqw" path="res://Player/launch.gd" id="13_tio5b"]
 [ext_resource type="Script" uid="uid://xc7bfscwsgbt" path="res://addons/player/ground_material_detector.gd" id="14_y1ty0"]
+[ext_resource type="Script" uid="uid://iiobepm77ak5" path="res://addons/player/fall_damage_component.gd" id="15_paiqy"]
+[ext_resource type="AudioStream" uid="uid://dk0ftcdtucymv" path="res://sfx/fall_damage.ogg" id="16_paiqy"]
 [ext_resource type="Shader" uid="uid://dc66sjqqg3w1a" path="res://scenes/player/circular_bar.gdshader" id="22_2m5xu"]
 [ext_resource type="Script" uid="uid://83vqngoyog5j" path="res://scenes/player/hold_attack_bar.gd" id="23_5fkmn"]
 [ext_resource type="Shader" uid="uid://2i33d2n3yv47" path="res://addons/player/radial_blur.gdshader" id="25_k1tkb"]
 [ext_resource type="Script" uid="uid://8jstcds4fmx8" path="res://addons/player/radial_blur.gd" id="26_hqsyx"]
+[ext_resource type="AudioStream" uid="uid://cc67f271a754i" path="res://sfx/chargecomplete.wav" id="28_7vtq1"]
+[ext_resource type="Shader" uid="uid://dn324eo1sre1n" path="res://addons/player/death.gdshader" id="29_f81pb"]
+[ext_resource type="PackedScene" uid="uid://78q517wrknfe" path="res://player_health.tscn" id="29_wbjo2"]
+[ext_resource type="Texture2D" uid="uid://bheudhnmjwpme" path="res://VFX/textures/T_VFX_Noise_14.PNG" id="30_ae3c0"]
+[ext_resource type="Texture2D" uid="uid://biqgxpwwr01ye" path="res://VFX/textures/CloudNoise_Tiled.png" id="31_waixc"]
+[ext_resource type="Script" uid="uid://da13b6wjrk5g7" path="res://addons/player/death_overlay.gd" id="32_ae3c0"]
+[ext_resource type="FontFile" uid="uid://bgwsxfa2fbvel" path="res://addons/madtalk/fonts/ShipporiMincho-Regular.ttf" id="35_t571y"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xc2g5"]
 
@@ -34,7 +44,6 @@ radius = 0.43554688
 height = 2.0170898
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dverj"]
-radius = 0.75
 
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_dverj"]
 length = 0.5
@@ -117,7 +126,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("%Head/../damage:material:shader_parameter/line_density")
+tracks/6/path = NodePath("../hud/damage:material:shader_parameter/line_density")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -129,7 +138,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("%Head/../radial_blur:blur")
+tracks/7/path = NodePath("../hud/radial_blur:blur")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -186,6 +195,54 @@ tracks/11/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0)]
 }
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("../hud/death:material:shader_parameter/factor")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("../hud/death/Label:modulate")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("../hud/death/Label:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("../hud/death:visible")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0.0009999999),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_hqsyx"]
 resource_name = "death"
@@ -217,11 +274,11 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("%Head/../damage:material:shader_parameter/line_density")
+tracks/2/path = NodePath("../hud/damage:material:shader_parameter/line_density")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.45, 1, 1.42, 4.94171, 5),
+"times": PackedFloat32Array(0, 0.45, 1, 1.42, 4.866667, 5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [0.0, 0.538000025555, 0.538000025555, 1.0, 1.0, 0.0]
@@ -229,7 +286,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("%Head/../radial_blur:blur")
+tracks/3/path = NodePath("../hud/radial_blur:blur")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -238,6 +295,69 @@ tracks/3/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../hud/death:material:shader_parameter/factor")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1, 1.5666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.999999977648]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../hud/death/Label:modulate")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2.2, 3.2625427),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../hud/death/Label:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.06666666, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../hud/death:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/8/type = "audio"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../hud/death/AudioStreamPlayer")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"clips": [{
+"end_offset": 0.5623965,
+"start_offset": 0.0,
+"stream": ExtResource("8_jaogv")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/8/use_blend = true
 
 [sub_resource type="Animation" id="Animation_kgtn1"]
 resource_name = "jump"
@@ -339,6 +459,33 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.0704, 0.4544, 0.8)
 }
 
+[sub_resource type="Animation" id="Animation_paiqy"]
+resource_name = "land_damage"
+length = 0.8
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Neck/Camera3D:rotation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 2, 2, 2),
+"points": PackedFloat32Array(0, 0, 0, 0.023466667, 0, -0.1, -0.023466667, 0, 0.128, 0, 0.0034906585, -0.128, 0, 0.115200005, 0, 0, -0.115200005, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.0704, 0.4544, 0.8)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%Camera3D:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.07, 0.47),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.1, 0), Vector3(0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_863th"]
 resource_name = "swing_left"
 length = 0.8
@@ -376,13 +523,43 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.0704, 0.4544, 0.8)
 }
 
+[sub_resource type="Animation" id="Animation_t571y"]
+resource_name = "vault"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Camera3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.28, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.3, 0), Vector3(0, 0.3, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%Camera3D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.14, 0.28, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.05235988, 0, 0.05235988), Vector3(0.05235988, 0, -0.05235988), Vector3(0, 0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_by45h"]
 _data = {
 &"RESET": SubResource("Animation_by45h"),
 &"death": SubResource("Animation_hqsyx"),
 &"jump": SubResource("Animation_kgtn1"),
 &"land": SubResource("Animation_n47sy"),
-&"swing_left": SubResource("Animation_863th")
+&"land_damage": SubResource("Animation_paiqy"),
+&"swing_left": SubResource("Animation_863th"),
+&"vault": SubResource("Animation_t571y")
 }
 
 [sub_resource type="Animation" id="Animation_3br5i"]
@@ -422,51 +599,7 @@ _data = {
 &"footsteps": SubResource("Animation_0l22m")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_cqqbj"]
-shader = ExtResource("12_vnn13")
-shader_parameter/strength = 0.08
-shader_parameter/center = Vector2(0.5, 0.5)
-shader_parameter/radius = 0.0
-shader_parameter/aberration = 0.0490000023275
-shader_parameter/width = 0.04
-shader_parameter/feather = 0.2470000117325
-
-[sub_resource type="Animation" id="Animation_3dmg4"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/radius")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
-[sub_resource type="Animation" id="Animation_c1i0s"]
-resource_name = "shockwave"
-length = 0.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/radius")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.23),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_863th"]
-_data = {
-&"RESET": SubResource("Animation_3dmg4"),
-&"shockwave": SubResource("Animation_c1i0s")
-}
+[sub_resource type="SphereShape3D" id="SphereShape3D_paiqy"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_qk8yx"]
 noise_type = 2
@@ -530,12 +663,58 @@ shader_parameter/blur_center = Vector2(0.5, 0.5)
 shader_parameter/blur_power = 0.01
 shader_parameter/sampling_count = 2
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cqqbj"]
+shader = ExtResource("12_vnn13")
+shader_parameter/strength = 0.08
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/radius = 0.0
+shader_parameter/aberration = 0.0490000023275
+shader_parameter/width = 0.04
+shader_parameter/feather = 0.2470000117325
+
+[sub_resource type="Animation" id="Animation_3dmg4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_c1i0s"]
+resource_name = "shockwave"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.23),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_863th"]
+_data = {
+&"RESET": SubResource("Animation_3dmg4"),
+&"shockwave": SubResource("Animation_c1i0s")
+}
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k1tkb"]
 shader = ExtResource("22_2m5xu")
-shader_parameter/progress = 1.0
+shader_parameter/progress = 0.0
 shader_parameter/ring_thickness = 0.04500000143898
 shader_parameter/ring_radius = 0.42500001692762
-shader_parameter/progress_color = Color(0.4117647, 0.4117647, 0.4117647, 0.5019608)
+shader_parameter/progress_color = Color(0.41140202, 0.41140202, 0.41140202, 0.5)
 shader_parameter/background_color = Color(0.2, 0.2, 0.2, 0)
 shader_parameter/gradient_color = Color(1, 1, 1, 1)
 shader_parameter/smoothness = 0.0010000000475
@@ -547,11 +726,27 @@ shader_parameter/rotation_offset = 3.14000014915
 length = 0.5
 slide_on_slope = true
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7vtq1"]
+shader = ExtResource("29_f81pb")
+shader_parameter/base_color = Color(0, 0, 0, 1)
+shader_parameter/node_resolution = Vector2(1920, 1080)
+shader_parameter/factor = 0.0
+shader_parameter/width = 0.285
+shader_parameter/gradient_texture = ExtResource("30_ae3c0")
+shader_parameter/gradient_fixed = false
+shader_parameter/shape_texture = ExtResource("31_waixc")
+shader_parameter/shape_tiling = 1.0
+shader_parameter/shape_rotation = 0.0
+shader_parameter/shape_scroll = Vector2(0.1, 0.1)
+shader_parameter/shape_feathering = 0.56999998725936
+shader_parameter/shape_treshold = 1.0
+
 [node name="Player" type="CharacterBody3D" unique_id=1383979839 node_paths=PackedStringArray("player_body", "mainhand") groups=["player"]]
 collision_mask = 35
 script = ExtResource("1_cyojo")
 inventory = Array[ExtResource("2_863th")]([ExtResource("3_e6ia4"), ExtResource("4_d6j5h"), ExtResource("5_863th")])
 player_body = NodePath("Head/Neck/Camera3D/playerBody")
+vault_duration = 0.75
 mainhand = NodePath("Head/SubViewportContainer/SubViewport/Camera3D/RightHand")
 weapon_rotation_amount = 0.25
 
@@ -568,8 +763,9 @@ shape = SubResource("CapsuleShape3D_wydro")
 [node name="Ceiling" type="ShapeCast3D" parent="." unique_id=1501796684]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
 shape = SubResource("SphereShape3D_dverj")
-target_position = Vector3(0, 1, 0)
+target_position = Vector3(0, 0.75, 0)
 max_results = 1
+collision_mask = 2
 debug_shape_custom_color = Color(0.87734646, 2.9119105e-06, 1.92523e-07, 1)
 
 [node name="Ground" type="CollisionShape3D" parent="." unique_id=119548199]
@@ -597,7 +793,7 @@ unique_name_in_owner = true
 
 [node name="Camera3D" type="Camera3D" parent="Head/Neck" unique_id=1569056309]
 unique_name_in_owner = true
-transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0, 1, 0, 0, 0)
 cull_mask = 524285
 current = true
 
@@ -654,7 +850,7 @@ mainhand = NodePath("../RightHand")
 [node name="stepDetect" type="Node3D" parent="Head" unique_id=838693918 node_paths=PackedStringArray("separation_ray", "player")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5979036, 0)
 script = ExtResource("9_863th")
-separation_ray = NodePath("../../autostep")
+separation_ray = NodePath("../../hud/autostep")
 player = NodePath("../..")
 
 [node name="stepBase" type="RayCast3D" parent="Head/stepDetect" unique_id=1607411453]
@@ -681,15 +877,40 @@ collide_with_areas = true
 script = ExtResource("14_y1ty0")
 footstep_sounds = NodePath("../FootSteps")
 
+[node name="vaultRayCast" type="RayCast3D" parent="Head" unique_id=1148486222]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7499999, -0.80010605)
+target_position = Vector3(0, -1.25, 0)
+collision_mask = 10
+
 [node name="FootStepsAnimationPlayer" type="AnimationPlayer" parent="." unique_id=310687616]
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_3br5i")
 autoplay = &"footsteps"
 
-[node name="HealthComponent" type="Node3D" parent="." unique_id=669479295]
-script = ExtResource("4_7ek8b")
-max_health = 30.0
-metadata/_custom_type_script = "uid://dgjqgiw3yw42e"
+[node name="fallDamageComponent" type="Area3D" parent="." unique_id=478023997 node_paths=PackedStringArray("hit_sound")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3359272, 0)
+collision_layer = 4
+collision_mask = 13
+monitoring = false
+monitorable = false
+script = ExtResource("15_paiqy")
+hit_sound = NodePath("falldamage")
+can_knockback = false
+damage_types = Dictionary[int, float]({
+0: 1.0
+})
+metadata/_custom_type_script = "uid://dlsydctoxqbwy"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="fallDamageComponent" unique_id=1980769383]
+shape = SubResource("SphereShape3D_paiqy")
+debug_color = Color(1, 0, 0, 0.42000002)
+
+[node name="falldamage" type="AudioStreamPlayer3D" parent="fallDamageComponent" unique_id=1738343784]
+stream = ExtResource("16_paiqy")
+volume_db = 6.0
+max_db = 6.0
+bus = &"SFX"
 
 [node name="hurtbox_component" type="Area3D" parent="." unique_id=802643040 node_paths=PackedStringArray("player_camera", "viewport_camera", "health_component", "status_component", "source")]
 collision_mask = 13
@@ -723,21 +944,18 @@ mesh_to_affect = NodePath("../MeshInstance3D")
 health_component = NodePath("../HealthComponent")
 metadata/_custom_type_script = "uid://dql5v81gqvdat"
 
-[node name="launch" type="ColorRect" parent="." unique_id=1681020044]
-material = SubResource("ShaderMaterial_cqqbj")
+[node name="hud" type="Control" parent="." unique_id=89617392]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("13_tio5b")
 
-[node name="shockwave" type="AnimationPlayer" parent="launch" unique_id=1285983707]
-libraries/ = SubResource("AnimationLibrary_863th")
-
-[node name="damage" type="ColorRect" parent="." unique_id=634867585 node_paths=PackedStringArray("hurtbox")]
+[node name="damage" type="ColorRect" parent="hud" unique_id=634867585 node_paths=PackedStringArray("hurtbox")]
 material = SubResource("ShaderMaterial_vhccx")
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -745,14 +963,16 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("10_jux4o")
-hurtbox = NodePath("../hurtbox_component")
+hurtbox = NodePath("../../hurtbox_component")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="damage" unique_id=1537257084]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="hud/damage" unique_id=1537257084]
 libraries/ = SubResource("AnimationLibrary_qk8yx")
 
-[node name="radial_blur" type="ColorRect" parent="." unique_id=1404859838]
+[node name="radial_blur" type="ColorRect" parent="hud" unique_id=1404859838]
+unique_name_in_owner = true
 visible = false
 material = SubResource("ShaderMaterial_hqsyx")
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -762,7 +982,22 @@ mouse_filter = 2
 script = ExtResource("26_hqsyx")
 blur_amount = 0.01
 
-[node name="crosshair" type="CenterContainer" parent="." unique_id=857848023 node_paths=PackedStringArray("RETICLE_LINES", "PLAYER_CONTROLLER")]
+[node name="launch" type="ColorRect" parent="hud" unique_id=1681020044]
+material = SubResource("ShaderMaterial_cqqbj")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("13_tio5b")
+
+[node name="shockwave" type="AnimationPlayer" parent="hud/launch" unique_id=1285983707]
+libraries/ = SubResource("AnimationLibrary_863th")
+
+[node name="crosshair" type="CenterContainer" parent="hud" unique_id=857848023 node_paths=PackedStringArray("RETICLE_LINES", "PLAYER_CONTROLLER")]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -777,54 +1012,117 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("12_qk8yx")
 RETICLE_LINES = [NodePath("top"), NodePath("right"), NodePath("bottom"), NodePath("left")]
-PLAYER_CONTROLLER = NodePath("..")
+PLAYER_CONTROLLER = NodePath("../..")
 
-[node name="top" type="Line2D" parent="crosshair" unique_id=610082759]
+[node name="top" type="Line2D" parent="hud/crosshair" unique_id=610082759]
 points = PackedVector2Array(-5, -10, 0, -20, 5, -10)
 width = 2.0
 default_color = Color(0.41140202, 0.41140202, 0.41140202, 0.5)
 
-[node name="right" type="Line2D" parent="crosshair" unique_id=701899964]
+[node name="right" type="Line2D" parent="hud/crosshair" unique_id=701899964]
 points = PackedVector2Array(10, -5, 20, 0, 10, 5)
 width = 2.0
 default_color = Color(0.41140202, 0.41140202, 0.41140202, 0.5)
 
-[node name="bottom" type="Line2D" parent="crosshair" unique_id=1399638602]
+[node name="bottom" type="Line2D" parent="hud/crosshair" unique_id=1399638602]
 points = PackedVector2Array(5, 10, 0, 20, -5, 10)
 width = 2.0
 default_color = Color(0.41140202, 0.41140202, 0.41140202, 0.5)
 
-[node name="left" type="Line2D" parent="crosshair" unique_id=107856571]
+[node name="left" type="Line2D" parent="hud/crosshair" unique_id=107856571]
 points = PackedVector2Array(-10, 5, -20, 0, -10, -5)
 width = 2.0
 default_color = Color(0.41140202, 0.41140202, 0.41140202, 0.5)
 
-[node name="hold_attack_bar" type="ColorRect" parent="." unique_id=1612312757]
+[node name="hold_attack_bar" type="ColorRect" parent="hud" unique_id=1612312757]
 material = SubResource("ShaderMaterial_k1tkb")
 custom_minimum_size = Vector2(90, 90)
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -10.0
-offset_top = -10.0
-offset_right = 10.0
-offset_bottom = 10.0
+offset_left = -45.0
+offset_top = -45.0
+offset_right = 45.0
+offset_bottom = 45.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("23_5fkmn")
 
-[node name="autostep" type="CollisionShape3D" parent="." unique_id=378412171]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="hud/hold_attack_bar" unique_id=462786893]
+stream = ExtResource("28_7vtq1")
+bus = &"SFX"
+
+[node name="autostep" type="CollisionShape3D" parent="hud" unique_id=378412171]
 transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, 0, 0.0522469, 0)
 shape = SubResource("SeparationRayShape3D_863th")
 disabled = true
 debug_color = Color(1, 0, 0, 1)
 
+[node name="playerHP" type="MarginContainer" parent="hud" unique_id=232751793]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_right = 340.0
+offset_bottom = 118.0
+size_flags_horizontal = 4
+mouse_filter = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+
+[node name="playerHealth" parent="hud/playerHP" unique_id=592960900 instance=ExtResource("29_wbjo2")]
+layout_mode = 2
+mouse_filter = 2
+max_value = 1.0
+value = 0.5
+
+[node name="death" type="ColorRect" parent="hud" unique_id=575191084]
+material = SubResource("ShaderMaterial_7vtq1")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("32_ae3c0")
+
+[node name="Label" type="Label" parent="hud/death" unique_id=1517433797]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -278.0
+offset_top = -93.0
+offset_right = 221.0
+offset_bottom = 93.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.8235294, 0, 0, 1)
+theme_override_fonts/font = ExtResource("35_t571y")
+theme_override_font_sizes/font_size = 128
+text = "MORTIS"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="hud/death" unique_id=1243036561]
+volume_db = 6.0
+bus = &"SFX"
+
+[node name="HealthComponent" type="Node3D" parent="." unique_id=669479295]
+script = ExtResource("4_7ek8b")
+max_health = 100.0
+metadata/_custom_type_script = "uid://dgjqgiw3yw42e"
+
 [node name="enemy_look_at" type="Node3D" parent="." unique_id=1527806411]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.297422, 0)
 
-[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="damage_taken" from="hurtbox_component" to="." method="_on_hurtbox_component_damage_taken"]
-[connection signal="damage_taken" from="hurtbox_component" to="radial_blur" method="_on_hurtbox_component_damage_taken"]
+[connection signal="damage_taken" from="hurtbox_component" to="hud/radial_blur" method="_on_hurtbox_component_damage_taken"]
+[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
+[connection signal="health_changed" from="HealthComponent" to="hud/playerHP/playerHealth" method="_on_health_changed"]
+[connection signal="max_health_changed" from="HealthComponent" to="hud/playerHP/playerHealth" method="_on_max_health_changed"]

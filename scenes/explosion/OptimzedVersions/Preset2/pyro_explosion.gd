@@ -6,6 +6,7 @@ extends Node3D
 @onready var audio: AudioStreamPlayer3D = $AudioStreamPlayer3D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var damage_component: DamageComponent = $DamageComponent
+@onready var scorch_decal: Decal = $ScorchDecal
 
 var _shockwave_tween: Tween
 var _scorch_tween: Tween
@@ -24,7 +25,7 @@ func _physics_process(delta: float) -> void:
 				if i is RigidBody3D or i is PhysicalBone3D:
 					if !hits.has(i):
 						hits.append(i)
-						i.apply_central_impulse(-(i.global_position - self.global_position).normalized() * 50 * i.mass)
+						i.apply_central_impulse((i.global_position - self.global_position).normalized() * 50 * i.mass)
 
 
 func _set_trigger_explosion(value: bool) -> void:
@@ -65,4 +66,4 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 
 func _on_damage_component_damage_dealt(types: Dictionary, actual: float, stance_damage: float, target: hurtbox_component) -> void:
 	if target.get_parent() is PhysicalBone3D:
-		target.get_parent().apply_central_impulse(-(target.get_parent().global_position - self.global_position).normalized() * 200 * target.get_parent().mass)
+		target.get_parent().apply_central_impulse((target.get_parent().global_position - self.global_position).normalized() * 350 * target.get_parent().mass)

@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://wbbu81bn30xc"]
 
 [ext_resource type="Script" uid="uid://dtuv0q76720mr" path="res://weapon_scene.gd" id="1_3bige"]
+[ext_resource type="Texture2D" uid="uid://cglk1gy5xb1bw" path="res://Player/weapon/ALL/BrokenSword/2026-02-18_114227.png" id="3_ibk3j"]
+[ext_resource type="Material" uid="uid://c5w2i4ors51to" path="res://blood_buildup.tres" id="4_db8ak"]
 [ext_resource type="ArrayMesh" uid="uid://fiodbacyepa" path="res://Player/weapon/ALL/BrokenSword/sword_final_anime_if_you_change_it_again_i_kill_you.tres" id="5_rrms8"]
+[ext_resource type="Texture2D" uid="uid://dk3fnk8nqropx" path="res://Player/weapon/ALL/BrokenSword/2026-02-18_114227_specular(1).png" id="5_xjaq8"]
 [ext_resource type="AudioStream" uid="uid://duf0yvd24d70c" path="res://sfx/one_handed_sword_swing.ogg" id="8_trg51"]
 [ext_resource type="AudioStream" uid="uid://d0k3cpoaf1t3b" path="res://sfx/one_handed_sword_hit.ogg" id="9_trg51"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="10_cngb6"]
@@ -10,6 +13,15 @@
 [ext_resource type="Shader" uid="uid://bd6eynp1qsy0g" path="res://addons/GPUTrail-main/shaders/trail.gdshader" id="11_rrms8"]
 [ext_resource type="Shader" uid="uid://bnbfs08hp70x0" path="res://addons/GPUTrail-main/shaders/trail_draw_pass.gdshader" id="12_niu1w"]
 [ext_resource type="Script" uid="uid://dwsn7gxfshtf8" path="res://addons/GPUTrail-main/GPUTrail3D.gd" id="13_5f2v5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rdx2s"]
+resource_name = "Material.003"
+next_pass = ExtResource("4_db8ak")
+cull_mode = 2
+albedo_texture = ExtResource("3_ibk3j")
+normal_enabled = true
+normal_texture = ExtResource("5_xjaq8")
+texture_filter = 4
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ri8l3"]
 radius = 0.109079
@@ -105,6 +117,7 @@ trail = NodePath("weapon/GPUTrail3D")
 transform = Transform3D(1.23, 0, 0, 0, 1.2300001, 0, 0, 0, 1.2300001, 0, 0.2794871, 0)
 layers = 2
 mesh = ExtResource("5_rrms8")
+surface_material_override/0 = SubResource("StandardMaterial3D_rdx2s")
 
 [node name="DamageComponent" type="Area3D" parent="weapon" unique_id=1922912389 node_paths=PackedStringArray("hit_sound")]
 transform = Transform3D(1, -1.1680913e-09, 1.2344703e-10, -9.3974055e-09, 1, -1.4901161e-08, 2.057563e-10, 0, 1, -0.03604628, 0.2894909, -0.016105497)

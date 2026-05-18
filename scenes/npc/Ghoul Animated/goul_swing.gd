@@ -8,20 +8,10 @@ extends Node
 func _ready() -> void:
 	animation_tree["parameters/playback"].connect("state_finished", _anim_finished)
 	
-	
 func _on_swing_state_entered() -> void:
-	if source_npc.left_arm && source_npc.right_arm:
-		var rand = randf()
-		if rand > 0.5:
-			animation_tree.set("parameters/conditions/chargeLeft", true)
-		else:
-			animation_tree.set("parameters/conditions/chargeRight", true)
-			
-	if source_npc.right_arm && !source_npc.left_arm:
-		animation_tree.set("parameters/conditions/chargeRight", true)
-	if !source_npc.right_arm && source_npc.left_arm:
-		animation_tree.set("parameters/conditions/chargeLeft", true)
-	
+	animation_tree.set("parameters/conditions/chargeRight", false)
+	animation_tree.set("parameters/conditions/chargeLeft", false)
+	animation_tree.set("parameters/conditions/swing", true)
 	
 
 func _on_swing_state_exited() -> void:
@@ -34,15 +24,15 @@ func _on_swing_state_physics_processing(delta: float) -> void:
 	var desired_location = source_npc.navigation_agent.get_next_path_position()
 	var new_velocity = (desired_location - current_location).normalized() * source_npc.SPEED
 	source_npc.navigation_agent.set_velocity(new_velocity)
-	var random_pos = NavigationServer3D.map_get_closest_point(get_tree().current_scene.get_world_3d().get_navigation_map(),source_npc.target.global_position)
-	source_npc.navigation_agent.set_target_position(random_pos)
-	source_npc.search_position = random_pos
+	if source_npc.target:
+		var random_pos = NavigationServer3D.map_get_closest_point(get_tree().current_scene.get_world_3d().get_navigation_map(),source_npc.target.global_position)
+		source_npc.navigation_agent.set_target_position(random_pos)
+		source_npc.search_position = random_pos
+	else:
+		var random_pos = NavigationServer3D.map_get_closest_point(get_tree().current_scene.get_world_3d().get_navigation_map(),Global.player.global_position)
+		source_npc.navigation_agent.set_target_position(random_pos)
+		source_npc.search_position = random_pos
 	
-	if source_npc.global_position.distance_to(source_npc.target.global_position) < 1:
-			source_npc.SPEED = 4
-			animation_tree.set("parameters/conditions/chargeRight", false)
-			animation_tree.set("parameters/conditions/chargeLeft", false)
-			animation_tree.set("parameters/conditions/swing", true)
 			
 func _anim_finished(state: StringName):
 	if state == "attackLeftEnd":

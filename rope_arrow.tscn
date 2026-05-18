@@ -54,11 +54,11 @@ shader_parameter/flags = 42
 material = SubResource("ShaderMaterial_qbim7")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_md0um"]
-radius = 0.17089844
+radius = 0.08154297
 height = 1.1948242
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f01kd"]
-radius = 0.77490234
+radius = 0.24121094
 height = 1.5498047
 
 [node name="bolt" type="Node3D" unique_id=506285793 node_paths=PackedStringArray("damage_component", "ray_cast_3d", "gpu_trail")]
@@ -134,7 +134,7 @@ stance_damage_value = 0.1
 metadata/_custom_type_script = "uid://dlsydctoxqbwy"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent" unique_id=344335226]
-transform = Transform3D(-0.006841769, -0.9999766, 2.775329e-07, 0.9999766, -0.006841769, 2.2536606e-10, 1.6734552e-09, 2.7752793e-07, 1, 0.0020980632, 1.4375662e-05, -9.1928086e-07)
+transform = Transform3D(-0.006841788, -0.999979, 2.7753413e-07, 0.9999766, -0.006841769, 2.2536606e-10, 1.6880222e-09, 2.7753413e-07, 1.0000049, 0.0020980637, 1.4375662e-05, -9.192845e-07)
 shape = SubResource("CapsuleShape3D_md0um")
 
 [node name="pinArea" type="Area3D" parent="." unique_id=672001805]

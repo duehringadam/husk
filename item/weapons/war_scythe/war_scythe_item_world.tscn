@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://cp0p4yckxtvmw" path="res://addons/game_pieces/collision_sound/collision_sound_player.gd" id="7_s587n"]
 [ext_resource type="ArrayMesh" uid="uid://tjkffnupl1bc" path="res://scenes/Hivemind/MedievalWeapons/Art/Models/SM_WarScythe/SM_WarScythe_mesh.tres" id="8_1us6s"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="9_jst63"]
+[ext_resource type="PackedScene" uid="uid://bvb1ic1mm6bap" path="res://item/item_glint.tscn" id="10_5yv0g"]
 [ext_resource type="PackedScene" uid="uid://dhws2ueoubwwx" path="res://components/bounding_box_component.tscn" id="10_8rxl6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sfsix"]
@@ -113,6 +114,9 @@ metadata/_custom_type_script = "uid://cp0p4yckxtvmw"
 [node name="War Scythe" type="MeshInstance3D" parent="." unique_id=1316351081]
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
 mesh = ExtResource("8_1us6s")
+
+[node name="OmniLight3D" parent="War Scythe" unique_id=1151187837 instance=ExtResource("10_5yv0g")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.022014404, 0.50940776, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1606261379]
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)

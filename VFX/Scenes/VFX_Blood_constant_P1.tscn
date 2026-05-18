@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://ct3qugguxmso5"]
+[gd_scene format=3 uid="uid://ct3qugguxmso5"]
 
 [ext_resource type="Texture2D" uid="uid://brnp67jnwwro6" path="res://VFX/textures/T_smoke_K97.png" id="1_smmpq"]
 [ext_resource type="Texture2D" uid="uid://dbolhruq43rtu" path="res://VFX/textures/T_Blood_bulb_UJ1_testtyyxx.png" id="2_7yly4"]
@@ -147,15 +147,15 @@ gradient = SubResource("Gradient_fu8od")
 render_priority = 0
 shader = ExtResource("5_76l8h")
 shader_parameter/Scale = Vector2(1, 1)
-shader_parameter/Speed_XY = null
-shader_parameter/Specular = 0.5
-shader_parameter/Normal_Map_Depth = 0.4
+shader_parameter/Speed_XY = Vector2(0, 0)
 shader_parameter/Disolver_Texture = ExtResource("6_vhd4n")
 shader_parameter/Color_1D_Gradient = SubResource("GradientTexture1D_n5vmk")
 shader_parameter/Metallic_Texture = SubResource("GradientTexture1D_aqier")
 shader_parameter/Texture_Roughtness = SubResource("GradientTexture2D_c7ha7")
 shader_parameter/Roughtness_1D_Gradient = SubResource("GradientTexture1D_4itwh")
+shader_parameter/Specular = 0.5
 shader_parameter/Normal_Texture = ExtResource("3_k4rat")
+shader_parameter/Normal_Map_Depth = 0.4
 
 [sub_resource type="Curve" id="Curve_2b2g3"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.109848, 0), 0.0, 0.0, 0, 0, Vector2(0.670455, 0.0219437), 0.0, 0.100812, 0, 0, Vector2(1, 0.978022), 5.35081, 0.0, 0, 0]
@@ -185,6 +185,7 @@ emission_ring_axis = Vector3(0, 1, 0)
 emission_ring_height = 0.2
 emission_ring_radius = 0.8
 emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
 angle_min = -180.0
 angle_max = 180.0
 gravity = Vector3(0, 0, 0)
@@ -300,8 +301,8 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_l6rof"]
 _data = {
-"End": SubResource("Animation_e4crc"),
-"Init": SubResource("Animation_svkrw")
+&"End": SubResource("Animation_e4crc"),
+&"Init": SubResource("Animation_svkrw")
 }
 
 [sub_resource type="Gradient" id="Gradient_4tt4c"]
@@ -321,14 +322,14 @@ render_priority = 0
 shader = ExtResource("7_8h6ud")
 shader_parameter/Scale = Vector2(1, 1)
 shader_parameter/Speed_XY = Vector2(0, 0)
-shader_parameter/Specular = 0.5
-shader_parameter/Normal_Map_Depth = 1.0
 shader_parameter/Disolver_Texture = ExtResource("6_vhd4n")
 shader_parameter/Color_1D_Gradient = SubResource("GradientTexture1D_45o4t")
 shader_parameter/Metallic_Texture = ExtResource("8_58m1k")
 shader_parameter/Texture_Roughtness = ExtResource("9_7e2uq")
 shader_parameter/Roughtness_1D_Gradient = SubResource("GradientTexture1D_0xgqo")
+shader_parameter/Specular = 0.5
 shader_parameter/Normal_Texture = ExtResource("3_k4rat")
+shader_parameter/Normal_Map_Depth = 1.0
 
 [sub_resource type="Curve" id="Curve_n81tq"]
 _data = [Vector2(0, 0.0219779), 0.0, 0.189561, 0, 0, Vector2(1, 1), 3.65079, 0.0, 0, 0]
@@ -339,17 +340,17 @@ texture_mode = 1
 curve = SubResource("Curve_n81tq")
 
 [sub_resource type="Curve" id="Curve_gciis"]
-max_value = 2.0
+_limits = [0.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 0.206167), 0.0, 0.340165, 0, 0, Vector2(0.66055, 2), 0.279362, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_gb8iy"]
-max_value = 3.0
+_limits = [0.0, 3.0, 0.0, 1.0]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.373913, 3), 0.0, 0.0, 0, 0, Vector2(1, 0.626374), -5.59655, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="Curve" id="Curve_cb171"]
-max_value = 2.0
+_limits = [0.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 0.206167), 0.0, 0.340165, 0, 0, Vector2(0.66055, 2), 0.279362, 0.0, 0, 0]
 point_count = 2
 
@@ -365,6 +366,7 @@ emission_ring_axis = Vector3(0, 1, 0)
 emission_ring_height = 0.0
 emission_ring_radius = 1.0
 emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
 angle_min = -180.0
 angle_max = 180.0
 gravity = Vector3(0, 0, 0)
@@ -373,9 +375,9 @@ scale_max = 0.2
 scale_curve = SubResource("CurveXYZTexture_otu2t")
 alpha_curve = SubResource("CurveTexture_gstjb")
 
-[node name="VFX_Blood_constant_P1" type="Node3D"]
+[node name="VFX_Blood_constant_P1" type="Node3D" unique_id=1936906706]
 
-[node name="mist" type="GPUParticles3D" parent="."]
+[node name="mist" type="GPUParticles3D" parent="." unique_id=909848909]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 layers = 4
 material_override = SubResource("StandardMaterial3D_41uwo")
@@ -387,7 +389,7 @@ local_coords = true
 process_material = SubResource("ParticleProcessMaterial_3evs1")
 draw_pass_1 = SubResource("QuadMesh_ipfrt")
 
-[node name="bloodcone" type="GPUParticles3D" parent="."]
+[node name="bloodcone" type="GPUParticles3D" parent="." unique_id=1742372747]
 layers = 4
 material_override = SubResource("StandardMaterial3D_e710w")
 amount = 40
@@ -396,7 +398,7 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_2dhb6")
 draw_pass_1 = ExtResource("4_wf6m2")
 
-[node name="submarks" type="GPUParticles3D" parent="."]
+[node name="submarks" type="GPUParticles3D" parent="." unique_id=1739351322]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.28659, -2.20713)
 layers = 4
 material_override = SubResource("ShaderMaterial_rg7wp")
@@ -406,13 +408,11 @@ lifetime = 1.2
 process_material = SubResource("ParticleProcessMaterial_47ee4")
 draw_pass_1 = SubResource("PlaneMesh_3qeul")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_l6rof")
-}
-autoplay = "Init"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=478204271]
+libraries/ = SubResource("AnimationLibrary_l6rof")
+autoplay = &"Init"
 
-[node name="splatter2" type="GPUParticles3D" parent="."]
+[node name="splatter2" type="GPUParticles3D" parent="." unique_id=659021268]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0389559, -1.21252, -2.13296)
 layers = 4
 material_override = SubResource("ShaderMaterial_0kqmj")

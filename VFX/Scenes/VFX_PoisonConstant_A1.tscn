@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://ornfbtw3s200"]
+[gd_scene format=3 uid="uid://ornfbtw3s200"]
 
 [ext_resource type="Shader" uid="uid://ch4qcgd8kp1ja" path="res://VFX/shaders/s_simple_pfc_2.tres" id="1_5u02q"]
 [ext_resource type="Texture2D" uid="uid://bvm6o1xqqfmav" path="res://VFX/textures/T_Blood_Mist_04k_alpha.png" id="2_dj380"]
@@ -10,8 +10,8 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hergl"]
 render_priority = 0
 shader = ExtResource("1_5u02q")
-shader_parameter/power = 0.3
 shader_parameter/Alpha_Texture = ExtResource("2_dj380")
+shader_parameter/power = 0.3
 
 [sub_resource type="Curve" id="Curve_wm82g"]
 _data = [Vector2(0, 1), 0.0, -2.27473, 0, 0, Vector2(0.668478, 0), -0.248603, 0.0, 0, 0]
@@ -83,13 +83,13 @@ render_priority = 0
 shader = ExtResource("3_uemt3")
 shader_parameter/Scale = Vector2(1, 1)
 shader_parameter/Speed_XY = Vector2(0, 0)
-shader_parameter/Normal_Map_Depth = 1.0
 shader_parameter/Disolver_Texture = ExtResource("4_cnfrr")
 shader_parameter/Color_1D_Gradient = SubResource("GradientTexture1D_w0cbs")
 shader_parameter/Metallic_Texture = SubResource("GradientTexture2D_8mnei")
 shader_parameter/Texture_Roughtness = ExtResource("6_64a5j")
 shader_parameter/Roughtness_1D_Gradient = SubResource("GradientTexture1D_j1g5e")
 shader_parameter/Normal_Texture = ExtResource("5_3om18")
+shader_parameter/Normal_Map_Depth = 1.0
 
 [sub_resource type="Curve" id="Curve_o6sge"]
 _data = [Vector2(0, 0.0206795), 0.0, -0.0668502, 0, 0, Vector2(1, 1), 2.56455, 0.0, 0, 0]
@@ -154,12 +154,12 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jd01k"]
 _data = {
-"Init": SubResource("Animation_qh3vc")
+&"Init": SubResource("Animation_qh3vc")
 }
 
-[node name="VFX_PoisonConstant_A1" type="Node3D"]
+[node name="VFX_PoisonConstant_A1" type="Node3D" unique_id=1832496995]
 
-[node name="mist" type="GPUParticles3D" parent="."]
+[node name="mist" type="GPUParticles3D" parent="." unique_id=1180340350]
 layers = 4
 material_override = SubResource("ShaderMaterial_hergl")
 cast_shadow = 0
@@ -169,7 +169,7 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_mt7lq")
 draw_pass_1 = SubResource("QuadMesh_k8uit")
 
-[node name="BloodConstant" type="GPUParticles3D" parent="."]
+[node name="BloodConstant" type="GPUParticles3D" parent="." unique_id=1188530819]
 layers = 4
 material_override = SubResource("ShaderMaterial_l1lho")
 amount = 20
@@ -178,8 +178,6 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_yhu5q")
 draw_pass_1 = SubResource("QuadMesh_7m77s")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_jd01k")
-}
-autoplay = "Init"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=691068966]
+libraries/ = SubResource("AnimationLibrary_jd01k")
+autoplay = &"Init"

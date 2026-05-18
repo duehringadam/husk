@@ -38,6 +38,7 @@ func sprint_activate(value: bool):
 func kick():
 	if is_kicking: return
 	if secondary_active_bool: return
+	kick_damage_component.source = Global.player
 	SignalBus.emit_signal("kick_active", true)
 	var tween = get_tree().create_tween()
 	tween.tween_property(Global.player.camera,"fov",Global.camera_fov+10,.25)

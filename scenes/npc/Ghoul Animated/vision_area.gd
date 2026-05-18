@@ -22,7 +22,7 @@ func _on_timer_timeout() -> void:
 						ray.look_at(raycast_look.global_position)
 						if ray.is_colliding():
 							if ray.get_collider() is Player:
-								aggro_amount = clampf(aggro_amount+.015,0,1.0)
+								aggro_amount = clampf(aggro_amount+.04,0,1.0)
 								emit_signal("aggro_changed", aggro_amount, ray.get_collider())
 								aggrotimer.start()
 

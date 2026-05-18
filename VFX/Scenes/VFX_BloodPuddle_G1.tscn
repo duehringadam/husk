@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://jgxwkoc4tal1"]
+[gd_scene format=3 uid="uid://jgxwkoc4tal1"]
 
 [ext_resource type="ArrayMesh" uid="uid://c76t0djtwb6l6" path="res://VFX/objects/sm_teardrop.obj" id="1_q8bu6"]
 [ext_resource type="Shader" uid="uid://cxwh4tdds7nvc" path="res://VFX/shaders/s_Disolver_small_Liquid_p_Treshold_ds.tres" id="2_vfqra"]
@@ -21,10 +21,10 @@ colors = PackedColorArray(0.47, 0, 0.141, 1, 1, 0.19, 0.19, 1, 0.35, 0.049, 0.14
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5sywx"]
 width = 128
 height = 128
+noise = SubResource("FastNoiseLite_e1ghl")
+color_ramp = SubResource("Gradient_tr6vg")
 seamless = true
 seamless_blend_skirt = 0.305
-color_ramp = SubResource("Gradient_tr6vg")
-noise = SubResource("FastNoiseLite_e1ghl")
 
 [sub_resource type="Gradient" id="Gradient_kktc4"]
 colors = PackedColorArray(0.359069, 0.359069, 0.359069, 1, 0.201526, 0.201527, 0.201526, 1)
@@ -34,10 +34,10 @@ colors = PackedColorArray(0.359069, 0.359069, 0.359069, 1, 0.201526, 0.201527, 0
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hm07v"]
 width = 256
 height = 256
+noise = SubResource("FastNoiseLite_hg5ob")
+color_ramp = SubResource("Gradient_kktc4")
 seamless = true
 seamless_blend_skirt = 1.0
-color_ramp = SubResource("Gradient_kktc4")
-noise = SubResource("FastNoiseLite_hg5ob")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_racna"]
 diffuse_mode = 3
@@ -53,7 +53,7 @@ _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.613195), -1.19922, 0.0, 0, 
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_i8d8y"]
-max_value = 3.0
+_limits = [0.0, 3.0, 0.0, 1.0]
 _data = [Vector2(0, 0.174644), 0.0, 0.0, 0, 0, Vector2(1, 1.03234), 2.59832, 0.0, 0, 0]
 point_count = 2
 
@@ -90,13 +90,14 @@ render_priority = 0
 shader = ExtResource("2_vfqra")
 shader_parameter/Scale = Vector2(1, 1)
 shader_parameter/Speed_XY = Vector2(0, 0)
-shader_parameter/Normal_Map_Depth = 1.0
 shader_parameter/Disolver_Texture = ExtResource("3_6rr8w")
 shader_parameter/Color_1D_Gradient = SubResource("GradientTexture1D_g43r3")
 shader_parameter/Metallic_Texture = ExtResource("4_mvv5b")
 shader_parameter/Texture_Roughtness = ExtResource("6_sorgx")
 shader_parameter/Roughtness_1D_Gradient = SubResource("GradientTexture1D_7te3y")
+shader_parameter/Specular = 0.5
 shader_parameter/Normal_Texture = ExtResource("5_f7xqp")
+shader_parameter/Normal_Map_Depth = 1.0
 
 [sub_resource type="Curve" id="Curve_4t86e"]
 _data = [Vector2(0, 0.076923), 0.0, 0.141167, 0, 0, Vector2(0.868263, 1), 0.0424073, 0.0, 0, 0]
@@ -166,15 +167,15 @@ shader_parameter/ZoomStrenght = -0.06
 shader_parameter/Repeat = 1.0
 shader_parameter/Scale = Vector2(0.5, 0.5)
 shader_parameter/Offset = Vector2(10, 0)
-shader_parameter/DistortionFactor = 0.099
-shader_parameter/Normal_Depth = -2.0
 shader_parameter/TextureDistortion = ExtResource("9_6a7d4")
+shader_parameter/DistortionFactor = 0.099
 shader_parameter/TextureAlpha = SubResource("GradientTexture2D_xganp")
 shader_parameter/Color_1D_Alpha = SubResource("GradientTexture1D_73crp")
 shader_parameter/Texture_Metallic = SubResource("GradientTexture2D_pm6jo")
 shader_parameter/Texture_Rougthness = ExtResource("11_uwut3")
 shader_parameter/Rought_1D_Color = SubResource("GradientTexture1D_4ns63")
 shader_parameter/Texture_Normal = ExtResource("10_l01rt")
+shader_parameter/Normal_Depth = -2.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_idyjh"]
 
@@ -224,13 +225,13 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6ql2w"]
 _data = {
-"Init": SubResource("Animation_58f6v"),
-"RESET": SubResource("Animation_thvwj")
+&"Init": SubResource("Animation_58f6v"),
+&"RESET": SubResource("Animation_thvwj")
 }
 
-[node name="VFX_BloodPuddle_G1" type="Node3D"]
+[node name="VFX_BloodPuddle_G1" type="Node3D" unique_id=1313115557]
 
-[node name="TearDrop" type="GPUParticles3D" parent="."]
+[node name="TearDrop" type="GPUParticles3D" parent="." unique_id=643760058]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.603, 0)
 layers = 4
 material_override = SubResource("StandardMaterial3D_racna")
@@ -239,7 +240,7 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_skn00")
 draw_pass_1 = ExtResource("1_q8bu6")
 
-[node name="Splatter" type="GPUParticles3D" parent="."]
+[node name="Splatter" type="GPUParticles3D" parent="." unique_id=1054382675]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.053, 0)
 layers = 4
 material_override = SubResource("ShaderMaterial_i1e1w")
@@ -250,7 +251,7 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_nyjnx")
 draw_pass_1 = ExtResource("7_vqewo")
 
-[node name="DynamicPuddle" type="MeshInstance3D" parent="."]
+[node name="DynamicPuddle" type="MeshInstance3D" parent="." unique_id=938748750]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0.012, 0)
 layers = 4
 material_override = SubResource("ShaderMaterial_03g6t")
@@ -258,8 +259,6 @@ cast_shadow = 0
 mesh = SubResource("PlaneMesh_idyjh")
 skeleton = NodePath("../..")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_6ql2w")
-}
-autoplay = "Init"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=152377215]
+libraries/ = SubResource("AnimationLibrary_6ql2w")
+autoplay = &"Init"

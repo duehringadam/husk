@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://c4hv3vo456e56"]
+[gd_scene format=3 uid="uid://c4hv3vo456e56"]
 
 [ext_resource type="Shader" uid="uid://k8gcxhwbqqhl" path="res://VFX/shaders/s_Disolver_Liquid_Treshold_pTrail_ds.tres" id="1_x33jl"]
 [ext_resource type="Texture2D" uid="uid://bw86kohsh5kmy" path="res://VFX/textures/T_VFX_Noise_4.PNG" id="2_8ge1q"]
@@ -72,7 +72,7 @@ colors = PackedColorArray(1, 1, 1, 1, 0.0999864, 0.0999859, 0.0999859, 1)
 gradient = SubResource("Gradient_tp3o3")
 
 [sub_resource type="Curve" id="Curve_3cixb"]
-max_value = 2.0
+_limits = [0.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 0.153846), 0.0, 0.528277, 0, 0, Vector2(1, 1.25275), -0.052317, 0.0, 0, 0]
 point_count = 2
 
@@ -86,6 +86,7 @@ emission_ring_axis = Vector3(0, 1, 0)
 emission_ring_height = 0.7
 emission_ring_radius = 0.0
 emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
 angle_min = -180.0
 angle_max = 180.0
 direction = Vector3(0, 0.3, -1)
@@ -142,14 +143,15 @@ gradient = SubResource("Gradient_fu8od")
 render_priority = 0
 shader = ExtResource("5_mnrqh")
 shader_parameter/Scale = Vector2(1, 1)
-shader_parameter/Speed_XY = null
-shader_parameter/Normal_Map_Depth = 0.4
+shader_parameter/Speed_XY = Vector2(0, 0)
 shader_parameter/Disolver_Texture = ExtResource("6_lk4vd")
 shader_parameter/Color_1D_Gradient = SubResource("GradientTexture1D_n5vmk")
 shader_parameter/Metallic_Texture = SubResource("GradientTexture1D_aqier")
 shader_parameter/Texture_Roughtness = SubResource("GradientTexture2D_c7ha7")
 shader_parameter/Roughtness_1D_Gradient = SubResource("GradientTexture1D_4itwh")
+shader_parameter/Specular = 0.5
 shader_parameter/Normal_Texture = ExtResource("7_264k5")
+shader_parameter/Normal_Map_Depth = 0.4
 
 [sub_resource type="Curve" id="Curve_p8n1c"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.103261, 0), 0.0, 0.0, 0, 0, Vector2(0.666667, 0.0728841), 0.0, 0.100812, 0, 0, Vector2(1, 0.978022), 5.35081, 0.0, 0, 0]
@@ -179,6 +181,7 @@ emission_ring_axis = Vector3(0, 1, 0)
 emission_ring_height = 0.2
 emission_ring_radius = 0.8
 emission_ring_inner_radius = 0.5
+emission_ring_cone_angle = 90.0
 angle_min = -180.0
 angle_max = 180.0
 gravity = Vector3(0, 0, 0)
@@ -271,8 +274,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_st1fc"]
 _data = {
-"End": SubResource("Animation_skhsn"),
-"Init": SubResource("Animation_qtc2p")
+&"End": SubResource("Animation_skhsn"),
+&"Init": SubResource("Animation_qtc2p")
 }
 
 [sub_resource type="Gradient" id="Gradient_ky0kq"]
@@ -292,13 +295,14 @@ render_priority = 0
 shader = ExtResource("8_0b5id")
 shader_parameter/Scale = Vector2(1, 1)
 shader_parameter/Speed_XY = Vector2(0, 0)
-shader_parameter/Normal_Map_Depth = 1.0
 shader_parameter/Disolver_Texture = ExtResource("6_lk4vd")
 shader_parameter/Color_1D_Gradient = SubResource("GradientTexture1D_rxqdi")
 shader_parameter/Metallic_Texture = ExtResource("9_3v85u")
 shader_parameter/Texture_Roughtness = ExtResource("10_vvpfg")
 shader_parameter/Roughtness_1D_Gradient = SubResource("GradientTexture1D_0xgqo")
+shader_parameter/Specular = 0.5
 shader_parameter/Normal_Texture = ExtResource("7_264k5")
+shader_parameter/Normal_Map_Depth = 1.0
 
 [sub_resource type="Curve" id="Curve_h7vso"]
 _data = [Vector2(0, 0.0219779), 0.0, 0.189561, 0, 0, Vector2(1, 1), 3.65079, 0.0, 0, 0]
@@ -309,17 +313,17 @@ texture_mode = 1
 curve = SubResource("Curve_h7vso")
 
 [sub_resource type="Curve" id="Curve_ef3yh"]
-max_value = 2.0
+_limits = [0.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 0.206167), 0.0, 0.340165, 0, 0, Vector2(0.66055, 2), 0.279362, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_580tn"]
-max_value = 3.0
+_limits = [0.0, 3.0, 0.0, 1.0]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.373913, 3), 0.0, 0.0, 0, 0, Vector2(1, 0.626374), -5.59655, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="Curve" id="Curve_14abc"]
-max_value = 2.0
+_limits = [0.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 0.206167), 0.0, 0.340165, 0, 0, Vector2(0.66055, 2), 0.279362, 0.0, 0, 0]
 point_count = 2
 
@@ -335,6 +339,7 @@ emission_ring_axis = Vector3(0, 1, 0)
 emission_ring_height = 0.0
 emission_ring_radius = 0.9
 emission_ring_inner_radius = 0.2
+emission_ring_cone_angle = 90.0
 angle_min = -180.0
 angle_max = 180.0
 gravity = Vector3(0, 0, 0)
@@ -343,9 +348,9 @@ scale_max = 0.11
 scale_curve = SubResource("CurveXYZTexture_uqfib")
 alpha_curve = SubResource("CurveTexture_uhkvl")
 
-[node name="VFX_Blood_Constant_A6" type="Node3D"]
+[node name="VFX_Blood_Constant_A6" type="Node3D" unique_id=2011978803]
 
-[node name="leaks" type="GPUParticles3D" parent="."]
+[node name="leaks" type="GPUParticles3D" parent="." unique_id=2085732925]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.13641, 0)
 layers = 4
 material_override = SubResource("ShaderMaterial_d31sq")
@@ -359,7 +364,7 @@ trail_lifetime = 1.0
 process_material = SubResource("ParticleProcessMaterial_p515j")
 draw_pass_1 = SubResource("TubeTrailMesh_41g3y")
 
-[node name="Blood_PlainMark_A2" type="GPUParticles3D" parent="."]
+[node name="Blood_PlainMark_A2" type="GPUParticles3D" parent="." unique_id=1457227132]
 layers = 4
 material_override = SubResource("ShaderMaterial_cw0k8")
 cast_shadow = 0
@@ -368,13 +373,11 @@ lifetime = 1.2
 process_material = SubResource("ParticleProcessMaterial_p0k5e")
 draw_pass_1 = SubResource("PlaneMesh_3qeul")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_st1fc")
-}
-autoplay = "Init"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=471772871]
+libraries/ = SubResource("AnimationLibrary_st1fc")
+autoplay = &"Init"
 
-[node name="splatter2" type="GPUParticles3D" parent="."]
+[node name="splatter2" type="GPUParticles3D" parent="." unique_id=1541968467]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0155954, 0.184597, -4.76837e-07)
 layers = 4
 material_override = SubResource("ShaderMaterial_n3ftx")
