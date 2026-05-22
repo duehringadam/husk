@@ -51,7 +51,7 @@ func adjust_reticle_lines():
 		RETICLE_LINES[3].scale = lerp(Vector2.ONE,Vector2.ONE, RETICLE_SPEED)
 		return
 	
-	if attack_dir.y > .9:
+	if attack_dir.y > .5:
 		RETICLE_LINES[0]["default_color"] = Color.DIM_GRAY
 		RETICLE_LINES[1]["default_color"] = Color.DIM_GRAY
 		RETICLE_LINES[2]["default_color"] = lerp(Color.DIM_GRAY, Color.WHITE, 1)
@@ -63,7 +63,7 @@ func adjust_reticle_lines():
 		RETICLE_LINES[3].scale = lerp(Vector2.ONE,Vector2.ONE, RETICLE_SPEED)
 		return
 	
-	if attack_dir.y < -.9:
+	if attack_dir.y < -.5:
 		RETICLE_LINES[0]["default_color"] = lerp(Color.DIM_GRAY, Color.WHITE, 1)
 		RETICLE_LINES[1]["default_color"] = Color.DIM_GRAY
 		RETICLE_LINES[2]["default_color"] = Color.DIM_GRAY
@@ -75,7 +75,7 @@ func adjust_reticle_lines():
 		RETICLE_LINES[3].scale = lerp(Vector2.ONE,Vector2.ONE, RETICLE_SPEED)
 		return
 	
-	if attack_dir.x > 0.9:
+	if attack_dir.x > 0.5:
 		RETICLE_LINES[0]["default_color"] = Color.DIM_GRAY
 		RETICLE_LINES[1]["default_color"] = lerp(Color.DIM_GRAY, Color.WHITE, 1)
 		RETICLE_LINES[2]["default_color"] = Color.DIM_GRAY
@@ -87,7 +87,7 @@ func adjust_reticle_lines():
 		RETICLE_LINES[3].scale = lerp(Vector2.ONE,Vector2.ONE, RETICLE_SPEED)
 		return
 		
-	if attack_dir.x < -0.9:
+	if attack_dir.x < -0.5:
 		RETICLE_LINES[0]["default_color"] = Color.DIM_GRAY
 		RETICLE_LINES[1]["default_color"] = Color.DIM_GRAY
 		RETICLE_LINES[2]["default_color"] = Color.DIM_GRAY

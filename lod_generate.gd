@@ -2,39 +2,51 @@
 extends EditorScript
 
 # Configuration for LOD generation
-const TARGET_DIR = "res://scenes/Hivemind/CastleOfEternalMists/Prefabs/"
 const NORMAL_MERGE_ANGLE = 25.0
 const NORMAL_SPLIT_ANGLE = 60.0
 
 # Extreme LOD configuration (Lower forces faster transitions)
 # Godot default is 1.0. Lower values (e.g., 0.1) force low-res meshes to appear sooner.
-const EXTREME_LOD_BIAS = 0.05
+const EXTREME_LOD_BIAS = 0.003
 
 func _run():
-	var dir = DirAccess.open(TARGET_DIR)
-	if dir:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		while file_name != "":
-			if file_name.ends_with(".tscn"):
-				_process_scene(TARGET_DIR + file_name)
-			file_name = dir.get_next()
-		print("LOD and Bias processing complete.")
-	else:
-		push_error("Could not open directory: " + TARGET_DIR)
-
-func _process_scene(path: String):
-	var scene = load(path) as PackedScene
-	if not scene: return
+	# Get the currently selected node in the scene tree
+	var editor_interface = get_editor_interface()
+	var selection = editor_interface.get_selection()
+	var selected_nodes = selection.get_selected_nodes()
 	
-	var root = scene.instantiate()
-	var mesh_instances = _find_mesh_instances(root)
-	var modified = false
+	if selected_nodes.is_empty():
+		push_warning("No node selected. Please select a parent node in the Scene tree.")
+		return
+		
+	var parent_node = selected_nodes[0]
+	var children = parent_node.get_children()
+	
+	if children.is_empty():
+		print("Selected node '%s' has no children to process." % parent_node.name)
+		return
+		
+	print("Processing children of: ", parent_node.name)
+	
+	var total_modified = 0
+	
+	# Loop through each immediate child of the selected node
+	for child in children:
+		total_modified += _process_node_tree(child)
+		
+	if total_modified > 0:
+		print("Successfully updated %d MeshInstance3D(s) within the children of '%s'." % [total_modified, parent_node.name])
+	else:
+		print("No MeshInstance3D nodes found within the children.")
+
+func _process_node_tree(root_node: Node) -> int:
+	var mesh_instances = _find_mesh_instances(root_node)
+	var modified_count = 0
 	
 	for mi in mesh_instances:
 		# Set the extreme LOD bias on the instance node
 		mi.lod_bias = EXTREME_LOD_BIAS
-		modified = true
+		modified_count += 1
 		
 		# Skip mesh data optimization if there is no mesh attached
 		var original_mesh = mi.mesh
@@ -55,18 +67,8 @@ func _process_scene(path: String):
 			var mat = mi.get_surface_override_material(i)
 			if mat:
 				mi.set_surface_override_material(i, mat)
-
-	if modified:
-		# Save the updated node setup back to the file system
-		var packed_scene = PackedScene.new()
-		var error = packed_scene.pack(root)
-		if error == OK:
-			ResourceSaver.save(packed_scene, path)
-			print("Updated LODs and Bias for: ", path)
-		else:
-			push_error("Failed to pack scene: " + path)
-		
-	root.queue_free()
+				
+	return modified_count
 
 func _find_mesh_instances(node: Node) -> Array[MeshInstance3D]:
 	var results: Array[MeshInstance3D] = []

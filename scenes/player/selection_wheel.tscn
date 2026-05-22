@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bmphfd5h5ant7"]
+
+[ext_resource type="Script" uid="uid://cwk3t1jeu2lmk" path="res://scenes/player/selection_wheel.gd" id="1_0sbqa"]
+[ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/item.gd" id="2_h4tg1"]
+
+[node name="SelectionWheel" type="Control" unique_id=1649874519]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0sbqa")
+background_color = Color(0, 0, 0, 0.69803923)
+line_color = Color(1, 1, 1, 0.58400005)
+options = Array[ExtResource("2_h4tg1")]([null, null, null])

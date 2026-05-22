@@ -127,6 +127,7 @@ var is_vaulting: bool = false
 func _ready() -> void:
 	SignalBus.connect("primary_active", _animate_camera_swing)
 	SignalBus.connect("kick_active", _animate_camera_swing)
+	combat_type = AppSettings.get_directional_combat_from_config()
 	GamePiecesEventBus.combat_type.connect(_on_combat_type_changed)
 	Global.camera_fov = base_fov
 	if Engine.is_editor_hint(): return
@@ -168,11 +169,11 @@ func _physics_process(delta) -> void:
 		handle_kick()
 		match combat_type:
 			0:
-				attack_dir = Global.player.input_dir
-				attack_dir.y = Global.player.input_dir.z
+				attack_dir = input_dir
+				attack_dir.y = input_dir.z
 				
 			1:
-				attack_dir = Input.get_last_mouse_velocity().normalized()
+				attack_dir = mouse_movement.normalized()
 	_handle_ladder_physics()
 
 
@@ -224,7 +225,7 @@ func handle_jump() -> void:
 		velocity.y = jump_power
 		footsteps.play()
 		camera_animation_player.play("jump")
-	if vault_ray_cast.is_colliding() && velocity.y > 0 && !is_vaulting && !ceiling.is_colliding():
+	if vault_ray_cast.is_colliding() && velocity.y > 1 && !is_vaulting && !ceiling.is_colliding():
 		#camera_animation_player.play("vault")
 		_handle_vault(vault_ray_cast.get_collision_point())
 
@@ -260,7 +261,7 @@ func _handle_vault(ledge_point: Vector3):
 	tween.set_ease(Tween.EASE_IN)
 	tween.set_trans(Tween.TRANS_SINE)
 	tween.tween_method(bezier_move.bind(start, mid, destination + Vector3(0.0,0.2,0.0)), 0.0, 1.0, vault_duration)
-	tween.tween_callback(func(): is_vaulting = false;lock_camera = false;mainhand.enable(); offhand.enable())
+	tween.tween_callback(func(): is_vaulting = false;lock_camera = false; mainhand.enable(); offhand.enable())
 	
 func bezier_move(t: float, start: Vector3, mid: Vector3, end:Vector3) -> void:
 	var a = start.lerp(mid, t)
@@ -327,7 +328,7 @@ func look_around() -> void:
 	if lock_camera: return
 	head.rotate_y(look_control.value_axis_2d().x * mouse_sensitivity)
 	neck.rotate_x(look_control.value_axis_2d().y * mouse_sensitivity)
-	neck.rotation.x = clamp(neck.rotation.x, deg_to_rad(-75), deg_to_rad(60))
+	neck.rotation.x = clamp(neck.rotation.x, deg_to_rad(-85), deg_to_rad(85))
 
 
 func handle_movement(delta: float) -> void:
@@ -486,6 +487,8 @@ func _handle_ladder_physics() -> bool:
 		for ladder in get_tree().get_nodes_in_group("ladder"):
 			if ladder.overlaps_body(self):
 				_cur_ladder_climbing = ladder
+				mainhand.disable()
+				offhand.disable()
 				break
 	if _cur_ladder_climbing == null:
 		return false
@@ -515,6 +518,7 @@ func _handle_ladder_physics() -> bool:
 	# Only begin climbing ladders when moving towards them & prevent sticking to top of ladder when dismounting
 	# Trying to best match the player's intention when climbing on ladder
 	var should_dismount = false
+	
 	if not was_climbing_ladder:
 		var mounting_from_top = pos_rel_to_ladder.y > _cur_ladder_climbing.get_node("ladderTop").position.y
 		if mounting_from_top:
@@ -531,6 +535,8 @@ func _handle_ladder_physics() -> bool:
 	if is_on_floor() and ladder_climb_vel <= 0: should_dismount = true
 	
 	if should_dismount:
+		mainhand.enable()
+		offhand.enable()
 		_cur_ladder_climbing = null
 		return false
 	
@@ -538,6 +544,8 @@ func _handle_ladder_physics() -> bool:
 	if was_climbing_ladder and Input.is_action_just_pressed("jump"):
 		self.velocity = _cur_ladder_climbing.global_transform.basis.z * jump_power * 1.5
 		_cur_ladder_climbing = null
+		mainhand.enable()
+		offhand.enable()
 		return false
 	
 	self.velocity = ladder_gtransform.basis * Vector3(ladder_strafe_vel, ladder_climb_vel, 0)

@@ -1249,7 +1249,7 @@ data = PackedVector3Array(-0.01, 0.01, 0.9077, -0.01, -0.01, 0.9077, -0.01, -0.0
 albedo_texture = ExtResource("10_fqkk3")
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_fqkk3"]
-data = PackedVector3Array(-2.5, -2.5, 2, -2.5, -2.5, -2, -2.5, 2.5, -2, 2.5, -2.5, -2, -2.5, -2.5, -2, -2.5, -2.5, 2, -2.5, 2.5, -2, -2.5, -2.5, -2, 2.5, -2.5, -2, -2.5, 2.5, -2, -2.5, 2.5, 2, -2.5, -2.5, 2, -2.5, -2.5, 2, -2.5, 2.5, 2, 2.5, 2.5, 2, 2.5, 2.5, 2, -2.5, 2.5, 2, -2.5, 2.5, -2, -2.5, -2.5, 2, 2.5, -2.5, 2, 2.5, -2.5, -2, 2.5, 2.5, 2, 2.5, -2.5, 2, -2.5, -2.5, 2, 2.5, -2.5, -2, 2.5, -2.5, 2, 2.5, 2.5, 2, 2.5, -2.5, -2, 2.5, 2.5, -2, -2.5, 2.5, -2, -2.5, 2.5, -2, 2.5, 2.5, -2, 2.5, 2.5, 2, 2.5, 2.5, 2, 2.5, 2.5, -2, 2.5, -2.5, -2)
+data = PackedVector3Array(-2.5, -2.5, 2.5, -2.5, -2.5, -2.5, -2.5, 2.5, -2.5, 2.5, -2.5, -2.5, -2.5, -2.5, -2.5, -2.5, -2.5, 2.5, -2.5, 2.5, -2.5, -2.5, -2.5, -2.5, 2.5, -2.5, -2.5, -2.5, 2.5, -2.5, -2.5, 2.5, 2.5, -2.5, -2.5, 2.5, -2.5, -2.5, 2.5, -2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, -2.5, 2.5, 2.5, -2.5, 2.5, -2.5, -2.5, -2.5, 2.5, 2.5, -2.5, 2.5, 2.5, -2.5, -2.5, 2.5, 2.5, 2.5, 2.5, -2.5, 2.5, -2.5, -2.5, 2.5, 2.5, -2.5, -2.5, 2.5, -2.5, 2.5, 2.5, 2.5, 2.5, 2.5, -2.5, -2.5, 2.5, 2.5, -2.5, -2.5, 2.5, -2.5, -2.5, 2.5, -2.5, 2.5, 2.5, -2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, -2.5, 2.5, -2.5, -2.5)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_idyej"]
 data = PackedVector3Array(-2.5, -15, 2, -2.5, -15, -2, -2.5, 15, -2, 2.5, -15, -2, -2.5, -15, -2, -2.5, -15, 2, -2.5, 15, -2, -2.5, -15, -2, 2.5, -15, -2, -2.5, 15, -2, -2.5, 15, 2, -2.5, -15, 2, -2.5, -15, 2, -2.5, 15, 2, 2.5, 15, 2, 2.5, 15, 2, -2.5, 15, 2, -2.5, 15, -2, -2.5, -15, 2, 2.5, -15, 2, 2.5, -15, -2, 2.5, 15, 2, 2.5, -15, 2, -2.5, -15, 2, 2.5, -15, -2, 2.5, -15, 2, 2.5, 15, 2, 2.5, -15, -2, 2.5, 15, -2, -2.5, 15, -2, -2.5, 15, -2, 2.5, 15, -2, 2.5, 15, 2, 2.5, 15, 2, 2.5, 15, -2, 2.5, -15, -2)
@@ -1774,14 +1774,14 @@ metadata/ground_type = "stone"
 shape = SubResource("ConcavePolygonShape3D_e0xis")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D" unique_id=1588213021]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -38.979782, 2.2092452, 0.55864716)
-size = Vector3(5, 5, 4)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -38.979782, 2.7092452, 0.55864716)
+size = Vector3(5, 5, 5)
 material = SubResource("StandardMaterial3D_idyej")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/CSGBox3D" unique_id=2013329477]
 collision_layer = 2
 
-[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/CSGBox3D/StaticBody3D" unique_id=1088828801]
+[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/CSGBox3D/StaticBody3D" unique_id=625840102]
 shape = SubResource("ConcavePolygonShape3D_fqkk3")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D" unique_id=1332399137]

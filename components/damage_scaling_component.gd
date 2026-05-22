@@ -59,5 +59,4 @@ func _process(delta: float) -> void:
 		SignalBus.emit_signal("weapon_charge_value", actual_damage_ratio)
 	elif !swing_ended && charging:
 		actual_damage_ratio = clampf(1.25-timer.time_left,.25,1.25)
-		print(timer.time_left)
 		SignalBus.emit_signal("weapon_charge_value", actual_damage_ratio)

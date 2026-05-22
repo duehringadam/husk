@@ -746,7 +746,6 @@ collision_mask = 35
 script = ExtResource("1_cyojo")
 inventory = Array[ExtResource("2_863th")]([ExtResource("3_e6ia4"), ExtResource("4_d6j5h"), ExtResource("5_863th")])
 player_body = NodePath("Head/Neck/Camera3D/playerBody")
-vault_duration = 0.75
 mainhand = NodePath("Head/SubViewportContainer/SubViewport/Camera3D/RightHand")
 weapon_rotation_amount = 0.25
 
@@ -879,9 +878,9 @@ footstep_sounds = NodePath("../FootSteps")
 
 [node name="vaultRayCast" type="RayCast3D" parent="Head" unique_id=1148486222]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7499999, -0.80010605)
-target_position = Vector3(0, -1.25, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.8)
 collision_mask = 10
+hit_back_faces = false
 
 [node name="FootStepsAnimationPlayer" type="AnimationPlayer" parent="." unique_id=310687616]
 unique_name_in_owner = true
