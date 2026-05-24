@@ -4,6 +4,7 @@
 [ext_resource type="FontFile" uid="uid://ip8tcqh7uxmx" path="res://fonts/Alkhemikal.ttf" id="2_xivtj"]
 [ext_resource type="PackedScene" uid="uid://l2q2on8dxrq5" path="res://Globals/inventory.tscn" id="3_xivtj"]
 [ext_resource type="FontFile" uid="uid://bgwsxfa2fbvel" path="res://addons/madtalk/fonts/ShipporiMincho-Regular.ttf" id="3_xpwvb"]
+[ext_resource type="PackedScene" uid="uid://bmphfd5h5ant7" path="res://scenes/player/selection_wheel.tscn" id="5_vas50"]
 
 [sub_resource type="Gradient" id="Gradient_x2tju"]
 offsets = PackedFloat32Array(0, 0.125, 0.14375)
@@ -141,3 +142,18 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_xivtj")
+
+[node name="selectionWheelDarken" type="ColorRect" parent="." unique_id=1089479055]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.446)
+
+[node name="SelectionWheel" parent="selectionWheelDarken" unique_id=1649874519 instance=ExtResource("5_vas50")]
+unique_name_in_owner = true
+layout_mode = 1

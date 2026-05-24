@@ -16,6 +16,7 @@ func _on_knocked_back_state_entered() -> void:
 	source_npc.SPEED =0
 	animation_tree.set("parameters/conditions/stagger", true)
 	var kb_source = state_chart.get_expression_property("knockback_source")
+	 
 	
 	if ledge_check.is_colliding():
 		for i in ledge_check.get_collision_count():

@@ -4,6 +4,7 @@ class_name item
 
 @export var item_name: String
 @export_multiline var item_description: String
+@export var item_icon: Texture2D
 @export var item_type: ItemEquippableType.ITEM_EQUIPPABLE_TYPES
 @export var item_stats: ItemStat
 @export var item_required_stats: Dictionary[ItemEquippableType.ITEM_REQUIRED_STAT, float]

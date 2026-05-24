@@ -12,6 +12,8 @@ signal focused_item_changed(_item: item)
 @onready var item_name: Label = %itemName
 @onready var item_description: Label = %itemDescription
 @onready var item_type: Label = %itemType
+@onready var open: AudioStreamPlayer = %open
+@onready var close: AudioStreamPlayer = %close
 
 
 var focused_item: item
@@ -24,16 +26,28 @@ func _ready() -> void:
 	
 
 func open_inventory():
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "modulate:a", 1,.1).set_trans(Tween.TRANS_SINE)
+	tween.parallel()
+	tween.tween_property(self, "position", Vector2.ZERO, .1).set_trans(Tween.TRANS_SINE)
+	open.play()
 	GamePiecesEventBus.emit_signal("camera_lock_requested", true)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	visible = true
 	Global.player.can_attack = false
 
 func close_inventory():
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "modulate:a", 0.0,.1).set_trans(Tween.TRANS_SINE)
+	tween.parallel()
+	tween.tween_property(self, "position", Vector2(0,20), .1).set_trans(Tween.TRANS_SINE)
+	close.play()
 	GamePiecesEventBus.emit_signal("camera_lock_requested", false)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	visible = false
 	Global.player.can_attack = true
+	await tween.finished
+	visible = false
+	
 
 
 func _update_inventory(item_signal: item):

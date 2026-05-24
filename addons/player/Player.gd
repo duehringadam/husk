@@ -246,6 +246,7 @@ func _handle_vault(ledge_point: Vector3):
 	
 	if result: return
 	
+	$vault.play()
 	is_vaulting = true
 	lock_camera = true
 	velocity = Vector3.ZERO

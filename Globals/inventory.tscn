@@ -2,10 +2,15 @@
 
 [ext_resource type="Script" uid="uid://ds4jqcfrmjpbj" path="res://Player/inventory.gd" id="1_vm4gm"]
 [ext_resource type="Texture2D" uid="uid://slqquuvjjo3l" path="res://assets/kenney_fantasy-ui-borders/PNG/Double/Border/panel-border-002.png" id="2_ldn6o"]
+[ext_resource type="Script" uid="uid://b5oej1q4h7jvh" path="res://addons/maaacks_menus_template/base/scripts/ui_sound_controller.gd" id="2_qdie2"]
 [ext_resource type="FontFile" uid="uid://bgwsxfa2fbvel" path="res://addons/madtalk/fonts/ShipporiMincho-Regular.ttf" id="3_lt8sb"]
 [ext_resource type="Texture2D" uid="uid://e3utw70yh625" path="res://item/stiletto.svg" id="3_t17us"]
+[ext_resource type="AudioStream" uid="uid://c7e6frvajco6n" path="res://sfx/UI/inventory_hover.wav" id="3_uooo6"]
+[ext_resource type="AudioStream" uid="uid://bo22pr4vd2xyf" path="res://sfx/UI/inventory_select.wav" id="4_amt8r"]
 [ext_resource type="Script" uid="uid://ycbqbi44jmxo" path="res://Globals/item_damage_value.gd" id="4_i58md"]
 [ext_resource type="Script" uid="uid://dhak65rm0c3gy" path="res://Globals/item_required_stats_value.gd" id="5_lt8sb"]
+[ext_resource type="AudioStream" uid="uid://dcuoy8njoatd8" path="res://sfx/UI/inventory_close.ogg" id="8_06a5j"]
+[ext_resource type="AudioStream" uid="uid://c5ynb6jb63fmb" path="res://sfx/UI/inventory_open.ogg" id="8_qdie2"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ldn6o"]
 
@@ -50,12 +55,24 @@ custom_minimum_size = Vector2(550, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 20.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_behavior_recursive = 1
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ldn6o")
 script = ExtResource("1_vm4gm")
+
+[node name="UISoundController" type="Node" parent="." unique_id=823316605]
+script = ExtResource("2_qdie2")
+button_hovered = ExtResource("3_uooo6")
+button_pressed = ExtResource("4_amt8r")
+metadata/_custom_type_script = "uid://b5oej1q4h7jvh"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1963609365]
+layout_mode = 2
+color = Color(0, 0, 0, 0.82600003)
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=169257523]
 layout_mode = 2
@@ -590,6 +607,16 @@ horizontal_scroll_mode = 0
 [node name="items" type="VBoxContainer" parent="MarginContainer/HBoxContainer/border3/playerstats/ScrollContainer" unique_id=1162650827]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="open" type="AudioStreamPlayer" parent="." unique_id=1834351914]
+unique_name_in_owner = true
+stream = ExtResource("8_qdie2")
+bus = &"SFX"
+
+[node name="close" type="AudioStreamPlayer" parent="." unique_id=1273633023]
+unique_name_in_owner = true
+stream = ExtResource("8_06a5j")
+bus = &"SFX"
 
 [connection signal="focused_item_changed" from="." to="MarginContainer/HBoxContainer/border2/item_stats/MarginContainer/ScrollContainer/PanelContainer/items/HBoxContainer/HBoxContainer/strikeValue" method="_on_inventory_focused_item_changed"]
 [connection signal="focused_item_changed" from="." to="MarginContainer/HBoxContainer/border2/item_stats/MarginContainer/ScrollContainer/PanelContainer/items/HBoxContainer/HBoxContainer2/slashValue" method="_on_inventory_focused_item_changed"]
