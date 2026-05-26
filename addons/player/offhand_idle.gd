@@ -13,10 +13,11 @@ func _on_idle_state_entered() -> void:
 	animation_tree.set("parameters/conditions/throw", false)
 	animation_tree.set("parameters/conditions/idle", true)
 	left_hand.can_activate = true
+	SignalBus.emit_signal("secondary_active", false)
 
 
 func _on_idle_state_exited() -> void:
-	pass
+	SignalBus.emit_signal("secondary_active", true)
 
 
 func _on_idle_state_physics_processing(delta: float) -> void:

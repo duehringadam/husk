@@ -1,5 +1,6 @@
 extends Node3D
 
+
 @export var weapon: item: set = _set_item
 @export var offhand: Node3D
 @export var animation_state_machine: AnimationNodeStateMachine
@@ -37,6 +38,10 @@ var damage_component: DamageComponent
 func _ready() -> void:
 	if bone_attachment.get_child_count() > 0:
 		animation_tree.active = true
+	SignalBus.connect("secondary_active", _update_secondary_active)
+
+func _update_secondary_active(value: bool):
+	can_attack = !value
 
 func _set_item(new_item: item):
 	if new_item != null:
@@ -192,7 +197,6 @@ func _perform_raycast(origin: Vector3, target: Vector3):
 	query.collision_mask = 14
 	
 	if result:
-		print(result)
 		if is_instance_valid(result.collider):
 			if result.collider is hurtbox_component && !hits.has(result.collider.owner.get_rid()):
 				hits.append(result.collider.owner.get_rid())

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cwk3t1jeu2lmk" path="res://scenes/player/selection_wheel.gd" id="1_0sbqa"]
 [ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/item.gd" id="2_h4tg1"]
 [ext_resource type="Resource" uid="uid://j2kounr4gxnk" path="res://item/weapons/swords/longsword.tres" id="3_xhbl1"]
-[ext_resource type="AudioStream" uid="uid://cfqc3fbsbwile" path="res://sfx/UI/Inventory_Open_01.wav" id="4_iopko"]
+[ext_resource type="AudioStream" uid="uid://ck86x8a33bwti" path="res://sfx/UI/radial_menu_open.ogg" id="4_iopko"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_xhbl1"]
 
@@ -33,3 +33,4 @@ selected_option = 2
 
 [node name="open" type="AudioStreamPlayer" parent="." unique_id=1016534042]
 stream = ExtResource("4_iopko")
+bus = &"SFX"

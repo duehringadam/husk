@@ -16,8 +16,5 @@ func _on_idle_state_exited() -> void:
 	pass # Replace with function body.
 
 func _on_idle_state_physics_processing(delta: float) -> void:
-	if source_npc.target != null && !has_taunted:
-		has_taunted = true
-		state_chart.send_event("taunt")
-	if source_npc.target != null && has_taunted:
+	if source_npc.target != null:
 		state_chart.send_event("attack")

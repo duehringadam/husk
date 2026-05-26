@@ -1,8 +1,7 @@
 [gd_scene format=3 uid="uid://cvlrs5xd5rjqj"]
 
 [ext_resource type="Script" uid="uid://c8m575j3d3br8" path="res://rope.gd" id="1_fslew"]
-[ext_resource type="Texture2D" uid="uid://dlv0ksa38k4sn" path="res://scenes/medieval_tavern_props_pack/textures/Rope.jpg" id="2_b7p1o"]
-[ext_resource type="Script" uid="uid://c4v44p5gadqto" path="res://rope_ladder.gd" id="2_e4mt4"]
+[ext_resource type="Texture2D" uid="uid://c3htrq1ulst2g" path="res://scenes/MysticDungeon/Art/Textures/T_Rope_BC.png" id="2_fslew"]
 
 [sub_resource type="Curve3D" id="Curve3D_0k8wi"]
 resource_local_to_scene = true
@@ -18,20 +17,14 @@ transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 cull_mode = 2
-albedo_texture = ExtResource("2_b7p1o")
+albedo_texture = ExtResource("2_fslew")
 uv1_world_triplanar = true
 texture_filter = 2
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_5457m"]
-size = Vector3(0.1, 2, 0.1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ivea3"]
-size = Vector3(0.4, 2, 0.4)
-
-[node name="Path3DRope" type="Path3D" unique_id=801087550 groups=["rope"]]
+[node name="Path3DRope" type="Path3D" unique_id=801087550]
 curve = SubResource("Curve3D_0k8wi")
 script = ExtResource("1_fslew")
-cable_thickness = 0.025
+cable_thickness = 0.015
 fixed_end_point = false
 material = SubResource("StandardMaterial3D_q1c8k")
 
@@ -50,26 +43,6 @@ path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
 smooth_faces = true
-
-[node name="collider" type="StaticBody3D" parent="." unique_id=1911781801]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
-collision_layer = 32
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="collider" unique_id=290403341]
-shape = SubResource("BoxShape3D_5457m")
-debug_color = Color(1, 0, 0, 0.42000002)
-
-[node name="ladderArea" type="Area3D" parent="." unique_id=1688419918 groups=["ladder"]]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
-collision_layer = 2
-script = ExtResource("2_e4mt4")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ladderArea" unique_id=707379579]
-shape = SubResource("BoxShape3D_ivea3")
-debug_color = Color(1, 0, 0, 1)
-
-[node name="ladderTop" type="Marker3D" parent="ladderArea" unique_id=1247417123]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.047721148, 0)
 
 [node name="Timer" type="Timer" parent="." unique_id=499755529]
 wait_time = 5.0

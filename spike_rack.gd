@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var static_body: StaticBody3D = $spike/Cube_001/StaticBody3D
+@onready var static_body: StaticBody3D =  %StaticBody3D
 @onready var metal: AudioStreamPlayer3D = $spikes/Plane_002/metal
 
 

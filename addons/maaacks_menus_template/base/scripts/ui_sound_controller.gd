@@ -166,7 +166,7 @@ func connect_ui_sounds(node: Node) -> void:
 		_connect_stream_player(node, button_hovered_player, &"mouse_entered", _play_stream)
 		_connect_stream_player(node, button_focused_player, &"focus_entered", _play_stream)
 		_connect_stream_player(node, button_pressed_player, &"pressed", _play_stream)
-	elif node is TabBar:
+	elif node is TabBar or node is TabContainer:
 		_connect_stream_player(node, tab_hovered_player, &"tab_hovered", _tab_event_play_stream)
 		_connect_stream_player(node, tab_changed_player, &"tab_changed", _tab_event_play_stream)
 		_connect_stream_player(node, tab_selected_player, &"tab_selected", _tab_event_play_stream)

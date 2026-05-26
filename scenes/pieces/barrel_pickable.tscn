@@ -75,7 +75,7 @@ emission_point_count = 512
 scale_max = 1.5
 scale_curve = SubResource("CurveTexture_4mmpl")
 
-[node name="Pickable" type="RigidBody3D" unique_id=522044919 node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component", "health_component") groups=["throwable"]]
+[node name="Pickable" type="RigidBody3D" unique_id=522044919 node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component", "health_component") groups=["disable_collision_while_grabbed", "throwable"]]
 collision_layer = 8
 collision_mask = 14
 contact_monitor = true
@@ -88,7 +88,7 @@ damage_component = NodePath("Barrel/DamageComponent")
 shattered_mesh = ExtResource("2_vagou")
 break_sound = ExtResource("3_vlvcf")
 health_component = NodePath("HealthComponent")
-metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("4_r5ysc"),"default_context_id":0,"display_name":"Wooden Crate","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("5_02j0r")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("5_02j0r"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("6_8jlof"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("4_r5ysc"),"default_context_id":0,"display_name":"Wooden Barrel","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("5_02j0r")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("5_02j0r"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("6_8jlof"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
 ,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
 ]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
 
@@ -96,7 +96,7 @@ metadata/ground_type = "wood"
 
 [node name="InteractionContainer" type="Node" parent="." unique_id=80785940]
 script = ExtResource("4_r5ysc")
-display_name = "Wooden Crate"
+display_name = "Wooden Barrel"
 metadata/_custom_type_script = "uid://ck3cei0hvspym"
 
 [node name="Grab" type="Node" parent="InteractionContainer" unique_id=1959919024]

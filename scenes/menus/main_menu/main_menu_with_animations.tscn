@@ -4,10 +4,10 @@
 [ext_resource type="Script" uid="uid://cj51lmejk1e3a" path="res://scenes/menus/main_menu/main_menu_with_animations.gd" id="2_uonjw"]
 [ext_resource type="PackedScene" uid="uid://dm216huy7h8di" path="res://scenes/menus/options_menu/master_options_menu_with_tabs.tscn" id="3_gci14"]
 [ext_resource type="PackedScene" uid="uid://drlt2laf5svis" path="res://scenes/menus/credits/scrollable_credits.tscn" id="4_j64yt"]
-[ext_resource type="AudioStream" uid="uid://c7e6frvajco6n" path="res://sfx/UI/inventory_hover.wav" id="5_8dhfv"]
+[ext_resource type="AudioStream" uid="uid://cvbcul6u08tp5" path="res://sfx/UI/huskitemhover.ogg" id="5_8dhfv"]
 [ext_resource type="AudioStream" uid="uid://k1arix2k4m16" path="res://sfx/music/huskmenuig.wav" id="5_x5bcm"]
 [ext_resource type="PackedScene" uid="uid://d4n4ub6iqtdps" path="res://scenes/Hivemind/CastleOfEternalMists/Prefabs/SM_Debris_A.tscn" id="5_xkrf4"]
-[ext_resource type="AudioStream" uid="uid://bo22pr4vd2xyf" path="res://sfx/UI/inventory_select.wav" id="6_j8onx"]
+[ext_resource type="AudioStream" uid="uid://d3lrfxnc4pe02" path="res://sfx/UI/huskCLICK.wav" id="6_8dhfv"]
 [ext_resource type="Shader" uid="uid://d2wp65uguqls7" path="res://fakegodray.gdshader" id="6_x5bcm"]
 [ext_resource type="PackedScene" uid="uid://hrbc" path="res://scenes/Hivemind/MedievalWeapons/Art/Models/SM_Sword_2/SM_Sword_2.glb" id="7_672y5"]
 [ext_resource type="Texture2D" uid="uid://b88o8x00oo5am" path="res://scenes/skeleton-character-psx/source/skeleton_psx_fbx/skeleton_d.png" id="8_8dhfv"]
@@ -359,7 +359,7 @@ states/Start/position = Vector2(82, 123)
 transitions = ["Intro", "OpenMainMenu", SubResource("11"), "OpenMainMenu", "OpenSubMenu", SubResource("14"), "Start", "Intro", SubResource("AnimationNodeStateMachineTransition_j0orr"), "OpenSubMenu", "OpenMainMenu", SubResource("AnimationNodeStateMachineTransition_63dxc")]
 graph_offset = Vector2(-180.277, 49)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_8dhfv"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_j8onx"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gioo8"]
@@ -553,7 +553,8 @@ credits_packed_scene = ExtResource("4_j64yt")
 
 [node name="UISoundController" parent="." index="0" unique_id=668375638]
 button_hovered = ExtResource("5_8dhfv")
-button_pressed = ExtResource("6_j8onx")
+button_pressed = ExtResource("6_8dhfv")
+tab_changed = ExtResource("6_8dhfv")
 
 [node name="MenuAnimationPlayer" type="AnimationPlayer" parent="." index="1" unique_id=1428796576]
 libraries/ = SubResource("AnimationLibrary_2kqig")
@@ -567,7 +568,7 @@ parameters/conditions/intro_done = false
 stream = ExtResource("5_x5bcm")
 
 [node name="BackgroundTextureRect" parent="." index="4" unique_id=986426166]
-texture = SubResource("ViewportTexture_8dhfv")
+texture = SubResource("ViewportTexture_j8onx")
 
 [node name="VersionContainer" parent="VersionMargin" parent_id_path=PackedInt32Array(932050008) index="0" unique_id=1257931728]
 modulate = Color(1, 1, 1, 0)
