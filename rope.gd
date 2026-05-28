@@ -10,8 +10,6 @@ extends Path3D
 @export var material : Material
 @onready var mesh := $CSGPolygon3D
 @onready var distance = curve.get_baked_length()
-@onready var collider: StaticBody3D = $collider
-@onready var ladder_area: Rope = $ladderArea
 
 # instances
 var segments : Array
@@ -46,13 +44,15 @@ func _ready() -> void:
 		# position rigidbodies between the joints
 		segments[i].position = curve_points[i] + (curve_points[i+1] - curve_points[i])/2
 		# create collision shape 3Ds
-		segments[i].mass = 10
+		segments[i].mass = 1.0
 		segments[i].add_child(CollisionShape3D.new())
 		# add capsule shape
 		segments[i].get_child(0).shape = CapsuleShape3D.new()
 		segments[i].get_child(0).shape.radius = cable_thickness
 		segments[i].get_child(0).shape.height = (curve_points[i+1]-curve_points[i]).length()
 		segments[i].collision_mask = 14
+		segments[i].collision_layer = 32
+		segments[i].add_to_group("rope_segment")
 		# small offset added to prevent Vector UP
 		segments[i].look_at_from_position(curve_points[i] + (curve_points[i+1] - curve_points[i])/2 + Vector3(0.001, 0, -0.001), curve_points[i+1])
 		segments[i].rotation.x += PI/2

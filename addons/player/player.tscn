@@ -23,6 +23,7 @@
 [ext_resource type="Shader" uid="uid://b6aaasr8tdyr5" path="res://Player/distort.gdshader" id="12_vnn13"]
 [ext_resource type="Script" uid="uid://b74g26tt85wqw" path="res://Player/launch.gd" id="13_tio5b"]
 [ext_resource type="Script" uid="uid://xc7bfscwsgbt" path="res://addons/player/ground_material_detector.gd" id="14_y1ty0"]
+[ext_resource type="AudioStream" uid="uid://d32grx7plyrmc" path="res://scenes/traps/rope_climbing.ogg" id="15_epd12"]
 [ext_resource type="Script" uid="uid://iiobepm77ak5" path="res://addons/player/fall_damage_component.gd" id="15_paiqy"]
 [ext_resource type="AudioStream" uid="uid://dk0ftcdtucymv" path="res://sfx/fall_damage.ogg" id="16_paiqy"]
 [ext_resource type="Shader" uid="uid://dc66sjqqg3w1a" path="res://scenes/player/circular_bar.gdshader" id="22_2m5xu"]
@@ -563,6 +564,10 @@ _data = {
 &"vault": SubResource("Animation_t571y")
 }
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jaogv"]
+radius = 0.8
+height = 1.79375
+
 [sub_resource type="Animation" id="Animation_3br5i"]
 length = 0.001
 tracks/0/type = "value"
@@ -742,12 +747,15 @@ shader_parameter/shape_scroll = Vector2(0.1, 0.1)
 shader_parameter/shape_feathering = 0.56999998725936
 shader_parameter/shape_treshold = 1.0
 
-[node name="Player" type="CharacterBody3D" unique_id=1383979839 node_paths=PackedStringArray("player_body", "mainhand") groups=["player"]]
+[node name="Player" type="CharacterBody3D" unique_id=1383979839 node_paths=PackedStringArray("player_body", "mainhand", "offhand") groups=["player"]]
 collision_mask = 35
 script = ExtResource("1_cyojo")
 inventory = Array[ExtResource("2_863th")]([ExtResource("3_e6ia4"), ExtResource("4_d6j5h"), ExtResource("5_863th")])
 player_body = NodePath("Head/Neck/Camera3D/playerBody")
+climb_speed = 3.0
+camera_lean_position = Vector3(0, 0, 0)
 mainhand = NodePath("Head/SubViewportContainer/SubViewport/Camera3D/RightHand")
+offhand = NodePath("Head/SubViewportContainer/SubViewport/Camera3D/LeftHand")
 weapon_rotation_amount = 0.25
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1092821169]
@@ -876,6 +884,18 @@ collision_mask = 10
 collide_with_areas = true
 script = ExtResource("14_y1ty0")
 footstep_sounds = NodePath("../FootSteps")
+
+[node name="rope_detection" type="Area3D" parent="Head" unique_id=1592696905]
+unique_name_in_owner = true
+collision_mask = 32
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Head/rope_detection" unique_id=1056569730]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.27187502, 0)
+shape = SubResource("CapsuleShape3D_jaogv")
+
+[node name="rope_audio" type="AudioStreamPlayer3D" parent="Head/rope_detection" unique_id=110715705]
+unique_name_in_owner = true
+stream = ExtResource("15_epd12")
 
 [node name="vaultRayCast" type="RayCast3D" parent="Head" unique_id=1148486222]
 unique_name_in_owner = true
@@ -1125,6 +1145,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.297422, 0)
 stream = ExtResource("37_jaogv")
 bus = &"SFX"
 
+[connection signal="body_entered" from="Head/rope_detection" to="." method="_on_rope_detection_body_entered"]
+[connection signal="body_exited" from="Head/rope_detection" to="." method="_on_rope_detection_body_exited"]
 [connection signal="damage_taken" from="hurtbox_component" to="." method="_on_hurtbox_component_damage_taken"]
 [connection signal="damage_taken" from="hurtbox_component" to="hud/radial_blur" method="_on_hurtbox_component_damage_taken"]
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]

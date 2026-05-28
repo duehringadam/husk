@@ -10,15 +10,14 @@ func _on_idle_state_entered() -> void:
 
 
 func _on_idle_state_exited() -> void:
+	SignalBus.emit_signal("primary_active", true)
 	weapon.can_attack = false
 	var tween = get_tree().create_tween()
 	tween.tween_property(Global.player.camera,"fov",Global.camera_fov+10,.25)
-	
 
 
 func _on_idle_state_processing(delta: float) -> void:
 	if weapon.bone_attachment.get_child_count() > 0:
-		print(weapon.attack_dir)
 		if Input.is_action_just_pressed("attack_primary") && weapon.can_attack && Global.player.can_attack:
 			
 			if weapon.attack_dir.y < -.5:

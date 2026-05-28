@@ -29,7 +29,7 @@ const LEAN_SPEED: float = 0.1
 @export var sprint_speed: float = 6.0: set = _set_sprint_speed
 @export var crouch_speed: float = 1.5
 @export var jump_power: float = 4
-@export var climb_speed: float = 3
+@export var climb_speed: float = 1.5
 @export var vault_duration: float = 0.4
 ## How much fov changes from base value based on current velocity
 @export var fov_change: float = 1
@@ -85,6 +85,7 @@ Optional: %jump, %sprint, %crouch, %lean, %zoom, %switch_hands
 @onready var fall_damage_component: DamageComponent = $fallDamageComponent
 @onready var radial_blur: ColorRect = %radial_blur
 @onready var vault_ray_cast: RayCast3D = %vaultRayCast
+@onready var rope_detection: Area3D = %rope_detection
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -123,10 +124,14 @@ var slowed :bool = false
 var slow_speed = 0
 var attack_dir
 var is_vaulting: bool = false
+var can_kick: bool = true
 
 func _ready() -> void:
 	SignalBus.connect("primary_active", _animate_camera_swing)
+	SignalBus.connect("primary_active", _set_weapon_active)
+	SignalBus.connect("secondary_active", _set_weapon_active)
 	SignalBus.connect("kick_active", _animate_camera_swing)
+	
 	combat_type = AppSettings.get_directional_combat_from_config()
 	GamePiecesEventBus.combat_type.connect(_on_combat_type_changed)
 	Global.camera_fov = base_fov
@@ -145,6 +150,9 @@ func _animate_camera_swing(value: bool):
 	if value:
 		camera_animation_player.play("swing_left")
 	
+func _set_weapon_active(value: bool):
+	can_kick = !value
+
 func _set_walk_speed(value: float):
 	walk_speed = clampf(value,WALK_SPEED_MINIMUM, WALK_SPEED_MAXIMUM)
 	
@@ -153,7 +161,7 @@ func _set_sprint_speed(value:float):
 
 func _physics_process(delta) -> void:
 	if Engine.is_editor_hint(): return
-	if not _handle_ladder_physics() or is_vaulting:
+	if not _handle_ladder_physics(delta) or is_vaulting or !is_climbing:
 		handle_effects(delta)
 		handle_falling(delta)
 		handle_jump()
@@ -174,7 +182,9 @@ func _physics_process(delta) -> void:
 				
 			1:
 				attack_dir = mouse_movement.normalized()
-	_handle_ladder_physics()
+	if is_climbing:
+		_handle_rope_climbing(delta)
+	_handle_ladder_physics(delta)
 
 
 func _input(event: InputEvent) -> void:
@@ -191,6 +201,7 @@ func handle_effects(delta) -> void:
 		foot_steps_animation_player.speed_scale = 0.0
 
 func handle_kick():
+	if !can_kick: return
 	if get_node_or_null("%kick") != null and %kick.is_triggered():
 		if %crouch.is_triggered():
 			set_crouch(false)
@@ -476,9 +487,84 @@ func weapon_sway(delta):
 func _on_hurtbox_component_damage_taken(actual: float, source: DamageComponent, hit_dir: Vector3) -> void:
 	camera_animation_player.play("swing_left",-1,1.5)
 
+var active_segments: Array[RigidBody3D] = []
+var current_segment: RigidBody3D = null
+var is_climbing: bool = false
+
+func _handle_rope_climbing(delta: float):
+	current_segment = get_closest_segment()
+	
+	if not current_segment:
+		%rope_audio.stop()
+		is_climbing = false
+		return
+	
+	if is_on_floor():
+		%rope_audio.stop()
+		is_climbing = false
+		return
+		
+	if is_vaulting:
+		%rope_audio.stop()
+		is_climbing = false
+		return
+	
+	mainhand.disable()
+	offhand.disable()
+	
+	# 1. Vertical Climbing
+	var input_dir = Input.get_axis("move_back", "move_forward") 
+	velocity = current_segment.global_transform.basis.y * input_dir * climb_speed
+	
+	if input_dir != 0:
+		if !%rope_audio.playing:
+			%rope_audio.playing = true
+	else:
+		%rope_audio.stop()
+
+	# 2. Horizontal Snapping to Rope Center
+	var target_pos = current_segment.global_position
+	global_position.x = lerp(global_position.x, target_pos.x, 12 * delta)
+	global_position.z = lerp(global_position.z, target_pos.z, 12 * delta)
+
+	# 3. Swinging Physics Impulse
+	var swing_dir = Input.get_axis("move_left", "move_right")
+	if abs(swing_dir) > 0.1:
+		var force_vector = head.global_transform.basis.x * swing_dir * 30
+		current_segment.apply_central_impulse(force_vector * delta)
+
+	# 4. Jump Off Mechanics
+	if Input.is_action_just_pressed("jump"):
+		%rope_audio.stop()
+		is_climbing = false
+		velocity = -camera.global_transform.basis.z * jump_power + Vector3.UP
+	
+	move_and_slide()
+
+func enter_climbing() -> void:
+	if not active_segments.is_empty():
+		is_climbing = true
+		velocity = Vector3.ZERO
+		current_segment = get_closest_segment() 
+
+func get_closest_segment() -> RigidBody3D:
+	if active_segments.is_empty():
+		return null
+		
+	var closest: RigidBody3D = active_segments[0]
+	var min_distance: float = global_position.distance_squared_to(closest.global_position)
+	
+	for i in range(1, active_segments.size()):
+		var distance = global_position.distance_squared_to(active_segments[i].global_position)
+		if distance < min_distance:
+			min_distance = distance
+			closest = active_segments[i]
+			
+	return closest
+
 var _cur_ladder_climbing : Area3D = null
 
-func _handle_ladder_physics() -> bool:
+func _handle_ladder_physics(delta: float) -> bool:
 	if is_vaulting: 
 		return false
 	# Keep track of whether already on ladder. If not already, check if overlapping a ladder area3d.
@@ -487,10 +573,11 @@ func _handle_ladder_physics() -> bool:
 		_cur_ladder_climbing = null
 		for ladder in get_tree().get_nodes_in_group("ladder"):
 			if ladder.overlaps_body(self):
+				ladder.connect("body_entered", disable_hands)
+				ladder.connect("body_exited", enable_hands)
 				_cur_ladder_climbing = ladder
-				mainhand.disable()
-				offhand.disable()
 				break
+			
 	if _cur_ladder_climbing == null:
 		return false
 		
@@ -536,8 +623,6 @@ func _handle_ladder_physics() -> bool:
 	if is_on_floor() and ladder_climb_vel <= 0: should_dismount = true
 	
 	if should_dismount:
-		mainhand.enable()
-		offhand.enable()
 		_cur_ladder_climbing = null
 		return false
 	
@@ -545,8 +630,6 @@ func _handle_ladder_physics() -> bool:
 	if was_climbing_ladder and Input.is_action_just_pressed("jump"):
 		self.velocity = _cur_ladder_climbing.global_transform.basis.z * jump_power * 1.5
 		_cur_ladder_climbing = null
-		mainhand.enable()
-		offhand.enable()
 		return false
 	
 	self.velocity = ladder_gtransform.basis * Vector3(ladder_strafe_vel, ladder_climb_vel, 0)
@@ -559,6 +642,15 @@ func _handle_ladder_physics() -> bool:
 	move_and_slide()
 	return true
 
+func enable_hands(body: Variant):
+	if body == self:
+		mainhand.enable()
+		offhand.enable()
+	
+func disable_hands(body: Variant):
+	if body == self:
+		mainhand.disable()
+		offhand.disable()
 
 func _on_health_component_died() -> void:
 	camera_animation_player.play("death")
@@ -571,3 +663,20 @@ func _on_health_component_died() -> void:
 	lock_camera = true
 	await camera_animation_player.animation_finished
 	get_tree().reload_current_scene()
+
+func _on_rope_detection_body_entered(body: Node3D) -> void:
+	if body.is_in_group("rope_segment") and not active_segments.has(body):
+			active_segments.append(body)
+			is_climbing = true
+
+
+func _on_rope_detection_body_exited(body: Node3D) -> void:
+	if body.is_in_group("rope_segment"):
+		active_segments.erase(body)
+		if current_segment == body:
+			if not active_segments.is_empty():
+				current_segment = get_closest_segment()
+			else:
+				mainhand.enable()
+				offhand.enable()
+				is_climbing = false

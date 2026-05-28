@@ -1,5 +1,7 @@
 extends Node3D
 
+signal active(value: bool)
+
 @export var weapon: item: set = _set_item
 @export var mainhand: Node3D
 @export var animation_state_machine :AnimationNodeStateMachine
@@ -16,6 +18,10 @@ func _ready() -> void:
 	SignalBus.connect("telekinesis_hold", telekinesis_hold)
 	SignalBus.connect("telekinesis_throw", telekinesis_throw)
 	SignalBus.connect("telekinesis_fail", telekinesis_fail)
+	SignalBus.connect("primary_active", _update_primary_active)
+
+func _update_primary_active(value: bool):
+	can_activate = !value
 
 func _set_item(new_item):
 	if new_item != null:

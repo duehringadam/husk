@@ -29,24 +29,14 @@ nodes/Blend2/position = Vector2(80, 60)
 "nodes/Animation 2/position" = Vector2(-260, 240)
 node_connections = [&"output", 0, &"Blend2", &"Blend2", 0, &"Animation", &"Blend2", 1, &"Animation 2"]
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3kyyp"]
-animation = &"Armature|Ghoul_Run_InPlace"
-
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xoefg"]
 animation = &"Armature|Ghoul_Attack_Left_End"
 
-[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_15gm0"]
-filter_enabled = true
-filters = ["%DamageComponent:monitorable", "%DamageComponent:monitoring", "%DamageComponent_right:monitorable", "%DamageComponent_right:monitoring", "Armature/Skeleton3D:Chest", "Armature/Skeleton3D:Forearm_L", "Armature/Skeleton3D:Forearm_R", "Armature/Skeleton3D:Hand_L", "Armature/Skeleton3D:Hand_R", "Armature/Skeleton3D:Head", "Armature/Skeleton3D:Hip", "Armature/Skeleton3D:Middle01_L", "Armature/Skeleton3D:Middle01_R", "Armature/Skeleton3D:Middle02_L", "Armature/Skeleton3D:Middle02_R", "Armature/Skeleton3D:Neck", "Armature/Skeleton3D:Shoulder_L", "Armature/Skeleton3D:Shoulder_R", "Armature/Skeleton3D:Spine", "Armature/Skeleton3D:Thumb01_L", "Armature/Skeleton3D:Thumb01_R", "Armature/Skeleton3D:Thumb02_L", "Armature/Skeleton3D:Thumb02_R", "Armature/Skeleton3D:UpperArm_L", "Armature/Skeleton3D:UpperArm_R"]
-
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ejp5c"]
-nodes/Blend2/node = SubResource("AnimationNodeBlend2_15gm0")
-nodes/Blend2/position = Vector2(100, 100)
+graph_offset = Vector2(-554.9753, 0)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_xoefg")
-nodes/Animation/position = Vector2(-300, 280)
-"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_3kyyp")
-"nodes/Animation 2/position" = Vector2(-340, 100)
-node_connections = [&"output", 0, &"Blend2", &"Blend2", 0, &"Animation 2", &"Blend2", 1, &"Animation"]
+nodes/Animation/position = Vector2(-160, 140)
+node_connections = [&"output", 0, &"Animation"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mt0cv"]
 animation = &"Armature|Ghoul_Attack_Right_Charge"
@@ -71,22 +61,11 @@ node_connections = [&"output", 0, &"Blend2", &"Blend2", 0, &"Animation", &"Blend
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ejp5c"]
 animation = &"Armature|Ghoul_Attack_Right_End"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uvxtk"]
-animation = &"Armature|Ghoul_Run_InPlace"
-
-[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_xqout"]
-filter_enabled = true
-filters = ["%DamageComponent:monitorable", "%DamageComponent:monitoring", "%DamageComponent_right:monitorable", "%DamageComponent_right:monitoring", "Armature/Skeleton3D:Chest", "Armature/Skeleton3D:Forearm_L", "Armature/Skeleton3D:Forearm_R", "Armature/Skeleton3D:Hand_L", "Armature/Skeleton3D:Hand_R", "Armature/Skeleton3D:Head", "Armature/Skeleton3D:Hip", "Armature/Skeleton3D:Middle01_L", "Armature/Skeleton3D:Middle01_R", "Armature/Skeleton3D:Middle02_L", "Armature/Skeleton3D:Middle02_R", "Armature/Skeleton3D:Neck", "Armature/Skeleton3D:Shoulder_L", "Armature/Skeleton3D:Shoulder_R", "Armature/Skeleton3D:Spine", "Armature/Skeleton3D:Thumb01_L", "Armature/Skeleton3D:Thumb01_R", "Armature/Skeleton3D:Thumb02_L", "Armature/Skeleton3D:Thumb02_R", "Armature/Skeleton3D:UpperArm_L", "Armature/Skeleton3D:UpperArm_R"]
-
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_xqout"]
 graph_offset = Vector2(-467.13342, 0)
-nodes/Blend2/node = SubResource("AnimationNodeBlend2_xqout")
-nodes/Blend2/position = Vector2(60, 80)
-nodes/Animation/node = SubResource("AnimationNodeAnimation_uvxtk")
-nodes/Animation/position = Vector2(-220, 40)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_ejp5c")
 "nodes/Animation 2/position" = Vector2(-300, 220)
-node_connections = [&"output", 0, &"Blend2", &"Blend2", 0, &"Animation", &"Blend2", 1, &"Animation 2"]
+node_connections = [&"output", 0, &"Animation 2"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8sfyo"]
 animation = &"Armature|Ghoul_BigFlinch"

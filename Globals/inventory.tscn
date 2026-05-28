@@ -5,8 +5,8 @@
 [ext_resource type="Script" uid="uid://b5oej1q4h7jvh" path="res://addons/maaacks_menus_template/base/scripts/ui_sound_controller.gd" id="2_qdie2"]
 [ext_resource type="FontFile" uid="uid://bgwsxfa2fbvel" path="res://addons/madtalk/fonts/ShipporiMincho-Regular.ttf" id="3_lt8sb"]
 [ext_resource type="Texture2D" uid="uid://e3utw70yh625" path="res://item/stiletto.svg" id="3_t17us"]
-[ext_resource type="AudioStream" uid="uid://c7e6frvajco6n" path="res://sfx/UI/inventory_hover.wav" id="3_uooo6"]
-[ext_resource type="AudioStream" uid="uid://bo22pr4vd2xyf" path="res://sfx/UI/inventory_select.wav" id="4_amt8r"]
+[ext_resource type="AudioStream" uid="uid://cvbcul6u08tp5" path="res://sfx/UI/huskitemhover.ogg" id="3_uooo6"]
+[ext_resource type="AudioStream" uid="uid://d3lrfxnc4pe02" path="res://sfx/UI/huskCLICK.wav" id="4_amt8r"]
 [ext_resource type="Script" uid="uid://ycbqbi44jmxo" path="res://Globals/item_damage_value.gd" id="4_i58md"]
 [ext_resource type="Script" uid="uid://dhak65rm0c3gy" path="res://Globals/item_required_stats_value.gd" id="5_lt8sb"]
 [ext_resource type="AudioStream" uid="uid://dcuoy8njoatd8" path="res://sfx/UI/inventory_close.ogg" id="8_06a5j"]
@@ -64,10 +64,13 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ldn6o")
 script = ExtResource("1_vm4gm")
 
-[node name="UISoundController" type="Node" parent="." unique_id=823316605]
+[node name="UISoundController" type="Node" parent="." unique_id=1462781421]
 script = ExtResource("2_qdie2")
 button_hovered = ExtResource("3_uooo6")
 button_pressed = ExtResource("4_amt8r")
+tab_hovered = ExtResource("3_uooo6")
+tab_changed = ExtResource("4_amt8r")
+tab_selected = ExtResource("4_amt8r")
 metadata/_custom_type_script = "uid://b5oej1q4h7jvh"
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1963609365]

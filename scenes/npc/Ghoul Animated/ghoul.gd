@@ -25,8 +25,8 @@ func _on_hurtbox_component_damage_taken(actual: float, source: DamageComponent, 
 	if source.source is npc: 
 			target = source.source
 			_on_vision_area_aggro_changed(1.0,target)
-	else:
-			target = source.source
+	elif source.source is Player:
+			target = Global.player
 			_on_vision_area_aggro_changed(1.0,target)
 	
 	get_tree().create_timer(.1).timeout.connect(func(): animation_tree.set("parameters/conditions/flinch", false))
@@ -73,7 +73,7 @@ func _on_vision_area_aggro_changed(aggro_amount: float, aggro_node: Node3D) -> v
 	if aggro_amount >= 1.0:
 		if first_aggro:
 			first_aggro = false
-			state_chart.send_event("taunt")
+			#state_chart.send_event("taunt")
 		state_chart.send_event("attack")
 		target = aggro_node
 		return
