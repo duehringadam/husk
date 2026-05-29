@@ -5,6 +5,7 @@ extends Node
 @export var animation_tree: AnimationTree
 
 func _on_lower_state_entered() -> void:
+	SignalBus.emit_signal("secondary_active", false)
 	animation_tree.set("parameters/conditions/lower", true)
 	animation_tree.set("parameters/conditions/idle", false)
 

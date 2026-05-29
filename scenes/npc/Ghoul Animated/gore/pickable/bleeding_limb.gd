@@ -5,7 +5,7 @@ extends Node3D
 @onready var blood_sound: AudioStreamPlayer3D = $AudioStreamPlayer3D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-var blood_decal = preload("res://blood_decal.tscn")
+var blood_decal = preload("res://scenes/decals/blood_decal.tscn")
 
 func _ready() -> void:
 	animation_player.play("Init")

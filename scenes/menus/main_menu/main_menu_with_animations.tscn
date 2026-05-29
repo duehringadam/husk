@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://k1arix2k4m16" path="res://sfx/music/huskmenuig.wav" id="5_x5bcm"]
 [ext_resource type="PackedScene" uid="uid://d4n4ub6iqtdps" path="res://scenes/Hivemind/CastleOfEternalMists/Prefabs/SM_Debris_A.tscn" id="5_xkrf4"]
 [ext_resource type="AudioStream" uid="uid://d3lrfxnc4pe02" path="res://sfx/UI/huskCLICK.wav" id="6_8dhfv"]
-[ext_resource type="Shader" uid="uid://d2wp65uguqls7" path="res://fakegodray.gdshader" id="6_x5bcm"]
+[ext_resource type="Shader" uid="uid://d2wp65uguqls7" path="res://shaders/fakegodray.gdshader" id="6_x5bcm"]
 [ext_resource type="PackedScene" uid="uid://hrbc" path="res://scenes/Hivemind/MedievalWeapons/Art/Models/SM_Sword_2/SM_Sword_2.glb" id="7_672y5"]
 [ext_resource type="Texture2D" uid="uid://b88o8x00oo5am" path="res://scenes/skeleton-character-psx/source/skeleton_psx_fbx/skeleton_d.png" id="8_8dhfv"]
 [ext_resource type="ArrayMesh" uid="uid://cyurut3lj1ujo" path="res://scenes/MysticDungeon/Art/Meshes/extracted/SM_Ivy_01a.SM_Ivy_01a.mesh" id="9_j8onx"]
@@ -359,7 +359,7 @@ states/Start/position = Vector2(82, 123)
 transitions = ["Intro", "OpenMainMenu", SubResource("11"), "OpenMainMenu", "OpenSubMenu", SubResource("14"), "Start", "Intro", SubResource("AnimationNodeStateMachineTransition_j0orr"), "OpenSubMenu", "OpenMainMenu", SubResource("AnimationNodeStateMachineTransition_63dxc")]
 graph_offset = Vector2(-180.277, 49)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_j8onx"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_8dhfv"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gioo8"]
@@ -568,7 +568,7 @@ parameters/conditions/intro_done = false
 stream = ExtResource("5_x5bcm")
 
 [node name="BackgroundTextureRect" parent="." index="4" unique_id=986426166]
-texture = SubResource("ViewportTexture_j8onx")
+texture = SubResource("ViewportTexture_8dhfv")
 
 [node name="VersionContainer" parent="VersionMargin" parent_id_path=PackedInt32Array(932050008) index="0" unique_id=1257931728]
 modulate = Color(1, 1, 1, 0)
