@@ -19335,11 +19335,12 @@ to = NodePath("../../block")
 event = &"block"
 delay_in_seconds = "0.0"
 
-[node name="idle" type="Node" parent="ghoul_arms2(1)/StateChart/CompoundState/idle" unique_id=361859289 node_paths=PackedStringArray("weapon", "state_chart", "animation_tree")]
+[node name="idle" type="Node" parent="ghoul_arms2(1)/StateChart/CompoundState/idle" unique_id=361859289 node_paths=PackedStringArray("weapon", "state_chart", "animation_tree", "bone_attach")]
 script = ExtResource("16_hkunp")
 weapon = NodePath("../../../../..")
 state_chart = NodePath("../../..")
 animation_tree = NodePath("../../../../AnimationTree")
+bone_attach = NodePath("../../../../Armature/Skeleton3D/BoneAttachment3D")
 
 [node name="lower_arm" type="Node" parent="ghoul_arms2(1)/StateChart/CompoundState" unique_id=578649545]
 script = ExtResource("12_rnyv4")

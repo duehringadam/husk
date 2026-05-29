@@ -3,14 +3,17 @@ extends Node
 @export var weapon: Node3D
 @export var state_chart: StateChart
 @export var animation_tree: AnimationTree
+@export var bone_attach: BoneAttachment3D
 
 func _on_idle_state_entered() -> void:
-	SignalBus.emit_signal("primary_active", false)
+	if bone_attach.get_child_count() > 0:
+		SignalBus.emit_signal("primary_active", false)
 	weapon.can_attack = true
 
 
 func _on_idle_state_exited() -> void:
-	SignalBus.emit_signal("primary_active", true)
+	if bone_attach.get_child_count() > 0:
+		SignalBus.emit_signal("primary_active", true)
 	weapon.can_attack = false
 	var tween = get_tree().create_tween()
 	tween.tween_property(Global.player.camera,"fov",Global.camera_fov+10,.25)

@@ -13,7 +13,8 @@ func _on_idle_state_entered() -> void:
 	animation_tree.set("parameters/conditions/throw", false)
 	animation_tree.set("parameters/conditions/idle", true)
 	left_hand.can_activate = true
-	SignalBus.emit_signal("secondary_active", false)
+	if bone_attach.get_child_count() > 0:
+		SignalBus.emit_signal("secondary_active", false)
 
 
 func _on_idle_state_exited() -> void:

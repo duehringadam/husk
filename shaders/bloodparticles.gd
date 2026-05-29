@@ -3,7 +3,7 @@ extends Node3D
 @onready var blood_pos: RayCast3D = $blood_pos
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-var blood_decal = preload("res://blood_decal.tscn")
+var blood_decal = preload("res://scenes/decals/blood_decal.tscn")
 
 func _ready() -> void:
 	get_tree().create_timer(1).timeout.connect(func(): self.queue_free())
