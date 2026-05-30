@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://uroid8tr1kbo"]
 
-[ext_resource type="Script" uid="uid://csstyxa8ubqg4" path="res://Lever.gd" id="1_b1op8"]
+[ext_resource type="Script" uid="uid://csstyxa8ubqg4" path="res://Silas Supplies/Sila's test assets/Lever.gd" id="1_b1op8"]
 [ext_resource type="Script" uid="uid://ck3cei0hvspym" path="res://addons/interaction_system/interaction_container.gd" id="2_cnfg5"]
 [ext_resource type="Script" uid="uid://5tinbhq6p45k" path="res://addons/interaction_system/interaction.gd" id="3_0njty"]
 [ext_resource type="Script" uid="uid://bxe74cq2uqemi" path="res://addons/game_controls/vanilla/input_map_game_control.gd" id="4_0njty"]
@@ -89,6 +89,10 @@ mesh = SubResource("BoxMesh_8r6ob")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=218026200]
 collision_layer = 8
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("2_cnfg5"),"default_context_id":0,"display_name":"Lever","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("3_0njty")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_0njty"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("4_0njty"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=338310392]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4901161e-08, 0.099999994, -2.9802322e-08)
@@ -98,7 +102,6 @@ shape = SubResource("BoxShape3D_srstd")
 script = ExtResource("2_cnfg5")
 display_name = "Lever"
 metadata/_custom_type_script = "uid://ck3cei0hvspym"
-metadata/interaction_container = null
 
 [node name="Interact" type="Node" parent="StaticBody3D/InteractionContainer" unique_id=450494779]
 script = ExtResource("3_0njty")
