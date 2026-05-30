@@ -45,6 +45,8 @@ func _ready() -> void:
 		segments[i].position = curve_points[i] + (curve_points[i+1] - curve_points[i])/2
 		# create collision shape 3Ds
 		segments[i].mass = 1.0
+		segments[i].contact_monitor = true
+		segments[i].max_contacts_reported = 1
 		segments[i].add_child(CollisionShape3D.new())
 		# add capsule shape
 		segments[i].get_child(0).shape = CapsuleShape3D.new()

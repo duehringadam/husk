@@ -201,11 +201,11 @@ static func get_head_bob_from_config()->bool:
 	
 # All
 static func set_from_config() -> void:
-	set_directional_combat_from_config()
-	set_head_bob_from_config()
 	set_default_inputs()
 	set_inputs_from_config()
 	set_audio_from_config()
+	set_directional_combat_from_config()
+	set_head_bob_from_config()
 
 static func set_from_config_and_window(window : Window) -> void:
 	set_from_config()

@@ -22,7 +22,7 @@ func _process(delta: float) -> void:
 	
 func _ready() -> void:
 	queue_redraw()
-	combat_type = AppSettings.get_directional_combat_from_config()
+	combat_type = PlayerConfig.get_config("GameSettings", "DirectionalCombat", 0)
 	GamePiecesEventBus.connect("combat_type",_on_combat_type_changed)
 
 func _on_combat_type_changed(value: int):
