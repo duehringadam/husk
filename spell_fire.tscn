@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://5i8e6fsne4v5"]
 
 [ext_resource type="Script" uid="uid://gbfdqpek0no8" path="res://spell_fire.gd" id="1_0eavj"]
-[ext_resource type="Texture2D" uid="uid://bgpuc5rjm2yh5" path="res://scenes/misc/Textures/T_Fire01_SubUV.png" id="5_gxvne"]
+[ext_resource type="Texture2D" uid="uid://bgpuc5rjm2yh5" path="res://scenes/misc/Textures/T_Fire01_SubUV_new.png" id="2_stlr1"]
+[ext_resource type="Texture2D" uid="uid://dgnarq1axwhae" path="res://scenes/MysticDungeon/Art/Textures/T_Fire01_Tiled_D_Yellow.png" id="3_stlr1"]
 [ext_resource type="AudioStream" uid="uid://b1m60rkx5rn63" path="res://sfx/spells/fire/floraphonic-dragon-breathes-fire-3-191459.mp3" id="6_3yxkx"]
-[ext_resource type="Texture2D" uid="uid://dgnarq1axwhae" path="res://scenes/misc/Textures/T_Fire01_Tiled_D_Yellow.png" id="6_mkrx0"]
 [ext_resource type="PackedScene" uid="uid://ckj86tch1kfph" path="res://scenes/VFX/Scenes/VFX_Fire_Constant_A3.tscn" id="6_stlr1"]
 [ext_resource type="Texture2D" uid="uid://185sjxt7oawt" path="res://scenes/misc/Textures/T_Fire01_SubUV_normal.png" id="7_bsa0c"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="8_3yxkx"]
@@ -47,33 +47,26 @@ anim_speed_min = 1.0
 anim_speed_max = 1.0
 turbulence_noise_speed = Vector3(0, 1, 0)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xcmeu"]
-resource_local_to_scene = true
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3yxkx"]
 transparency = 1
-diffuse_mode = 3
-specular_mode = 1
 vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
-albedo_color = Color(1, 0.51584375, 0, 1)
-albedo_texture = ExtResource("5_gxvne")
-emission = Color(1, 0.29748532, 0, 1)
-emission_texture = ExtResource("6_mkrx0")
+albedo_color = Color(1, 0.5176471, 0, 1)
+albedo_texture = ExtResource("2_stlr1")
+emission_enabled = true
+emission = Color(1, 0.22658296, 0, 1)
+emission_texture = ExtResource("3_stlr1")
 normal_enabled = true
 normal_texture = ExtResource("7_bsa0c")
-backlight = Color(1, 1, 1, 1)
 billboard_mode = 3
 billboard_keep_scale = true
 particles_anim_h_frames = 6
 particles_anim_v_frames = 6
 particles_anim_loop = true
-grow_amount = -0.264
-proximity_fade_distance = 0.01
-distance_fade_max_distance = 1.0
-stencil_flags = 2
 
-[sub_resource type="QuadMesh" id="QuadMesh_twvp5"]
+[sub_resource type="QuadMesh" id="QuadMesh_3yxkx"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_xcmeu")
+material = SubResource("StandardMaterial3D_3yxkx")
 size = Vector2(0.15, 0.15)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eesq2"]
@@ -95,7 +88,7 @@ amount = 16
 lifetime = 0.3
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_0eavj")
-draw_pass_1 = SubResource("QuadMesh_twvp5")
+draw_pass_1 = SubResource("QuadMesh_3yxkx")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="GPUParticles3D" unique_id=1138468221]
 layers = 3

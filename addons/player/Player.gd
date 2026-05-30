@@ -131,7 +131,7 @@ func _ready() -> void:
 	SignalBus.connect("primary_active", _set_weapon_active)
 	SignalBus.connect("secondary_active", _set_weapon_active)
 	SignalBus.connect("kick_active", _animate_camera_swing)
-	combat_type = PlayerConfig.get_config("InputSettings", "DirectionalCombat", 0)
+	combat_type = PlayerConfig.get_config("GameSettings", "DirectionalCombat", 0)
 	GamePiecesEventBus.combat_type.connect(_on_combat_type_changed)
 	Global.camera_fov = base_fov
 	if Engine.is_editor_hint(): return
@@ -170,7 +170,6 @@ func _physics_process(delta) -> void:
 		handle_head_bob(delta)
 		handle_zoom(delta)
 		handle_switch_hands()
-		handle_lean(delta)
 		move_and_slide()
 		weapon_sway(delta)
 		handle_kick()
@@ -337,8 +336,9 @@ func set_movement_speed() -> void:
 
 func look_around() -> void:
 	if lock_camera: return
-	head.rotate_y(look_control.value_axis_2d().x * mouse_sensitivity)
-	neck.rotate_x(look_control.value_axis_2d().y * mouse_sensitivity)
+	var sens_mult = PlayerConfig.get_config("InputSettings", "MouseSensitivity", 1.0)
+	head.rotate_y(look_control.value_axis_2d().x * (mouse_sensitivity * sens_mult))
+	neck.rotate_x(look_control.value_axis_2d().y * (mouse_sensitivity * sens_mult))
 	neck.rotation.x = clamp(neck.rotation.x, deg_to_rad(-85), deg_to_rad(85))
 
 

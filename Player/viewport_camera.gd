@@ -19,12 +19,12 @@ func _ready() -> void:
 ###################
 
 func _process(delta: float) -> void:
-	global_transform = main_camera.global_transform
-	if shake_strength > 0:
-		shake_strength = lerpf(shake_strength,0,shakeFade * delta)
-		offset = randomOffset()
-		h_offset = offset.x
-		v_offset = offset.y
+		global_transform = main_camera.global_transform
+		if shake_strength > 0:
+			shake_strength = lerpf(shake_strength,0,shakeFade * delta)
+			offset = randomOffset()
+			h_offset = offset.x
+			v_offset = offset.y
 		
 ###################
 # this is called when you want to apply screen shake to camera

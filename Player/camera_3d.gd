@@ -3,6 +3,7 @@ extends Camera3D
 @export var shakeFade: float = 5.0
 @export var hurtbox: hurtbox_component
 
+@export var sub_camera: Camera3D
 var rng = RandomNumberGenerator.new()
 var shake_strength: float = 0.0
 var offset
@@ -16,11 +17,13 @@ func _ready() -> void:
 		hurtbox.connect("damage_taken", _on_hurtbox_component_damage_taken)
 		
 func _process(delta: float) -> void:
-	if shake_strength > 0:
-		shake_strength = lerpf(shake_strength,0,shakeFade * delta)
-		offset = randomOffset()
-		h_offset = offset.x
-		v_offset = offset.y
+	if PlayerConfig.get_config("GameSettings", "CameraShake", true):
+		if shake_strength > 0:
+			sub_camera.shake_strength = shake_strength/3
+			shake_strength = lerpf(shake_strength,0,shakeFade * delta)
+			offset = randomOffset()
+			h_offset = offset.x
+			v_offset = offset.y
 		
 ###################
 # this is called when you want to apply screen shake to camera

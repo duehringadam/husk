@@ -27,13 +27,12 @@ emission_shape = 4
 emission_point_texture = SubResource("ImageTexture_qek5x")
 emission_point_count = 512
 
-[node name="Player" unique_id=926426044 node_paths=PackedStringArray("offhand") instance=ExtResource("1_lvxji")]
+[node name="Player" unique_id=926426044 instance=ExtResource("1_lvxji")]
 collision_mask = 14
 script = ExtResource("2_qek5x")
 footsteps_sound = SubResource("AudioStreamRandomizer_h17s1")
 walk_speed = 2.5
 sprint_speed = 4.0
-offhand = NodePath("Head/SubViewportContainer/SubViewport/Camera3D/LeftHand")
 
 [node name="InputMapControls" type="Node" parent="." index="4" unique_id=54602357]
 
@@ -112,9 +111,10 @@ negative_y = &"ui_up"
 positive_y = &"ui_down"
 metadata/_custom_type_script = "uid://bxe74cq2uqemi"
 
-[node name="Camera3D" parent="Head/Neck" parent_id_path=PackedInt32Array(1052294383) index="0" unique_id=1569056309 node_paths=PackedStringArray("hurtbox")]
+[node name="Camera3D" parent="Head/Neck" parent_id_path=PackedInt32Array(1052294383) index="0" unique_id=1569056309 node_paths=PackedStringArray("hurtbox", "sub_camera")]
 script = ExtResource("5_je7p5")
 hurtbox = NodePath("../../../hurtbox_component")
+sub_camera = NodePath("../../SubViewportContainer/SubViewport/Camera3D")
 
 [node name="RayCast3D" parent="Head/Neck/Camera3D" index="0" unique_id=1535880187]
 collision_mask = 8
@@ -140,7 +140,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8071404, 0)
 [node name="status_effect_component" parent="." index="12" unique_id=1465415421]
 process_material = SubResource("ParticleProcessMaterial_5gtgg")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="." index="20" unique_id=1276511056]
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="17" unique_id=1276511056]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1513219, 0)
 visible = false
 layers = 3
