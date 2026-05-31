@@ -4,15 +4,40 @@
 [ext_resource type="Script" uid="uid://bdj1wfqnsi1rd" path="res://shield.gd" id="2_xc41h"]
 [ext_resource type="ArrayMesh" uid="uid://cniwmdth0irdb" path="res://scenes/Hivemind/MedievalWeapons/Art/Models/SM_Kite_Wood_Shield/SM_Kite_wood_shield_mesh.tres" id="3_0vxx4"]
 [ext_resource type="AudioStream" uid="uid://dnk7ycpa3ttsr" path="res://sfx/shield_raise.ogg" id="4_4re53"]
+[ext_resource type="Shader" uid="uid://cba8frjri8tvn" path="res://shaders/first_person_arms.gdshader" id="4_41k7r"]
 [ext_resource type="AudioStream" uid="uid://dln8cj8m3uwyo" path="res://sfx/shield_equip.ogg" id="5_4re53"]
+[ext_resource type="Texture2D" uid="uid://hqnc" path="res://scenes/Hivemind/MedievalWeapons/Art/Models/SM_Kite_Wood_Shield/T_Kite_Wood_Shield_C.png" id="5_gdxae"]
+[ext_resource type="Texture2D" uid="uid://hqna" path="res://scenes/Hivemind/MedievalWeapons/Art/Models/SM_Kite_Wood_Shield/T_Kite_Wood_Shield_N.png" id="6_275sl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kjr8o"]
+render_priority = 0
+shader = ExtResource("4_41k7r")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("5_gdxae")
+shader_parameter/albedo_texture_size = Vector2i(0, 0)
+shader_parameter/point_size = 0.0
+shader_parameter/roughness = 0.0
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
+shader_parameter/specular = 0.0
+shader_parameter/metallic = 0.0
+shader_parameter/texture_normal = ExtResource("6_275sl")
+shader_parameter/normal_scale = 0.50000078375
+shader_parameter/uv1_scale = Vector3(0, 0, 0)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(0, 0, 0)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/FOV = 75.0
+shader_parameter/overlay_color = Color(1, 0, 0, 1)
+shader_parameter/progress = 0.0
+shader_parameter/noise_softness = 0.05
 
 [node name="shield" unique_id=1839249016 instance=ExtResource("1_dmnlx")]
 script = ExtResource("2_xc41h")
 
 [node name="Cube" parent="." index="0" unique_id=952801911]
 transform = Transform3D(1.25, 0, 0, 0, -5.4639237e-08, 1.25, 0, -1.25, -5.4639237e-08, 0, 0, 0)
-layers = 2
 mesh = ExtResource("3_0vxx4")
+surface_material_override/0 = SubResource("ShaderMaterial_kjr8o")
 
 [node name="raise" type="AudioStreamPlayer3D" parent="Cube" index="0" unique_id=622986982]
 stream = ExtResource("4_4re53")

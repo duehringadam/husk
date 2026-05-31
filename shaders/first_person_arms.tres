@@ -1,0 +1,30 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://d0p82r0xbudbp"]
+
+[ext_resource type="Shader" uid="uid://cba8frjri8tvn" path="res://shaders/first_person_arms.gdshader" id="1_r6dio"]
+[ext_resource type="Texture2D" uid="uid://5aclna47kqx" path="res://Player/viewmodel/ghoul_arms2(1)_Color.png" id="2_amkb8"]
+[ext_resource type="Texture2D" uid="uid://tj2xrbtj0eqr" path="res://shaders/blood_buildup_noise_2.tres" id="2_r6dio"]
+[ext_resource type="Texture2D" uid="uid://dkrgefuhsm3lf" path="res://Player/viewmodel/Normal.png" id="4_rfm2u"]
+
+[resource]
+resource_name = "Material.002"
+render_priority = 0
+shader = ExtResource("1_r6dio")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("2_amkb8")
+shader_parameter/albedo_texture_size = Vector2i(512, 512)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/texture_normal = ExtResource("4_rfm2u")
+shader_parameter/normal_scale = 1.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/FOV = 75.0
+shader_parameter/overlay_color = Color(0.57266915, 1.1792034e-06, 3.3691526e-07, 1)
+shader_parameter/noise_texture = ExtResource("2_r6dio")
+shader_parameter/progress = 0.0
+shader_parameter/noise_softness = 0.05

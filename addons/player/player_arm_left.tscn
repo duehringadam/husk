@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d3vjqiaaxlykb" path="res://Player/lefhand.gd" id="1_nmxgr"]
 [ext_resource type="Material" uid="uid://ccjem4uniqo0n" path="res://Player/viewmodel/hands/arms.tres" id="2_nelli"]
+[ext_resource type="Material" uid="uid://d0p82r0xbudbp" path="res://shaders/first_person_arms.tres" id="3_x3y7m"]
 [ext_resource type="Script" uid="uid://bb3ghyy64k2bd" path="res://addons/godot_state_charts/state_chart.gd" id="4_2qmfu"]
 [ext_resource type="Animation" uid="uid://bmv6m8fbmy68n" path="res://Player/viewmodel/animations/hands/spell_fire/fire_equip.tres" id="4_x3y7m"]
 [ext_resource type="Script" uid="uid://clt3bkcujiepo" path="res://addons/godot_state_charts/compound_state.gd" id="5_2dmgv"]
@@ -10,7 +11,7 @@
 [ext_resource type="Animation" uid="uid://n77wflivid5l" path="res://Player/viewmodel/animations/hands/spell_fire/fire_nomana.tres" id="6_upic4"]
 [ext_resource type="Animation" uid="uid://dcn8w14uio0rx" path="res://Player/viewmodel/animations/hands/spell_fire/fire_use.tres" id="7_b4dho"]
 [ext_resource type="Script" uid="uid://8kg3tepcr415" path="res://addons/godot_state_charts/transition.gd" id="8_muycx"]
-[ext_resource type="AnimationNodeStateMachine" uid="uid://cy3nqarb8txva" path="res://Player/viewmodel/animations/hands/animation_state_machines/offhand_telekinesis_state_machine.tres" id="8_x3y7m"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://c5baskkuqckvs" path="res://Player/viewmodel/animations/hands/animation_state_machines/offhand_accursed_blood_spell_animation_state_machine.tres" id="8_x3y7m"]
 [ext_resource type="Script" uid="uid://do7ej1lpya78r" path="res://addons/player/offhand_idle.gd" id="9_xa8k2"]
 [ext_resource type="Script" uid="uid://qdhh7yhxwb1v" path="res://addons/player/offhand_activate.gd" id="10_547aj"]
 [ext_resource type="Script" uid="uid://c8yj2acyythsc" path="res://addons/player/offhand_reload.gd" id="11_ptn0i"]
@@ -21741,10 +21742,10 @@ bones/48/rotation = Quaternion(0.70710677, 4.7921533e-09, 1.9470382e-07, 0.70710
 bones/48/scale = Vector3(1, 0.99999994, 0.99999994)
 
 [node name="Hands" type="MeshInstance3D" parent="ghoul_arms2(1)/Armature/Skeleton3D" unique_id=239782853]
-layers = 2
 mesh = SubResource("ArrayMesh_wgaes")
 skin = SubResource("Skin_nhlnm")
 skeleton = NodePath("..")
+surface_material_override/0 = ExtResource("3_x3y7m")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="ghoul_arms2(1)/Armature/Skeleton3D" unique_id=618378062]
 transform = Transform3D(0.3784856, 0.9215994, 0.08604016, -0.8561134, 0.31321558, 0.41105488, 0.35187882, -0.22923838, 0.90754074, -0.20722526, -1.1729027, -0.32223946)
@@ -21760,12 +21761,6 @@ active = false
 tree_root = ExtResource("8_x3y7m")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/activate = false
-parameters/conditions/cant_use = false
-parameters/conditions/fail = false
-parameters/conditions/hold = false
-parameters/conditions/idle = false
-parameters/conditions/lower = false
-parameters/conditions/throw = false
 
 [node name="StateChart" type="Node" parent="." unique_id=1545968734]
 script = ExtResource("4_2qmfu")

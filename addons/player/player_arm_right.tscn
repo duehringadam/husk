@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c5uu825dg725o" path="res://Player/mainhand.gd" id="1_mucxr"]
 [ext_resource type="Material" uid="uid://ccjem4uniqo0n" path="res://Player/viewmodel/hands/arms.tres" id="3_w1sxo"]
+[ext_resource type="Material" uid="uid://d0p82r0xbudbp" path="res://shaders/first_person_arms.tres" id="4_rnyv4"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://276w4pt2bown" path="res://Player/viewmodel/animations/hands/animation_state_machines/bow_animation_state_machine.tres" id="4_w1sxo"]
 [ext_resource type="Script" uid="uid://bb3ghyy64k2bd" path="res://addons/godot_state_charts/state_chart.gd" id="10_y5fff"]
 [ext_resource type="Script" uid="uid://clt3bkcujiepo" path="res://addons/godot_state_charts/compound_state.gd" id="11_w1sxo"]
@@ -19101,7 +19102,7 @@ bones/26/rest = Transform3D(1, -1.493868e-07, 2.384187e-07, 1.493868e-07, 1, 2.3
 bones/26/enabled = true
 bones/26/position = Vector3(4.531385e-09, 0.47012398, 1.0887968e-08)
 bones/26/rotation = Quaternion(5.5878226e-09, 1.11758766e-07, 5.513563e-08, 1)
-bones/26/scale = Vector3(1, 0.99999994, 0.9999999)
+bones/26/scale = Vector3(1, 0.99999994, 1)
 bones/27/name = "segment3.L"
 bones/27/parent = 26
 bones/27/rest = Transform3D(1, 1.3577231e-07, -1.2370789e-07, -1.3922967e-07, 0.99959683, -0.028390123, 1.1980343e-07, 0.02839012, 0.9995969, -1.5249171e-09, 0.08228908, 1.4464391e-08)
@@ -19258,10 +19259,10 @@ bones/48/rotation = Quaternion(0.7071068, -2.1225615e-09, 1.7527674e-07, 0.70710
 bones/48/scale = Vector3(0.9999996, 0.9999995, 0.9999999)
 
 [node name="Hands" type="MeshInstance3D" parent="ghoul_arms2(1)/Armature/Skeleton3D" unique_id=239782853]
-layers = 2
 mesh = SubResource("ArrayMesh_wgaes")
 skin = SubResource("Skin_nhlnm")
 skeleton = NodePath("..")
+surface_material_override/0 = ExtResource("4_rnyv4")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="ghoul_arms2(1)/Armature/Skeleton3D" unique_id=1069817460]
 transform = Transform3D(0.4943524, 0.8692543, -0.003574672, -0.28987047, 0.16872586, 0.9420757, 0.8195064, -0.46468133, 0.3353811, 0.41380882, -1.4322227, -0.30278382)
@@ -19269,7 +19270,7 @@ bone_name = "weapons.R"
 bone_idx = 24
 
 [node name="leftBoneAttach" type="BoneAttachment3D" parent="ghoul_arms2(1)/Armature/Skeleton3D" unique_id=175715778]
-transform = Transform3D(0.13352071, 0.98599356, -0.09993904, -0.18704829, 0.12410177, 0.97448, 0.9732337, -0.11141954, 0.20099849, -0.49195874, -1.608784, 0.10902688)
+transform = Transform3D(0.13352068, 0.9859936, -0.09993906, -0.18704827, 0.12410176, 0.97448, 0.9732337, -0.1114196, 0.2009985, -0.49195874, -1.608784, 0.10902687)
 bone_name = "weapons.L"
 bone_idx = 48
 

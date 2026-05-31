@@ -1,0 +1,298 @@
+[gd_scene format=3 uid="uid://visg1amvbuf"]
+
+[ext_resource type="CompressedTexture3D" uid="uid://dcacb5lllfe1i" path="res://shaders/color correct.png" id="1_easv4"]
+[ext_resource type="PackedScene" uid="uid://c0lnssqjs3sfs" path="res://scenes/MysticDungeon/Art/Prefabs/SM_Modular_Floor_01a.prefab.scn" id="1_j7l4f"]
+[ext_resource type="LightmapGIData" uid="uid://dvwgxmg6qn5yw" path="res://scenes/test/test_dungeon.lmbake" id="1_qle2m"]
+[ext_resource type="PackedScene" uid="uid://d130y8foh8o10" path="res://scenes/MysticDungeon/Art/Prefabs/SM_Ceiling_01a_Broken.prefab.scn" id="2_he8is"]
+[ext_resource type="PackedScene" uid="uid://d2lltkdir4e8n" path="res://scenes/MysticDungeon/Art/Prefabs/SM_Pillar_04a.prefab.scn" id="3_0w710"]
+[ext_resource type="Shader" uid="uid://d2wp65uguqls7" path="res://shaders/fakegodray.gdshader" id="3_qle2m"]
+[ext_resource type="PackedScene" uid="uid://cysvbgswpjrqo" path="res://scenes/MysticDungeon/Art/Prefabs/SM_Ivy_01b.prefab.scn" id="4_c34qb"]
+[ext_resource type="PackedScene" uid="uid://dplrol7vh327b" path="res://scenes/MysticDungeon/Art/Prefabs/SM_Pillar_03a.prefab.scn" id="4_qle2m"]
+[ext_resource type="PackedScene" uid="uid://bia32vkq1a5i" path="res://scenes/player/player.tscn" id="5_easv4"]
+[ext_resource type="PackedScene" uid="uid://ct0vqjfxfj7xb" path="res://scenes/MysticDungeon/Art/Prefabs/SM_Ivy_01a.prefab.scn" id="5_ibtqp"]
+[ext_resource type="PackedScene" uid="uid://pjnh30swqsfr" path="res://scenes/MysticDungeon/Art/Prefabs/SM_Modular_Wall_01a.prefab.scn" id="6_easv4"]
+[ext_resource type="PackedScene" uid="uid://cfvq0mxbkpg0p" path="res://scenes/MysticDungeon/Art/Prefabs/SM_Ivy_01c.prefab.scn" id="6_m64t4"]
+[ext_resource type="Shader" uid="uid://c0m61bqusqbkm" path="res://shaders/tunnel.gdshader" id="6_nmnrp"]
+[ext_resource type="PackedScene" uid="uid://cqgt3bc4bkmcp" path="res://scenes/MysticDungeon/Art/Prefabs/SM_DebrisPile_01a.prefab.scn" id="13_ibtqp"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_j7l4f"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_he8is"]
+sky_material = SubResource("ProceduralSkyMaterial_j7l4f")
+
+[sub_resource type="Environment" id="Environment_0w710"]
+background_mode = 2
+background_energy_multiplier = 2.0
+sky = SubResource("Sky_he8is")
+tonemap_mode = 4
+glow_intensity = 1.0
+glow_bloom = 0.1
+fog_enabled = true
+fog_light_energy = 0.25
+adjustment_enabled = true
+adjustment_color_correction = ExtResource("1_easv4")
+
+[sub_resource type="Gradient" id="Gradient_nmnrp"]
+interpolation_mode = 2
+colors = PackedColorArray(0.30323282, 0.30323282, 0.30323282, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_q378e"]
+gradient = SubResource("Gradient_nmnrp")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_l5tg5"]
+frequency = 0.0751
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_c34qb"]
+noise = SubResource("FastNoiseLite_l5tg5")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ibtqp"]
+render_priority = 0
+shader = ExtResource("3_qle2m")
+shader_parameter/alpha = 0.5
+shader_parameter/rim_power = 1.0
+shader_parameter/texture_emission = SubResource("NoiseTexture2D_c34qb")
+shader_parameter/gradient = SubResource("GradientTexture1D_q378e")
+shader_parameter/emission = Color(0, 0, 0, 1)
+shader_parameter/emission_energy = 1.0
+shader_parameter/uv1_scale = Vector3(1, 0, 0)
+shader_parameter/uv1_offset = Vector3(0, 1, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q378e"]
+render_priority = 0
+shader = ExtResource("6_nmnrp")
+shader_parameter/hole_depth = 10.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_l5tg5"]
+material = SubResource("ShaderMaterial_q378e")
+size = Vector2(20, 20)
+
+[node name="Node3D" type="Node3D" unique_id=370694479]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1650780062]
+environment = SubResource("Environment_0w710")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="." unique_id=1796539526]
+transform = Transform3D(0.45315388, -0.21130913, 0, 0.21130913, 0.45315388, 0, 0, 0, 0.5, 9.7, -2.6296875, 7)
+cast_shadow = 0
+gi_mode = 0
+radius = 6.246
+height = 35.15625
+sides = 16
+material = SubResource("ShaderMaterial_ibtqp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1053885839]
+transform = Transform3D(-0.5, -4.371139e-08, 0, 4.371139e-08, -0.5, 0, 0, 0, 0.5, 7.2, 0.8000001, 7)
+cast_shadow = 0
+gi_mode = 0
+mesh = SubResource("PlaneMesh_l5tg5")
+
+[node name="walls" type="Node3D" parent="." unique_id=2026587226]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="LightmapGI" type="LightmapGI" parent="walls" unique_id=1795048356]
+layers = 3
+quality = 0
+bounce_indirect_energy = 2.0
+interior = true
+light_data = ExtResource("1_qle2m")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="walls" unique_id=782472196]
+transform = Transform3D(-1.2706606e-07, 1.7320509, -0.99999976, 2.8294608e-08, 0.9999997, 1.732051, 2, 9.589514e-08, -8.803686e-08, 0, 0, 0)
+layers = 3
+light_indirect_energy = 16.0
+shadow_enabled = true
+directional_shadow_mode = 0
+
+[node name="SM_Modular_Floor_01a" parent="walls" unique_id=1356335650 instance=ExtResource("1_j7l4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.7999997, -21, 5.4)
+
+[node name="SM_Modular_Floor_01a2" parent="walls" unique_id=1803049545 instance=ExtResource("1_j7l4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.7999997, -21, 12.4)
+
+[node name="SM_Modular_Floor_01a3" parent="walls" unique_id=1304834495 instance=ExtResource("1_j7l4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.7999997, -21, 19.4)
+
+[node name="SM_Modular_Floor_01a4" parent="walls" unique_id=119581777 instance=ExtResource("1_j7l4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.799999, -21, 19.4)
+
+[node name="SM_Modular_Floor_01a5" parent="walls" unique_id=396097093 instance=ExtResource("1_j7l4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.799999, -21, 12.4)
+
+[node name="SM_Modular_Floor_01a6" parent="walls" unique_id=220376974 instance=ExtResource("1_j7l4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.799999, -21, 5.3999996)
+
+[node name="SM_Modular_Floor_01a7" parent="walls" unique_id=2066389655 instance=ExtResource("1_j7l4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.8, -21, 19.4)
+
+[node name="SM_Modular_Floor_01a8" parent="walls" unique_id=1755717614 instance=ExtResource("1_j7l4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.8, -21, 12.4)
+
+[node name="SM_Modular_Floor_01a9" parent="walls" unique_id=1353892957 instance=ExtResource("1_j7l4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.8, -21, 5.3999996)
+
+[node name="SM_Ivy_01b" parent="walls" unique_id=1897869717 instance=ExtResource("4_c34qb")]
+transform = Transform3D(1.4142135, 0, -1.4142135, 0, 2, 0, 1.4142135, 0, 1.4142135, 20.4, 2, 17.2)
+
+[node name="SM_Ivy_01a" parent="walls" unique_id=1369717091 instance=ExtResource("5_ibtqp")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 21.8, 3, 14)
+
+[node name="SM_Ivy_01c" parent="walls" unique_id=82579518 instance=ExtResource("6_m64t4")]
+transform = Transform3D(-8.742278e-08, 0, 2, 0, 2, 0, -2, 0, -8.742278e-08, 17.6, 2, 19.2)
+
+[node name="SM_Ivy_01b2" parent="walls" unique_id=1470444332 instance=ExtResource("4_c34qb")]
+transform = Transform3D(-1.4142137, 0, 1.4142134, 0, 2, 0, -1.4142134, 0, -1.4142137, 12.066668, 2, 10.599999)
+
+[node name="SM_Ivy_01a2" parent="walls" unique_id=460982294 instance=ExtResource("5_ibtqp")]
+transform = Transform3D(-2, 0, -1.7484555e-07, 0, 2, 0, 1.7484555e-07, 0, -2, 10.666668, 3, 13.8)
+
+[node name="SM_Ivy_01a3" parent="walls" unique_id=490481842 instance=ExtResource("5_ibtqp")]
+transform = Transform3D(-0.99999976, 0, -1.732051, 0, 2, 0, 1.732051, 0, -0.99999976, 12.666668, 3, 17.800001)
+
+[node name="SM_Ivy_01c2" parent="walls" unique_id=1194631464 instance=ExtResource("6_m64t4")]
+transform = Transform3D(2.6226832e-07, 0, -2, 0, 2, 0, 2, 0, 2.6226832e-07, 14.866667, 2, 8.599999)
+
+[node name="SM_Ceiling_01a_Broken" parent="walls" unique_id=26444998 instance=ExtResource("2_he8is")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
+
+[node name="SM_Pillar_04a" parent="walls" unique_id=60670094 instance=ExtResource("3_0w710")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, -10.7, 9)
+
+[node name="SM_Pillar_04a2" parent="walls" unique_id=1329263758 instance=ExtResource("3_0w710")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, -10.7, 23)
+
+[node name="SM_Pillar_04a3" parent="walls" unique_id=1200272759 instance=ExtResource("3_0w710")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, -10.7, 23)
+
+[node name="SM_Pillar_04a4" parent="walls" unique_id=1446121080 instance=ExtResource("3_0w710")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, -10.7, 9)
+
+[node name="SM_Pillar_03a" parent="walls" unique_id=1829358727 instance=ExtResource("4_qle2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, -21, 9)
+
+[node name="SM_Pillar_03a2" parent="walls" unique_id=912908881 instance=ExtResource("4_qle2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, -21, 23)
+
+[node name="SM_Pillar_03a3" parent="walls" unique_id=1950490874 instance=ExtResource("4_qle2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, -21, 23)
+
+[node name="SM_Modular_Wall_01a" parent="walls" unique_id=1939019142 instance=ExtResource("6_easv4")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 5.4, -21, 26.4)
+
+[node name="SM_Modular_Wall_01a2" parent="walls" unique_id=510018028 instance=ExtResource("6_easv4")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 5.4, -21, 19.4)
+
+[node name="SM_Modular_Wall_01a3" parent="walls" unique_id=322794373 instance=ExtResource("6_easv4")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 5.4, -21, 12.4)
+
+[node name="SM_Modular_Wall_01a4" parent="walls" unique_id=589763914 instance=ExtResource("6_easv4")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 5.4, -14, 26.4)
+
+[node name="SM_Modular_Wall_01a5" parent="walls" unique_id=1116033607 instance=ExtResource("6_easv4")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 5.4, -14, 19.4)
+
+[node name="SM_Modular_Wall_01a6" parent="walls" unique_id=767111836 instance=ExtResource("6_easv4")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 5.4, -14, 12.4)
+
+[node name="SM_Modular_Wall_01a7" parent="walls" unique_id=360743275 instance=ExtResource("6_easv4")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 5.4, -7, 26.4)
+
+[node name="SM_Modular_Wall_01a8" parent="walls" unique_id=60309746 instance=ExtResource("6_easv4")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 5.4, -7, 19.4)
+
+[node name="SM_Modular_Wall_01a9" parent="walls" unique_id=1045874530 instance=ExtResource("6_easv4")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 5.4, -7, 12.4)
+
+[node name="SM_Modular_Wall_01a10" parent="walls" unique_id=1948882021 instance=ExtResource("6_easv4")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 27.199999, -21, 26.4)
+
+[node name="SM_Modular_Wall_01a11" parent="walls" unique_id=437293406 instance=ExtResource("6_easv4")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 27.199999, -21, 19.4)
+
+[node name="SM_Modular_Wall_01a12" parent="walls" unique_id=659949349 instance=ExtResource("6_easv4")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 27.199999, -21, 12.4)
+
+[node name="SM_Modular_Wall_01a13" parent="walls" unique_id=1644073573 instance=ExtResource("6_easv4")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 27.199999, -14, 26.4)
+
+[node name="SM_Modular_Wall_01a14" parent="walls" unique_id=1891874036 instance=ExtResource("6_easv4")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 27.199999, -14, 19.4)
+
+[node name="SM_Modular_Wall_01a15" parent="walls" unique_id=185260391 instance=ExtResource("6_easv4")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 27.199999, -14, 12.4)
+
+[node name="SM_Modular_Wall_01a16" parent="walls" unique_id=498482886 instance=ExtResource("6_easv4")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 27.199999, -7, 26.4)
+
+[node name="SM_Modular_Wall_01a17" parent="walls" unique_id=527987574 instance=ExtResource("6_easv4")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 27.199999, -7, 19.4)
+
+[node name="SM_Modular_Wall_01a18" parent="walls" unique_id=1733321742 instance=ExtResource("6_easv4")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 27.199999, -7, 12.4)
+
+[node name="SM_Modular_Wall_01a19" parent="walls" unique_id=1348265101 instance=ExtResource("6_easv4")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 26.799995, -21, 26.800001)
+
+[node name="SM_Modular_Wall_01a20" parent="walls" unique_id=113037264 instance=ExtResource("6_easv4")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 19.799995, -21, 26.800003)
+
+[node name="SM_Modular_Wall_01a21" parent="walls" unique_id=714546814 instance=ExtResource("6_easv4")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 12.799996, -21, 26.800003)
+
+[node name="SM_Modular_Wall_01a22" parent="walls" unique_id=1578282708 instance=ExtResource("6_easv4")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 26.799995, -14, 26.800001)
+
+[node name="SM_Modular_Wall_01a23" parent="walls" unique_id=1026173103 instance=ExtResource("6_easv4")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 19.799995, -14, 26.800003)
+
+[node name="SM_Modular_Wall_01a24" parent="walls" unique_id=294003356 instance=ExtResource("6_easv4")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 12.799996, -14, 26.800003)
+
+[node name="SM_Modular_Wall_01a25" parent="walls" unique_id=1526222429 instance=ExtResource("6_easv4")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 26.799995, -7, 26.800001)
+
+[node name="SM_Modular_Wall_01a26" parent="walls" unique_id=773300027 instance=ExtResource("6_easv4")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 19.799995, -7, 26.800003)
+
+[node name="SM_Modular_Wall_01a27" parent="walls" unique_id=215002611 instance=ExtResource("6_easv4")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 12.799996, -7, 26.800003)
+
+[node name="SM_Modular_Wall_01a28" parent="walls" unique_id=135777336 instance=ExtResource("6_easv4")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 26.799995, -21, 5.000001)
+
+[node name="SM_Modular_Wall_01a29" parent="walls" unique_id=1020688480 instance=ExtResource("6_easv4")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 19.799995, -21, 5.000003)
+
+[node name="SM_Modular_Wall_01a30" parent="walls" unique_id=755119973 instance=ExtResource("6_easv4")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 12.799996, -21, 5.000003)
+
+[node name="SM_Modular_Wall_01a31" parent="walls" unique_id=1606585323 instance=ExtResource("6_easv4")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 26.799995, -14, 5.000001)
+
+[node name="SM_Modular_Wall_01a32" parent="walls" unique_id=1284040365 instance=ExtResource("6_easv4")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 19.799995, -14, 5.000003)
+
+[node name="SM_Modular_Wall_01a33" parent="walls" unique_id=1481805729 instance=ExtResource("6_easv4")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 12.799996, -14, 5.000003)
+
+[node name="SM_Modular_Wall_01a34" parent="walls" unique_id=841969702 instance=ExtResource("6_easv4")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 26.799995, -7, 5.000001)
+
+[node name="SM_Modular_Wall_01a35" parent="walls" unique_id=753541319 instance=ExtResource("6_easv4")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 19.799995, -7, 5.000003)
+
+[node name="SM_Modular_Wall_01a36" parent="walls" unique_id=1894903501 instance=ExtResource("6_easv4")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 12.799996, -7, 5.000003)
+
+[node name="SM_DebrisPile_01a" parent="walls" unique_id=1532861110 instance=ExtResource("13_ibtqp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.2, -21.199999, 16.8)
+
+[node name="MeshCollider" parent="walls/SM_DebrisPile_01a" index="0" unique_id=1310286877]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6000004, 0)
+collision_layer = 2
+
+[node name="Player" parent="." unique_id=926426044 instance=ExtResource("5_easv4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -9, 4)
+
+[editable path="walls/SM_DebrisPile_01a"]

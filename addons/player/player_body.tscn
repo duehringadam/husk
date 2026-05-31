@@ -1,9 +1,10 @@
 [gd_scene format=4 uid="uid://bj4hhphu33n38"]
 
 [ext_resource type="Script" uid="uid://cvg458im1bqqq" path="res://addons/player/player_body.gd" id="1_vpomc"]
+[ext_resource type="Shader" uid="uid://cba8frjri8tvn" path="res://shaders/first_person_arms.gdshader" id="2_2hbki"]
 [ext_resource type="Script" uid="uid://1gqpr75ri7ke" path="res://status_effects/kick_damage_component.gd" id="2_3s51s"]
 [ext_resource type="Texture2D" uid="uid://d1ifjeke4twp1" path="res://Player/viewmodel/Iron_Armor_Set/player_legs.jpg" id="2_cyivd"]
-[ext_resource type="Texture2D" uid="uid://ckggsoo3gv4bd" path="res://scenes/npc/Iron_Armor_Set/ironarmor_difusospecular_512x512_normal.png" id="3_vqr2h"]
+[ext_resource type="Texture2D" uid="uid://b0lcij7d02pla" path="res://Player/viewmodel/Iron_Armor_Set/ironarmor_bump_512x512.jpg" id="4_1dbwf"]
 [ext_resource type="AudioStream" uid="uid://dcv2w0otyprn3" path="res://sfx/kick.ogg" id="5_cyivd"]
 [ext_resource type="Animation" uid="uid://bntybjxsnql1g" path="res://Player/viewmodel/animations/body/kick_new.tres" id="6_cyivd"]
 
@@ -262,12 +263,27 @@ bind/74/name = &"knee_target.R"
 bind/74/bone = -1
 bind/74/pose = Transform3D(-6.896544, 5.5582785e-07, -4.11066e-07, -5.558284e-07, -6.8965516, -6.0629757e-10, -4.1106645e-07, -6.062645e-10, 6.896552, -0.14752376, -0.47225288, -0.5070679)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vqr2h"]
-albedo_texture = ExtResource("2_cyivd")
-normal_enabled = true
-normal_scale = 0.25
-normal_texture = ExtResource("3_vqr2h")
-texture_filter = 4
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bfmmp"]
+render_priority = 0
+shader = ExtResource("2_2hbki")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("2_cyivd")
+shader_parameter/albedo_texture_size = Vector2i(0, 0)
+shader_parameter/point_size = 0.0
+shader_parameter/roughness = 0.0
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
+shader_parameter/specular = 0.0
+shader_parameter/metallic = 0.0
+shader_parameter/texture_normal = ExtResource("4_1dbwf")
+shader_parameter/normal_scale = 1.0
+shader_parameter/uv1_scale = Vector3(0, 0, 0)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(0, 0, 0)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/FOV = 75.0
+shader_parameter/overlay_color = Color(1, 0, 0, 1)
+shader_parameter/progress = 0.0
+shader_parameter/noise_softness = 0.05
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_yok5q"]
 resource_name = "guardia_medieval_2_male1591_004"
@@ -289,12 +305,27 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cyivd"]
-albedo_texture = ExtResource("2_cyivd")
-normal_enabled = true
-normal_scale = 0.25
-normal_texture = ExtResource("3_vqr2h")
-texture_filter = 4
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rfmlp"]
+render_priority = 0
+shader = ExtResource("2_2hbki")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("2_cyivd")
+shader_parameter/albedo_texture_size = Vector2i(0, 0)
+shader_parameter/point_size = 0.0
+shader_parameter/roughness = 0.0
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
+shader_parameter/specular = 0.0
+shader_parameter/metallic = 0.0
+shader_parameter/texture_normal = ExtResource("4_1dbwf")
+shader_parameter/normal_scale = 1.0
+shader_parameter/uv1_scale = Vector3(0, 0, 0)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(0, 0, 0)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/FOV = 75.0
+shader_parameter/overlay_color = Color(1, 0, 0, 1)
+shader_parameter/progress = 0.0
+shader_parameter/noise_softness = 0.05
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xg154"]
 radius = 0.15
@@ -22626,20 +22657,18 @@ bones/111/rotation = Quaternion(0, 0, 0, 1)
 bones/111/scale = Vector3(1, 1, 1)
 
 [node name="iron_legs" type="MeshInstance3D" parent="Root/Standing Melee Attack Kick Ver_ 1/varsoi_male/Skeleton3D" unique_id=36282414]
-layers = 2
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_0t0ke")
 skin = SubResource("Skin_4emj6")
 skeleton = NodePath("..")
-surface_material_override/0 = SubResource("StandardMaterial3D_vqr2h")
+surface_material_override/0 = SubResource("ShaderMaterial_bfmmp")
 
 [node name="iron_boots" type="MeshInstance3D" parent="Root/Standing Melee Attack Kick Ver_ 1/varsoi_male/Skeleton3D" unique_id=209762047]
-layers = 2
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_yok5q")
 skin = SubResource("Skin_4emj6")
 skeleton = NodePath("..")
-surface_material_override/0 = SubResource("StandardMaterial3D_cyivd")
+surface_material_override/0 = SubResource("ShaderMaterial_rfmlp")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Root/Standing Melee Attack Kick Ver_ 1/varsoi_male/Skeleton3D" unique_id=1946967126]
 transform = Transform3D(0.9636829, 0.25741315, 0.071082115, -0.26172, 0.9632854, 0.05981779, -0.053073697, -0.076247066, 0.99567807, -0.20831598, -0.08347419, 0.5246651)
