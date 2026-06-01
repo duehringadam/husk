@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cfvq0mxbkpg0p" path="res://scenes/MysticDungeon/Art/Prefabs/SM_Ivy_01c.prefab.scn" id="6_m64t4"]
 [ext_resource type="Shader" uid="uid://c0m61bqusqbkm" path="res://shaders/tunnel.gdshader" id="6_nmnrp"]
 [ext_resource type="PackedScene" uid="uid://cqgt3bc4bkmcp" path="res://scenes/MysticDungeon/Art/Prefabs/SM_DebrisPile_01a.prefab.scn" id="13_ibtqp"]
+[ext_resource type="AudioStream" uid="uid://br26jgupi66u0" path="res://Player/sfx/footsteps/stone/footstep_stone.tres" id="15_m64t4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_j7l4f"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -24,10 +25,12 @@ sky_material = SubResource("ProceduralSkyMaterial_j7l4f")
 
 [sub_resource type="Environment" id="Environment_0w710"]
 background_mode = 2
-background_energy_multiplier = 2.0
 sky = SubResource("Sky_he8is")
+ambient_light_source = 3
 tonemap_mode = 4
-glow_intensity = 1.0
+tonemap_exposure = 0.67
+glow_enabled = true
+glow_normalized = true
 glow_bloom = 0.1
 fog_enabled = true
 fog_light_energy = 0.25
@@ -92,16 +95,12 @@ mesh = SubResource("PlaneMesh_l5tg5")
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="LightmapGI" type="LightmapGI" parent="walls" unique_id=1795048356]
-layers = 3
 quality = 0
-bounce_indirect_energy = 2.0
 interior = true
 light_data = ExtResource("1_qle2m")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="walls" unique_id=782472196]
 transform = Transform3D(-1.2706606e-07, 1.7320509, -0.99999976, 2.8294608e-08, 0.9999997, 1.732051, 2, 9.589514e-08, -8.803686e-08, 0, 0, 0)
-layers = 3
-light_indirect_energy = 16.0
 shadow_enabled = true
 directional_shadow_mode = 0
 
@@ -293,6 +292,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6000004, 0)
 collision_layer = 2
 
 [node name="Player" parent="." unique_id=926426044 instance=ExtResource("5_easv4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -9, 4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -10, 6)
+footsteps_sound = ExtResource("15_m64t4")
 
 [editable path="walls/SM_DebrisPile_01a"]

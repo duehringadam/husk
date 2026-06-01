@@ -2,8 +2,6 @@ extends Camera3D
 @export var randomStrength: float = 0.05
 @export var shakeFade: float = 5.0
 @export var hurtbox: hurtbox_component
-
-@export var sub_camera: Camera3D
 var rng = RandomNumberGenerator.new()
 var shake_strength: float = 0.0
 var offset
@@ -19,7 +17,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if PlayerConfig.get_config("GameSettings", "CameraShake", true):
 		if shake_strength > 0:
-			sub_camera.shake_strength = shake_strength/3
 			shake_strength = lerpf(shake_strength,0,shakeFade * delta)
 			offset = randomOffset()
 			h_offset = offset.x

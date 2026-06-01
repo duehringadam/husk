@@ -56,6 +56,7 @@ Optional: %jump, %sprint, %crouch, %lean, %zoom, %switch_hands
 @export_category("Weapon")
 @export var mainhand: Node3D
 @export var offhand: Node3D
+@export var consumable: Marker3D
 @export var weapon_sway_amount : float = 5
 @export var weapon_rotation_amount : float = 1
 @export var invert_weapon_sway : bool = false
