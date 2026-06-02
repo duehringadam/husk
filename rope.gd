@@ -66,7 +66,7 @@ func _ready() -> void:
 			joints.append(PinJoint3D.new())
 			self.add_child(joints[i])
 			joints[i].position = curve_points[i]
-			joints[i].set_param(PinJoint3D.Param.PARAM_DAMPING,10.0)
+			#joints[i].set_param(PinJoint3D.Param.PARAM_DAMPING,10.0)
 		else:
 			#joints.append(ConeTwistJoint3D.new())
 			joints.append(PinJoint3D.new())

@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://3q8vtcnv2eei" path="res://scenes/pieces/explosive_barrel_pickable.tscn" id="14_idyej"]
 [ext_resource type="PackedScene" uid="uid://b7kyc6fhoqad1" path="res://item/weapons/swords/sword_world_items/longsword_item_world.tscn" id="14_j3bs5"]
 [ext_resource type="PackedScene" uid="uid://r8h2k5l6aoy4" path="res://item/consumables/throwing knife/throwing_knife_item_world.tscn" id="15_fqkk3"]
+[ext_resource type="PackedScene" uid="uid://dfl6qgyleyflk" path="res://scenes/pieces/bag_pickable.tscn" id="16_idyej"]
 [ext_resource type="PackedScene" uid="uid://bv0385mldllnw" path="res://item/weapons/mace_2_hand/mace_2_hand_world_item/morning_star_item_world.tscn" id="16_oi0yc"]
 [ext_resource type="Resource" uid="uid://dmv7he43amthj" path="res://item/weapons/mace_2_hand/morning_star.tres" id="17_32awo"]
 [ext_resource type="PackedScene" uid="uid://i4if5hwoglf5" path="res://item/weapons/polearm/polearm_item_world.tscn" id="18_tw2yv"]
@@ -1909,6 +1910,9 @@ metadata/ground_type = "stone"
 
 [node name="Node3D" type="Node3D" parent="NavigationRegion3D/friendly_npc_spawn_test6" unique_id=2026319143]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5214056, -1.7796655)
+
+[node name="bag_pickable" parent="NavigationRegion3D" unique_id=519557467 instance=ExtResource("16_idyej")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -6.8950167, 2.8699296, -5.7260075)
 
 [node name="spike_rack" parent="." unique_id=2103145406 instance=ExtResource("14_5agug")]
 transform = Transform3D(1.9967316, -0.114291675, 0, 0.114291675, 1.9967316, 0, 0, 0, 2, -25.031387, 0.33760834, 5.3628864)
