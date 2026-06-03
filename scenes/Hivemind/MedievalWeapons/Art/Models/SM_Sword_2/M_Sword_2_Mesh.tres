@@ -2,11 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://hqns" path="res://scenes/Hivemind/MedievalWeapons/Art/Models/SM_Sword_2/T_Sword_2_C.png" id="1_8k1wl"]
 [ext_resource type="Texture2D" uid="uid://hqnq" path="res://scenes/Hivemind/MedievalWeapons/Art/Models/SM_Sword_2/T_Sword_2_N.png" id="2_budyl"]
-[ext_resource type="Material" uid="uid://c5w2i4ors51to" path="res://shaders/blood_buildup.tres" id="2_frrww"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ho0q"]
 resource_name = "M_Sword_2"
-next_pass = ExtResource("2_frrww")
 albedo_texture = ExtResource("1_8k1wl")
 normal_enabled = true
 normal_texture = ExtResource("2_budyl")

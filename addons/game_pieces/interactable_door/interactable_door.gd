@@ -4,9 +4,9 @@ class_name InteractableDoor extends StaticBody3D
 #@onready var door_body: StaticBody3D = $wall_doorway/wall_doorway_door/StaticBody3D
 #@onready var collider: CollisionShape3D = $wall_doorway/wall_doorway_door/StaticBody3D/CollisionShape3D
 @export var locked: bool = false
-@onready var dooropen: AudioStreamPlayer3D = $AudioStreamPlayer3D
-@onready var doorlocked: AudioStreamPlayer3D = $doorlocked
-@onready var doorclose: AudioStreamPlayer3D = $doorclose
+#@onready var dooropen: AudioStreamPlayer3D = $AudioStreamPlayer3D
+#@onready var doorlocked: AudioStreamPlayer3D = $doorlocked
+#@onready var doorclose: AudioStreamPlayer3D = $doorclose
 
 @export var swing_angle : float = 90.0
 var starting_rot : float
@@ -41,18 +41,18 @@ func interact(controller: InteractionController) -> void:
 func open(interact_pos: Vector3 = Vector3.BACK) -> void:
 	if !locked:
 		disable_collision_shapes = true
-		dooropen.play()
+		#dooropen.play()
 		var swing_dir: float = sign(self.global_transform.origin.direction_to(interact_pos).dot(Vector3.BACK.rotated(Vector3.UP, global_rotation.y)))
 		target_rot = starting_rot + (deg_to_rad(swing_angle) * swing_dir)
 		
 		_swing()
-	else:
-		doorlocked.play()
+	#else:
+		#doorlocked.play()
 
 
 func close() -> void:
-	if is_instance_valid(doorclose):
-		doorclose.play()
+	#if is_instance_valid(doorclose):
+		#doorclose.play()
 	target_rot = starting_rot
 	disable_collision_shapes = false
 	_swing()

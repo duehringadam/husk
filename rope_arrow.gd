@@ -40,6 +40,11 @@ func _on_damage_component_body_entered(body: Node3D) -> void:
 			rope.global_transform = rope_point.global_transform
 			rope.number_of_segments = rope_point.global_position.distance_to(rope_raycast.get_collision_point())+1
 			get_tree().current_scene.add_child(rope)
+		if !rope_raycast.is_colliding():
+			$rope_sound.play()
+			rope.global_transform = rope_point.global_transform
+			rope.number_of_segments = rope_point.global_position.distance_to(rope_point.global_position + rope_raycast.target_position)+1
+			get_tree().current_scene.add_child(rope)
 
 func _process(delta: float) -> void:
 	if !pin:
