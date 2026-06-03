@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_menus_template/base/scripts/capture_focus.gd" id="1_1v5x4"]
 [ext_resource type="PackedScene" uid="uid://cl416gdb1fgwr" path="res://addons/maaacks_menus_template/base/scenes/menus/options_menu/option_control/slider_option_control.tscn" id="2_goqr1"]
-[ext_resource type="Script" uid="uid://b3bdqqg1ipkpy" path="res://addons/maaacks_menus_template/base/scenes/menus/options_menu/input/directional_combat_option.gd" id="2_mc4mw"]
+[ext_resource type="PackedScene" uid="uid://b6bl3n5mp3m1e" path="res://addons/maaacks_menus_template/base/scenes/menus/options_menu/option_control/list_option_control.tscn" id="2_mc4mw"]
+[ext_resource type="PackedScene" uid="uid://bsxh6v7j0257h" path="res://addons/maaacks_menus_template/base/scenes/menus/options_menu/option_control/toggle_option_control.tscn" id="3_mc4mw"]
 
 [node name="Inputs" type="MarginContainer" unique_id=569767505]
 anchors_preset = 15
@@ -36,17 +37,22 @@ alignment = 1
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="directionalcombat" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer" unique_id=1730649178]
+[node name="directionalCombat" parent="VBoxContainer/MarginContainer/VBoxContainer" unique_id=275338423 instance=ExtResource("2_mc4mw")]
 layout_mode = 2
-script = ExtResource("2_mc4mw")
+lock_titles = true
+option_values = [0, 1]
+option_titles = Array[String](["Movement", "Mouse"])
+lock_config_names = true
+option_name = "Directional Combat"
+option_section = 4
+key = "DirectionalCombat"
+section = "GameSettings"
+property_type = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/directionalcombat" unique_id=1368017839]
-layout_mode = 2
-text = "Directional Combat"
+[node name="OptionLabel" parent="VBoxContainer/MarginContainer/VBoxContainer/directionalCombat" index="0" unique_id=1777046824]
+text = "Directional Combat :"
 
-[node name="OptionButton" type="OptionButton" parent="VBoxContainer/MarginContainer/VBoxContainer/directionalcombat" unique_id=368998765]
-layout_mode = 2
-size_flags_horizontal = 10
+[node name="OptionButton" parent="VBoxContainer/MarginContainer/VBoxContainer/directionalCombat" index="1" unique_id=957037851]
 selected = 0
 item_count = 2
 popup/item_0/text = "Movement"
@@ -54,18 +60,43 @@ popup/item_0/id = 0
 popup/item_1/text = "Mouse"
 popup/item_1/id = 1
 
-[node name="headbob" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer" unique_id=1715380007]
+[node name="headBob" parent="VBoxContainer/MarginContainer/VBoxContainer" unique_id=1542359513 instance=ExtResource("3_mc4mw")]
 layout_mode = 2
+lock_config_names = true
+option_name = "Headbob"
+option_section = 4
+key = "HeadBob"
+section = "GameSettings"
 
-[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/headbob" unique_id=1879084270]
-layout_mode = 2
-text = "Headbob"
+[node name="OptionLabel" parent="VBoxContainer/MarginContainer/VBoxContainer/headBob" index="0" unique_id=1777046824]
+text = "Headbob :"
 
-[node name="headBobButton" type="CheckButton" parent="VBoxContainer/MarginContainer/VBoxContainer/headbob" unique_id=1680644595]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 10
+[node name="CheckButton" parent="VBoxContainer/MarginContainer/VBoxContainer/headBob" index="1" unique_id=1939121227]
 button_pressed = true
+
+[node name="cameraShake" parent="VBoxContainer/MarginContainer/VBoxContainer" unique_id=196643208 instance=ExtResource("3_mc4mw")]
+layout_mode = 2
+lock_config_names = true
+option_name = "Camera Shake"
+option_section = 4
+key = "CameraShake"
+section = "GameSettings"
+
+[node name="OptionLabel" parent="VBoxContainer/MarginContainer/VBoxContainer/cameraShake" index="0" unique_id=1777046824]
+text = "Camera Shake :"
+
+[node name="CheckButton" parent="VBoxContainer/MarginContainer/VBoxContainer/cameraShake" index="1" unique_id=1939121227]
+button_pressed = true
+
+[node name="Screen Blur" parent="VBoxContainer/MarginContainer/VBoxContainer" unique_id=1919424591 instance=ExtResource("3_mc4mw")]
+layout_mode = 2
+option_name = "Screen Effects"
+key = "ScreenEffects"
+section = "GameSettings"
+default_value = true
+
+[node name="OptionLabel" parent="VBoxContainer/MarginContainer/VBoxContainer/Screen Blur" index="0" unique_id=1777046824]
+text = "Screen Effects :"
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer" unique_id=1085329460]
 layout_mode = 2
@@ -101,8 +132,9 @@ min_value = 0.25
 max_value = 2.0
 tick_count = 8
 
-[connection signal="item_selected" from="VBoxContainer/MarginContainer/VBoxContainer/directionalcombat/OptionButton" to="VBoxContainer/MarginContainer/VBoxContainer/directionalcombat" method="_on_option_button_item_selected"]
-[connection signal="toggled" from="VBoxContainer/MarginContainer/VBoxContainer/headbob/headBobButton" to="VBoxContainer/MarginContainer/VBoxContainer/directionalcombat" method="_on_check_button_toggled"]
-
+[editable path="VBoxContainer/MarginContainer/VBoxContainer/directionalCombat"]
+[editable path="VBoxContainer/MarginContainer/VBoxContainer/headBob"]
+[editable path="VBoxContainer/MarginContainer/VBoxContainer/cameraShake"]
+[editable path="VBoxContainer/MarginContainer/VBoxContainer/Screen Blur"]
 [editable path="VBoxContainer/MarginContainer/VBoxContainer/MouseSensitivityControl"]
 [editable path="VBoxContainer/MarginContainer/VBoxContainer/JoypadSensitivityControl"]

@@ -6,15 +6,15 @@ extends ColorRect
 
 func _ready() -> void:
 	SignalBus.connect("raidal_blur", _update_blur)
-	
 
 func _update_blur(value: bool):
-	blur = value
-	
-	if value:
-		launch.visible = false
-		self.visible = true
-		
+	if PlayerConfig.get_config("GameSettings", "ScreenEffects", true):
+		blur = value
+		if value:
+			launch.visible = false
+			self.visible = true
+	else:
+		blur = false
 func _process(delta: float) -> void:
 	if blur:
 		self.material["shader_parameter/blur_power"] = lerpf(self.material["shader_parameter/blur_power"],blur_amount,4*delta)

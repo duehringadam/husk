@@ -27,13 +27,12 @@ emission_shape = 4
 emission_point_texture = SubResource("ImageTexture_qek5x")
 emission_point_count = 512
 
-[node name="Player" unique_id=926426044 node_paths=PackedStringArray("offhand") instance=ExtResource("1_lvxji")]
+[node name="Player" unique_id=926426044 instance=ExtResource("1_lvxji")]
 collision_mask = 14
 script = ExtResource("2_qek5x")
 footsteps_sound = SubResource("AudioStreamRandomizer_h17s1")
 walk_speed = 2.5
 sprint_speed = 4.0
-offhand = NodePath("Head/SubViewportContainer/SubViewport/Camera3D/LeftHand")
 
 [node name="InputMapControls" type="Node" parent="." index="4" unique_id=54602357]
 
@@ -134,9 +133,6 @@ angular_limit_x/enabled = false
 angular_limit_y/enabled = false
 angular_limit_z/enabled = false
 
-[node name="Camera3D" parent="Head/SubViewportContainer/SubViewport" parent_id_path=PackedInt32Array(1702353845) index="0" unique_id=804073396]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8071404, 0)
-
 [node name="status_effect_component" parent="." index="12" unique_id=1465415421]
 process_material = SubResource("ParticleProcessMaterial_5gtgg")
 
@@ -149,5 +145,5 @@ light_energy = 0.5
 shadow_enabled = true
 omni_range = 10.0
 
-[connection signal="pickable_grabbed" from="Head/Neck/Camera3D/RayCast3D/RayCast3DInteractionController" to="Head/SubViewportContainer/SubViewport/Camera3D/RightHand" method="_on_ray_cast_3d_interaction_controller_pickable_grabbed"]
-[connection signal="pickable_grabbed" from="Head/Neck/Camera3D/RayCast3D/RayCast3DInteractionController" to="Head/SubViewportContainer/SubViewport/Camera3D/LeftHand" method="_on_ray_cast_3d_interaction_controller_pickable_grabbed"]
+[connection signal="pickable_grabbed" from="Head/Neck/Camera3D/RayCast3D/RayCast3DInteractionController" to="Head/Neck/Camera3D/RightHand" method="_on_ray_cast_3d_interaction_controller_pickable_grabbed"]
+[connection signal="pickable_grabbed" from="Head/Neck/Camera3D/RayCast3D/RayCast3DInteractionController" to="Head/Neck/Camera3D/LeftHand" method="_on_ray_cast_3d_interaction_controller_pickable_grabbed"]

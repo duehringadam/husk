@@ -32,9 +32,9 @@ func _on_damage_component_damage_dealt(types: Dictionary[DamageTypes.DAMAGE_TYPE
 	if !target.can_bleed:
 		return
 		
-	var weapon_mesh_shader = weapon_mesh.get_active_material(0)
-	weapon_mesh_shader.next_pass["shader_parameter/progress"] = clampf(weapon_mesh_shader.next_pass["shader_parameter/progress"]+.05,0,.5)
-	if weapon_mesh_shader.next_pass["shader_parameter/progress"] >= .2 && blood_drip != null:
+	var weapon_mesh_shader = weapon_mesh.get_surface_override_material(0)
+	weapon_mesh_shader["shader_parameter/progress"] = clampf(weapon_mesh_shader["shader_parameter/progress"]+.05,0,.5)
+	if weapon_mesh_shader["shader_parameter/progress"] >= .2 && blood_drip != null:
 		blood_drip.emitting = true
 		bloodtimer.start()
 	else:

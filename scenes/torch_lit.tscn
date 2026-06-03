@@ -2,8 +2,8 @@
 
 [ext_resource type="Material" uid="uid://biya" path="res://scenes/Hivemind/CastleOfEternalMists/URP/Art/Materials/Instances/M_IronTrim.tres" id="1_jk2jl"]
 [ext_resource type="Script" uid="uid://cmrc6hxb0a6wm" path="res://status_effects/fire_damage_component.gd" id="2_3jy7f"]
-[ext_resource type="Texture2D" uid="uid://bgpuc5rjm2yh5" path="res://scenes/misc/Textures/T_Fire01_SubUV.png" id="3_tqt6v"]
-[ext_resource type="Texture2D" uid="uid://185sjxt7oawt" path="res://scenes/misc/Textures/T_Fire01_SubUV_normal.png" id="5_gmfoj"]
+[ext_resource type="Texture2D" uid="uid://bgpuc5rjm2yh5" path="res://scenes/misc/Textures/T_Fire01_SubUV_new.png" id="3_tqt6v"]
+[ext_resource type="Texture2D" uid="uid://dgnarq1axwhae" path="res://scenes/MysticDungeon/Art/Textures/T_Fire01_Tiled_D_Yellow.png" id="4_ndnhl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_near1"]
 resource_name = "M_IronTrim"
@@ -77,26 +77,23 @@ alpha_curve = SubResource("CurveTexture_jk2jl")
 anim_speed_min = 1.0
 anim_speed_max = 1.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_03cq8"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jk2jl"]
 transparency = 1
-diffuse_mode = 3
-specular_mode = 1
-vertex_color_use_as_albedo = true
-vertex_color_is_srgb = true
 albedo_color = Color(1, 0.5176471, 0, 1)
 albedo_texture = ExtResource("3_tqt6v")
-emission = Color(1, 0.46963003, 0, 1)
-normal_enabled = true
-normal_texture = ExtResource("5_gmfoj")
+emission_enabled = true
+emission = Color(1, 0.390048, 0, 1)
+emission_texture = ExtResource("4_ndnhl")
 billboard_mode = 3
 billboard_keep_scale = true
 particles_anim_h_frames = 6
 particles_anim_v_frames = 6
-particles_anim_loop = true
+particles_anim_loop = false
 
-[sub_resource type="QuadMesh" id="QuadMesh_ttmdu"]
-material = SubResource("StandardMaterial3D_03cq8")
-size = Vector2(0.25, 0.25)
+[sub_resource type="QuadMesh" id="QuadMesh_ndnhl"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_jk2jl")
+size = Vector2(0.15, 0.15)
 
 [node name="SM_Torch_A" type="Node3D" unique_id=1106989179]
 
@@ -125,12 +122,12 @@ debug_color = Color(0.9764706, 0, 0, 0.41960785)
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1995786782]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.28691548, 0.24920526, 0)
 process_material = SubResource("ParticleProcessMaterial_7pfap")
-draw_pass_1 = SubResource("QuadMesh_ttmdu")
+draw_pass_1 = SubResource("QuadMesh_ndnhl")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="GPUParticles3D" unique_id=2033224199]
 layers = 3
 light_color = Color(1, 0.6583885, 0, 1)
-light_bake_mode = 0
+distance_fade_enabled = true
 omni_range = 10.0
 
 [connection signal="tree_exiting" from="DamageComponent" to="DamageComponent" method="_on_tree_exiting"]

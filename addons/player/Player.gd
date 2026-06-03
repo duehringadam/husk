@@ -56,6 +56,7 @@ Optional: %jump, %sprint, %crouch, %lean, %zoom, %switch_hands
 @export_category("Weapon")
 @export var mainhand: Node3D
 @export var offhand: Node3D
+@export var consumable: Marker3D
 @export var weapon_sway_amount : float = 5
 @export var weapon_rotation_amount : float = 1
 @export var invert_weapon_sway : bool = false
@@ -131,8 +132,7 @@ func _ready() -> void:
 	SignalBus.connect("primary_active", _set_weapon_active)
 	SignalBus.connect("secondary_active", _set_weapon_active)
 	SignalBus.connect("kick_active", _animate_camera_swing)
-	
-	combat_type = AppSettings.get_directional_combat_from_config()
+	combat_type = PlayerConfig.get_config("GameSettings", "DirectionalCombat", 0)
 	GamePiecesEventBus.combat_type.connect(_on_combat_type_changed)
 	Global.camera_fov = base_fov
 	if Engine.is_editor_hint(): return
@@ -171,11 +171,10 @@ func _physics_process(delta) -> void:
 		handle_head_bob(delta)
 		handle_zoom(delta)
 		handle_switch_hands()
-		handle_lean(delta)
 		move_and_slide()
 		weapon_sway(delta)
 		handle_kick()
-		match combat_type:
+		match PlayerConfig.get_config("GameSettings", "DirectionalCombat", 0):
 			0:
 				attack_dir = input_dir
 				attack_dir.y = input_dir.z
@@ -338,8 +337,9 @@ func set_movement_speed() -> void:
 
 func look_around() -> void:
 	if lock_camera: return
-	head.rotate_y(look_control.value_axis_2d().x * mouse_sensitivity)
-	neck.rotate_x(look_control.value_axis_2d().y * mouse_sensitivity)
+	var sens_mult = PlayerConfig.get_config("InputSettings", "MouseSensitivity", 1.0)
+	head.rotate_y(look_control.value_axis_2d().x * (mouse_sensitivity * sens_mult))
+	neck.rotate_x(look_control.value_axis_2d().y * (mouse_sensitivity * sens_mult))
 	neck.rotation.x = clamp(neck.rotation.x, deg_to_rad(-85), deg_to_rad(85))
 
 
@@ -369,7 +369,7 @@ func handle_movement(delta: float) -> void:
 
 
 func handle_head_bob(delta: float) -> void:
-	if AppSettings.get_head_bob_from_config():
+	if PlayerConfig.get_config("GameSettings", "HeadBob", 0):
 		bob_time += delta * velocity.length() * float(is_on_floor())
 		var pos: Vector3 = Vector3.ZERO
 		pos.y = sin(bob_time * BOB_FREQ) * head_bob_strength

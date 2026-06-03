@@ -15,10 +15,10 @@ var first_aggro: bool = true
 
 func _ready() -> void:
 	animation_tree.active = true
-	if hurtboxes:
-		for i in hurtboxes:
-			if !i.is_connected("damage_taken", _on_hurtbox_component_damage_taken):
-				i.connect("damage_taken", _on_hurtbox_component_damage_taken)
+	#if hurtboxes:
+		#for i in hurtboxes:
+			#if !i.is_connected("damage_taken", _on_hurtbox_component_damage_taken):
+				#i.connect("damage_taken", _on_hurtbox_component_damage_taken)
 
 func _on_hurtbox_component_damage_taken(actual: float, source: DamageComponent, hit_dir: Vector3) -> void:
 	animation_tree.set("parameters/conditions/flinch", true)

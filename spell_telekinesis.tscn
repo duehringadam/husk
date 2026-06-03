@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bb3ghyy64k2bd" path="res://addons/godot_state_charts/state_chart.gd" id="4_1eeqy"]
 [ext_resource type="AudioStream" uid="uid://c0ng4y74qlee" path="res://sfx/telekeroppomimipickup2.wav" id="4_fulko"]
 [ext_resource type="Script" uid="uid://clt3bkcujiepo" path="res://addons/godot_state_charts/compound_state.gd" id="5_fulko"]
-[ext_resource type="Texture2D" uid="uid://255onixnbg8w" path="res://scenes/misc/Textures/smoke_04.png" id="6_ba315"]
+[ext_resource type="Texture2D" uid="uid://255onixnbg8w" path="res://scenes/MysticDungeon/Art/Textures/smoke_04.png" id="6_ba315"]
 [ext_resource type="Script" uid="uid://1xhujeketj0r" path="res://addons/godot_state_charts/atomic_state.gd" id="6_g4or4"]
 [ext_resource type="Script" uid="uid://8kg3tepcr415" path="res://addons/godot_state_charts/transition.gd" id="7_cpawa"]
 [ext_resource type="Script" uid="uid://c7vunfoafdipn" path="res://spell_telekinesis_idle.gd" id="8_06otd"]
@@ -118,7 +118,7 @@ transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 [node name="GPUParticles3D" type="GPUParticles3D" parent="IKLeft" unique_id=1999955052]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1.0000002, 0, 0, 0, 0.99999994, 0, 0, 0)
-layers = 2
+cast_shadow = 0
 amount = 32
 explosiveness = 0.53
 local_coords = true
@@ -126,16 +126,13 @@ process_material = SubResource("ParticleProcessMaterial_3pq0y")
 draw_pass_1 = SubResource("QuadMesh_u8dpn")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="IKLeft/GPUParticles3D" unique_id=353986375]
-layers = 3
 light_color = Color(1, 0.43529412, 0.9882353, 1)
 light_energy = 0.05
-shadow_enabled = true
 omni_range = 0.1
 
 [node name="hold_particles" type="GPUParticles3D" parent="." unique_id=729425389]
 unique_name_in_owner = true
 transform = Transform3D(0.6841394, -0.32442564, 0.6532237, 0.58371764, 0.78053534, -0.22368824, -0.43729395, 0.53433263, 0.7233701, 0.028480887, 0.0038656814, -0.19716145)
-layers = 2
 emitting = false
 amount = 32
 lifetime = 0.25
@@ -144,10 +141,8 @@ process_material = SubResource("ParticleProcessMaterial_ald4c")
 draw_pass_1 = SubResource("QuadMesh_c2gyg")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="hold_particles" unique_id=2109994855]
-layers = 3
 light_color = Color(1, 0.43529412, 0.9882353, 1)
 light_energy = 0.05
-shadow_enabled = true
 omni_range = 0.1
 
 [node name="spell_shapecast" type="ShapeCast3D" parent="." unique_id=543485684]

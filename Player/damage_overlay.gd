@@ -10,4 +10,5 @@ func _ready() -> void:
 
 func _on_hurtbox_component_damage_taken(actual: float, source: DamageComponent, hit_dir: Vector3) -> void:
 	if actual > 0:
-		animation_player.play("damage")
+		if PlayerConfig.get_config("GameSettings", "ScreenEffects", true):
+			animation_player.play("damage")

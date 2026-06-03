@@ -1,11 +1,10 @@
 [gd_scene format=3 uid="uid://5i8e6fsne4v5"]
 
 [ext_resource type="Script" uid="uid://gbfdqpek0no8" path="res://spell_fire.gd" id="1_0eavj"]
-[ext_resource type="Texture2D" uid="uid://bgpuc5rjm2yh5" path="res://scenes/misc/Textures/T_Fire01_SubUV.png" id="5_gxvne"]
+[ext_resource type="Material" uid="uid://be73u1dnxpnef" path="res://shaders/first_person_flame_particle.tres" id="2_0eavj"]
 [ext_resource type="AudioStream" uid="uid://b1m60rkx5rn63" path="res://sfx/spells/fire/floraphonic-dragon-breathes-fire-3-191459.mp3" id="6_3yxkx"]
-[ext_resource type="Texture2D" uid="uid://dgnarq1axwhae" path="res://scenes/misc/Textures/T_Fire01_Tiled_D_Yellow.png" id="6_mkrx0"]
+[ext_resource type="AudioStream" uid="uid://sppeegtsqrlm" path="res://sfx/crackling-fire-sound-307026.mp3" id="6_rf353"]
 [ext_resource type="PackedScene" uid="uid://ckj86tch1kfph" path="res://scenes/VFX/Scenes/VFX_Fire_Constant_A3.tscn" id="6_stlr1"]
-[ext_resource type="Texture2D" uid="uid://185sjxt7oawt" path="res://scenes/misc/Textures/T_Fire01_SubUV_normal.png" id="7_bsa0c"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="8_3yxkx"]
 
 [sub_resource type="Curve" id="Curve_0eavj"]
@@ -47,33 +46,9 @@ anim_speed_min = 1.0
 anim_speed_max = 1.0
 turbulence_noise_speed = Vector3(0, 1, 0)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xcmeu"]
+[sub_resource type="QuadMesh" id="QuadMesh_3yxkx"]
 resource_local_to_scene = true
-transparency = 1
-diffuse_mode = 3
-specular_mode = 1
-vertex_color_use_as_albedo = true
-vertex_color_is_srgb = true
-albedo_color = Color(1, 0.51584375, 0, 1)
-albedo_texture = ExtResource("5_gxvne")
-emission = Color(1, 0.29748532, 0, 1)
-emission_texture = ExtResource("6_mkrx0")
-normal_enabled = true
-normal_texture = ExtResource("7_bsa0c")
-backlight = Color(1, 1, 1, 1)
-billboard_mode = 3
-billboard_keep_scale = true
-particles_anim_h_frames = 6
-particles_anim_v_frames = 6
-particles_anim_loop = true
-grow_amount = -0.264
-proximity_fade_distance = 0.01
-distance_fade_max_distance = 1.0
-stencil_flags = 2
-
-[sub_resource type="QuadMesh" id="QuadMesh_twvp5"]
-resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_xcmeu")
+material = ExtResource("2_0eavj")
 size = Vector2(0.15, 0.15)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eesq2"]
@@ -90,24 +65,22 @@ update_scale = false
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1342072422]
 top_level = true
-layers = 2
+cast_shadow = 0
 amount = 16
 lifetime = 0.3
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_0eavj")
-draw_pass_1 = SubResource("QuadMesh_twvp5")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="GPUParticles3D" unique_id=1138468221]
-layers = 3
-light_color = Color(1, 0.3882353, 0, 1)
-light_energy = 0.25
-shadow_enabled = true
-omni_range = 0.4
+draw_pass_1 = SubResource("QuadMesh_3yxkx")
 
 [node name="firesfx" type="AudioStreamPlayer3D" parent="GPUParticles3D" unique_id=912230544]
 stream = ExtResource("6_3yxkx")
 max_distance = 5.0
 bus = &"SFX"
+
+[node name="OmniLight3D" type="OmniLight3D" parent="GPUParticles3D" unique_id=1138468221]
+light_color = Color(1, 0.3882353, 0, 1)
+light_energy = 0.15
+omni_range = 0.4
 
 [node name="DamageComponent" type="Area3D" parent="." unique_id=752380998]
 transform = Transform3D(-0.04999996, 0, 4.3711346e-09, 0, 0.04999999, 0, -4.3711355e-09, 0, -0.049999952, 0.24913344, 0.27076727, -0.19921649)
@@ -129,3 +102,9 @@ shape = SubResource("CapsuleShape3D_eesq2")
 
 [node name="VFX_fire_Constant_A3" parent="." unique_id=1748177694 instance=ExtResource("6_stlr1")]
 top_level = false
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1285625525]
+stream = ExtResource("6_rf353")
+volume_db = -20.0
+autoplay = true
+bus = &"SFX"

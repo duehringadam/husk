@@ -6,8 +6,8 @@ extends RigidBody3D
 @export var throw_power: float = 10
 @export var interaction_context_when_grabbed: int = 1
 @export var change_distance_interaction: Interaction
-@export var release_distance: float = 4.
-@export_range(0,1.0) var hold_duration: float = 0.0
+@export var release_distance: float = 4.0
+@export_range(0,1.0) var hold_duration: float = 0.3
 
 @export var throwable_mesh: MeshInstance3D
 @export var throwable: RigidBody3D

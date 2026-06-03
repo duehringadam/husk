@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://ba1l1kqe7yxt6" path="res://addons/player/Player.gd" id="1_cyojo"]
 [ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/item.gd" id="2_863th"]
-[ext_resource type="Script" uid="uid://cn1tuyffokj2" path="res://Player/viewport_camera.gd" id="3_6oqec"]
 [ext_resource type="Resource" uid="uid://dmv7he43amthj" path="res://item/weapons/mace_2_hand/morning_star.tres" id="3_e6ia4"]
 [ext_resource type="PackedScene" uid="uid://bj4hhphu33n38" path="res://addons/player/player_body.tscn" id="3_tio5b"]
 [ext_resource type="Script" uid="uid://dgjqgiw3yw42e" path="res://components/health_component.gd" id="4_7ek8b"]
@@ -16,6 +15,7 @@
 [ext_resource type="Shader" uid="uid://dgt3e85o3avu2" path="res://Player/damage.gdshader" id="9_4ng6s"]
 [ext_resource type="Script" uid="uid://dmju02n5xp4s0" path="res://addons/player/step_detect.gd" id="9_863th"]
 [ext_resource type="PackedScene" uid="uid://b5corv5nqshay" path="res://addons/player/player_arm_right.tscn" id="9_hqsyx"]
+[ext_resource type="PackedScene" uid="uid://b38llmlalg8wk" path="res://addons/player/player_arm_consumables.tscn" id="10_epd12"]
 [ext_resource type="PackedScene" uid="uid://bplg0u3sd3j28" path="res://addons/player/player_arm_left.tscn" id="10_hqsyx"]
 [ext_resource type="Script" uid="uid://6h8f2qhrbtt6" path="res://Player/damage_overlay.gd" id="10_jux4o"]
 [ext_resource type="AudioStream" uid="uid://br26jgupi66u0" path="res://Player/sfx/footsteps/stone/footstep_stone.tres" id="12_hqsyx"]
@@ -152,7 +152,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("%RightHand:position")
+tracks/8/path = NodePath("Neck/Camera3D/RightHand:position")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -164,7 +164,7 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("%RightHand:rotation")
+tracks/9/path = NodePath("Neck/Camera3D/RightHand:rotation")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -176,7 +176,7 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("%LeftHand:position")
+tracks/10/path = NodePath("Neck/Camera3D/LeftHand:position")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -188,7 +188,7 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("%LeftHand:rotation")
+tracks/11/path = NodePath("Neck/Camera3D/LeftHand:rotation")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
@@ -400,7 +400,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("%RightHand:position")
+tracks/3/path = NodePath("Neck/Camera3D/RightHand:position")
 tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -412,7 +412,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("%RightHand:rotation")
+tracks/4/path = NodePath("Neck/Camera3D/RightHand:rotation")
 tracks/4/interp = 2
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -424,7 +424,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("%LeftHand:position")
+tracks/5/path = NodePath("Neck/Camera3D/LeftHand:position")
 tracks/5/interp = 2
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -436,7 +436,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("%LeftHand:rotation")
+tracks/6/path = NodePath("Neck/Camera3D/LeftHand:rotation")
 tracks/6/interp = 2
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -747,15 +747,16 @@ shader_parameter/shape_scroll = Vector2(0.1, 0.1)
 shader_parameter/shape_feathering = 0.56999998725936
 shader_parameter/shape_treshold = 1.0
 
-[node name="Player" type="CharacterBody3D" unique_id=1383979839 node_paths=PackedStringArray("player_body", "mainhand", "offhand") groups=["player"]]
+[node name="Player" type="CharacterBody3D" unique_id=1383979839 node_paths=PackedStringArray("player_body", "mainhand", "offhand", "consumable") groups=["player"]]
 collision_mask = 35
 script = ExtResource("1_cyojo")
 inventory = Array[ExtResource("2_863th")]([ExtResource("3_e6ia4"), ExtResource("4_d6j5h"), ExtResource("5_863th")])
 player_body = NodePath("Head/Neck/Camera3D/playerBody")
 climb_speed = 3.0
 camera_lean_position = Vector3(0, 0, 0)
-mainhand = NodePath("Head/SubViewportContainer/SubViewport/Camera3D/RightHand")
-offhand = NodePath("Head/SubViewportContainer/SubViewport/Camera3D/LeftHand")
+mainhand = NodePath("Head/Neck/Camera3D/RightHand")
+offhand = NodePath("Head/Neck/Camera3D/LeftHand")
+consumable = NodePath("Head/Neck/Camera3D/consumableHand")
 weapon_rotation_amount = 0.25
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1092821169]
@@ -820,40 +821,22 @@ script = ExtResource("6_5fkmn")
 [node name="playerBody" parent="Head/Neck/Camera3D" unique_id=764290862 instance=ExtResource("3_tio5b")]
 transform = Transform3D(-1.2, 0, 1.04907336e-07, 0, 1.2, 0, -1.04907336e-07, 0, -1.2, -0.09, -1.735, 0.477)
 
-[node name="CameraAnimationPlayer" type="AnimationPlayer" parent="Head" unique_id=2090545160]
-unique_name_in_owner = true
-libraries/ = SubResource("AnimationLibrary_by45h")
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="Head" unique_id=572692047]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-stretch = true
-
-[node name="SubViewport" type="SubViewport" parent="Head/SubViewportContainer" unique_id=1702353845]
-transparent_bg = true
-handle_input_locally = false
-size = Vector2i(1920, 1080)
-render_target_update_mode = 4
-
-[node name="Camera3D" type="Camera3D" parent="Head/SubViewportContainer/SubViewport" unique_id=804073396 node_paths=PackedStringArray("main_camera", "hurtbox")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
-cull_mask = 1048574
-script = ExtResource("3_6oqec")
-main_camera = NodePath("../../../Neck/Camera3D")
-randomStrength = 0.02
-hurtbox = NodePath("../../../../hurtbox_component")
-
-[node name="RightHand" parent="Head/SubViewportContainer/SubViewport/Camera3D" unique_id=1178015951 node_paths=PackedStringArray("offhand") instance=ExtResource("9_hqsyx")]
+[node name="RightHand" parent="Head/Neck/Camera3D" unique_id=1178015951 node_paths=PackedStringArray("offhand") instance=ExtResource("9_hqsyx")]
 unique_name_in_owner = true
 offhand = NodePath("../LeftHand")
 
-[node name="LeftHand" parent="Head/SubViewportContainer/SubViewport/Camera3D" unique_id=412198594 node_paths=PackedStringArray("mainhand") instance=ExtResource("10_hqsyx")]
+[node name="LeftHand" parent="Head/Neck/Camera3D" unique_id=412198594 node_paths=PackedStringArray("mainhand") instance=ExtResource("10_hqsyx")]
 unique_name_in_owner = true
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
 mainhand = NodePath("../RightHand")
+
+[node name="consumableHand" parent="Head/Neck/Camera3D" unique_id=93114209 instance=ExtResource("10_epd12")]
+unique_name_in_owner = true
+visible = false
+
+[node name="CameraAnimationPlayer" type="AnimationPlayer" parent="Head" unique_id=2090545160]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_by45h")
 
 [node name="stepDetect" type="Node3D" parent="Head" unique_id=838693918 node_paths=PackedStringArray("separation_ray", "player")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5979036, 0)
@@ -932,11 +915,10 @@ volume_db = 6.0
 max_db = 6.0
 bus = &"SFX"
 
-[node name="hurtbox_component" type="Area3D" parent="." unique_id=802643040 node_paths=PackedStringArray("player_camera", "viewport_camera", "health_component", "status_component", "source")]
+[node name="hurtbox_component" type="Area3D" parent="." unique_id=802643040 node_paths=PackedStringArray("player_camera", "health_component", "status_component", "source")]
 collision_mask = 13
 script = ExtResource("5_eon52")
 player_camera = NodePath("../Head/Neck/Camera3D")
-viewport_camera = NodePath("../Head/SubViewportContainer/SubViewport/Camera3D")
 status_weaknesses = Dictionary[int, float]({
 0: 10.0
 })

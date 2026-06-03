@@ -2,11 +2,15 @@
 
 [ext_resource type="Script" uid="uid://dbhctgtyey8n7" path="res://item/weapons/ranged/rope_bow/rope_bow_viewmodel.gd" id="1_jo1or"]
 [ext_resource type="PackedScene" uid="uid://cognqrp5ye22k" path="res://rope_arrow.tscn" id="2_rt74m"]
+[ext_resource type="Shader" uid="uid://cba8frjri8tvn" path="res://shaders/first_person_arms.gdshader" id="4_aev78"]
+[ext_resource type="Texture2D" uid="uid://tj2xrbtj0eqr" path="res://shaders/blood_buildup_noise_2.tres" id="5_dyef4"]
 [ext_resource type="AudioStream" uid="uid://cofkxkh27wbkq" path="res://item/weapons/ranged/rope_bow/oxidvideos-rope-amp-leather-tension-2-449631.mp3" id="5_jo1or"]
 [ext_resource type="ArrayMesh" uid="uid://crg716m1jta00" path="res://Player/weapon/ALL/Bow3/bow3.tres" id="5_rt74m"]
 [ext_resource type="AudioStream" uid="uid://dp0xv2pmowmm7" path="res://item/weapons/ranged/rope_bow/floraphonic-rope-pull-and-stretch-loop-3-202954.mp3" id="6_611tq"]
+[ext_resource type="Texture2D" uid="uid://ce7cu3sx54kac" path="res://Player/weapon/ALL/Bow3/bow3_Screenshot_20260315_102915_Google.png" id="6_x1d4c"]
 [ext_resource type="AudioStream" uid="uid://vgafbwf28s38" path="res://item/weapons/ranged/rope_bow/bow_shoot.ogg" id="6_yttj6"]
 [ext_resource type="AudioStream" uid="uid://cdcpbuqguo5uk" path="res://item/weapons/ranged/rope_bow/bow_draw.ogg" id="7_611tq"]
+[ext_resource type="Texture2D" uid="uid://d4fc2ow2ss3eo" path="res://Player/weapon/ALL/Bow3/Screenshot_20260315_102915_Google_normal.png" id="7_cbqd7"]
 
 [sub_resource type="Skin" id="Skin_m4axo"]
 resource_name = "Skin"
@@ -17,6 +21,29 @@ bind/0/pose = Transform3D(7.54979e-08, -1, 0, 1, 7.54979e-08, 0, 0, 0, 1, -2.810
 bind/1/name = &"String"
 bind/1/bone = -1
 bind/1/pose = Transform3D(7.54979e-08, -1, 0, 1, 7.54979e-08, 0, 0, 0, 1, 7.659349e-08, 1.0145116, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0hqge"]
+render_priority = 0
+shader = ExtResource("4_aev78")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("6_x1d4c")
+shader_parameter/albedo_texture_size = Vector2i(0, 0)
+shader_parameter/point_size = 0.0
+shader_parameter/roughness = 0.0
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
+shader_parameter/specular = 0.0
+shader_parameter/metallic = 0.0
+shader_parameter/texture_normal = ExtResource("7_cbqd7")
+shader_parameter/normal_scale = 0.25000077187500125
+shader_parameter/uv1_scale = Vector3(0, 0, 0)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(0, 0, 0)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/FOV = 75.0
+shader_parameter/overlay_color = Color(0.57254905, 0, 0, 1)
+shader_parameter/noise_texture = ExtResource("5_dyef4")
+shader_parameter/progress = 0.0
+shader_parameter/noise_softness = 0.05
 
 [sub_resource type="Animation" id="Animation_wrwlr"]
 length = 0.001
@@ -82,10 +109,10 @@ bones/1/rotation = Quaternion(-8.9406996e-08, 1.0430806e-07, 4.440871e-16, 1)
 bones/1/scale = Vector3(1.0000001, 0.99999946, 0.9999995)
 
 [node name="Cube_001" type="MeshInstance3D" parent="Armature/Skeleton3D" unique_id=398529231]
-layers = 2
 mesh = ExtResource("5_rt74m")
 skin = SubResource("Skin_m4axo")
 skeleton = NodePath("..")
+surface_material_override/0 = SubResource("ShaderMaterial_0hqge")
 
 [node name="RayCast3D" type="RayCast3D" parent="." unique_id=2124985988]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.048476756, 0.39117166, 0.8967377)

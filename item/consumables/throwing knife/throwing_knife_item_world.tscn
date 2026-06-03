@@ -1,0 +1,145 @@
+[gd_scene format=3 uid="uid://r8h2k5l6aoy4"]
+
+[ext_resource type="Script" uid="uid://dixki0innbjf2" path="res://addons/game_pieces/pickable/item_world_pickable.gd" id="1_jqw0n"]
+[ext_resource type="Resource" uid="uid://cgk67iwvp47fb" path="res://item/consumables/throwing knife/throwing_knife.tres" id="2_r8x4n"]
+[ext_resource type="Script" uid="uid://ck3cei0hvspym" path="res://addons/interaction_system/interaction_container.gd" id="2_usko3"]
+[ext_resource type="Script" uid="uid://5tinbhq6p45k" path="res://addons/interaction_system/interaction.gd" id="3_krj0w"]
+[ext_resource type="Script" uid="uid://bxe74cq2uqemi" path="res://addons/game_controls/vanilla/input_map_game_control.gd" id="4_76lam"]
+[ext_resource type="Script" uid="uid://doc0okecalxnp" path="res://addons/interaction_system/interaction_context.gd" id="5_83ph5"]
+[ext_resource type="AudioStream" uid="uid://dcr4in8lcdk51" path="res://sfx/dark_souls_item.wav" id="6_lxr3h"]
+[ext_resource type="Script" uid="uid://cp0p4yckxtvmw" path="res://addons/game_pieces/collision_sound/collision_sound_player.gd" id="7_n5m01"]
+[ext_resource type="PackedScene" uid="uid://bvb1ic1mm6bap" path="res://item/item_glint.tscn" id="9_h48lg"]
+[ext_resource type="ArrayMesh" uid="uid://dned7p4lyx1r3" path="res://scenes/Hivemind/MedievalWeapons/Art/Models/SM_ThrowingKnife/M_ThrowingKnife_Mesh.tres" id="9_mkyf6"]
+[ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="10_w5e0d"]
+[ext_resource type="PackedScene" uid="uid://dhws2ueoubwwx" path="res://components/bounding_box_component.tscn" id="11_ra23y"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_lua8s"]
+points = PackedVector3Array(-0.00947646, -0.037371673, -0.00027552212, -0.00947646, -0.037371673, 0.00027515937, -0.00905347, -0.027677797, -0.00027552212, -0.0063448492, -0.027688883, -0.0018517982, -0.0067307353, -0.03732731, -0.0018517982, -0.009472749, -0.048318878, -0.00027552212, -0.0067307353, -0.03732731, 0.0018517982, -0.0063448492, -0.027688883, 0.0018517982, -0.00905347, -0.027677797, 0.00027515937, -0.009472749, -0.048318878, 0.00027515937, -0.0035842834, 0.018296033, -0.0009258991, -0.0028069466, 0.018329307, -0.0018517982, -0.006712183, -0.04823015, -0.0018517982, -0.009220439, -0.061883654, -0.00027552212, -0.006712183, -0.04823015, 0.0018517982, -0.0028069466, 0.018329307, 0.0018517982, -0.0035842834, 0.018296033, 0.0009255364, -0.009220439, -0.061883654, 0.00027515937, -0.0035824282, 0.018307127, 0, -0.0032893033, 0.019327536, 0, -0.0032818825, 0.019327536, -0.0009258991, -0.0025453605, 0.019371904, -0.0018517982, -0.006357836, -0.061417818, -0.0018517982, -0.008962564, -0.064967066, -0.00027552212, -0.006357836, -0.061417818, 0.0018517982, -0.0025453605, 0.019371904, 0.0018517982, -0.0032818825, 0.019327536, 0.0009255364, -0.008962564, -0.064967066, 0.00027515937, -0.0026102932, 0.02019266, 0.0009255364, -0.0026399768, 0.020159386, 0, -0.0026102932, 0.02019266, -0.0009258991, -0.0019368487, 0.020314671, -0.0018517982, -0.0060201865, -0.0645345, -0.0018517982, -0.00871582, -0.06790628, -0.00027552212, -0.00871582, -0.06790628, 0.00027515937, -0.0060201865, -0.0645345, 0.0018517982, -0.0019368487, 0.020314671, 0.0018517982, -0.0011465251, 0.02121307, 0.0014606292, -0.0011465251, 0.021490358, 0.0007265081, -0.0011465251, 0.021490358, -0.0007268707, -0.0011465251, 0.02121307, -0.0014609919, 0.001934994, 0.020314671, -0.0018517982, -0.0055582365, -0.06745154, -0.0018517982, -0.008257581, -0.07096751, -0.00027552212, -0.008257581, -0.07096751, 0.00027515937, -0.0055582365, -0.06745154, 0.0018517982, 0.001934994, 0.020314671, 0.0018517982, 0.0011446709, 0.02121307, 0.0014606292, 0, 0.021734364, 0.0011006381, 0, 0.02193401, 0.0006460267, 0, 0.02193401, -0.0006463892, 0, 0.021734364, -0.0011010006, 0.0011446709, 0.02121307, -0.0014609919, 0.002608439, 0.02019266, -0.0009258991, 0.0032800278, 0.019327536, -0.0009258991, 0.0025435062, 0.019371904, -0.0018517982, -0.004920041, -0.07049058, -0.0018517982, -0.004215058, -0.07367381, -0.0018517982, -0.0034247343, -0.07697904, -0.0018517982, -0.007517348, -0.074062005, -0.00027552212, -0.007517348, -0.074062005, 0.00027515937, -0.0034247343, -0.07697904, 0.0018517982, -0.004215058, -0.07367381, 0.0018517982, -0.004920041, -0.07049058, 0.0018517982, 0.0025435062, 0.019371904, 0.0018517982, 0.0032800278, 0.019327536, 0.0009255364, 0.002608439, 0.02019266, 0.0009255364, 0.0011446709, 0.021490358, 0.0007265081, 0.0011446709, 0.021490358, -0.0007268707, 0.002638122, 0.020159386, 0, 0.0032874485, 0.019327536, 0, 0.0035824282, 0.018296033, -0.0009258991, 0.0028050914, 0.018329307, -0.0018517982, -0.0017420505, -0.08235837, -0.0018517982, -0.0064283344, -0.0772896, -0.00027552212, -0.0064283344, -0.0772896, 0.00027515937, -0.0017420505, -0.08235837, 0.0018517982, 0.0028050914, 0.018329307, 0.0018517982, 0.0035824282, 0.018296033, 0.0009255364, 0.003580573, 0.018307127, 0, 0.009051614, -0.027677797, -0.00027552212, 0.006342995, -0.027688883, -0.0018517982, 0, -0.08675056, -0.0018209831, -0.004402435, -0.08266893, -0.00027552212, 0.0017401958, -0.08235837, -0.0018517982, -0.004402435, -0.08266893, 0.00027515937, 0, -0.08675056, 0.0018206205, 0.0017401958, -0.08235837, 0.0018517982, 0.006342995, -0.027688883, 0.0018517982, 0.009051614, -0.027677797, 0.00027515937, 0.00947646, -0.037371673, -0.00027552212, 0.006728881, -0.03732731, -0.0018517982, 0.00440058, -0.08266893, -0.00027552212, 0.002270789, -0.08723858, -0.00027552212, 0, -0.09137567, -0.00027552212, -0.0022726431, -0.08723858, -0.00027552212, 0.0034228796, -0.07697904, -0.0018517982, 0.007515493, -0.074062005, -0.00027552212, 0.0064264806, -0.0772896, -0.00027552212, -0.0022726431, -0.08723858, 0.00027515937, 0.00440058, -0.08266893, 0.00027515937, 0, -0.09137567, 0.00027515937, 0.002270789, -0.08723858, 0.00027515937, 0.0064264806, -0.0772896, 0.00027515937, 0.007515493, -0.074062005, 0.00027515937, 0.0034228796, -0.07697904, 0.0018517982, 0.006728881, -0.03732731, 0.0018517982, 0.00947646, -0.037371673, 0.00027515937, 0.009470894, -0.048318878, -0.00027552212, 0.006710329, -0.04823015, -0.0018517982, 0.0042132027, -0.07367381, -0.0018517982, 0.008255727, -0.07096751, -0.00027552212, 0.008255727, -0.07096751, 0.00027515937, 0.0042132027, -0.07367381, 0.0018517982, 0.006710329, -0.04823015, 0.0018517982, 0.009470894, -0.048318878, 0.00027515937, 0.009218584, -0.061883654, -0.00027552212, 0.0063559813, -0.061417818, -0.0018517982, 0.004918187, -0.07049058, -0.0018517982, 0.0055563822, -0.06745154, -0.0018517982, 0.0060183313, -0.0645345, -0.0018517982, 0.008713965, -0.06790628, -0.00027552212, 0.004918187, -0.07049058, 0.0018517982, 0.008713965, -0.06790628, 0.00027515937, 0.0060183313, -0.0645345, 0.0018517982, 0.0055563822, -0.06745154, 0.0018517982, 0.0063559813, -0.061417818, 0.0018517982, 0.009218584, -0.061883654, 0.00027515937, 0.00896071, -0.064967066, -0.00027552212, 0.00896071, -0.064967066, 0.00027515937)
+
+[node name="Pickable" type="RigidBody3D" unique_id=2119350781 node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component")]
+collision_layer = 8
+collision_mask = 15
+contact_monitor = true
+max_contacts_reported = 1
+angular_damp = 5.0
+script = ExtResource("1_jqw0n")
+item_to_loot = ExtResource("2_r8x4n")
+change_distance_interaction = NodePath("InteractionContainer/WhileGrabbed/Change Distance")
+throwable_mesh = NodePath("Throwing Knife")
+throwable = NodePath(".")
+damage_component = NodePath("DamageComponent")
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("2_usko3"),"default_context_id":0,"display_name":"Morning Star","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("3_krj0w")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_krj0w"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("4_76lam"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+, Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_krj0w"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("4_76lam"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="InteractionContainer" type="Node" parent="." unique_id=675653858]
+script = ExtResource("2_usko3")
+display_name = "Morning Star"
+metadata/_custom_type_script = "uid://ck3cei0hvspym"
+
+[node name="Take" type="Node" parent="InteractionContainer" unique_id=1494656254]
+script = ExtResource("3_krj0w")
+hide_while_grabbed = true
+display_name = "Grab"
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="interact" type="Node" parent="InteractionContainer/Take" unique_id=658629802]
+script = ExtResource("4_76lam")
+action = &"interact"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="Hold" type="Node" parent="InteractionContainer" unique_id=2043500295]
+script = ExtResource("3_krj0w")
+hide_while_grabbed = true
+display_name = "Grab"
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="interact" type="Node" parent="InteractionContainer/Hold" unique_id=47041581]
+script = ExtResource("4_76lam")
+action = &"interact"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="WhileGrabbed" type="Node" parent="InteractionContainer" unique_id=1598984081]
+script = ExtResource("5_83ph5")
+context_id = 1
+metadata/_custom_type_script = "uid://doc0okecalxnp"
+
+[node name="Change Distance" type="Node" parent="InteractionContainer/WhileGrabbed" unique_id=1387568767]
+script = ExtResource("3_krj0w")
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="scroll" type="Node" parent="InteractionContainer/WhileGrabbed/Change Distance" unique_id=2094094583]
+script = ExtResource("4_76lam")
+type = 1
+action = &"scroll"
+negative_x = &"scroll_down"
+positive_x = &"scroll_up"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="Rotate" type="Node" parent="InteractionContainer/WhileGrabbed" unique_id=802756841]
+script = ExtResource("3_krj0w")
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="rotate" type="Node" parent="InteractionContainer/WhileGrabbed/Rotate" unique_id=1279692524]
+script = ExtResource("4_76lam")
+action = &"rotate"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="Throw" type="Node" parent="InteractionContainer/WhileGrabbed" unique_id=696603547]
+script = ExtResource("3_krj0w")
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="secondary_action" type="Node" parent="InteractionContainer/WhileGrabbed/Throw" unique_id=629675826]
+script = ExtResource("4_76lam")
+action = &"secondary_action"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="PickupSound" type="AudioStreamPlayer" parent="." unique_id=290488532]
+stream = ExtResource("6_lxr3h")
+
+[node name="CollisionSoundPlayer" type="AudioStreamPlayer3D" parent="." unique_id=135415267]
+max_polyphony = 3
+script = ExtResource("7_n5m01")
+sounds_per_velocity = Dictionary[int, AudioStream]({
+2: null,
+6: null,
+12: null
+})
+metadata/_custom_type_script = "uid://cp0p4yckxtvmw"
+
+[node name="Throwing Knife" type="MeshInstance3D" parent="." unique_id=1316351081]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+mesh = ExtResource("9_mkyf6")
+
+[node name="OmniLight3D" parent="Throwing Knife" unique_id=1151187837 instance=ExtResource("9_h48lg")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.33333334, 0, 0, 0, 0.33333334, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1535131224]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_lua8s")
+
+[node name="DamageComponent" type="Area3D" parent="." unique_id=1429514769 node_paths=PackedStringArray("source")]
+collision_mask = 13
+script = ExtResource("10_w5e0d")
+damage_types = Dictionary[int, float]({
+1: 10.0
+})
+source = NodePath("..")
+metadata/_custom_type_script = "uid://dlsydctoxqbwy"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent" unique_id=500192351]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_lua8s")
+
+[node name="bounding_box_component" parent="." unique_id=326409759 node_paths=PackedStringArray("mesh") instance=ExtResource("11_ra23y")]
+mesh = NodePath("../Throwing Knife")
+
+[connection signal="on_complete" from="InteractionContainer/Take" to="." method="_released"]
+[connection signal="on_trigger" from="InteractionContainer/Take" to="." method="_while_grabbed"]
+[connection signal="on_trigger" from="InteractionContainer/WhileGrabbed/Change Distance" to="." method="_on_change_distance"]
+[connection signal="on_complete" from="InteractionContainer/WhileGrabbed/Rotate" to="." method="_stopped_rotating"]
+[connection signal="on_trigger" from="InteractionContainer/WhileGrabbed/Rotate" to="." method="_while_rotating"]
+[connection signal="on_complete" from="InteractionContainer/WhileGrabbed/Throw" to="." method="_on_throw"]
