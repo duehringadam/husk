@@ -6,10 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c651uj20r0ls0" path="res://scenes/npc/Ghoul Animated/For Unity/T_GhoulA_1024.png" id="3_ck3co"]
 [ext_resource type="Texture2D" uid="uid://cqw8pa3g2qf2v" path="res://scenes/npc/Ghoul Animated/Textures/NormalMap(2).png" id="3_x202g"]
 [ext_resource type="Script" uid="uid://dgjqgiw3yw42e" path="res://components/health_component.gd" id="4_qcdqp"]
-[ext_resource type="Script" uid="uid://c2i6qdosp0h2" path="res://components/hurtbox_component.gd" id="4_v0k1a"]
-[ext_resource type="PackedScene" uid="uid://c1un17c5tsen5" path="res://scenes/VFX/Scenes/VFX_Blood_Hit_B2.tscn" id="6_exqn4"]
 [ext_resource type="Script" uid="uid://vxrbcfcv6g1i" path="res://scenes/npc/Ghoul Animated/vision_area.gd" id="7_1u4j8"]
-[ext_resource type="AudioStream" uid="uid://28i0pxdfmu06" path="res://sfx/hit-shell-01-266294.mp3" id="7_5vd8j"]
 [ext_resource type="Script" uid="uid://b2errsixgk2ri" path="res://components/bone_health_component.gd" id="7_28glq"]
 [ext_resource type="Script" uid="uid://dql5v81gqvdat" path="res://components/status_effect_component.gd" id="7_yjoxl"]
 [ext_resource type="PackedScene" uid="uid://cieyrvkejc3w" path="res://scenes/npc/Ghoul Animated/gore/pickable/head_sever.tscn" id="8_tix41"]
@@ -1918,7 +1915,7 @@ tracks/43/keys = PackedFloat32Array(0, 1, -0.01666617, 0.113026395, -0.25070903,
 tracks/44/type = "value"
 tracks/44/imported = false
 tracks/44/enabled = true
-tracks/44/path = NodePath("%DamageComponent:monitoring")
+tracks/44/path = NodePath("Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Forearm_L/DamageComponent:monitoring")
 tracks/44/interp = 1
 tracks/44/loop_wrap = true
 tracks/44/keys = {
@@ -1930,7 +1927,7 @@ tracks/44/keys = {
 tracks/45/type = "value"
 tracks/45/imported = false
 tracks/45/enabled = true
-tracks/45/path = NodePath("%DamageComponent:monitorable")
+tracks/45/path = NodePath("Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Forearm_L/DamageComponent:monitorable")
 tracks/45/interp = 1
 tracks/45/loop_wrap = true
 tracks/45/keys = {
@@ -2877,7 +2874,7 @@ tracks/43/keys = PackedFloat32Array(0, 1, -0.0166662, 0.113026395, -0.250709, 0.
 tracks/44/type = "value"
 tracks/44/imported = false
 tracks/44/enabled = true
-tracks/44/path = NodePath("%DamageComponent_right:monitoring")
+tracks/44/path = NodePath("Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Forearm_R/DamageComponent_right:monitoring")
 tracks/44/interp = 1
 tracks/44/loop_wrap = true
 tracks/44/keys = {
@@ -2889,7 +2886,7 @@ tracks/44/keys = {
 tracks/45/type = "value"
 tracks/45/imported = false
 tracks/45/enabled = true
-tracks/45/path = NodePath("%DamageComponent_right:monitorable")
+tracks/45/path = NodePath("Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Forearm_R/DamageComponent_right:monitorable")
 tracks/45/interp = 1
 tracks/45/loop_wrap = true
 tracks/45/keys = {
@@ -7271,7 +7268,7 @@ tracks/43/keys = PackedFloat32Array(0, 1, -0.016666215, 0.1130264, -0.25070897, 
 tracks/44/type = "audio"
 tracks/44/imported = false
 tracks/44/enabled = true
-tracks/44/path = NodePath("%Ghoul/../AudioStreamPlayer3D")
+tracks/44/path = NodePath("../AudioStreamPlayer3D")
 tracks/44/interp = 1
 tracks/44/loop_wrap = true
 tracks/44/keys = {
@@ -8099,18 +8096,9 @@ texture_filter = 2
 radius = 0.14111328
 height = 0.35058594
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_mkt2x"]
-radius = 0.14183769
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_47v5s"]
-radius = 0.18768756
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mkt2x"]
 radius = 0.0019105729
 height = 0.019105729
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_cdxns"]
-radius = 0.10926072
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_47v5s"]
 radius = 0.00031542729
@@ -8120,9 +8108,6 @@ height = 0.003154273
 radius = 0.125
 height = 0.2939453
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_0os5c"]
-radius = 0.16073357
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_28glq"]
 radius = 0.0043945313
 height = 0.009574198
@@ -8131,17 +8116,9 @@ height = 0.009574198
 radius = 0.045898438
 height = 0.3647461
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_so386"]
-radius = 0.119628906
-height = 0.5048828
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fquji"]
 radius = 0.0024385399
 height = 0.024385398
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pf32e"]
-radius = 0.084472656
-height = 0.44335938
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_av24j"]
 radius = 0.18359375
@@ -8155,33 +8132,17 @@ height = 0.009574197
 radius = 0.0043945313
 height = 0.025977602
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ck3co"]
-radius = 0.110839844
-height = 0.50878906
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yjoxl"]
 radius = 0.002438542
 height = 0.024385419
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ai26p"]
-radius = 0.09423828
-height = 0.48168945
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5vd8j"]
 radius = 0.0036102687
 height = 0.036102686
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6pan1"]
-radius = 0.123535156
-height = 0.5317383
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_40h88"]
 radius = 0.0042065233
 height = 0.042065233
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hnstf"]
-radius = 0.15185547
-height = 0.63964844
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_exqn4"]
 radius = 0.0014394557
@@ -8191,17 +8152,9 @@ height = 0.014394557
 radius = 0.00361028
 height = 0.0361028
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_abjnj"]
-radius = 0.111816406
-height = 0.56103516
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uf4ye"]
 radius = 0.0042065373
 height = 0.042065375
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tdogo"]
-radius = 0.14892578
-height = 0.6142578
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_iefhv"]
 radius = 0.0014394613
@@ -8220,7 +8173,7 @@ metadata/_custom_type_script = "uid://dvqrit635k8bv"
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mu6vm"]
 radius = 1.0
 
-[node name="Ghoul" type="CharacterBody3D" unique_id=1058362702 node_paths=PackedStringArray("physical_bone_simulator", "animation_tree", "navigation_agent", "hurtboxes", "health_component", "state_chart", "mesh") groups=["enemy"]]
+[node name="ghoul" type="CharacterBody3D" unique_id=1058362702 node_paths=PackedStringArray("physical_bone_simulator", "animation_tree", "navigation_agent", "hurtboxes", "health_component", "state_chart", "mesh") groups=["enemy"]]
 collision_layer = 4
 collision_mask = 6
 script = ExtResource("1_5uu5o")
@@ -8229,7 +8182,7 @@ SPEED = 2.0
 physical_bone_simulator = NodePath("Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D")
 animation_tree = NodePath("AnimationTree")
 navigation_agent = NodePath("NavigationAgent3D")
-hurtboxes = [NodePath("Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/PickableRagdollHip/hurtbox_component"), NodePath("Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Spine/hurtbox_component"), NodePath("Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/PickableRagdollChest/hurtbox_component"), NodePath("Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Head/hurtbox_component"), NodePath("Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_L/hurtbox_component"), NodePath("Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Forearm_L/hurtbox_component"), NodePath("Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Calf_R/hurtbox_component"), NodePath("Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Thigh_R/hurtbox_component"), NodePath("Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Calf_L/hurtbox_component"), NodePath("Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Thigh_L/hurtbox_component"), NodePath("Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R/hurtbox_component"), NodePath("Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Forearm_R/hurtbox_component")]
+hurtboxes = [NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath("")]
 health_component = NodePath("Ghoul/Armature/HealthComponent")
 state_chart = NodePath("StateChart")
 mesh = NodePath("Ghoul/Armature/Skeleton3D/Ghoul")
@@ -8279,7 +8232,7 @@ bones/0/name = "IK.Arm_L"
 bones/0/parent = -1
 bones/0/rest = Transform3D(0.7554941, 0, 0, 0, 1, 0, 0, 0, 1, 0.022236867, -0.021038305, 0.07624383)
 bones/0/enabled = true
-bones/0/position = Vector3(0.02637424, -0.019517602, 0.07936856)
+bones/0/position = Vector3(0.02225083, -0.020805234, 0.076414876)
 bones/0/rotation = Quaternion(0, 0, 0, 1)
 bones/0/scale = Vector3(0.7554941, 1, 1)
 bones/1/name = "IK.Arm_L_end"
@@ -8293,7 +8246,7 @@ bones/2/name = "IK.Arm_R"
 bones/2/parent = -1
 bones/2/rest = Transform3D(0.7554941, 0, 0, 0, 1, 0, 0, 0, 1, -0.022046695, -0.023322983, 0.0772894)
 bones/2/enabled = true
-bones/2/position = Vector3(-0.026279027, -0.020889297, 0.077481255)
+bones/2/position = Vector3(-0.022275934, -0.023214376, 0.07747572)
 bones/2/rotation = Quaternion(0, 0, 0, 1)
 bones/2/scale = Vector3(0.7554941, 1, 1)
 bones/3/name = "IK.Arm_R_end"
@@ -8398,7 +8351,7 @@ bones/17/name = "Hip"
 bones/17/parent = 16
 bones/17/rest = Transform3D(1, -2.842171e-14, -6.516827e-07, -6.490063e-07, -0.09053576, -0.99589324, -5.900057e-08, 0.99589324, -0.09053576, 0, 0, 0)
 bones/17/enabled = true
-bones/17/position = Vector3(-8.069475e-05, 1.6119875e-05, -0.0108035095)
+bones/17/position = Vector3(-7.6391836e-05, 8.420006e-06, -0.007944526)
 bones/17/rotation = Quaternion(0.7519617, -0.0010010401, -0.00069694687, 0.6592058)
 bones/17/scale = Vector3(0.99999994, 0.99999994, 1)
 bones/18/name = "Spine"
@@ -8406,14 +8359,14 @@ bones/18/parent = 17
 bones/18/rest = Transform3D(1, -1.2661748e-07, 8.7768177e-07, -4.6323017e-08, 0.98094344, 0.19429316, -8.855573e-07, -0.19429317, 0.9809434, 7.394891e-16, 0.011045796, -7.406198e-10)
 bones/18/enabled = true
 bones/18/position = Vector3(-1.906301e-10, 0.011045792, -8.4139173e-10)
-bones/18/rotation = Quaternion(0.083660156, 0.0037482204, 0.037090037, 0.9957968)
+bones/18/rotation = Quaternion(0.008515158, -0.0068850224, -0.0010583194, 0.9999395)
 bones/18/scale = Vector3(1, 0.9999998, 0.9999997)
 bones/19/name = "Chest"
 bones/19/parent = 18
 bones/19/rest = Transform3D(-1, -3.569959e-08, 6.2514505e-07, 5.8309027e-08, 0.98872626, 0.14973508, -6.234427e-07, 0.1497351, -0.98872614, -1.6510802e-15, 0.019105729, 5.537203e-10)
 bones/19/enabled = true
 bones/19/position = Vector3(-3.3527614e-10, 0.019105725, -4.263711e-10)
-bones/19/rotation = Quaternion(0.032373153, 0.9148012, 0.40249115, 0.0095852865)
+bones/19/rotation = Quaternion(0.023683364, 0.91505843, 0.40261224, 0.0032888358)
 bones/19/scale = Vector3(0.9999998, 1.0000001, 0.99999994)
 bones/20/name = "Neck"
 bones/20/parent = 19
@@ -8427,7 +8380,7 @@ bones/21/parent = 20
 bones/21/rest = Transform3D(-1, -1.8300973e-08, -6.274026e-07, 1.1204683e-08, 0.99889493, -0.04699604, 6.275695e-07, -0.04699603, -0.99889505, 2.0184405e-15, 0.003154273, 5.185625e-09)
 bones/21/enabled = true
 bones/21/position = Vector3(-3.7252902e-11, 0.0031542408, -1.5218683e-08)
-bones/21/rotation = Quaternion(0.003146791, 0.91971904, 0.3874815, 0.06297021)
+bones/21/rotation = Quaternion(-0.0010800964, 0.9208624, 0.38988566, -0.0007218342)
 bones/21/scale = Vector3(0.9999999, 0.9999997, 0.9999998)
 bones/22/name = "Head_end"
 bones/22/parent = 21
@@ -8448,21 +8401,21 @@ bones/24/parent = 23
 bones/24/rest = Transform3D(0.99692357, -0.06054686, 0.049771845, 0.07498846, 0.9215455, -0.38096005, -0.022801084, 0.38352048, 0.9232507, 5.018342e-10, 0.009574198, 1.5493475e-08)
 bones/24/enabled = true
 bones/24/position = Vector3(-1.4901161e-08, 0.009574202, -3.5762786e-09)
-bones/24/rotation = Quaternion(-0.29876304, -0.0787113, 0.027808236, 0.9506692)
+bones/24/rotation = Quaternion(-0.32937965, -0.030507216, -0.12296687, 0.9356589)
 bones/24/scale = Vector3(1, 1, 1)
 bones/25/name = "Forearm_L"
 bones/25/parent = 24
 bones/25/rest = Transform3D(0.9973011, 0.07341615, -0.0008857524, -0.0732992, 0.9962636, 0.045677822, 0.0042359317, -0.045489613, 0.9989561, 2.8793187e-10, 0.025977602, 2.1317885e-09)
 bones/25/enabled = true
 bones/25/position = Vector3(2.0861626e-09, 0.025977593, -4.7683715e-09)
-bones/25/rotation = Quaternion(-0.0137363775, -0.018255709, -0.7870307, 0.6164908)
+bones/25/rotation = Quaternion(-0.016832588, -0.015453488, -0.6616989, 0.7494214)
 bones/25/scale = Vector3(1, 1, 1)
 bones/26/name = "Hand_L"
 bones/26/parent = 25
 bones/26/rest = Transform3D(0.994616, -0.103611395, -0.0019191679, 0.10222188, 0.98398244, -0.14604491, 0.017020347, 0.14506242, 0.98927605, 1.044937e-09, 0.024385398, -2.686876e-09)
 bones/26/enabled = true
 bones/26/position = Vector3(2.9802323e-09, 0.024385398, -6.556511e-09)
-bones/26/rotation = Quaternion(0.0044082776, 0.069013804, 0.09064807, 0.9934791)
+bones/26/rotation = Quaternion(0.023399292, -0.0033755535, 0.0915796, 0.99551713)
 bones/26/scale = Vector3(1, 1, 1)
 bones/27/name = "Middle01_L"
 bones/27/parent = 26
@@ -8518,21 +8471,21 @@ bones/34/parent = 33
 bones/34/rest = Transform3D(0.99692357, 0.060546894, -0.049771875, -0.07498851, 0.9215454, -0.38096005, 0.022801094, 0.38352042, 0.92325073, -6.45402e-10, 0.009574197, 2.7601795e-08)
 bones/34/enabled = true
 bones/34/position = Vector3(2.9802322e-10, 0.0095742075, 5.9604643e-10)
-bones/34/rotation = Quaternion(-0.36783287, 0.09580894, -0.01899814, 0.924748)
+bones/34/rotation = Quaternion(-0.37259376, 0.059685178, 0.13848275, 0.91566056)
 bones/34/scale = Vector3(1.0000004, 0.99999934, 1.0000004)
 bones/35/name = "Forearm_R"
 bones/35/parent = 34
 bones/35/rest = Transform3D(0.9973009, -0.07341613, 0.0008857582, 0.07329917, 0.9962635, 0.04567785, -0.0042359387, -0.045489643, 0.99895585, -5.844757e-10, 0.025977602, -1.2444774e-08)
 bones/35/enabled = true
 bones/35/position = Vector3(-1.2814999e-08, 0.025977617, -5.9604643e-10)
-bones/35/rotation = Quaternion(-0.013324057, 0.018571649, 0.80092096, 0.5983338)
+bones/35/rotation = Quaternion(-0.016505007, 0.01580107, 0.67722213, 0.7354238)
 bones/35/scale = Vector3(1.0000007, 0.9999991, 0.9999998)
 bones/36/name = "Hand_R"
 bones/36/parent = 35
 bones/36/rest = Transform3D(0.99461603, 0.10361139, 0.0019191748, -0.10222187, 0.9839825, -0.14604485, -0.017020343, 0.14506234, 0.98927623, -7.153349e-10, 0.024385419, -1.4711613e-08)
 bones/36/enabled = true
 bones/36/position = Vector3(-7.7486035e-09, 0.024385415, -5.9604643e-10)
-bones/36/rotation = Quaternion(0.065801606, -0.08582591, -0.113886915, 0.98759)
+bones/36/rotation = Quaternion(0.02344762, 0.0033623956, -0.0915954, 0.9955146)
 bones/36/scale = Vector3(0.99999946, 0.9999994, 0.9999999)
 bones/37/name = "Middle01_R"
 bones/37/parent = 36
@@ -8581,21 +8534,21 @@ bones/43/parent = 17
 bones/43/rest = Transform3D(-0.024384852, 0.1143734, 0.9931385, 0.11432308, -0.9865975, 0.11642716, 0.99314415, 0.116377726, 0.010982573, 0.0063873935, -3.868951e-05, 3.5110638e-06)
 bones/43/enabled = true
 bones/43/position = Vector3(0.006387392, -3.8697774e-05, 3.5097019e-06)
-bones/43/rotation = Quaternion(0.6703908, 0.24120723, 0.6874098, 0.1409366)
+bones/43/rotation = Quaternion(0.678749, 0.19679253, 0.69935423, 0.10712703)
 bones/43/scale = Vector3(1.0000002, 1.0000005, 0.9999999)
 bones/44/name = "Calf_L"
 bones/44/parent = 43
 bones/44/rest = Transform3D(0.9973199, -0.07109068, 0.017292542, 0.0710318, 0.997466, 0.003996384, -0.017532831, -0.0027573528, 0.99984235, 1.059914e-09, 0.036102686, 9.339146e-10)
 bones/44/enabled = true
 bones/44/position = Vector3(-1.8626451e-09, 0.036102705, -3.6135317e-09)
-bones/44/rotation = Quaternion(-0.017703338, 0.007983244, 0.51237667, 0.85854125)
+bones/44/rotation = Quaternion(-0.014048436, 0.008395119, 0.4125973, 0.9107666)
 bones/44/scale = Vector3(0.99999976, 1, 0.9999995)
 bones/45/name = "Foot_L"
 bones/45/parent = 44
 bones/45/rest = Transform3D(0.033609983, 0.9500856, 0.31017426, -0.11307352, 0.3119717, -0.9433389, -0.993018, -0.0033668582, 0.11791493, 1.4326429e-09, 0.042065233, -5.2550236e-10)
 bones/45/enabled = true
 bones/45/position = Vector3(-2.9802323e-09, 0.042065207, 2.4214386e-10)
-bones/45/rotation = Quaternion(0.5328161, 0.3312017, -0.5856416, 0.51326066)
+bones/45/rotation = Quaternion(0.5184219, 0.35459965, -0.55182475, 0.548623)
 bones/45/scale = Vector3(0.9999996, 1, 0.9999998)
 bones/46/name = "Foot_L_end"
 bones/46/parent = 45
@@ -8609,7 +8562,7 @@ bones/47/parent = 44
 bones/47/rest = Transform3D(0.033607006, 0.95008564, 0.31017414, -0.11307427, 0.31197134, -0.9433389, -0.99301803, -0.0033699577, 0.11791468, -0.00021055326, 0.043002862, 0.00994859)
 bones/47/enabled = true
 bones/47/position = Vector3(-0.00021055773, 0.043002844, 0.009948589)
-bones/47/rotation = Quaternion(0.5328162, 0.33120164, -0.58564156, 0.51326054)
+bones/47/rotation = Quaternion(0.5184222, 0.35459942, -0.55182475, 0.5486229)
 bones/47/scale = Vector3(0.9999995, 0.99999976, 0.99999994)
 bones/48/name = "IK_Foot_L_end"
 bones/48/parent = 47
@@ -8623,21 +8576,21 @@ bones/49/parent = 17
 bones/49/rest = Transform3D(-0.01130462, -0.11788582, -0.9929632, -0.11574545, -0.9861969, 0.11840035, -0.99321485, 0.11626935, -0.0024961242, -0.0063873935, -3.8689508e-05, 3.519408e-06)
 bones/49/enabled = true
 bones/49/position = Vector3(-0.006387394, -3.8700968e-05, 3.5179382e-06)
-bones/49/rotation = Quaternion(-0.6288082, 0.36845806, 0.65702194, -0.19277205)
+bones/49/rotation = Quaternion(-0.647973, 0.3209797, 0.67171466, -0.1609424)
 bones/49/scale = Vector3(1.0000014, 1.0000001, 1.0000021)
 bones/50/name = "Calf_R"
 bones/50/parent = 49
 bones/50/rest = Transform3D(0.9974408, 0.07093887, -0.008927242, -0.07085822, 0.99744534, 0.009048971, 0.00954636, -0.008393244, 0.99991924, -1.4930883e-09, 0.0361028, -7.347942e-10)
 bones/50/enabled = true
 bones/50/position = Vector3(-3.7252903e-09, 0.036102787, 2.4028122e-09)
-bones/50/rotation = Quaternion(-0.053846784, -0.0040342454, -0.53386533, 0.84384364)
+bones/50/rotation = Quaternion(-0.036825538, -0.0043266374, -0.44094977, 0.89676565)
 bones/50/scale = Vector3(0.9999994, 0.9999991, 0.99999994)
 bones/51/name = "Foot_R"
 bones/51/parent = 50
 bones/51/rest = Transform3D(0.01239896, -0.9497615, -0.3127288, 0.11005293, 0.312149, -0.9436373, 0.99384856, -0.022716582, 0.108394325, 1.5227158e-09, 0.042065375, 1.366765e-09)
 bones/51/enabled = true
 bones/51/position = Vector3(8.9406965e-10, 0.0420654, -1.5133991e-11)
-bones/51/rotation = Quaternion(0.4981634, -0.40834823, 0.5242317, 0.5570154)
+bones/51/rotation = Quaternion(0.47847688, -0.42611012, 0.49919653, 0.5833463)
 bones/51/scale = Vector3(1.0000014, 0.99999774, 1.0000006)
 bones/52/name = "Foot_R_end"
 bones/52/parent = 51
@@ -8651,7 +8604,7 @@ bones/53/parent = 50
 bones/53/rest = Transform3D(0.0124017, -0.9497615, -0.31272915, 0.11005235, 0.31214967, -0.9436372, 0.99384844, -0.022713901, 0.10839462, -1.18905455e-05, 0.042992912, 0.009957332)
 bones/53/enabled = true
 bones/53/position = Vector3(-1.18906055e-05, 0.042992927, 0.009957335)
-bones/53/rotation = Quaternion(0.498163, -0.40834892, 0.5242313, 0.55701554)
+bones/53/rotation = Quaternion(0.47847635, -0.42611098, 0.49919593, 0.58334666)
 bones/53/scale = Vector3(1.0000023, 0.99999857, 0.99999964)
 bones/54/name = "IK_Foot_R_end"
 bones/54/parent = 53
@@ -8687,12 +8640,12 @@ surface_material_override/0 = SubResource("StandardMaterial3D_1u4j8")
 unique_name_in_owner = true
 
 [node name="PickableRagdollHip" type="PhysicalBone3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D" unique_id=1336967431 node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component") groups=["disable_collision_while_grabbed", "limb_sever", "throwable"]]
-transform = Transform3D(0.08328082, -0.0028905184, 0.00062910654, 0.00023823601, -0.011111071, -0.08258893, 0.0029485784, 0.08253868, -0.011095805, 0.00028443028, 0.00015862998, 0.076921865)
+transform = Transform3D(0.08328082, -0.0028905184, 0.00062910654, 0.00023823601, -0.011111071, -0.08258893, 0.0029485784, 0.08253868, -0.011095805, 0.00018854634, 0.00015712237, 0.07989745)
 collision_layer = 8
 collision_mask = 15
 joint_type = 5
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0013924058, -0.042991083, 0.007864949)
-body_offset = Transform3D(0.08333334, -7.2935254e-06, 3.6063138e-06, 7.312039e-06, 0.08333224, -0.00043078978, -3.5685953e-06, 0.00043078978, 0.083332226, 0.00011569192, 0.003585942, -0.00063688867)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0014415369, -0.044398382, 0.008035024)
+body_offset = Transform3D(0.08333334, -7.2935254e-06, 3.6063138e-06, 7.312039e-06, 0.08333224, -0.00043078978, -3.5685953e-06, 0.00043078978, 0.083332226, 0.0001197753, 0.0037032887, -0.00065045524)
 bone_name = "Hip"
 joint_constraints/x/linear_limit_enabled = true
 joint_constraints/x/linear_limit_upper = 0.0
@@ -8845,27 +8798,6 @@ debug_color = Color(1, 0, 0, 0.42000002)
 
 [node name="PickupSound" type="AudioStreamPlayer" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/PickableRagdollHip" unique_id=782846115]
 
-[node name="hurtbox_component" type="Area3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/PickableRagdollHip" unique_id=1625558265 node_paths=PackedStringArray("health_component", "status_component", "stance_component")]
-transform = Transform3D(1, -1.3872289e-05, -2.9591962e-07, -2.9883745e-07, -0.00021033734, -0.99999994, 1.3872225e-05, 1, -0.00021032989, 0.00012207031, 0.07243216, -0.000493139)
-collision_layer = 4
-collision_mask = 13
-script = ExtResource("4_v0k1a")
-status_weaknesses = Dictionary[int, float]({
-0: 0.5,
-3: 0.5
-})
-health_component = NodePath("../../../../HealthComponent")
-status_component = NodePath("../status_effect_component")
-stance_component = NodePath("../../../../../../StanceComponent")
-invulnerability_duration = 0.25
-damage_particles = ExtResource("6_exqn4")
-hit_sound = ExtResource("7_5vd8j")
-can_bleed = true
-metadata/_custom_type_script = "uid://c2i6qdosp0h2"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/PickableRagdollHip/hurtbox_component" unique_id=615171268]
-shape = SubResource("SphereShape3D_mkt2x")
-
 [node name="status_effect_component" type="GPUParticles3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/PickableRagdollHip" unique_id=986083263 node_paths=PackedStringArray("mesh_to_affect", "health_component")]
 transform = Transform3D(1, -1.3872289e-05, -2.9591962e-07, -2.9883745e-07, -0.00021033734, -0.99999994, 1.3872225e-05, 1, -0.00021032989, 0.00012207031, 0.07243216, -0.000493139)
 emitting = false
@@ -8887,12 +8819,12 @@ physical_bone = NodePath("..")
 on_screen_identifier = NodePath("../../../../../VisibleOnScreenNotifier3D")
 
 [node name="PickableRagdollChest" type="PhysicalBone3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D" unique_id=960286982 node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component") groups=["disable_collision_while_grabbed", "limb_sever", "throwable"]]
-transform = Transform3D(-0.08321826, -2.6198228e-05, -0.0043778615, -0.0018417094, -0.07538994, 0.035459988, -0.003971708, 0.035507772, 0.07528525, -0.0023510265, -0.00798978, 0.10654105)
+transform = Transform3D(-0.0833236, 0.0011941232, 0.00044471605, -0.0007454057, -0.06926584, 0.046326373, 0.0010334763, 0.046316974, 0.06926842, -0.00081131206, -0.004551829, 0.110309616)
 collision_layer = 8
 collision_mask = 15
 joint_type = 5
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00076839747, -0.031913552, -0.04010379)
-body_offset = Transform3D(0.083333366, 4.4513727e-06, -1.3024488e-05, -4.3639448e-06, 0.083331555, 0.0005493611, 1.3053534e-05, -0.0005493723, 0.08333157, 6.365287e-05, 0.0026814342, 0.0033243895)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0007956868, -0.03236314, -0.040842023)
+body_offset = Transform3D(0.083333366, 4.504982e-06, -1.2545672e-05, -4.419184e-06, 0.083331496, 0.00055636466, 1.2576755e-05, -0.0005563684, 0.08333151, 6.5940665e-05, 0.0027195886, 0.003385432)
 bone_name = "Chest"
 joint_constraints/x/linear_limit_enabled = true
 joint_constraints/x/linear_limit_upper = 0.0
@@ -9045,33 +8977,12 @@ debug_color = Color(1, 0, 0, 0.42000002)
 
 [node name="PickupSound" type="AudioStreamPlayer" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/PickableRagdollChest" unique_id=394778681]
 
-[node name="hurtbox_component" type="Area3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/PickableRagdollChest" unique_id=359900205 node_paths=PackedStringArray("health_component", "status_component", "stance_component")]
-transform = Transform3D(0.99999994, 0.0001858059, -0.00020384003, -0.00020346366, -0.0020231754, -0.9999979, -0.00018621788, 0.9999979, -0.0020231418, -1.1045953e-05, 0.1282196, -0.0061096326)
-collision_layer = 4
-collision_mask = 13
-script = ExtResource("4_v0k1a")
-status_weaknesses = Dictionary[int, float]({
-0: 0.5,
-3: 0.5
-})
-health_component = NodePath("../../../../HealthComponent")
-status_component = NodePath("../../PickableRagdollHip/status_effect_component")
-stance_component = NodePath("../../../../../../StanceComponent")
-invulnerability_duration = 0.25
-damage_particles = ExtResource("6_exqn4")
-hit_sound = ExtResource("7_5vd8j")
-can_bleed = true
-metadata/_custom_type_script = "uid://c2i6qdosp0h2"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/PickableRagdollChest/hurtbox_component" unique_id=71223646]
-shape = SubResource("SphereShape3D_47v5s")
-
 [node name="Physical Bone Spine" type="PhysicalBone3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D" unique_id=1357652163]
-transform = Transform3D(0.08284408, 0.002383016, 0.008696311, -0.00042638546, -0.07924521, 0.025777146, 0.009006819, -0.025670305, -0.07876775, -0.0012747346, -0.004659116, 0.0955508)
+transform = Transform3D(0.08329104, -0.00043717143, 0.0026188549, -0.00086049386, -0.08220414, 0.013644934, 0.0025117865, -0.013665049, -0.08216692, -0.0004926486, -0.002915393, 0.0988878)
 collision_mask = 15
 joint_type = 5
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0006870666, 0.0054043615, 0.14188373)
-body_offset = Transform3D(0.08333329, 2.7491478e-07, -9.77243e-05, -9.770227e-05, -0.0015320741, -0.08331921, -2.0714651e-06, 0.083319284, -0.0015320741, 7.111952e-05, 0.011829853, -0.0002329126)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00071091845, 0.005613629, 0.14265953)
+body_offset = Transform3D(0.08333328, 2.902234e-07, -9.902679e-05, -9.9003955e-05, -0.0015722672, -0.08331849, -2.15834e-06, 0.08331853, -0.001572269, 7.336866e-05, 0.011894934, -0.00024342164)
 mass = 5.0
 bone_name = "Spine"
 joint_constraints/x/linear_limit_enabled = true
@@ -9142,32 +9053,12 @@ joint_constraints/z/angular_equilibrium_point = 0.0
 transform = Transform3D(11.745, 0, 0, 0, -5.1339026e-07, 11.745, 0, -11.745, -5.1339026e-07, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_mkt2x")
 
-[node name="hurtbox_component" type="Area3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Spine" unique_id=1129476787 node_paths=PackedStringArray("health_component", "status_component", "stance_component")]
-collision_layer = 4
-collision_mask = 13
-script = ExtResource("4_v0k1a")
-status_weaknesses = Dictionary[int, float]({
-0: 0.5,
-3: 0.5
-})
-health_component = NodePath("../../../../HealthComponent")
-status_component = NodePath("../../PickableRagdollHip/status_effect_component")
-stance_component = NodePath("../../../../../../StanceComponent")
-invulnerability_duration = 0.25
-damage_particles = ExtResource("6_exqn4")
-hit_sound = ExtResource("7_5vd8j")
-can_bleed = true
-metadata/_custom_type_script = "uid://c2i6qdosp0h2"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Spine/hurtbox_component" unique_id=1394906217]
-shape = SubResource("SphereShape3D_cdxns")
-
 [node name="Physical Bone Neck" type="PhysicalBone3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D" unique_id=299626534]
-transform = Transform3D(-0.08321673, -0.0043476345, -0.00072021293, -0.001839932, 0.021901675, 0.08038269, -0.0040044077, 0.080286115, -0.021967024, -0.0022560342, -0.030849073, 0.11537179)
+transform = Transform3D(-0.08332397, 0.00061358616, -0.00108869, -0.000748489, 0.03363219, 0.07624146, 0.001000749, 0.07624266, -0.033622894, -0.00045932093, -0.025890071, 0.12244424)
 collision_mask = 15
 joint_type = 5
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000638438, -0.027581632, 0.05704561)
-body_offset = Transform3D(0.08333335, 1.9058061e-05, -1.6960315e-05, -1.7249258e-05, 0.0012770165, -0.083323576, -1.8795778e-05, 0.0833236, 0.001277037, 5.4696342e-05, 0.0047884546, 0.0022253394)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0006648171, -0.028244073, 0.057898134)
+body_offset = Transform3D(0.08333336, 1.9614206e-05, -1.7003389e-05, -1.7309678e-05, 0.001317786, -0.08332295, -1.9341504e-05, 0.08332295, 0.0013177954, 5.6939898e-05, 0.0048614517, 0.0022770688)
 mass = 5.0
 bone_name = "Neck"
 joint_constraints/x/linear_limit_enabled = true
@@ -9239,11 +9130,11 @@ transform = Transform3D(11.745, 0, 0, 0, -5.1339026e-07, 11.745, 0, -11.745, -5.
 shape = SubResource("CapsuleShape3D_47v5s")
 
 [node name="Physical Bone Head" type="PhysicalBone3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D" unique_id=1079905225]
-transform = Transform3D(0.08308326, -0.00640266, -0.0007895834, -0.0052063484, -0.072570175, 0.04063138, -0.0038093897, -0.040460113, -0.07275241, -0.0019592028, -0.034642633, 0.12391841)
+transform = Transform3D(0.08332186, 0.0005050506, -0.0012873258, 0.0009218101, -0.07811223, 0.029018536, -0.0010308006, -0.029028777, -0.07810706, -0.00034003635, -0.028285932, 0.13155292)
 collision_mask = 15
 joint_type = 5
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0008799577, 0.015393013, 0.1444279)
-body_offset = Transform3D(0.08333336, -2.5501009e-05, 5.895854e-05, 5.852431e-05, -0.0013817549, -0.08332191, 2.6483089e-05, 0.083321944, -0.0013817176, -8.145254e-05, 0.012055226, -0.0010830406)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000938537, 0.016007623, 0.1462823)
+body_offset = Transform3D(0.08333334, -2.5418005e-05, 5.9319398e-05, 5.8871636e-05, -0.0014319364, -0.083321065, 2.6433438e-05, 0.083321065, -0.0014319122, -8.6481916e-05, 0.012211263, -0.0011243336)
 mass = 5.0
 bone_name = "Head"
 joint_constraints/x/linear_limit_enabled = true
@@ -9314,27 +9205,6 @@ joint_constraints/z/angular_equilibrium_point = 0.0
 transform = Transform3D(1.0000244, 1.6851118e-08, -5.966285e-10, -1.6007107e-09, -2.9802322e-08, 1, 1.5243131e-08, -1, -5.9604645e-08, 0.0009649092, 2.9802322e-08, 0.009530544)
 shape = SubResource("CapsuleShape3D_0os5c")
 
-[node name="hurtbox_component" type="Area3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Head" unique_id=2108417131 node_paths=PackedStringArray("health_component", "bone_health_component", "status_component", "stance_component")]
-collision_layer = 4
-collision_mask = 13
-script = ExtResource("4_v0k1a")
-status_weaknesses = Dictionary[int, float]({
-0: 0.5,
-3: 0.5
-})
-health_component = NodePath("../../../../HealthComponent")
-bone_health_component = NodePath("../BoneHealthComponent")
-status_component = NodePath("../../PickableRagdollHip/status_effect_component")
-stance_component = NodePath("../../../../../../StanceComponent")
-invulnerability_duration = 0.25
-damage_particles = ExtResource("6_exqn4")
-hit_sound = ExtResource("7_5vd8j")
-can_bleed = true
-metadata/_custom_type_script = "uid://c2i6qdosp0h2"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Head/hurtbox_component" unique_id=1072636125]
-shape = SubResource("SphereShape3D_0os5c")
-
 [node name="BoneHealthComponent" type="Node3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Head" unique_id=638339095 node_paths=PackedStringArray("bones_to_affect", "physical_skeleton", "skeleton", "blood_particles")]
 script = ExtResource("7_28glq")
 bones_to_affect = [NodePath("..")]
@@ -9346,11 +9216,11 @@ max_health = 20.0
 metadata/_custom_type_script = "uid://b2errsixgk2ri"
 
 [node name="Physical Bone Shoulder_L" type="PhysicalBone3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D" unique_id=366315223]
-transform = Transform3D(0.0019269353, 0.032850124, -0.07656109, -0.040493656, -0.06655754, -0.029577058, -0.07280793, 0.037886783, 0.014423634, 0.008601642, -0.025555652, 0.11080106)
+transform = Transform3D(-0.002801856, 0.03424183, -0.07592161, -0.050904494, -0.060828242, -0.025555873, -0.065919094, 0.04551777, 0.022961939, 0.010181909, -0.021557199, 0.11653054)
 collision_mask = 15
 joint_type = 5
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00935996, -0.035984397, 0.047041837)
-body_offset = Transform3D(0.083332166, -0.00042731315, -0.00013030414, -0.00012973044, 0.00011344254, -0.0833332, 0.0004274845, 0.08333218, 0.00011277385, -0.00078923255, 0.0039254427, 0.0029893517)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.009737859, -0.036964312, 0.04671235)
+body_offset = Transform3D(0.08333208, -0.00044267997, -0.0001348909, -0.00013435818, 0.00010168925, -0.08333322, 0.0004428327, 0.08333213, 0.000100975856, -0.00082153827, 0.0038977582, 0.0030712858)
 mass = 5.0
 bone_name = "Shoulder_L"
 joint_constraints/x/linear_limit_enabled = true
@@ -9422,11 +9292,11 @@ transform = Transform3D(11.745, 0, 0, -9.164214e-07, 1.2891367e-05, 11.745, -6.2
 shape = SubResource("CapsuleShape3D_28glq")
 
 [node name="Physical Bone UpperArm_L" type="PhysicalBone3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D" unique_id=732177473]
-transform = Transform3D(0.013528294, 0.06955691, -0.043855064, -0.046703584, -0.030080168, -0.06211605, -0.067677215, 0.034662154, 0.034099486, 0.020136058, -0.011814325, 0.10484498)
+transform = Transform3D(-0.014174748, 0.07428832, -0.03499667, -0.06366508, -0.03237292, -0.042932477, -0.051867913, 0.019434102, 0.06226139, 0.020975333, -0.010848083, 0.10496103)
 collision_mask = 15
 joint_type = 5
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.022007775, -0.018270299, 0.14880934)
-body_offset = Transform3D(0.083320275, -0.000477748, -0.0013974868, -0.0013945624, 0.0005105082, -0.08332013, 0.00048621744, 0.08333044, 0.0005024094, -0.0016344637, 0.012438834, 0.0014370084)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.022724569, -0.018697195, 0.14840993)
+body_offset = Transform3D(0.083319634, -0.00049098395, -0.0014302917, -0.0014272854, 0.0005090777, -0.08331958, 0.0004996173, 0.08333036, 0.0005005598, -0.0016903132, 0.012407407, 0.0014724024)
 mass = 5.0
 bone_name = "UpperArm_L"
 joint_constraints/x/linear_limit_enabled = true
@@ -9497,28 +9367,6 @@ joint_constraints/z/angular_equilibrium_point = 0.0
 transform = Transform3D(0.999983, -1.8700957e-06, -4.4703484e-08, -3.5762787e-07, 3.7217978e-07, 1, -1.6782433e-06, -0.99997056, 9.313226e-10, 3.9115548e-08, -1.1920929e-07, 0.02221635)
 shape = SubResource("CapsuleShape3D_tix41")
 
-[node name="hurtbox_component" type="Area3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_L" unique_id=884438188 node_paths=PackedStringArray("health_component", "status_component", "stance_component")]
-collision_layer = 4
-collision_mask = 13
-script = ExtResource("4_v0k1a")
-status_weaknesses = Dictionary[int, float]({
-0: 0.5,
-3: 0.5
-})
-health_component = NodePath("../../../../HealthComponent")
-status_component = NodePath("../../PickableRagdollHip/status_effect_component")
-stance_component = NodePath("../../../../../../StanceComponent")
-invulnerability_duration = 0.25
-damage_particles = ExtResource("6_exqn4")
-hit_sound = ExtResource("7_5vd8j")
-can_bleed = true
-metadata/_custom_type_script = "uid://c2i6qdosp0h2"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_L/hurtbox_component" unique_id=125113859]
-transform = Transform3D(0.99769974, 0.067667045, 0.002325559, -0.0024034102, 0.00106777, 1, 0.067663744, -0.9977074, 0.0012273872, 0, 0, 0)
-shape = SubResource("CapsuleShape3D_so386")
-debug_color = Color(1, 0, 0, 0.42000002)
-
 [node name="BoneHealthComponent" type="Node3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_L" unique_id=49746568 node_paths=PackedStringArray("bones_to_affect", "physical_skeleton", "skeleton", "blood_particles")]
 script = ExtResource("7_28glq")
 bones_to_affect = [NodePath(".."), NodePath("../../Physical Bone Forearm_L")]
@@ -9530,11 +9378,11 @@ max_health = 20.0
 metadata/_custom_type_script = "uid://b2errsixgk2ri"
 
 [node name="Physical Bone Forearm_L" type="PhysicalBone3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D" unique_id=751139073]
-transform = Transform3D(-0.04218818, 0.071464226, -0.007580671, -0.056931447, -0.02787047, 0.054097068, 0.043856736, 0.032566022, 0.06293239, 0.027580082, -0.012276866, 0.09175503)
+transform = Transform3D(-0.034268312, 0.07565403, 0.0068260855, -0.058157567, -0.030947704, 0.051033143, 0.048865374, 0.016221976, 0.065524556, 0.02491617, -0.014432929, 0.08723548)
 collision_mask = 15
 joint_type = 5
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04013893, -0.026408542, 0.13431886)
-body_offset = Transform3D(0.08293475, -0.00029624067, 0.008135747, 0.008137025, 0.00036866963, -0.08293433, 0.00025880896, 0.08333202, 0.00039584003, 0.0022283047, 0.011475991, 0.0021578968)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.040829234, -0.026871825, 0.13373765)
+body_offset = Transform3D(0.08292547, -0.00035447814, 0.00822752, 0.008229084, 0.00037177838, -0.082925215, 0.00031600893, 0.083331786, 0.0004049819, 0.0022759289, 0.011436202, 0.0021980181)
 mass = 5.0
 bone_name = "Forearm_L"
 joint_constraints/x/linear_limit_enabled = true
@@ -9605,28 +9453,6 @@ joint_constraints/z/angular_equilibrium_point = 0.0
 transform = Transform3D(11.745, 0, 0, 0, -5.1339026e-07, 11.745, 0, -11.745, -5.1339026e-07, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_fquji")
 
-[node name="hurtbox_component" type="Area3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Forearm_L" unique_id=19464383 node_paths=PackedStringArray("health_component", "bone_health_component", "status_component", "stance_component")]
-collision_layer = 4
-collision_mask = 13
-script = ExtResource("4_v0k1a")
-status_weaknesses = Dictionary[int, float]({
-0: 0.5,
-3: 0.5
-})
-health_component = NodePath("../../../../HealthComponent")
-bone_health_component = NodePath("../../Physical Bone UpperArm_L/BoneHealthComponent")
-status_component = NodePath("../../PickableRagdollHip/status_effect_component")
-stance_component = NodePath("../../../../../../StanceComponent")
-invulnerability_duration = 0.25
-damage_particles = ExtResource("6_exqn4")
-hit_sound = ExtResource("7_5vd8j")
-can_bleed = true
-metadata/_custom_type_script = "uid://c2i6qdosp0h2"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Forearm_L/hurtbox_component" unique_id=1565266827]
-transform = Transform3D(0.99772227, -0.006828863, -0.06705458, 0.067061886, 0.000909689, 0.9977484, -0.0067539737, -0.9999829, 0.0013646582, -0.00046681613, 6.234646e-05, -0.06836164)
-shape = SubResource("CapsuleShape3D_pf32e")
-
 [node name="DamageComponent" type="Area3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Forearm_L" unique_id=1118914411]
 unique_name_in_owner = true
 transform = Transform3D(-0.022918075, -0.17799477, -0.98376477, 0.8987948, -0.43455794, 0.057686955, -0.43777052, -0.8828802, 0.1699399, 0.04564047, -0.011277616, -0.12829435)
@@ -9646,11 +9472,11 @@ shape = SubResource("CapsuleShape3D_av24j")
 debug_color = Color(1, 0, 0, 0.41960785)
 
 [node name="Physical Bone Shoulder_R" type="PhysicalBone3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D" unique_id=1059405553]
-transform = Transform3D(-0.006872656, -0.033015743, 0.07620481, 0.040315006, -0.06817787, -0.025902195, 0.072607934, 0.034730162, 0.021595111, -0.012769049, -0.025855316, 0.10961822)
+transform = Transform3D(-0.002145237, -0.03168422, 0.077045135, 0.050798792, -0.061581045, -0.023910297, 0.06602519, 0.046350073, 0.02089951, -0.011241233, -0.021600602, 0.11661213)
 collision_mask = 15
 joint_type = 5
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.008757019, -0.033380862, 0.04862845)
-body_offset = Transform3D(0.08333259, 0.00033887848, 0.00013865996, 0.00013957918, -0.00022273697, -0.08333301, -0.0003385134, 0.083332375, -0.00022332184, 0.0007343143, 0.004046142, 0.0027896017)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009168528, -0.034375157, 0.048319988)
+body_offset = Transform3D(0.083332494, 0.0003561154, 0.00014405604, 0.00014508516, -0.0002400484, -0.08333295, -0.00035569444, 0.08333228, -0.00024068356, 0.00076931715, 0.004019726, 0.002872929)
 mass = 5.0
 bone_name = "Shoulder_R"
 joint_constraints/x/linear_limit_enabled = true
@@ -9722,11 +9548,11 @@ transform = Transform3D(11.745, 0, 0, 0, -5.1339026e-07, 11.745, 0, -11.745, -5.
 shape = SubResource("CapsuleShape3D_p5bm1")
 
 [node name="Physical Bone UpperArm_R" type="PhysicalBone3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D" unique_id=16403591]
-transform = Transform3D(0.0065549742, -0.07658992, 0.03217859, 0.048816316, -0.022566779, -0.06365652, 0.06721938, 0.023857286, 0.04309095, -0.019815776, -0.011582624, 0.101090595)
+transform = Transform3D(-0.011489372, -0.07685386, 0.030098578, 0.06724114, -0.026338596, -0.04158549, 0.04786511, 0.018552857, 0.06564425, -0.018512283, -0.010466598, 0.10422345)
 collision_mask = 15
 joint_type = 5
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.020208111, 0.01774234, 0.14480862)
-body_offset = Transform3D(0.08332025, 0.00042538904, 0.0014152378, 0.0014126375, 0.00050674006, -0.083319925, -0.00043391995, 0.08333074, 0.0004994143, 0.0014712587, 0.012084998, -0.0015595704)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.020876434, 0.017224774, 0.14435849)
+body_offset = Transform3D(0.083319634, 0.00043483265, 0.0014474392, 0.0014447905, 0.00050744135, -0.083319366, -0.00044354424, 0.08333068, 0.0004997803, 0.0015229769, 0.01204928, -0.0015167594)
 mass = 5.0
 bone_name = "UpperArm_R"
 joint_constraints/x/linear_limit_enabled = true
@@ -9797,27 +9623,6 @@ joint_constraints/z/angular_equilibrium_point = 0.0
 transform = Transform3D(11.7450485, 2.9802322e-08, 4.172325e-07, -7.4505806e-07, -5.038455e-07, 11.7450485, -2.3841858e-07, -11.745, -2.0726584e-06, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_cxjfl")
 
-[node name="hurtbox_component" type="Area3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R" unique_id=1859263100 node_paths=PackedStringArray("health_component", "status_component", "stance_component")]
-collision_layer = 4
-collision_mask = 13
-script = ExtResource("4_v0k1a")
-status_weaknesses = Dictionary[int, float]({
-0: 0.5,
-3: 0.5
-})
-health_component = NodePath("../../../../HealthComponent")
-status_component = NodePath("../../PickableRagdollHip/status_effect_component")
-stance_component = NodePath("../../../../../../StanceComponent")
-invulnerability_duration = 0.25
-damage_particles = ExtResource("6_exqn4")
-hit_sound = ExtResource("7_5vd8j")
-can_bleed = true
-metadata/_custom_type_script = "uid://c2i6qdosp0h2"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R/hurtbox_component" unique_id=820546938]
-transform = Transform3D(0.9976881, 0.0024041012, -0.06766599, -0.06766857, 0.0010672114, -0.9977007, -0.002325341, 0.9999922, 0.0012274183, 0, 0, 0)
-shape = SubResource("CapsuleShape3D_ck3co")
-
 [node name="BoneHealthComponent" type="Node3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone UpperArm_R" unique_id=558503944 node_paths=PackedStringArray("bones_to_affect", "physical_skeleton", "skeleton", "blood_particles")]
 script = ExtResource("7_28glq")
 bones_to_affect = [NodePath(".."), NodePath("../../Physical Bone Forearm_R")]
@@ -9829,11 +9634,11 @@ max_health = 20.0
 metadata/_custom_type_script = "uid://b2errsixgk2ri"
 
 [node name="Physical Bone Forearm_R" type="PhysicalBone3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D" unique_id=1456380446]
-transform = Transform3D(-0.03127743, -0.07721949, -0.0018215355, 0.05288988, -0.022843136, 0.060210444, -0.056292344, 0.021442642, 0.057583246, -0.027283762, -0.011660549, 0.08931132)
+transform = Transform3D(-0.030134954, -0.07714804, -0.009192924, 0.052758366, -0.02755779, 0.05832297, -0.057034068, 0.0152706755, 0.05880788, -0.024542926, -0.014492273, 0.08862971)
 collision_mask = 15
 joint_type = 5
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03747451, -0.024346054, 0.11610197)
-body_offset = Transform3D(0.083134204, -0.0014544129, -0.0055713356, -0.0055293366, 0.0023372555, -0.08311693, 0.0016069384, 0.0832879, 0.0022351714, -0.00250398, 0.009914152, 0.0017080046)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03831155, -0.024867255, 0.11544663)
+body_offset = Transform3D(0.08312155, -0.0014664447, -0.005753983, -0.0057105087, 0.0023909863, -0.083103135, 0.0016275328, 0.08328617, 0.0022844318, -0.002556704, 0.009872213, 0.0017450154)
 mass = 5.0
 bone_name = "Forearm_R"
 joint_constraints/x/linear_limit_enabled = true
@@ -9904,28 +9709,6 @@ joint_constraints/z/angular_equilibrium_point = 0.0
 transform = Transform3D(11.745, 0, 0, 0, -5.1339026e-07, 11.745, 0, -11.745, -5.1339026e-07, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_yjoxl")
 
-[node name="hurtbox_component" type="Area3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Forearm_R" unique_id=1724881581 node_paths=PackedStringArray("health_component", "bone_health_component", "status_component", "stance_component")]
-collision_layer = 4
-collision_mask = 13
-script = ExtResource("4_v0k1a")
-status_weaknesses = Dictionary[int, float]({
-0: 0.5,
-3: 0.5
-})
-health_component = NodePath("../../../../HealthComponent")
-bone_health_component = NodePath("../../Physical Bone UpperArm_R/BoneHealthComponent")
-status_component = NodePath("../../PickableRagdollHip/status_effect_component")
-stance_component = NodePath("../../../../../../StanceComponent")
-invulnerability_duration = 0.25
-damage_particles = ExtResource("6_exqn4")
-hit_sound = ExtResource("7_5vd8j")
-can_bleed = true
-metadata/_custom_type_script = "uid://c2i6qdosp0h2"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Forearm_R/hurtbox_component" unique_id=2015109225]
-transform = Transform3D(0.9977428, -0.0670589, 0.006751228, 0.0068280324, 0.00090915966, -0.9999847, 0.067051, 0.9977672, 0.0013651041, 0.0026931874, -3.671646e-05, -0.04007131)
-shape = SubResource("CapsuleShape3D_ai26p")
-
 [node name="DamageComponent_right" type="Area3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Forearm_R" unique_id=2120691920]
 unique_name_in_owner = true
 transform = Transform3D(-0.022918075, -0.17799477, -0.98376477, 0.8987948, -0.43455794, 0.057686955, -0.43777052, -0.8828802, 0.1699399, 0.04564047, -0.011277616, -0.12829435)
@@ -9945,11 +9728,11 @@ shape = SubResource("CapsuleShape3D_av24j")
 debug_color = Color(1, 0, 0, 0.41960785)
 
 [node name="Physical Bone Thigh_L" type="PhysicalBone3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D" unique_id=1973210050]
-transform = Transform3D(-0.006176655, 0.08202862, -0.0133266505, -0.07662143, -0.00044674106, 0.032762818, 0.03217842, 0.014681659, 0.075454906, 0.010130847, -0.0076447255, 0.058205627)
+transform = Transform3D(-0.0053901765, 0.082231574, -0.012383847, -0.07984005, -0.0016464823, 0.023818063, 0.02325848, 0.013405326, 0.07889097, 0.009862109, -0.0058463165, 0.060271174)
 collision_mask = 15
 joint_type = 5
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010622315, -0.008956698, 0.2085531)
-body_offset = Transform3D(0.08332224, 0.00030522814, 0.0013243277, 0.0013231058, 0.0003289785, -0.08332214, -0.0003104129, 0.08333214, 0.00032408803, 0.0006116163, 0.017394092, 0.00067549385)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0109704975, -0.009181735, 0.20830177)
+body_offset = Transform3D(0.083321534, 0.00031244627, 0.0013655536, 0.0013642851, 0.00033340062, -0.08332147, -0.00031786482, 0.08333209, 0.00032824164, 0.0006325003, 0.017374039, 0.0006932728)
 mass = 5.0
 bone_name = "Thigh_L"
 joint_constraints/x/linear_limit_enabled = true
@@ -10020,27 +9803,6 @@ joint_constraints/z/angular_equilibrium_point = 0.0
 transform = Transform3D(11.745, 0, 0, 0, -5.1339026e-07, 11.745, 0, -11.745, -5.1339026e-07, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_5vd8j")
 
-[node name="hurtbox_component" type="Area3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Thigh_L" unique_id=1141978017 node_paths=PackedStringArray("health_component", "status_component", "stance_component")]
-collision_layer = 4
-collision_mask = 13
-script = ExtResource("4_v0k1a")
-status_weaknesses = Dictionary[int, float]({
-0: 0.5,
-3: 0.5
-})
-health_component = NodePath("../../../../HealthComponent")
-status_component = NodePath("../../PickableRagdollHip/status_effect_component")
-stance_component = NodePath("../../../../../../StanceComponent")
-invulnerability_duration = 0.25
-damage_particles = ExtResource("6_exqn4")
-hit_sound = ExtResource("7_5vd8j")
-can_bleed = true
-metadata/_custom_type_script = "uid://c2i6qdosp0h2"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Thigh_L/hurtbox_component" unique_id=972948592]
-transform = Transform3D(0.9987604, -0.003344046, -0.049760412, 0.049762737, 0.00053948094, 0.9987594, -0.003312951, -0.9999977, 0.0007057128, -0.00020002574, 3.2261014e-05, -0.059813976)
-shape = SubResource("CapsuleShape3D_6pan1")
-
 [node name="BoneHealthComponent" type="Node3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Thigh_L" unique_id=775827106 node_paths=PackedStringArray("bones_to_affect", "physical_skeleton", "skeleton", "blood_particles")]
 script = ExtResource("7_28glq")
 bones_to_affect = [NodePath(".."), NodePath("../../Physical Bone Calf_L"), NodePath("../../Physical Bone Foot_L")]
@@ -10052,11 +9814,11 @@ max_health = 20.0
 metadata/_custom_type_script = "uid://b2errsixgk2ri"
 
 [node name="Physical Bone Calf_L" type="PhysicalBone3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D" unique_id=2101466397]
-transform = Transform3D(0.006565472, 0.08247296, -0.009977555, -0.06679601, -0.0007099865, -0.04982203, -0.049392644, 0.011922792, 0.066050425, 0.015435374, -0.0018101457, 0.024745597)
+transform = Transform3D(0.0039273584, 0.08254565, -0.010734825, -0.07192016, -0.002045967, -0.042044636, -0.04191078, 0.011246096, 0.07114392, 0.015149178, 9.724762e-05, 0.024744293)
 collision_mask = 15
 joint_type = 5
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.005567734, -0.004953709, 0.25160244)
-body_offset = Transform3D(0.08332272, -0.000306672, -0.0012937896, -0.0012934692, 8.9112116e-05, -0.08332324, 0.0003080159, 0.083332784, 8.434395e-05, -0.00013991725, 0.020971972, 0.00038987026)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.005741565, -0.0050451295, 0.2515192)
+body_offset = Transform3D(0.083322115, -0.00031173904, -0.0013321638, -0.0013318546, 8.871895e-05, -0.083322644, 0.00031311507, 0.08333277, 8.3731604e-05, -0.00014490727, 0.020965341, 0.0003975667)
 mass = 5.0
 bone_name = "Calf_L"
 joint_constraints/x/linear_limit_enabled = true
@@ -10127,34 +9889,12 @@ joint_constraints/z/angular_equilibrium_point = 0.0
 transform = Transform3D(11.745, 0, 0, 0, -5.1339026e-07, 11.745, 0, -11.745, -5.1339026e-07, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_40h88")
 
-[node name="hurtbox_component" type="Area3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Calf_L" unique_id=1566405243 node_paths=PackedStringArray("health_component", "bone_health_component", "status_component", "stance_component")]
-collision_layer = 4
-collision_mask = 13
-script = ExtResource("4_v0k1a")
-status_weaknesses = Dictionary[int, float]({
-0: 0.5,
-3: 0.5
-})
-health_component = NodePath("../../../../HealthComponent")
-bone_health_component = NodePath("../../Physical Bone Thigh_L/BoneHealthComponent")
-status_component = NodePath("../../PickableRagdollHip/status_effect_component")
-stance_component = NodePath("../../../../../../StanceComponent")
-invulnerability_duration = 0.25
-damage_particles = ExtResource("6_exqn4")
-hit_sound = ExtResource("7_5vd8j")
-can_bleed = true
-metadata/_custom_type_script = "uid://c2i6qdosp0h2"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Calf_L/hurtbox_component" unique_id=250614188]
-transform = Transform3D(0.9962774, 0.08621386, 0.0027899854, -0.0029508471, 0.001739575, 0.9999958, 0.086207956, -0.9962763, 0.0019878421, 0.007787874, 0.00015713274, -0.08999573)
-shape = SubResource("CapsuleShape3D_hnstf")
-
 [node name="Physical Bone Foot_L" type="PhysicalBone3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D" unique_id=646074052]
-transform = Transform3D(-0.08138411, 0.0067890245, -0.01658255, -0.017918326, -0.030517027, 0.07544594, 7.385131e-05, 0.077246785, 0.031262986, 0.020185605, 0.005277276, 0.005272708)
+transform = Transform3D(-0.08137371, 0.0067793047, -0.01663747, -0.017965578, -0.030492239, 0.07544473, 4.9789036e-05, 0.077257425, 0.031236727, 0.02011979, 0.0052454006, 0.003964772)
 collision_mask = 15
 joint_type = 5
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.015891965, 0.003800226, 0.080571495)
-body_offset = Transform3D(0.083333425, -3.6544632e-05, 4.7218055e-06, 5.4351985e-06, 0.0016758516, -0.083316475, 3.640959e-05, 0.0833165, 0.0016758516, -0.0013245735, 0.006706478, -0.00045222603)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.016203625, 0.003807221, 0.0806046)
+body_offset = Transform3D(0.08333341, -3.9460603e-05, 1.2088567e-05, 1.2889504e-05, 0.001733752, -0.0833153, 3.9176084e-05, 0.08331531, 0.0017337464, -0.0013511274, 0.006708787, -0.00045758253)
 mass = 5.0
 bone_name = "Foot_L"
 joint_constraints/x/linear_limit_enabled = true
@@ -10226,11 +9966,11 @@ transform = Transform3D(11.745, 0, 0, 0, -5.1339026e-07, 11.745, 0, -11.745, -5.
 shape = SubResource("CapsuleShape3D_exqn4")
 
 [node name="Physical Bone Thigh_R" type="PhysicalBone3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D" unique_id=649071735]
-transform = Transform3D(-0.00947846, -0.081441864, 0.01489385, 0.06279625, 0.0026978056, 0.054715607, -0.053955857, 0.017446771, 0.06106407, -0.009857317, -0.012557414, 0.06058752)
+transform = Transform3D(-0.007539492, -0.0818224, 0.013881504, 0.06893734, 0.0015863945, 0.046792857, -0.0462087, 0.01571698, 0.067543894, -0.0097728465, -0.0109511, 0.06196002)
 collision_mask = 15
 joint_type = 5
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.011550679, -0.008152313, 0.21609731)
-body_offset = Transform3D(0.083305165, 0.0004940904, 0.002105035, 0.0021048784, 3.5158475e-05, -0.08330673, -0.0004948323, 0.083331674, 2.2665947e-05, -0.0014130957, 0.017978337, 0.0006801635)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.011919318, -0.008342425, 0.21611303)
+body_offset = Transform3D(0.0833038, 0.0005075736, 0.0021557212, 0.0021555796, 3.1954143e-05, -0.083305456, -0.00050822925, 0.08333163, 1.8818304e-05, -0.0014545694, 0.017977968, 0.00069717877)
 mass = 5.0
 bone_name = "Thigh_R"
 joint_constraints/x/linear_limit_enabled = true
@@ -10301,27 +10041,6 @@ joint_constraints/z/angular_equilibrium_point = 0.0
 transform = Transform3D(11.745, 0, 0, 0, -5.1339026e-07, 11.745, 0, -11.745, -5.1339026e-07, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_wv6bk")
 
-[node name="hurtbox_component" type="Area3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Thigh_R" unique_id=855164379 node_paths=PackedStringArray("health_component", "status_component", "stance_component")]
-collision_layer = 4
-collision_mask = 13
-script = ExtResource("4_v0k1a")
-status_weaknesses = Dictionary[int, float]({
-0: 0.5,
-3: 0.5
-})
-health_component = NodePath("../../../../HealthComponent")
-status_component = NodePath("../../PickableRagdollHip/status_effect_component")
-stance_component = NodePath("../../../../../../StanceComponent")
-invulnerability_duration = 0.25
-damage_particles = ExtResource("6_exqn4")
-hit_sound = ExtResource("7_5vd8j")
-can_bleed = true
-metadata/_custom_type_script = "uid://c2i6qdosp0h2"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Thigh_R/hurtbox_component" unique_id=1336420193]
-transform = Transform3D(0.9992258, -0.035563923, 0.017585794, 0.01759969, 8.119512e-05, -0.9998493, 0.035557136, 0.99937373, 0.0007080948, 0.0011547916, -2.6226044e-06, -0.03245026)
-shape = SubResource("CapsuleShape3D_abjnj")
-
 [node name="BoneHealthComponent" type="Node3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Thigh_R" unique_id=63229210 node_paths=PackedStringArray("bones_to_affect", "physical_skeleton", "skeleton", "blood_particles")]
 script = ExtResource("7_28glq")
 bones_to_affect = [NodePath(".."), NodePath("../../Physical Bone Calf_R"), NodePath("../../Physical Bone Foot_R")]
@@ -10333,11 +10052,11 @@ max_health = 20.0
 metadata/_custom_type_script = "uid://b2errsixgk2ri"
 
 [node name="Physical Bone Calf_R" type="PhysicalBone3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D" unique_id=992299031]
-transform = Transform3D(0.004293546, -0.08285476, 0.007816544, 0.074763425, 0.00040192058, -0.036806446, 0.036557373, 0.00890906, 0.07435478, -0.015055044, -0.013849177, 0.027457511)
+transform = Transform3D(0.0031935018, -0.08274196, 0.009381579, 0.077802904, -0.00038159706, -0.029849753, 0.029680885, 0.009902871, 0.07723616, -0.015089343, -0.012087402, 0.026872233)
 collision_mask = 15
 joint_type = 5
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.009715e-05, -0.005418334, 0.24977879)
-body_offset = Transform3D(0.08331208, -0.00018688885, -0.0018736273, -0.0018734671, 0.00011377185, -0.08331219, 0.00018936768, 0.083332874, 0.0001095288, 0.00046113972, 0.020810366, 0.0004241541)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00019711527, -0.0055136327, 0.2496766)
+body_offset = Transform3D(0.083310775, -0.00019417837, -0.0019296799, -0.0019295346, 0.00011275546, -0.08331093, 0.0001967248, 0.08333287, 0.000108214685, 0.00046430342, 0.02080179, 0.00043240935)
 mass = 5.0
 bone_name = "Calf_R"
 joint_constraints/x/linear_limit_enabled = true
@@ -10408,34 +10127,12 @@ joint_constraints/z/angular_equilibrium_point = 0.0
 transform = Transform3D(11.745, 0, 0, 0, -5.1339026e-07, 11.745, 0, -11.745, -5.1339026e-07, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_uf4ye")
 
-[node name="hurtbox_component" type="Area3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Calf_R" unique_id=570497544 node_paths=PackedStringArray("health_component", "bone_health_component", "status_component", "stance_component")]
-collision_layer = 4
-collision_mask = 13
-script = ExtResource("4_v0k1a")
-status_weaknesses = Dictionary[int, float]({
-0: 0.5,
-3: 0.5
-})
-health_component = NodePath("../../../../HealthComponent")
-bone_health_component = NodePath("../../Physical Bone Thigh_R/BoneHealthComponent")
-status_component = NodePath("../../PickableRagdollHip/status_effect_component")
-stance_component = NodePath("../../../../../../StanceComponent")
-invulnerability_duration = 0.25
-damage_particles = ExtResource("6_exqn4")
-hit_sound = ExtResource("7_5vd8j")
-can_bleed = true
-metadata/_custom_type_script = "uid://c2i6qdosp0h2"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Calf_R/hurtbox_component" unique_id=1972528407]
-transform = Transform3D(0.9976813, -0.063131884, -0.026007293, 0.0260815, 0.0003423176, 0.9996776, -0.063102104, -0.9980241, 0.0019899, -0.0060419235, 3.2797456e-05, -0.09551361)
-shape = SubResource("CapsuleShape3D_tdogo")
-
 [node name="Physical Bone Foot_R" type="PhysicalBone3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D" unique_id=641587537]
-transform = Transform3D(-0.08193718, -0.0061367024, 0.013895495, 0.015183425, -0.030800786, 0.075929046, -0.00045554157, 0.077188715, 0.031402867, -0.018923648, -0.011681049, 0.005914493)
+transform = Transform3D(-0.081945635, -0.005688118, 0.014035775, 0.015144542, -0.030663073, 0.075992525, -2.2493015e-05, 0.077277854, 0.031186186, -0.01937471, -0.011746722, 0.00469676)
 collision_mask = 15
 joint_type = 5
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0124080395, -0.0064500663, 0.083731994)
-body_offset = Transform3D(0.083332084, -5.4552685e-05, 0.00039637927, 0.00039734505, 0.0015856698, -0.08331751, 4.6945643e-05, 0.08331816, 0.0015859865, 0.0010004463, 0.0069914996, 0.00040519238)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.012722527, -0.006713644, 0.08375651)
+body_offset = Transform3D(0.083332084, -5.7185534e-05, 0.0004021814, 0.00040321704, 0.001643816, -0.083316356, 4.918268e-05, 0.08331707, 0.0016441867, 0.0010261256, 0.0069944533, 0.00042227563)
 mass = 5.0
 bone_name = "Foot_R"
 joint_constraints/x/linear_limit_enabled = true
@@ -10507,7 +10204,7 @@ transform = Transform3D(11.745, 0, 0, 0, -5.1339026e-07, 11.745, 0, -11.745, -5.
 shape = SubResource("CapsuleShape3D_iefhv")
 
 [node name="head" type="BoneAttachment3D" parent="Ghoul/Armature/Skeleton3D" unique_id=1839329788]
-transform = Transform3D(0.99701494, 0.011447847, -0.076347426, -0.061864607, -0.47311372, -0.8788258, -0.04618165, 0.88092625, -0.47099316, -0.002098687, -0.029895987, 0.11278477)
+transform = Transform3D(0.9998487, 0.016047858, 0.0066423095, 0.011595482, -0.3320563, -0.9431877, -0.012930509, 0.9431223, -0.33219227, -0.00044206393, -0.02529056, 0.119661584)
 bone_name = "Head"
 bone_idx = 21
 
@@ -10516,7 +10213,7 @@ transform = Transform3D(0.08333952, -1.0804014e-05, 4.208221e-05, 8.200695e-06, 
 top_level = false
 
 [node name="armL" type="BoneAttachment3D" parent="Ghoul/Armature/Skeleton3D" unique_id=1445131615]
-transform = Transform3D(0.022538185, 0.9192313, 0.39307114, -0.4812663, 0.35459292, -0.8016521, -0.8762843, -0.17110418, 0.45038718, 0.0038360124, -0.024930997, 0.10943476)
+transform = Transform3D(-0.034329683, 0.9116126, 0.40961313, -0.6064704, 0.30676386, -0.73354566, -0.79436433, -0.27360064, 0.54233515, 0.0053424207, -0.020998197, 0.1152787)
 bone_name = "Shoulder_L"
 bone_idx = 23
 
@@ -10525,7 +10222,7 @@ transform = Transform3D(0.08333952, -1.0804273e-05, 4.2082145e-05, 8.200994e-06,
 top_level = false
 
 [node name="armR" type="BoneAttachment3D" parent="Ghoul/Armature/Skeleton3D" unique_id=1042786901]
-transform = Transform3D(-0.082560465, -0.9135314, -0.39829946, 0.47993085, 0.31382164, -0.8192567, 0.8734123, -0.25879455, 0.41252315, -0.007901049, -0.025192102, 0.108873196)
+transform = Transform3D(-0.02576907, -0.92348504, -0.38276565, 0.60592484, 0.29011178, -0.7407358, 0.79510385, -0.2510154, 0.55208707, -0.006409593, -0.021104839, 0.115423344)
 bone_name = "Shoulder_R"
 bone_idx = 33
 
@@ -10534,7 +10231,7 @@ transform = Transform3D(0.08333953, -1.080404e-05, 4.2082313e-05, 8.200528e-06, 
 top_level = false
 
 [node name="LegL" type="BoneAttachment3D" parent="Ghoul/Armature/Skeleton3D" unique_id=967596396]
-transform = Transform3D(-0.07304605, 0.16260755, 0.98398304, -0.9131067, -0.4077211, -0.0004068548, 0.40112436, -0.8985115, 0.17826031, 0.006682437, 5.9590984e-06, 0.07346867)
+transform = Transform3D(-0.06340834, 0.1514741, 0.9864252, -0.953336, -0.30154055, -0.014977189, 0.2951784, -0.9413445, 0.16352576, 0.0065866364, 6.030049e-06, 0.076326065)
 bone_name = "Thigh_L"
 bone_idx = 43
 
@@ -10543,7 +10240,7 @@ transform = Transform3D(0.08333951, -1.0804273e-05, 4.2082276e-05, 8.200528e-06,
 top_level = false
 
 [node name="LegR" type="BoneAttachment3D" parent="Ghoul/Armature/Skeleton3D" unique_id=186202483]
-transform = Transform3D(-0.11498331, -0.1819544, -0.97656316, 0.7700801, -0.63733053, 0.028077193, -0.6275016, -0.74880075, 0.21340193, -0.0060843388, -3.0170795e-05, 0.07301784)
+transform = Transform3D(-0.09211334, -0.1692391, -0.98126304, 0.8415986, -0.53992075, 0.01411799, -0.5321931, -0.8245263, 0.19216539, -0.0061801397, -3.0099844e-05, 0.07587524)
 bone_name = "Thigh_R"
 bone_idx = 49
 

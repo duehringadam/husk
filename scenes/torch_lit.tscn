@@ -127,6 +127,7 @@ draw_pass_1 = SubResource("QuadMesh_ndnhl")
 [node name="OmniLight3D" type="OmniLight3D" parent="GPUParticles3D" unique_id=2033224199]
 layers = 3
 light_color = Color(1, 0.6583885, 0, 1)
+distance_fade_enabled = true
 omni_range = 10.0
 
 [connection signal="tree_exiting" from="DamageComponent" to="DamageComponent" method="_on_tree_exiting"]

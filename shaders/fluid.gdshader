@@ -20,7 +20,7 @@ void fragment() {
 	NORMAL_MAP = vec3(bump.r, bump.g, bump.b);
 	
 	METALLIC = 1.0;
-	ROUGHNESS = 0.;
+	ROUGHNESS = 0.5;
 	ALPHA = transparency;
 }
 

@@ -22,10 +22,13 @@
 [ext_resource type="Script" uid="uid://ca67j88u50d15" path="res://water_area.gd" id="17_tuu67"]
 [ext_resource type="PackedScene" uid="uid://d4n4ub6iqwi1q" path="res://scenes/Hivemind/CastleOfEternalMists/Prefabs/SM_Wood_Beam_FLoor_A.tscn" id="21_tuu67"]
 [ext_resource type="PackedScene" uid="uid://drwvh76gvoft4" path="res://scenes/torch_lit.tscn" id="21_uqvtn"]
+[ext_resource type="PackedScene" uid="uid://dr38p0k3ko4ks" path="res://scenes/pieces/crate_pickable.tscn" id="22_10yoa"]
 [ext_resource type="Material" uid="uid://biya" path="res://scenes/Hivemind/CastleOfEternalMists/URP/Art/Materials/Instances/M_IronTrim.tres" id="22_v4bxt"]
 [ext_resource type="Script" uid="uid://cmrc6hxb0a6wm" path="res://status_effects/fire_damage_component.gd" id="23_uqvtn"]
+[ext_resource type="PackedScene" uid="uid://c56q3gytk8fia" path="res://scenes/pieces/barrel_pickable.tscn" id="23_wmdgy"]
 [ext_resource type="Texture2D" uid="uid://bgpuc5rjm2yh5" path="res://scenes/misc/Textures/T_Fire01_SubUV_new.png" id="24_cosrm"]
 [ext_resource type="Texture2D" uid="uid://dgnarq1axwhae" path="res://scenes/MysticDungeon/Art/Textures/T_Fire01_Tiled_D_Yellow.png" id="25_10yoa"]
+[ext_resource type="ArrayOccluder3D" uid="uid://biomc06kimysa" path="res://scenes/test/test_dungeon.occ" id="27_wmdgy"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_j7l4f"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -38,6 +41,8 @@ sky_material = SubResource("ProceduralSkyMaterial_j7l4f")
 background_mode = 2
 sky = SubResource("Sky_he8is")
 ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+reflected_light_source = 2
 tonemap_mode = 4
 tonemap_exposure = 0.67
 glow_enabled = true
@@ -46,6 +51,8 @@ glow_bloom = 0.1
 fog_enabled = true
 fog_light_energy = 0.25
 adjustment_enabled = true
+adjustment_brightness = 1.17
+adjustment_contrast = 1.005
 adjustment_color_correction = ExtResource("1_easv4")
 
 [sub_resource type="Gradient" id="Gradient_nmnrp"]
@@ -81,6 +88,9 @@ shader_parameter/hole_depth = 10.0
 [sub_resource type="PlaneMesh" id="PlaneMesh_l5tg5"]
 material = SubResource("ShaderMaterial_q378e")
 size = Vector2(20, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_10yoa"]
+size = Vector3(27.648338, 0.77255857, 8)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_near1"]
 resource_name = "M_IronTrim"
@@ -196,12 +206,15 @@ material = SubResource("StandardMaterial3D_jk2jl")
 size = Vector2(0.15, 0.15)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v4bxt"]
-size = Vector3(3.5, 0.6, 9.400001)
+size = Vector3(3.5, 0.4796875, 9.930958)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_iql7a"]
 noise_type = 2
+frequency = 0.0319
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fqkk3"]
+width = 128
+height = 128
 noise = SubResource("FastNoiseLite_iql7a")
 seamless = true
 as_normal_map = true
@@ -550,6 +563,18 @@ transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 0.51
 
 [node name="SM_Staircase_01a" parent="walls/sewers_hallway_modular2" unique_id=455097483 instance=ExtResource("17_2k1sl")]
 transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -0.9762573, 0, 21)
+
+[node name="CollisionShape3D" parent="walls/sewers_hallway_modular2/SM_Staircase_01a/MeshCollider" parent_id_path=PackedInt32Array(455097483, 1569324072) index="0" unique_id=1489029016]
+debug_color = Color(1, 0, 0, 0.42000002)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="walls/sewers_hallway_modular2/SM_Staircase_01a" unique_id=220463148]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8146973e-06, -2.2000008, 4)
+collision_layer = 2
+metadata/ground_type = "stone"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/sewers_hallway_modular2/SM_Staircase_01a/StaticBody3D" unique_id=702492387]
+transform = Transform3D(0.89522225, -0.44561985, -9.159955e-09, 0.44561985, 0.89522225, 3.895732e-08, -9.159962e-09, -3.8957328e-08, 1, -12.761791, -4.2277203, -0.5001259)
+shape = SubResource("BoxShape3D_10yoa")
 
 [node name="SM_Staircase_01a4" parent="walls/sewers_hallway_modular2" unique_id=1577725851 instance=ExtResource("17_2k1sl")]
 transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.9762573, -1, 21)
@@ -953,13 +978,63 @@ transform = Transform3D(-4.3711395e-08, 0, 1, 0, 1, 0, -1, 0, -4.3711395e-08, -2
 [node name="SM_Torch_A2" parent="walls/SM_Torch_A2" unique_id=2011961276 instance=ExtResource("21_uqvtn")]
 transform = Transform3D(-4.3711395e-08, 0, 1, 0, 1, 0, -1, 0, -4.3711395e-08, -18.273792, -9.997364, -2.0315027)
 
+[node name="Pickable" parent="walls/SM_Torch_A2" unique_id=398447372 instance=ExtResource("22_10yoa")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -20.414415, -10.165735, 0.6468506)
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Wooden Crate","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="Pickable2" parent="walls/SM_Torch_A2" unique_id=1745209946 instance=ExtResource("22_10yoa")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -19.214415, -10.165735, 0.6468506)
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Wooden Crate","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="Pickable3" parent="walls/SM_Torch_A2" unique_id=186343809 instance=ExtResource("22_10yoa")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -19.914415, -8.965735, 0.6468506)
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Wooden Crate","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="Pickable4" parent="walls/SM_Torch_A2" unique_id=522044919 instance=ExtResource("23_wmdgy")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.91441727, -1.1657352, -0.15315056)
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Wooden Barrel","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="Pickable5" parent="walls/SM_Torch_A2" unique_id=1349871023 instance=ExtResource("23_wmdgy")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.71441746, -1.1657352, -1.3531494)
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Wooden Barrel","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="Pickable6" parent="walls/SM_Torch_A2" unique_id=386751583 instance=ExtResource("23_wmdgy")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.6144171, -1.1657352, -0.65314865)
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Wooden Barrel","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="Pickable7" parent="walls/SM_Torch_A2" unique_id=1158274855 instance=ExtResource("23_wmdgy")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.714417, -1.1657352, -2.6531477)
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Wooden Barrel","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
 [node name="SM_Wood_Beam_FLoor_A" parent="walls" unique_id=78388208 instance=ExtResource("21_tuu67")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 16.34727, -14.182387, -20.431116)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="walls/SM_Wood_Beam_FLoor_A" unique_id=1757234084]
+collision_layer = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="walls/SM_Wood_Beam_FLoor_A/StaticBody3D" unique_id=214962168]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.049999237, -0.19999981, -2.8000002)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.049999237, -0.13984346, -3.0654783)
 shape = SubResource("BoxShape3D_v4bxt")
 
 [node name="SM_Wood_Beam_FLoor_A2" parent="walls" unique_id=139931252 instance=ExtResource("21_tuu67")]
@@ -978,6 +1053,10 @@ metadata/ground_type = "water"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="walls/CSGBakedMeshInstance3D/Area3D" unique_id=906940921]
 shape = SubResource("ConvexPolygonShape3D_uqvtn")
 
+[node name="OccluderInstance3D" type="OccluderInstance3D" parent="walls" unique_id=1668928639]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+occluder = ExtResource("27_wmdgy")
+
 [node name="Player" parent="." unique_id=926426044 instance=ExtResource("5_easv4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -10, 6)
 footsteps_sound = ExtResource("15_m64t4")
@@ -991,3 +1070,5 @@ light_energy = 0.25
 [connection signal="tree_exiting" from="walls/SM_Torch_A2/DamageComponent" to="walls/SM_Torch_A2/DamageComponent" method="_on_tree_exiting"]
 [connection signal="body_entered" from="walls/CSGBakedMeshInstance3D/Area3D" to="walls/CSGBakedMeshInstance3D/Area3D" method="_on_body_entered"]
 [connection signal="body_exited" from="walls/CSGBakedMeshInstance3D/Area3D" to="walls/CSGBakedMeshInstance3D/Area3D" method="_on_body_exited"]
+
+[editable path="walls/sewers_hallway_modular2/SM_Staircase_01a"]
