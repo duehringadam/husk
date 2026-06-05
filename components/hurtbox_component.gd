@@ -56,8 +56,6 @@ func apply_status(status_types: Dictionary[Global.STATUS_TYPE, float]):
 func take_damage(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float], status_types: Dictionary[Global.STATUS_TYPE, float], stance_damage: float, source: DamageComponent):
 	var hit_dir = (global_position.direction_to(source.global_position)).normalized()
 	if timer.time_left > 0: return 0
-	# invulnerability on damage.
-	invulnerability(invulnerability_duration)
 	# take damage
 	var sum := 0.0
 	for i in damage_types:

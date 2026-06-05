@@ -1,5 +1,7 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://hnygll7t2it1"]
 
+[ext_resource type="Texture2D" uid="uid://dv6fsjgo3oep8" path="res://scenes/VFX/textures/T_Blood_Leash_FE1.png" id="1_jqri1"]
+
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_4oy1p"]
 expanded_output_ports = [0]
 source = 5
@@ -204,6 +206,7 @@ render_priority = 0
 shader = SubResource("VisualShader_41jeg")
 shader_parameter/Scale = Vector2(1, 1)
 shader_parameter/Speed_XY = Vector2(0, 0)
+shader_parameter/Disolver_Texture = ExtResource("1_jqri1")
 shader_parameter/Color_1D_Gradient = SubResource("GradientTexture1D_1mueb")
 shader_parameter/Metallic_Texture = SubResource("GradientTexture2D_8mnei")
 shader_parameter/Roughtness_1D_Gradient = SubResource("GradientTexture1D_rrogk")

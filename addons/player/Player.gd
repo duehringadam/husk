@@ -375,8 +375,8 @@ func handle_head_bob(delta: float) -> void:
 		pos.y = sin(bob_time * BOB_FREQ) * head_bob_strength
 		pos.x = cos(bob_time * BOB_FREQ / 2) * head_bob_strength
 		neck.transform.origin =  pos
-		%RightHand.transform.origin = right_hand_pos - pos / 4
-		%LeftHand.transform.origin = left_hand_pos - pos / 4
+		%RightHand.transform.origin = right_hand_pos - pos / 2
+		%LeftHand.transform.origin = left_hand_pos - pos / 2
 
 
 func handle_fov_change(delta: float) -> void:

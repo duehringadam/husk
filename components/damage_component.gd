@@ -19,9 +19,21 @@ var amount: float
 @export var status_types: Dictionary[Global.STATUS_TYPE, float]
 @export_range(0.0,1.0) var stance_damage_value: float
 
+@export_range(0.0,1.0) var damage_interval: float
 @export var source: Node3D
 
 var hits: Array
+
+var timer: Timer
+
+func _ready():
+	timer = Timer.new()
+	add_child(timer)
+	timer.one_shot = true
+
+
+func invulnerability(duration: float):
+	timer.start(duration)
 
 ## Override this to customize damage behavior (scale with velocity, etc)
 func get_damage(_target: hurtbox_component):
@@ -31,6 +43,7 @@ func get_damage(_target: hurtbox_component):
 	#connect("area_entered", self._physics_process)
 
 func _physics_process(_delta: float) -> void:
+	if timer.time_left > 0: return
 	if monitoring:
 		for other in get_overlapping_areas():
 			if !hits.has(other.owner):
@@ -43,6 +56,7 @@ func _physics_process(_delta: float) -> void:
 							if i > 0:
 								var actual = other.take_damage(damage_types, status_types, stance_damage_value, self)
 								emit_signal("damage_dealt", damage_types, actual, stance_damage_value, other)
+								invulnerability(damage_interval)
 								if hit_sound:
 									hit_sound.pitch_scale = randf_range(0.9,1.2)
 									hit_sound.play()
