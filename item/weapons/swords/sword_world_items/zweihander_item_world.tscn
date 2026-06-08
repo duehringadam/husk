@@ -69,7 +69,7 @@ angular_damp = 5.0
 script = ExtResource("1_h0khm")
 item_to_loot = ExtResource("2_gr7xb")
 change_distance_interaction = NodePath("InteractionContainer/WhileGrabbed/Change Distance")
-throwable_mesh = NodePath("Longsword")
+throwable_mesh = NodePath("Zweihander")
 throwable = NodePath(".")
 damage_component = NodePath("DamageComponent")
 metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_ul2nd"),"default_context_id":0,"display_name":"Longsword","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("4_227hg")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("4_227hg"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("5_0xous"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
@@ -155,12 +155,12 @@ sounds_per_velocity = Dictionary[int, AudioStream]({
 })
 metadata/_custom_type_script = "uid://cp0p4yckxtvmw"
 
-[node name="Longsword" type="MeshInstance3D" parent="." unique_id=1316351081]
+[node name="Zweihander" type="MeshInstance3D" parent="." unique_id=1316351081]
 transform = Transform3D(-1.2, 1.8119498e-07, 0, -1.8119498e-07, -1.2, 0, 0, 0, 1.2, 0, 0.33761027, 0)
 mesh = SubResource("ArrayMesh_227hg")
 surface_material_override/0 = SubResource("StandardMaterial3D_0xous")
 
-[node name="OmniLight3D" parent="Longsword" unique_id=1151187837 instance=ExtResource("10_iu5my")]
+[node name="OmniLight3D" parent="Zweihander" unique_id=1151187837 instance=ExtResource("10_iu5my")]
 transform = Transform3D(1, 5.5067065e-15, 0, -5.5067065e-15, 1, 0, 0, 0, 1, 2.3339801e-08, 0.2669762, 0.00028728836)
 
 [node name="DamageComponent" type="Area3D" parent="." unique_id=1429514769 node_paths=PackedStringArray("source")]
@@ -178,7 +178,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3121125, 0)
 shape = SubResource("BoxShape3D_xbs6s")
 
 [node name="bounding_box_component" parent="." unique_id=326409759 node_paths=PackedStringArray("mesh") instance=ExtResource("12_oogr1")]
-mesh = NodePath("../Longsword")
+mesh = NodePath("../Zweihander")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2041675035]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1951932, 0)

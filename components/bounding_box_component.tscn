@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dhws2ueoubwwx"]
 
 [ext_resource type="Script" uid="uid://251jy5xhr53n" path="res://components/bounding_box_component.gd" id="1_sp5yl"]
-[ext_resource type="Texture2D" uid="uid://bsdwvs1ul86qm" path="res://components/bounding_box_texture/image0039.png" id="2_nvaig"]
+[ext_resource type="Texture2D" uid="uid://bowpx53ps0kp4" path="res://components/bounding_box_texture/outline-small-2.png" id="2_nvaig"]
 [ext_resource type="FontFile" uid="uid://bgwsxfa2fbvel" path="res://addons/madtalk/fonts/ShipporiMincho-Regular.ttf" id="3_nvaig"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wop0f"]
@@ -17,11 +17,11 @@ metadata/_custom_type_script = "uid://251jy5xhr53n"
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1679682497]
 layout_mode = 2
 texture = ExtResource("2_nvaig")
-region_rect = Rect2(9, 9, 46, 46)
-patch_margin_left = 16
-patch_margin_top = 16
-patch_margin_right = 16
-patch_margin_bottom = 16
+region_rect = Rect2(0, 0, 48, 48)
+patch_margin_left = 17
+patch_margin_top = 17
+patch_margin_right = 17
+patch_margin_bottom = 17
 
 [node name="Label" type="Label" parent="." unique_id=1298022545]
 layout_mode = 2

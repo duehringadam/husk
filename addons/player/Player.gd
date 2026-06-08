@@ -1,6 +1,10 @@
 @tool
 ## Stuff here?
 class_name Player extends CharacterBody3D
+
+@export_category("Player Stats")
+@export var player_stats: Dictionary[ItemEquippableType.ITEM_REQUIRED_STAT, int]: set = _update_player_stats
+
 @export_category("Inventory")
 @export var inventory: Array[item]
 @export var footsteps_sound: AudioStream
@@ -87,6 +91,7 @@ Optional: %jump, %sprint, %crouch, %lean, %zoom, %switch_hands
 @onready var radial_blur: ColorRect = %radial_blur
 @onready var vault_ray_cast: RayCast3D = %vaultRayCast
 @onready var rope_detection: Area3D = %rope_detection
+@onready var health_component: HealthComponent = $HealthComponent
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -128,6 +133,7 @@ var is_vaulting: bool = false
 var can_kick: bool = true
 
 func _ready() -> void:
+	
 	SignalBus.connect("primary_active", _animate_camera_swing)
 	SignalBus.connect("primary_active", _set_weapon_active)
 	SignalBus.connect("secondary_active", _set_weapon_active)
@@ -158,6 +164,10 @@ func _set_walk_speed(value: float):
 	
 func _set_sprint_speed(value:float):
 	sprint_speed = clampf(value, SPRINT_SPEED_MIN, SPRINT_SPEED_MAX)
+
+func _update_player_stats(stats: Dictionary[ItemEquippableType.ITEM_REQUIRED_STAT, int]):
+	player_stats = stats
+	SignalBus.emit_signal("player_stats_changed", stats)
 
 func _physics_process(delta) -> void:
 	if Engine.is_editor_hint(): return
@@ -573,8 +583,9 @@ func _handle_ladder_physics(delta: float) -> bool:
 		_cur_ladder_climbing = null
 		for ladder in get_tree().get_nodes_in_group("ladder"):
 			if ladder.overlaps_body(self):
-				ladder.connect("body_entered", disable_hands)
-				ladder.connect("body_exited", enable_hands)
+				if !ladder.is_connected("body_entered", disable_hands) and !ladder.is_connected("body_exited", enable_hands):
+					ladder.connect("body_entered", disable_hands)
+					ladder.connect("body_exited", enable_hands)
 				_cur_ladder_climbing = ladder
 				break
 			

@@ -2,7 +2,9 @@ class_name ItemRequiredStat
 extends Resource
 
 enum ItemRequiredStatName {
+	VIGOR,
 	STRENGTH,
+	DEXTERITY,
 	WILL,
 	INTELLIGENCE,
 	FAITH

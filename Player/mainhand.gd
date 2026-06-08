@@ -68,15 +68,15 @@ func _set_item(new_item: item):
 		animation_tree.active = true
 		bone_attachment.add_child(item_add)
 		damage_component = bone_attachment.get_child(0).damage_component
-		bone_attachment.get_child(0).damage_component.damage_types = new_item.item_stats.damage_types
-		stab_damage.damage_types = new_item.item_stats.damage_types
+		bone_attachment.get_child(0).damage_component.damage_types = new_item.item_stats.final_damage
+		stab_damage.damage_types = new_item.item_stats.final_damage
 		stab_damage.status_types = item_add.damage_component.status_types
 		stab_damage.stance_damage_value = new_item.item_stats.stance_damage
 		stab_damage.hit_sound = item_add.damage_component.hit_sound
 		ray_length = new_item.item_stats.range
 		stab_collision.shape.height = new_item.item_stats.range
 		damage_scaling.damage_component = damage_component
-		damage_scaling.stored_damage_values = new_item.item_stats.damage_types.values()
+		damage_scaling.stored_damage_values = new_item.item_stats.final_damage.values()
 		damage_scaling.stored_stance_damage = new_item.item_stats.stance_damage
 		
 		if new_item.item_left_scene:

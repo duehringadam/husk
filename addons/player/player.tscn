@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/item.gd" id="2_863th"]
 [ext_resource type="Resource" uid="uid://dmv7he43amthj" path="res://item/weapons/mace_2_hand/morning_star.tres" id="3_e6ia4"]
 [ext_resource type="PackedScene" uid="uid://bj4hhphu33n38" path="res://addons/player/player_body.tscn" id="3_tio5b"]
-[ext_resource type="Script" uid="uid://dgjqgiw3yw42e" path="res://components/health_component.gd" id="4_7ek8b"]
 [ext_resource type="Resource" uid="uid://bgq4jclx52jt0" path="res://item/weapons/swords/broken_sword.tres" id="4_d6j5h"]
 [ext_resource type="Resource" uid="uid://c8afm2d4w8gxb" path="res://item/spells/telekinesis.tres" id="5_863th"]
 [ext_resource type="Script" uid="uid://csps0dnf2gf2n" path="res://Player/player_hurtbox_component.gd" id="5_eon52"]
@@ -15,7 +14,6 @@
 [ext_resource type="Shader" uid="uid://dgt3e85o3avu2" path="res://Player/damage.gdshader" id="9_4ng6s"]
 [ext_resource type="Script" uid="uid://dmju02n5xp4s0" path="res://addons/player/step_detect.gd" id="9_863th"]
 [ext_resource type="PackedScene" uid="uid://b5corv5nqshay" path="res://addons/player/player_arm_right.tscn" id="9_hqsyx"]
-[ext_resource type="PackedScene" uid="uid://b38llmlalg8wk" path="res://addons/player/player_arm_consumables.tscn" id="10_epd12"]
 [ext_resource type="PackedScene" uid="uid://bplg0u3sd3j28" path="res://addons/player/player_arm_left.tscn" id="10_hqsyx"]
 [ext_resource type="Script" uid="uid://6h8f2qhrbtt6" path="res://Player/damage_overlay.gd" id="10_jux4o"]
 [ext_resource type="AudioStream" uid="uid://br26jgupi66u0" path="res://Player/sfx/footsteps/stone/footstep_stone.tres" id="12_hqsyx"]
@@ -37,13 +35,13 @@
 [ext_resource type="Texture2D" uid="uid://biqgxpwwr01ye" path="res://scenes/VFX/textures/CloudNoise_Tiled.png" id="31_waixc"]
 [ext_resource type="Script" uid="uid://da13b6wjrk5g7" path="res://addons/player/death_overlay.gd" id="32_ae3c0"]
 [ext_resource type="FontFile" uid="uid://bgwsxfa2fbvel" path="res://addons/madtalk/fonts/ShipporiMincho-Regular.ttf" id="35_t571y"]
+[ext_resource type="Script" uid="uid://dd8swdueuaqv5" path="res://components/player_health_component.gd" id="36_jaogv"]
 [ext_resource type="AudioStream" uid="uid://c6mukshc0b37u" path="res://Player/sfx/movement/huskVaultTest.wav" id="37_jaogv"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xc2g5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wydro"]
 radius = 0.43554688
-height = 2.0170898
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dverj"]
 
@@ -747,16 +745,23 @@ shader_parameter/shape_scroll = Vector2(0.1, 0.1)
 shader_parameter/shape_feathering = 0.56999998725936
 shader_parameter/shape_treshold = 1.0
 
-[node name="Player" type="CharacterBody3D" unique_id=1383979839 node_paths=PackedStringArray("player_body", "mainhand", "offhand", "consumable") groups=["player"]]
+[node name="Player" type="CharacterBody3D" unique_id=1383979839 node_paths=PackedStringArray("player_body", "mainhand", "offhand") groups=["player"]]
 collision_mask = 35
 script = ExtResource("1_cyojo")
+player_stats = Dictionary[int, int]({
+0: 10,
+1: 11,
+2: 12,
+3: 13,
+4: 14,
+5: 15
+})
 inventory = Array[ExtResource("2_863th")]([ExtResource("3_e6ia4"), ExtResource("4_d6j5h"), ExtResource("5_863th")])
 player_body = NodePath("Head/Neck/Camera3D/playerBody")
 climb_speed = 3.0
 camera_lean_position = Vector3(0, 0, 0)
 mainhand = NodePath("Head/Neck/Camera3D/RightHand")
 offhand = NodePath("Head/Neck/Camera3D/LeftHand")
-consumable = NodePath("Head/Neck/Camera3D/consumableHand")
 weapon_rotation_amount = 0.25
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1092821169]
@@ -829,10 +834,6 @@ offhand = NodePath("../LeftHand")
 unique_name_in_owner = true
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
 mainhand = NodePath("../RightHand")
-
-[node name="consumableHand" parent="Head/Neck/Camera3D" unique_id=93114209 instance=ExtResource("10_epd12")]
-unique_name_in_owner = true
-visible = false
 
 [node name="CameraAnimationPlayer" type="AnimationPlayer" parent="Head" unique_id=2090545160]
 unique_name_in_owner = true
@@ -919,6 +920,22 @@ bus = &"SFX"
 collision_mask = 13
 script = ExtResource("5_eon52")
 player_camera = NodePath("../Head/Neck/Camera3D")
+damage_resistances = Dictionary[int, float]({
+0: 0.1,
+1: 0.1,
+2: 0.1,
+3: 0.1,
+4: 0.1,
+5: 0.1,
+6: 0.1,
+7: 0.1
+})
+status_resistances = Dictionary[int, float]({
+0: 0.0,
+1: 0.0,
+2: 0.0,
+3: 0.0
+})
 status_weaknesses = Dictionary[int, float]({
 0: 10.0
 })
@@ -1116,7 +1133,7 @@ volume_db = 6.0
 bus = &"SFX"
 
 [node name="HealthComponent" type="Node3D" parent="." unique_id=669479295]
-script = ExtResource("4_7ek8b")
+script = ExtResource("36_jaogv")
 max_health = 100.0
 metadata/_custom_type_script = "uid://dgjqgiw3yw42e"
 
