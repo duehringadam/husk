@@ -13,11 +13,11 @@ enum ItemStatName {
 @export_range(0.0,1.0) var stance_damage: float
 @export_range(0, 10) var upgrade_levels: int
 
-@export var strength_scale: float
-@export var will_scale: float
-@export var dex_scale: float
-@export var intelligence_scale: float
-@export var faith_scale: float
+@export_range(0,1.0) var strength_scale: float
+@export_range(0,1.0) var will_scale: float
+@export_range(0,1.0) var dex_scale: float
+@export_range(0,1.0) var intelligence_scale: float
+@export_range(0,1.0) var faith_scale: float
 @export var range: float
 
 var scaling_damage: Dictionary[DamageTypes.DAMAGE_TYPES, float]
@@ -56,20 +56,22 @@ func calculate_damage():
 
 func _update_player_stats(stats: Dictionary[ItemEquippableType.ITEM_REQUIRED_STAT, int]):
 	for i in stats.keys():
+		var x = float(stats[i])
+		var n = 5.0
 		match ItemEquippableType.ITEM_REQUIRED_STAT.keys()[i]:
 			"STRENGTH":
 				if strength_scale > 0.0:
-					strength_scale += (stats[i]/100.0)
+					strength_scale += (x / (x + n))
 			"DEXTERITY":
 				if dex_scale > 0.0:
-					dex_scale += (stats[i]/100.0)
+					dex_scale += (x / (x + n))
 			"WILL":
 				if will_scale > 0.0:
-					will_scale += (stats[i]/100.0)
+					will_scale += (x / (x + n))
 			"INTELLIGENCE":
 				if intelligence_scale > 0.0:
-					intelligence_scale += (stats[i]/100.0)
+					intelligence_scale += (x / (x + n))
 			"FAITH":
 				if faith_scale > 0.0:
-					faith_scale += (stats[i]/100.0)
+					faith_scale += (x / (x + n))
 	
