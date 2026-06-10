@@ -8,7 +8,7 @@ extends NinePatchRect
 @onready var vigor_value: Label = %vigorValue
 @onready var strength_value: Label = %strengthValue
 @onready var dex_value: Label = %dexValue
-@onready var will_value: Label = %willValue
+@onready var endurance_value: Label = %enduranceValue
 @onready var int_value: Label = %intValue
 @onready var faith_value: Label = %faithValue
 @onready var strike_resistance: Label = %strikeResistance
@@ -23,23 +23,28 @@ extends NinePatchRect
 var current_hp: float
 var max_hp: float
 
+var current_stam: float
+var max_stam: float
+
 func _ready() -> void:
 	SignalBus.connect("player_stats_changed", _update_player_stats)
 	SignalBus.connect("player_resists_changed", _update_player_resists)
 	SignalBus.connect("player_current_health_changed", _update_player_current_hp)
 	SignalBus.connect("player_max_health_changed", _update_player_max_hp)
+	SignalBus.connect("player_max_stamina_changed", _update_player_max_stamina)
+	SignalBus.connect("player_current_stamina_changed", _update_player_current_stamina)
 
 func _update_player_stats(stats: Dictionary[ItemEquippableType.ITEM_REQUIRED_STAT, int]):
 	for i in stats.keys():
 		match ItemEquippableType.ITEM_REQUIRED_STAT.keys()[i]:
 			"VIGOR":
 				vigor_value.text = str(stats[i])
+			"ENDURANCE":
+				endurance_value.text = str(stats[i])
 			"STRENGTH":
 				strength_value.text = str(stats[i])
 			"DEXTERITY":
 				dex_value.text = str(stats[i])
-			"WILL":
-				will_value.text = str(stats[i])
 			"INTELLIGENCE":
 				int_value.text = str(stats[i])
 			"FAITH":
@@ -76,3 +81,15 @@ func _update_player_max_hp(value: float):
 
 func _update_health_text():
 	health_value.text = str(int(current_hp)) + "/" + str(int(max_hp))
+
+
+func _update_player_max_stamina(value: float):
+	max_stam = value
+	_update_stamina_text()
+
+func _update_player_current_stamina(value: float):
+	current_stam = value
+	_update_stamina_text()
+
+func _update_stamina_text():
+	stamina_value.text = str(int(current_stam)) + "/" + str(int(max_stam))

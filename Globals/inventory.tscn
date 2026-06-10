@@ -766,14 +766,14 @@ text = "99"
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="STR" type="Label" parent="MarginContainer/PanelContainer/HBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer/HBoxContainer2" unique_id=771505499]
+[node name="will" type="Label" parent="MarginContainer/PanelContainer/HBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer/HBoxContainer2" unique_id=702634034]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("3_lt8sb")
 theme_override_font_sizes/font_size = 24
-text = "STR:"
+text = "END:"
 
-[node name="strengthValue" type="Label" parent="MarginContainer/PanelContainer/HBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer/HBoxContainer2" unique_id=1943653425]
+[node name="enduranceValue" type="Label" parent="MarginContainer/PanelContainer/HBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer/HBoxContainer2" unique_id=496173002]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -784,6 +784,25 @@ text = "99"
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/PanelContainer/HBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats" unique_id=1482607025]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/PanelContainer/HBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer2" unique_id=1579865625]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="STR" type="Label" parent="MarginContainer/PanelContainer/HBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer2/HBoxContainer2" unique_id=771505499]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_lt8sb")
+theme_override_font_sizes/font_size = 24
+text = "STR:"
+
+[node name="strengthValue" type="Label" parent="MarginContainer/PanelContainer/HBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer2/HBoxContainer2" unique_id=1943653425]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_lt8sb")
+theme_override_font_sizes/font_size = 24
+text = "99"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/HBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer2" unique_id=1275383306]
 layout_mode = 2
@@ -797,25 +816,6 @@ theme_override_font_sizes/font_size = 24
 text = "DEX:"
 
 [node name="dexValue" type="Label" parent="MarginContainer/PanelContainer/HBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer2/HBoxContainer" unique_id=902205435]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("3_lt8sb")
-theme_override_font_sizes/font_size = 24
-text = "99"
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/PanelContainer/HBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer2" unique_id=1579865625]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="will" type="Label" parent="MarginContainer/PanelContainer/HBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer2/HBoxContainer2" unique_id=702634034]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("3_lt8sb")
-theme_override_font_sizes/font_size = 24
-text = "WIL:"
-
-[node name="willValue" type="Label" parent="MarginContainer/PanelContainer/HBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer2/HBoxContainer2" unique_id=496173002]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3

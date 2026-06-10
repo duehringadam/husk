@@ -1,27 +1,18 @@
 class_name ItemStat
 extends Resource
 
-enum ItemStatName {
-	STRENGTH_SCALE,
-	WILL_SCALE,
-	INTELLIGENCE_SCALE,
-	FAITH_SCALE
-}
-
 @export var damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float]
 
 @export_range(0.0,1.0) var stance_damage: float
 
 @export_category("Base Scaling Values")
 @export_range(0,1.0) var strength_scale: float
-@export_range(0,1.0) var will_scale: float
 @export_range(0,1.0) var dex_scale: float
 @export_range(0,1.0) var intelligence_scale: float
 @export_range(0,1.0) var faith_scale: float
 
 @export_category("Scaling Curve Overrides")
 @export var strength_scaling_curve_override: Curve
-@export var will_scaling_curve_override: Curve
 @export var dex_scaling_curve_override: Curve
 @export var intelligence_scaling_curve_override: Curve
 @export var faith_scaling_curve_override: Curve
@@ -29,7 +20,6 @@ enum ItemStatName {
 @export var range: float
 
 var strength_scaling_curve: Curve
-var will_scaling_curve: Curve
 var dex_scaling_curve: Curve
 var intelligence_scaling_curve: Curve
 var faith_scaling_curve: Curve
@@ -85,13 +75,6 @@ func _update_player_stats(stats: Dictionary[ItemEquippableType.ITEM_REQUIRED_STA
 					else:
 						dex_scaling_curve = strength_scaling_curve_override
 					dex_scale += dex_scaling_curve.sample(stats[i]/100.0)
-			"WILL":
-				if will_scale > 0.0:
-					if !will_scaling_curve_override:
-						will_scaling_curve = assign_scaling_curve(will_scale)
-					else:
-						will_scaling_curve = will_scaling_curve_override
-					will_scale += will_scaling_curve.sample(stats[i]/100.0)
 			"INTELLIGENCE":
 				if intelligence_scale > 0.0:
 					if !intelligence_scaling_curve_override:

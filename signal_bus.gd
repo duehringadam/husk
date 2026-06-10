@@ -29,4 +29,6 @@ signal player_stats_changed(stats: Dictionary[ItemEquippableType.ITEM_REQUIRED_S
 signal player_resists_changed(resists: Dictionary[DamageTypes.DAMAGE_TYPES, float])
 signal player_max_health_changed(value: float)
 signal player_current_health_changed(value: float)
+signal player_max_stamina_changed(value: float)
+signal player_current_stamina_changed(value: float)
 @warning_ignore_restore("unused_signal")
