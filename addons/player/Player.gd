@@ -92,6 +92,7 @@ Optional: %jump, %sprint, %crouch, %lean, %zoom, %switch_hands
 @onready var vault_ray_cast: RayCast3D = %vaultRayCast
 @onready var rope_detection: Area3D = %rope_detection
 @onready var health_component: HealthComponent = $HealthComponent
+@onready var stamina_component: StaminaComponent = %StaminaComponent
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -176,7 +177,7 @@ func _physics_process(delta) -> void:
 		handle_falling(delta)
 		handle_jump()
 		handle_crouch(delta)
-		set_movement_speed()
+		set_movement_speed(delta)
 		handle_movement(delta)
 		handle_head_bob(delta)
 		handle_zoom(delta)
@@ -211,7 +212,8 @@ func handle_effects(delta) -> void:
 
 func handle_kick():
 	if !can_kick: return
-	if get_node_or_null("%kick") != null and %kick.is_triggered():
+	if stamina_component.current_stamina <= 0: return
+	if get_node_or_null("%kick") != null and %kick.is_triggered() && !player_body.is_kicking:
 		if %crouch.is_triggered():
 			set_crouch(false)
 		player_body.kick()
@@ -319,7 +321,7 @@ func set_crouch(enable: bool) -> void:
 		_crouch_tween = create_tween()
 		_crouch_tween.tween_property(self, "scale", Vector3.ONE * full_height, crouch_time)
 
-func set_movement_speed() -> void:
+func set_movement_speed(delta: float) -> void:
 	if !can_move: speed = 0; return
 	
 	if slowed == true:
@@ -331,8 +333,9 @@ func set_movement_speed() -> void:
 		speed = 0
 		return
 	
-	if get_node_or_null("%sprint") != null and %sprint.is_triggered() and not disable_sprint:
+	if get_node_or_null("%sprint") != null and %sprint.is_triggered() and not disable_sprint and stamina_component.current_stamina > 0:
 		speed = clampf(sprint_speed - slow_speed, SPRINT_SPEED_MIN, SPRINT_SPEED_MAX)
+		stamina_component.modify_stamina(-(30*delta))
 		player_body.sprint_activate(true)
 	else:
 		speed = clampf(walk_speed - slow_speed, WALK_SPEED_MINIMUM, WALK_SPEED_MAXIMUM)

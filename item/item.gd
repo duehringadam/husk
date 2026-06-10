@@ -8,6 +8,7 @@ class_name item
 @export var item_type: ItemEquippableType.ITEM_EQUIPPABLE_TYPES
 @export var item_stats: ItemStat
 @export var item_required_stats: Dictionary[ItemEquippableType.ITEM_REQUIRED_STAT, int]
+@export var stamina_cost: int = 10
 @export var item_scene: PackedScene
 @export var item_left_scene: PackedScene
 @export var two_handed: bool

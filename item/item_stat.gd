@@ -11,14 +11,28 @@ enum ItemStatName {
 @export var damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float]
 
 @export_range(0.0,1.0) var stance_damage: float
-@export_range(0, 10) var upgrade_levels: int
 
+@export_category("Base Scaling Values")
 @export_range(0,1.0) var strength_scale: float
 @export_range(0,1.0) var will_scale: float
 @export_range(0,1.0) var dex_scale: float
 @export_range(0,1.0) var intelligence_scale: float
 @export_range(0,1.0) var faith_scale: float
+
+@export_category("Scaling Curve Overrides")
+@export var strength_scaling_curve_override: Curve
+@export var will_scaling_curve_override: Curve
+@export var dex_scaling_curve_override: Curve
+@export var intelligence_scaling_curve_override: Curve
+@export var faith_scaling_curve_override: Curve
+
 @export var range: float
+
+var strength_scaling_curve: Curve
+var will_scaling_curve: Curve
+var dex_scaling_curve: Curve
+var intelligence_scaling_curve: Curve
+var faith_scaling_curve: Curve
 
 var scaling_damage: Dictionary[DamageTypes.DAMAGE_TYPES, float]
 var final_damage: Dictionary[DamageTypes.DAMAGE_TYPES, float]
@@ -56,22 +70,52 @@ func calculate_damage():
 
 func _update_player_stats(stats: Dictionary[ItemEquippableType.ITEM_REQUIRED_STAT, int]):
 	for i in stats.keys():
-		var x = float(stats[i])
-		var n = 5.0
 		match ItemEquippableType.ITEM_REQUIRED_STAT.keys()[i]:
 			"STRENGTH":
 				if strength_scale > 0.0:
-					strength_scale += (x / (x + n))
+					if !strength_scaling_curve_override:
+						strength_scaling_curve = assign_scaling_curve(strength_scale)
+					else:
+						strength_scaling_curve = strength_scaling_curve_override
+					strength_scale += strength_scaling_curve.sample(stats[i]/100.0)
 			"DEXTERITY":
 				if dex_scale > 0.0:
-					dex_scale += (x / (x + n))
+					if !dex_scaling_curve_override:
+						dex_scaling_curve = assign_scaling_curve(dex_scale)
+					else:
+						dex_scaling_curve = strength_scaling_curve_override
+					dex_scale += dex_scaling_curve.sample(stats[i]/100.0)
 			"WILL":
 				if will_scale > 0.0:
-					will_scale += (x / (x + n))
+					if !will_scaling_curve_override:
+						will_scaling_curve = assign_scaling_curve(will_scale)
+					else:
+						will_scaling_curve = will_scaling_curve_override
+					will_scale += will_scaling_curve.sample(stats[i]/100.0)
 			"INTELLIGENCE":
 				if intelligence_scale > 0.0:
-					intelligence_scale += (x / (x + n))
+					if !intelligence_scaling_curve_override:
+						intelligence_scaling_curve = assign_scaling_curve(intelligence_scale)
+					else:
+						intelligence_scaling_curve = intelligence_scaling_curve_override
+					intelligence_scale += intelligence_scaling_curve.sample(stats[i]/100.0)
 			"FAITH":
 				if faith_scale > 0.0:
-					faith_scale += (x / (x + n))
+					if !faith_scaling_curve_override:
+						faith_scaling_curve = assign_scaling_curve(faith_scale)
+					else:
+						faith_scaling_curve = faith_scaling_curve_override
+					faith_scale += faith_scaling_curve.sample(stats[i]/100.0)
+	
+
+func assign_scaling_curve(base_scale: float) -> Curve:
+	if base_scale > 0.0 && base_scale < .51:
+		return load("res://item/weapons/scaling_curves/weapon_scaling_curve_d.tres")
+	if base_scale > .5 && base_scale < .66:
+		return load("res://item/weapons/scaling_curves/weapon_scaling_curve_c.tres")
+	if base_scale > .65 && base_scale < .76:
+		return load("res://item/weapons/scaling_curves/weapon_scaling_curve_b.tres")
+	if base_scale > .75 && base_scale < .86:
+		return load("res://item/weapons/scaling_curves/weapon_scaling_curve_a.tres")
+	return load("res://item/weapons/scaling_curves/weapon_scaling_curve_s.tres")
 	

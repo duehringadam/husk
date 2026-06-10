@@ -12,7 +12,7 @@ damage_types = Dictionary[int, float]({
 1: 50.0
 })
 stance_damage = 0.66
-strength_scale = 1.0
+strength_scale = 0.65
 range = 3.0
 metadata/_custom_type_script = "uid://bbtfrupllo3w6"
 
@@ -22,6 +22,7 @@ item_name = "Zweihander"
 item_description = "Two handed heavy sword"
 item_icon = ExtResource("2_54b64")
 item_stats = SubResource("Resource_2e86q")
+stamina_cost = 45
 item_scene = ExtResource("3_8vt41")
 two_handed = true
 animation_state_machine = ExtResource("1_4mcbl")

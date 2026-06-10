@@ -21868,7 +21868,7 @@ transform = Transform3D(0.46467143, 0.87546974, -0.13278958, -0.017884104, 0.159
 transform = Transform3D(0.035707187, -0.003662018, 0.06585277, 0.065547064, 0.010281255, -0.034969684, -0.007319857, 0.07420165, 0.00809532, 0, 0, 0)
 
 [node name="varsoi_male" type="Node3D" parent="Root/Standing Melee Attack Kick Ver_ 1" unique_id=85423772]
-transform = Transform3D(14.238242, -1.1575156, 0.6501563, -0.89646673, -3.2172298, 13.904527, -0.9792312, -13.885232, -3.2758994, -0.018631058, -0.264834, 6.748821)
+transform = Transform3D(14.238243, -1.1575123, 0.65015537, -0.8964647, -3.217225, 13.904528, -0.97922844, -13.885233, -3.2758946, -0.018631058, -0.264834, 6.748821)
 
 [node name="Skeleton3D" type="Skeleton3D" parent="Root/Standing Melee Attack Kick Ver_ 1/varsoi_male" unique_id=1167163448]
 bones/0/name = "root"
@@ -22711,5 +22711,10 @@ debug_color = Color(1, 0, 0, 0.41960785)
 libraries/ = SubResource("AnimationLibrary_rnngo")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1832335950]
+
+[node name="kick_timer" type="Timer" parent="." unique_id=1033206226]
+unique_name_in_owner = true
+wait_time = 1.5
+one_shot = true
 
 [connection signal="damage_dealt" from="Root/Standing Melee Attack Kick Ver_ 1/varsoi_male/Skeleton3D/BoneAttachment3D/kick_damage_component" to="." method="_on_kick_damage_component_damage_dealt"]
