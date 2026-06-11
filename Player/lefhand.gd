@@ -49,6 +49,9 @@ func unequip():
 		i.queue_free()
 	#animation_tree.active = false
 
+func throw():
+	bone_attachment.get_child(0).throw()
+
 func activate():
 	bone_attachment.get_child(0).activate()
 

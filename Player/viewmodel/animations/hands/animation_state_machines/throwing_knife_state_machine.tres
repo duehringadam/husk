@@ -1,0 +1,46 @@
+[gd_resource type="AnimationNodeStateMachine" format=3 uid="uid://cd70r3lq6edrg"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4it18"]
+animation = &"throw_charge"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dsqqd"]
+animation = &"throwing_TO"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2br13"]
+animation = &"throwing_idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o4p8j"]
+animation = &"throwing_throw"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xxgjv"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x2pxe"]
+xfade_time = 0.25
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qysml"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"activate"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3c2xh"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_k8qnb"]
+switch_mode = 2
+advance_mode = 2
+
+[resource]
+states/throw_charge/node = SubResource("AnimationNodeAnimation_4it18")
+states/throw_charge/position = Vector2(549, 211)
+states/throwing_TO/node = SubResource("AnimationNodeAnimation_dsqqd")
+states/throwing_TO/position = Vector2(366, 100)
+states/throwing_idle/node = SubResource("AnimationNodeAnimation_2br13")
+states/throwing_idle/position = Vector2(542, 100)
+states/throwing_throw/node = SubResource("AnimationNodeAnimation_o4p8j")
+states/throwing_throw/position = Vector2(766, 211)
+transitions = ["Start", "throwing_TO", SubResource("AnimationNodeStateMachineTransition_xxgjv"), "throwing_TO", "throwing_idle", SubResource("AnimationNodeStateMachineTransition_x2pxe"), "throwing_idle", "throw_charge", SubResource("AnimationNodeStateMachineTransition_qysml"), "throw_charge", "throwing_throw", SubResource("AnimationNodeStateMachineTransition_3c2xh"), "throwing_throw", "throwing_idle", SubResource("AnimationNodeStateMachineTransition_k8qnb")]

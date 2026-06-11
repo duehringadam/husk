@@ -6,6 +6,7 @@ extends Node
 
 func _on_activate_state_entered() -> void:
 	animation_tree.set("parameters/conditions/activate", true)
+	
 
 
 func _on_activate_state_exited() -> void:
