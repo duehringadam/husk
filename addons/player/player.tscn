@@ -850,9 +850,10 @@ unique_name_in_owner = true
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
 mainhand = NodePath("../RightHand")
 
-[node name="ConsumableHand" parent="Head/Neck/Camera3D" unique_id=405842846 node_paths=PackedStringArray("mainhand") instance=ExtResource("10_v5tlk")]
+[node name="ConsumableHand" parent="Head/Neck/Camera3D" unique_id=405842846 node_paths=PackedStringArray("mainhand", "offhand") instance=ExtResource("10_v5tlk")]
 unique_name_in_owner = true
 mainhand = NodePath("../RightHand")
+offhand = NodePath("../LeftHand")
 
 [node name="CameraAnimationPlayer" type="AnimationPlayer" parent="Head" unique_id=2090545160]
 unique_name_in_owner = true
