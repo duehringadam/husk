@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://b5corv5nqshay" path="res://addons/player/player_arm_right.tscn" id="9_hqsyx"]
 [ext_resource type="PackedScene" uid="uid://bplg0u3sd3j28" path="res://addons/player/player_arm_left.tscn" id="10_hqsyx"]
 [ext_resource type="Script" uid="uid://6h8f2qhrbtt6" path="res://Player/damage_overlay.gd" id="10_jux4o"]
+[ext_resource type="PackedScene" uid="uid://c3edfhdllccxg" path="res://addons/player/player_arm_consumable.tscn" id="10_v5tlk"]
 [ext_resource type="AudioStream" uid="uid://br26jgupi66u0" path="res://Player/sfx/footsteps/stone/footstep_stone.tres" id="12_hqsyx"]
 [ext_resource type="Script" uid="uid://sj3mml8ulasu" path="res://Player/crosshair.gd" id="12_qk8yx"]
 [ext_resource type="Shader" uid="uid://b6aaasr8tdyr5" path="res://Player/distort.gdshader" id="12_vnn13"]
@@ -758,7 +759,7 @@ _limits = [0.0, 200.0, 0.0, 1.0]
 _data = [Vector2(0, 0), 0.0, 648.0529, 0, 0, Vector2(1, 200), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[node name="Player" type="CharacterBody3D" unique_id=1383979839 node_paths=PackedStringArray("player_body", "mainhand", "offhand") groups=["player"]]
+[node name="Player" type="CharacterBody3D" unique_id=1383979839 node_paths=PackedStringArray("player_body", "mainhand", "offhand", "consumable") groups=["player"]]
 collision_mask = 35
 script = ExtResource("1_cyojo")
 player_stats = Dictionary[int, int]({
@@ -775,6 +776,7 @@ climb_speed = 3.0
 camera_lean_position = Vector3(0, 0, 0)
 mainhand = NodePath("Head/Neck/Camera3D/RightHand")
 offhand = NodePath("Head/Neck/Camera3D/LeftHand")
+consumable = NodePath("Head/Neck/Camera3D/ConsumableHand")
 weapon_rotation_amount = 0.25
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1092821169]
@@ -846,6 +848,10 @@ offhand = NodePath("../LeftHand")
 [node name="LeftHand" parent="Head/Neck/Camera3D" unique_id=412198594 node_paths=PackedStringArray("mainhand") instance=ExtResource("10_hqsyx")]
 unique_name_in_owner = true
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
+mainhand = NodePath("../RightHand")
+
+[node name="ConsumableHand" parent="Head/Neck/Camera3D" unique_id=405842846 node_paths=PackedStringArray("mainhand") instance=ExtResource("10_v5tlk")]
+unique_name_in_owner = true
 mainhand = NodePath("../RightHand")
 
 [node name="CameraAnimationPlayer" type="AnimationPlayer" parent="Head" unique_id=2090545160]

@@ -15,7 +15,7 @@ func _on_pressed() -> void:
 			ItemEquippableType.ITEM_EQUIPPABLE_TYPES.JEWELRY:
 				pass
 			ItemEquippableType.ITEM_EQUIPPABLE_TYPES.CONSUMABLE:
-				pass
+				Global.player.consumable.consumable_item = item_inventory
 			ItemEquippableType.ITEM_EQUIPPABLE_TYPES.KEY:
 				pass
 
