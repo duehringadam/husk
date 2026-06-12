@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dixki0innbjf2" path="res://addons/game_pieces/pickable/item_world_pickable.gd" id="1_akty8"]
 [ext_resource type="PackedScene" uid="uid://i31mck2qxma" path="res://item/consumables/health_potion.tscn" id="2_b0br3"]
 [ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/item_stat.gd" id="2_qlud8"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://b16vrolklqa3y" path="res://Player/viewmodel/animations/hands/animation_state_machines/consumable_state_machine.tres" id="2_tx71q"]
 [ext_resource type="Script" uid="uid://ck3cei0hvspym" path="res://addons/interaction_system/interaction_container.gd" id="2_u1typ"]
 [ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/item.gd" id="3_b0br3"]
 [ext_resource type="Script" uid="uid://5tinbhq6p45k" path="res://addons/interaction_system/interaction.gd" id="3_qlud8"]
@@ -27,6 +28,7 @@ item_type = 4
 item_stats = SubResource("Resource_tx71q")
 stamina_cost = 0
 item_scene = ExtResource("2_b0br3")
+animation_state_machine = ExtResource("2_tx71q")
 metadata/_custom_type_script = "uid://dcfd18dx8x1bm"
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qlud8"]

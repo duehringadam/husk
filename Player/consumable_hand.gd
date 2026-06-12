@@ -28,6 +28,8 @@ func _set_item(new_item):
 		offhand.disable()
 	await get_tree().create_timer(0.25).timeout
 	enable()
+	mainhand.visible = false
+	offhand.visible = false
 	await get_tree().create_timer(0.25).timeout
 	if new_item != null:
 		consumable_item = new_item
@@ -36,16 +38,19 @@ func _set_item(new_item):
 		var item_add = new_item.item_scene.instantiate()
 		item_add.position = consumable_item.position
 		item_add.rotation_degrees = consumable_item.rotation
+		animation_state_machine = consumable_item.animation_state_machine
 		animation_tree.tree_root = animation_state_machine
 		animation_tree.active = false
 		await get_tree().create_timer(.1).timeout
 		animation_tree.active = true
 		bone_attachment.add_child(item_add)
 		activate()
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(1.6167).timeout
 	unequip()
 	disable()
 	await get_tree().create_timer(0.25).timeout
+	mainhand.visible = true
+	offhand.visible = true
 	if right:
 		mainhand.enable()
 	if left:
@@ -64,7 +69,10 @@ func activate():
 func disable():
 	var tween = get_tree().create_tween()
 	tween.tween_property(arms_base, "rotation_degrees:x", -90, .25)
+	await get_tree().create_timer(0.25).timeout
+	visible = false
 	
 func enable():
+	visible = true
 	var tween = get_tree().create_tween()
 	tween.tween_property(arms_base, "rotation_degrees:x", 0, .25)

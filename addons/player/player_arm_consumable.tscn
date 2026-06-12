@@ -9,8 +9,8 @@
 [ext_resource type="Animation" uid="uid://dcn8w14uio0rx" path="res://Player/viewmodel/animations/hands/spell_fire/fire_use.tres" id="8_yd36n"]
 [ext_resource type="Animation" uid="uid://de5mlpadwodgy" path="res://Player/viewmodel/animations/hands/throwing_knife/throw_charge.tres" id="9_e8l6l"]
 [ext_resource type="Animation" uid="uid://dt3wud84y54vo" path="res://Player/viewmodel/animations/hands/throwing_knife/throwing_TO.tres" id="10_7rvww"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://b16vrolklqa3y" path="res://Player/viewmodel/animations/hands/animation_state_machines/consumable_state_machine.tres" id="11_dwli0"]
 [ext_resource type="Animation" uid="uid://bonix6viiggr4" path="res://Player/viewmodel/animations/hands/throwing_knife/throwing_throw.tres" id="11_u1ds2"]
-[ext_resource type="AnimationNodeStateMachine" uid="uid://cd70r3lq6edrg" path="res://Player/viewmodel/animations/hands/animation_state_machines/throwing_knife_state_machine.tres" id="12_usqoj"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_wgaes"]
 resource_name = "ghoul_arms2(1)_RetopoFlow_002"
@@ -22542,6 +22542,7 @@ _data = {
 }
 
 [node name="ConsumableHand" type="Marker3D" unique_id=412198594 node_paths=PackedStringArray("animation_tree", "bone_attachment")]
+visible = false
 script = ExtResource("1_dwli0")
 animation_tree = NodePath("ghoul_arms2(1)/AnimationTree")
 bone_attachment = NodePath("ghoul_arms2(1)/Armature/Skeleton3D/BoneAttachment3D")
@@ -22912,6 +22913,5 @@ libraries/ = SubResource("AnimationLibrary_yxebu")
 libraries/spell_anims = SubResource("AnimationLibrary_y37yn")
 
 [node name="AnimationTree" type="AnimationTree" parent="ghoul_arms2(1)" unique_id=932310949]
-active = false
-tree_root = ExtResource("12_usqoj")
+tree_root = ExtResource("11_dwli0")
 anim_player = NodePath("../AnimationPlayer")
