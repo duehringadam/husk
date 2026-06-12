@@ -7,7 +7,6 @@
 [ext_resource type="Shader" uid="uid://d2wp65uguqls7" path="res://shaders/fakegodray.gdshader" id="3_qle2m"]
 [ext_resource type="PackedScene" uid="uid://cysvbgswpjrqo" path="res://scenes/MysticDungeon/Art/Prefabs/SM_Ivy_01b.prefab.scn" id="4_c34qb"]
 [ext_resource type="PackedScene" uid="uid://dplrol7vh327b" path="res://scenes/MysticDungeon/Art/Prefabs/SM_Pillar_03a.prefab.scn" id="4_qle2m"]
-[ext_resource type="LightmapGIData" uid="uid://dlprw48hq54xr" path="res://scenes/test/sewers_test/test_dungeon.lmbake" id="4_xkqh0"]
 [ext_resource type="PackedScene" uid="uid://bia32vkq1a5i" path="res://scenes/player/player.tscn" id="5_easv4"]
 [ext_resource type="PackedScene" uid="uid://ct0vqjfxfj7xb" path="res://scenes/MysticDungeon/Art/Prefabs/SM_Ivy_01a.prefab.scn" id="5_ibtqp"]
 [ext_resource type="PackedScene" uid="uid://pjnh30swqsfr" path="res://scenes/MysticDungeon/Art/Prefabs/SM_Modular_Wall_01a.prefab.scn" id="6_easv4"]
@@ -26,7 +25,7 @@
 [ext_resource type="Material" uid="uid://biya" path="res://scenes/Hivemind/CastleOfEternalMists/URP/Art/Materials/Instances/M_IronTrim.tres" id="22_v4bxt"]
 [ext_resource type="Script" uid="uid://cmrc6hxb0a6wm" path="res://status_effects/fire_damage_component.gd" id="23_uqvtn"]
 [ext_resource type="PackedScene" uid="uid://c56q3gytk8fia" path="res://scenes/pieces/barrel_pickable.tscn" id="23_wmdgy"]
-[ext_resource type="Texture2D" uid="uid://bgpuc5rjm2yh5" path="res://scenes/misc/Textures/T_Fire01_SubUV_new.png" id="24_cosrm"]
+[ext_resource type="Texture2D" uid="uid://bgpuc5rjm2yh5" path="res://scenes/MysticDungeon/Art/Textures/T_Fire01_SubUV.png" id="24_cosrm"]
 [ext_resource type="Texture2D" uid="uid://dgnarq1axwhae" path="res://scenes/MysticDungeon/Art/Textures/T_Fire01_Tiled_D_Yellow.png" id="25_10yoa"]
 [ext_resource type="ArrayOccluder3D" uid="uid://biomc06kimysa" path="res://scenes/test/test_dungeon.occ" id="27_wmdgy"]
 
@@ -277,7 +276,6 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 quality = 0
 bounce_indirect_energy = 2.0
 interior = true
-light_data = ExtResource("4_xkqh0")
 
 [node name="SM_Modular_Floor_01a" parent="walls" unique_id=1356335650 instance=ExtResource("1_j7l4f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.7999997, -21, 5.4)
@@ -566,6 +564,9 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -0.9
 
 [node name="CollisionShape3D" parent="walls/sewers_hallway_modular2/SM_Staircase_01a/MeshCollider" parent_id_path=PackedInt32Array(455097483, 1569324072) index="0" unique_id=1489029016]
 debug_color = Color(1, 0, 0, 0.42000002)
+
+[node name="MeshRenderer" parent="walls/sewers_hallway_modular2/SM_Staircase_01a/SM_Staircase_01a" parent_id_path=PackedInt32Array(455097483, 1363732342) index="0" unique_id=1636879513]
+surface_material_override/0 = null
 
 [node name="StaticBody3D" type="StaticBody3D" parent="walls/sewers_hallway_modular2/SM_Staircase_01a" unique_id=220463148]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8146973e-06, -2.2000008, 4)

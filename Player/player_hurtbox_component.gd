@@ -12,6 +12,10 @@ func _ready():
 	timer.one_shot = true
 	SignalBus.connect("player_immune",invulnerability)
 
+func _update_damage_resistances(resists: Dictionary[DamageTypes.DAMAGE_TYPES, float]):
+	damage_resistances = resists
+	SignalBus.emit_signal("player_resists_changed", resists)
+
 func _update_blocking(value:bool):
 	is_blocking = value
 

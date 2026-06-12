@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="item" format=3 uid="uid://4ipjxrj6vuy"]
+
+[ext_resource type="AnimationNodeStateMachine" uid="uid://qdouj24v1xem" path="res://Player/viewmodel/animations/hands/animation_state_machines/two_handed_sword_animation_state_machine.tres" id="1_4mcbl"]
+[ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/item.gd" id="1_yxfxh"]
+[ext_resource type="Texture2D" uid="uid://e3utw70yh625" path="res://item/stiletto.svg" id="2_54b64"]
+[ext_resource type="PackedScene" uid="uid://cnjmlyrrq0jxc" path="res://item/weapons/swords/sword_2_hand/sm_heavy_sword.tscn" id="3_8vt41"]
+[ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/item_stat.gd" id="4_3seni"]
+
+[sub_resource type="Resource" id="Resource_2e86q"]
+script = ExtResource("4_3seni")
+damage_types = Dictionary[int, float]({
+1: 50.0
+})
+stance_damage = 0.66
+strength_scale = 0.65
+range = 3.0
+metadata/_custom_type_script = "uid://bbtfrupllo3w6"
+
+[resource]
+script = ExtResource("1_yxfxh")
+item_name = "Zweihander"
+item_description = "Two handed heavy sword"
+item_icon = ExtResource("2_54b64")
+item_stats = SubResource("Resource_2e86q")
+stamina_cost = 45
+item_scene = ExtResource("3_8vt41")
+two_handed = true
+animation_state_machine = ExtResource("1_4mcbl")
+position = Vector3(-0.009, 0.162, -0.001)
+rotation = Vector3(-3.6, -90.3, -178.8)
+metadata/_custom_type_script = "uid://dcfd18dx8x1bm"

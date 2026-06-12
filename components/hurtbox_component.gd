@@ -7,7 +7,7 @@ signal apply_statuses(status_types: Global.STATUS_TYPE, application_amount: floa
 @onready var timer: Timer
 
 ## Reduction on incoming damage. Zero takes full damage, one takes none. For more complex behavior, override [method reduce_damage]
-@export var damage_resistances: Dictionary[DamageTypes.DAMAGE_TYPES, float]
+@export var damage_resistances: Dictionary[DamageTypes.DAMAGE_TYPES, float]: set = _update_damage_resistances
 @export var damage_weakness: Dictionary[DamageTypes.DAMAGE_TYPES, float]
 @export var status_resistances: Dictionary[Global.STATUS_TYPE, float]
 @export var status_weaknesses: Dictionary[Global.STATUS_TYPE, float]
@@ -35,6 +35,9 @@ func _ready():
 func invulnerability(duration: float):
 	timer.start(duration)
 
+func _update_damage_resistances(resists: Dictionary[DamageTypes.DAMAGE_TYPES, float]):
+	damage_resistances = resists
+
 ## Override this to cusomize damage reduction (damage types, armor, etc)
 func modify_damage(damage_type: DamageTypes.DAMAGE_TYPES, amount: float, source: DamageComponent) -> float:
 	if damage_resistances.keys().has(damage_type):
@@ -56,8 +59,6 @@ func apply_status(status_types: Dictionary[Global.STATUS_TYPE, float]):
 func take_damage(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float], status_types: Dictionary[Global.STATUS_TYPE, float], stance_damage: float, source: DamageComponent):
 	var hit_dir = (global_position.direction_to(source.global_position)).normalized()
 	if timer.time_left > 0: return 0
-	# invulnerability on damage.
-	invulnerability(invulnerability_duration)
 	# take damage
 	var sum := 0.0
 	for i in damage_types:

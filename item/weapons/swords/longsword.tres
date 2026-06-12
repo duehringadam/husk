@@ -12,6 +12,7 @@ damage_types = Dictionary[int, float]({
 1: 25.0
 })
 strength_scale = 0.25
+dex_scale = 0.25
 range = 2.0
 metadata/_custom_type_script = "uid://bbtfrupllo3w6"
 
@@ -21,8 +22,8 @@ item_name = "longsword"
 item_description = "a long sword"
 item_icon = ExtResource("2_dopyo")
 item_stats = SubResource("Resource_rh6kp")
-item_required_stats = Dictionary[int, float]({
-0: 10.0
+item_required_stats = Dictionary[int, int]({
+0: 10
 })
 item_scene = ExtResource("2_1kayq")
 animation_state_machine = ExtResource("1_m6o6b")

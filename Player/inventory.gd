@@ -16,6 +16,7 @@ signal focused_item_changed(_item: item)
 @onready var close: AudioStreamPlayer = %close
 
 
+
 var focused_item: item
 
 var item_add_inventory = preload("res://item_inventory.tscn")
@@ -49,10 +50,11 @@ func close_inventory():
 	visible = false
 	
 
-
 func _update_inventory(item_signal: item):
 	var item_add = item_add_inventory.instantiate()
 	item_add.connect("item_info", _update_display_text)
+	SignalBus.connect("player_stats_changed", item_signal.item_stats._update_player_stats)
+	item_signal.item_stats._update_player_stats(Global.player.player_stats)
 	match item_signal.item_type:
 		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.WEAPON:
 			

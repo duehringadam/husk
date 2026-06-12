@@ -10,6 +10,7 @@ func _ready() -> void:
 	animation_tree["parameters/playback"].connect("state_finished", _anim_finished)
 
 func _on_swing_left_state_entered() -> void:
+	Global.player.stamina_component.modify_stamina(-hand.weapon.stamina_cost)
 	animation_tree.set("parameters/conditions/swing", true)
 	for i in bone_attach.get_children():
 		if i is Weapon:

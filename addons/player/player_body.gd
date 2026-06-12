@@ -2,10 +2,15 @@ extends Node3D
 
 @onready var animation_player: AnimationPlayer = $"Root/Standing Melee Attack Kick Ver_ 1/AnimationPlayer"
 @onready var kick_damage_component: Area3D = $"Root/Standing Melee Attack Kick Ver_ 1/varsoi_male/Skeleton3D/BoneAttachment3D/kick_damage_component"
+
+@onready var kick_timer: Timer = %kick_timer
+
+
 var movement_dir: Vector2
 var is_kicking := false
 var secondary_active_bool:= false
 var sprint: bool = false
+
 func _ready() -> void:
 	SignalBus.connect("secondary_active", secondary_active)
 
@@ -38,12 +43,15 @@ func sprint_activate(value: bool):
 func kick():
 	if is_kicking: return
 	if secondary_active_bool: return
+	if kick_timer.time_left > 0: return
+	Global.player.stamina_component.modify_stamina(-30)
 	kick_damage_component.source = Global.player
 	SignalBus.emit_signal("kick_active", true)
 	var tween = get_tree().create_tween()
 	tween.tween_property(Global.player.camera,"fov",Global.camera_fov+10,.25)
 	is_kicking = true
 	animation_player.play("kick_new")
+	kick_timer.start()
 	await animation_player.animation_finished
 	SignalBus.emit_signal("kick_active", false)
 	tween.kill()

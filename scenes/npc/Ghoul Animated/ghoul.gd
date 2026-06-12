@@ -106,3 +106,11 @@ func _update_target(value: Node3D):
 		#aggro_look_at.target_node = Global.player.enemy_look_at.get_path()
 		#state_chart.send_event("attack")
 		pass
+
+
+func _on_visible_on_screen_notifier_3d_screen_exited() -> void:
+	ghoul_parent.visible = false
+
+
+func _on_visible_on_screen_notifier_3d_screen_entered() -> void:
+	ghoul_parent.visible = true

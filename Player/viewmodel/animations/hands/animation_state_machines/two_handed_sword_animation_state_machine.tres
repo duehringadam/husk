@@ -1,0 +1,123 @@
+[gd_resource type="AnimationNodeStateMachine" format=3 uid="uid://qdouj24v1xem"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vdls5"]
+animation = &"twohanded_TO"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pd04t"]
+animation = &"twohanded_charge_down"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nv5rd"]
+animation = &"twohanded_charge_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aaaea"]
+animation = &"twohanded_charge_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5wa3h"]
+animation = &"twohanded_hold_up"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mii4i"]
+animation = &"twohanded_idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qgty5"]
+animation = &"twohanded_swing_down"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ut1rf"]
+animation = &"twohanded_swing_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pb4np"]
+animation = &"twohanded_swing_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tlyf1"]
+animation = &"twohanded_swing_up"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nv5rd"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_aaaea"]
+xfade_time = 1.0
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ut1rf"]
+xfade_time = 0.25
+advance_mode = 2
+advance_condition = &"hold_back"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pb4np"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"swing"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5wa3h"]
+xfade_time = 0.1
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tlyf1"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"hold_right"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h76qg"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"swing"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v2mi6"]
+xfade_time = 0.1
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lg825"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"hold_left"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xxuvp"]
+advance_mode = 2
+advance_condition = &"swing"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_atdpf"]
+xfade_time = 0.1
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7gtsi"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"hold_forward"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qsaqj"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"swing"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ptvce"]
+xfade_time = 0.1
+switch_mode = 2
+advance_mode = 2
+
+[resource]
+states/End/position = Vector2(1077, 100)
+states/twohanded_TO/node = SubResource("AnimationNodeAnimation_vdls5")
+states/twohanded_TO/position = Vector2(365, 100)
+states/twohanded_charge_down/node = SubResource("AnimationNodeAnimation_pd04t")
+states/twohanded_charge_down/position = Vector2(555, 235.17091)
+states/twohanded_charge_left/node = SubResource("AnimationNodeAnimation_nv5rd")
+states/twohanded_charge_left/position = Vector2(310, 207.21082)
+states/twohanded_charge_right/node = SubResource("AnimationNodeAnimation_aaaea")
+states/twohanded_charge_right/position = Vector2(838, 109.210815)
+states/twohanded_hold_up/node = SubResource("AnimationNodeAnimation_5wa3h")
+states/twohanded_hold_up/position = Vector2(555, -38.974983)
+states/twohanded_idle/node = SubResource("AnimationNodeAnimation_mii4i")
+states/twohanded_idle/position = Vector2(555, 100)
+states/twohanded_swing_down/node = SubResource("AnimationNodeAnimation_qgty5")
+states/twohanded_swing_down/position = Vector2(606, 344.08365)
+states/twohanded_swing_left/node = SubResource("AnimationNodeAnimation_ut1rf")
+states/twohanded_swing_left/position = Vector2(310, 320.21082)
+states/twohanded_swing_right/node = SubResource("AnimationNodeAnimation_pb4np")
+states/twohanded_swing_right/position = Vector2(862, 207.21082)
+states/twohanded_swing_up/node = SubResource("AnimationNodeAnimation_tlyf1")
+states/twohanded_swing_up/position = Vector2(606, -136.27008)
+transitions = ["Start", "twohanded_TO", SubResource("AnimationNodeStateMachineTransition_nv5rd"), "twohanded_TO", "twohanded_idle", SubResource("AnimationNodeStateMachineTransition_aaaea"), "twohanded_idle", "twohanded_charge_down", SubResource("AnimationNodeStateMachineTransition_ut1rf"), "twohanded_charge_down", "twohanded_swing_down", SubResource("AnimationNodeStateMachineTransition_pb4np"), "twohanded_swing_down", "twohanded_idle", SubResource("AnimationNodeStateMachineTransition_5wa3h"), "twohanded_idle", "twohanded_charge_left", SubResource("AnimationNodeStateMachineTransition_tlyf1"), "twohanded_charge_left", "twohanded_swing_left", SubResource("AnimationNodeStateMachineTransition_h76qg"), "twohanded_swing_left", "twohanded_idle", SubResource("AnimationNodeStateMachineTransition_v2mi6"), "twohanded_idle", "twohanded_charge_right", SubResource("AnimationNodeStateMachineTransition_lg825"), "twohanded_charge_right", "twohanded_swing_right", SubResource("AnimationNodeStateMachineTransition_xxuvp"), "twohanded_swing_right", "twohanded_idle", SubResource("AnimationNodeStateMachineTransition_atdpf"), "twohanded_idle", "twohanded_hold_up", SubResource("AnimationNodeStateMachineTransition_7gtsi"), "twohanded_hold_up", "twohanded_swing_up", SubResource("AnimationNodeStateMachineTransition_qsaqj"), "twohanded_swing_up", "twohanded_idle", SubResource("AnimationNodeStateMachineTransition_ptvce")]
+graph_offset = Vector2(0, 24.468193)

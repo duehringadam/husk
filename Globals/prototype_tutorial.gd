@@ -1,7 +1,7 @@
 extends TabContainer
 
-func _ready() -> void:
-	SignalBus.connect("player_ready", player_ready)
+#func _ready() -> void:
+	#SignalBus.connect("player_ready", player_ready)
 
 func _on_button_pressed() -> void:
 	self.hide()

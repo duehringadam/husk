@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="item" format=3 uid="uid://c8ah63xefaug"]
+
+[ext_resource type="AnimationNodeStateMachine" uid="uid://qdouj24v1xem" path="res://Player/viewmodel/animations/hands/animation_state_machines/two_handed_sword_animation_state_machine.tres" id="1_nuluy"]
+[ext_resource type="Texture2D" uid="uid://e3utw70yh625" path="res://item/stiletto.svg" id="2_7mbrw"]
+[ext_resource type="PackedScene" uid="uid://blyqrh07cvkyy" path="res://item/weapons/swords/sword_2_hand/sm_flamberge.tscn" id="3_nuluy"]
+[ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/item_stat.gd" id="4_bgbbj"]
+[ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/item.gd" id="5_tofr2"]
+
+[sub_resource type="Resource" id="Resource_2e86q"]
+script = ExtResource("4_bgbbj")
+damage_types = Dictionary[int, float]({
+1: 35.0
+})
+stance_damage = 0.66
+strength_scale = 0.45
+range = 3.0
+metadata/_custom_type_script = "uid://bbtfrupllo3w6"
+
+[resource]
+script = ExtResource("5_tofr2")
+item_name = "Flamberge"
+item_description = "A two handed sword that inflicts bleed"
+item_icon = ExtResource("2_7mbrw")
+item_stats = SubResource("Resource_2e86q")
+item_scene = ExtResource("3_nuluy")
+two_handed = true
+animation_state_machine = ExtResource("1_nuluy")
+position = Vector3(0.001, 0.231, -0.004)
+rotation = Vector3(4.4, 89.5, 175.2)
+metadata/_custom_type_script = "uid://dcfd18dx8x1bm"

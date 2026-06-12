@@ -21,7 +21,8 @@
 [ext_resource type="PackedScene" uid="uid://dfl6qgyleyflk" path="res://scenes/pieces/bag_pickable.tscn" id="16_idyej"]
 [ext_resource type="PackedScene" uid="uid://bv0385mldllnw" path="res://item/weapons/mace_2_hand/mace_2_hand_world_item/morning_star_item_world.tscn" id="16_oi0yc"]
 [ext_resource type="Resource" uid="uid://dmv7he43amthj" path="res://item/weapons/mace_2_hand/morning_star.tres" id="17_32awo"]
-[ext_resource type="PackedScene" uid="uid://duqw4jw78q6gk" path="res://item/spells/collection_item_world.tscn" id="17_j2i1c"]
+[ext_resource type="PackedScene" uid="uid://cib0evkp4jpyi" path="res://item/weapons/swords/sword_world_items/zweihander_item_world.tscn" id="17_j2i1c"]
+[ext_resource type="PackedScene" uid="uid://daknsjeuqw0pq" path="res://item/weapons/swords/sword_world_items/flamberge_item_world.tscn" id="18_dqe7k"]
 [ext_resource type="PackedScene" uid="uid://i4if5hwoglf5" path="res://item/weapons/polearm/polearm_item_world.tscn" id="18_tw2yv"]
 [ext_resource type="Resource" uid="uid://vepy1a10tg28" path="res://item/weapons/polearm/polearm.tres" id="19_wp7ny"]
 [ext_resource type="PackedScene" uid="uid://d4mr6pgmbentk" path="res://item/shield/shield_item_world.tscn" id="24_0euqr"]
@@ -32,7 +33,6 @@
 [ext_resource type="Resource" uid="uid://dhgsftnl3tw13" path="res://item/spells/flame_spray/flame.tres" id="28_idyej"]
 [ext_resource type="Resource" uid="uid://c8afm2d4w8gxb" path="res://item/spells/telekinesis.tres" id="29_j2i1c"]
 [ext_resource type="PackedScene" uid="uid://rjlf8cn6x2yh" path="res://item/weapons/ranged/rope_bow/rope_bow_item_world.tscn" id="32_0jyqm"]
-[ext_resource type="Script" uid="uid://bxiujgtv2eqhy" path="res://addons/player/label.gd" id="33_dqe7k"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_12ayy"]
 resource_name = "Material.008"
@@ -1857,20 +1857,6 @@ metadata/ground_type = "stone"
 [node name="Node3D" type="Node3D" parent="NavigationRegion3D/friendly_npc_spawn_test2" unique_id=706692146]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.5214056, -1.7796655)
 
-[node name="friendly_npc_spawn_test7" parent="NavigationRegion3D" unique_id=1352087755 node_paths=PackedStringArray("spawn_location_node") instance=ExtResource("7_03gnc")]
-transform = Transform3D(-2, 0, 3.019916e-07, 0, 2, 0, -3.019916e-07, 0, -2, 13.734484, 1.674679, -11.473207)
-collision_mask = 0
-npc_to_spawn = ExtResource("17_j2i1c")
-spawn_location_node = NodePath("Node3D")
-metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Spawner","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":true,"display_name":"Spawn NPC","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
-,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
-]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
-
-metadata/ground_type = "stone"
-
-[node name="Node3D" type="Node3D" parent="NavigationRegion3D/friendly_npc_spawn_test7" unique_id=1386780797]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.5214056, -1.7796655)
-
 [node name="friendly_npc_spawn_test3" parent="NavigationRegion3D" unique_id=846008759 node_paths=PackedStringArray("spawn_location_node") instance=ExtResource("7_03gnc")]
 transform = Transform3D(-2, 0, 3.019916e-07, 0, 2, 0, -3.019916e-07, 0, -2, 8.083295, 1.674679, -11.473207)
 collision_mask = 0
@@ -1899,7 +1885,7 @@ metadata/ground_type = "stone"
 [node name="Node3D" type="Node3D" parent="NavigationRegion3D/friendly_npc_spawn_test4" unique_id=262928334]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5214056, -1.7796655)
 
-[node name="friendly_npc_spawn_test5" parent="NavigationRegion3D" unique_id=774595907 node_paths=PackedStringArray("spawn_location_node") instance=ExtResource("7_03gnc")]
+[node name="friendly_npc_spawn_test5" parent="NavigationRegion3D" unique_id=1352087755 node_paths=PackedStringArray("spawn_location_node") instance=ExtResource("7_03gnc")]
 transform = Transform3D(-2, 0, 3.019916e-07, 0, 2, 0, -3.019916e-07, 0, -2, 0.7699251, 1.674679, -11.473207)
 collision_mask = 0
 npc_to_spawn = ExtResource("14_idyej")
@@ -1930,18 +1916,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5214056, -1.7796655)
 [node name="bag_pickable" parent="NavigationRegion3D" unique_id=519557467 instance=ExtResource("16_idyej")]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -6.8950167, 2.8699296, -5.7260075)
 
-[node name="Pickable" parent="NavigationRegion3D" unique_id=2119350781 groups=["Sprite"] instance=ExtResource("17_j2i1c")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 16.402176, 2.4023883, -25.845798)
-metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Spell Scroll","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+[node name="Pickable" parent="NavigationRegion3D" unique_id=2119350781 instance=ExtResource("17_j2i1c")]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, 10.304983, 2.4699295, -24.126007)
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Longsword","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
 ,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
 , Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
 ,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
 ]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
 
 
-[node name="Pickable2" parent="NavigationRegion3D" unique_id=1124410147 groups=["Sprite"] instance=ExtResource("17_j2i1c")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 22.402176, 2.4023883, -25.845798)
-metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Spell Scroll","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+[node name="Pickable2" parent="NavigationRegion3D" unique_id=410287410 instance=ExtResource("18_dqe7k")]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, 11.704984, 2.6699295, -24.126007)
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Longsword","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
 ,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
 , Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
 ,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
@@ -1960,7 +1946,7 @@ transform = Transform3D(-1.9967316, 0.114291675, 1.7484555e-07, 0.11429168, 1.99
 [node name="spike_rack4" parent="." unique_id=311966128 instance=ExtResource("14_5agug")]
 transform = Transform3D(2.6183977e-07, -1.4987544e-08, 2, 0.11429168, 1.9967318, -8.8817837e-16, -1.9967316, 0.114291675, 2.6226832e-07, -27.769674, 0.33760834, 2.6187594)
 
-[node name="Pickable" parent="." unique_id=625160962 instance=ExtResource("13_5byua")]
+[node name="Pickable" parent="." unique_id=1910964622 instance=ExtResource("13_5byua")]
 transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, -0.8, 1.4, -6.2)
 metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Broken Sword","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
 ,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
@@ -2018,7 +2004,7 @@ metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"proce
 
 
 [node name="Pickable8" parent="." unique_id=2087462388 instance=ExtResource("26_iql7a")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 8, 2, -6)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 12.6, 2, -5.4)
 item_to_loot = ExtResource("27_fqkk3")
 metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Spell Scroll","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
 ,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
@@ -2028,7 +2014,7 @@ metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"proce
 
 
 [node name="Pickable9" parent="." unique_id=1086664522 instance=ExtResource("26_iql7a")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 10, 2, -6)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 12.6, 2, -6.2)
 item_to_loot = ExtResource("28_idyej")
 metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Spell Scroll","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
 ,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
@@ -2038,7 +2024,7 @@ metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"proce
 
 
 [node name="Pickable10" parent="." unique_id=1328318711 instance=ExtResource("26_iql7a")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 12, 2, -6)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 12.6, 2, -7)
 item_to_loot = ExtResource("29_j2i1c")
 metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Spell Scroll","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
 ,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
@@ -2066,15 +2052,6 @@ metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"proce
 ,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
 ]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
 
-
-[node name="Label" type="Label" parent="." unique_id=507662472]
-offset_left = 1600.0
-offset_top = 54.0
-offset_right = 1900.0
-offset_bottom = 96.0
-theme_override_font_sizes/font_size = 30
-text = "Sprites Obtained: X"
-script = ExtResource("33_dqe7k")
 
 [connection signal="body_entered" from="NavigationRegion3D/CSGBakedMeshInstance3D/water/Area3D" to="NavigationRegion3D/CSGBakedMeshInstance3D/water/Area3D" method="_on_body_entered"]
 [connection signal="body_exited" from="NavigationRegion3D/CSGBakedMeshInstance3D/water/Area3D" to="NavigationRegion3D/CSGBakedMeshInstance3D/water/Area3D" method="_on_body_exited"]

@@ -1,6 +1,10 @@
 @tool
 ## Stuff here?
 class_name Player extends CharacterBody3D
+
+@export_category("Player Stats")
+@export var player_stats: Dictionary[ItemEquippableType.ITEM_REQUIRED_STAT, int]: set = _update_player_stats
+
 @export_category("Inventory")
 @export var inventory: Array[item]
 @export var footsteps_sound: AudioStream
@@ -87,6 +91,8 @@ Optional: %jump, %sprint, %crouch, %lean, %zoom, %switch_hands
 @onready var radial_blur: ColorRect = %radial_blur
 @onready var vault_ray_cast: RayCast3D = %vaultRayCast
 @onready var rope_detection: Area3D = %rope_detection
+@onready var health_component: HealthComponent = $HealthComponent
+@onready var stamina_component: StaminaComponent = %StaminaComponent
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -128,6 +134,7 @@ var is_vaulting: bool = false
 var can_kick: bool = true
 
 func _ready() -> void:
+	
 	SignalBus.connect("primary_active", _animate_camera_swing)
 	SignalBus.connect("primary_active", _set_weapon_active)
 	SignalBus.connect("secondary_active", _set_weapon_active)
@@ -159,6 +166,10 @@ func _set_walk_speed(value: float):
 func _set_sprint_speed(value:float):
 	sprint_speed = clampf(value, SPRINT_SPEED_MIN, SPRINT_SPEED_MAX)
 
+func _update_player_stats(stats: Dictionary[ItemEquippableType.ITEM_REQUIRED_STAT, int]):
+	player_stats = stats
+	SignalBus.emit_signal("player_stats_changed", stats)
+
 func _physics_process(delta) -> void:
 	if Engine.is_editor_hint(): return
 	if not _handle_ladder_physics(delta) or is_vaulting or !is_climbing:
@@ -166,7 +177,7 @@ func _physics_process(delta) -> void:
 		handle_falling(delta)
 		handle_jump()
 		handle_crouch(delta)
-		set_movement_speed()
+		set_movement_speed(delta)
 		handle_movement(delta)
 		handle_head_bob(delta)
 		handle_zoom(delta)
@@ -201,7 +212,8 @@ func handle_effects(delta) -> void:
 
 func handle_kick():
 	if !can_kick: return
-	if get_node_or_null("%kick") != null and %kick.is_triggered():
+	if stamina_component.current_stamina <= 0: return
+	if get_node_or_null("%kick") != null and %kick.is_triggered() && !player_body.is_kicking:
 		if %crouch.is_triggered():
 			set_crouch(false)
 		player_body.kick()
@@ -311,7 +323,7 @@ func set_crouch(enable: bool) -> void:
 		_crouch_tween = create_tween()
 		_crouch_tween.tween_property(self, "scale", Vector3.ONE * full_height, crouch_time)
 
-func set_movement_speed() -> void:
+func set_movement_speed(delta: float) -> void:
 	if !can_move: speed = 0; return
 	
 	if slowed == true:
@@ -323,8 +335,9 @@ func set_movement_speed() -> void:
 		speed = 0
 		return
 	
-	if get_node_or_null("%sprint") != null and %sprint.is_triggered() and not disable_sprint:
+	if get_node_or_null("%sprint") != null and %sprint.is_triggered() and not disable_sprint and stamina_component.current_stamina > 0:
 		speed = clampf(sprint_speed - slow_speed, SPRINT_SPEED_MIN, SPRINT_SPEED_MAX)
+		stamina_component.modify_stamina(-(30*delta))
 		player_body.sprint_activate(true)
 	else:
 		speed = clampf(walk_speed - slow_speed, WALK_SPEED_MINIMUM, WALK_SPEED_MAXIMUM)
@@ -377,8 +390,8 @@ func handle_head_bob(delta: float) -> void:
 		pos.y = sin(bob_time * BOB_FREQ) * head_bob_strength
 		pos.x = cos(bob_time * BOB_FREQ / 2) * head_bob_strength
 		neck.transform.origin =  pos
-		%RightHand.transform.origin = right_hand_pos - pos / 4
-		%LeftHand.transform.origin = left_hand_pos - pos / 4
+		%RightHand.transform.origin = right_hand_pos - pos / 2
+		%LeftHand.transform.origin = left_hand_pos - pos / 2
 
 
 func handle_fov_change(delta: float) -> void:
@@ -575,8 +588,9 @@ func _handle_ladder_physics(delta: float) -> bool:
 		_cur_ladder_climbing = null
 		for ladder in get_tree().get_nodes_in_group("ladder"):
 			if ladder.overlaps_body(self):
-				ladder.connect("body_entered", disable_hands)
-				ladder.connect("body_exited", enable_hands)
+				if !ladder.is_connected("body_entered", disable_hands) and !ladder.is_connected("body_exited", enable_hands):
+					ladder.connect("body_entered", disable_hands)
+					ladder.connect("body_exited", enable_hands)
 				_cur_ladder_climbing = ladder
 				break
 			
