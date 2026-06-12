@@ -235,8 +235,10 @@ func handle_jump() -> void:
 		velocity.y = jump_power
 		footsteps.play()
 		camera_animation_player.play("jump")
-	if vault_ray_cast.is_colliding() && !is_on_floor() && !is_vaulting && !ceiling.is_colliding():
+	if vault_ray_cast.is_colliding() && !is_on_floor() && !is_vaulting && !ceiling.is_colliding() && %jump.is_triggered():
 		#camera_animation_player.play("vault")
+		if vault_ray_cast.get_collider() is Terrain3D:
+			return
 		_handle_vault(vault_ray_cast.get_collision_point())
 
 func _handle_vault(ledge_point: Vector3):
