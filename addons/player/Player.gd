@@ -134,7 +134,6 @@ var is_vaulting: bool = false
 var can_kick: bool = true
 
 func _ready() -> void:
-	
 	SignalBus.connect("primary_active", _animate_camera_swing)
 	SignalBus.connect("primary_active", _set_weapon_active)
 	SignalBus.connect("secondary_active", _set_weapon_active)

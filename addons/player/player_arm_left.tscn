@@ -4,7 +4,7 @@
 [ext_resource type="Material" uid="uid://ccjem4uniqo0n" path="res://Player/viewmodel/hands/arms.tres" id="2_nelli"]
 [ext_resource type="Material" uid="uid://d0p82r0xbudbp" path="res://shaders/first_person_arms.tres" id="3_x3y7m"]
 [ext_resource type="Script" uid="uid://bb3ghyy64k2bd" path="res://addons/godot_state_charts/state_chart.gd" id="4_2qmfu"]
-[ext_resource type="PackedScene" uid="uid://c1un1ajbl1gde" path="res://item/weapons/ranged/throwing_knife/sm_throwing_knife_2.tscn" id="4_b4dho"]
+[ext_resource type="PackedScene" uid="uid://c1un1ajbl1gde" path="res://item/weapons/ranged/throwing_knife/throwing_knife.tscn" id="4_b4dho"]
 [ext_resource type="Animation" uid="uid://bmv6m8fbmy68n" path="res://Player/viewmodel/animations/hands/spell_fire/fire_equip.tres" id="4_x3y7m"]
 [ext_resource type="Script" uid="uid://clt3bkcujiepo" path="res://addons/godot_state_charts/compound_state.gd" id="5_2dmgv"]
 [ext_resource type="Animation" uid="uid://dsovpxxdyad36" path="res://Player/viewmodel/animations/hands/spell_fire/fire_idle.tres" id="5_7fmws"]
@@ -13,7 +13,7 @@
 [ext_resource type="Animation" uid="uid://dcn8w14uio0rx" path="res://Player/viewmodel/animations/hands/spell_fire/fire_use.tres" id="7_b4dho"]
 [ext_resource type="Script" uid="uid://8kg3tepcr415" path="res://addons/godot_state_charts/transition.gd" id="8_muycx"]
 [ext_resource type="Animation" uid="uid://de5mlpadwodgy" path="res://Player/viewmodel/animations/hands/throwing_knife/throw_charge.tres" id="8_upic4"]
-[ext_resource type="Animation" uid="uid://cp5b6m5obxof" path="res://Player/viewmodel/animations/hands/throwing_knife/throwing_TO.tres" id="9_b4dho"]
+[ext_resource type="Animation" uid="uid://dt3wud84y54vo" path="res://Player/viewmodel/animations/hands/throwing_knife/throwing_TO.tres" id="9_b4dho"]
 [ext_resource type="Script" uid="uid://do7ej1lpya78r" path="res://addons/player/offhand_idle.gd" id="9_xa8k2"]
 [ext_resource type="Animation" uid="uid://bonix6viiggr4" path="res://Player/viewmodel/animations/hands/throwing_knife/throwing_throw.tres" id="10_4it18"]
 [ext_resource type="Script" uid="uid://qdhh7yhxwb1v" path="res://addons/player/offhand_activate.gd" id="10_547aj"]
@@ -22751,7 +22751,7 @@ bones/26/rest = Transform3D(1, -1.493868e-07, 2.384187e-07, 1.493868e-07, 1, 2.3
 bones/26/enabled = true
 bones/26/position = Vector3(4.531385e-09, 0.47012398, 1.0887968e-08)
 bones/26/rotation = Quaternion(1.8625971e-09, -4.1909516e-09, 7.8418694e-08, 1)
-bones/26/scale = Vector3(0.99999994, 0.9999999, 0.9999999)
+bones/26/scale = Vector3(1.0000001, 1, 1.0000001)
 bones/27/name = "segment3.L"
 bones/27/parent = 26
 bones/27/rest = Transform3D(1, 1.3577231e-07, -1.2370789e-07, -1.3922967e-07, 0.99959683, -0.028390123, 1.1980343e-07, 0.02839012, 0.9995969, -1.5249171e-09, 0.08228908, 1.4464391e-08)
@@ -22904,7 +22904,7 @@ bones/48/parent = 28
 bones/48/rest = Transform3D(1, -2.6857563e-07, 2.821299e-07, 2.8212992e-07, 0, -0.99999994, 2.6857566e-07, 0.99999994, 7.577322e-14, 0.027982088, 0.1375571, -0.062328465)
 bones/48/enabled = true
 bones/48/position = Vector3(-0.02852281, 0.13760358, -0.060139414)
-bones/48/rotation = Quaternion(0.41218317, -0.58085716, -0.30638528, 0.6315363)
+bones/48/rotation = Quaternion(0.41218317, -0.58085716, -0.3063854, 0.6315363)
 bones/48/scale = Vector3(1, 0.99999994, 0.99999994)
 
 [node name="Hands" type="MeshInstance3D" parent="ghoul_arms2(1)/Armature/Skeleton3D" unique_id=239782853]
@@ -22914,12 +22914,12 @@ skeleton = NodePath("..")
 surface_material_override/0 = ExtResource("3_x3y7m")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="ghoul_arms2(1)/Armature/Skeleton3D" unique_id=618378062]
-transform = Transform3D(0.5698977, 0.7324115, -0.37254417, 0.38890076, 0.1589749, 0.90745986, 0.723859, -0.6620418, -0.19423597, -0.20722523, -1.1729026, -0.3222394)
+transform = Transform3D(-0.08433607, 0.33847454, -0.9371881, 0.11877403, 0.9372481, 0.32780793, 0.9893331, -0.083667636, -0.119246006, -0.35651603, -0.15204616, -1.1737734)
 bone_name = "weapons.L"
 bone_idx = 48
 
 [node name="SM_ThrowingKnife3" parent="ghoul_arms2(1)/Armature/Skeleton3D/BoneAttachment3D" unique_id=858583056 instance=ExtResource("4_b4dho")]
-transform = Transform3D(-2.9979386, 0.109716356, 0.018152148, -0.10979068, -2.9979646, -0.012251809, 0.01769209, -0.012907155, 2.9999201, 0.010187447, 0.070758075, 0.0061125457)
+transform = Transform3D(-0.9993127, 0.03657173, 0.0060508163, -0.03659679, -0.99932176, -0.0040837494, 0.0058973623, -0.0043023834, 0.99997336, 0.010187447, 0.070758075, 0.0061125457)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ghoul_arms2(1)" unique_id=352923934]
 libraries/ = SubResource("AnimationLibrary_yxebu")

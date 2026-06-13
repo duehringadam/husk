@@ -12,22 +12,68 @@
 [ext_resource type="ArrayMesh" uid="uid://dned7p4lyx1r3" path="res://scenes/Hivemind/MedievalWeapons/Art/Models/SM_ThrowingKnife/M_ThrowingKnife_Mesh.tres" id="9_mkyf6"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="10_w5e0d"]
 [ext_resource type="PackedScene" uid="uid://dhws2ueoubwwx" path="res://components/bounding_box_component.tscn" id="11_ra23y"]
+[ext_resource type="Shader" uid="uid://bd6eynp1qsy0g" path="res://addons/GPUTrail-main/shaders/trail.gdshader" id="13_qwy8w"]
+[ext_resource type="Shader" uid="uid://bnbfs08hp70x0" path="res://addons/GPUTrail-main/shaders/trail_draw_pass.gdshader" id="14_h5ds3"]
+[ext_resource type="Script" uid="uid://dwsn7gxfshtf8" path="res://addons/GPUTrail-main/GPUTrail3D.gd" id="15_vmvb5"]
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_lua8s"]
-points = PackedVector3Array(-0.00947646, -0.037371673, -0.00027552212, -0.00947646, -0.037371673, 0.00027515937, -0.00905347, -0.027677797, -0.00027552212, -0.0063448492, -0.027688883, -0.0018517982, -0.0067307353, -0.03732731, -0.0018517982, -0.009472749, -0.048318878, -0.00027552212, -0.0067307353, -0.03732731, 0.0018517982, -0.0063448492, -0.027688883, 0.0018517982, -0.00905347, -0.027677797, 0.00027515937, -0.009472749, -0.048318878, 0.00027515937, -0.0035842834, 0.018296033, -0.0009258991, -0.0028069466, 0.018329307, -0.0018517982, -0.006712183, -0.04823015, -0.0018517982, -0.009220439, -0.061883654, -0.00027552212, -0.006712183, -0.04823015, 0.0018517982, -0.0028069466, 0.018329307, 0.0018517982, -0.0035842834, 0.018296033, 0.0009255364, -0.009220439, -0.061883654, 0.00027515937, -0.0035824282, 0.018307127, 0, -0.0032893033, 0.019327536, 0, -0.0032818825, 0.019327536, -0.0009258991, -0.0025453605, 0.019371904, -0.0018517982, -0.006357836, -0.061417818, -0.0018517982, -0.008962564, -0.064967066, -0.00027552212, -0.006357836, -0.061417818, 0.0018517982, -0.0025453605, 0.019371904, 0.0018517982, -0.0032818825, 0.019327536, 0.0009255364, -0.008962564, -0.064967066, 0.00027515937, -0.0026102932, 0.02019266, 0.0009255364, -0.0026399768, 0.020159386, 0, -0.0026102932, 0.02019266, -0.0009258991, -0.0019368487, 0.020314671, -0.0018517982, -0.0060201865, -0.0645345, -0.0018517982, -0.00871582, -0.06790628, -0.00027552212, -0.00871582, -0.06790628, 0.00027515937, -0.0060201865, -0.0645345, 0.0018517982, -0.0019368487, 0.020314671, 0.0018517982, -0.0011465251, 0.02121307, 0.0014606292, -0.0011465251, 0.021490358, 0.0007265081, -0.0011465251, 0.021490358, -0.0007268707, -0.0011465251, 0.02121307, -0.0014609919, 0.001934994, 0.020314671, -0.0018517982, -0.0055582365, -0.06745154, -0.0018517982, -0.008257581, -0.07096751, -0.00027552212, -0.008257581, -0.07096751, 0.00027515937, -0.0055582365, -0.06745154, 0.0018517982, 0.001934994, 0.020314671, 0.0018517982, 0.0011446709, 0.02121307, 0.0014606292, 0, 0.021734364, 0.0011006381, 0, 0.02193401, 0.0006460267, 0, 0.02193401, -0.0006463892, 0, 0.021734364, -0.0011010006, 0.0011446709, 0.02121307, -0.0014609919, 0.002608439, 0.02019266, -0.0009258991, 0.0032800278, 0.019327536, -0.0009258991, 0.0025435062, 0.019371904, -0.0018517982, -0.004920041, -0.07049058, -0.0018517982, -0.004215058, -0.07367381, -0.0018517982, -0.0034247343, -0.07697904, -0.0018517982, -0.007517348, -0.074062005, -0.00027552212, -0.007517348, -0.074062005, 0.00027515937, -0.0034247343, -0.07697904, 0.0018517982, -0.004215058, -0.07367381, 0.0018517982, -0.004920041, -0.07049058, 0.0018517982, 0.0025435062, 0.019371904, 0.0018517982, 0.0032800278, 0.019327536, 0.0009255364, 0.002608439, 0.02019266, 0.0009255364, 0.0011446709, 0.021490358, 0.0007265081, 0.0011446709, 0.021490358, -0.0007268707, 0.002638122, 0.020159386, 0, 0.0032874485, 0.019327536, 0, 0.0035824282, 0.018296033, -0.0009258991, 0.0028050914, 0.018329307, -0.0018517982, -0.0017420505, -0.08235837, -0.0018517982, -0.0064283344, -0.0772896, -0.00027552212, -0.0064283344, -0.0772896, 0.00027515937, -0.0017420505, -0.08235837, 0.0018517982, 0.0028050914, 0.018329307, 0.0018517982, 0.0035824282, 0.018296033, 0.0009255364, 0.003580573, 0.018307127, 0, 0.009051614, -0.027677797, -0.00027552212, 0.006342995, -0.027688883, -0.0018517982, 0, -0.08675056, -0.0018209831, -0.004402435, -0.08266893, -0.00027552212, 0.0017401958, -0.08235837, -0.0018517982, -0.004402435, -0.08266893, 0.00027515937, 0, -0.08675056, 0.0018206205, 0.0017401958, -0.08235837, 0.0018517982, 0.006342995, -0.027688883, 0.0018517982, 0.009051614, -0.027677797, 0.00027515937, 0.00947646, -0.037371673, -0.00027552212, 0.006728881, -0.03732731, -0.0018517982, 0.00440058, -0.08266893, -0.00027552212, 0.002270789, -0.08723858, -0.00027552212, 0, -0.09137567, -0.00027552212, -0.0022726431, -0.08723858, -0.00027552212, 0.0034228796, -0.07697904, -0.0018517982, 0.007515493, -0.074062005, -0.00027552212, 0.0064264806, -0.0772896, -0.00027552212, -0.0022726431, -0.08723858, 0.00027515937, 0.00440058, -0.08266893, 0.00027515937, 0, -0.09137567, 0.00027515937, 0.002270789, -0.08723858, 0.00027515937, 0.0064264806, -0.0772896, 0.00027515937, 0.007515493, -0.074062005, 0.00027515937, 0.0034228796, -0.07697904, 0.0018517982, 0.006728881, -0.03732731, 0.0018517982, 0.00947646, -0.037371673, 0.00027515937, 0.009470894, -0.048318878, -0.00027552212, 0.006710329, -0.04823015, -0.0018517982, 0.0042132027, -0.07367381, -0.0018517982, 0.008255727, -0.07096751, -0.00027552212, 0.008255727, -0.07096751, 0.00027515937, 0.0042132027, -0.07367381, 0.0018517982, 0.006710329, -0.04823015, 0.0018517982, 0.009470894, -0.048318878, 0.00027515937, 0.009218584, -0.061883654, -0.00027552212, 0.0063559813, -0.061417818, -0.0018517982, 0.004918187, -0.07049058, -0.0018517982, 0.0055563822, -0.06745154, -0.0018517982, 0.0060183313, -0.0645345, -0.0018517982, 0.008713965, -0.06790628, -0.00027552212, 0.004918187, -0.07049058, 0.0018517982, 0.008713965, -0.06790628, 0.00027515937, 0.0060183313, -0.0645345, 0.0018517982, 0.0055563822, -0.06745154, 0.0018517982, 0.0063559813, -0.061417818, 0.0018517982, 0.009218584, -0.061883654, 0.00027515937, 0.00896071, -0.064967066, -0.00027552212, 0.00896071, -0.064967066, 0.00027515937)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ob0cg"]
+shader = ExtResource("13_qwy8w")
 
-[node name="Pickable" type="RigidBody3D" unique_id=2119350781 node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component")]
+[sub_resource type="Gradient" id="Gradient_eha57"]
+colors = PackedColorArray(0.40392157, 0.40392157, 0.40392157, 0.5137255, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ddftm"]
+gradient = SubResource("Gradient_eha57")
+width = 64
+
+[sub_resource type="Curve" id="Curve_5u3yu"]
+bake_resolution = 16
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.51203966), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3pn8q"]
+curve = SubResource("Curve_5u3yu")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_d4jfj"]
+noise_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4vose"]
+noise = SubResource("FastNoiseLite_d4jfj")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qbim7"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("14_h5ds3")
+shader_parameter/tex = SubResource("NoiseTexture2D_4vose")
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/color_ramp = SubResource("GradientTexture1D_ddftm")
+shader_parameter/curve = SubResource("CurveTexture_3pn8q")
+shader_parameter/emmission_transform = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/flags = 42
+
+[sub_resource type="QuadMesh" id="QuadMesh_f3jat"]
+material = SubResource("ShaderMaterial_qbim7")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mkyf6"]
+radius = 0.04296875
+height = 0.23339844
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qwy8w"]
+size = Vector3(0.02709961, 0.12207031, 0.0146484375)
+
+[node name="Pickable" type="RigidBody3D" unique_id=2119350781 node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component") groups=["disable_collision_while_grabbed", "throwable"]]
 collision_layer = 8
-collision_mask = 15
+collision_mask = 14
 contact_monitor = true
 max_contacts_reported = 1
 angular_damp = 5.0
 script = ExtResource("1_jqw0n")
 item_to_loot = ExtResource("2_r8x4n")
+can_pin = true
 change_distance_interaction = NodePath("InteractionContainer/WhileGrabbed/Change Distance")
 throwable_mesh = NodePath("Throwing Knife")
 throwable = NodePath(".")
-damage_component = NodePath("DamageComponent")
+damage_component = NodePath("Throwing Knife/DamageComponent")
 metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("2_usko3"),"default_context_id":0,"display_name":"Morning Star","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("3_krj0w")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_krj0w"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("4_76lam"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
 ,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
 , Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_krj0w"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("4_76lam"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
@@ -111,28 +157,47 @@ sounds_per_velocity = Dictionary[int, AudioStream]({
 metadata/_custom_type_script = "uid://cp0p4yckxtvmw"
 
 [node name="Throwing Knife" type="MeshInstance3D" parent="." unique_id=1316351081]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+transform = Transform3D(3, 0, 0, 0, -1.3113416e-07, -3, 0, 3, -1.3113416e-07, 0, -0.00044437125, 0.05)
 mesh = ExtResource("9_mkyf6")
 
 [node name="OmniLight3D" parent="Throwing Knife" unique_id=1151187837 instance=ExtResource("9_h48lg")]
 transform = Transform3D(0.33333334, 0, 0, 0, 0.33333334, 0, 0, 0, 0.33333334, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1535131224]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
-shape = SubResource("ConvexPolygonShape3D_lua8s")
+[node name="GPUTrail3D" type="GPUParticles3D" parent="Throwing Knife" unique_id=209628584]
+transform = Transform3D(0.75, 0, 0, 0, 0.0059999996, 0, 0, 0, 0.75, 0, 0, 0)
+amount = 41
+lifetime = 41.0
+explosiveness = 1.0
+fixed_fps = 164
+process_material = SubResource("ShaderMaterial_ob0cg")
+draw_pass_1 = SubResource("QuadMesh_f3jat")
+script = ExtResource("15_vmvb5")
+length = 41
+length_seconds = 0.25
+texture = SubResource("NoiseTexture2D_4vose")
+color_ramp = SubResource("GradientTexture1D_ddftm")
+curve = SubResource("CurveTexture_3pn8q")
+use_red_as_alpha = true
+_defaults_have_been_set = true
+metadata/_custom_type_script = "uid://dwsn7gxfshtf8"
 
-[node name="DamageComponent" type="Area3D" parent="." unique_id=1429514769 node_paths=PackedStringArray("source")]
+[node name="DamageComponent" type="Area3D" parent="Throwing Knife" unique_id=1429514769 node_paths=PackedStringArray("source")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.33333334, 0, 0, 0, 0.33333334, 0, -0.033333335, 0)
 collision_mask = 13
 script = ExtResource("10_w5e0d")
 damage_types = Dictionary[int, float]({
-1: 10.0
+2: 15.0
 })
-source = NodePath("..")
+source = NodePath("../..")
 metadata/_custom_type_script = "uid://dlsydctoxqbwy"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent" unique_id=500192351]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Throwing Knife/DamageComponent" unique_id=300373050]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
-shape = SubResource("ConvexPolygonShape3D_lua8s")
+shape = SubResource("CapsuleShape3D_mkyf6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=420131199]
+transform = Transform3D(3, 0, 0, 0, -1.3113416e-07, -3, 0, 3, -1.3113416e-07, 0, -0.0004443638, -0.05)
+shape = SubResource("BoxShape3D_qwy8w")
 
 [node name="bounding_box_component" parent="." unique_id=326409759 node_paths=PackedStringArray("mesh") instance=ExtResource("11_ra23y")]
 mesh = NodePath("../Throwing Knife")
@@ -143,3 +208,4 @@ mesh = NodePath("../Throwing Knife")
 [connection signal="on_complete" from="InteractionContainer/WhileGrabbed/Rotate" to="." method="_stopped_rotating"]
 [connection signal="on_trigger" from="InteractionContainer/WhileGrabbed/Rotate" to="." method="_while_rotating"]
 [connection signal="on_complete" from="InteractionContainer/WhileGrabbed/Throw" to="." method="_on_throw"]
+[connection signal="damage_dealt" from="Throwing Knife/DamageComponent" to="." method="_on_damage_component_damage_dealt"]
