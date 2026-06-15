@@ -1,6 +1,6 @@
 extends Consumable
 @onready var drink_sound: AudioStreamPlayer3D = $DrinkSound
-@export var heal_amount: float = 15.0
+@export var heal_amount: float = 50.0
 
 func _ready() -> void:
 	pass
