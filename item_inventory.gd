@@ -16,9 +16,10 @@ func _on_pressed() -> void:
 				pass
 			ItemEquippableType.ITEM_EQUIPPABLE_TYPES.CONSUMABLE:
 				Global.player.consumable.consumable_item = item_inventory
+				SignalBus.emit_signal("remove_item", item_inventory)
+				queue_free()
 			ItemEquippableType.ITEM_EQUIPPABLE_TYPES.KEY:
 				pass
-
 
 func _on_mouse_entered() -> void:
 	item_info.emit(item_inventory)

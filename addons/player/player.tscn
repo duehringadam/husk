@@ -848,6 +848,7 @@ offhand = NodePath("../LeftHand")
 [node name="LeftHand" parent="Head/Neck/Camera3D" unique_id=412198594 node_paths=PackedStringArray("mainhand") instance=ExtResource("10_hqsyx")]
 unique_name_in_owner = true
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
+visible = false
 mainhand = NodePath("../RightHand")
 
 [node name="ConsumableHand" parent="Head/Neck/Camera3D" unique_id=405842846 node_paths=PackedStringArray("mainhand", "offhand") instance=ExtResource("10_v5tlk")]

@@ -13,7 +13,8 @@ signal active(value: bool)
 var can_activate: bool = true
 func _ready() -> void:
 	#SignalBus.connect("primary_active", _update_primary_active)
-	pass
+	#Make sure this arm is hidden until it is needed
+	visible = false
 
 func _set_item(new_item):
 	if can_activate:
@@ -49,12 +50,12 @@ func _set_item(new_item):
 	unequip()
 	disable()
 	await get_tree().create_timer(0.25).timeout
-	mainhand.visible = true
-	offhand.visible = true
 	if right:
 		mainhand.enable()
+		mainhand.visible = true
 	if left:
 		offhand.enable()
+		offhand.visible = true
 	can_activate = true
 
 func unequip():

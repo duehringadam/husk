@@ -24,6 +24,7 @@ var item_add_inventory = preload("res://item_inventory.tscn")
 
 func _ready() -> void:
 	SignalBus.item_interact.connect(_update_inventory)
+	SignalBus.remove_item.connect(_remove_item)
 	
 
 func open_inventory():
@@ -57,30 +58,26 @@ func _update_inventory(item_signal: item):
 	item_signal.item_stats._update_player_stats(Global.player.player_stats)
 	match item_signal.item_type:
 		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.WEAPON:
-			
 			mainhand.add_child(item_add)
 			item_add.item_inventory = item_signal
 		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.OFFHAND:
-			
 			offhand.add_child(item_add)
 			item_add.item_inventory = item_signal
 		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.ARMOR:
-			
 			armor.add_child(item_add)
 			item_add.item_inventory = item_signal
 		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.JEWELRY:
-			
 			jewelry.add_child(item_add)
 			item_add.item_inventory = item_signal
 		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.CONSUMABLE:
-			
 			consumable.add_child(item_add)
 			item_add.item_inventory = item_signal
 		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.KEY:
-			
 			key.add_child(item_add)
 			item_add.item_inventory = item_signal
 
+func _remove_item(item_inventory: item):
+	Global.player.inventory.remove_at(Global.player.inventory.find(item_inventory))
 
 func _update_display_text(_item: item):
 	focused_item = _item
