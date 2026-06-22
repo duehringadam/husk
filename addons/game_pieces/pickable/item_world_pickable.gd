@@ -9,6 +9,8 @@ func _ready() -> void:
 	assert(item_to_loot != null, "Item resource cannot be null!")
 	if shattered_mesh:
 		shattered_mesh_add = shattered_mesh.instantiate()
+	if item_to_loot:
+		item_to_loot.item_dropped_scene = load(get_scene_file_path())
 
 func _physics_process(delta: float) -> void:
 	if Engine.is_editor_hint(): return
@@ -155,7 +157,6 @@ func _on_health_component_died() -> void:
 
 func loot_object():
 	AudioManager.play_sound_non_positional(load("res://sfx/dark_souls_item.wav"),10)
-	Global.player.inventory.append(item_to_loot)
 	SignalBus.emit_signal("item_interact", item_to_loot)
 	collision_shape_3d.disabled = true
 	var tween = get_tree().create_tween()

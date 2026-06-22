@@ -1,11 +1,8 @@
 [gd_scene format=3 uid="uid://dsi6sn7rr532k"]
 
 [ext_resource type="Script" uid="uid://dixki0innbjf2" path="res://addons/game_pieces/pickable/item_world_pickable.gd" id="1_akty8"]
-[ext_resource type="PackedScene" uid="uid://i31mck2qxma" path="res://item/consumables/health_potion.tscn" id="2_b0br3"]
-[ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/item_stat.gd" id="2_qlud8"]
-[ext_resource type="AnimationNodeStateMachine" uid="uid://b16vrolklqa3y" path="res://Player/viewmodel/animations/hands/animation_state_machines/consumable_state_machine.tres" id="2_tx71q"]
+[ext_resource type="Resource" uid="uid://dkb1m33kr2wtk" path="res://item/consumables/potion/health_potion.tres" id="2_qlud8"]
 [ext_resource type="Script" uid="uid://ck3cei0hvspym" path="res://addons/interaction_system/interaction_container.gd" id="2_u1typ"]
-[ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/item.gd" id="3_b0br3"]
 [ext_resource type="Script" uid="uid://5tinbhq6p45k" path="res://addons/interaction_system/interaction.gd" id="3_qlud8"]
 [ext_resource type="Script" uid="uid://bxe74cq2uqemi" path="res://addons/game_controls/vanilla/input_map_game_control.gd" id="4_b0br3"]
 [ext_resource type="Script" uid="uid://doc0okecalxnp" path="res://addons/interaction_system/interaction_context.gd" id="5_tx71q"]
@@ -15,21 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://bvb1ic1mm6bap" path="res://item/item_glint.tscn" id="9_s12ms"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="10_g0ts7"]
 [ext_resource type="PackedScene" uid="uid://dhws2ueoubwwx" path="res://components/bounding_box_component.tscn" id="11_60y8i"]
-
-[sub_resource type="Resource" id="Resource_tx71q"]
-script = ExtResource("2_qlud8")
-metadata/_custom_type_script = "uid://bbtfrupllo3w6"
-
-[sub_resource type="Resource" id="Resource_a58ot"]
-script = ExtResource("3_b0br3")
-item_name = "Health Potion"
-item_description = "Heals 50 HP"
-item_type = 4
-item_stats = SubResource("Resource_tx71q")
-stamina_cost = 0
-item_scene = ExtResource("2_b0br3")
-animation_state_machine = ExtResource("2_tx71q")
-metadata/_custom_type_script = "uid://dcfd18dx8x1bm"
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qlud8"]
 points = PackedVector3Array(0.043641888, 0.32049185, 0.33736613, -0.06416352, 0.25558254, -0.3429642, 0.34962, 0.24436185, -0.064952925, -0.119215116, 0.005724403, 0.22840215, -0.17833465, 0.52897865, -0.05193764, -0.34947878, 0.244342, 0.06600061, -0.075185604, 0.0077399127, -0.24719916, 0.17830124, 0.5283603, -0.051811635, 0.22810273, 0.005771584, 0.11980113, 0.2170084, 0.24455479, -0.2813275, 0.28000787, 0.3200112, 0.19410536, -0.0520016, 0.5277608, 0.17815386, -0.27685055, 0.25569683, -0.21260448, -0.24942106, 0.005745077, -0.064561255, -0.22628537, 0.30930266, 0.25929847, 0.21660958, 0.006524558, -0.14015451, -0.052337192, 0.5294074, -0.17829596, 0.1413532, 0.24451348, 0.32621816, 0.1146604, 0.5265441, 0.14609282, 0.14933097, 0.383465, -0.26587313, -0.17045566, 0.5329353, 0.0751217, 0.06512652, 0.0063371267, 0.24951586, -0.14099984, 0.24450536, 0.32631558, 0.0652893, 0.005671982, -0.2491401, -0.21607511, 0.006694699, 0.1410643, -0.2452544, 0.35160014, -0.21288456, -0.3233236, 0.35244524, 0.02198296, 0.3125891, 0.35239705, -0.08566288, 0.3263877, 0.24447365, 0.1418358, -0.281372, 0.24457817, 0.21708243, -0.021418728, 0.3310449, -0.3347297, 0.30060577, 0.38424265, 0.043378506)
@@ -41,7 +23,7 @@ contact_monitor = true
 max_contacts_reported = 1
 angular_damp = 5.0
 script = ExtResource("1_akty8")
-item_to_loot = SubResource("Resource_a58ot")
+item_to_loot = ExtResource("2_qlud8")
 change_distance_interaction = NodePath("InteractionContainer/WhileGrabbed/Change Distance")
 throwable_mesh = NodePath("Potion")
 throwable = NodePath(".")

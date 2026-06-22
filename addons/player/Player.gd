@@ -5,8 +5,6 @@ class_name Player extends CharacterBody3D
 @export_category("Player Stats")
 @export var player_stats: Dictionary[ItemEquippableType.ITEM_REQUIRED_STAT, int]: set = _update_player_stats
 
-@export_category("Inventory")
-@export var inventory: Array[item]
 @export var footsteps_sound: AudioStream
 
 ## The constant value that footsteps and head bob are calculated against
@@ -144,9 +142,6 @@ func _ready() -> void:
 	if Engine.is_editor_hint(): return
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	footsteps.stream = footsteps_sound
-	if inventory.size() > 0:
-		for i in inventory:
-			SignalBus.emit_signal("item_interact", i)
 	SignalBus.emit_signal("player_ready")
 	
 func _on_combat_type_changed(value: int):

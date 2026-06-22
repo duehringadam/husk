@@ -3,12 +3,8 @@ extends Control
 @onready var cross_hair: TextureRect = %CrossHair
 @onready var interact_prompt: RichTextLabel = %InteractPrompt
 @onready var _formatter: PromptFormatter = PromptKenneysFormatter.new()
-@onready var inventory: PanelContainer = %inventory
-@onready var selection_wheel: Control = %SelectionWheel
-@onready var selection_wheel_darken: ColorRect = $selectionWheelDarken
 
-var inventory_open: bool = false
-var consumable_open: bool = false
+
 
 func _ready() -> void:
 	_nothing_interactable()
@@ -18,30 +14,6 @@ func player_ready():
 	InteractionController.current.clear_action_prompts.connect(_nothing_interactable)
 	InteractionController.current.display_action_prompts.connect(_something_interactable)
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("inventory"):
-		inventory_menu()
-	if event.is_action_pressed("consumable"):
-		consumable_menu()
-	if event.is_action_released("consumable"):
-		consumable_menu()
-		
-func inventory_menu():
-	if inventory_open:
-		inventory.close_inventory()
-	else:
-		inventory.open_inventory()
-
-	inventory_open = !inventory_open
-
-func consumable_menu():
-	if consumable_open:
-		selection_wheel_darken.hide()
-		selection_wheel.close()
-	else:
-		selection_wheel_darken.show()
-		selection_wheel.open()
-	consumable_open = !consumable_open
 
 func _nothing_interactable() -> void:
 	cross_hair.hide()

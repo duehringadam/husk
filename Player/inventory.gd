@@ -2,6 +2,8 @@ extends PanelContainer
 
 signal focused_item_changed(_item: item)
 
+@export var inventory: Array[item]
+
 @onready var mainhand: GridContainer = %mainhand
 @onready var offhand: GridContainer = %offhand
 @onready var jewelry: GridContainer = %jewelry
@@ -15,12 +17,8 @@ signal focused_item_changed(_item: item)
 @onready var open: AudioStreamPlayer = %open
 @onready var close: AudioStreamPlayer = %close
 
-
-
 var focused_item: item
-
 var item_add_inventory = preload("res://item_inventory.tscn")
-
 
 func _ready() -> void:
 	SignalBus.item_interact.connect(_update_inventory)
@@ -54,8 +52,10 @@ func close_inventory():
 func _update_inventory(item_signal: item):
 	var item_add = item_add_inventory.instantiate()
 	item_add.connect("item_info", _update_display_text)
+	item_add.connect("item_drop", _drop_item)
 	SignalBus.connect("player_stats_changed", item_signal.item_stats._update_player_stats)
 	item_signal.item_stats._update_player_stats(Global.player.player_stats)
+	
 	match item_signal.item_type:
 		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.WEAPON:
 			mainhand.add_child(item_add)
@@ -70,14 +70,27 @@ func _update_inventory(item_signal: item):
 			jewelry.add_child(item_add)
 			item_add.item_inventory = item_signal
 		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.CONSUMABLE:
-			consumable.add_child(item_add)
-			item_add.item_inventory = item_signal
+			if inventory.has(item_signal):
+				var consumable_item: int = inventory.find(item_signal)
+				if inventory[consumable_item].is_stackable:
+					consumable.get_child(consumable_item)._update_stack_size(1)
+			else:
+				consumable.add_child(item_add)
+				item_add.item_inventory = item_signal
 		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.KEY:
 			key.add_child(item_add)
 			item_add.item_inventory = item_signal
+	inventory.append(item_signal)
 
 func _remove_item(item_inventory: item):
-	Global.player.inventory.remove_at(Global.player.inventory.find(item_inventory))
+	if inventory.has(item_inventory):
+		inventory.erase(item_inventory)
+		
+
+func _drop_item(item_to_drop: item):
+	var item_drop = item_to_drop.item_dropped_scene.instantiate()
+	get_tree().current_scene.add_child(item_drop)
+	item_drop.global_position = Global.player.camera.global_position + (-Global.player.camera.global_transform.basis.z.normalized()*1.5)
 
 func _update_display_text(_item: item):
 	focused_item = _item

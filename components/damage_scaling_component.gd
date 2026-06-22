@@ -27,6 +27,7 @@ func _ready() -> void:
 		end_swing.state_exited.connect(end_attack)
 	
 func hold_attack():
+	timer.wait_time = attack_charge_time
 	SignalBus.emit_signal("weapon_charge_bool", true)
 	swing_ended = false
 	charging = true
