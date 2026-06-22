@@ -12,11 +12,11 @@ var charging:= false
 @export var damage_component: DamageComponent
 @export var weapon_states: Array[StateChartState]
 @export var end_swing: StateChartState
-
+@export var attack_charge_time: float = 1.0
 
 func _ready() -> void:
 	add_child(timer)
-	timer.wait_time = 1.25
+	timer.wait_time = attack_charge_time
 	timer.one_shot = true
 	for i in weapon_states:
 		if !i.state_entered.is_connected(hold_attack):
@@ -27,6 +27,7 @@ func _ready() -> void:
 		end_swing.state_exited.connect(end_attack)
 	
 func hold_attack():
+	timer.wait_time = attack_charge_time
 	SignalBus.emit_signal("weapon_charge_bool", true)
 	swing_ended = false
 	charging = true
@@ -58,5 +59,6 @@ func _process(delta: float) -> void:
 		actual_damage_ratio = 0
 		SignalBus.emit_signal("weapon_charge_value", actual_damage_ratio)
 	elif !swing_ended && charging:
-		actual_damage_ratio = clampf(1.25-timer.time_left,.25,1.25)
+		actual_damage_ratio = clampf(1.25-(timer.time_left/timer.wait_time),.25,1.25)
+		print(actual_damage_ratio)
 		SignalBus.emit_signal("weapon_charge_value", actual_damage_ratio)

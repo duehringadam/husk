@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="item" format=3 uid="uid://dkb1m33kr2wtk"]
+
+[ext_resource type="AnimationNodeStateMachine" uid="uid://b16vrolklqa3y" path="res://Player/viewmodel/animations/hands/animation_state_machines/consumable_state_machine.tres" id="1_cecw0"]
+[ext_resource type="PackedScene" uid="uid://i31mck2qxma" path="res://item/consumables/health_potion.tscn" id="2_v3ai6"]
+[ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/item_stat.gd" id="3_cs27g"]
+[ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/item.gd" id="4_jiof4"]
+
+[sub_resource type="Resource" id="Resource_tx71q"]
+script = ExtResource("3_cs27g")
+metadata/_custom_type_script = "uid://bbtfrupllo3w6"
+
+[resource]
+script = ExtResource("4_jiof4")
+item_name = "Health Potion"
+item_description = "Heals 50 HP"
+item_type = 4
+is_stackable = true
+max_stack_size = 99
+current_stack_size = 1
+item_stats = SubResource("Resource_tx71q")
+stamina_cost = 0
+item_scene = ExtResource("2_v3ai6")
+animation_state_machine = ExtResource("1_cecw0")
+metadata/_custom_type_script = "uid://dcfd18dx8x1bm"

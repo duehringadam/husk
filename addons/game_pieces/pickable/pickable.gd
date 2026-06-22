@@ -1,6 +1,7 @@
 class_name Pickable
 extends RigidBody3D
 
+@export var can_pin: bool = false
 
 @export var pull_force: float = 15
 @export var throw_power: float = 10
@@ -186,8 +187,10 @@ func set_transparency(object: Node, value: float) -> void:
 		mesh.transparency = value
 
 func _on_damage_component_damage_dealt(types: Dictionary[DamageTypes.DAMAGE_TYPES, float], actual: float, stance_damage: float, target: hurtbox_component) -> void:
-	if throwable.linear_velocity.length() > 3:
-		pass
+		if can_pin:
+			if target.owner is not Player:
+				self.queue_free()
+			
 		#health_component.modify_health(-(throwable.linear_velocity.length()))
 
 

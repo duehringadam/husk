@@ -1,11 +1,7 @@
 [gd_scene format=3 uid="uid://cvm1x6igaprq3"]
 
 [ext_resource type="Script" uid="uid://ba1l1kqe7yxt6" path="res://addons/player/Player.gd" id="1_cyojo"]
-[ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/item.gd" id="2_863th"]
-[ext_resource type="Resource" uid="uid://dmv7he43amthj" path="res://item/weapons/mace_2_hand/morning_star.tres" id="3_e6ia4"]
 [ext_resource type="PackedScene" uid="uid://bj4hhphu33n38" path="res://addons/player/player_body.tscn" id="3_tio5b"]
-[ext_resource type="Resource" uid="uid://bgq4jclx52jt0" path="res://item/weapons/swords/broken_sword.tres" id="4_d6j5h"]
-[ext_resource type="Resource" uid="uid://c8afm2d4w8gxb" path="res://item/spells/telekinesis.tres" id="5_863th"]
 [ext_resource type="Script" uid="uid://csps0dnf2gf2n" path="res://Player/player_hurtbox_component.gd" id="5_eon52"]
 [ext_resource type="Script" uid="uid://brvxqhk8jpiq2" path="res://addons/player/health_detect.gd" id="6_5fkmn"]
 [ext_resource type="Script" uid="uid://dql5v81gqvdat" path="res://components/status_effect_component.gd" id="6_eon52"]
@@ -16,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://b5corv5nqshay" path="res://addons/player/player_arm_right.tscn" id="9_hqsyx"]
 [ext_resource type="PackedScene" uid="uid://bplg0u3sd3j28" path="res://addons/player/player_arm_left.tscn" id="10_hqsyx"]
 [ext_resource type="Script" uid="uid://6h8f2qhrbtt6" path="res://Player/damage_overlay.gd" id="10_jux4o"]
+[ext_resource type="PackedScene" uid="uid://c3edfhdllccxg" path="res://addons/player/player_arm_consumable.tscn" id="10_v5tlk"]
 [ext_resource type="AudioStream" uid="uid://br26jgupi66u0" path="res://Player/sfx/footsteps/stone/footstep_stone.tres" id="12_hqsyx"]
 [ext_resource type="Script" uid="uid://sj3mml8ulasu" path="res://Player/crosshair.gd" id="12_qk8yx"]
 [ext_resource type="Shader" uid="uid://b6aaasr8tdyr5" path="res://Player/distort.gdshader" id="12_vnn13"]
@@ -24,6 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://d32grx7plyrmc" path="res://scenes/traps/rope_climbing.ogg" id="15_epd12"]
 [ext_resource type="Script" uid="uid://iiobepm77ak5" path="res://addons/player/fall_damage_component.gd" id="15_paiqy"]
 [ext_resource type="AudioStream" uid="uid://dk0ftcdtucymv" path="res://sfx/fall_damage.ogg" id="16_paiqy"]
+[ext_resource type="Script" uid="uid://bxoydk8unigg3" path="res://addons/player/player_hud.gd" id="21_ujn18"]
 [ext_resource type="Shader" uid="uid://dc66sjqqg3w1a" path="res://scenes/player/circular_bar.gdshader" id="22_2m5xu"]
 [ext_resource type="Script" uid="uid://83vqngoyog5j" path="res://scenes/player/hold_attack_bar.gd" id="23_5fkmn"]
 [ext_resource type="Shader" uid="uid://2i33d2n3yv47" path="res://addons/player/radial_blur.gdshader" id="25_k1tkb"]
@@ -38,7 +36,9 @@
 [ext_resource type="FontFile" uid="uid://bgwsxfa2fbvel" path="res://addons/madtalk/fonts/ShipporiMincho-Regular.ttf" id="35_t571y"]
 [ext_resource type="Script" uid="uid://dd8swdueuaqv5" path="res://components/player_health_component.gd" id="36_jaogv"]
 [ext_resource type="AudioStream" uid="uid://c6mukshc0b37u" path="res://Player/sfx/movement/huskVaultTest.wav" id="37_jaogv"]
+[ext_resource type="PackedScene" uid="uid://l2q2on8dxrq5" path="res://Globals/inventory.tscn" id="38_6havu"]
 [ext_resource type="Script" uid="uid://x336a4ypdit5" path="res://components/stamina_component.gd" id="38_v5tlk"]
+[ext_resource type="PackedScene" uid="uid://bmphfd5h5ant7" path="res://scenes/player/selection_wheel.tscn" id="40_avbty"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xc2g5"]
 
@@ -747,6 +747,8 @@ shader_parameter/shape_scroll = Vector2(0.1, 0.1)
 shader_parameter/shape_feathering = 0.56999998725936
 shader_parameter/shape_treshold = 1.0
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jng3h"]
+
 [sub_resource type="Curve" id="Curve_jaogv"]
 _limits = [0.0, 1900.0, 0.0, 1.0]
 bake_resolution = 99
@@ -758,7 +760,7 @@ _limits = [0.0, 200.0, 0.0, 1.0]
 _data = [Vector2(0, 0), 0.0, 648.0529, 0, 0, Vector2(1, 200), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[node name="Player" type="CharacterBody3D" unique_id=1383979839 node_paths=PackedStringArray("player_body", "mainhand", "offhand") groups=["player"]]
+[node name="Player" type="CharacterBody3D" unique_id=1383979839 node_paths=PackedStringArray("player_body", "mainhand", "offhand", "consumable") groups=["player"]]
 collision_mask = 35
 script = ExtResource("1_cyojo")
 player_stats = Dictionary[int, int]({
@@ -769,12 +771,12 @@ player_stats = Dictionary[int, int]({
 4: 10,
 5: 10
 })
-inventory = Array[ExtResource("2_863th")]([ExtResource("3_e6ia4"), ExtResource("4_d6j5h"), ExtResource("5_863th")])
 player_body = NodePath("Head/Neck/Camera3D/playerBody")
 climb_speed = 3.0
 camera_lean_position = Vector3(0, 0, 0)
 mainhand = NodePath("Head/Neck/Camera3D/RightHand")
 offhand = NodePath("Head/Neck/Camera3D/LeftHand")
+consumable = NodePath("Head/Neck/Camera3D/ConsumableHand")
 weapon_rotation_amount = 0.25
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1092821169]
@@ -846,7 +848,13 @@ offhand = NodePath("../LeftHand")
 [node name="LeftHand" parent="Head/Neck/Camera3D" unique_id=412198594 node_paths=PackedStringArray("mainhand") instance=ExtResource("10_hqsyx")]
 unique_name_in_owner = true
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
+visible = false
 mainhand = NodePath("../RightHand")
+
+[node name="ConsumableHand" parent="Head/Neck/Camera3D" unique_id=405842846 node_paths=PackedStringArray("mainhand", "offhand") instance=ExtResource("10_v5tlk")]
+unique_name_in_owner = true
+mainhand = NodePath("../RightHand")
+offhand = NodePath("../LeftHand")
 
 [node name="CameraAnimationPlayer" type="AnimationPlayer" parent="Head" unique_id=2090545160]
 unique_name_in_owner = true
@@ -984,6 +992,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("21_ujn18")
 
 [node name="damage" type="ColorRect" parent="hud" unique_id=634867585 node_paths=PackedStringArray("hurtbox")]
 material = SubResource("ShaderMaterial_vhccx")
@@ -1151,6 +1160,28 @@ text = "MORTIS"
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="hud/death" unique_id=1243036561]
 volume_db = 6.0
 bus = &"SFX"
+
+[node name="inventory" parent="hud" unique_id=227349631 instance=ExtResource("38_6havu")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_jng3h")
+
+[node name="selectionWheelDarken" type="ColorRect" parent="hud" unique_id=1482172172]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.446)
+
+[node name="SelectionWheel" parent="hud/selectionWheelDarken" unique_id=1649874519 instance=ExtResource("40_avbty")]
+unique_name_in_owner = true
+layout_mode = 1
+selected_option = 2
 
 [node name="HealthComponent" type="Node3D" parent="." unique_id=669479295]
 script = ExtResource("36_jaogv")

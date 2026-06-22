@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bv0385mldllnw"]
 
 [ext_resource type="Script" uid="uid://dixki0innbjf2" path="res://addons/game_pieces/pickable/item_world_pickable.gd" id="1_fnky0"]
+[ext_resource type="Resource" uid="uid://dmv7he43amthj" path="res://item/weapons/mace_2_hand/morning_star.tres" id="2_7i3i8"]
 [ext_resource type="Script" uid="uid://ck3cei0hvspym" path="res://addons/interaction_system/interaction_container.gd" id="2_cqqjy"]
 [ext_resource type="Script" uid="uid://5tinbhq6p45k" path="res://addons/interaction_system/interaction.gd" id="3_qkefr"]
 [ext_resource type="Script" uid="uid://bxe74cq2uqemi" path="res://addons/game_controls/vanilla/input_map_game_control.gd" id="4_28uvm"]
@@ -22,6 +23,7 @@ contact_monitor = true
 max_contacts_reported = 1
 angular_damp = 5.0
 script = ExtResource("1_fnky0")
+item_to_loot = ExtResource("2_7i3i8")
 change_distance_interaction = NodePath("InteractionContainer/WhileGrabbed/Change Distance")
 throwable_mesh = NodePath("Morning Star")
 throwable = NodePath(".")

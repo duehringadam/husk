@@ -3,11 +3,14 @@ extends Pickable
 
 @export var item_to_loot: item
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
+var target_basis
 
 func _ready() -> void:
 	assert(item_to_loot != null, "Item resource cannot be null!")
 	if shattered_mesh:
 		shattered_mesh_add = shattered_mesh.instantiate()
+	if item_to_loot:
+		item_to_loot.item_dropped_scene = load(get_scene_file_path())
 
 func _physics_process(delta: float) -> void:
 	if Engine.is_editor_hint(): return
@@ -20,7 +23,7 @@ func _physics_process(delta: float) -> void:
 		var distance_to_player: float = ray_cast.global_position.distance_to(global_position)
 		if distance_to_player > release_distance * _position_offset:
 			_released(_interaction_controller)
-	if linear_velocity.length() > 9:
+	if linear_velocity.length() > 6:
 		damage_component.monitorable = true
 		damage_component.monitoring = true
 	else:
@@ -136,12 +139,6 @@ func set_transparency(object: Node, value: float) -> void:
 		var mesh: MeshInstance3D = child
 		mesh.transparency = value
 
-func _on_damage_component_damage_dealt(types: Dictionary[DamageTypes.DAMAGE_TYPES, float], actual: float, stance_damage: float, target: hurtbox_component) -> void:
-	if throwable.linear_velocity.length() > 3:
-		pass
-		#health_component.modify_health(-(throwable.linear_velocity.length()))
-
-
 func _on_rigidbody_entered(body: Node) -> void:
 	if throwable.linear_velocity.length() > 3 and body.collision_layer == 2:
 		health_component.modify_health(-(throwable.linear_velocity.length()))
@@ -160,7 +157,6 @@ func _on_health_component_died() -> void:
 
 func loot_object():
 	AudioManager.play_sound_non_positional(load("res://sfx/dark_souls_item.wav"),10)
-	Global.player.inventory.append(item_to_loot)
 	SignalBus.emit_signal("item_interact", item_to_loot)
 	collision_shape_3d.disabled = true
 	var tween = get_tree().create_tween()
