@@ -32,6 +32,7 @@ func _set_item(new_item):
 		if bone_attachment.get_child_count() != 0:
 			unequip()
 		state_chart.send_event("idle")
+		enable()
 		var item_add = new_item.item_scene.instantiate()
 		item_add.position = weapon.position
 		item_add.rotation_degrees = weapon.rotation

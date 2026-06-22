@@ -20497,6 +20497,7 @@ shape = SubResource("CapsuleShape3D_sfya3")
 script = ExtResource("24_brly5")
 weapon_states = [NodePath("../ghoul_arms2(1)/StateChart/CompoundState/left"), NodePath("../ghoul_arms2(1)/StateChart/CompoundState/right"), NodePath("../ghoul_arms2(1)/StateChart/CompoundState/forward"), NodePath("../ghoul_arms2(1)/StateChart/CompoundState/back")]
 end_swing = NodePath("../ghoul_arms2(1)/StateChart/CompoundState/swing")
+attack_charge_time = 1.25
 metadata/_custom_type_script = "uid://bi3exllfsv6q"
 
 [connection signal="state_entered" from="ghoul_arms2(1)/StateChart/CompoundState/idle" to="ghoul_arms2(1)/StateChart/CompoundState/idle/idle" method="_on_idle_state_entered"]

@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://i31mck2qxma"]
+
+[ext_resource type="Script" uid="uid://cl462ax7xjdjr" path="res://item/consumables/health_potion.gd" id="1_gpaqv"]
+[ext_resource type="AudioStream" uid="uid://dcr4in8lcdk51" path="res://sfx/dark_souls_item.wav" id="2_o0cjs"]
+
+[node name="health_potion" type="Node3D" unique_id=1048230256]
+script = ExtResource("1_gpaqv")
+
+[node name="DrinkSound" type="AudioStreamPlayer3D" parent="." unique_id=1211698190]
+stream = ExtResource("2_o0cjs")

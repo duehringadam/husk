@@ -5,6 +5,7 @@ extends ColorRect
 
 var is_charging: bool = false
 var play_sfx_once: bool = true
+
 func _ready() -> void:
 	SignalBus.connect("weapon_charge_value", update_charge)
 	SignalBus.connect("weapon_charge_bool", lerp_color)
