@@ -1,6 +1,8 @@
 extends Resource
 class_name item
 
+signal stack_size_changed(amount: int)
+
 @export_category("Item Display")
 @export var item_name: String
 @export_multiline var item_description: String
@@ -34,3 +36,8 @@ class_name item
 @export_category("Left Hand Weapon Position")
 @export var left_position: Vector3
 @export var left_rotation: Vector3
+
+
+func _update_stack_size(amount: int):
+	current_stack_size = clampi(current_stack_size+amount, 0, max_stack_size)
+	stack_size_changed.emit(current_stack_size)

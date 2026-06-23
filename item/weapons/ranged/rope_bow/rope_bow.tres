@@ -4,6 +4,7 @@
 [ext_resource type="AnimationNodeStateMachine" uid="uid://276w4pt2bown" path="res://Player/viewmodel/animations/hands/animation_state_machines/bow_animation_state_machine.tres" id="1_20j8i"]
 [ext_resource type="PackedScene" uid="uid://b3wxg7nmabvak" path="res://item/weapons/ranged/rope_bow/rope_bow_viewmodel.tscn" id="1_av6qt"]
 [ext_resource type="PackedScene" uid="uid://dq8lwiea6fmgn" path="res://addons/player/arrow_viewmodel.tscn" id="2_32ifv"]
+[ext_resource type="Texture2D" uid="uid://damb7ge0qem22" path="res://item/icons/bow/arrow.svg/icons/ffffff/000000/1x1/lorc/pocket-bow.svg" id="2_kgm22"]
 [ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/item_stat.gd" id="4_kgm22"]
 
 [sub_resource type="Resource" id="Resource_7nb5a"]
@@ -14,6 +15,7 @@ metadata/_custom_type_script = "uid://bbtfrupllo3w6"
 script = ExtResource("1_6elbx")
 item_name = "Rope Bow"
 item_description = "When fired, it will create climbable ropes"
+item_icon = ExtResource("2_kgm22")
 item_stats = SubResource("Resource_7nb5a")
 item_required_stats = Dictionary[int, int]({
 1: 5

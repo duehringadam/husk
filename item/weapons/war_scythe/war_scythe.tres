@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="item" format=3 uid="uid://ccbqtln0f3o4n"]
 
 [ext_resource type="AnimationNodeStateMachine" uid="uid://bnag3oppwh7b3" path="res://Player/viewmodel/animations/hands/animation_state_machines/two_handed_mace_state_machine.tres" id="1_fsmfs"]
+[ext_resource type="Texture2D" uid="uid://bxghki5l1uhdc" path="res://item/icons/blade/blade.svg/icons/ffffff/000000/1x1/lorc/scythe.svg" id="2_7ar7i"]
 [ext_resource type="PackedScene" uid="uid://dc3khinm74hrb" path="res://Player/viewmodel/animations/hands/animation_state_machines/war_scythe.tscn" id="2_gk4ln"]
 [ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/item_stat.gd" id="3_pv6c1"]
 [ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/item.gd" id="4_n81ue"]
@@ -19,6 +20,7 @@ metadata/_custom_type_script = "uid://bbtfrupllo3w6"
 script = ExtResource("4_n81ue")
 item_name = "War Scythe"
 item_description = "A scythe meant for cleaving limbs from afar."
+item_icon = ExtResource("2_7ar7i")
 item_stats = SubResource("Resource_pmu86")
 item_scene = ExtResource("2_gk4ln")
 two_handed = true

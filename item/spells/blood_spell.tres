@@ -3,6 +3,7 @@
 [ext_resource type="AnimationNodeStateMachine" uid="uid://c5baskkuqckvs" path="res://Player/viewmodel/animations/hands/animation_state_machines/offhand_accursed_blood_spell_animation_state_machine.tres" id="1_jb7se"]
 [ext_resource type="PackedScene" uid="uid://ctfq2toui1ut" path="res://spell_blood.tscn" id="2_f7vag"]
 [ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/item_stat.gd" id="2_jb7se"]
+[ext_resource type="Texture2D" uid="uid://luj8w7njrmqe" path="res://item/icons/magic/explosion.svg/icons/ffffff/000000/1x1/lorc/gooey-molecule.svg" id="2_wec87"]
 [ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/item.gd" id="3_f7vag"]
 
 [sub_resource type="Resource" id="Resource_kl4sx"]
@@ -16,6 +17,7 @@ metadata/_custom_type_script = "uid://bbtfrupllo3w6"
 script = ExtResource("3_f7vag")
 item_name = "Accursed Blood"
 item_description = "Expel the cursed blood within, damaging yourself and knocking back nearby enemies"
+item_icon = ExtResource("2_wec87")
 item_type = 1
 item_stats = SubResource("Resource_kl4sx")
 item_required_stats = Dictionary[int, int]({

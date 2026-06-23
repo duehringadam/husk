@@ -4,6 +4,8 @@ signal focused_item_changed(_item: item)
 
 @export var inventory: Array[item]
 
+@export var equipped_items: Dictionary[String, item_inventory_interact]
+
 @onready var mainhand: GridContainer = %mainhand
 @onready var offhand: GridContainer = %offhand
 @onready var jewelry: GridContainer = %jewelry
@@ -53,7 +55,10 @@ func _update_inventory(item_signal: item):
 	var item_add = item_add_inventory.instantiate()
 	item_add.connect("item_info", _update_display_text)
 	item_add.connect("item_drop", _drop_item)
-	SignalBus.connect("player_stats_changed", item_signal.item_stats._update_player_stats)
+	if !SignalBus.is_connected("player_stats_changed", item_signal.item_stats._update_player_stats):
+		SignalBus.connect("player_stats_changed", item_signal.item_stats._update_player_stats)
+	if !item_add.is_connected("equipped_signal",_update_equipped_items):
+		item_add.connect("equipped_signal", _update_equipped_items)
 	item_signal.item_stats._update_player_stats(Global.player.player_stats)
 	
 	match item_signal.item_type:
@@ -73,7 +78,7 @@ func _update_inventory(item_signal: item):
 			if inventory.has(item_signal):
 				var consumable_item: int = inventory.find(item_signal)
 				if inventory[consumable_item].is_stackable:
-					consumable.get_child(consumable_item)._update_stack_size(1)
+					inventory[consumable_item]._update_stack_size(1)
 			else:
 				consumable.add_child(item_add)
 				item_add.item_inventory = item_signal
@@ -81,6 +86,29 @@ func _update_inventory(item_signal: item):
 			key.add_child(item_add)
 			item_add.item_inventory = item_signal
 	inventory.append(item_signal)
+
+func _update_equipped_items(item_inv_interact: item_inventory_interact):
+	match item_inv_interact.item_inventory.item_type:
+		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.WEAPON:
+			if equipped_items["mainhand_equipped"] != null:
+				equipped_items["mainhand_equipped"].is_equipped = false
+			equipped_items["mainhand_equipped"] = item_inv_interact
+			item_inv_interact.is_equipped = true
+		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.OFFHAND:
+			if equipped_items["offhand_equipped"] != null:
+				equipped_items["offhand_equipped"].is_equipped = false
+			equipped_items["offhand_equipped"] = item_inv_interact
+			item_inv_interact.is_equipped = true
+		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.ARMOR:
+			if equipped_items["armor_equipped"] != null:
+				equipped_items["armor_equipped"].is_equipped = false
+			equipped_items["armor_equipped"] = item_inv_interact
+			item_inv_interact.is_equipped = true
+		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.JEWELRY:
+			if equipped_items["jewelry_equipped"] != null:
+				equipped_items["jewelry_equipped"].is_equipped = false
+			equipped_items["jewelry_equipped"] = item_inv_interact
+			item_inv_interact.is_equipped = true
 
 func _remove_item(item_inventory: item):
 	if inventory.has(item_inventory):

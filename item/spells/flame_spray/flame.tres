@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="item" format=3 uid="uid://dhgsftnl3tw13"]
 
 [ext_resource type="AnimationNodeStateMachine" uid="uid://btqetk34l0eah" path="res://Player/viewmodel/animations/hands/animation_state_machines/offhand_fire_spell_animation_state.tres" id="1_tx6k7"]
+[ext_resource type="Texture2D" uid="uid://b5esdvtqwvepd" path="res://item/icons/magic/explosion.svg/icons/ffffff/000000/1x1/lorc/burning-blobs.svg" id="2_2o21i"]
 [ext_resource type="PackedScene" uid="uid://5i8e6fsne4v5" path="res://spell_fire.tscn" id="2_kbpfs"]
 [ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/item_stat.gd" id="3_dgh5r"]
 [ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/item.gd" id="4_yj7e3"]
@@ -16,6 +17,7 @@ metadata/_custom_type_script = "uid://bbtfrupllo3w6"
 script = ExtResource("4_yj7e3")
 item_name = "Flame"
 item_description = "Spew flames on foes to light them ablaze."
+item_icon = ExtResource("2_2o21i")
 item_type = 1
 item_stats = SubResource("Resource_76boi")
 item_required_stats = Dictionary[int, int]({

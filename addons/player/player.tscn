@@ -1161,11 +1161,17 @@ text = "MORTIS"
 volume_db = 6.0
 bus = &"SFX"
 
-[node name="inventory" parent="hud" unique_id=227349631 instance=ExtResource("38_6havu")]
+[node name="inventory" parent="hud" unique_id=227349631 node_paths=PackedStringArray("equipped_items") instance=ExtResource("38_6havu")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_jng3h")
+equipped_items = {
+"armor_equipped": null,
+"jewelry_equipped": null,
+"mainhand_equipped": null,
+"offhand_equipped": null
+}
 
 [node name="selectionWheelDarken" type="ColorRect" parent="hud" unique_id=1482172172]
 visible = false
