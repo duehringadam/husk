@@ -1127,6 +1127,7 @@ value = 0.5
 layout_mode = 2
 
 [node name="death" type="ColorRect" parent="hud" unique_id=575191084]
+visible = false
 material = SubResource("ShaderMaterial_7vtq1")
 layout_mode = 1
 anchors_preset = 15
@@ -1187,7 +1188,6 @@ color = Color(0, 0, 0, 0.446)
 [node name="SelectionWheel" parent="hud/selectionWheelDarken" unique_id=1649874519 instance=ExtResource("40_avbty")]
 unique_name_in_owner = true
 layout_mode = 1
-selected_option = 2
 
 [node name="HealthComponent" type="Node3D" parent="." unique_id=669479295]
 script = ExtResource("36_jaogv")

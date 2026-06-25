@@ -16,6 +16,9 @@ signal focused_item_changed(_item: item)
 @onready var item_name: Label = %itemName
 @onready var item_description: Label = %itemDescription
 @onready var item_type: Label = %itemType
+@onready var item_icon: TextureRect = %itemIcon
+
+
 @onready var open: AudioStreamPlayer = %open
 @onready var close: AudioStreamPlayer = %close
 
@@ -66,8 +69,13 @@ func _update_inventory(item_signal: item):
 			mainhand.add_child(item_add)
 			item_add.item_inventory = item_signal
 		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.OFFHAND:
-			offhand.add_child(item_add)
-			item_add.item_inventory = item_signal
+			if inventory.has(item_signal):
+				var stackable_offhand: int = inventory.find(item_signal)
+				if inventory[stackable_offhand].is_stackable:
+					inventory[stackable_offhand]._update_stack_size(1)
+			else:
+				offhand.add_child(item_add)
+				item_add.item_inventory = item_signal
 		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.ARMOR:
 			armor.add_child(item_add)
 			item_add.item_inventory = item_signal
@@ -125,4 +133,5 @@ func _update_display_text(_item: item):
 	item_name.text = focused_item.item_name
 	item_description.text = focused_item.item_description
 	item_type.text = ItemEquippableType.ITEM_EQUIPPABLE_TYPES.keys()[focused_item.item_type]
+	item_icon.texture = focused_item.item_icon
 	emit_signal("focused_item_changed", focused_item)

@@ -1,8 +1,7 @@
 [gd_scene format=3 uid="uid://5i8e6fsne4v5"]
 
 [ext_resource type="Script" uid="uid://gbfdqpek0no8" path="res://spell_fire.gd" id="1_0eavj"]
-[ext_resource type="Texture2D" uid="uid://bgpuc5rjm2yh5" path="res://scenes/MysticDungeon/Art/Textures/T_Fire01_SubUV.png" id="2_rf353"]
-[ext_resource type="Texture2D" uid="uid://185sjxt7oawt" path="res://scenes/misc/Textures/T_Fire01_SubUV_normal.png" id="3_stlr1"]
+[ext_resource type="Texture2D" uid="uid://bgpuc5rjm2yh5" path="res://scenes/misc/Textures/Fire_SubUV_new.png" id="2_rf353"]
 [ext_resource type="AudioStream" uid="uid://b1m60rkx5rn63" path="res://sfx/spells/fire/floraphonic-dragon-breathes-fire-3-191459.mp3" id="6_3yxkx"]
 [ext_resource type="AudioStream" uid="uid://sppeegtsqrlm" path="res://sfx/crackling-fire-sound-307026.mp3" id="6_rf353"]
 [ext_resource type="PackedScene" uid="uid://ckj86tch1kfph" path="res://scenes/VFX/Scenes/VFX_Fire_Constant_A3.tscn" id="6_stlr1"]
@@ -159,10 +158,13 @@ void fragment() {
 }
 "
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rf353"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_stlr1"]
 load_path = "res://.godot/imported/T_Fire01_Tiled_D_Yellow.png-9c405869613fc88dc21cf013a516e456.s3tc.ctex"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3yxkx"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3yxkx"]
+load_path = "res://.godot/imported/T_Fire01_SubUV_normal.png-622148f801a38d8aba8aafdc894e2ae3.s3tc.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eesq2"]
 render_priority = 0
 shader = SubResource("Shader_ypiio")
 shader_parameter/albedo = Color(1, 0.5176471, 0, 1)
@@ -176,19 +178,19 @@ shader_parameter/metallic = 0.0
 shader_parameter/particles_anim_h_frames = 6
 shader_parameter/particles_anim_v_frames = 6
 shader_parameter/particles_anim_loop = true
-shader_parameter/texture_emission = SubResource("CompressedTexture2D_rf353")
+shader_parameter/texture_emission = SubResource("CompressedTexture2D_stlr1")
 shader_parameter/emission = Color(1, 0.22658296, 0, 1)
 shader_parameter/emission_energy = 1.999999955296
-shader_parameter/texture_normal = ExtResource("3_stlr1")
+shader_parameter/texture_normal = SubResource("CompressedTexture2D_3yxkx")
 shader_parameter/normal_scale = 1.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
 
-[sub_resource type="QuadMesh" id="QuadMesh_eesq2"]
+[sub_resource type="QuadMesh" id="QuadMesh_gxvne"]
 resource_local_to_scene = true
-material = SubResource("ShaderMaterial_3yxkx")
+material = SubResource("ShaderMaterial_eesq2")
 size = Vector2(0.15, 0.15)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eesq2"]
@@ -210,7 +212,7 @@ amount = 16
 lifetime = 0.3
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_0eavj")
-draw_pass_1 = SubResource("QuadMesh_eesq2")
+draw_pass_1 = SubResource("QuadMesh_gxvne")
 
 [node name="firesfx" type="AudioStreamPlayer3D" parent="GPUParticles3D" unique_id=912230544]
 stream = ExtResource("6_3yxkx")

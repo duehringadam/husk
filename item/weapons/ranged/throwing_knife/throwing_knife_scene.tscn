@@ -1,16 +1,16 @@
 [gd_scene format=3 uid="uid://c1un1ajbl1gde"]
 
-[ext_resource type="Script" uid="uid://b7crflp7f72i4" path="res://item/weapons/ranged/throwing_knife/throwing_knife.gd" id="1_ur3uc"]
-[ext_resource type="PackedScene" uid="uid://r8h2k5l6aoy4" path="res://item/consumables/throwing knife/throwing_knife_item_world.tscn" id="2_u8anb"]
-[ext_resource type="ArrayMesh" uid="uid://dned7p4lyx1r3" path="res://scenes/Hivemind/MedievalWeapons/Art/Models/SM_ThrowingKnife/M_ThrowingKnife_Mesh.tres" id="3_5di55"]
-[ext_resource type="Shader" uid="uid://cba8frjri8tvn" path="res://shaders/first_person_arms.gdshader" id="4_ygvqg"]
-[ext_resource type="Texture2D" uid="uid://hqi3" path="res://scenes/Hivemind/MedievalWeapons/Art/Models/SM_ThrowingKnife/Throwingknife_C.png" id="5_sw6hx"]
+[ext_resource type="Script" uid="uid://b7crflp7f72i4" path="res://item/weapons/ranged/throwing_knife/throwing_knife.gd" id="1_qqodi"]
+[ext_resource type="PackedScene" uid="uid://vs5lcvf5sp5i" path="res://throwing_knife_projectile.tscn" id="2_chwrg"]
+[ext_resource type="ArrayMesh" uid="uid://dned7p4lyx1r3" path="res://scenes/Hivemind/MedievalWeapons/Art/Models/SM_ThrowingKnife/M_ThrowingKnife_Mesh.tres" id="2_dt6sp"]
+[ext_resource type="Shader" uid="uid://cba8frjri8tvn" path="res://shaders/first_person_arms.gdshader" id="3_chwrg"]
+[ext_resource type="Texture2D" uid="uid://hqi3" path="res://scenes/Hivemind/MedievalWeapons/Art/Models/SM_ThrowingKnife/Throwingknife_C.png" id="4_fedyr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lnhku"]
 render_priority = 0
-shader = ExtResource("4_ygvqg")
+shader = ExtResource("3_chwrg")
 shader_parameter/albedo = Color(1, 1, 1, 1)
-shader_parameter/texture_albedo = ExtResource("5_sw6hx")
+shader_parameter/texture_albedo = ExtResource("4_fedyr")
 shader_parameter/albedo_texture_size = Vector2i(0, 0)
 shader_parameter/point_size = 0.0
 shader_parameter/roughness = 0.0
@@ -29,10 +29,10 @@ shader_parameter/noise_softness = 0.05
 
 [node name="SM_ThrowingKnife2" type="Node3D" unique_id=858583056]
 transform = Transform3D(-1.0000001, 1.509958e-07, 0, -1.5099582e-07, -1, 0, 0, 0, 1.0000002, 0, 0, 0)
-script = ExtResource("1_ur3uc")
-knife = ExtResource("2_u8anb")
+script = ExtResource("1_qqodi")
+knife = ExtResource("2_chwrg")
 
 [node name="SM_ThrowingKnife" type="MeshInstance3D" parent="." unique_id=1706039702]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
-mesh = ExtResource("3_5di55")
+mesh = ExtResource("2_dt6sp")
 surface_material_override/0 = SubResource("ShaderMaterial_lnhku")
