@@ -879,7 +879,9 @@ collision_mask = 2
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 7.105428e-15, 0, 1, 0, -7.105428e-15, 0, 1, 0, -1.6, -0.8)
 stream = ExtResource("12_hqsyx")
-volume_db = -20.0
+volume_db = -25.0
+max_db = 0.0
+max_polyphony = 2
 panning_strength = 2.0
 bus = &"SFX"
 
@@ -1127,7 +1129,6 @@ value = 0.5
 layout_mode = 2
 
 [node name="death" type="ColorRect" parent="hud" unique_id=575191084]
-visible = false
 material = SubResource("ShaderMaterial_7vtq1")
 layout_mode = 1
 anchors_preset = 15

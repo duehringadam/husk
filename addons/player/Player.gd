@@ -145,8 +145,8 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	footsteps.stream = footsteps_sound
 	SignalBus.emit_signal("player_ready")
-	if current_checkpoint != null:
-		global_position = current_checkpoint.global_position + Vector3.LEFT
+	if SaveConfig.get_config("Location", "Saved Position") != null:
+		global_position = SaveConfig.get_config("Location", "Saved Position")
 	
 func _on_combat_type_changed(value: int):
 	combat_type = value

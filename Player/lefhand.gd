@@ -85,6 +85,8 @@ func telekinesis_fail():
 	animation_tree.set("parameters/conditions/throw", false)
 	animation_tree.set("parameters/conditions/hold", false)
 
+func consumable_offhand_reequip():
+	bone_attachment.get_child(0).play_equip()
 
 func _on_ray_cast_3d_interaction_controller_pickable_grabbed(value: bool) -> void:
 	if value and !telekinesis_hold_bool:

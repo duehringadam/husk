@@ -1,19 +1,16 @@
-extends Object
+extends Node
 
-const LOCATION_SECTION = &'LOCATION'
-const INVENTORY_SECTION = &'INVENTORY'
-const PLAYER_STATS_SECTION = &'PLAYER_STATS'
-const ENEMY_LIST_SECTION = &'ENEMY_LIST'
+const LOCATION_SECTION = &'Location'
+const INVENTORY_SECTION = &'Inventory'
+const PLAYER_STATS_SECTION = &'Player_stats'
+const ENEMY_LIST_SECTION = &'Enemy_list'
 
 #region Checkpoint
-func set_checkpoint():
-	pass
+func set_checkpoint(checkpoint_location: String, default = null) -> void:
+	SaveConfig.set_config(LOCATION_SECTION , checkpoint_location, default)
 
-func set_checkpoint_from_config():
-	pass
-
-func get_checkpoint_from_config():
-	pass
+func get_checkpoint_from_config(checkpoint_location: String, default = null) -> String:
+	return SaveConfig.get_config(LOCATION_SECTION , checkpoint_location, default)
 #endregion
 
 #region Inventory

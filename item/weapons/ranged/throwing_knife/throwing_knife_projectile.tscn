@@ -1,21 +1,23 @@
 [gd_scene format=3 uid="uid://vs5lcvf5sp5i"]
 
-[ext_resource type="Script" uid="uid://cwqthlqktu6dk" path="res://physics_projectile.gd" id="1_l54j7"]
-[ext_resource type="ArrayMesh" uid="uid://dned7p4lyx1r3" path="res://scenes/Hivemind/MedievalWeapons/Art/Models/SM_ThrowingKnife/M_ThrowingKnife_Mesh.tres" id="2_l54j7"]
-[ext_resource type="Texture2D" uid="uid://hqi3" path="res://scenes/Hivemind/MedievalWeapons/Art/Models/SM_ThrowingKnife/Throwingknife_C.png" id="3_n88tk"]
-[ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="4_d23tu"]
-[ext_resource type="Shader" uid="uid://bd6eynp1qsy0g" path="res://addons/GPUTrail-main/shaders/trail.gdshader" id="5_gg3rn"]
-[ext_resource type="Shader" uid="uid://bnbfs08hp70x0" path="res://addons/GPUTrail-main/shaders/trail_draw_pass.gdshader" id="6_mgv5b"]
-[ext_resource type="Script" uid="uid://dwsn7gxfshtf8" path="res://addons/GPUTrail-main/GPUTrail3D.gd" id="7_ocjvf"]
+[ext_resource type="Script" uid="uid://cwqthlqktu6dk" path="res://physics_projectile.gd" id="1_7xchk"]
+[ext_resource type="ArrayMesh" uid="uid://dned7p4lyx1r3" path="res://scenes/Hivemind/MedievalWeapons/Art/Models/SM_ThrowingKnife/M_ThrowingKnife_Mesh.tres" id="2_iwqu6"]
+[ext_resource type="Texture2D" uid="uid://hqi3" path="res://scenes/Hivemind/MedievalWeapons/Art/Models/SM_ThrowingKnife/Throwingknife_C.png" id="3_crhos"]
+[ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="4_hj62b"]
+[ext_resource type="AudioStream" uid="uid://cpmgudxbe0aw3" path="res://item/consumables/throwing knife/sfx/Knife_Stab_Flesh.wav" id="5_lv6ak"]
+[ext_resource type="Shader" uid="uid://bd6eynp1qsy0g" path="res://addons/GPUTrail-main/shaders/trail.gdshader" id="6_f05pk"]
+[ext_resource type="Shader" uid="uid://bnbfs08hp70x0" path="res://addons/GPUTrail-main/shaders/trail_draw_pass.gdshader" id="7_l6pfn"]
+[ext_resource type="Script" uid="uid://dwsn7gxfshtf8" path="res://addons/GPUTrail-main/GPUTrail3D.gd" id="8_p2ac1"]
+[ext_resource type="AudioStream" uid="uid://dl87y5jms6tmp" path="res://item/consumables/throwing knife/sfx/Knife_Stab_Terrain.wav" id="9_aqcxk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nkawy"]
-albedo_texture = ExtResource("3_n88tk")
+albedo_texture = ExtResource("3_crhos")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_n88tk"]
 size = Vector3(0.078712836, 0.14794922, 0.04869339)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nasbm"]
-shader = ExtResource("5_gg3rn")
+shader = ExtResource("6_f05pk")
 
 [sub_resource type="Gradient" id="Gradient_eha57"]
 colors = PackedColorArray(0.40392157, 0.40392157, 0.40392157, 0.5137255, 1, 1, 1, 0)
@@ -41,7 +43,7 @@ noise = SubResource("FastNoiseLite_d4jfj")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qbim7"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource("6_mgv5b")
+shader = ExtResource("7_l6pfn")
 shader_parameter/tex = SubResource("NoiseTexture2D_gpyuj")
 shader_parameter/uv_offset = Vector2(0, 0)
 shader_parameter/color_ramp = SubResource("GradientTexture1D_mt81f")
@@ -56,22 +58,24 @@ material = SubResource("ShaderMaterial_qbim7")
 size = Vector3(0.028320313, 0.12011719, 0.020507813)
 
 [node name="projectile" type="RigidBody3D" unique_id=1104421313]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
 collision_mask = 14
+axis_lock_angular_z = true
 continuous_cd = true
 contact_monitor = true
 max_contacts_reported = 1
-script = ExtResource("1_l54j7")
+script = ExtResource("1_7xchk")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1623547994]
 transform = Transform3D(3, 0, 0, 0, -1.3113416e-07, -3, 0, 3, -1.3113416e-07, 0, 0, 0.036728993)
-mesh = ExtResource("2_l54j7")
+mesh = ExtResource("2_iwqu6")
 surface_material_override/0 = SubResource("StandardMaterial3D_nkawy")
 
 [node name="DamageComponent" type="Area3D" parent="MeshInstance3D" unique_id=285468105]
 transform = Transform3D(-0.0499742, 0, -0.00160455, 0, 0.05, 0, 0.00160455, 0, -0.0499742, 0, 0, 0)
 collision_layer = 0
 collision_mask = 14
-script = ExtResource("4_d23tu")
+script = ExtResource("4_hj62b")
 damage_types = Dictionary[int, float]({
 2: 15.0
 })
@@ -81,17 +85,24 @@ metadata/_custom_type_script = "uid://dlsydctoxqbwy"
 transform = Transform3D(-19.98972, 0, 0.64182127, 0, 20.000002, 0, -0.64182127, 0, -19.98972, 0.019429613, -0.66009486, 0.12461214)
 shape = SubResource("BoxShape3D_n88tk")
 
+[node name="damage" type="AudioStreamPlayer3D" parent="MeshInstance3D/DamageComponent" unique_id=1062580463]
+stream = ExtResource("5_lv6ak")
+volume_db = 6.0
+max_db = 6.0
+max_distance = 10.0
+bus = &"SFX"
+
 [node name="GPUTrail3D" type="GPUParticles3D" parent="MeshInstance3D" unique_id=1431409287]
-transform = Transform3D(0.010367136, 0.0077833254, 4.325063e-08, 4.4189598e-08, -3.4023787e-10, 1.0000001, 0.9999473, -8.069503e-05, -4.4640313e-08, 0.0040647867, 0.01679179, -0.00047113403)
-amount = 82
-lifetime = 82.0
+transform = Transform3D(0.010367138, 0.0077833254, 4.3250633e-08, 4.4189598e-08, -3.4023792e-10, 1.0000002, 0.9999473, -8.069504e-05, -4.464032e-08, 0.0040647867, 0.01679179, -0.00047113415)
+amount = 20
+lifetime = 20.0
 explosiveness = 1.0
 fixed_fps = 164
 process_material = SubResource("ShaderMaterial_nasbm")
 draw_pass_1 = SubResource("QuadMesh_7vtg1")
-script = ExtResource("7_ocjvf")
-length = 82
-length_seconds = 0.5
+script = ExtResource("8_p2ac1")
+length = 20
+length_seconds = 0.12195121951219512
 texture = SubResource("NoiseTexture2D_gpyuj")
 color_ramp = SubResource("GradientTexture1D_mt81f")
 curve = SubResource("CurveTexture_448nf")
@@ -109,6 +120,13 @@ target_position = Vector3(0, 0, -1)
 collision_mask = 2
 hit_from_inside = true
 debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="terrain" type="AudioStreamPlayer3D" parent="." unique_id=2052246404]
+stream = ExtResource("9_aqcxk")
+volume_db = 6.0
+max_db = 6.0
+max_distance = 10.0
+bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="area_entered" from="MeshInstance3D/DamageComponent" to="." method="_on_damage_component_area_entered"]

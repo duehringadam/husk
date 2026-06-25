@@ -62,6 +62,7 @@ metadata/_custom_type_script = "uid://bxe74cq2uqemi"
 mesh = NodePath("../Reflecting Pool")
 
 [node name="OverlaidMenuContainer" parent="." unique_id=289236236 instance=ExtResource("7_7dqgm")]
+process_mode = 4
 visible = false
 
 [connection signal="on_complete" from="InteractionContainer/rest" to="." method="_on_rest_on_complete"]
