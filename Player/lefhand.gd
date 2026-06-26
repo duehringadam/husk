@@ -32,7 +32,6 @@ func _set_item(new_item):
 		if bone_attachment.get_child_count() != 0:
 			unequip()
 		state_chart.send_event("idle")
-		enable()
 		var item_add = new_item.item_scene.instantiate()
 		item_add.position = weapon.position
 		item_add.rotation_degrees = weapon.rotation
@@ -42,6 +41,7 @@ func _set_item(new_item):
 		await get_tree().create_timer(.1).timeout
 		animation_tree.active = true
 		bone_attachment.add_child(item_add)
+		enable()
 
 func unequip():
 	state_chart.send_event("lower")
@@ -62,9 +62,10 @@ func disable():
 	tween.tween_property(arms_base, "rotation_degrees:x", -90, .25)
 	
 func enable():
-	can_activate = true
-	var tween = get_tree().create_tween()
-	tween.tween_property(arms_base, "rotation_degrees:x", 0, .25)
+	if mainhand.weapon != null && !mainhand.weapon.two_handed:
+		can_activate = true
+		var tween = get_tree().create_tween()
+		tween.tween_property(arms_base, "rotation_degrees:x", 0, .25)
 
 func telekinesis_hold():
 	telekinesis_hold_bool = true
@@ -84,6 +85,16 @@ func telekinesis_fail():
 	animation_tree.set("parameters/conditions/throw", false)
 	animation_tree.set("parameters/conditions/hold", false)
 
+func consumable_offhand_reequip():
+	if is_instance_valid(bone_attachment.get_child(0)):
+		bone_attachment.get_child(0).play_equip()
+
+func consumable_offhand_stack_size_change(value: int):
+	if weapon.is_stackable:
+		weapon._update_stack_size(value)
+		if weapon.current_stack_size <= 0:
+			unequip()
+			disable()
 
 func _on_ray_cast_3d_interaction_controller_pickable_grabbed(value: bool) -> void:
 	if value and !telekinesis_hold_bool:

@@ -79,7 +79,7 @@ func _set_item(new_item: item):
 			item_left_add.position = weapon.left_position
 			item_left_add.rotation_degrees = weapon.left_rotation
 			left_bone_attachment.add_child(item_left_add)
-		
+		enable()
 
 func unequip():
 	state_chart.send_event("lower")

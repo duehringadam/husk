@@ -54,7 +54,7 @@ grow_begin = -100.0
 grow_end = -100.0
 thickness = 2
 
-[node name="inventory" type="PanelContainer" unique_id=227349631]
+[node name="inventory" type="PanelContainer" unique_id=227349631 node_paths=PackedStringArray("equipped_items")]
 custom_minimum_size = Vector2(550, 0)
 anchors_preset = 15
 anchor_right = 1.0
@@ -67,6 +67,12 @@ focus_behavior_recursive = 1
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ldn6o")
 script = ExtResource("1_vm4gm")
+equipped_items = {
+"armor_equipped": null,
+"jewelry_equipped": null,
+"mainhand_equipped": null,
+"offhand_equipped": null
+}
 
 [node name="UISoundController" type="Node" parent="." unique_id=1462781421]
 script = ExtResource("2_qdie2")

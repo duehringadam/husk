@@ -157,13 +157,14 @@ render_priority = 1
 transparency = 1
 vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
+albedo_color = Color(0.46618086, 0.4661808, 0.4661808, 1)
 albedo_texture = ExtResource("9_k10ug")
 emission = Color(1, 0.34409294, 0, 1)
 billboard_mode = 3
 billboard_keep_scale = true
 particles_anim_h_frames = 8
 particles_anim_v_frames = 8
-particles_anim_loop = false
+particles_anim_loop = true
 
 [sub_resource type="QuadMesh" id="QuadMesh_ipfrt"]
 material = SubResource("StandardMaterial3D_emcqu")
@@ -414,7 +415,7 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 
 layers = 2
 cast_shadow = 0
 emitting = false
-amount = 4
+amount = 16
 lifetime = 0.7
 randomness = 1.0
 fixed_fps = 60

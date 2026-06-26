@@ -2,6 +2,7 @@
 
 [ext_resource type="AnimationNodeStateMachine" uid="uid://bnag3oppwh7b3" path="res://Player/viewmodel/animations/hands/animation_state_machines/two_handed_mace_state_machine.tres" id="1_pmu86"]
 [ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/item_stat.gd" id="2_8o8e1"]
+[ext_resource type="Texture2D" uid="uid://c5pd3hbk0aba5" path="res://item/icons/blade/blade.svg/icons/ffffff/000000/1x1/spiked-mace.svg" id="2_lrhrq"]
 [ext_resource type="PackedScene" uid="uid://b3g3uwvhyvey7" path="res://heavy_mace_redo.tscn" id="2_yff1m"]
 [ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/item.gd" id="3_yff1m"]
 
@@ -20,6 +21,7 @@ metadata/_custom_type_script = "uid://bbtfrupllo3w6"
 script = ExtResource("3_yff1m")
 item_name = "Morning Star"
 item_description = "A hefty wrought iron mace with crude spikes."
+item_icon = ExtResource("2_lrhrq")
 item_stats = SubResource("Resource_pmu86")
 charge_time = 1.25
 item_scene = ExtResource("2_yff1m")

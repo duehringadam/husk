@@ -3,6 +3,7 @@
 [ext_resource type="AnimationNodeStateMachine" uid="uid://cy3nqarb8txva" path="res://Player/viewmodel/animations/hands/animation_state_machines/offhand_telekinesis_state_machine.tres" id="1_nt2pq"]
 [ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/item_stat.gd" id="2_nt2pq"]
 [ext_resource type="PackedScene" uid="uid://b2u7yd1ub8g3l" path="res://spell_telekinesis.tscn" id="2_vbd5e"]
+[ext_resource type="Texture2D" uid="uid://dc28qjl1ksva2" path="res://item/icons/magic/explosion.svg/icons/ffffff/000000/1x1/lorc/egg-defense.svg" id="2_w56sd"]
 [ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/item.gd" id="3_vbd5e"]
 
 [sub_resource type="Resource" id="Resource_cb3g8"]
@@ -16,6 +17,7 @@ metadata/_custom_type_script = "uid://bbtfrupllo3w6"
 script = ExtResource("3_vbd5e")
 item_name = "Telekinesis"
 item_description = "Manipulate objects with gravity magic"
+item_icon = ExtResource("2_w56sd")
 item_type = 1
 item_stats = SubResource("Resource_cb3g8")
 item_required_stats = Dictionary[int, int]({

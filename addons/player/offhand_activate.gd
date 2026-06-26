@@ -11,6 +11,7 @@ func _on_activate_state_entered() -> void:
 
 func _on_activate_state_exited() -> void:
 	left_hand.bone_attachment.get_child(0).deactivate()
+	
 
 
 func _on_activate_state_physics_processing(delta: float) -> void:

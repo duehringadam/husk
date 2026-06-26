@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://c1un1ajbl1gde"]
+
+[ext_resource type="Script" uid="uid://b7crflp7f72i4" path="res://item/weapons/ranged/throwing_knife/throwing_knife.gd" id="1_qqodi"]
+[ext_resource type="PackedScene" uid="uid://vs5lcvf5sp5i" path="res://item/weapons/ranged/throwing_knife/throwing_knife_projectile.tscn" id="2_chwrg"]
+[ext_resource type="ArrayMesh" uid="uid://dned7p4lyx1r3" path="res://scenes/Hivemind/MedievalWeapons/Art/Models/SM_ThrowingKnife/M_ThrowingKnife_Mesh.tres" id="2_dt6sp"]
+[ext_resource type="Shader" uid="uid://cba8frjri8tvn" path="res://shaders/first_person_arms.gdshader" id="3_chwrg"]
+[ext_resource type="Texture2D" uid="uid://hqi3" path="res://scenes/Hivemind/MedievalWeapons/Art/Models/SM_ThrowingKnife/Throwingknife_C.png" id="4_fedyr"]
+[ext_resource type="AudioStream" uid="uid://b3jonc2k186ci" path="res://item/consumables/throwing knife/sfx/Knife_Equip.wav" id="6_fedyr"]
+[ext_resource type="AudioStream" uid="uid://bb81j38vdiwrm" path="res://item/consumables/throwing knife/sfx/Knife_Aim.wav" id="7_b70pn"]
+[ext_resource type="AudioStream" uid="uid://3u0oqdagrlvr" path="res://item/consumables/throwing knife/sfx/KnifeThrowtest1.wav" id="7_tx7j0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lnhku"]
+render_priority = 0
+shader = ExtResource("3_chwrg")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("4_fedyr")
+shader_parameter/albedo_texture_size = Vector2i(0, 0)
+shader_parameter/point_size = 0.0
+shader_parameter/roughness = 0.0
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
+shader_parameter/specular = 0.0
+shader_parameter/metallic = 0.0
+shader_parameter/normal_scale = 1.0
+shader_parameter/uv1_scale = Vector3(0, 0, 0)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(0, 0, 0)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/FOV = 75.0
+shader_parameter/overlay_color = Color(1, 0, 0, 1)
+shader_parameter/progress = 0.0
+shader_parameter/noise_softness = 0.05
+
+[node name="SM_ThrowingKnife2" type="Node3D" unique_id=858583056]
+transform = Transform3D(-1.0000001, 1.509958e-07, 0, -1.5099582e-07, -1, 0, 0, 0, 1.0000002, 0, 0, 0)
+script = ExtResource("1_qqodi")
+knife = ExtResource("2_chwrg")
+
+[node name="SM_ThrowingKnife" type="MeshInstance3D" parent="." unique_id=1706039702]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+mesh = ExtResource("2_dt6sp")
+surface_material_override/0 = SubResource("ShaderMaterial_lnhku")
+
+[node name="equip" type="AudioStreamPlayer3D" parent="." unique_id=1707906851]
+unique_name_in_owner = true
+stream = ExtResource("6_fedyr")
+volume_db = 6.0
+max_db = 6.0
+bus = &"SFX"
+
+[node name="aim" type="AudioStreamPlayer3D" parent="." unique_id=2063288116]
+unique_name_in_owner = true
+stream = ExtResource("7_b70pn")
+volume_db = 6.0
+max_db = 6.0
+bus = &"SFX"
+
+[node name="throw" type="AudioStreamPlayer3D" parent="." unique_id=324039968]
+unique_name_in_owner = true
+stream = ExtResource("7_tx7j0")
+volume_db = 6.0
+max_db = 6.0
+bus = &"SFX"

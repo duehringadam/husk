@@ -63,6 +63,8 @@ Optional: %jump, %sprint, %crouch, %lean, %zoom, %switch_hands
 @export var weapon_rotation_amount : float = 1
 @export var invert_weapon_sway : bool = false
 
+@export_category("Checkpoint and Respawn")
+@export var current_checkpoint: Node3D
 ## Control where x and z values will control the movement direction of the player
 ## The value_3d must have a value of (0, 0, -1) for moving forward
 ## and a value of (1, 0, 0) for moving/strafing right
@@ -143,6 +145,10 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	footsteps.stream = footsteps_sound
 	SignalBus.emit_signal("player_ready")
+	
+	
+	if SaveConfig.get_config("Location", "Saved Position") != null:
+		global_position = SaveConfig.get_config("Location", "Saved Position")
 	
 func _on_combat_type_changed(value: int):
 	combat_type = value
@@ -350,6 +356,7 @@ func look_around() -> void:
 	head.rotate_y(look_control.value_axis_2d().x * (mouse_sensitivity * sens_mult))
 	neck.rotate_x(look_control.value_axis_2d().y * (mouse_sensitivity * sens_mult))
 	neck.rotation.x = clamp(neck.rotation.x, deg_to_rad(-85), deg_to_rad(85))
+	
 
 
 func handle_movement(delta: float) -> void:
@@ -379,6 +386,7 @@ func handle_movement(delta: float) -> void:
 
 func handle_head_bob(delta: float) -> void:
 	if PlayerConfig.get_config("GameSettings", "HeadBob", 0):
+		camera.rotation_degrees.z = lerpf(camera.rotation_degrees.z,clampf((camera.rotation_degrees.z-mouse_movement.x),-1,1),4*delta)
 		bob_time += delta * velocity.length() * float(is_on_floor())
 		var pos: Vector3 = Vector3.ZERO
 		pos.y = sin(bob_time * BOB_FREQ) * head_bob_strength
@@ -486,6 +494,8 @@ func weapon_sway(delta):
 	if can_attack:
 		mouse_movement = lerp(mouse_movement,Vector2.ZERO,10*delta)
 		if mainhand:
+			mainhand.rotation.x = lerpf(mainhand.rotation.x, clampf(mouse_movement.y * weapon_rotation_amount * (-1 if invert_weapon_sway else 1),-.2,.2), delta)
+			mainhand.rotation.y = lerpf(mainhand.rotation.y, clampf(mouse_movement.y * weapon_rotation_amount * (-1 if invert_weapon_sway else 1),-.02,.02), delta)
 			mainhand.rotation.x = lerpf(mainhand.rotation.x, clampf(mouse_movement.y * weapon_rotation_amount * (-1 if invert_weapon_sway else 1),-.2,.2), delta)
 			mainhand.rotation.y = lerpf(mainhand.rotation.y, clampf(mouse_movement.y * weapon_rotation_amount * (-1 if invert_weapon_sway else 1),-.02,.02), delta)
 		if offhand:
