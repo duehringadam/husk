@@ -86,7 +86,15 @@ func telekinesis_fail():
 	animation_tree.set("parameters/conditions/hold", false)
 
 func consumable_offhand_reequip():
-	bone_attachment.get_child(0).play_equip()
+	if is_instance_valid(bone_attachment.get_child(0)):
+		bone_attachment.get_child(0).play_equip()
+
+func consumable_offhand_stack_size_change(value: int):
+	if weapon.is_stackable:
+		weapon._update_stack_size(value)
+		if weapon.current_stack_size <= 0:
+			unequip()
+			disable()
 
 func _on_ray_cast_3d_interaction_controller_pickable_grabbed(value: bool) -> void:
 	if value and !telekinesis_hold_bool:
