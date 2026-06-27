@@ -29,6 +29,7 @@ func _set_item(new_item):
 		if mainhand.weapon != null:
 			if mainhand.weapon.two_handed:
 				mainhand.unequip()
+				mainhand.disable()
 		if bone_attachment.get_child_count() != 0:
 			unequip()
 		state_chart.send_event("idle")
@@ -63,6 +64,10 @@ func disable():
 	
 func enable():
 	if mainhand.weapon != null && !mainhand.weapon.two_handed:
+		can_activate = true
+		var tween = get_tree().create_tween()
+		tween.tween_property(arms_base, "rotation_degrees:x", 0, .25)
+	if mainhand.weapon == null:
 		can_activate = true
 		var tween = get_tree().create_tween()
 		tween.tween_property(arms_base, "rotation_degrees:x", 0, .25)

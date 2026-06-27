@@ -2,6 +2,8 @@
 ## Stuff here?
 class_name Player extends CharacterBody3D
 
+@export var spawn_at_checkpoint: bool = false
+
 @export_category("Player Stats")
 @export var player_stats: Dictionary[ItemEquippableType.ITEM_REQUIRED_STAT, int]: set = _update_player_stats
 
@@ -134,6 +136,7 @@ var is_vaulting: bool = false
 var can_kick: bool = true
 
 func _ready() -> void:
+	if Engine.is_editor_hint(): return
 	SignalBus.connect("primary_active", _animate_camera_swing)
 	SignalBus.connect("primary_active", _set_weapon_active)
 	SignalBus.connect("secondary_active", _set_weapon_active)
@@ -141,13 +144,11 @@ func _ready() -> void:
 	combat_type = PlayerConfig.get_config("GameSettings", "DirectionalCombat", 0)
 	GamePiecesEventBus.combat_type.connect(_on_combat_type_changed)
 	Global.camera_fov = base_fov
-	if Engine.is_editor_hint(): return
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	footsteps.stream = footsteps_sound
 	SignalBus.emit_signal("player_ready")
 	
-	
-	if SaveConfig.get_config("Location", "Saved Position") != null:
+	if SaveConfig.get_config("Location", "Saved Position") != null && spawn_at_checkpoint:
 		global_position = SaveConfig.get_config("Location", "Saved Position")
 	
 func _on_combat_type_changed(value: int):
@@ -386,7 +387,8 @@ func handle_movement(delta: float) -> void:
 
 func handle_head_bob(delta: float) -> void:
 	if PlayerConfig.get_config("GameSettings", "HeadBob", 0):
-		camera.rotation_degrees.z = lerpf(camera.rotation_degrees.z,clampf((camera.rotation_degrees.z-mouse_movement.x),-1,1),4*delta)
+		if !lock_camera:
+			camera.rotation_degrees.z = lerpf(camera.rotation_degrees.z,clampf((camera.rotation_degrees.z-mouse_movement.x),-1,1),4*delta)
 		bob_time += delta * velocity.length() * float(is_on_floor())
 		var pos: Vector3 = Vector3.ZERO
 		pos.y = sin(bob_time * BOB_FREQ) * head_bob_strength

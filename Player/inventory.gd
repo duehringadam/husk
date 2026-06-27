@@ -12,11 +12,29 @@ signal focused_item_changed(_item: item)
 @onready var armor: GridContainer = %Armor
 @onready var key: GridContainer = %key
 @onready var consumable: GridContainer = %consumable
+@onready var item_list_tabs: TabContainer = %itemListTabs
 
 @onready var item_name: Label = %itemName
 @onready var item_description: Label = %itemDescription
 @onready var item_type: Label = %itemType
 @onready var item_icon: TextureRect = %itemIcon
+
+@onready var quickselect: Button = %quickselect
+@onready var quickselect_2: Button = %quickselect2
+@onready var quickselect_3: Button = %quickselect3
+@onready var quickselect_4: Button = %quickselect4
+@onready var mainhand_button: Button = %mainhand_button
+@onready var offhand_button: Button = %offhand_button
+@onready var ammo_button: Button = %ammo_button
+@onready var jewelry_button: Button = %jewelry_button
+@onready var leg_button: Button = %leg_button
+@onready var chest_button: Button = %chest_button
+
+
+@onready var equipment: NinePatchRect = %equipment
+@onready var item_list: NinePatchRect = %itemList
+@onready var item_info: NinePatchRect = %itemInfo
+@onready var player_stats: NinePatchRect = %playerStats
 
 
 @onready var open: AudioStreamPlayer = %open
@@ -24,6 +42,8 @@ signal focused_item_changed(_item: item)
 
 var focused_item: item
 var item_add_inventory = preload("res://item_inventory.tscn")
+var transition_from_equip_screen: bool = false
+
 
 func _ready() -> void:
 	SignalBus.item_interact.connect(_update_inventory)
@@ -101,22 +121,32 @@ func _update_equipped_items(item_inv_interact: item_inventory_interact):
 			if equipped_items["mainhand_equipped"] != null:
 				equipped_items["mainhand_equipped"].is_equipped = false
 			equipped_items["mainhand_equipped"] = item_inv_interact
+			mainhand_button.icon = item_inv_interact.item_inventory.item_icon
 			item_inv_interact.is_equipped = true
 		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.OFFHAND:
 			if equipped_items["offhand_equipped"] != null:
 				equipped_items["offhand_equipped"].is_equipped = false
 			equipped_items["offhand_equipped"] = item_inv_interact
+			offhand_button.icon = item_inv_interact.item_inventory.item_icon
 			item_inv_interact.is_equipped = true
 		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.ARMOR:
 			if equipped_items["armor_equipped"] != null:
 				equipped_items["armor_equipped"].is_equipped = false
 			equipped_items["armor_equipped"] = item_inv_interact
+			
 			item_inv_interact.is_equipped = true
 		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.JEWELRY:
 			if equipped_items["jewelry_equipped"] != null:
 				equipped_items["jewelry_equipped"].is_equipped = false
 			equipped_items["jewelry_equipped"] = item_inv_interact
+			jewelry_button.icon = item_inv_interact.item_inventory.item_icon
 			item_inv_interact.is_equipped = true
+			
+	if transition_from_equip_screen:
+		transition_from_equip_screen = false
+		equipment.visible = true
+		item_list.visible = false
+		item_info.visible = false
 
 func _remove_item(item_inventory: item):
 	if inventory.has(item_inventory):
@@ -135,3 +165,54 @@ func _update_display_text(_item: item):
 	item_type.text = ItemEquippableType.ITEM_EQUIPPABLE_TYPES.keys()[focused_item.item_type]
 	item_icon.texture = focused_item.item_icon
 	emit_signal("focused_item_changed", focused_item)
+
+
+func _on_mainhand_button_pressed() -> void:
+	equipment.visible = false
+	item_list.visible = true
+	item_info.visible = true
+	transition_from_equip_screen = true
+	var tab_index: int = item_list_tabs.get_tab_count() - 1
+	for i in tab_index:
+		if item_list_tabs.get_tab_title(i) == "Mainhand":
+			item_list_tabs.current_tab = i
+
+
+func _on_offhand_button_pressed() -> void:
+	equipment.visible = false
+	item_list.visible = true
+	item_info.visible = true 
+	transition_from_equip_screen = true
+	var tab_index: int = item_list_tabs.get_tab_count() - 1
+	for i in tab_index:
+		if item_list_tabs.get_tab_title(i) == "Offhand":
+			item_list_tabs.current_tab = i
+
+func _on_jewelry_button_pressed() -> void:
+	equipment.visible = false
+	item_list.visible = true
+	item_info.visible = true 
+	transition_from_equip_screen = true
+	var tab_index: int = item_list_tabs.get_tab_count() - 1
+	for i in tab_index:
+		if item_list_tabs.get_tab_title(i) == "Jewelry":
+			item_list_tabs.current_tab = i
+
+
+func _on_leg_button_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_chest_button_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_ammo_button_pressed() -> void:
+	equipment.visible = false
+	item_list.visible = true
+	item_info.visible = true 
+	transition_from_equip_screen = true
+	var tab_index: int = item_list_tabs.get_tab_count() - 1
+	for i in tab_index:
+		if item_list_tabs.get_tab_title(i) == "Consumables":
+			item_list_tabs.current_tab = i

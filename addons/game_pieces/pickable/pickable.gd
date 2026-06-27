@@ -1,8 +1,6 @@
 class_name Pickable
 extends RigidBody3D
 
-@export var can_pin: bool = false
-
 @export var pull_force: float = 15
 @export var throw_power: float = 10
 @export var interaction_context_when_grabbed: int = 1
@@ -31,6 +29,10 @@ var _delay_timer: Tween = null
 var hold_time: float
 var holding_input = false
 var shattered_mesh_add
+var is_thrown: bool = false
+
+const MAX_DAMAGE_SCALE_VELOCITY: float = 9.0
+const MIN_DAMAGE_SCALE_VELOCITY: float = 1.1
 
 func _ready() -> void:
 	if shattered_mesh:
@@ -43,13 +45,15 @@ func _physics_process(_delta: float) -> void:
 		var distance_to_player: float = ray_cast.global_position.distance_to(global_position)
 		if distance_to_player > release_distance * _position_offset:
 			_released(_interaction_controller)
-	if linear_velocity.length() > 9:
+	if linear_velocity.length() > 1 && !is_thrown:
 		damage_component.monitorable = true
 		damage_component.monitoring = true
-	else:
+		for i in damage_component.damage_types:
+			damage_component.damage_types[i] = clampf(linear_velocity.length()/MAX_DAMAGE_SCALE_VELOCITY, MIN_DAMAGE_SCALE_VELOCITY, MAX_DAMAGE_SCALE_VELOCITY)
+			damage_component.stance_damage_value = clampf(linear_velocity.length()/MAX_DAMAGE_SCALE_VELOCITY, 0.0, 1.0)
+	if linear_velocity.length() < 1:
 		damage_component.monitorable = false
 		damage_component.monitoring = false
-
 
 func _integrate_forces(_state: PhysicsDirectBodyState3D) -> void:
 	if not _is_grabbed: return
@@ -168,6 +172,10 @@ func _stopped_rotating(controller: InteractionController) -> void:
 
 func _on_throw(controller: InteractionController) -> void:
 	if controller != _interaction_controller: return
+	is_thrown = true
+	damage_component.monitorable = true
+	damage_component.monitoring = true
+	damage_component.stance_damage_value = 1.0
 	_released(controller)
 	InteractionContainer.from(self).disable() # Disable interactions while throwing
 	var reference_node: Node3D = controller.get_parent()
@@ -187,10 +195,7 @@ func set_transparency(object: Node, value: float) -> void:
 		mesh.transparency = value
 
 func _on_damage_component_damage_dealt(types: Dictionary[DamageTypes.DAMAGE_TYPES, float], actual: float, stance_damage: float, target: hurtbox_component) -> void:
-		if can_pin:
-			if target.owner is not Player:
-				self.queue_free()
-			
+		pass
 		#health_component.modify_health(-(throwable.linear_velocity.length()))
 
 
