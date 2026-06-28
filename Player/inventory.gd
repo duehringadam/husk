@@ -126,7 +126,8 @@ func _update_equipped_items(item_inv_interact: item_inventory_interact):
 			mainhand_button.icon = item_inv_interact.item_inventory.item_icon
 			item_inv_interact.is_equipped = true
 			if item_inv_interact.item_inventory.two_handed:
-				_on_left_hand_unequip_item()
+				offhand_button.icon = null
+				equipped_items["offhand_equipped"] = null
 		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.OFFHAND:
 			if equipped_items["offhand_equipped"] != null:
 				equipped_items["offhand_equipped"].is_equipped = false
@@ -210,16 +211,6 @@ func _on_ammo_button_pressed() -> void:
 	for i in item_list_count:
 		if item_list_tabs.get_tab_title(i) == "Consumables":
 			item_list_tabs.current_tab = i
-
-
-func _on_right_hand_unequip_item() -> void:
-	mainhand_button.icon = null
-	equipped_items["mainhand_equipped"].is_equipped = false
-
-func _on_left_hand_unequip_item() -> void:
-	if equipped_items["offhand_equipped"] != null:
-		offhand_button.icon = null
-		equipped_items["offhand_equipped"].is_equipped = false
 
 
 func _on_tab_bar_tab_changed(tab: int) -> void:

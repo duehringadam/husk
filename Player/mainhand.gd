@@ -1,6 +1,7 @@
 extends Node3D
 
-signal unequip_item
+signal unequip_item(_weapon: item)
+signal equip_item(_weapon: item)
 
 @export var weapon: item: set = _set_item
 @export var offhand: Node3D
