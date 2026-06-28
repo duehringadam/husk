@@ -12,6 +12,7 @@ signal focused_item_changed(_item: item)
 @onready var armor: GridContainer = %Armor
 @onready var key: GridContainer = %key
 @onready var consumable: GridContainer = %consumable
+@onready var inventory_tabs: TabBar = %inventoryTabs
 @onready var item_list_tabs: TabContainer = %itemListTabs
 
 @onready var item_name: Label = %itemName
@@ -32,6 +33,7 @@ signal focused_item_changed(_item: item)
 
 
 @onready var equipment: NinePatchRect = %equipment
+@onready var inventory_list_container: PanelContainer = %inventory_list_container
 @onready var item_list: NinePatchRect = %itemList
 @onready var item_info: NinePatchRect = %itemInfo
 @onready var player_stats: NinePatchRect = %playerStats
@@ -123,6 +125,8 @@ func _update_equipped_items(item_inv_interact: item_inventory_interact):
 			equipped_items["mainhand_equipped"] = item_inv_interact
 			mainhand_button.icon = item_inv_interact.item_inventory.item_icon
 			item_inv_interact.is_equipped = true
+			if item_inv_interact.item_inventory.two_handed:
+				_on_left_hand_unequip_item()
 		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.OFFHAND:
 			if equipped_items["offhand_equipped"] != null:
 				equipped_items["offhand_equipped"].is_equipped = false
@@ -144,9 +148,7 @@ func _update_equipped_items(item_inv_interact: item_inventory_interact):
 			
 	if transition_from_equip_screen:
 		transition_from_equip_screen = false
-		equipment.visible = true
-		item_list.visible = false
-		item_info.visible = false
+		inventory_tabs.current_tab = 0
 
 func _remove_item(item_inventory: item):
 	if inventory.has(item_inventory):
@@ -168,38 +170,33 @@ func _update_display_text(_item: item):
 
 
 func _on_mainhand_button_pressed() -> void:
-	equipment.visible = false
-	item_list.visible = true
-	item_info.visible = true
+	inventory_tabs.current_tab = 1
 	transition_from_equip_screen = true
-	var tab_index: int = item_list_tabs.get_tab_count() - 1
-	for i in tab_index:
+	var item_list_count = item_list_tabs.get_tab_count()-1
+	for i in item_list_count:
 		if item_list_tabs.get_tab_title(i) == "Mainhand":
 			item_list_tabs.current_tab = i
 
 
 func _on_offhand_button_pressed() -> void:
-	equipment.visible = false
-	item_list.visible = true
-	item_info.visible = true 
+	inventory_tabs.current_tab = 1
 	transition_from_equip_screen = true
-	var tab_index: int = item_list_tabs.get_tab_count() - 1
-	for i in tab_index:
+	var item_list_count = item_list_tabs.get_tab_count()-1
+	for i in item_list_count:
 		if item_list_tabs.get_tab_title(i) == "Offhand":
 			item_list_tabs.current_tab = i
 
 func _on_jewelry_button_pressed() -> void:
-	equipment.visible = false
-	item_list.visible = true
-	item_info.visible = true 
+	inventory_tabs.current_tab = 1
 	transition_from_equip_screen = true
-	var tab_index: int = item_list_tabs.get_tab_count() - 1
-	for i in tab_index:
+	var item_list_count = item_list_tabs.get_tab_count()-1
+	for i in item_list_count:
 		if item_list_tabs.get_tab_title(i) == "Jewelry":
 			item_list_tabs.current_tab = i
 
 
 func _on_leg_button_pressed() -> void:
+	inventory_tabs.current_tab = 1
 	pass # Replace with function body.
 
 
@@ -208,11 +205,27 @@ func _on_chest_button_pressed() -> void:
 
 
 func _on_ammo_button_pressed() -> void:
-	equipment.visible = false
-	item_list.visible = true
-	item_info.visible = true 
 	transition_from_equip_screen = true
-	var tab_index: int = item_list_tabs.get_tab_count() - 1
-	for i in tab_index:
+	var item_list_count = item_list_tabs.get_tab_count()-1
+	for i in item_list_count:
 		if item_list_tabs.get_tab_title(i) == "Consumables":
 			item_list_tabs.current_tab = i
+
+
+func _on_right_hand_unequip_item() -> void:
+	mainhand_button.icon = null
+	equipped_items["mainhand_equipped"].is_equipped = false
+
+func _on_left_hand_unequip_item() -> void:
+	if equipped_items["offhand_equipped"] != null:
+		offhand_button.icon = null
+		equipped_items["offhand_equipped"].is_equipped = false
+
+
+func _on_tab_bar_tab_changed(tab: int) -> void:
+	if inventory_tabs.get_tab_title(tab) == "Equipment":
+		equipment.visible = true
+		inventory_list_container.visible = false
+	if inventory_tabs.get_tab_title(tab) == "Inventory":
+		equipment.visible = false
+		inventory_list_container.visible = true

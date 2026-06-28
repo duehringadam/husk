@@ -82,7 +82,6 @@ func _update_player_max_hp(value: float):
 func _update_health_text():
 	health_value.text = str(int(current_hp)) + "/" + str(int(max_hp))
 
-
 func _update_player_max_stamina(value: float):
 	max_stam = value
 	_update_stamina_text()

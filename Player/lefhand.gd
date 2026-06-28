@@ -1,5 +1,6 @@
 extends Node3D
 
+signal unequip_item
 signal active(value: bool)
 
 @export var weapon: item: set = _set_item
@@ -63,14 +64,9 @@ func disable():
 	tween.tween_property(arms_base, "rotation_degrees:x", -90, .25)
 	
 func enable():
-	if mainhand.weapon != null && !mainhand.weapon.two_handed:
-		can_activate = true
-		var tween = get_tree().create_tween()
-		tween.tween_property(arms_base, "rotation_degrees:x", 0, .25)
-	if mainhand.weapon == null:
-		can_activate = true
-		var tween = get_tree().create_tween()
-		tween.tween_property(arms_base, "rotation_degrees:x", 0, .25)
+	can_activate = true
+	var tween = get_tree().create_tween()
+	tween.tween_property(arms_base, "rotation_degrees:x", 0, .25)
 
 func telekinesis_hold():
 	telekinesis_hold_bool = true
