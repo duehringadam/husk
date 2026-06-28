@@ -14,7 +14,7 @@ signal damage_dealt(types: Dictionary, actual: float, stance_damage: float, targ
 ## override [method DamageComponent.get_damage] if customization is needed.
 var amount: float
 @export var hit_sound: AudioStreamPlayer3D
-@export var can_knockback: bool = true
+@export var can_knockback: bool = false
 @export var damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float]
 @export var status_types: Dictionary[Global.STATUS_TYPE, float]
 @export_range(0.0,1.0) var stance_damage_value: float

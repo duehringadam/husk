@@ -507,6 +507,15 @@ func weapon_sway(delta):
 
 func _on_hurtbox_component_damage_taken(actual: float, source: DamageComponent, hit_dir: Vector3) -> void:
 	camera_animation_player.play("swing_left",-1,1.5)
+	if source.can_knockback:
+		var knockback_source
+		knockback_source = source
+		var kb :Vector3 = source.global_position - head.global_position
+		var kb_dir = kb.normalized()
+		
+		var kb_amount = kb_dir * 50
+		kb_amount.y /= 5
+		self.velocity = -kb_amount
 
 var active_segments: Array[RigidBody3D] = []
 var current_segment: RigidBody3D = null

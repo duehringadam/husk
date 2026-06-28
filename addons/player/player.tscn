@@ -923,7 +923,6 @@ monitoring = false
 monitorable = false
 script = ExtResource("15_paiqy")
 hit_sound = NodePath("falldamage")
-can_knockback = false
 damage_types = Dictionary[int, float]({
 0: 1.0
 })
@@ -1172,6 +1171,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_jng3h")
 equipped_items = {
 "armor_equipped": null,
 "jewelry_equipped": null,
+"leg_equipped": null,
 "mainhand_equipped": null,
 "offhand_equipped": null
 }
@@ -1211,6 +1211,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.297422, 0)
 stream = ExtResource("37_jaogv")
 bus = &"SFX"
 
+[connection signal="unequip_item" from="Head/Neck/Camera3D/RightHand" to="hud/inventory" method="_on_right_hand_unequip_item"]
+[connection signal="unequip_item" from="Head/Neck/Camera3D/LeftHand" to="hud/inventory" method="_on_left_hand_unequip_item"]
 [connection signal="body_entered" from="Head/rope_detection" to="." method="_on_rope_detection_body_entered"]
 [connection signal="body_exited" from="Head/rope_detection" to="." method="_on_rope_detection_body_exited"]
 [connection signal="damage_taken" from="hurtbox_component" to="." method="_on_hurtbox_component_damage_taken"]

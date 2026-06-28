@@ -1,5 +1,7 @@
 extends Node3D
 
+signal unequip_item(_weapon: item)
+signal equip_item(_weapon: item)
 
 @export var weapon: item: set = _set_item
 @export var offhand: Node3D
@@ -88,6 +90,7 @@ func unequip():
 		i.queue_free()
 	for i in left_bone_attachment.get_children():
 		i.queue_free()
+	unequip_item.emit()
 
 
 func _on_bloodtimer_timeout() -> void:
