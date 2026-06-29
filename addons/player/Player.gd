@@ -234,8 +234,6 @@ func handle_falling(delta: float) -> void:
 			fall_damage_component.monitoring = false
 			radial_blur.blur = false
 	on_floor_last_frame = is_on_floor()
-
-	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
