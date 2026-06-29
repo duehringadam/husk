@@ -26,11 +26,6 @@ func _ready() -> void:
 		player_stats = stats
 		SignalBus.emit_signal("player_stats_changed", stats)
 		SignalBus.emit_signal("player_full_restore")
-	await get_tree().create_timer(2.0).timeout
-	health_component.set_max_health(1.0)
-	await get_tree().create_timer(2.0).timeout
-	player_stats[0] = 99
-	SignalBus.emit_signal("player_stats_changed", player_stats)
 
 func _on_move_disabled(enable: bool):
 	can_move = enable
