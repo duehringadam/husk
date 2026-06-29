@@ -1,9 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://ti2g"]
+[gd_scene format=3 uid="uid://ti2g"]
 
-[ext_resource type="PackedScene" uid="uid://on0c" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Meshes/Floors/catacombs_floor/fi_vil_combs_floor2_01.glb" id="1_on0c"]
-[ext_resource type="Material" uid="uid://m74y" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Materials/fi_village_floor_stone05.tres" id="2_m74y"]
+[ext_resource type="PackedScene" uid="uid://on0c" path="res://scenes/3DForge/3DForge/Fantasy_Interiors/Villages_&_Towns/Meshes/Floors/catacombs_floor/fi_vil_combs_floor2_01.glb" id="1_on0c"]
+[ext_resource type="Material" uid="uid://m74y" path="res://scenes/3DForge/3DForge/Fantasy_Interiors/Villages_&_Towns/Materials/fi_village_floor_stone05.tres" id="2_m74y"]
 
-[node name="fi_vil_combs_floor2_01" instance=ExtResource("1_on0c")]
+[sub_resource type="BoxShape3D" id="BoxShape3D_lcakw"]
+size = Vector3(2.5000005, 0.040979445, 2.5)
 
-[node name="Mesh" parent="." index="0"]
+[node name="fi_vil_combs_floor2_01" unique_id=1851904709 instance=ExtResource("1_on0c")]
+
+[node name="Mesh" parent="." index="0" unique_id=55641736]
 surface_material_override/0 = ExtResource("2_m74y")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Mesh" index="0" unique_id=939256690]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00013780594, 0.020482093, -8.010864e-05)
+collision_layer = 2
+metadata/ground_type = "stone"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/StaticBody3D" index="0" unique_id=253920342]
+shape = SubResource("BoxShape3D_lcakw")

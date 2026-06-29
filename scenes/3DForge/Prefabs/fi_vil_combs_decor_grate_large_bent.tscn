@@ -1,9 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://thbq"]
+[gd_scene format=3 uid="uid://thbq"]
 
-[ext_resource type="PackedScene" uid="uid://ohp5" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Meshes/Catacombs/catacombs_decor/fi_vil_combs_decor_grate_large_bent.glb" id="1_ohp5"]
-[ext_resource type="Material" uid="uid://m72k" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Materials/fi_village_cathedral_base.tres" id="2_m72k"]
+[ext_resource type="PackedScene" uid="uid://ohp5" path="res://scenes/3DForge/3DForge/Fantasy_Interiors/Villages_&_Towns/Meshes/Catacombs/catacombs_decor/fi_vil_combs_decor_grate_large_bent.glb" id="1_ohp5"]
+[ext_resource type="Material" uid="uid://m72k" path="res://scenes/3DForge/3DForge/Fantasy_Interiors/Villages_&_Towns/Materials/fi_village_cathedral_base.tres" id="2_m72k"]
 
-[node name="fi_vil_combs_decor_grate_large_bent" instance=ExtResource("1_ohp5")]
+[sub_resource type="BoxShape3D" id="BoxShape3D_hwrgt"]
+size = Vector3(0.4, 1.366574, 2.1632972)
 
-[node name="Mesh" parent="." index="0"]
+[node name="fi_vil_combs_decor_grate_large_bent" unique_id=687262644 instance=ExtResource("1_ohp5")]
+
+[node name="Mesh" parent="." index="0" unique_id=351731857]
 surface_material_override/0 = ExtResource("2_m72k")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Mesh" index="0" unique_id=601741273]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.36503753, 0.67277914, -8.106232e-05)
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/StaticBody3D" index="0" unique_id=1954941524]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21491702, 0, 0)
+shape = SubResource("BoxShape3D_hwrgt")

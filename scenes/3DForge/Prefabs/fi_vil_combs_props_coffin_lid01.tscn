@@ -1,9 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://tocu"]
+[gd_scene format=3 uid="uid://tocu"]
 
-[ext_resource type="PackedScene" uid="uid://ndsu" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Meshes/Catacombs/catacombs_props/coffins/fi_vil_combs_props_coffin_lid01.glb" id="1_ndsu"]
-[ext_resource type="Material" uid="uid://m713" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Materials/fi_village_catacombs.tres" id="2_m713"]
+[ext_resource type="PackedScene" uid="uid://ndsu" path="res://scenes/3DForge/3DForge/Fantasy_Interiors/Villages_&_Towns/Meshes/Catacombs/catacombs_props/coffins/fi_vil_combs_props_coffin_lid01.glb" id="1_ndsu"]
+[ext_resource type="Material" uid="uid://m713" path="res://scenes/3DForge/3DForge/Fantasy_Interiors/Villages_&_Towns/Materials/fi_village_catacombs.tres" id="2_m713"]
 
-[node name="fi_vil_combs_props_coffin_lid01" instance=ExtResource("1_ndsu")]
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_pw1rn"]
+data = PackedVector3Array(-0.24579999, 0.39999998, 0.9999, 0.42499998, 0.39999998, 0.4544, 0.2461, 0.39999998, 0.9999, -0.24579999, 0.39999998, 0.9999, -0.42479998, 0.39999998, 0.4544, 0.42499998, 0.39999998, 0.4544, -0.42479998, 0.39999998, 0.4544, 0.2461, 0.39999998, -1.0001, 0.42499998, 0.39999998, 0.4544, -0.42479998, 0.39999998, 0.4544, -0.24579999, 0.39999998, -1.0001, 0.2461, 0.39999998, -1.0001, 0.2461, 0.3638, 0.9999, -0.42479998, 0.3638, 0.4544, -0.24579999, 0.3638, 0.9999, 0.2461, 0.3638, 0.9999, 0.4251, 0.3638, 0.4544, -0.42479998, 0.3638, 0.4544, 0.4251, 0.3638, 0.4544, -0.24579999, 0.3637, -1.0001, -0.42479998, 0.3638, 0.4544, 0.4251, 0.3638, 0.4544, 0.2461, 0.3637, -1.0001, -0.24579999, 0.3637, -1.0001, 0.2461, 0.39999998, 0.9999, 0.2461, 0.3638, 0.9999, -0.24579999, 0.3638, 0.9999, 0.2461, 0.39999998, 0.9999, -0.24579999, 0.3638, 0.9999, -0.24579999, 0.39999998, 0.9999, -0.42479998, 0.39999998, 0.4544, -0.42479998, 0.3638, 0.4544, -0.24579999, 0.3637, -1.0001, -0.42479998, 0.39999998, 0.4544, -0.24579999, 0.3637, -1.0001, -0.24579999, 0.39999998, -1.0001, -0.42479998, 0.39999998, 0.4544, -0.24579999, 0.39999998, 0.9999, -0.24579999, 0.3638, 0.9999, -0.42479998, 0.39999998, 0.4544, -0.24579999, 0.3638, 0.9999, -0.42479998, 0.3638, 0.4544, 0.4251, 0.3638, 0.4544, 0.42499998, 0.39999998, 0.4544, 0.2461, 0.39999998, -1.0001, 0.4251, 0.3638, 0.4544, 0.2461, 0.39999998, -1.0001, 0.2461, 0.3637, -1.0001, 0.42499998, 0.39999998, 0.4544, 0.4251, 0.3638, 0.4544, 0.2461, 0.3638, 0.9999, 0.42499998, 0.39999998, 0.4544, 0.2461, 0.3638, 0.9999, 0.2461, 0.39999998, 0.9999, -0.24579999, 0.39999998, -1.0001, -0.24579999, 0.3637, -1.0001, 0.2461, 0.3637, -1.0001, -0.24579999, 0.39999998, -1.0001, 0.2461, 0.3637, -1.0001, 0.2461, 0.39999998, -1.0001)
 
-[node name="Mesh" parent="." index="0"]
+[node name="fi_vil_combs_props_coffin_lid01" unique_id=1371361963 instance=ExtResource("1_ndsu")]
+
+[node name="Mesh" parent="." index="0" unique_id=1579869909]
 surface_material_override/0 = ExtResource("2_m713")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Mesh" index="0" unique_id=1827137194]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/StaticBody3D" index="0" unique_id=669579487]
+shape = SubResource("ConcavePolygonShape3D_pw1rn")

@@ -1,9 +1,95 @@
-[gd_scene load_steps=3 format=3 uid="uid://tsa3"]
+[gd_scene format=3 uid="uid://tsa3"]
 
-[ext_resource type="PackedScene" uid="uid://n0go" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Meshes/Props/Lighting/WallMounted/fi_vil_light_torch02.glb" id="1_n0go"]
-[ext_resource type="Material" uid="uid://m73g" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Materials/fi_village_lighting.tres" id="2_m73g"]
+[ext_resource type="PackedScene" uid="uid://n0go" path="res://scenes/3DForge/3DForge/Fantasy_Interiors/Villages_&_Towns/Meshes/Props/Lighting/WallMounted/fi_vil_light_torch02.glb" id="1_n0go"]
+[ext_resource type="Material" uid="uid://m73g" path="res://scenes/3DForge/3DForge/Fantasy_Interiors/Villages_&_Towns/Materials/fi_village_lighting.tres" id="2_m73g"]
+[ext_resource type="AudioStream" uid="uid://sppeegtsqrlm" path="res://sfx/crackling-fire-sound-307026.mp3" id="3_twi5d"]
 
-[node name="fi_vil_light_torch02" instance=ExtResource("1_n0go")]
+[sub_resource type="Curve" id="Curve_hrcdh"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.80288464, 0.41573036), 0.0, 0.0, 0, 0]
+point_count = 2
 
-[node name="Mesh" parent="." index="0"]
+[sub_resource type="CurveTexture" id="CurveTexture_u32jd"]
+curve = SubResource("Curve_hrcdh")
+
+[sub_resource type="Gradient" id="Gradient_m64nb"]
+colors = PackedColorArray(0.99999994, 0.86646223, 0.36267662, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_uutcq"]
+gradient = SubResource("Gradient_m64nb")
+
+[sub_resource type="Curve" id="Curve_m00b0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.20224726), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_awvg6"]
+curve = SubResource("Curve_m00b0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i2u8f"]
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 0.05
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, 1, 0)
+gravity = Vector3(0, 4.8, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = -2.23517e-06
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_awvg6")
+color_ramp = SubResource("GradientTexture1D_uutcq")
+alpha_curve = SubResource("CurveTexture_u32jd")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+turbulence_noise_speed = Vector3(0, 1, 0)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3mefe"]
+load_path = "res://.godot/imported/Fire_SubUV_new.png-d69b5907a1817ca22301a31bae7f6096.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_71788"]
+load_path = "res://.godot/imported/T_Fire01_Tiled_D_Yellow.png-9c405869613fc88dc21cf013a516e456.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a56p6"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0.44044712, 0, 1)
+albedo_texture = SubResource("CompressedTexture2D_3mefe")
+emission_enabled = true
+emission = Color(1, 0.20906562, 0, 1)
+emission_texture = SubResource("CompressedTexture2D_71788")
+texture_filter = 4
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 6
+particles_anim_loop = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_3vl8e"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_a56p6")
+size = Vector2(0.25, 0.25)
+
+[node name="fi_vil_light_torch02" unique_id=143160223 instance=ExtResource("1_n0go")]
+
+[node name="Mesh" parent="." index="0" unique_id=490110030]
 surface_material_override/0 = ExtResource("2_m73g")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." index="1" unique_id=1518566748]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.028613448, 1.9199561, 0.2)
+amount = 16
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_i2u8f")
+draw_pass_1 = SubResource("QuadMesh_3vl8e")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="GPUParticles3D" index="0" unique_id=476166736]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.20000005, 0)
+light_color = Color(1, 0.3882353, 0, 1)
+distance_fade_enabled = true
+omni_range = 15.0
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." index="2" unique_id=256624340]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.2)
+stream = ExtResource("3_twi5d")
+autoplay = true
+max_distance = 10.0
+bus = &"SFX"

@@ -1,20 +1,116 @@
-[gd_scene load_steps=3 format=3 uid="uid://tkp7"]
+[gd_scene format=3 uid="uid://tkp7"]
 
-[ext_resource type="PackedScene" uid="uid://ojb3" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Meshes/Cathedrals/cathedral_braziers/fi_vil_cath_brazier_2d.glb" id="1_ojb3"]
-[ext_resource type="Material" uid="uid://m72k" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Materials/fi_village_cathedral_base.tres" id="2_m72k"]
+[ext_resource type="PackedScene" uid="uid://ojb3" path="res://scenes/3DForge/3DForge/Fantasy_Interiors/Villages_&_Towns/Meshes/Cathedrals/cathedral_braziers/fi_vil_cath_brazier_2d.glb" id="1_ojb3"]
+[ext_resource type="Material" uid="uid://m72k" path="res://scenes/3DForge/3DForge/Fantasy_Interiors/Villages_&_Towns/Materials/fi_village_cathedral_base.tres" id="2_m72k"]
+[ext_resource type="Script" uid="uid://tpesy3ixn6lc" path="res://scenes/3DForge/Prefabs/flickering_light.gd" id="2_uutcq"]
+[ext_resource type="Texture2D" uid="uid://bgpuc5rjm2yh5" path="res://scenes/misc/Textures/Fire_SubUV_new.png" id="3_u32jd"]
+[ext_resource type="Texture2D" uid="uid://dgnarq1axwhae" path="res://scenes/MysticDungeon/Art/Textures/T_Fire01_Tiled_D_Yellow.png" id="4_tk3c6"]
+[ext_resource type="AudioStream" uid="uid://sppeegtsqrlm" path="res://sfx/crackling-fire-sound-307026.mp3" id="5_u32jd"]
+
+[sub_resource type="Gradient" id="Gradient_v4udn"]
+offsets = PackedFloat32Array(0.31178707, 0.6463878)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qqar7"]
+noise_type = 3
+frequency = 0.8028
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_j1pv0"]
+noise = SubResource("FastNoiseLite_qqar7")
+color_ramp = SubResource("Gradient_v4udn")
 
 [sub_resource type="BoxShape3D" id="0_tkqc"]
-size = Vector3( 0.722618, 1.67233, 0.7226186)
+size = Vector3(0.722618, 1.67233, 0.7226186)
 
-[node name="fi_vil_cath_brazier_2d" instance=ExtResource("1_ojb3")]
+[sub_resource type="Curve" id="Curve_u3e0k"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.80288464, 0.41573036), 0.0, 0.0, 0, 0]
+point_count = 2
 
-[node name="Mesh" parent="." index="0"]
+[sub_resource type="CurveTexture" id="CurveTexture_u32jd"]
+curve = SubResource("Curve_u3e0k")
+
+[sub_resource type="Gradient" id="Gradient_5adg6"]
+colors = PackedColorArray(0.99999994, 0.86646223, 0.36267662, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_uutcq"]
+gradient = SubResource("Gradient_5adg6")
+
+[sub_resource type="Curve" id="Curve_gvvyd"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.20224726), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_awvg6"]
+curve = SubResource("Curve_gvvyd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tg6j1"]
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 0.05
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, 1, 0)
+gravity = Vector3(0, 4.8, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = -2.23517e-06
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_awvg6")
+color_ramp = SubResource("GradientTexture1D_uutcq")
+alpha_curve = SubResource("CurveTexture_u32jd")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+turbulence_noise_speed = Vector3(0, 1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v4udn"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0.44044712, 0, 1)
+albedo_texture = ExtResource("3_u32jd")
+emission_enabled = true
+emission = Color(1, 0.20906562, 0, 1)
+emission_texture = ExtResource("4_tk3c6")
+texture_filter = 4
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 6
+particles_anim_loop = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_cd0ql"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_v4udn")
+size = Vector2(0.5, 0.5)
+
+[node name="fi_vil_cath_brazier_2d" unique_id=1847496271 instance=ExtResource("1_ojb3")]
+script = ExtResource("2_uutcq")
+noise = SubResource("NoiseTexture3D_j1pv0")
+
+[node name="Mesh" parent="." index="0" unique_id=1597438309]
 surface_material_override/0 = ExtResource("2_m72k")
 
-[node name="StaticBody" type="StaticBody3D" parent="." ]
+[node name="StaticBody" type="StaticBody3D" parent="." index="1" unique_id=975356498]
+collision_layer = 2
 
-[node name="BoxCollider_0" type="CollisionShape3D" parent="StaticBody" ]
+[node name="BoxCollider_0" type="CollisionShape3D" parent="StaticBody" index="0" unique_id=216801080]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00013, 0.83616, -0.0001)
 shape = SubResource("0_tkqc")
-
 debug_fill = false
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." index="2" unique_id=161278344]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.028613448, 1.4199561, 0)
+amount = 16
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_tg6j1")
+draw_pass_1 = SubResource("QuadMesh_cd0ql")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="GPUParticles3D" index="0" unique_id=247553570]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.20000005, 0)
+light_color = Color(1, 0.3882353, 0, 1)
+shadow_enabled = true
+distance_fade_enabled = true
+omni_range = 15.0
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." index="3" unique_id=1197970358]
+stream = ExtResource("5_u32jd")
+autoplay = true
+max_distance = 10.0
+bus = &"SFX"

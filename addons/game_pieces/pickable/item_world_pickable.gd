@@ -11,6 +11,7 @@ func _ready() -> void:
 		shattered_mesh_add = shattered_mesh.instantiate()
 	if item_to_loot:
 		item_to_loot.item_dropped_scene = load(get_scene_file_path())
+	
 
 func _physics_process(delta: float) -> void:
 	if Engine.is_editor_hint(): return

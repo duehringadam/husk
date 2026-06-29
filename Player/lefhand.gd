@@ -53,10 +53,12 @@ func unequip():
 	#animation_tree.active = false
 
 func throw():
-	bone_attachment.get_child(0).throw()
+	if is_instance_valid(bone_attachment.get_child(0)):
+		bone_attachment.get_child(0).throw()
 
 func activate():
-	bone_attachment.get_child(0).activate()
+	if is_instance_valid(bone_attachment.get_child(0)):
+		bone_attachment.get_child(0).activate()
 
 func disable():
 	can_activate = false

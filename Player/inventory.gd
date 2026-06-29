@@ -220,3 +220,7 @@ func _on_tab_bar_tab_changed(tab: int) -> void:
 	if inventory_tabs.get_tab_title(tab) == "Inventory":
 		equipment.visible = false
 		inventory_list_container.visible = true
+
+func reset_inventory(inventory_list) -> void:
+	for inventory_item in inventory_list:
+		_update_inventory(inventory_item)

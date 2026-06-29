@@ -101,6 +101,11 @@ func _update_stack_size(_amount: int):
 		self.disabled = false
 	if item_inventory.current_stack_size <= 0:
 		self.disabled = true
+	if item_inventory.current_stack_size <= 0 && is_equipped:
+		self.disabled = true
+		self.is_equipped = false
+		Global.player.offhand.unequip()
+		Global.player.offhand.disable()
 	stack_size.show()
 	stack_size.text = str(item_inventory.current_stack_size)
 

@@ -45,13 +45,13 @@ func _physics_process(_delta: float) -> void:
 		var distance_to_player: float = ray_cast.global_position.distance_to(global_position)
 		if distance_to_player > release_distance * _position_offset:
 			_released(_interaction_controller)
-	if linear_velocity.length() > 1 && !is_thrown:
+	if linear_velocity.length() > 8 && !is_thrown:
 		damage_component.monitorable = true
 		damage_component.monitoring = true
 		for i in damage_component.damage_types:
 			damage_component.damage_types[i] = clampf(linear_velocity.length()/MAX_DAMAGE_SCALE_VELOCITY, MIN_DAMAGE_SCALE_VELOCITY, MAX_DAMAGE_SCALE_VELOCITY)
 			damage_component.stance_damage_value = clampf(linear_velocity.length()/MAX_DAMAGE_SCALE_VELOCITY, 0.0, 1.0)
-	if linear_velocity.length() < 1:
+	if linear_velocity.length() < 8:
 		damage_component.monitorable = false
 		damage_component.monitoring = false
 

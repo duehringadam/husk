@@ -1,9 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://trsi"]
+[gd_scene format=3 uid="uid://trsi"]
 
-[ext_resource type="PackedScene" uid="uid://nlfu" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Meshes/Floors/cathedral_floors/fi_vil_cath_floor01_straight_steps.glb" id="1_nlfu"]
-[ext_resource type="Material" uid="uid://m72k" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Materials/fi_village_cathedral_base.tres" id="2_m72k"]
+[ext_resource type="PackedScene" uid="uid://nlfu" path="res://scenes/3DForge/3DForge/Fantasy_Interiors/Villages_&_Towns/Meshes/Floors/cathedral_floors/fi_vil_cath_floor01_straight_steps.glb" id="1_nlfu"]
+[ext_resource type="Material" uid="uid://m72k" path="res://scenes/3DForge/3DForge/Fantasy_Interiors/Villages_&_Towns/Materials/fi_village_cathedral_base.tres" id="2_m72k"]
 
-[node name="fi_vil_cath_floor01_straight_steps" instance=ExtResource("1_nlfu")]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ghw05"]
+points = PackedVector3Array(0.6251297, 0.75, 1.2498549, 0.31250733, 0.75, 1.2498549, -0.6248703, 0, 1.2498549, 0.6251297, 0.75, -1.2502519, -0.31249267, 0.3749266, 1.2498549, 0.31250733, 0.75, -1.2502519, -0.6248703, 0.18742658, 1.2498549, -0.6248703, 0, -1.2502519, -0.31249267, 0.3749266, -1.2502519, -0.6248703, 0.18742658, -1.2502519)
 
-[node name="Mesh" parent="." index="0"]
+[node name="fi_vil_cath_floor01_straight_steps" unique_id=230451557 instance=ExtResource("1_nlfu")]
+
+[node name="Mesh" parent="." index="0" unique_id=1055901197]
 surface_material_override/0 = ExtResource("2_m72k")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Mesh" index="0" unique_id=1200813996]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/StaticBody3D" index="0" unique_id=364624366]
+shape = SubResource("ConvexPolygonShape3D_ghw05")
