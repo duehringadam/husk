@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://d4n4ub6iqnybe"]
 
-[ext_resource type="Material" uid="uid://bi1a" path="res://scenes/Hivemind/CastleOfEternalMists/URP/Art/Materials/Instances/M_ArchStone_A.tres" id="2_bi1a"]
+[ext_resource type="Material" uid="uid://bfsk8sghdfcvv" path="res://scenes/MysticDungeon/Art/Materials/M_Brick_Wall_02b.material" id="1_1gc6f"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7vac2"]
 resource_name = "M_ArchStone_A"
@@ -23,9 +23,19 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_1gc6f"]
+size = Vector3(0.82266074, 0.654587, 8.80414)
+
 [node name="SM_WallBorder_ArchStone_8m_B" type="Node3D" unique_id=1709636003]
 
 [node name="SM_WallBorder_ArchStone_8m_B_LOD0" type="MeshInstance3D" parent="." unique_id=487911382]
 lod_bias = 0.05
 mesh = SubResource("ArrayMesh_1gc6f")
-surface_material_override/0 = ExtResource("2_bi1a")
+surface_material_override/0 = ExtResource("1_1gc6f")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SM_WallBorder_ArchStone_8m_B_LOD0" unique_id=605873986]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SM_WallBorder_ArchStone_8m_B_LOD0/StaticBody3D" unique_id=270607407]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4229288e-05, 0.32476786, 4.402997)
+shape = SubResource("BoxShape3D_1gc6f")

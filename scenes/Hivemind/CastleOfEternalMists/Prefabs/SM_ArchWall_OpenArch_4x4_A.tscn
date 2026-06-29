@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://d4n4ub6iqqj7u"]
 
-[ext_resource type="Material" uid="uid://bi1a" path="res://scenes/Hivemind/CastleOfEternalMists/URP/Art/Materials/Instances/M_ArchStone_A.tres" id="2_bi1a"]
+[ext_resource type="Material" uid="uid://bfsk8sghdfcvv" path="res://scenes/MysticDungeon/Art/Materials/M_Brick_Wall_02b.material" id="1_b0xb5"]
+[ext_resource type="Material" uid="uid://dstpml1gie42o" path="res://scenes/MysticDungeon/Art/Materials/M_Brick_Wall_2a.material" id="2_b0xb5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ddcyb"]
 resource_name = "M_ArchStone_A"
@@ -42,4 +43,5 @@ blend_shape_mode = 0
 [node name="SM_ArchWall_OpenArch_4x4_A_LOD0" type="MeshInstance3D" parent="." unique_id=735038085]
 lod_bias = 0.05
 mesh = SubResource("ArrayMesh_5gqyf")
-surface_material_override/0 = ExtResource("2_bi1a")
+surface_material_override/0 = ExtResource("1_b0xb5")
+surface_material_override/1 = ExtResource("2_b0xb5")
