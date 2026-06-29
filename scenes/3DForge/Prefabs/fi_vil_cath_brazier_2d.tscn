@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://tkp7"]
+
+[ext_resource type="PackedScene" uid="uid://ojb3" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Meshes/Cathedrals/cathedral_braziers/fi_vil_cath_brazier_2d.glb" id="1_ojb3"]
+[ext_resource type="Material" uid="uid://m72k" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Materials/fi_village_cathedral_base.tres" id="2_m72k"]
+
+[sub_resource type="BoxShape3D" id="0_tkqc"]
+size = Vector3( 0.722618, 1.67233, 0.7226186)
+
+[node name="fi_vil_cath_brazier_2d" instance=ExtResource("1_ojb3")]
+
+[node name="Mesh" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_m72k")
+
+[node name="StaticBody" type="StaticBody3D" parent="." ]
+
+[node name="BoxCollider_0" type="CollisionShape3D" parent="StaticBody" ]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00013, 0.83616, -0.0001)
+shape = SubResource("0_tkqc")
+
+debug_fill = false

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://tkh5"]
+
+[ext_resource type="PackedScene" uid="uid://nfba" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Meshes/Floors/catacombs_floor/fi_vil_combs_floor_collider.glb" id="1_nfba"]
+[ext_resource type="Material" uid="uid://m76s" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Materials/fi_village_collider.tres" id="2_m76s"]
+
+[node name="fi_vil_combs_floor_collider" instance=ExtResource("1_nfba")]
+
+[node name="Mesh" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_m76s")

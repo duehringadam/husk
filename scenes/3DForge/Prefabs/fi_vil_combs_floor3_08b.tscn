@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://tsgs"]
+
+[ext_resource type="PackedScene" uid="uid://ofpw" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Meshes/Floors/catacombs_floor/fi_vil_combs_floor3_08b.glb" id="1_ofpw"]
+[ext_resource type="Material" uid="uid://m74y" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Materials/fi_village_floor_stone05.tres" id="2_m74y"]
+
+[node name="fi_vil_combs_floor3_08b" instance=ExtResource("1_ofpw")]
+
+[node name="Mesh" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_m74y")

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://tuci"]
+
+[ext_resource type="PackedScene" uid="uid://osce" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Meshes/Catacombs/catacombs_debris/fi_vil_combs_debris_side_big_02.glb" id="1_osce"]
+[ext_resource type="Material" uid="uid://m72k" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Materials/fi_village_cathedral_base.tres" id="2_m72k"]
+
+[node name="fi_vil_combs_debris_side_big_02" instance=ExtResource("1_osce")]
+
+[node name="Mesh" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_m72k")
