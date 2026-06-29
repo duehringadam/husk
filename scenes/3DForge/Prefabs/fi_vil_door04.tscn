@@ -1,20 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://tj0q"]
+[gd_scene format=3 uid="uid://tj0q"]
 
-[ext_resource type="PackedScene" uid="uid://nn7u" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Meshes/Doors/fi_vil_door04.glb" id="1_nn7u"]
-[ext_resource type="Material" uid="uid://m8aq" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Materials/fi_village_doors.tres" id="2_m8aq"]
+[ext_resource type="PackedScene" uid="uid://nn7u" path="res://scenes/3DForge/3DForge/Fantasy_Interiors/Villages_&_Towns/Meshes/Doors/fi_vil_door04.glb" id="1_nn7u"]
+[ext_resource type="Material" uid="uid://m8aq" path="res://scenes/3DForge/3DForge/Fantasy_Interiors/Villages_&_Towns/Materials/fi_village_doors.tres" id="2_m8aq"]
 
 [sub_resource type="BoxShape3D" id="0_tj0s"]
-size = Vector3( 0.1800079, 2.48, 1.469999)
+size = Vector3(0.1800079, 2.48, 1.469999)
 
-[node name="fi_vil_door04" instance=ExtResource("1_nn7u")]
+[node name="fi_vil_door04" unique_id=1706201535 instance=ExtResource("1_nn7u")]
 
-[node name="Mesh" parent="." index="0"]
+[node name="Mesh" parent="." index="0" unique_id=1657160463]
 surface_material_override/0 = ExtResource("2_m8aq")
 
-[node name="StaticBody" type="StaticBody3D" parent="." ]
+[node name="StaticBody" type="StaticBody3D" parent="." index="1" unique_id=463720316]
+collision_layer = 2
 
-[node name="BoxCollider_0" type="CollisionShape3D" parent="StaticBody" ]
+[node name="BoxCollider_0" type="CollisionShape3D" parent="StaticBody" index="0" unique_id=1451624804]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.24, 0.735)
 shape = SubResource("0_tj0s")
-
 debug_fill = false
