@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://thfo"]
+
+[ext_resource type="PackedScene" uid="uid://no5a" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Meshes/Catacombs/catacombs_broken_walls/fi_vil_combs_wall_broken_right02.glb" id="1_no5a"]
+[ext_resource type="Material" uid="uid://m72k" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Materials/fi_village_cathedral_base.tres" id="2_m72k"]
+
+[node name="fi_vil_combs_wall_broken_right02" instance=ExtResource("1_no5a")]
+
+[node name="Mesh" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_m72k")
