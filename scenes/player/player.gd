@@ -16,6 +16,21 @@ func _ready() -> void:
 	GamePiecesEventBus.slow_down_player.connect(_on_slow_player)
 	GamePiecesEventBus.move_disable.connect(_on_move_disabled)
 	SignalBus.emit_signal("player_stats_changed", player_stats)
+	if SaveConfig.get_config("Location", "Saved Position") != null && spawn_at_checkpoint:
+		global_position = SaveConfig.get_config("Location", "Saved Position")
+	if SaveConfig.get_config("Inventory", "Saved Inventory") != null:
+		var inventory_list = SaveConfig.get_config("Inventory", "Saved Inventory")
+		inventory.reset_inventory(inventory_list)
+	if SaveConfig.get_config("Player_stats", "Saved Stats") != null:
+		var stats = SaveConfig.get_config("Player_stats", "Saved Stats")
+		player_stats = stats
+		SignalBus.emit_signal("player_stats_changed", stats)
+		SignalBus.emit_signal("player_full_restore")
+	await get_tree().create_timer(2.0).timeout
+	health_component.set_max_health(1.0)
+	await get_tree().create_timer(2.0).timeout
+	player_stats[0] = 99
+	SignalBus.emit_signal("player_stats_changed", player_stats)
 
 func _on_move_disabled(enable: bool):
 	can_move = enable
