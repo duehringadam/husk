@@ -35,8 +35,8 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_qix1k")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_nr2dp"]
-points = PackedVector3Array(326.157, 256.358, -6278.44, -386.635, -105.97, -6483.74, -368.147, -97.3074, -6130.01, 386.635, -105.97, -6483.74, -326.081, 256.358, -6326.72, 386.635, -69.7516, -6121.34, -338.192, 111.413, -6145.57, 335.953, 98.3569, -6453.12, -335.881, 98.3569, -6453.12, 338.268, 111.413, -6145.57, 368.147, -97.3074, -6130.01, -386.635, -69.7516, -6121.34, 326.157, 256.358, -6326.72, -326.081, 256.358, -6278.44, -386.635, -69.7516, -6483.74, 386.635, -69.7516, -6483.74)
+[sub_resource type="BoxShape3D" id="BoxShape3D_7wcki"]
+size = Vector3(761.1875, 353.28558, 347.76465)
 
 [node name="sarcophagus" type="StaticBody3D" unique_id=751979871]
 transform = Transform3D(0.002, 0, 0, 0, 0.002, 0, 0, 0, 0.002, 0, 0, 0)
@@ -47,6 +47,6 @@ collision_mask = 5
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -31.1828, 0, 18554.7)
 mesh = SubResource("ArrayMesh_qgd5h")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=714379629]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -31.1828, 0, 18554.7)
-shape = SubResource("ConvexPolygonShape3D_nr2dp")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=108909717]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -31.182892, 229.92838, -356.9668)
+shape = SubResource("BoxShape3D_7wcki")
