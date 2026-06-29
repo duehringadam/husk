@@ -139,6 +139,18 @@ visible = true
 [node name="status_effect_component" parent="." index="12" unique_id=1465415421]
 process_material = SubResource("ParticleProcessMaterial_5gtgg")
 
+[node name="inventory" parent="hud" parent_id_path=PackedInt32Array(89617392) index="8" unique_id=227349631 node_paths=PackedStringArray("equipped_items")]
+equipped_items = {
+"armor_equipped": null,
+"jewelry_equipped": null,
+"leg_equipped": null,
+"mainhand_equipped": null,
+"offhand_equipped": null
+}
+
+[node name="SelectionWheel" parent="hud/selectionWheelDarken" parent_id_path=PackedInt32Array(1482172172) index="0" unique_id=1649874519]
+selected_option = 2
+
 [node name="OmniLight3D" type="OmniLight3D" parent="." index="17" unique_id=1276511056]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1513219, 0)
 visible = false

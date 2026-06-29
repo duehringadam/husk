@@ -134,6 +134,7 @@ var slow_speed = 0
 var attack_dir
 var is_vaulting: bool = false
 var can_kick: bool = true
+@onready var inventory: PanelContainer = %inventory
 
 func _ready() -> void:
 	if Engine.is_editor_hint(): return
@@ -147,9 +148,6 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	footsteps.stream = footsteps_sound
 	SignalBus.emit_signal("player_ready")
-	
-	if SaveConfig.get_config("Location", "Saved Position") != null && spawn_at_checkpoint:
-		global_position = SaveConfig.get_config("Location", "Saved Position")
 	
 func _on_combat_type_changed(value: int):
 	combat_type = value
