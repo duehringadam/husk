@@ -18,6 +18,9 @@ signal stack_size_changed(amount: int)
 @export var item_stats: ItemStat
 @export var item_required_stats: Dictionary[ItemEquippableType.ITEM_REQUIRED_STAT, int]
 @export var stamina_cost: int = 10
+@export var mana_cost: int = 0
+@export var constant_mana_drain: bool = false
+@export var constant_mana_drain_cost: int = 0
 @export_range(0.0,1.25) var charge_time: float = 1.0
 
 @export_category("Item Scenes")

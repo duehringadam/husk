@@ -95,6 +95,7 @@ Optional: %jump, %sprint, %crouch, %lean, %zoom, %switch_hands
 @onready var rope_detection: Area3D = %rope_detection
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var stamina_component: StaminaComponent = %StaminaComponent
+@onready var mana_component: ManaComponent = $ManaComponent
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.

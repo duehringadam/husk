@@ -6,16 +6,23 @@ extends Node
 
 func _on_activate_state_entered() -> void:
 	animation_tree.set("parameters/conditions/activate", true)
-	
-
+	if left_hand.weapon.mana_cost > 0:
+		Global.player.mana_component.modify_mana(-left_hand.weapon.mana_cost)
+	if left_hand.weapon.stamina_cost > 0:
+		Global.player.stamina_component.modify_stamina(-left_hand.weapon.stamina_cost)
 
 func _on_activate_state_exited() -> void:
 	left_hand.bone_attachment.get_child(0).deactivate()
-	
 
 
 func _on_activate_state_physics_processing(delta: float) -> void:
-	pass # Replace with function body.
+	if left_hand.weapon.stamina_cost > 0:
+		Global.player.stamina_component.modify_stamina(-left_hand.weapon.stamina_cost*delta)
+	if left_hand.weapon.constant_mana_drain:
+		Global.player.mana_component.modify_mana(-left_hand.weapon.mana_cost * delta)
+		if Global.player.mana_component.current_mana <= 0:
+			left_hand.bone_attachment.get_child(0).deactivate()
+			state_chart.send_event("cant_use")
 
 
 func _on_activate_state_input(event: InputEvent) -> void:

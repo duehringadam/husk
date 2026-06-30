@@ -28,8 +28,10 @@
 [ext_resource type="Script" uid="uid://8jstcds4fmx8" path="res://addons/player/radial_blur.gd" id="26_hqsyx"]
 [ext_resource type="AudioStream" uid="uid://cc67f271a754i" path="res://sfx/chargecomplete.wav" id="28_7vtq1"]
 [ext_resource type="Shader" uid="uid://dn324eo1sre1n" path="res://addons/player/death.gdshader" id="29_f81pb"]
+[ext_resource type="PackedScene" uid="uid://bb5rujo1j4mr6" path="res://player_mana.tscn" id="29_v5tlk"]
 [ext_resource type="PackedScene" uid="uid://78q517wrknfe" path="res://player_health.tscn" id="29_wbjo2"]
 [ext_resource type="Texture2D" uid="uid://bheudhnmjwpme" path="res://scenes/VFX/textures/T_VFX_Noise_14.PNG" id="30_ae3c0"]
+[ext_resource type="Script" uid="uid://duqdbhlweipi" path="res://Player/player_health.gd" id="30_jng3h"]
 [ext_resource type="PackedScene" uid="uid://fiysa8sddku3" path="res://player_stamina.tscn" id="31_ojoix"]
 [ext_resource type="Texture2D" uid="uid://biqgxpwwr01ye" path="res://scenes/VFX/textures/CloudNoise_Tiled.png" id="31_waixc"]
 [ext_resource type="Script" uid="uid://da13b6wjrk5g7" path="res://addons/player/death_overlay.gd" id="32_ae3c0"]
@@ -38,6 +40,7 @@
 [ext_resource type="AudioStream" uid="uid://c6mukshc0b37u" path="res://Player/sfx/movement/huskVaultTest.wav" id="37_jaogv"]
 [ext_resource type="PackedScene" uid="uid://l2q2on8dxrq5" path="res://Globals/inventory.tscn" id="38_6havu"]
 [ext_resource type="Script" uid="uid://x336a4ypdit5" path="res://components/stamina_component.gd" id="38_v5tlk"]
+[ext_resource type="Script" uid="uid://cvtlc2d4aaybe" path="res://components/mana_component.gd" id="39_6havu"]
 [ext_resource type="PackedScene" uid="uid://bmphfd5h5ant7" path="res://scenes/player/selection_wheel.tscn" id="40_avbty"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xc2g5"]
@@ -1125,6 +1128,10 @@ mouse_filter = 2
 max_value = 1.0
 value = 0.5
 
+[node name="playerMana" parent="hud/playerHP/VBoxContainer" unique_id=1952581520 instance=ExtResource("29_v5tlk")]
+layout_mode = 2
+script = ExtResource("30_jng3h")
+
 [node name="playerStamina" parent="hud/playerHP/VBoxContainer" unique_id=2402498 instance=ExtResource("31_ojoix")]
 z_index = 0
 layout_mode = 2
@@ -1199,6 +1206,11 @@ player_hp_scaling_curve = SubResource("Curve_jaogv")
 max_health = 100.0
 metadata/_custom_type_script = "uid://dgjqgiw3yw42e"
 
+[node name="ManaComponent" type="Node3D" parent="." unique_id=368355666]
+script = ExtResource("39_6havu")
+max_mana = 50.0
+metadata/_custom_type_script = "uid://cvtlc2d4aaybe"
+
 [node name="StaminaComponent" type="Node3D" parent="." unique_id=726180377]
 unique_name_in_owner = true
 script = ExtResource("38_v5tlk")
@@ -1221,5 +1233,7 @@ bus = &"SFX"
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="health_changed" from="HealthComponent" to="hud/playerHP/VBoxContainer/playerHealth" method="_on_health_changed"]
 [connection signal="max_health_changed" from="HealthComponent" to="hud/playerHP/VBoxContainer/playerHealth" method="_on_max_health_changed"]
+[connection signal="mana_changed" from="ManaComponent" to="hud/playerHP/VBoxContainer/playerMana" method="_on_health_changed"]
+[connection signal="max_mana_changed" from="ManaComponent" to="hud/playerHP/VBoxContainer/playerMana" method="_on_max_health_changed"]
 [connection signal="max_stamina_changed" from="StaminaComponent" to="hud/playerHP/VBoxContainer/playerStamina" method="_on_max_health_changed"]
 [connection signal="stamina_changed" from="StaminaComponent" to="hud/playerHP/VBoxContainer/playerStamina" method="_on_health_changed"]

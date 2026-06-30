@@ -26,6 +26,7 @@ func _ready() -> void:
 		player_stats = stats
 		SignalBus.emit_signal("player_stats_changed", stats)
 		SignalBus.emit_signal("player_full_restore")
+	get_tree().create_timer(2).timeout.connect(func(): stamina_component.modify_max_stamina(1))
 
 func _on_move_disabled(enable: bool):
 	can_move = enable

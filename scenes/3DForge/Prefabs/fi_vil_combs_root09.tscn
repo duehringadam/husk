@@ -1,9 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://tmwm"]
+[gd_scene format=3 uid="uid://tmwm"]
 
-[ext_resource type="PackedScene" uid="uid://nqia" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Meshes/Catacombs/catacombs_props/roots/fi_vil_combs_root09.glb" id="1_nqia"]
-[ext_resource type="Material" uid="uid://m713" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Materials/fi_village_catacombs.tres" id="2_m713"]
+[ext_resource type="PackedScene" uid="uid://nqia" path="res://scenes/3DForge/3DForge/Fantasy_Interiors/Villages_&_Towns/Meshes/Catacombs/catacombs_props/roots/fi_vil_combs_root09.glb" id="1_nqia"]
+[ext_resource type="Material" uid="uid://m713" path="res://scenes/3DForge/3DForge/Fantasy_Interiors/Villages_&_Towns/Materials/fi_village_catacombs.tres" id="2_m713"]
 
-[node name="fi_vil_combs_root09" instance=ExtResource("1_nqia")]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_h5ma7"]
+points = PackedVector3Array(0.00014472008, 0.3791272, 0.11215234, -0.34667158, 0.33188006, 0.09495115, -1.5939176, 0.0010386484, 0.816571, -5.1021576e-05, 0.18958187, 0.22178376, -5.1021576e-05, -5.662441e-07, 0.11215234, -5.1021576e-05, -5.662441e-07, -0.10669625, -5.1021576e-05, 0.18958187, -0.21612048, -5.1021576e-05, 0.3791643, -0.10669625, -1.5747262, 0.04951059, 0.5046704, -0.32356358, 0.33188006, -0.09529793, -0.63258445, 0.2846329, 0.020965457, -2.0004623, 0.0010386484, -1.0556616, -0.98782146, 0.0010386484, -1.3006227, -1.6914413, 0.048322916, -1.0096536, -1.4509611, 0.098130986, 0.25432098, -0.88148534, 0.23734863, -0.12451911, -1.106299, 0.19010149, -0.35642397, -1.2686428, 0.14678851, 0.05308807)
 
-[node name="Mesh" parent="." index="0"]
+[node name="fi_vil_combs_root09" unique_id=1221034776 instance=ExtResource("1_nqia")]
+
+[node name="Mesh" parent="." index="0" unique_id=656648357]
 surface_material_override/0 = ExtResource("2_m713")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Mesh" index="0" unique_id=1111470485]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/StaticBody3D" index="0" unique_id=1871597730]
+shape = SubResource("ConvexPolygonShape3D_h5ma7")

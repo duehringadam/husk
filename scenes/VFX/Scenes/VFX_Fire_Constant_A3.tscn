@@ -157,7 +157,7 @@ render_priority = 1
 transparency = 1
 vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
-albedo_color = Color(0.46618086, 0.4661808, 0.4661808, 1)
+albedo_color = Color(0.33660764, 0.33660764, 0.33660755, 1)
 albedo_texture = ExtResource("9_k10ug")
 emission = Color(1, 0.34409294, 0, 1)
 billboard_mode = 3
@@ -412,7 +412,6 @@ draw_pass_1 = SubResource("PlaneMesh_ic5da")
 
 [node name="mist" type="GPUParticles3D" parent="." unique_id=33640553]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
-layers = 2
 cast_shadow = 0
 emitting = false
 amount = 16

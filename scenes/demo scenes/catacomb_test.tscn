@@ -1,0 +1,1152 @@
+[gd_scene format=3 uid="uid://y1dmf1xrkigw"]
+
+[ext_resource type="PackedScene" uid="uid://thse" path="res://scenes/3DForge/Prefabs/fi_vil_combs_floor4_shallow_T.tscn" id="1_wlcje"]
+[ext_resource type="PackedScene" uid="uid://tojm" path="res://scenes/3DForge/Prefabs/fi_vil_combs_floor4_shallow_straight.tscn" id="2_wtpq0"]
+[ext_resource type="PackedScene" uid="uid://tmgk" path="res://scenes/3DForge/Prefabs/fi_vil_cath_wall_04.tscn" id="3_4dwp7"]
+[ext_resource type="PackedScene" uid="uid://tj0q" path="res://scenes/3DForge/Prefabs/fi_vil_door04.tscn" id="4_mbhba"]
+[ext_resource type="Shader" uid="uid://bfxahgs7ekxpj" path="res://shaders/fluid.gdshader" id="5_mvhq5"]
+[ext_resource type="PackedScene" uid="uid://tkr5" path="res://scenes/3DForge/Prefabs/fi_vil_combs_floor_grate_straight.tscn" id="6_0dd8x"]
+[ext_resource type="PackedScene" uid="uid://tjwy" path="res://scenes/3DForge/Prefabs/fi_vil_combs_floor_grate_T.tscn" id="7_qh4xu"]
+[ext_resource type="PackedScene" uid="uid://tkau" path="res://scenes/3DForge/Prefabs/fi_vil_combs_floor1_01.tscn" id="8_ojjcs"]
+[ext_resource type="PackedScene" uid="uid://tjla" path="res://scenes/3DForge/Prefabs/fi_vil_combs_floor1_03.tscn" id="9_jckax"]
+[ext_resource type="PackedScene" uid="uid://thqc" path="res://scenes/3DForge/Prefabs/fi_vil_cath_pillar_04_6m_swords.tscn" id="10_fh4f2"]
+[ext_resource type="PackedScene" uid="uid://ttrs" path="res://scenes/3DForge/Prefabs/fi_vil_combs_props_coffin03.tscn" id="11_yl3q1"]
+[ext_resource type="PackedScene" uid="uid://tocu" path="res://scenes/3DForge/Prefabs/fi_vil_combs_props_coffin_lid01.tscn" id="12_rgmam"]
+[ext_resource type="PackedScene" uid="uid://tp7s" path="res://scenes/3DForge/Prefabs/fi_vil_combs_floor1_05.tscn" id="13_rf6du"]
+[ext_resource type="PackedScene" uid="uid://tjss" path="res://scenes/3DForge/Prefabs/fi_vil_cath_wall_01.tscn" id="14_tbu1h"]
+[ext_resource type="PackedScene" uid="uid://tjdw" path="res://scenes/3DForge/Prefabs/fi_vil_cath_pillar_04_3m_half.tscn" id="15_0eh2h"]
+[ext_resource type="PackedScene" uid="uid://tovc" path="res://scenes/3DForge/Prefabs/fi_vil_cath_pillar_04_3m_quart.tscn" id="16_esku2"]
+[ext_resource type="PackedScene" uid="uid://tlcm" path="res://scenes/3DForge/Prefabs/fi_vil_combs_decor_vent02.tscn" id="17_cd4sl"]
+[ext_resource type="PackedScene" uid="uid://thg7" path="res://scenes/3DForge/Prefabs/fi_vil_cath_vault_beam_large.tscn" id="18_20pob"]
+[ext_resource type="PackedScene" uid="uid://tq6w" path="res://scenes/3DForge/Prefabs/fi_vil_combs_vault_corner01.tscn" id="19_m3k4a"]
+[ext_resource type="PackedScene" uid="uid://tt27" path="res://scenes/3DForge/Prefabs/fi_vil_combs_vault_small02_a.tscn" id="20_bx027"]
+[ext_resource type="PackedScene" uid="uid://tk7i" path="res://scenes/3DForge/Prefabs/fi_vil_combs_vault_rooftile.tscn" id="21_pyd35"]
+[ext_resource type="PackedScene" uid="uid://tjfy" path="res://scenes/3DForge/Prefabs/fi_vil_combs_decor_vent02_broken.tscn" id="22_v5603"]
+[ext_resource type="PackedScene" uid="uid://bia32vkq1a5i" path="res://scenes/player/player.tscn" id="23_gme88"]
+[ext_resource type="PackedScene" uid="uid://tl7s" path="res://scenes/3DForge/Prefabs/fi_vil_combs_props_sarcophagus_big_01a.tscn" id="24_ko731"]
+[ext_resource type="PackedScene" uid="uid://rypooyraja2u" path="res://scenes/pieces/sarcophagus_lid_pickable_new.tscn" id="25_w52lw"]
+[ext_resource type="PackedScene" uid="uid://tm2u" path="res://scenes/3DForge/Prefabs/fi_vil_combs_props_bonepile_01c.tscn" id="26_q2qj5"]
+[ext_resource type="PackedScene" uid="uid://tqmi" path="res://scenes/3DForge/Prefabs/fi_vil_combs_props_bonepile_01d.tscn" id="27_20l8s"]
+[ext_resource type="PackedScene" uid="uid://tqea" path="res://scenes/3DForge/Prefabs/fi_vil_combs_props_bonepile_01e.tscn" id="28_4h8kq"]
+[ext_resource type="PackedScene" uid="uid://tjhm" path="res://scenes/3DForge/Prefabs/fi_vil_combs_props_bonepile_02a.tscn" id="29_4oj0x"]
+[ext_resource type="PackedScene" uid="uid://thk7" path="res://scenes/3DForge/Prefabs/fi_vil_cath_pillar_arch_half1c.tscn" id="30_ut3ec"]
+[ext_resource type="PackedScene" uid="uid://ti7w" path="res://scenes/3DForge/Prefabs/fi_vil_cath_pillar_arch_extention1b.tscn" id="31_ujtbk"]
+[ext_resource type="PackedScene" uid="uid://trra" path="res://scenes/3DForge/Prefabs/fi_vil_combs_root02.tscn" id="32_28ddc"]
+[ext_resource type="PackedScene" uid="uid://touu" path="res://scenes/3DForge/Prefabs/fi_vil_combs_root03.tscn" id="33_yuw74"]
+[ext_resource type="PackedScene" uid="uid://tujc" path="res://scenes/3DForge/Prefabs/fi_vil_combs_root11.tscn" id="34_r7kqu"]
+[ext_resource type="PackedScene" uid="uid://thbq" path="res://scenes/3DForge/Prefabs/fi_vil_combs_decor_grate_large_bent.tscn" id="35_tixqr"]
+[ext_resource type="PackedScene" uid="uid://tk67" path="res://scenes/3DForge/Prefabs/fi_vil_combs_niche2_03.tscn" id="36_ujt8p"]
+[ext_resource type="PackedScene" uid="uid://th3a" path="res://scenes/3DForge/Prefabs/fi_vil_combs_wall_broken_04.tscn" id="37_rmhof"]
+[ext_resource type="PackedScene" uid="uid://tug1" path="res://scenes/3DForge/Prefabs/fi_vil_combs_wall_broken_left01.tscn" id="38_wojj2"]
+[ext_resource type="PackedScene" uid="uid://ttko" path="res://scenes/3DForge/Prefabs/fi_vil_combs_props_bonepile_01b.tscn" id="39_l6kgi"]
+[ext_resource type="PackedScene" uid="uid://tiha" path="res://scenes/3DForge/Prefabs/fi_vil_combs_props_bonepile_04b.tscn" id="40_mx2tr"]
+[ext_resource type="PackedScene" uid="uid://tq3y" path="res://scenes/3DForge/Prefabs/fi_vil_combs_vault_outside_corner01.tscn" id="41_yapsy"]
+[ext_resource type="PackedScene" uid="uid://trsi" path="res://scenes/3DForge/Prefabs/fi_vil_cath_floor01_straight_steps.tscn" id="42_poyg0"]
+[ext_resource type="PackedScene" uid="uid://tn0i" path="res://scenes/3DForge/Prefabs/fi_vil_combs_floor4_shallow_end.tscn" id="43_l1tn0"]
+[ext_resource type="PackedScene" uid="uid://toqa" path="res://scenes/3DForge/Prefabs/fi_vil_combs_floor_grate_end.tscn" id="44_mdjuo"]
+[ext_resource type="PackedScene" uid="uid://ttic" path="res://scenes/3DForge/Prefabs/fi_vil_combs_niche7_03.tscn" id="45_v5dlb"]
+[ext_resource type="PackedScene" uid="uid://tpsw" path="res://scenes/3DForge/Prefabs/fi_vil_combs_decor_grate_small.tscn" id="46_20r2e"]
+[ext_resource type="PackedScene" uid="uid://tkco" path="res://scenes/3DForge/Prefabs/fi_vil_combs_debris_01.tscn" id="47_ap1b0"]
+[ext_resource type="PackedScene" uid="uid://tqhy" path="res://scenes/3DForge/Prefabs/fi_vil_combs_debris_04.tscn" id="48_1hxvs"]
+[ext_resource type="PackedScene" uid="uid://tn31" path="res://scenes/3DForge/Prefabs/fi_vil_combs_wall_broken_left02.tscn" id="49_5xfkq"]
+[ext_resource type="PackedScene" uid="uid://tjpa" path="res://scenes/3DForge/Prefabs/fi_vil_combs_wall_broken_right01.tscn" id="50_b4etk"]
+[ext_resource type="PackedScene" uid="uid://tqyu" path="res://scenes/3DForge/Prefabs/fi_vil_combs_props_urn01a.tscn" id="51_73e17"]
+[ext_resource type="PackedScene" uid="uid://tod5" path="res://scenes/3DForge/Prefabs/fi_vil_combs_props_urn02a.tscn" id="52_33t3f"]
+[ext_resource type="PackedScene" uid="uid://tkju" path="res://scenes/3DForge/Prefabs/fi_vil_combs_props_urn02b.tscn" id="53_acmef"]
+[ext_resource type="PackedScene" uid="uid://tmju" path="res://scenes/3DForge/Prefabs/fi_vil_combs_props_urn03c.tscn" id="54_ihh78"]
+[ext_resource type="PackedScene" uid="uid://tgjm" path="res://scenes/3DForge/Prefabs/fi_vil_combs_props_urn04a.tscn" id="55_sax47"]
+[ext_resource type="PackedScene" uid="uid://tg0i" path="res://scenes/3DForge/Prefabs/fi_vil_combs_props_urn04b.tscn" id="56_j2il4"]
+[ext_resource type="PackedScene" uid="uid://tim3" path="res://scenes/3DForge/Prefabs/fi_vil_combs_props_urn05a.tscn" id="57_flfbs"]
+[ext_resource type="PackedScene" uid="uid://tsu5" path="res://scenes/3DForge/Prefabs/fi_vil_combs_props_urn06b.tscn" id="58_blsd3"]
+[ext_resource type="PackedScene" uid="uid://tl2i" path="res://scenes/3DForge/Prefabs/fi_vil_combs_props_urn06c.tscn" id="59_k1nxo"]
+[ext_resource type="PackedScene" uid="uid://tlpo" path="res://scenes/3DForge/Prefabs/fi_vil_combs_decor_vent04_broken.tscn" id="60_e1oid"]
+[ext_resource type="PackedScene" uid="uid://tiwg" path="res://scenes/3DForge/Prefabs/fi_vil_combs_props_bonepile_04e.tscn" id="61_1b6yg"]
+[ext_resource type="PackedScene" uid="uid://thli" path="res://scenes/3DForge/Prefabs/fi_vil_combs_props_bone_skull.tscn" id="62_igiob"]
+[ext_resource type="PackedScene" uid="uid://tjuy" path="res://scenes/3DForge/Prefabs/fi_vil_combs_props_bonepile_03c.tscn" id="63_8rknt"]
+[ext_resource type="PackedScene" uid="uid://toaa" path="res://scenes/3DForge/Prefabs/fi_vil_combs_wall_broken_05.tscn" id="64_nghnn"]
+[ext_resource type="PackedScene" uid="uid://tilm" path="res://scenes/3DForge/Prefabs/fi_vil_combs_root08.tscn" id="65_8k15f"]
+[ext_resource type="PackedScene" uid="uid://tirq" path="res://scenes/3DForge/Prefabs/fi_vil_combs_wall_broken_left03.tscn" id="66_8rql5"]
+[ext_resource type="PackedScene" uid="uid://thfo" path="res://scenes/3DForge/Prefabs/fi_vil_combs_wall_broken_right02.tscn" id="67_1d05k"]
+[ext_resource type="PackedScene" uid="uid://tpjg" path="res://scenes/3DForge/Prefabs/fi_vil_combs_wall_broken_right03.tscn" id="68_oes6c"]
+[ext_resource type="Shader" uid="uid://d2wp65uguqls7" path="res://shaders/fakegodray.gdshader" id="69_1aib1"]
+[ext_resource type="Shader" uid="uid://c0m61bqusqbkm" path="res://shaders/tunnel.gdshader" id="70_r7tmu"]
+[ext_resource type="CompressedTexture3D" uid="uid://dcacb5lllfe1i" path="res://shaders/color correct.png" id="71_wtpq0"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_cstvv"]
+frequency = 0.0428
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_j7e5u"]
+noise = SubResource("FastNoiseLite_cstvv")
+as_normal_map = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ufs44"]
+render_priority = 0
+shader = ExtResource("5_mvhq5")
+shader_parameter/normal_map = SubResource("NoiseTexture2D_j7e5u")
+shader_parameter/color = Color(0.2132881, 0.052399043, 0, 1)
+shader_parameter/rapid = 0.003
+shader_parameter/transparency = 0.91999997943616
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qqar7"]
+material = SubResource("ShaderMaterial_ufs44")
+size = Vector2(15, 11.95)
+
+[sub_resource type="Curve" id="Curve_m6u3a"]
+_data = [Vector2(0.008130074, 0), 0.0, 0.0, 0, 0, Vector2(0.48780486, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_bku3l"]
+curve = SubResource("Curve_m6u3a")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_smdjj"]
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector3(0, -1, 0)
+alpha_curve = SubResource("CurveTexture_bku3l")
+turbulence_enabled = true
+turbulence_noise_strength = 0.1
+turbulence_influence_min = 0.025
+turbulence_influence_max = 0.025
+
+[sub_resource type="Gradient" id="Gradient_hbayt"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4d64i"]
+gradient = SubResource("Gradient_hbayt")
+fill = 1
+fill_from = Vector2(0.4957265, 0.47008547)
+fill_to = Vector2(0.7222222, 0.21367522)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o6rdk"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.3665946, 0.3665946, 0.36659458, 1)
+albedo_texture = SubResource("GradientTexture2D_4d64i")
+albedo_texture_msdf = true
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_4jky4"]
+material = SubResource("StandardMaterial3D_o6rdk")
+size = Vector2(0.025, 0.025)
+
+[sub_resource type="Gradient" id="Gradient_m6u3a"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_v4udn"]
+gradient = SubResource("Gradient_m6u3a")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_j7e5u"]
+frequency = 0.015
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qqar7"]
+noise = SubResource("FastNoiseLite_j7e5u")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4jky4"]
+render_priority = 0
+shader = ExtResource("69_1aib1")
+shader_parameter/alpha = 0.5
+shader_parameter/rim_power = 4.82800022933
+shader_parameter/texture_emission = SubResource("NoiseTexture2D_qqar7")
+shader_parameter/gradient = SubResource("GradientTexture1D_v4udn")
+shader_parameter/emission = Color(1, 1, 1, 1)
+shader_parameter/emission_energy = 0.17600000836
+shader_parameter/uv1_scale = Vector3(5, 0, 0)
+shader_parameter/uv1_offset = Vector3(0, 1, 0)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_j1pv0"]
+size = Vector2(1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5hdgo"]
+render_priority = 0
+shader = ExtResource("70_r7tmu")
+shader_parameter/hole_depth = 5.20000007748624
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4dwp7"]
+
+[sub_resource type="Sky" id="Sky_v4udn"]
+sky_material = SubResource("ProceduralSkyMaterial_4dwp7")
+
+[sub_resource type="Environment" id="Environment_mbhba"]
+background_mode = 2
+sky = SubResource("Sky_v4udn")
+ambient_light_sky_contribution = 0.07
+ambient_light_energy = 0.56
+tonemap_mode = 4
+ssao_enabled = true
+glow_enabled = true
+glow_bloom = 0.1
+fog_enabled = true
+fog_light_color = Color(0.8622264, 0.94006115, 0.89276874, 1)
+fog_light_energy = 0.1
+adjustment_enabled = true
+adjustment_color_correction = ExtResource("71_wtpq0")
+
+[node name="catacomb_test" type="Node3D" unique_id=2008839470]
+
+[node name="fi_vil_combs_floor4_shallow_T" parent="." unique_id=1266704852 instance=ExtResource("1_wlcje")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.300011, 6.1, 60.4)
+
+[node name="fi_vil_combs_floor4_shallow_straight" parent="." unique_id=240349865 instance=ExtResource("2_wtpq0")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -14.300011, 6.1, 60.399994)
+
+[node name="fi_vil_combs_floor4_shallow_straight6" parent="." unique_id=2126443862 instance=ExtResource("2_wtpq0")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -11.800011, 6.1, 60.4)
+
+[node name="fi_vil_combs_floor4_shallow_straight4" parent="." unique_id=1897107936 instance=ExtResource("2_wtpq0")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -9.300011, 6.1, 62.9)
+
+[node name="fi_vil_cath_wall_05" parent="." unique_id=2055841536 instance=ExtResource("3_4dwp7")]
+transform = Transform3D(4.371139e-08, 0, 1, 0, 1, 0, -1, 0, 4.371139e-08, -9.299904, 6.1, 52.9001)
+
+[node name="fi_vil_door04" parent="fi_vil_cath_wall_05" unique_id=1706201535 instance=ExtResource("4_mbhba")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2399979, 0, -0.7351608)
+
+[node name="fi_vil_combs_floor4_shallow_straight11" parent="." unique_id=97933893 instance=ExtResource("2_wtpq0")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -9.300011, 6.1, 57.9)
+
+[node name="fi_vil_combs_floor4_shallow_straight2" parent="." unique_id=604628027 instance=ExtResource("2_wtpq0")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -16.80001, 6.1, 60.399994)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=935377377]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -16.000008, 5.6, 60.399994)
+mesh = SubResource("PlaneMesh_qqar7")
+
+[node name="fi_vil_combs_floor4_shallow_straight3" parent="." unique_id=1430863494 instance=ExtResource("2_wtpq0")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -19.30001, 6.1, 60.399994)
+
+[node name="fi_vil_combs_floor4_shallow_straight12" parent="." unique_id=374158443 instance=ExtResource("2_wtpq0")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -21.80001, 6.1, 60.399994)
+
+[node name="fi_vil_combs_floor4_shallow_straight13" parent="." unique_id=1437594043 instance=ExtResource("2_wtpq0")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -24.30001, 6.1, 60.399994)
+
+[node name="fi_vil_combs_floor4_shallow_straight14" parent="." unique_id=640748704 instance=ExtResource("2_wtpq0")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -26.80001, 6.1, 60.399994)
+
+[node name="fi_vil_combs_floor_grate_straight" parent="." unique_id=1833141273 instance=ExtResource("6_0dd8x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.80001, 6.1, 60.399994)
+
+[node name="fi_vil_combs_floor_grate_straight3" parent="." unique_id=1343157189 instance=ExtResource("6_0dd8x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.30001, 6.1, 60.399994)
+
+[node name="fi_vil_combs_floor_grate_straight4" parent="." unique_id=1733586905 instance=ExtResource("6_0dd8x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.80001, 6.1, 60.399994)
+
+[node name="fi_vil_combs_floor_grate_straight2" parent="." unique_id=328415543 instance=ExtResource("6_0dd8x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.300011, 6.1, 60.399994)
+
+[node name="fi_vil_combs_floor_grate_straight7" parent="." unique_id=1944914670 instance=ExtResource("6_0dd8x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.800011, 6.1, 60.4)
+
+[node name="fi_vil_combs_floor_grate_straight5" parent="." unique_id=197097912 instance=ExtResource("6_0dd8x")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.300011, 6.1, 62.9)
+
+[node name="fi_vil_combs_floor_grate_straight10" parent="." unique_id=173708969 instance=ExtResource("6_0dd8x")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.300011, 6.1, 57.9)
+
+[node name="fi_vil_combs_floor_grate_T" parent="." unique_id=2144858920 instance=ExtResource("7_qh4xu")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.300011, 6.1, 60.4)
+
+[node name="fi_vil_combs_floor1_01" parent="." unique_id=1176949134 instance=ExtResource("8_ojjcs")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -14.300011, 6.1, 57.899994)
+
+[node name="fi_vil_combs_floor1_03" parent="." unique_id=1380497356 instance=ExtResource("9_jckax")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -14.300003, 6.1, 55.399994)
+
+[node name="fi_vil_combs_floor1_16" parent="." unique_id=1178071521 instance=ExtResource("8_ojjcs")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.8000107, 6.1, 57.9)
+
+[node name="fi_vil_combs_floor1_19" parent="." unique_id=1080599564 instance=ExtResource("9_jckax")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.800003, 6.1, 55.4)
+
+[node name="fi_vil_combs_floor1_22" parent="." unique_id=1769230998 instance=ExtResource("8_ojjcs")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.8000107, 6.1, 62.9)
+
+[node name="fi_vil_combs_floor1_25" parent="." unique_id=1625552941 instance=ExtResource("8_ojjcs")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.8000107, 6.1, 65.4)
+
+[node name="fi_vil_combs_floor1_31" parent="." unique_id=585499564 instance=ExtResource("8_ojjcs")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.800209, 4.6, 70.3998)
+
+[node name="fi_vil_combs_floor1_32" parent="." unique_id=1677365330 instance=ExtResource("8_ojjcs")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.300209, 4.6, 70.3998)
+
+[node name="fi_vil_combs_floor1_33" parent="." unique_id=2034555624 instance=ExtResource("8_ojjcs")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -11.800209, 4.6, 70.3998)
+
+[node name="fi_vil_cath_pillar_04_6m_swords_1180" parent="fi_vil_combs_floor1_33" unique_id=166978518 instance=ExtResource("10_fh4f2")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1.2500992, 0, 1.2499008)
+
+[node name="fi_vil_cath_pillar_04_6m_swords_1181" parent="fi_vil_combs_floor1_33" unique_id=1207688420 instance=ExtResource("10_fh4f2")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1.2500992, 0, -6.250099)
+
+[node name="fi_vil_combs_floor1_34" parent="." unique_id=1712517724 instance=ExtResource("8_ojjcs")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.800209, 4.6, 72.8998)
+
+[node name="fi_vil_combs_floor1_35" parent="." unique_id=1911362824 instance=ExtResource("8_ojjcs")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.300209, 4.6, 72.8998)
+
+[node name="fi_vil_combs_floor1_36" parent="." unique_id=435777797 instance=ExtResource("8_ojjcs")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -11.800209, 4.6, 72.8998)
+
+[node name="fi_vil_combs_floor1_27" parent="." unique_id=505466142 instance=ExtResource("8_ojjcs")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -11.800011, 6.1, 62.9)
+
+[node name="fi_vil_combs_props_coffin03_1417" parent="." unique_id=1766097698 instance=ExtResource("11_yl3q1")]
+transform = Transform3D(1.2165558, 0, -0.28721407, 0, 1.25, 0, 0.28721407, 0, 1.2165558, -11.800011, 6.1, 65.4)
+
+[node name="fi_vil_combs_props_coffin_lid01_1418" parent="fi_vil_combs_props_coffin03_1417" unique_id=1371361963 instance=ExtResource("12_rgmam")]
+transform = Transform3D(1, 0, 1.4901161e-08, 0, 1, 0, -1.4901161e-08, 0, 1, 0, -0.026520003, 0)
+
+[node name="fi_vil_combs_props_coffin03_1418" parent="." unique_id=446383404 instance=ExtResource("11_yl3q1")]
+transform = Transform3D(1.2494391, 0, 0.037440334, 0, 1.25, 0, -0.037440334, 0, 1.2494391, -11.800011, 6.6, 65.4)
+
+[node name="fi_vil_combs_props_coffin_lid01_1418" parent="fi_vil_combs_props_coffin03_1418" unique_id=431878256 instance=ExtResource("12_rgmam")]
+transform = Transform3D(1, 0, 1.4901161e-08, 0, 1, 0, -1.4901161e-08, 0, 1, 0, -0.026520003, 0)
+
+[node name="fi_vil_combs_props_coffin03_1419" parent="." unique_id=714122848 instance=ExtResource("11_yl3q1")]
+transform = Transform3D(0.037440363, 0, -1.2494391, 0, 1.25, 0, 1.2494391, 0, 0.037440363, -11.800011, 6.1, 63.4)
+
+[node name="fi_vil_combs_props_coffin_lid01_1418" parent="fi_vil_combs_props_coffin03_1419" unique_id=338895371 instance=ExtResource("12_rgmam")]
+transform = Transform3D(1, 0, 1.4901161e-08, 0, 1, 0, -1.4901161e-08, 0, 1, 0, -0.026520003, 0)
+
+[node name="fi_vil_combs_props_coffin03_1420" parent="." unique_id=1208925516 instance=ExtResource("11_yl3q1")]
+transform = Transform3D(0.35954326, 0, -1.1971753, 0, 1.2499999, 0, 1.1971753, 0, 0.35954326, -11.800011, 6.6, 63.4)
+
+[node name="fi_vil_combs_props_coffin_lid01_1418" parent="fi_vil_combs_props_coffin03_1420" unique_id=1049139628 instance=ExtResource("12_rgmam")]
+transform = Transform3D(1, 0, 1.4901161e-08, 0, 1, 0, -1.4901161e-08, 0, 1, 0, -0.026520003, 0)
+
+[node name="fi_vil_combs_props_coffin03_1421" parent="." unique_id=1000353532 instance=ExtResource("11_yl3q1")]
+transform = Transform3D(0.037440363, 0, -1.2494391, 0, 1.25, 0, 1.2494391, 0, 0.037440363, -11.800011, 6.1, 62)
+
+[node name="fi_vil_combs_props_coffin_lid01_1418" parent="fi_vil_combs_props_coffin03_1421" unique_id=832478856 instance=ExtResource("12_rgmam")]
+transform = Transform3D(1, 0, 1.4901161e-08, 0, 1, 0, -1.4901161e-08, 0, 1, 0, -0.026520003, 0)
+
+[node name="fi_vil_combs_props_coffin03_1422" parent="." unique_id=1940414130 instance=ExtResource("11_yl3q1")]
+transform = Transform3D(0.026474299, 0.8838835, -0.88348705, -0.026474351, 0.88388336, 0.883487, 1.2494394, 3.7470922e-08, 0.037440356, -11.400009, 7.1, 65.3)
+
+[node name="fi_vil_combs_props_coffin_lid01_1418" parent="fi_vil_combs_props_coffin03_1422" unique_id=2012592273 instance=ExtResource("12_rgmam")]
+transform = Transform3D(1, 0, 1.4901161e-08, 0, 1, 0, -1.4901161e-08, 0, 1, 0, -0.026520003, 0)
+
+[node name="fi_vil_combs_floor1_28" parent="." unique_id=1269934954 instance=ExtResource("8_ojjcs")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -11.800011, 6.1, 65.4)
+
+[node name="fi_vil_combs_floor1_29" parent="." unique_id=460221254 instance=ExtResource("8_ojjcs")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -11.800003, 6.1, 55.4)
+
+[node name="fi_vil_combs_floor1_37" parent="." unique_id=1093758581 instance=ExtResource("9_jckax")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.800003, 6.1, 52.9)
+
+[node name="fi_vil_combs_floor1_38" parent="." unique_id=334963212 instance=ExtResource("8_ojjcs")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -11.800003, 6.1, 52.9)
+
+[node name="fi_vil_combs_floor1_39" parent="." unique_id=1893705075 instance=ExtResource("8_ojjcs")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.300003, 6.1, 52.9)
+
+[node name="fi_vil_combs_floor1_30" parent="." unique_id=1812947363 instance=ExtResource("8_ojjcs")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -11.800011, 6.1, 57.9)
+
+[node name="fi_vil_combs_floor1_26" parent="." unique_id=1049900221 instance=ExtResource("9_jckax")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.8000107, 6.1, 60.4)
+
+[node name="fi_vil_combs_floor1_02" parent="." unique_id=1501200459 instance=ExtResource("8_ojjcs")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -16.80001, 6.1, 57.899994)
+
+[node name="fi_vil_combs_floor1_04" parent="." unique_id=1165525388 instance=ExtResource("9_jckax")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -16.800003, 6.1, 55.399994)
+
+[node name="fi_vil_combs_floor1_07" parent="." unique_id=304692000 instance=ExtResource("8_ojjcs")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -19.30001, 6.1, 57.899994)
+
+[node name="fi_vil_combs_floor1_08" parent="." unique_id=869855420 instance=ExtResource("9_jckax")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -19.300003, 6.1, 55.399994)
+
+[node name="fi_vil_combs_floor1_10" parent="." unique_id=1572103405 instance=ExtResource("8_ojjcs")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -21.80001, 6.1, 57.899994)
+
+[node name="fi_vil_combs_floor1_11" parent="." unique_id=212239130 instance=ExtResource("9_jckax")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -21.800003, 6.1, 55.399994)
+
+[node name="fi_vil_combs_floor1_14" parent="." unique_id=310717379 instance=ExtResource("9_jckax")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -14.300011, 6.1, 65.399994)
+
+[node name="fi_vil_combs_floor1_15" parent="." unique_id=197319920 instance=ExtResource("13_rf6du")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -14.300011, 6.1, 62.899994)
+
+[node name="fi_vil_combs_floor1_17" parent="." unique_id=1035246016 instance=ExtResource("9_jckax")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -16.80001, 6.1, 65.399994)
+
+[node name="fi_vil_combs_floor1_18" parent="." unique_id=2047756023 instance=ExtResource("13_rf6du")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -16.80001, 6.1, 62.899994)
+
+[node name="fi_vil_combs_floor1_20" parent="." unique_id=660808644 instance=ExtResource("9_jckax")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -19.30001, 6.1, 65.399994)
+
+[node name="fi_vil_combs_floor1_21" parent="." unique_id=423875136 instance=ExtResource("13_rf6du")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -19.30001, 6.1, 62.899994)
+
+[node name="fi_vil_combs_floor1_23" parent="." unique_id=1782319139 instance=ExtResource("9_jckax")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -21.80001, 6.1, 65.399994)
+
+[node name="fi_vil_combs_floor1_24" parent="." unique_id=1489160900 instance=ExtResource("13_rf6du")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -21.80001, 6.1, 62.899994)
+
+[node name="fi_vil_cath_wall_01" parent="." unique_id=1312717412 instance=ExtResource("14_tbu1h")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -21.799911, 6.1, 65.40009)
+
+[node name="fi_vil_cath_pillar_04_3m_half6" parent="." unique_id=1127500773 instance=ExtResource("15_0eh2h")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -13.167511, 6.1, 66.61293)
+
+[node name="fi_vil_cath_wall_04" parent="." unique_id=1544163791 instance=ExtResource("14_tbu1h")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -14.2999115, 6.1, 65.40009)
+
+[node name="fi_vil_cath_wall_13" parent="." unique_id=1336064945 instance=ExtResource("14_tbu1h")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -14.300102, 6.1, 55.399895)
+
+[node name="fi_vil_cath_wall_15" parent="." unique_id=1152854387 instance=ExtResource("14_tbu1h")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -21.799904, 6.1, 55.400093)
+
+[node name="fi_vil_cath_pillar_04_3m_quart2" parent="." unique_id=1057131750 instance=ExtResource("16_esku2")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -23.049904, 6.1, 54.150093)
+
+[node name="fi_vil_cath_wall_06" parent="." unique_id=723189987 instance=ExtResource("14_tbu1h")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -21.799904, 6.1, 55.400093)
+
+[node name="fi_vil_cath_wall_07" parent="." unique_id=1263890489 instance=ExtResource("14_tbu1h")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -21.799911, 6.1, 57.900093)
+
+[node name="fi_vil_cath_wall_08" parent="." unique_id=939095678 instance=ExtResource("14_tbu1h")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -21.799911, 6.1, 60.400093)
+
+[node name="fi_vil_cath_wall_10" parent="." unique_id=1507739622 instance=ExtResource("14_tbu1h")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -21.80011, 6.1, 65.40009)
+
+[node name="fi_vil_cath_wall_12" parent="." unique_id=1521262557 instance=ExtResource("14_tbu1h")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -11.7999115, 6.1, 67.9001)
+
+[node name="fi_vil_cath_wall_20" parent="." unique_id=2052105590 instance=ExtResource("14_tbu1h")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -11.7999115, 3.1, 67.9001)
+
+[node name="fi_vil_cath_wall_23" parent="." unique_id=85524550 instance=ExtResource("14_tbu1h")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -11.7999115, 6.1, 70.4001)
+
+[node name="fi_vil_cath_wall_24" parent="." unique_id=586354915 instance=ExtResource("14_tbu1h")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -11.7999115, 3.1, 70.4001)
+
+[node name="fi_vil_cath_wall_14" parent="." unique_id=1733550790 instance=ExtResource("14_tbu1h")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -11.799904, 6.1, 52.9001)
+
+[node name="fi_vil_cath_wall_39" parent="." unique_id=1662778741 instance=ExtResource("14_tbu1h")]
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, -6.799904, 6.1, 52.9001)
+
+[node name="fi_vil_cath_wall_37" parent="." unique_id=826937803 instance=ExtResource("14_tbu1h")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -11.799904, 6.1, 52.9001)
+
+[node name="fi_vil_cath_wall_38" parent="." unique_id=1129961970 instance=ExtResource("14_tbu1h")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -6.799904, 6.1, 52.9001)
+
+[node name="fi_vil_cath_wall_40" parent="." unique_id=713197602 instance=ExtResource("14_tbu1h")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -6.799904, 9.1, 52.9001)
+
+[node name="fi_vil_cath_wall_41" parent="." unique_id=110110557 instance=ExtResource("14_tbu1h")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -9.299904, 9.1, 52.9001)
+
+[node name="fi_vil_cath_wall_42" parent="." unique_id=1896704951 instance=ExtResource("14_tbu1h")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -11.799904, 9.1, 52.9001)
+
+[node name="fi_vil_cath_wall_11" parent="." unique_id=1728157629 instance=ExtResource("14_tbu1h")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -21.80011, 6.1, 62.900093)
+
+[node name="fi_vil_cath_wall_09" parent="." unique_id=319624226 instance=ExtResource("14_tbu1h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7999115, 6.1, 65.4001)
+
+[node name="fi_vil_cath_wall_21" parent="." unique_id=213527763 instance=ExtResource("14_tbu1h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7999115, 6.1, 67.9001)
+
+[node name="fi_vil_cath_wall_22" parent="." unique_id=279871595 instance=ExtResource("14_tbu1h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7999115, 3.1, 67.9001)
+
+[node name="fi_vil_cath_wall_25" parent="." unique_id=973078000 instance=ExtResource("14_tbu1h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7999115, 6.1, 70.4001)
+
+[node name="fi_vil_cath_wall_26" parent="." unique_id=307711695 instance=ExtResource("14_tbu1h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7999115, 3.1, 70.4001)
+
+[node name="fi_vil_cath_wall_16" parent="." unique_id=721672848 instance=ExtResource("14_tbu1h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.80011, 6.1, 62.9001)
+
+[node name="fi_vil_cath_wall_17" parent="." unique_id=863538826 instance=ExtResource("14_tbu1h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.80011, 6.1, 60.4001)
+
+[node name="fi_vil_cath_wall_18" parent="." unique_id=928471242 instance=ExtResource("14_tbu1h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.799904, 6.1, 55.4001)
+
+[node name="fi_vil_cath_wall_19" parent="." unique_id=1306178219 instance=ExtResource("14_tbu1h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7999115, 6.1, 57.9001)
+
+[node name="fi_vil_combs_decor_vent02" parent="." unique_id=1638933629 instance=ExtResource("17_cd4sl")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -23.000015, 6.1, 60.399994)
+
+[node name="fi_vil_cath_vault_beam_large" parent="." unique_id=1487129348 instance=ExtResource("18_20pob")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -19.218712, 6.7085, 66.430855)
+
+[node name="fi_vil_cath_vault_beam_large2" parent="." unique_id=863976804 instance=ExtResource("18_20pob")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -21.718712, 6.7085, 66.430855)
+
+[node name="fi_vil_cath_vault_beam_large6" parent="." unique_id=1238862847 instance=ExtResource("18_20pob")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.893814, 6.7085, 65.40019)
+
+[node name="fi_vil_cath_vault_beam_large7" parent="." unique_id=471070643 instance=ExtResource("18_20pob")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.893814, 6.7085, 62.900192)
+
+[node name="fi_vil_cath_vault_beam_large8" parent="." unique_id=2035958631 instance=ExtResource("18_20pob")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.893814, 6.7085, 60.400192)
+
+[node name="fi_vil_cath_vault_beam_large9" parent="." unique_id=1641948626 instance=ExtResource("18_20pob")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.893814, 6.7085, 57.900192)
+
+[node name="fi_vil_cath_vault_beam_large10" parent="." unique_id=1507810551 instance=ExtResource("18_20pob")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.893806, 6.7085, 55.400192)
+
+[node name="fi_vil_cath_vault_beam_large3" parent="." unique_id=1720808724 instance=ExtResource("18_20pob")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -16.718712, 6.7085, 66.430855)
+
+[node name="fi_vil_cath_vault_beam_large4" parent="." unique_id=732562170 instance=ExtResource("18_20pob")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -14.218712, 6.7085, 66.430855)
+
+[node name="fi_vil_cath_vault_beam_large5" parent="." unique_id=520560519 instance=ExtResource("18_20pob")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.812515, 6.7085, 67.52486)
+
+[node name="fi_vil_cath_vault_beam_large11" parent="." unique_id=1078819638 instance=ExtResource("18_20pob")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.812515, 6.7085, 70.02486)
+
+[node name="fi_vil_cath_vault_beam_large20" parent="." unique_id=887045225 instance=ExtResource("18_20pob")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.812515, 6.7085, 72.52486)
+
+[node name="fi_vil_cath_vault_beam_large21" parent="." unique_id=281345992 instance=ExtResource("18_20pob")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -11.712517, 6.7085, 73.924866)
+
+[node name="fi_vil_cath_vault_beam_large22" parent="." unique_id=681039087 instance=ExtResource("18_20pob")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.212517, 6.7085, 73.924866)
+
+[node name="fi_vil_cath_vault_beam_large23" parent="." unique_id=916327191 instance=ExtResource("18_20pob")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.712517, 6.7085, 73.924866)
+
+[node name="fi_vil_cath_vault_beam_large24" parent="." unique_id=2000012087 instance=ExtResource("18_20pob")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8013763, 6.724285, 72.50966)
+
+[node name="fi_vil_cath_vault_beam_large25" parent="." unique_id=2374670 instance=ExtResource("18_20pob")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8013763, 6.724285, 70.00966)
+
+[node name="fi_vil_cath_vault_beam_large26" parent="." unique_id=721725117 instance=ExtResource("18_20pob")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8013763, 6.724285, 67.50966)
+
+[node name="fi_vil_cath_vault_beam_large27" parent="." unique_id=1571471482 instance=ExtResource("18_20pob")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8013763, 6.724285, 65.00966)
+
+[node name="fi_vil_cath_vault_beam_large28" parent="." unique_id=995186793 instance=ExtResource("18_20pob")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8013763, 6.724285, 62.50966)
+
+[node name="fi_vil_cath_vault_beam_large29" parent="." unique_id=1560145383 instance=ExtResource("18_20pob")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8013763, 6.724285, 60.00966)
+
+[node name="fi_vil_cath_vault_beam_large30" parent="." unique_id=960666522 instance=ExtResource("18_20pob")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8013763, 6.724285, 57.50966)
+
+[node name="fi_vil_cath_vault_beam_large31" parent="." unique_id=1390498981 instance=ExtResource("18_20pob")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8013687, 6.724285, 55.00966)
+
+[node name="fi_vil_cath_vault_beam_large32" parent="." unique_id=186573010 instance=ExtResource("18_20pob")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8013687, 6.724285, 52.50966)
+
+[node name="fi_vil_cath_vault_beam_large12" parent="." unique_id=1410762169 instance=ExtResource("18_20pob")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -19.300003, 6.7085, 54.30619)
+
+[node name="fi_vil_cath_vault_beam_large13" parent="." unique_id=107166567 instance=ExtResource("18_20pob")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -21.800003, 6.7085, 54.30619)
+
+[node name="fi_vil_cath_vault_beam_large14" parent="." unique_id=1354155017 instance=ExtResource("18_20pob")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -16.800003, 6.7085, 54.30619)
+
+[node name="fi_vil_cath_vault_beam_large15" parent="." unique_id=1866525290 instance=ExtResource("18_20pob")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -14.300003, 6.7085, 54.30619)
+
+[node name="fi_vil_cath_vault_beam_large16" parent="." unique_id=664300830 instance=ExtResource("18_20pob")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 6.7085, 53.206192)
+
+[node name="fi_vil_cath_vault_beam_large17" parent="." unique_id=1348198742 instance=ExtResource("18_20pob")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -11.593697, 6.7085, 51.799698)
+
+[node name="fi_vil_cath_vault_beam_large18" parent="." unique_id=955968821 instance=ExtResource("18_20pob")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.093697, 6.7085, 51.799698)
+
+[node name="fi_vil_cath_vault_beam_large19" parent="." unique_id=1662091435 instance=ExtResource("18_20pob")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.5936966, 6.7085, 51.799698)
+
+[node name="fi_vil_combs_vault_corner01" parent="." unique_id=840344016 instance=ExtResource("19_m3k4a")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -20.549713, 6.1, 64.149994)
+
+[node name="fi_vil_combs_vault_corner02" parent="." unique_id=1084478417 instance=ExtResource("19_m3k4a")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -20.549713, 6.1, 56.649994)
+
+[node name="fi_vil_combs_vault_small02_a" parent="." unique_id=1934775351 instance=ExtResource("20_bx027")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -21.799713, 6.1, 60.399994)
+
+[node name="fi_vil_combs_vault_small02_a2" parent="." unique_id=2080759068 instance=ExtResource("20_bx027")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -16.799713, 6.1, 65.399994)
+
+[node name="fi_vil_combs_vault_small02_a4" parent="." unique_id=1161810392 instance=ExtResource("20_bx027")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -14.300011, 6.1, 65.399895)
+
+[node name="fi_vil_combs_vault_small02_a6" parent="." unique_id=672472196 instance=ExtResource("20_bx027")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -11.799713, 6.1, 67.9)
+
+[node name="fi_vil_combs_vault_small02_a13" parent="." unique_id=424649420 instance=ExtResource("20_bx027")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -11.799713, 6.1, 70.4)
+
+[node name="fi_vil_cath_wall_29" parent="." unique_id=1786958263 instance=ExtResource("14_tbu1h")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -11.7999115, 6.1, 72.9001)
+
+[node name="fi_vil_cath_wall_30" parent="." unique_id=2058232292 instance=ExtResource("14_tbu1h")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -11.7999115, 3.1, 72.9001)
+
+[node name="fi_vil_combs_vault_small02_a16" parent="." unique_id=59722501 instance=ExtResource("20_bx027")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -11.799713, 6.1, 72.9)
+
+[node name="fi_vil_combs_vault_small02_a7" parent="." unique_id=1719863462 instance=ExtResource("20_bx027")]
+transform = Transform3D(1, 0, -1.6292068e-07, 0, 1, 0, 1.6292068e-07, 0, 1, -6.80011, 6.0999994, 67.9002)
+
+[node name="fi_vil_combs_vault_small02_a14" parent="." unique_id=1695645047 instance=ExtResource("20_bx027")]
+transform = Transform3D(1, 0, -1.6292068e-07, 0, 1, 0, 1.6292068e-07, 0, 1, -6.80011, 6.0999994, 70.4002)
+
+[node name="fi_vil_cath_wall_27" parent="." unique_id=2137569483 instance=ExtResource("14_tbu1h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7999115, 6.1, 72.9001)
+
+[node name="fi_vil_cath_wall_28" parent="." unique_id=1666604590 instance=ExtResource("14_tbu1h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7999115, 3.1, 72.9001)
+
+[node name="fi_vil_cath_wall_31" parent="." unique_id=1552121312 instance=ExtResource("14_tbu1h")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.89991, 3.1, 73.0001)
+
+[node name="fi_vil_cath_wall_32" parent="." unique_id=1262182960 instance=ExtResource("14_tbu1h")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.39991, 3.1, 73.0001)
+
+[node name="fi_vil_cath_wall_33" parent="." unique_id=130165113 instance=ExtResource("14_tbu1h")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -11.89991, 3.1, 73.0001)
+
+[node name="fi_vil_cath_wall_34" parent="." unique_id=686211963 instance=ExtResource("14_tbu1h")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.89991, 9.1, 73.0001)
+
+[node name="fi_vil_cath_wall_35" parent="." unique_id=1714313564 instance=ExtResource("14_tbu1h")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.39991, 9.1, 73.0001)
+
+[node name="fi_vil_cath_wall_36" parent="." unique_id=87371529 instance=ExtResource("14_tbu1h")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -11.89991, 9.1, 73.0001)
+
+[node name="fi_vil_combs_vault_small02_a15" parent="." unique_id=1700177813 instance=ExtResource("20_bx027")]
+transform = Transform3D(1, 0, -1.6292068e-07, 0, 1, 0, 1.6292068e-07, 0, 1, -6.80011, 6.0999994, 72.9002)
+
+[node name="fi_vil_combs_vault_small02_a8" parent="." unique_id=303685217 instance=ExtResource("20_bx027")]
+transform = Transform3D(1, 0, -1.6292068e-07, 0, 1, 0, 1.6292068e-07, 0, 1, -6.80011, 6.0999994, 65.4002)
+
+[node name="fi_vil_combs_vault_small02_a9" parent="." unique_id=463523224 instance=ExtResource("20_bx027")]
+transform = Transform3D(1, 0, -1.6292068e-07, 0, 1, 0, 1.6292068e-07, 0, 1, -6.80011, 6.0999994, 62.9002)
+
+[node name="fi_vil_combs_vault_small02_a10" parent="." unique_id=262035437 instance=ExtResource("20_bx027")]
+transform = Transform3D(1, 0, -1.6292068e-07, 0, 1, 0, 1.6292068e-07, 0, 1, -6.80011, 6.0999994, 60.4002)
+
+[node name="fi_vil_combs_vault_small02_a11" parent="." unique_id=1508537635 instance=ExtResource("20_bx027")]
+transform = Transform3D(1, 0, -1.6292068e-07, 0, 1, 0, 1.6292068e-07, 0, 1, -6.80011, 6.0999994, 57.9002)
+
+[node name="fi_vil_combs_vault_small02_a12" parent="." unique_id=1383213023 instance=ExtResource("20_bx027")]
+transform = Transform3D(1, 0, -1.6292068e-07, 0, 1, 0, 1.6292068e-07, 0, 1, -6.800102, 6.0999994, 55.4002)
+
+[node name="fi_vil_combs_vault_small02_a3" parent="." unique_id=1055420532 instance=ExtResource("20_bx027")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -16.799706, 6.1, 55.399994)
+
+[node name="fi_vil_combs_vault_small02_a5" parent="." unique_id=1807175785 instance=ExtResource("20_bx027")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -14.2997055, 6.1, 55.399994)
+
+[node name="fi_vil_combs_vault_small02_a17" parent="." unique_id=1870742241 instance=ExtResource("20_bx027")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -11.799606, 6.1, 52.899704)
+
+[node name="fi_vil_combs_vault_small02_a18" parent="." unique_id=1100106090 instance=ExtResource("20_bx027")]
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, -6.800102, 6.1, 53.0002)
+
+[node name="fi_vil_combs_vault_rooftile" parent="." unique_id=1044427345 instance=ExtResource("21_pyd35")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -19.30001, 6.1, 62.899994)
+
+[node name="fi_vil_combs_vault_rooftile2" parent="." unique_id=1045409449 instance=ExtResource("21_pyd35")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -19.30001, 6.1, 60.399994)
+
+[node name="fi_vil_combs_vault_rooftile3" parent="." unique_id=1749877278 instance=ExtResource("21_pyd35")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -19.30001, 6.1, 57.899994)
+
+[node name="fi_vil_combs_vault_rooftile4" parent="." unique_id=850695677 instance=ExtResource("21_pyd35")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -16.80001, 6.1, 62.899994)
+
+[node name="fi_vil_combs_vault_rooftile5" parent="." unique_id=2079892947 instance=ExtResource("21_pyd35")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -16.80001, 6.1, 60.399994)
+
+[node name="fi_vil_combs_vault_rooftile6" parent="." unique_id=1619405355 instance=ExtResource("21_pyd35")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -16.80001, 6.1, 57.899994)
+
+[node name="fi_vil_combs_vault_rooftile7" parent="." unique_id=845395200 instance=ExtResource("21_pyd35")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -14.300011, 6.1, 62.899994)
+
+[node name="fi_vil_combs_vault_rooftile13" parent="." unique_id=1486361131 instance=ExtResource("21_pyd35")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.300011, 6.1, 67.9)
+
+[node name="fi_vil_combs_vault_rooftile19" parent="." unique_id=1783202916 instance=ExtResource("21_pyd35")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.300011, 6.1, 70.4)
+
+[node name="fi_vil_combs_vault_rooftile20" parent="." unique_id=1873359568 instance=ExtResource("21_pyd35")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.300011, 6.1, 72.9)
+
+[node name="fi_vil_combs_vault_rooftile14" parent="." unique_id=400147124 instance=ExtResource("21_pyd35")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.300011, 6.1, 65.4)
+
+[node name="fi_vil_combs_vault_rooftile15" parent="." unique_id=811499693 instance=ExtResource("21_pyd35")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.300011, 6.1, 62.9)
+
+[node name="fi_vil_combs_vault_rooftile16" parent="." unique_id=1396508955 instance=ExtResource("21_pyd35")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.300011, 6.1, 60.4)
+
+[node name="fi_vil_combs_vault_rooftile17" parent="." unique_id=902162338 instance=ExtResource("21_pyd35")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.300011, 6.1, 57.9)
+
+[node name="fi_vil_combs_vault_rooftile18" parent="." unique_id=593873787 instance=ExtResource("21_pyd35")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.300003, 6.1, 55.5)
+
+[node name="fi_vil_combs_vault_rooftile21" parent="." unique_id=328802830 instance=ExtResource("21_pyd35")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.300003, 6.1, 53)
+
+[node name="fi_vil_combs_vault_rooftile8" parent="." unique_id=1124157856 instance=ExtResource("21_pyd35")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -14.300011, 6.1, 60.399994)
+
+[node name="fi_vil_combs_vault_rooftile9" parent="." unique_id=1399731057 instance=ExtResource("21_pyd35")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -14.300011, 6.1, 57.899994)
+
+[node name="fi_vil_combs_vault_rooftile10" parent="." unique_id=1039702423 instance=ExtResource("21_pyd35")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -11.800011, 6.1, 62.9)
+
+[node name="fi_vil_combs_vault_rooftile11" parent="." unique_id=1742909946 instance=ExtResource("21_pyd35")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -11.800011, 6.1, 60.4)
+
+[node name="fi_vil_combs_vault_rooftile12" parent="." unique_id=372570274 instance=ExtResource("21_pyd35")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -11.800011, 6.1, 57.9)
+
+[node name="fi_vil_combs_decor_vent02_broken" parent="." unique_id=1821842984 instance=ExtResource("22_v5603")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.6000137, 6.1, 60.5)
+
+[node name="fi_vil_combs_props_sarcophagus_big_01a" parent="." unique_id=67958701 instance=ExtResource("24_ko731")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.750008, 6.1, 63.34999)
+
+[node name="sarcophagus_lid" parent="." unique_id=522044919 instance=ExtResource("25_w52lw")]
+transform = Transform3D(0.96592593, 0, -0.25881907, 0, 1, 0, 0.25881907, 0, 0.96592593, -20.850014, 7.3, 63.34999)
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Sarcophagus","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="fi_vil_combs_props_sarcophagus_big_01a2" parent="." unique_id=1385229715 instance=ExtResource("24_ko731")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.750008, 6.1, 63.34999)
+
+[node name="fi_vil_combs_props_sarcophagus_big_01a3" parent="." unique_id=1358261139 instance=ExtResource("24_ko731")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.750008, 6.1, 63.34999)
+
+[node name="sarcophagus_lid3" parent="." unique_id=735866326 instance=ExtResource("25_w52lw")]
+transform = Transform3D(1, 0, -2.8810227e-08, 0, 1, 0, 2.8810227e-08, 0, 1, -14.850014, 7.1, 63.549988)
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Sarcophagus","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="fi_vil_combs_props_sarcophagus_big_01a7" parent="." unique_id=1902555388 instance=ExtResource("24_ko731")]
+transform = Transform3D(-0.25881904, 0, 0.9659258, 0, 1, 0, -0.9659258, 0, -0.25881904, -9.209549, 4.6, 71.52758)
+
+[node name="sarcophagus_lid7" parent="." unique_id=121282268 instance=ExtResource("25_w52lw")]
+transform = Transform3D(-0.258819, 0, 0.9659258, 0, 1, 0, -0.9659258, 0, -0.258819, -8.9904785, 5.6, 71.57241)
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Sarcophagus","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="sarcophagus_lid4" parent="." unique_id=513913077 instance=ExtResource("25_w52lw")]
+transform = Transform3D(1, 0, -2.8810227e-08, 0, 1, 0, 2.8810227e-08, 0, 1, -17.850014, 7.1, 63.84999)
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Sarcophagus","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="fi_vil_combs_props_sarcophagus_big_01a4" parent="." unique_id=419939302 instance=ExtResource("24_ko731")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.750008, 6.1, 57.34999)
+
+[node name="sarcophagus_lid2" parent="." unique_id=80506188 instance=ExtResource("25_w52lw")]
+transform = Transform3D(0.96592593, 0, -0.25881907, 0, 1, 0, 0.25881907, 0, 0.96592593, -20.850014, 7.3, 57.34999)
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Sarcophagus","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="fi_vil_combs_props_sarcophagus_big_01a5" parent="." unique_id=46763528 instance=ExtResource("24_ko731")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.750008, 6.1, 57.34999)
+
+[node name="fi_vil_combs_props_sarcophagus_big_01a6" parent="." unique_id=1718336331 instance=ExtResource("24_ko731")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.750008, 6.1, 57.34999)
+
+[node name="sarcophagus_lid5" parent="." unique_id=1954669072 instance=ExtResource("25_w52lw")]
+transform = Transform3D(1, 0, -2.8810227e-08, 0, 1, 0, 2.8810227e-08, 0, 1, -14.850014, 7.1, 57.549988)
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Sarcophagus","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="sarcophagus_lid6" parent="." unique_id=1039146145 instance=ExtResource("25_w52lw")]
+transform = Transform3D(1, 0, -2.8810227e-08, 0, 1, 0, 2.8810227e-08, 0, 1, -17.850014, 7.1, 57.84999)
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Sarcophagus","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="fi_vil_combs_props_bonepile_01c" parent="." unique_id=1792524928 instance=ExtResource("26_q2qj5")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -18.80001, 6.1, 61.399994)
+
+[node name="fi_vil_combs_props_bonepile_01d" parent="fi_vil_combs_props_bonepile_01c" unique_id=1945597387 instance=ExtResource("27_20l8s")]
+transform = Transform3D(0.64278764, 0, -0.76604444, 0, 1, 0, 0.76604444, 0, 0.64278764, 0, 0, -0.3999939)
+
+[node name="fi_vil_combs_props_bonepile_01e" parent="fi_vil_combs_props_bonepile_01c" unique_id=1204674708 instance=ExtResource("28_4h8kq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="fi_vil_combs_props_bonepile_02a" parent="fi_vil_combs_props_bonepile_01c" unique_id=1203339335 instance=ExtResource("29_4oj0x")]
+transform = Transform3D(0.25881907, 0, 0.9659258, 0, 1, 0, -0.9659258, 0, 0.25881907, 2.800003, 0.19999999, -1.0999985)
+
+[node name="fi_vil_cath_pillar_arch_half1c" parent="." unique_id=1060314947 instance=ExtResource("30_ut3ec")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -14.300011, 6.1, 66.524994)
+
+[node name="fi_vil_cath_pillar_arch_half1c2" parent="." unique_id=1414296099 instance=ExtResource("30_ut3ec")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -21.80001, 6.1, 66.524994)
+
+[node name="fi_vil_cath_pillar_arch_extention1b" parent="." unique_id=2067078208 instance=ExtResource("31_ujtbk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -19.30001, 6.1, 66.524994)
+
+[node name="fi_vil_cath_pillar_arch_extention1b3" parent="." unique_id=250298446 instance=ExtResource("31_ujtbk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -16.80001, 6.1, 66.524994)
+
+[node name="fi_vil_cath_pillar_arch_half1c3" parent="." unique_id=564594777 instance=ExtResource("30_ut3ec")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -14.300201, 6.0798, 54.274696)
+
+[node name="fi_vil_cath_pillar_arch_half1c4" parent="." unique_id=306653367 instance=ExtResource("30_ut3ec")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -21.800003, 6.1, 54.274994)
+
+[node name="fi_vil_cath_pillar_arch_extention1b2" parent="." unique_id=1640662980 instance=ExtResource("31_ujtbk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -19.300003, 6.1, 54.274994)
+
+[node name="fi_vil_cath_pillar_arch_extention1b4" parent="." unique_id=1407526652 instance=ExtResource("31_ujtbk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -16.800003, 6.1, 54.274994)
+
+[node name="fi_vil_combs_root02" parent="." unique_id=459517985 instance=ExtResource("32_28ddc")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -18.30001, 6.2, 67.59999)
+
+[node name="fi_vil_combs_root03" parent="." unique_id=996766975 instance=ExtResource("33_yuw74")]
+transform = Transform3D(-4.371139e-08, -0.70710677, -0.70710677, 0, 0.70710677, -0.70710677, 1, -3.090862e-08, -3.090862e-08, -18.80001, 7.7, 68.09999)
+
+[node name="fi_vil_combs_root11" parent="." unique_id=1869754184 instance=ExtResource("34_r7kqu")]
+transform = Transform3D(0.7957531, -0.42075315, -0.43559575, 0.59503466, 0.6770771, 0.43301266, 0.112740524, -0.6037658, 0.78914905, -19.000015, 8.2, 67.6)
+
+[node name="fi_vil_combs_root04" parent="." unique_id=270444871 instance=ExtResource("33_yuw74")]
+transform = Transform3D(-4.371139e-08, -0.96592593, -0.2588191, 0, 0.2588191, -0.96592593, 1, -4.2221963e-08, -1.1313342e-08, -18.600014, 8.3, 67.399994)
+
+[node name="fi_vil_combs_decor_grate_large_bent" parent="." unique_id=687262644 instance=ExtResource("35_tixqr")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -16.80001, 6.5, 66.7)
+
+[node name="fi_vil_combs_decor_grate_large_bent3" parent="." unique_id=678435968 instance=ExtResource("35_tixqr")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -19.40001, 6.5, 66.7)
+
+[node name="fi_vil_combs_decor_grate_large_bent2" parent="." unique_id=400424454 instance=ExtResource("35_tixqr")]
+transform = Transform3D(1.3311836e-07, 0, 1, 0, 1, 0, -1, 0, 1.3311836e-07, -19.300003, 6.5, 54)
+
+[node name="fi_vil_combs_niche2_03" parent="." unique_id=1593771348 instance=ExtResource("36_ujt8p")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -19.30001, 6.1, 65.399994)
+
+[node name="fi_vil_combs_niche2_05" parent="." unique_id=1258294504 instance=ExtResource("36_ujt8p")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -16.80001, 6.1, 65.399994)
+
+[node name="fi_vil_combs_niche2_04" parent="." unique_id=1984320276 instance=ExtResource("36_ujt8p")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -19.299805, 6.1, 55.400192)
+
+[node name="fi_vil_combs_niche2_06" parent="." unique_id=2008472136 instance=ExtResource("36_ujt8p")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -16.799805, 6.1, 55.400192)
+
+[node name="fi_vil_combs_wall_broken_04" parent="." unique_id=1333385026 instance=ExtResource("37_rmhof")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -19.900017, 6.6, 67.7)
+
+[node name="fi_vil_combs_wall_broken_left01" parent="." unique_id=1522243867 instance=ExtResource("38_wojj2")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -17.80001, 6.1, 67.299995)
+
+[node name="fi_vil_combs_props_bonepile_01b" parent="." unique_id=973803266 instance=ExtResource("39_l6kgi")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -19.100014, 7.2, 66.799995)
+
+[node name="fi_vil_combs_props_bonepile_04b" parent="." unique_id=1212174079 instance=ExtResource("40_mx2tr")]
+transform = Transform3D(0.49999997, 0, -0.8660254, 0, 1, 0, 0.8660254, 0, 0.49999997, -19.500008, 7.1, 66.99999)
+
+[node name="fi_vil_combs_vault_outside_corner01" parent="." unique_id=1929569974 instance=ExtResource("41_yapsy")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -10.549713, 6.1, 64.15)
+
+[node name="fi_vil_combs_vault_outside_corner02" parent="." unique_id=229923590 instance=ExtResource("41_yapsy")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -10.549713, 6.1, 56.65)
+
+[node name="fi_vil_cath_pillar_04_3m_quart" parent="." unique_id=1327806904 instance=ExtResource("16_esku2")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -13.167412, 6.1, 66.61293)
+
+[node name="fi_vil_cath_pillar_04_3m_half7" parent="." unique_id=562564045 instance=ExtResource("15_0eh2h")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13.167389, 6.1, 54.21293)
+
+[node name="fi_vil_cath_pillar_04_3m_quart3" parent="." unique_id=1616695232 instance=ExtResource("16_esku2")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -13.167488, 6.1, 54.21293)
+
+[node name="fi_vil_cath_floor01_straight_steps" parent="." unique_id=230451557 instance=ExtResource("42_poyg0")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -11.800011, 5.35, 67.275)
+
+[node name="fi_vil_cath_floor01_straight_steps2" parent="." unique_id=481599459 instance=ExtResource("42_poyg0")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.300011, 5.35, 67.275)
+
+[node name="fi_vil_cath_floor01_straight_steps3" parent="." unique_id=2039524499 instance=ExtResource("42_poyg0")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6.8000107, 5.35, 67.275)
+
+[node name="fi_vil_cath_floor01_straight_steps4" parent="." unique_id=1152170825 instance=ExtResource("42_poyg0")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -11.800011, 4.6, 68.525)
+
+[node name="fi_vil_cath_floor01_straight_steps5" parent="." unique_id=3667502 instance=ExtResource("42_poyg0")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.300011, 4.6, 68.525)
+
+[node name="fi_vil_cath_floor01_straight_steps6" parent="." unique_id=11286051 instance=ExtResource("42_poyg0")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6.8000107, 4.6, 68.525)
+
+[node name="fi_vil_combs_floor4_shallow_end" parent="." unique_id=1729590201 instance=ExtResource("43_l1tn0")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -9.300011, 6.1, 65.3998)
+
+[node name="fi_vil_combs_floor_grate_end" parent="." unique_id=1085970129 instance=ExtResource("44_mdjuo")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -9.300011, 6.1, 65.4)
+
+[node name="fi_vil_combs_floor4_shallow_end2" parent="." unique_id=1793358221 instance=ExtResource("43_l1tn0")]
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, -9.300003, 6.1, 55.4)
+
+[node name="fi_vil_combs_floor_grate_end2" parent="." unique_id=2094213358 instance=ExtResource("44_mdjuo")]
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, -9.300003, 6.1, 55.399803)
+
+[node name="fi_vil_combs_niche7_03" parent="." unique_id=957804152 instance=ExtResource("45_v5dlb")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.900009, 6.1, 73)
+
+[node name="fi_vil_combs_niche7_04" parent="." unique_id=1526923555 instance=ExtResource("45_v5dlb")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.400009, 6.1, 73)
+
+[node name="fi_vil_combs_niche7_05" parent="." unique_id=872109356 instance=ExtResource("45_v5dlb")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -11.900009, 6.1, 73)
+
+[node name="fi_vil_combs_decor_grate_small" parent="." unique_id=1980383808 instance=ExtResource("46_20r2e")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.400009, 6.6, 74.200005)
+
+[node name="fi_vil_combs_decor_grate_small2" parent="." unique_id=1443650490 instance=ExtResource("46_20r2e")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.900009, 6.6, 74.200005)
+
+[node name="fi_vil_combs_decor_grate_small3" parent="." unique_id=305123124 instance=ExtResource("46_20r2e")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -11.900009, 6.6, 74.200005)
+
+[node name="fi_vil_combs_decor_grate_small4" parent="." unique_id=1188528959 instance=ExtResource("46_20r2e")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -11.900009, 7.8, 74.200005)
+
+[node name="fi_vil_combs_decor_grate_small5" parent="." unique_id=1885009484 instance=ExtResource("46_20r2e")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.400009, 7.8, 74.200005)
+
+[node name="fi_vil_combs_decor_grate_small6" parent="." unique_id=1139581197 instance=ExtResource("46_20r2e")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.900009, 7.8, 74.200005)
+
+[node name="fi_vil_combs_debris_01" parent="." unique_id=1356757325 instance=ExtResource("47_ap1b0")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.0000076, 4.6, 73.9)
+
+[node name="fi_vil_combs_debris_04" parent="." unique_id=827960730 instance=ExtResource("48_1hxvs")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -5.8000107, 4.6, 73.1)
+
+[node name="fi_vil_combs_wall_broken_05" parent="." unique_id=639647405 instance=ExtResource("37_rmhof")]
+transform = Transform3D(0.08715569, 0, -0.9961947, 0, 1, 0, 0.9961947, 0, 0.08715569, -12.200012, 4.5, 74.299995)
+
+[node name="fi_vil_combs_wall_broken_left02" parent="." unique_id=1243435590 instance=ExtResource("49_5xfkq")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -5.6000137, 4.6, 74.100006)
+
+[node name="fi_vil_combs_wall_broken_right01" parent="." unique_id=1007763621 instance=ExtResource("50_b4etk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -8.100014, 3.6, 74.200005)
+
+[node name="fi_vil_combs_root05" parent="." unique_id=946115014 instance=ExtResource("32_28ddc")]
+transform = Transform3D(-0.48296294, 0.12940954, -0.8660254, 0.25881907, 0.96592593, 0, 0.8365164, -0.22414389, -0.5000001, -6.8000107, 5.6, 74.6)
+
+[node name="fi_vil_combs_root12" parent="." unique_id=1231458842 instance=ExtResource("34_r7kqu")]
+transform = Transform3D(0.7071067, 1.131334e-08, -0.7071068, 0.1830127, 0.9659258, 0.1830127, 0.6830127, -0.25881904, 0.6830126, -6.8000107, 5.1, 74.4)
+
+[node name="fi_vil_combs_root06" parent="." unique_id=499823975 instance=ExtResource("33_yuw74")]
+transform = Transform3D(-4.371139e-08, -0.70710677, -0.70710677, 0, 0.70710677, -0.70710677, 1, -3.090862e-08, -3.090862e-08, -6.8000107, 5.6, 74.4)
+
+[node name="fi_vil_combs_props_bonepile_01b2" parent="." unique_id=1903896679 instance=ExtResource("39_l6kgi")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.3000107, 6.6, 74.8)
+
+[node name="fi_vil_combs_props_bonepile_01c2" parent="." unique_id=1773460549 instance=ExtResource("26_q2qj5")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.700012, 6.7, 74.5)
+
+[node name="fi_vil_combs_props_bonepile_01d" parent="." unique_id=151105471 instance=ExtResource("27_20l8s")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.5000076, 6.6, 74.700005)
+
+[node name="fi_vil_combs_props_bonepile_01e" parent="." unique_id=1059645913 instance=ExtResource("28_4h8kq")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -8.800011, 6.6, 74.8)
+
+[node name="fi_vil_combs_props_bonepile_02a" parent="." unique_id=1333682466 instance=ExtResource("29_4oj0x")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.800011, 6.6, 74.700005)
+
+[node name="fi_vil_combs_props_urn01a" parent="." unique_id=2077583652 instance=ExtResource("51_73e17")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.800003, 6.1, 52.4)
+
+[node name="fi_vil_combs_props_urn02a" parent="." unique_id=1366205630 instance=ExtResource("52_33t3f")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.2000046, 6.1, 53)
+
+[node name="fi_vil_combs_props_urn02b" parent="." unique_id=764460864 instance=ExtResource("53_acmef")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.3000107, 6.1, 58.6)
+
+[node name="fi_vil_combs_props_urn03c" parent="." unique_id=1152696261 instance=ExtResource("54_ihh78")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -12.100006, 6.1, 53.299995)
+
+[node name="fi_vil_combs_props_urn04a" parent="fi_vil_combs_props_urn03c" unique_id=617918840 instance=ExtResource("55_sax47")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5999985, 0, -6.2000046)
+
+[node name="fi_vil_combs_props_urn04b" parent="fi_vil_combs_props_urn03c/fi_vil_combs_props_urn04a" unique_id=1103143608 instance=ExtResource("56_j2il4")]
+transform = Transform3D(0.25881907, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, 0.25881907, 3.5999985, 0, 0.40000153)
+
+[node name="fi_vil_combs_props_urn05a" parent="fi_vil_combs_props_urn03c/fi_vil_combs_props_urn04a/fi_vil_combs_props_urn04b" unique_id=809570997 instance=ExtResource("57_flfbs")]
+transform = Transform3D(0.25881907, 0, 0.9659258, 0, 1, 0, -0.9659258, 0, 0.25881907, -0.4330597, 0, 1.2298126)
+
+[node name="fi_vil_combs_props_urn06b" parent="fi_vil_combs_props_urn03c/fi_vil_combs_props_urn04a/fi_vil_combs_props_urn04b" unique_id=1320605138 instance=ExtResource("58_blsd3")]
+transform = Transform3D(0.25881907, 0, 0.9659258, 0, 1, 0, -0.9659258, 0, 0.25881907, 5.2381516, 0, 4.405857)
+
+[node name="fi_vil_combs_props_urn06c" parent="fi_vil_combs_props_urn03c/fi_vil_combs_props_urn04a/fi_vil_combs_props_urn04b/fi_vil_combs_props_urn06b" unique_id=1992126086 instance=ExtResource("59_k1nxo")]
+transform = Transform3D(0.25881907, 0.9659258, 0, -0.9659258, 0.25881907, 0, 0, 0, 1, 3.0000076, 0.3, -5.4999847)
+
+[node name="fi_vil_combs_decor_vent04_broken" parent="fi_vil_combs_props_urn03c/fi_vil_combs_props_urn04a/fi_vil_combs_props_urn04b/fi_vil_combs_props_urn06b" unique_id=1811518273 instance=ExtResource("60_e1oid")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.400002, 3.2, -3.1999817)
+
+[node name="fi_vil_combs_props_bonepile_04e" parent="fi_vil_combs_props_urn03c/fi_vil_combs_props_urn04a/fi_vil_combs_props_urn04b/fi_vil_combs_props_urn06b" unique_id=454847850 instance=ExtResource("61_1b6yg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.300003, 0.5, -0.49998474)
+
+[node name="fi_vil_combs_props_bone_skull" parent="fi_vil_combs_props_urn03c/fi_vil_combs_props_urn04a/fi_vil_combs_props_urn04b/fi_vil_combs_props_urn06b" unique_id=1364136875 instance=ExtResource("62_igiob")]
+transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 19.900002, 1.9000001, -1.1999893)
+
+[node name="fi_vil_combs_props_bonepile_03c" parent="fi_vil_combs_props_urn03c/fi_vil_combs_props_urn04a/fi_vil_combs_props_urn04b/fi_vil_combs_props_urn06b" unique_id=1956351487 instance=ExtResource("63_8rknt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.100006, 1.8, -3.0999832)
+
+[node name="fi_vil_combs_props_bonepile_03c2" parent="fi_vil_combs_props_urn03c/fi_vil_combs_props_urn04a/fi_vil_combs_props_urn04b/fi_vil_combs_props_urn06b" unique_id=1264840194 instance=ExtResource("63_8rknt")]
+transform = Transform3D(-0.57357645, 0, 0.819152, 0, 1, 0, -0.819152, 0, -0.57357645, 20.100006, 1.8, -5.79998)
+
+[node name="fi_vil_combs_props_bonepile_04e2" parent="fi_vil_combs_props_urn03c/fi_vil_combs_props_urn04a/fi_vil_combs_props_urn04b/fi_vil_combs_props_urn06b" unique_id=2013028924 instance=ExtResource("61_1b6yg")]
+transform = Transform3D(-0.08715577, 0, 0.9961947, 0, 1, 0, -0.9961947, 0, -0.08715577, 3.7000046, 0, 3.1000214)
+
+[node name="fi_vil_combs_props_bonepile_04b" parent="fi_vil_combs_props_urn03c/fi_vil_combs_props_urn04a/fi_vil_combs_props_urn04b/fi_vil_combs_props_urn06b/fi_vil_combs_props_bonepile_04e2" unique_id=1884373648 instance=ExtResource("40_mx2tr")]
+transform = Transform3D(-0.08715577, 0, -0.9961947, 0, 1, 0, 0.9961947, 0, -0.08715577, -3.6772156, 0, -0.42209625)
+
+[node name="fi_vil_combs_root07" parent="." unique_id=1662197426 instance=ExtResource("32_28ddc")]
+transform = Transform3D(1.131334e-08, 4.222196e-08, -1, 0.9659258, -0.25881904, 0, -0.25881904, -0.9659258, -4.371139e-08, -9.800011, 11.9, 58.4)
+
+[node name="fi_vil_combs_wall_broken_06" parent="." unique_id=1990297282 instance=ExtResource("37_rmhof")]
+transform = Transform3D(2.1855696e-08, 3.7855173e-08, -1, 0.8660254, -0.50000006, 0, -0.50000006, -0.8660254, -4.371139e-08, -9.400009, 11.799999, 59)
+
+[node name="fi_vil_combs_wall_broken_07" parent="." unique_id=1358214085 instance=ExtResource("64_nghnn")]
+transform = Transform3D(0.50000006, 0.8660254, 8.742278e-08, 0.8660254, -0.50000006, 0, 4.3711392e-08, 7.5710346e-08, -1, -10.800011, 11.799999, 57.4)
+
+[node name="fi_vil_combs_root08" parent="." unique_id=820099852 instance=ExtResource("65_8k15f")]
+transform = Transform3D(1.959528e-08, 0.7071068, -0.7071067, 0.9659258, 0.18301265, 0.1830127, 0.258819, -0.6830126, -0.6830127, -9.800011, 11.7, 57.800003)
+
+[node name="fi_vil_combs_wall_broken_08" parent="." unique_id=566900166 instance=ExtResource("37_rmhof")]
+transform = Transform3D(0.9961947, 0, 0.087155655, 0, 1, 0, -0.087155655, 0, 0.9961947, -5.5000076, 6.1, 62.700005)
+
+[node name="fi_vil_combs_wall_broken_left03" parent="." unique_id=944347614 instance=ExtResource("49_5xfkq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.700012, 6.1, 63.700005)
+
+[node name="fi_vil_combs_wall_broken_left04" parent="." unique_id=1956381726 instance=ExtResource("66_8rql5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.6000137, 4.6, 71.6)
+
+[node name="fi_vil_combs_wall_broken_right02" parent="." unique_id=445605968 instance=ExtResource("50_b4etk")]
+transform = Transform3D(-0.9961948, 0, 0.08715579, 0, 1, 0, -0.08715579, 0, -0.9961948, -12.900017, 4.5, 71.899994)
+
+[node name="fi_vil_combs_wall_broken_right03" parent="." unique_id=504415055 instance=ExtResource("67_1d05k")]
+transform = Transform3D(-0.9659258, 0, 0.25881907, 0, 1, 0, -0.25881907, 0, -0.9659258, -12.800011, 5.1, 70.399994)
+
+[node name="fi_vil_combs_wall_broken_right04" parent="." unique_id=960192498 instance=ExtResource("68_oes6c")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -13.000008, 4.5, 69.299995)
+
+[node name="fi_vil_combs_root13" parent="." unique_id=1294222676 instance=ExtResource("34_r7kqu")]
+transform = Transform3D(-0.4836896, 0.4836896, -1.8793851, 1.4142135, 1.4142135, 0, 1.328926, -1.328926, -0.68404037, -22.30001, 10.6, 66.399994)
+
+[node name="fi_vil_combs_root09" parent="." unique_id=899165509 instance=ExtResource("33_yuw74")]
+transform = Transform3D(-1.0000002, -1.705737, -0.30076775, 0, 0.34729668, -1.9696155, 1.7320508, -0.9848079, -0.17364837, -22.80001, 10.3, 66.59999)
+
+[node name="fi_vil_combs_root10" parent="." unique_id=756258533 instance=ExtResource("32_28ddc")]
+transform = Transform3D(-0.53992116, 0.49240392, -0.68265927, 0.7544065, 0.64278764, -0.13302225, 0.37330425, -0.58682406, -0.7185273, -23.40001, 10.1, 65.59999)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=44104905]
+transform = Transform3D(0.68301266, 0.4620969, -0.5656502, 0.18301271, 0.64145654, 0.74501, 0.7071069, -0.61237246, 0.35355335, -21.795135, 10.631561, 64.95586)
+amount = 32
+lifetime = 10.0
+process_material = SubResource("ParticleProcessMaterial_smdjj")
+draw_pass_1 = SubResource("QuadMesh_4jky4")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1274217752]
+transform = Transform3D(0.68301266, 0.4620969, -0.5656502, 0.18301271, 0.64145654, 0.74501, 0.7071069, -0.61237246, 0.35355335, -22.660805, 10.70293, 65.060776)
+shadow_enabled = true
+spot_range = 12.916
+spot_angle = 20.84
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="." unique_id=1525971561]
+transform = Transform3D(0.99999994, -1.2247448, -1.224745, 0, 1.4142133, -1.4142137, 1.7320508, 0.70710665, 0.7071068, -20.360802, 7.7029295, 64.160774)
+radius = 1.115
+height = 4.4
+cone = true
+material = SubResource("ShaderMaterial_4jky4")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=153928060]
+transform = Transform3D(0.6957363, 1.477721, -1.1542494, 1.760783, -0.9381471, -0.1397263, -0.644666, -0.9675846, -1.6273252, -22.200022, 10.3, 65.4)
+mesh = SubResource("PlaneMesh_j1pv0")
+surface_material_override/0 = SubResource("ShaderMaterial_5hdgo")
+
+[node name="fi_vil_combs_root14" parent="." unique_id=416662489 instance=ExtResource("65_8k15f")]
+transform = Transform3D(-0.5000001, 0.8660254, -1.7320507, 1.7320504, 0.9999997, 2.9802322e-08, 0.8660253, -1.4999998, -1.0000001, -23.700012, 10.9, 66.2)
+
+[node name="fi_vil_combs_wall_broken_09" parent="." unique_id=1640202070 instance=ExtResource("37_rmhof")]
+transform = Transform3D(-0.8660253, -0.5, -1.0542351e-08, 0.5, -0.8660253, 8.007713e-08, -4.9168513e-08, 6.407765e-08, 1, -21.200012, 11.299999, 65.99999)
+
+[node name="fi_vil_combs_wall_broken_11" parent="." unique_id=1954819321 instance=ExtResource("37_rmhof")]
+transform = Transform3D(-0.68529516, -0.54508466, -0.4829629, 0.54508466, 0.055885658, -0.83651626, 0.4829629, -0.8365162, 0.25881916, -21.600012, 9.799999, 66.799995)
+
+[node name="fi_vil_combs_wall_broken_12" parent="." unique_id=1929497069 instance=ExtResource("37_rmhof")]
+transform = Transform3D(-0.8688313, 0.4146908, -0.27048787, 0.4516353, 0.887674, -0.089781046, 0.20287356, -0.20016651, -0.958528, -22.800013, 8.999999, 65.7)
+
+[node name="fi_vil_combs_wall_broken_10" parent="." unique_id=601759206 instance=ExtResource("64_nghnn")]
+transform = Transform3D(-0.6427877, 0.76604444, 3.3484866e-08, 0, -4.371138e-08, 1, 0.76604444, 0.6427877, 2.8097142e-08, -23.200012, 10.1, 64.09999)
+
+[node name="fi_vil_combs_wall_broken_left05" parent="." unique_id=1664879062 instance=ExtResource("38_wojj2")]
+transform = Transform3D(-0.7071068, -0.6830126, -0.18301271, 0, 0.25881907, -0.9659258, 0.7071067, -0.6830127, -0.18301274, -21.200012, 11.5, 65.19999)
+
+[node name="fi_vil_combs_wall_broken_left06" parent="." unique_id=1032954583 instance=ExtResource("38_wojj2")]
+transform = Transform3D(-0.6123724, -0.72091573, 0.32446924, -0.15849365, -0.2901401, -0.94376814, 0.7745189, -0.629364, 0.06341317, -21.800013, 12, 65.09999)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1339996447]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+light_color = Color(0, 0, 0, 1)
+light_energy = 0.248
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1984692250]
+environment = SubResource("Environment_mbhba")
+
+[node name="Player" parent="." unique_id=926426044 instance=ExtResource("23_gme88")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.000003, 7, 55)
+spawn_at_checkpoint = false
