@@ -1,9 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://tirq"]
+[gd_scene format=3 uid="uid://tirq"]
 
-[ext_resource type="PackedScene" uid="uid://nlio" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Meshes/Catacombs/catacombs_broken_walls/fi_vil_combs_wall_broken_left03.glb" id="1_nlio"]
-[ext_resource type="Material" uid="uid://m72k" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Materials/fi_village_cathedral_base.tres" id="2_m72k"]
+[ext_resource type="PackedScene" uid="uid://nlio" path="res://scenes/3DForge/3DForge/Fantasy_Interiors/Villages_&_Towns/Meshes/Catacombs/catacombs_broken_walls/fi_vil_combs_wall_broken_left03.glb" id="1_nlio"]
+[ext_resource type="Material" uid="uid://m72k" path="res://scenes/3DForge/3DForge/Fantasy_Interiors/Villages_&_Towns/Materials/fi_village_cathedral_base.tres" id="2_m72k"]
 
-[node name="fi_vil_combs_wall_broken_left03" instance=ExtResource("1_nlio")]
+[sub_resource type="BoxShape3D" id="BoxShape3D_0sa30"]
+size = Vector3(0.24253845, 2, 0.5)
 
-[node name="Mesh" parent="." index="0"]
+[node name="fi_vil_combs_wall_broken_left03" unique_id=1132827844 instance=ExtResource("1_nlio")]
+
+[node name="Mesh" parent="." index="0" unique_id=265675934]
 surface_material_override/0 = ExtResource("2_m72k")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Mesh" index="0" unique_id=1690528448]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/StaticBody3D" index="0" unique_id=1018811668]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12113953, 1, 0.24991018)
+shape = SubResource("BoxShape3D_0sa30")

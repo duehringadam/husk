@@ -8,13 +8,12 @@ size = Vector3(0.1000061, 3, 2.5000005)
 
 [node name="fi_vil_cath_wall_01" unique_id=1312717412 instance=ExtResource("1_nhdi")]
 
-[node name="Mesh" parent="." index="0" unique_id=991997351]
+[node name="Mesh" parent="." index="0" unique_id=1789309788]
 surface_material_override/0 = ExtResource("2_m72k")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Mesh" index="0" unique_id=1966067495]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.199997, 1.5, 0)
-visible = false
 collision_layer = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/StaticBody3D" index="0" unique_id=1779613272]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/StaticBody3D" index="0" unique_id=543868129]
 shape = SubResource("BoxShape3D_dcfk3")

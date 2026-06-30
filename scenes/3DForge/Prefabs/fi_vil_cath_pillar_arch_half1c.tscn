@@ -1,9 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://thk7"]
+[gd_scene format=3 uid="uid://thk7"]
 
-[ext_resource type="PackedScene" uid="uid://ondc" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Meshes/Pillars/cathedral_pillars/fi_vil_cath_pillar_arch_half1c.glb" id="1_ondc"]
-[ext_resource type="Material" uid="uid://m72k" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Materials/fi_village_cathedral_base.tres" id="2_m72k"]
+[ext_resource type="PackedScene" uid="uid://ondc" path="res://scenes/3DForge/3DForge/Fantasy_Interiors/Villages_&_Towns/Meshes/Pillars/cathedral_pillars/fi_vil_cath_pillar_arch_half1c.glb" id="1_ondc"]
+[ext_resource type="Material" uid="uid://m72k" path="res://scenes/3DForge/3DForge/Fantasy_Interiors/Villages_&_Towns/Materials/fi_village_cathedral_base.tres" id="2_m72k"]
 
-[node name="fi_vil_cath_pillar_arch_half1c" instance=ExtResource("1_ondc")]
+[sub_resource type="BoxShape3D" id="BoxShape3D_cp2ki"]
+size = Vector3(0.3125, 1, 2.5)
 
-[node name="Mesh" parent="." index="0"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_ra2i3"]
+size = Vector3(0.4, 3.046875, 0.7535156)
+
+[node name="fi_vil_cath_pillar_arch_half1c" unique_id=42690228 instance=ExtResource("1_ondc")]
+
+[node name="Mesh" parent="." index="0" unique_id=752074851]
 surface_material_override/0 = ExtResource("2_m72k")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Mesh" index="0" unique_id=1978682817]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/StaticBody3D" index="0" unique_id=275614186]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00013591349, 2.5, -0.00012230873)
+shape = SubResource("BoxShape3D_cp2ki")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Mesh/StaticBody3D" index="1" unique_id=1014084597]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2351742e-08, 1.4765625, -0.87675774)
+shape = SubResource("BoxShape3D_ra2i3")

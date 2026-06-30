@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cqcmr44j5xgy4"]
+
+[ext_resource type="PackedScene" uid="uid://njfe" path="res://scenes/3DForge/3DForge/Fantasy_Interiors/Villages_&_Towns/Meshes/Cathedrals/cathedral_alcove/fi_vil_cath_alcove_base02.glb" id="1_y1r0f"]
+[ext_resource type="Material" uid="uid://m72k" path="res://scenes/3DForge/3DForge/Fantasy_Interiors/Villages_&_Towns/Materials/fi_village_cathedral_base.tres" id="2_2pn22"]
+
+[node name="fi_vil_cath_alcove_base02" instance=ExtResource("1_y1r0f")]
+
+[node name="Mesh" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_2pn22")
