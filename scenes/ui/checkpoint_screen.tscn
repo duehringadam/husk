@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://y7w14u4p3mvi"]
+
+[ext_resource type="Shader" uid="uid://211yn521kpxn" path="res://shaders/texture_edge_fade.gdshader" id="1_a816t"]
+[ext_resource type="Script" uid="uid://1j6adky4avis" path="res://scenes/ui/checkpoint_screen.gd" id="1_ujn78"]
+[ext_resource type="Theme" uid="uid://ctn68w4yfl5oa" path="res://scenes/ui/ui themee/UI_Theme.tres" id="2_ujn78"]
+[ext_resource type="Texture2D" uid="uid://slqquuvjjo3l" path="res://assets/kenney_fantasy-ui-borders/PNG/Double/Border/panel-border-002.png" id="4_25y1c"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ushjy"]
+noise_type = 2
+frequency = 0.0768
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_heia8"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_ushjy")
+in_3d_space = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_25y1c"]
+shader = ExtResource("1_a816t")
+shader_parameter/textureNoise = SubResource("NoiseTexture2D_heia8")
+shader_parameter/radius = 0.4150000197125
+shader_parameter/effectControl = 0.022000001045
+shader_parameter/burnSpeed = 0.010000000475
+shader_parameter/shape = 1.0
+shader_parameter/my_color = Color(0.5729879, 0.5729884, 0.57298815, 1)
+shader_parameter/feather = 0.0110000005225
+shader_parameter/radius_scale = 0.10000000149012
+shader_parameter/rounded_corner_top_left = true
+shader_parameter/rounded_corner_top_right = true
+shader_parameter/rounded_corner_bottom_left = true
+shader_parameter/rounded_corner_bottom_right = true
+shader_parameter/width = 0.635
+shader_parameter/height = 0.3
+
+[node name="CheckpointScreen" type="Control" unique_id=1210704415]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ujn78")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1573236080]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.82600003)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1248372782]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 80
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=1368324709]
+material = SubResource("ShaderMaterial_25y1c")
+custom_minimum_size = Vector2(300, 600)
+custom_maximum_size = Vector2(600, 1200)
+layout_mode = 2
+offset_transform_enabled = true
+theme = ExtResource("2_ujn78")
+
+[node name="equipment" type="NinePatchRect" parent="MarginContainer/PanelContainer" unique_id=1519042173]
+unique_name_in_owner = true
+self_modulate = Color(1, 0.827222, 0.4788676, 1)
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_ujn78")
+texture = ExtResource("4_25y1c")
+patch_margin_left = 24
+patch_margin_top = 24
+patch_margin_right = 24
+patch_margin_bottom = 24
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/equipment" unique_id=270283181]
+layout_mode = 0
+offset_right = 600.0
+offset_bottom = 920.0
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/equipment/MarginContainer" unique_id=1170932379]
+layout_mode = 2
+
+[node name="levelUp" type="Button" parent="MarginContainer/PanelContainer/equipment/MarginContainer/VBoxContainer" unique_id=1849309097]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_ujn78")
+text = "Level up"
+
+[node name="HSeparator4" type="HSeparator" parent="MarginContainer/PanelContainer/equipment/MarginContainer/VBoxContainer" unique_id=230273284]
+layout_mode = 2
+theme = ExtResource("2_ujn78")
+
+[node name="exit" type="Button" parent="MarginContainer/PanelContainer/equipment/MarginContainer/VBoxContainer" unique_id=764062106]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 10
+theme = ExtResource("2_ujn78")
+text = "Exit"
+
+[node name="HSeparator5" type="HSeparator" parent="MarginContainer/PanelContainer/equipment/MarginContainer/VBoxContainer" unique_id=953027668]
+layout_mode = 2
+theme = ExtResource("2_ujn78")
+
+[connection signal="pressed" from="MarginContainer/PanelContainer/equipment/MarginContainer/VBoxContainer/levelUp" to="." method="_on_level_up_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/equipment/MarginContainer/VBoxContainer/exit" to="." method="_on_exit_pressed"]

@@ -9,8 +9,16 @@ const ENEMY_LIST_SECTION = &'Enemy_list'
 func set_checkpoint(checkpoint_location: String, default = null) -> void:
 	SaveConfig.set_config(LOCATION_SECTION, checkpoint_location, default)
 
-func get_checkpoint_from_config(checkpoint_location: String, default = null) -> String:
+func get_checkpoint_from_config(checkpoint_location: String, default = null) -> Vector3:
 	return SaveConfig.get_config(LOCATION_SECTION, checkpoint_location, default)
+#endregion
+
+#region Player saved position
+func set_player_saved_position(saved_position: String, default = null)->void:
+	SaveConfig.set_config(LOCATION_SECTION, saved_position, default)
+
+func get_player_saved_position(saved_position: String, default = null) -> Vector3:
+	return SaveConfig.get_config(LOCATION_SECTION, saved_position, default)
 #endregion
 
 #region Inventory

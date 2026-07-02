@@ -16,11 +16,17 @@ func _ready() -> void:
 	GamePiecesEventBus.slow_down_player.connect(_on_slow_player)
 	GamePiecesEventBus.move_disable.connect(_on_move_disabled)
 	SignalBus.emit_signal("player_stats_changed", player_stats)
-	if SaveConfig.get_config("Location", "Saved Position") != null && spawn_at_checkpoint:
+	
+	if SaveManager.get_player_saved_position("Saved Position") != null:
 		global_position = SaveConfig.get_config("Location", "Saved Position")
+	
+	#if SaveConfig.get_config("Location", "Saved Position") != null && spawn_at_checkpoint:
+		#global_position = SaveConfig.get_config("Location", "Saved Position")
+		
 	if SaveConfig.get_config("Inventory", "Saved Inventory") != null:
 		var inventory_list = SaveConfig.get_config("Inventory", "Saved Inventory")
 		inventory.reset_inventory(inventory_list)
+		
 	if SaveConfig.get_config("Player_stats", "Saved Stats") != null:
 		var stats = SaveConfig.get_config("Player_stats", "Saved Stats")
 		player_stats = stats

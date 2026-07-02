@@ -31,7 +31,6 @@
 [ext_resource type="PackedScene" uid="uid://bb5rujo1j4mr6" path="res://player_mana.tscn" id="29_v5tlk"]
 [ext_resource type="PackedScene" uid="uid://78q517wrknfe" path="res://player_health.tscn" id="29_wbjo2"]
 [ext_resource type="Texture2D" uid="uid://bheudhnmjwpme" path="res://scenes/VFX/textures/T_VFX_Noise_14.PNG" id="30_ae3c0"]
-[ext_resource type="Script" uid="uid://duqdbhlweipi" path="res://Player/player_health.gd" id="30_jng3h"]
 [ext_resource type="PackedScene" uid="uid://fiysa8sddku3" path="res://player_stamina.tscn" id="31_ojoix"]
 [ext_resource type="Texture2D" uid="uid://biqgxpwwr01ye" path="res://scenes/VFX/textures/CloudNoise_Tiled.png" id="31_waixc"]
 [ext_resource type="Script" uid="uid://da13b6wjrk5g7" path="res://addons/player/death_overlay.gd" id="32_ae3c0"]
@@ -42,6 +41,7 @@
 [ext_resource type="Script" uid="uid://x336a4ypdit5" path="res://components/stamina_component.gd" id="38_v5tlk"]
 [ext_resource type="Script" uid="uid://cvtlc2d4aaybe" path="res://components/mana_component.gd" id="39_6havu"]
 [ext_resource type="PackedScene" uid="uid://bmphfd5h5ant7" path="res://scenes/player/selection_wheel.tscn" id="40_avbty"]
+[ext_resource type="Script" uid="uid://brwpqkgj3ix5i" path="res://addons/player/stable_ground_detector.gd" id="42_jng3h"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xc2g5"]
 
@@ -93,21 +93,22 @@ tracks/2/keys = {
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
-tracks/3/type = "bezier"
+tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath(".:position:x")
+tracks/3/path = NodePath("%Camera3D:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.15, 0, 0.15, 0),
-"times": PackedFloat32Array(0)
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("%Camera3D:position")
+tracks/4/path = NodePath("%Camera3D:rotation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -119,43 +120,43 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("%Camera3D:rotation")
+tracks/5/path = NodePath("../hud/damage:material:shader_parameter/line_density")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [0.0]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("../hud/damage:material:shader_parameter/line_density")
+tracks/6/path = NodePath("../hud/radial_blur:blur")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
+"update": 1,
+"values": [false]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("../hud/radial_blur:blur")
+tracks/7/path = NodePath("Neck/Camera3D/RightHand:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Vector3(0, 0, 0)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Neck/Camera3D/RightHand:position")
+tracks/8/path = NodePath("Neck/Camera3D/RightHand:rotation")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -167,7 +168,7 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Neck/Camera3D/RightHand:rotation")
+tracks/9/path = NodePath("Neck/Camera3D/LeftHand:position")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -179,7 +180,7 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Neck/Camera3D/LeftHand:position")
+tracks/10/path = NodePath("Neck/Camera3D/LeftHand:rotation")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -191,58 +192,46 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Neck/Camera3D/LeftHand:rotation")
+tracks/11/path = NodePath("../death:material:shader_parameter/factor")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [0.0]
 }
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("../hud/death:material:shader_parameter/factor")
+tracks/12/path = NodePath("../death/Label:modulate")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [Color(1, 1, 1, 0)]
 }
 tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("../hud/death/Label:modulate")
+tracks/13/path = NodePath("../death/Label:visible")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
+"update": 1,
+"values": [false]
 }
 tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("../hud/death/Label:visible")
+tracks/14/path = NodePath("../death:visible")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/15/type = "value"
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/path = NodePath("../hud/death:visible")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/keys = {
 "times": PackedFloat32Array(0.0009999999),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -303,7 +292,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../hud/death:material:shader_parameter/factor")
+tracks/4/path = NodePath("../death:material:shader_parameter/factor")
 tracks/4/interp = 2
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -315,7 +304,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../hud/death/Label:modulate")
+tracks/5/path = NodePath("../death/Label:modulate")
 tracks/5/interp = 2
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -327,7 +316,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("../hud/death/Label:visible")
+tracks/6/path = NodePath("../death/Label:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -339,7 +328,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("../hud/death:visible")
+tracks/7/path = NodePath("../death:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -351,7 +340,7 @@ tracks/7/keys = {
 tracks/8/type = "audio"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("../hud/death/AudioStreamPlayer")
+tracks/8/path = NodePath("../death/AudioStreamPlayer")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -363,6 +352,20 @@ tracks/8/keys = {
 "times": PackedFloat32Array(0)
 }
 tracks/8/use_blend = true
+tracks/9/type = "method"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("%Head/..")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(4.983333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"respawn"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_kgtn1"]
 resource_name = "jump"
@@ -735,6 +738,8 @@ shader_parameter/rotation_offset = 3.14000014915
 length = 0.5
 slide_on_slope = true
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jng3h"]
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7vtq1"]
 shader = ExtResource("29_f81pb")
 shader_parameter/base_color = Color(0, 0, 0, 1)
@@ -749,8 +754,6 @@ shader_parameter/shape_rotation = 0.0
 shader_parameter/shape_scroll = Vector2(0.1, 0.1)
 shader_parameter/shape_feathering = 0.56999998725936
 shader_parameter/shape_treshold = 1.0
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jng3h"]
 
 [sub_resource type="Curve" id="Curve_jaogv"]
 _limits = [0.0, 1900.0, 0.0, 1.0]
@@ -861,6 +864,10 @@ mainhand = NodePath("../RightHand")
 offhand = NodePath("../LeftHand")
 
 [node name="CameraAnimationPlayer" type="AnimationPlayer" parent="Head" unique_id=2090545160]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_by45h")
+
+[node name="deathAnimation" type="AnimationPlayer" parent="Head" unique_id=402610650]
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_by45h")
 
@@ -1129,47 +1136,12 @@ max_value = 1.0
 value = 0.5
 
 [node name="playerMana" parent="hud/playerHP/VBoxContainer" unique_id=1952581520 instance=ExtResource("29_v5tlk")]
+z_index = 0
 layout_mode = 2
-script = ExtResource("30_jng3h")
 
 [node name="playerStamina" parent="hud/playerHP/VBoxContainer" unique_id=2402498 instance=ExtResource("31_ojoix")]
 z_index = 0
 layout_mode = 2
-
-[node name="death" type="ColorRect" parent="hud" unique_id=575191084]
-material = SubResource("ShaderMaterial_7vtq1")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-script = ExtResource("32_ae3c0")
-
-[node name="Label" type="Label" parent="hud/death" unique_id=1517433797]
-visible = false
-modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -278.0
-offset_top = -93.0
-offset_right = 221.0
-offset_bottom = 93.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0.8235294, 0, 0, 1)
-theme_override_fonts/font = ExtResource("35_t571y")
-theme_override_font_sizes/font_size = 128
-text = "MORTIS"
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="hud/death" unique_id=1243036561]
-volume_db = 6.0
-bus = &"SFX"
 
 [node name="inventory" parent="hud" unique_id=227349631 node_paths=PackedStringArray("equipped_items") instance=ExtResource("38_6havu")]
 unique_name_in_owner = true
@@ -1200,6 +1172,42 @@ unique_name_in_owner = true
 layout_mode = 1
 selected_option = 2
 
+[node name="death" type="ColorRect" parent="." unique_id=575191084]
+z_index = 1
+material = SubResource("ShaderMaterial_7vtq1")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("32_ae3c0")
+
+[node name="Label" type="Label" parent="death" unique_id=1517433797]
+visible = false
+modulate = Color(1, 1, 1, 0)
+z_index = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -278.0
+offset_top = -93.0
+offset_right = 221.0
+offset_bottom = 93.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.8235294, 0, 0, 1)
+theme_override_fonts/font = ExtResource("35_t571y")
+theme_override_font_sizes/font_size = 128
+text = "MORTIS"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="death" unique_id=1243036561]
+volume_db = 6.0
+bus = &"SFX"
+
 [node name="HealthComponent" type="Node3D" parent="." unique_id=669479295]
 script = ExtResource("36_jaogv")
 player_hp_scaling_curve = SubResource("Curve_jaogv")
@@ -1224,6 +1232,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.297422, 0)
 stream = ExtResource("37_jaogv")
 bus = &"SFX"
 
+[node name="stableGroundDetector" type="RayCast3D" parent="." unique_id=1138519841]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.40000004, 0)
+collision_mask = 2
+script = ExtResource("42_jng3h")
+
+[node name="savePositionTimer" type="Timer" parent="stableGroundDetector" unique_id=1823385340]
+wait_time = 2.0
+autostart = true
+
 [connection signal="unequip_item" from="Head/Neck/Camera3D/RightHand" to="hud/inventory" method="_on_right_hand_unequip_item"]
 [connection signal="unequip_item" from="Head/Neck/Camera3D/LeftHand" to="hud/inventory" method="_on_left_hand_unequip_item"]
 [connection signal="body_entered" from="Head/rope_detection" to="." method="_on_rope_detection_body_entered"]
@@ -1237,3 +1254,4 @@ bus = &"SFX"
 [connection signal="max_mana_changed" from="ManaComponent" to="hud/playerHP/VBoxContainer/playerMana" method="_on_max_health_changed"]
 [connection signal="max_stamina_changed" from="StaminaComponent" to="hud/playerHP/VBoxContainer/playerStamina" method="_on_max_health_changed"]
 [connection signal="stamina_changed" from="StaminaComponent" to="hud/playerHP/VBoxContainer/playerStamina" method="_on_health_changed"]
+[connection signal="timeout" from="stableGroundDetector/savePositionTimer" to="stableGroundDetector" method="_on_save_position_timer_timeout"]

@@ -116,6 +116,7 @@ func _update_inventory(item_signal: item):
 			key.add_child(item_add)
 			item_add.item_inventory = item_signal
 	inventory.append(item_signal)
+	SaveManager.set_inventory("Saved Inventory", inventory)
 
 func _update_equipped_items(item_inv_interact: item_inventory_interact):
 	match item_inv_interact.item_inventory.item_type:
@@ -154,7 +155,7 @@ func _update_equipped_items(item_inv_interact: item_inventory_interact):
 func _remove_item(item_inventory: item):
 	if inventory.has(item_inventory):
 		inventory.erase(item_inventory)
-		
+		SaveManager.set_inventory("Saved Inventory", inventory)
 
 func _drop_item(item_to_drop: item):
 	var item_drop = item_to_drop.item_dropped_scene.instantiate()
