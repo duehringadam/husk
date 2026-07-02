@@ -469,6 +469,90 @@ _data = {
 &"Take 001": SubResource("Animation_uqj8v")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t7lcj"]
+animation = &"Aranocodus@CrawlForward/Take 001"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lhwd0"]
+animation = &"Aranocodus@Death/Take 001"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ooqvr"]
+animation = &"Aranocodus@GetHitFront/Take 001"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l0ydb"]
+animation = &"Aranocodus@GetOutOfTheGround/Take 001"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sihuc"]
+animation = &"Aranocodus@Idle/Take 001"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qeowv"]
+animation = &"Aranocodus@JumpBiteA/Take 001"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lhwd0"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ooqvr"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_l0ydb"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jjxrv"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dp8nh"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_683s7"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4hl0c"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c5j2k"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mjrl7"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_27ris"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uegb1"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0nebq"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_r76x0"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_75e4j"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_engkw"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_3nugh"]
+"states/Aranocodus_CrawlForward_Take 001/node" = SubResource("AnimationNodeAnimation_t7lcj")
+"states/Aranocodus_CrawlForward_Take 001/position" = Vector2(977.80005, 246.26927)
+"states/Aranocodus_Death_Take 001/node" = SubResource("AnimationNodeAnimation_lhwd0")
+"states/Aranocodus_Death_Take 001/position" = Vector2(1561.44, -53.399986)
+"states/Aranocodus_GetHitFront_Take 001/node" = SubResource("AnimationNodeAnimation_ooqvr")
+"states/Aranocodus_GetHitFront_Take 001/position" = Vector2(590.6, 319.8)
+"states/Aranocodus_GetOutOfTheGround_Take 001/node" = SubResource("AnimationNodeAnimation_l0ydb")
+"states/Aranocodus_GetOutOfTheGround_Take 001/position" = Vector2(164.2, 87.03634)
+"states/Aranocodus_Idle_Take 001/node" = SubResource("AnimationNodeAnimation_sihuc")
+"states/Aranocodus_Idle_Take 001/position" = Vector2(490.79996, 98.466225)
+"states/Aranocodus_JumpBiteA_Take 001/node" = SubResource("AnimationNodeAnimation_qeowv")
+"states/Aranocodus_JumpBiteA_Take 001/position" = Vector2(713.39996, -119.8)
+states/End/position = Vector2(1562.4, 97.69179)
+states/Start/position = Vector2(-101.600006, 87.09542)
+transitions = ["Aranocodus_Idle_Take 001", "Aranocodus_CrawlForward_Take 001", SubResource("AnimationNodeStateMachineTransition_lhwd0"), "Aranocodus_CrawlForward_Take 001", "Aranocodus_JumpBiteA_Take 001", SubResource("AnimationNodeStateMachineTransition_ooqvr"), "Aranocodus_JumpBiteA_Take 001", "Aranocodus_CrawlForward_Take 001", SubResource("AnimationNodeStateMachineTransition_l0ydb"), "Aranocodus_CrawlForward_Take 001", "Aranocodus_Idle_Take 001", SubResource("AnimationNodeStateMachineTransition_jjxrv"), "Aranocodus_Idle_Take 001", "Aranocodus_GetHitFront_Take 001", SubResource("AnimationNodeStateMachineTransition_dp8nh"), "Aranocodus_GetHitFront_Take 001", "Aranocodus_Idle_Take 001", SubResource("AnimationNodeStateMachineTransition_683s7"), "Aranocodus_CrawlForward_Take 001", "Aranocodus_GetHitFront_Take 001", SubResource("AnimationNodeStateMachineTransition_4hl0c"), "Aranocodus_GetHitFront_Take 001", "Aranocodus_CrawlForward_Take 001", SubResource("AnimationNodeStateMachineTransition_c5j2k"), "Aranocodus_JumpBiteA_Take 001", "Aranocodus_GetHitFront_Take 001", SubResource("AnimationNodeStateMachineTransition_mjrl7"), "Aranocodus_Death_Take 001", "End", SubResource("AnimationNodeStateMachineTransition_27ris"), "Aranocodus_Idle_Take 001", "Aranocodus_Death_Take 001", SubResource("AnimationNodeStateMachineTransition_uegb1"), "Aranocodus_CrawlForward_Take 001", "Aranocodus_Death_Take 001", SubResource("AnimationNodeStateMachineTransition_0nebq"), "Aranocodus_JumpBiteA_Take 001", "Aranocodus_Death_Take 001", SubResource("AnimationNodeStateMachineTransition_r76x0"), "Start", "Aranocodus_GetOutOfTheGround_Take 001", SubResource("AnimationNodeStateMachineTransition_75e4j"), "Aranocodus_GetOutOfTheGround_Take 001", "Aranocodus_Idle_Take 001", SubResource("AnimationNodeStateMachineTransition_engkw")]
+graph_offset = Vector2(513, -208)
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j1pv0"]
 radius = 0.2915039
 height = 1.3433838
@@ -491,224 +575,224 @@ bones/1/parent = 0
 bones/1/rest = Transform3D(3.5762787e-07, -1.7484558e-07, -0.99999994, 0, 1, -1.7484558e-07, 0.99999994, 5.684342e-14, 3.5762787e-07, 3.3881317e-23, -8.742278e-09, 0.2)
 bones/1/enabled = true
 bones/1/position = Vector3(3.3881317e-23, -8.742278e-09, 0.2)
-bones/1/rotation = Quaternion(0.03703212, -0.7061364, -0.03703193, 0.7061364)
+bones/1/rotation = Quaternion(6.181725e-08, -0.70710665, 6.181724e-08, 0.7071069)
 bones/1/scale = Vector3(0.99999994, 1, 0.99999994)
 bones/2/name = "Aranocodus_Tail1"
 bones/2/parent = 1
 bones/2/rest = Transform3D(-0.071288005, -0.997456, -1.573169e-07, 0.997456, -0.071288005, 2.615356e-07, -2.7208506e-07, -1.3827234e-07, 1, 0.03456585, 0.22162361, -4.636967e-08)
 bones/2/enabled = true
 bones/2/position = Vector3(0.034565926, 0.22162361, -5.7220465e-08)
-bones/2/rotation = Quaternion(-0.024625378, 0.027769446, 0.7503306, 0.6600202)
+bones/2/rotation = Quaternion(-1.4667829e-07, 4.2105192e-08, 0.731877, 0.6814367)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "Aranocodus_Tail2"
 bones/3/parent = 2
 bones/3/rest = Transform3D(0.9993891, -0.034943786, -8.483005e-15, 0.034943786, 0.9993891, 4.554545e-16, 8.4619074e-15, -7.516046e-16, 1, 0.16526197, 1.4012773e-08, 5.1436992e-09)
 bones/3/enabled = true
 bones/3/position = Vector3(0.16526194, 0, 5.1436997e-09)
-bones/3/rotation = Quaternion(0.004753651, -0.033793453, 0.022794418, 0.99915755)
+bones/3/rotation = Quaternion(-3.0181094e-16, -4.2368753e-15, 0.017474566, 0.9998473)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/name = "Aranocodus_Tail3"
 bones/4/parent = 3
 bones/4/rest = Transform3D(0.9999769, 0.006805059, 6.5565233e-09, -0.006805059, 0.9999769, 9.634548e-07, -5.107026e-15, -9.634771e-07, 1, 0.21474704, -2.8116895e-08, 7.345413e-09)
 bones/4/enabled = true
 bones/4/position = Vector3(0.21474701, -3.8146972e-08, 7.345416e-09)
-bones/4/rotation = Quaternion(0.0050533926, -0.049951058, -0.012237322, 0.9986639)
+bones/4/rotation = Quaternion(-4.817358e-07, 1.6391417e-09, -0.0034025493, 0.9999942)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/name = "Aranocodus_Tail4"
 bones/5/parent = 4
 bones/5/rest = Transform3D(0.99664855, 0.0818028, 1.9699823e-07, -0.0818028, 0.99664855, 1.331436e-06, -8.74228e-08, -1.3430887e-06, 1, 0.20813265, 3.0998955e-08, 7.1168627e-09)
 bones/5/enabled = true
 bones/5/position = Vector3(0.20813267, 1.9073486e-08, 7.116869e-09)
-bones/5/rotation = Quaternion(0.006946856, 0.0058979127, -0.048918568, 0.9987612)
+bones/5/rotation = Quaternion(-6.6919205e-07, 7.1164905e-08, -0.04093571, 0.9991618)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/name = "Aranocodus_Tail5"
 bones/6/parent = 5
 bones/6/rest = Transform3D(0.9483495, 0.3172274, 1.5285504e-07, -0.3172274, 0.9483495, 1.9600989e-06, 4.768371e-07, -1.9073486e-06, 1, 0.19880289, -5.104423e-06, 2.418063e-08)
 bones/6/enabled = true
 bones/6/position = Vector3(0.19880295, -5.092621e-06, 2.4180663e-08)
-bones/6/rotation = Quaternion(-0.007492762, 0.050638717, -0.16040091, 0.9857237)
+bones/6/rotation = Quaternion(-9.795939e-07, -8.2062066e-08, -0.16070238, 0.9870029)
 bones/6/scale = Vector3(0.99999994, 0.99999994, 1)
 bones/7/name = "Aranocodus_LegLeftD1"
 bones/7/parent = 1
 bones/7/rest = Transform3D(-0.1309974, 0.99138266, -4.7683713e-07, 0.5686338, 0.07513678, -0.8191519, -0.81209296, -0.107307136, -0.5735764, -0.021348597, 0.13202679, -0.16200006)
 bones/7/enabled = true
 bones/7/position = Vector3(-0.02134861, 0.1320268, -0.16200005)
-bones/7/rotation = Quaternion(0.49084628, 0.6434498, -0.28995284, 0.51085186)
+bones/7/rotation = Quaternion(0.5846884, 0.667029, -0.34723336, 0.3043693)
 bones/7/scale = Vector3(1, 1, 1)
 bones/8/name = "Aranocodus_LegLeftD2"
 bones/8/parent = 7
 bones/8/rest = Transform3D(0.9698898, 0.24354416, 2.735895e-08, -0.24354418, 0.96988976, -1.0803484e-08, -2.9166294e-08, 3.8150763e-09, 1, 0.15688628, 2.0939455e-08, -1.062077e-08)
 bones/8/enabled = true
 bones/8/position = Vector3(0.15688632, 0, 1.4305114e-08)
-bones/8/rotation = Quaternion(-1.4922341e-09, 1.6593038e-08, -0.36530232, 0.9308889)
+bones/8/rotation = Quaternion(3.6824652e-09, 1.42389025e-08, -0.122699216, 0.9924439)
 bones/8/scale = Vector3(1, 1, 1)
 bones/9/name = "Aranocodus_LegLeftD3"
 bones/9/parent = 8
 bones/9/rest = Transform3D(0.823707, 0.5670161, -2.1687902e-07, -0.5670161, 0.823707, 1.3373641e-06, 9.369518e-07, -9.786223e-07, 1, 0.10860575, 2.6292662e-08, 9.739408e-10)
 bones/9/enabled = true
 bones/9/position = Vector3(0.10860571, 7.6293944e-08, -5.00679e-08)
-bones/9/rotation = Quaternion(-6.6612716e-07, -1.2078227e-07, -0.5664039, 0.8241278)
+bones/9/rotation = Quaternion(-6.063362e-07, -3.0207826e-07, -0.29689494, 0.95491016)
 bones/9/scale = Vector3(1, 1, 1)
 bones/10/name = "Aranocodus_LegRightD1"
 bones/10/parent = 1
 bones/10/rest = Transform3D(-0.13099813, -0.9913826, -1.7881392e-07, 0.56863433, -0.07513737, -0.8191516, 0.8120927, -0.1073074, 0.5735769, -0.021348698, 0.13202684, 0.16199997)
 bones/10/enabled = true
 bones/10/position = Vector3(-0.02134861, 0.13202685, 0.16199999)
-bones/10/rotation = Quaternion(0.14942162, -0.34673896, 0.75598454, 0.5347268)
+bones/10/rotation = Quaternion(0.3043691, -0.34723327, 0.66702926, 0.5846883)
 bones/10/scale = Vector3(0.99999994, 0.99999994, 1)
 bones/11/name = "Aranocodus_LegRightD2"
 bones/11/parent = 10
 bones/11/rest = Transform3D(0.9698896, -0.2435441, -1.1169062e-07, 0.24354412, 0.9698895, 8.18249e-09, 1.0633479e-07, -3.513771e-08, 0.99999976, 0.15688626, 3.9226013e-08, 4.115901e-08)
 bones/11/enabled = true
 bones/11/position = Vector3(0.1568863, 3.8146972e-08, 4.887581e-08)
-bones/11/rotation = Quaternion(1.4880641e-08, 7.818805e-10, 0.052471086, 0.9986225)
+bones/11/rotation = Quaternion(-1.091251e-08, -5.4921358e-08, 0.122699216, 0.9924439)
 bones/11/scale = Vector3(1, 1, 1)
 bones/12/name = "Aranocodus_LegRightD3"
 bones/12/parent = 11
 bones/12/rest = Transform3D(0.8237069, -0.5670162, -5.514402e-07, 0.5670162, 0.8237069, -9.0545797e-07, 9.676342e-07, 4.3315634e-07, 1.0000004, 0.10860575, -7.898494e-08, -5.3409444e-08)
 bones/12/enabled = true
 bones/12/position = Vector3(0.108605765, -9.536743e-08, -3.4570693e-08)
-bones/12/rotation = Quaternion(3.4224067e-07, -2.854648e-07, 0.20718266, 0.97830224)
+bones/12/rotation = Quaternion(3.5045545e-07, -3.9770075e-07, 0.29689497, 0.95491016)
 bones/12/scale = Vector3(1, 1, 1)
 bones/13/name = "Aranocodus_LegRightC1"
 bones/13/parent = 1
 bones/13/rest = Transform3D(0.024609268, -0.99969715, -2.1100044e-05, 4.684925e-05, 2.2172928e-05, -1, 0.99969715, 0.024609298, 4.7326088e-05, -0.017006487, 0.0338945, 0.16299999)
 bones/13/enabled = true
 bones/13/position = Vector3(-0.017006416, 0.03389451, 0.16299999)
-bones/13/rotation = Quaternion(0.5645742, -0.43247396, 0.43192312, 0.55467546)
+bones/13/rotation = Quaternion(0.5060977, -0.49380296, 0.49381572, 0.5061321)
 bones/13/scale = Vector3(0.99999994, 0.99999994, 1)
 bones/14/name = "Aranocodus_LegRightC2"
 bones/14/parent = 13
 bones/14/rest = Transform3D(0.9146761, -0.40418777, -3.6422684e-11, 0.40418777, 0.9146761, -8.977784e-13, 3.3677824e-11, -1.3900426e-11, 1, 0.16958539, -5.6541665e-09, 1.7343678e-08)
 bones/14/enabled = true
 bones/14/position = Vector3(0.16958536, 0, 1.9073486e-08)
-bones/14/rotation = Quaternion(9.050204e-09, -2.1977162e-09, 0.39427274, 0.91899353)
+bones/14/rotation = Quaternion(-3.3223023e-12, -1.7911358e-11, 0.20654777, 0.9784365)
 bones/14/scale = Vector3(1, 1, 1)
 bones/15/name = "Aranocodus_LegRightC3"
 bones/15/parent = 14
 bones/15/rest = Transform3D(0.87520224, -0.48375717, -4.736233e-07, 0.48375717, 0.87520224, 1.8321501e-07, 3.2588463e-07, -3.8946885e-07, 1, 0.1421515, -1.38678935e-08, -1.7392889e-08)
 bones/15/enabled = true
 bones/15/position = Vector3(0.14215153, -3.8146972e-08, -1.9073486e-08)
-bones/15/rotation = Quaternion(-9.8452624e-08, -2.44463e-07, 0.4451093, 0.8954763)
+bones/15/rotation = Quaternion(-1.4785836e-07, -2.0642094e-07, 0.24979767, 0.9682981)
 bones/15/scale = Vector3(1, 1, 1)
 bones/16/name = "Aranocodus_LegRightB1"
 bones/16/parent = 1
 bones/16/rest = Transform3D(0.032247182, -0.99936026, 0.015470982, -0.2577702, -0.023271203, -0.96592605, 0.965668, 0.027160525, -0.25835586, -0.018343732, -0.081170216, 0.17)
 bones/16/enabled = true
 bones/16/position = Vector3(-0.018343696, -0.08117021, 0.17000002)
-bones/16/rotation = Quaternion(0.78024286, -0.34900165, 0.24131697, 0.45954883)
+bones/16/rotation = Quaternion(0.5731217, -0.5483697, 0.42798024, 0.43319175)
 bones/16/scale = Vector3(1, 1, 1.0000001)
 bones/17/name = "Aranocodus_LegRightB2"
 bones/17/parent = 16
 bones/17/rest = Transform3D(0.9207043, -0.39026144, -2.972862e-09, 0.39026153, 0.92070407, 5.183171e-09, 7.1433465e-10, -5.93236e-09, 1, 0.16966282, 1.2393119e-08, -5.9158807e-09)
 bones/17/enabled = true
 bones/17/position = Vector3(0.16966283, 0, 2.3841857e-09)
-bones/17/rotation = Quaternion(-3.780386e-08, -2.4930998e-07, 0.3829067, 0.9237871)
+bones/17/rotation = Quaternion(-2.8356657e-09, -9.406349e-10, 0.19911796, 0.9799755)
 bones/17/scale = Vector3(1, 1, 1)
 bones/18/name = "Aranocodus_LegRightB3"
 bones/18/parent = 17
 bones/18/rest = Transform3D(0.81529176, -0.57905036, -6.507351e-07, 0.57905036, 0.81529176, -1.5512655e-06, 1.4288003e-06, 8.87926e-07, 0.9999997, 0.13405187, -4.1357225e-08, -1.3520349e-08)
 bones/18/enabled = true
 bones/18/position = Vector3(0.13405187, -3.8146972e-08, -3.576279e-08)
-bones/18/rotation = Quaternion(8.19019e-07, -5.902628e-07, 0.49886107, 0.86668205)
+bones/18/rotation = Quaternion(6.400704e-07, -5.4569267e-07, 0.3038982, 0.9527045)
 bones/18/scale = Vector3(1, 1, 1)
 bones/19/name = "Aranocodus_LegRightA1"
 bones/19/parent = 1
 bones/19/rest = Transform3D(0.039249063, -0.99922353, -0.0034454167, -0.7189616, -0.025845526, -0.6945691, 0.69394076, 0.029738335, -0.7194178, -0.0067014135, -0.1696593, 0.12600003)
 bones/19/enabled = true
 bones/19/position = Vector3(-0.0067014312, -0.16965929, 0.12600003)
-bones/19/rotation = Quaternion(0.6892081, -0.52487254, 0.15877475, 0.47359443)
+bones/19/rotation = Quaternion(0.6679282, -0.64310247, 0.25844666, 0.2711023)
 bones/19/scale = Vector3(1, 1, 1)
 bones/20/name = "Aranocodus_LegRightA2"
 bones/20/parent = 19
 bones/20/rest = Transform3D(0.8733731, -0.48705173, 4.3041855e-08, 0.4870517, 0.87337315, 6.856841e-08, -7.0987944e-08, -3.892219e-08, 1.0000001, 0.15257028, -2.3900768e-08, -2.0339396e-08)
 bones/20/enabled = true
 bones/20/position = Vector3(0.15257026, -5.7220458e-08, -4.7683715e-09)
-bones/20/rotation = Quaternion(-5.519182e-08, 4.4157296e-08, 0.5432157, 0.8395932)
+bones/20/rotation = Quaternion(-2.7766e-08, 2.9455148e-08, 0.2516216, 0.9678257)
 bones/20/scale = Vector3(1, 1, 1)
 bones/21/name = "Aranocodus_LegRightA3"
 bones/21/parent = 20
 bones/21/rest = Transform3D(0.89792514, -0.440148, -4.7964977e-06, 0.4401478, 0.89792556, 6.3094594e-06, 1.5298009e-06, -7.7765935e-06, 1, 0.12446409, -4.695143e-09, 3.5258797e-08)
 bones/21/enabled = true
 bones/21/position = Vector3(0.124464035, 3.8146972e-08, 3.576279e-08)
-bones/21/rotation = Quaternion(-2.7781155e-06, -2.6541268e-06, 0.53412354, 0.8454065)
+bones/21/rotation = Quaternion(-3.6149702e-06, -1.6235481e-06, 0.22591448, 0.97414714)
 bones/21/scale = Vector3(1, 1, 1)
 bones/22/name = "Aranocodus_LegLeftA1"
 bones/22/parent = 1
 bones/22/rest = Transform3D(0.03924942, 0.9992234, -0.003445834, -0.71896195, 0.025845526, -0.69456875, -0.6939404, 0.029738842, 0.7194181, -0.0067013535, -0.16965935, -0.12599997)
 bones/22/enabled = true
 bones/22/position = Vector3(-0.0067014503, -0.16965933, -0.12599997)
-bones/22/rotation = Quaternion(0.1264657, 0.20990387, -0.7060923, 0.6643647)
+bones/22/rotation = Quaternion(0.27110228, 0.25844634, -0.64310247, 0.66792834)
 bones/22/scale = Vector3(0.99999994, 0.99999994, 0.99999994)
 bones/23/name = "Aranocodus_LegLeftA2"
 bones/23/parent = 22
 bones/23/rest = Transform3D(0.87337285, 0.48705196, 1.16799164e-07, -0.4870519, 0.873373, -3.1675587e-08, -1.17436876e-07, -2.9222667e-08, 1, 0.15257028, -1.7262131e-08, 1.1629464e-09)
 bones/23/enabled = true
 bones/23/position = Vector3(0.15257025, 3.8146972e-08, 3.33786e-08)
-bones/23/rotation = Quaternion(-3.6631498e-10, -2.7698472e-09, -0.1311098, 0.9913679)
+bones/23/rotation = Quaternion(6.3361516e-10, 6.050575e-08, -0.25162172, 0.96782565)
 bones/23/scale = Vector3(1, 1, 1)
 bones/24/name = "Aranocodus_LegLeftA3"
 bones/24/parent = 23
 bones/24/rest = Transform3D(0.89792556, 0.4401477, -4.621366e-06, -0.44014764, 0.8979257, -6.1681812e-06, 1.4347323e-06, 7.572652e-06, 1, 0.12446397, 5.5606475e-09, 3.4677086e-08)
 bones/24/enabled = true
 bones/24/position = Vector3(0.124464, 0, 1.66893e-08)
-bones/24/rotation = Quaternion(3.6809818e-06, -1.082926e-06, -0.104104415, 0.99456644)
+bones/24/rotation = Quaternion(3.5263747e-06, -1.5542053e-06, -0.22591431, 0.97414714)
 bones/24/scale = Vector3(1, 1, 1)
 bones/25/name = "Aranocodus_LegLeftB1"
 bones/25/parent = 1
 bones/25/rest = Transform3D(0.032248016, 0.99936014, 0.015471607, -0.2577707, 0.023271918, -0.9659258, -0.9656677, 0.027161062, 0.25835627, -0.018343605, -0.08117028, -0.16999997)
 bones/25/enabled = true
 bones/25/position = Vector3(-0.018343678, -0.081170276, -0.16999996)
-bones/25/rotation = Quaternion(0.5566216, 0.38501632, -0.47838458, 0.55953825)
+bones/25/rotation = Quaternion(0.4331916, 0.42798007, -0.54836947, 0.5731222)
 bones/25/scale = Vector3(1, 1, 1)
 bones/26/name = "Aranocodus_LegLeftB2"
 bones/26/parent = 25
 bones/26/rest = Transform3D(0.92070395, 0.39026156, 4.4679506e-08, -0.39026156, 0.92070395, -2.3353957e-08, -5.0250748e-08, 4.065386e-09, 1, 0.16966282, -2.2608084e-08, -3.1548664e-09)
 bones/26/enabled = true
 bones/26/position = Vector3(0.16966286, -1.9073486e-08, 4.7683715e-09)
-bones/26/rotation = Quaternion(1.7758307e-08, 2.506656e-08, -0.3629141, 0.93182266)
+bones/26/rotation = Quaternion(6.9949047e-09, 2.4217508e-08, -0.19911803, 0.9799755)
 bones/26/scale = Vector3(1, 1, 1)
 bones/27/name = "Aranocodus_LegLeftB3"
 bones/27/parent = 26
 bones/27/rest = Transform3D(0.8152921, 0.57905036, -6.394484e-07, -0.5790505, 0.81529194, 1.5930693e-06, 1.443805e-06, -9.2854384e-07, 0.99999994, 0.13405187, 1.9826118e-08, -3.1491296e-09)
 bones/27/enabled = true
 bones/27/position = Vector3(0.13405186, 0, -4.7683715e-09)
-bones/27/rotation = Quaternion(-7.5719015e-07, -4.020547e-07, -0.47831568, 0.878188)
+bones/27/rotation = Quaternion(-6.6169866e-07, -5.4666816e-07, -0.30389816, 0.95270455)
 bones/27/scale = Vector3(1, 1, 1)
 bones/28/name = "Aranocodus_LegLeftC1"
 bones/28/parent = 1
 bones/28/rest = Transform3D(0.025016725, 0.9996871, -5.453825e-06, -1.4901161e-07, -5.4836273e-06, -1, -0.9996871, 0.025016695, 0, -0.017006366, 0.033894446, -0.163)
 bones/28/enabled = true
 bones/28/position = Vector3(-0.017006397, 0.033894453, -0.16299999)
-bones/28/rotation = Quaternion(0.76590604, 0.35924613, -0.3003854, 0.44056666)
+bones/28/rotation = Quaternion(0.50621694, 0.49370486, -0.4937076, 0.5062142)
 bones/28/scale = Vector3(1, 0.99999994, 0.99999994)
 bones/29/name = "Aranocodus_LegLeftC2"
 bones/29/parent = 28
 bones/29/rest = Transform3D(0.91467613, 0.4041876, 5.451912e-08, -0.4041876, 0.91467613, -2.4091499e-08, -5.960482e-08, -3.375078e-14, 1, 0.16958536, 2.4909928e-08, 1.9299349e-09)
 bones/29/enabled = true
 bones/29/position = Vector3(0.16958535, 3.8146972e-08, 2.3841857e-09)
-bones/29/rotation = Quaternion(-4.507436e-09, 8.149797e-09, -0.409673, 0.91223246)
+bones/29/rotation = Quaternion(6.1556023e-09, 2.9159771e-08, -0.20654768, 0.9784365)
 bones/29/scale = Vector3(0.99999994, 0.99999994, 1)
 bones/30/name = "Aranocodus_LegLeftC3"
 bones/30/parent = 29
 bones/30/rest = Transform3D(0.87520236, 0.4837576, -4.6057983e-07, -0.4837576, 0.87520236, 1.5242446e-07, 4.76837e-07, 8.940674e-08, 1, 0.14215156, 3.9807446e-08, -1.3935639e-08)
 bones/30/enabled = true
 bones/30/position = Vector3(0.14215158, 3.8146972e-08, -1.4305114e-08)
-bones/30/rotation = Quaternion(-6.3979364e-08, -2.6061167e-07, -0.46087492, 0.8874651)
+bones/30/rotation = Quaternion(-1.6270223e-08, -2.4202689e-07, -0.24979784, 0.968298)
 bones/30/scale = Vector3(1, 1, 1)
 bones/31/name = "Aranocodus_JawLower"
 bones/31/parent = 1
 bones/31/rest = Transform3D(-0.6225452, 0.782584, -4.024119e-07, -0.782584, -0.6225452, 6.797093e-07, 2.8140997e-07, 7.3807087e-07, 1, 0.024999542, -0.19657865, 4.599474e-08)
 bones/31/enabled = true
 bones/31/position = Vector3(0.024999484, -0.19657865, 3.8146972e-08)
-bones/31/rotation = Quaternion(6.659032e-08, 3.3619162e-07, 0.8398463, -0.5428244)
+bones/31/rotation = Quaternion(-3.358528e-08, 3.9351877e-07, 0.9007067, -0.43442768)
 bones/31/scale = Vector3(1, 1, 1)
 bones/32/name = "Aranocodus_JawUpper"
 bones/32/parent = 1
 bones/32/rest = Transform3D(0.74073535, 0.671797, -4.154545e-07, -0.671797, 0.74073535, -1.1195765e-07, 2.3252903e-07, 3.6203204e-07, 1, 0.024999542, -0.19657865, 4.599474e-08)
 bones/32/enabled = true
 bones/32/position = Vector3(0.024999484, -0.19657865, 3.8146972e-08)
-bones/32/rotation = Quaternion(5.7781474e-08, -4.8707445e-08, -0.6445178, 0.7645893)
+bones/32/rotation = Quaternion(1.2701572e-07, -1.7364111e-07, -0.3600449, 0.93293494)
 bones/32/scale = Vector3(1, 1, 1)
 
 [node name="SK_Aranocodus" type="MeshInstance3D" parent="SK_Aranocodus/Skeleton3D" unique_id=113119715]
@@ -749,6 +833,10 @@ libraries/Aranocodus@Turn90Left_RM = ExtResource("28_qs0j5")
 libraries/Aranocodus@Turn90Right = ExtResource("29_6rixp")
 libraries/Aranocodus@Turn90Right_RM = ExtResource("30_khgyk")
 autoplay = &"Aranocodus@CrawlForward/Take 001"
+
+[node name="AnimationTree" type="AnimationTree" parent="SK_Aranocodus" unique_id=1514534424]
+tree_root = SubResource("AnimationNodeStateMachine_3nugh")
+anim_player = NodePath("../AnimationPlayer")
 
 [node name="HealthComponent" type="Node3D" parent="." unique_id=345933468]
 script = ExtResource("31_3yobm")
