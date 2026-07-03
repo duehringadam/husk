@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://tnui"]
+
+[ext_resource type="PackedScene" uid="uid://oona" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Meshes/Props/Lighting/Cathedral_lights/fi_vil_cath_candle_02a_stand.glb" id="1_oona"]
+[ext_resource type="Material" uid="uid://m73g" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Materials/fi_village_lighting.tres" id="2_m73g"]
+
+[node name="fi_vil_cath_candle_02a_stand" instance=ExtResource("1_oona")]
+
+[node name="Mesh" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_m73g")

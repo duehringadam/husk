@@ -68,6 +68,12 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_4a3nf"]
+size = Vector3(1.000536, 4.0097713, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ra2i3"]
+size = Vector3(1, 1, 2)
+
 [node name="SM_ArchWall_Entrance_ColumnF_4x4_A" type="Node3D" unique_id=172447284]
 
 [node name="SM_ArchWall_Entrance_ColumnF_4x4_A_LOD0" type="MeshInstance3D" parent="." unique_id=1643311022]
@@ -77,3 +83,18 @@ surface_material_override/0 = ExtResource("2_bi8k")
 surface_material_override/1 = ExtResource("2_4a3nf")
 surface_material_override/2 = ExtResource("3_4iikn")
 surface_material_override/3 = ExtResource("4_o2q4h")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SM_ArchWall_Entrance_ColumnF_4x4_A_LOD0" unique_id=1047901538]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SM_ArchWall_Entrance_ColumnF_4x4_A_LOD0/StaticBody3D" unique_id=111392587]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9951146, 3.5)
+shape = SubResource("BoxShape3D_4a3nf")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="SM_ArchWall_Entrance_ColumnF_4x4_A_LOD0/StaticBody3D" unique_id=1248411060]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9951146, 0.5)
+shape = SubResource("BoxShape3D_4a3nf")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="SM_ArchWall_Entrance_ColumnF_4x4_A_LOD0/StaticBody3D" unique_id=748834424]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 2)
+shape = SubResource("BoxShape3D_ra2i3")

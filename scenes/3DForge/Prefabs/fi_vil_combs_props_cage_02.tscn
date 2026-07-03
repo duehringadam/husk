@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://tm5m"]
+
+[ext_resource type="PackedScene" uid="uid://n6ny" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Meshes/Catacombs/catacombs_props/cages/fi_vil_combs_props_cage_02.glb" id="1_n6ny"]
+[ext_resource type="Material" uid="uid://m713" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Materials/fi_village_catacombs.tres" id="2_m713"]
+
+[node name="fi_vil_combs_props_cage_02" instance=ExtResource("1_n6ny")]
+
+[node name="Mesh" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_m713")

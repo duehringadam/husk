@@ -6,14 +6,14 @@ extends Node
 
 func _on_cant_use_state_entered() -> void:
 	animation_tree.set("parameters/conditions/activate", false)
-	animation_tree.set("parameters/conditions/fail", true)
+	animation_tree.set("parameters/conditions/cant_use", true)
 	await animation_tree["parameters/playback"].state_finished
-	animation_tree.set("parameters/conditions/fail", false)
+	animation_tree.set("parameters/conditions/cant_use", false)
 	state_chart.send_event("idle")
 
 
 func _on_cant_use_state_exited() -> void:
-	pass # Replace with function body.
+	animation_tree.set("parameters/conditions/cant_use", false)
 
 
 func _on_cant_use_state_input(event: InputEvent) -> void:

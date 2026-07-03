@@ -38,6 +38,12 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_at5d5"]
+size = Vector3(0.7405616, 6.02323, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ra2i3"]
+size = Vector3(0.8, 2.1000001, 2)
+
 [node name="SM_ArchWall_Entrance_Bricks_4x6_B" type="Node3D" unique_id=395336757]
 
 [node name="SM_ArchWall_Entrance_Bricks_4x6_B_LOD0" type="MeshInstance3D" parent="." unique_id=270755018]
@@ -45,3 +51,18 @@ lod_bias = 0.05
 mesh = SubResource("ArrayMesh_at5d5")
 surface_material_override/0 = ExtResource("2_bi8k")
 surface_material_override/1 = ExtResource("2_at5d5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SM_ArchWall_Entrance_Bricks_4x6_B_LOD0" unique_id=1208011534]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SM_ArchWall_Entrance_Bricks_4x6_B_LOD0/StaticBody3D" unique_id=1701400448]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0003040135, 2.988385, 3.5)
+shape = SubResource("BoxShape3D_at5d5")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="SM_ArchWall_Entrance_Bricks_4x6_B_LOD0/StaticBody3D" unique_id=1591996498]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0003040135, 2.988385, 0.5)
+shape = SubResource("BoxShape3D_at5d5")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="SM_ArchWall_Entrance_Bricks_4x6_B_LOD0/StaticBody3D" unique_id=702306607]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0003039837, 4.9383855, 2)
+shape = SubResource("BoxShape3D_ra2i3")

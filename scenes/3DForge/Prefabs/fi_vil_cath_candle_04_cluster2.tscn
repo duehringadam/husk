@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://tsnw"]
+
+[ext_resource type="PackedScene" uid="uid://ner1" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Meshes/Props/Lighting/Cathedral_lights/fi_vil_cath_candle_04_cluster2.glb" id="1_ner1"]
+[ext_resource type="Material" uid="uid://m73g" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Materials/fi_village_lighting.tres" id="2_m73g"]
+
+[node name="fi_vil_cath_candle_04_cluster2" instance=ExtResource("1_ner1")]
+
+[node name="Mesh" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_m73g")

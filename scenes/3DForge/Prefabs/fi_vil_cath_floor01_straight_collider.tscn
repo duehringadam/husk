@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://tpqo"]
+
+[ext_resource type="PackedScene" uid="uid://nlfq" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Meshes/Floors/cathedral_floors/fi_vil_cath_floor01_straight_collider.glb" id="1_nlfq"]
+[ext_resource type="Material" uid="uid://m76s" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Materials/fi_village_collider.tres" id="2_m76s"]
+
+[node name="fi_vil_cath_floor01_straight_collider" instance=ExtResource("1_nlfq")]
+
+[node name="Mesh" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_m76s")

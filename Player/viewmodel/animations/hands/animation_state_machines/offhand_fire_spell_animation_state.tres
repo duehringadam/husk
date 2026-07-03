@@ -32,10 +32,12 @@ advance_mode = 2
 advance_condition = &"activate"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4it18"]
+xfade_time = 0.1
 advance_mode = 2
 advance_condition = &"cant_use"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2br13"]
+xfade_time = 0.1
 switch_mode = 2
 advance_mode = 2
 
@@ -79,7 +81,7 @@ states/fire_idle/position = Vector2(471, 100)
 states/fire_nomana/node = SubResource("AnimationNodeAnimation_7fmws")
 states/fire_nomana/position = Vector2(545, 192)
 states/fire_use/node = SubResource("AnimationNodeAnimation_x3y7m")
-states/fire_use/position = Vector2(606, 100)
+states/fire_use/position = Vector2(769, 100)
 states/fire_use_loop/node = SubResource("AnimationNodeAnimation_w62gh")
 states/fire_use_loop/position = Vector2(670, 16)
 states/lower/node = SubResource("AnimationNodeAnimation_mhf8l")

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://trni"]
+
+[ext_resource type="PackedScene" uid="uid://nk6e" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Meshes/Catacombs/catacombs_props/sarcophagus/fi_vil_combs_props_sarcophagus_lid_big_02.glb" id="1_nk6e"]
+[ext_resource type="Material" uid="uid://m713" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Materials/fi_village_catacombs.tres" id="2_m713"]
+
+[node name="fi_vil_combs_props_sarcophagus_lid_big_02" instance=ExtResource("1_nk6e")]
+
+[node name="Mesh" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_m713")

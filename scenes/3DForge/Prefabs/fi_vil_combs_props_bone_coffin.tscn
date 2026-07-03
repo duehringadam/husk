@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://tg1w"]
+
+[ext_resource type="PackedScene" uid="uid://ontc" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Meshes/Catacombs/catacombs_props/bones/fi_vil_combs_props_bone_coffin.glb" id="1_ontc"]
+[ext_resource type="Material" uid="uid://m713" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Materials/fi_village_catacombs.tres" id="2_m713"]
+
+[node name="fi_vil_combs_props_bone_coffin" instance=ExtResource("1_ontc")]
+
+[node name="Mesh" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_m713")

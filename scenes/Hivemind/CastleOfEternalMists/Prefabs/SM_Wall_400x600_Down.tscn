@@ -24,9 +24,19 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_mk851"]
+size = Vector3(0.50000036, 6, 4)
+
 [node name="SM_Wall_400x600_Down" type="Node3D" unique_id=387306476]
 
 [node name="SM_Wall_400x600_Down_LOD0" type="MeshInstance3D" parent="." unique_id=598795374]
 lod_bias = 0.05
 mesh = SubResource("ArrayMesh_mk851")
 surface_material_override/0 = ExtResource("2_bi8k")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SM_Wall_400x600_Down_LOD0" unique_id=1487874437]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SM_Wall_400x600_Down_LOD0/StaticBody3D" unique_id=1535689418]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9604645e-08, 3, 1.9999999)
+shape = SubResource("BoxShape3D_mk851")

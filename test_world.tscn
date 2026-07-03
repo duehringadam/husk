@@ -2,11 +2,11 @@
 
 [ext_resource type="AudioStream" uid="uid://bhauxowkg5f45" path="res://Player/sfx/dirt_footsteps.tres" id="3_ivea3"]
 [ext_resource type="PackedScene" uid="uid://bia32vkq1a5i" path="res://scenes/player/player.tscn" id="5_cnaw2"]
-[ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/item.gd" id="5_ud3vi"]
 [ext_resource type="PackedScene" uid="uid://ymiu2vsxluj2" path="res://scenes/ladders/ladder.tscn" id="10_ud3vi"]
 [ext_resource type="Texture2D" uid="uid://bmiecwtrxqg52" path="res://scenes/MysticDungeon/Art/Textures/T_Wood_Planks_01_BC.png" id="12_07jwy"]
 [ext_resource type="PackedScene" uid="uid://cqebuck4snj2y" path="res://scenes/cleanser_knight/pyramid_final.tscn" id="12_jvck6"]
 [ext_resource type="PackedScene" uid="uid://dde8d0d27fgyo" path="res://scenes/npc/undead/shambler.tscn" id="13_jvck6"]
+[ext_resource type="PackedScene" uid="uid://bgo71k4srphvm" path="res://scenes/npc/Corpse Crawler/corpse_crawler.tscn" id="14_07jwy"]
 [ext_resource type="Texture2D" uid="uid://cxnd1w61unt4o" path="res://scenes/shambler_armored/textures/textures/soldier_Base_color.png" id="14_kfu6g"]
 [ext_resource type="Texture2D" uid="uid://bjunm86fm2kvl" path="res://scenes/shambler_armored/textures/textures/soldier_Mixed_AO.png" id="15_6mf5r"]
 [ext_resource type="PackedScene" uid="uid://csc3ojr7benhn" path="res://maptestflesh(2).tscn" id="15_urhrq"]
@@ -172,7 +172,6 @@ shadow_enabled = true
 [node name="Player2" parent="." unique_id=1592911738 instance=ExtResource("5_cnaw2")]
 transform = Transform3D(-0.99971205, 0, -0.023996044, 0, 1, 0, 0.023996044, 0, -0.99971205, -8.8617, 0.2, 56.889206)
 collision_mask = 46
-inventory = Array[ExtResource("5_ud3vi")]([])
 footsteps_sound = ExtResource("3_ivea3")
 head_bob_strength = 0.05
 toggle_crouch = false
@@ -231,3 +230,6 @@ transform = Transform3D(-1.75, 0, 2.6424266e-07, 0, 1.75, 0, -2.6424266e-07, 0, 
 
 [node name="sword(1)" parent="." unique_id=1629618071 instance=ExtResource("20_8wsjh")]
 transform = Transform3D(0.1572791, 0.5648554, -0.8100627, 0.9875542, -0.08995958, 0.12901159, 0, -0.8202717, -0.5719741, -14.398417, 10.131123, 86.52436)
+
+[node name="CorpseCrawler" parent="." unique_id=319898315 instance=ExtResource("14_07jwy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.341679, 0.037545636, 55.729656)

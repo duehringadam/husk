@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://thqc"]
+
+[ext_resource type="PackedScene" uid="uid://oir1" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Meshes/Pillars/cathedral_pillars/Cath_Pillar_04/fi_vil_cath_pillar_04_6m_swords.glb" id="1_oir1"]
+[ext_resource type="Material" uid="uid://m72k" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Materials/fi_village_cathedral_base.tres" id="2_m72k"]
+
+[node name="fi_vil_cath_pillar_04_6m_swords" instance=ExtResource("1_oir1")]
+
+[node name="Mesh" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_m72k")

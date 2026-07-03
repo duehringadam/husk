@@ -5,12 +5,20 @@ extends Pickable
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
 var target_basis
 
+var uid_string:String
+var is_dropped: bool = false
+
 func _ready() -> void:
 	assert(item_to_loot != null, "Item resource cannot be null!")
 	if shattered_mesh:
 		shattered_mesh_add = shattered_mesh.instantiate()
 	if item_to_loot:
 		item_to_loot.item_dropped_scene = load(get_scene_file_path())
+	if !is_dropped:
+		uid_string = item_to_loot.unique_id
+		var global_item_stored = Global.non_respawnable_items.has(uid_string)
+		if global_item_stored == true:
+			self.queue_free()
 	
 
 func _physics_process(delta: float) -> void:
@@ -159,6 +167,9 @@ func _on_health_component_died() -> void:
 func loot_object():
 	AudioManager.play_sound_non_positional(load("res://sfx/dark_souls_item.wav"),10)
 	SignalBus.emit_signal("item_interact", item_to_loot)
+	if !is_dropped:
+		item_to_loot.update_unique_id()
+		Global.non_respawnable_items[uid_string] = true
 	collision_shape_3d.disabled = true
 	var tween = get_tree().create_tween()
 	tween.set_parallel()

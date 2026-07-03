@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://toqa"]
+
+[ext_resource type="PackedScene" uid="uid://n5rm" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Meshes/Floors/catacombs_floor/fi_vil_combs_floor_grate_end.glb" id="1_n5rm"]
+[ext_resource type="Material" uid="uid://m713" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Materials/fi_village_catacombs.tres" id="2_m713"]
+
+[node name="fi_vil_combs_floor_grate_end" instance=ExtResource("1_n5rm")]
+
+[node name="Mesh" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_m713")

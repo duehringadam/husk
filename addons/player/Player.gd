@@ -95,6 +95,7 @@ Optional: %jump, %sprint, %crouch, %lean, %zoom, %switch_hands
 @onready var rope_detection: Area3D = %rope_detection
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var stamina_component: StaminaComponent = %StaminaComponent
+@onready var mana_component: ManaComponent = $ManaComponent
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -680,7 +681,7 @@ func disable_hands(body: Variant):
 		offhand.disable()
 
 func _on_health_component_died() -> void:
-	camera_animation_player.play("death")
+	camera_animation_player.stop()
 	mainhand.disable()
 	offhand.disable()
 	hurtbox.monitoring = false
@@ -688,8 +689,21 @@ func _on_health_component_died() -> void:
 	can_move = false
 	can_attack = false
 	lock_camera = true
-	await camera_animation_player.animation_finished
-	get_tree().reload_current_scene()
+	%deathAnimation.play("death")
+
+func respawn():
+	if SaveManager.get_checkpoint_from_config("Saved Checkpoint") != null:
+		global_position = SaveManager.get_checkpoint_from_config("Saved Checkpoint")
+	%deathAnimation.play("RESET")
+	SignalBus.emit_signal("player_full_restore")
+	mainhand.enable()
+	offhand.enable()
+	hurtbox.monitoring = true
+	hurtbox.monitorable = true
+	can_move = true
+	can_attack = true
+	lock_camera = false
+	
 
 func _on_rope_detection_body_entered(body: Node3D) -> void:
 	if body.is_in_group("rope_segment") and not active_segments.has(body):

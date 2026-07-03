@@ -37,6 +37,14 @@ func get_checkpoint_from_config(checkpoint_location: String, default = null) -> 
 	return SaveConfig.get_config(LOCATION_SECTION, checkpoint_location, default)
 #endregion
 
+#region Player saved position
+func set_player_saved_position(saved_position: String, default = null)->void:
+	SaveConfig.set_config(LOCATION_SECTION, saved_position, default)
+
+func get_player_saved_position(saved_position: String, default = null) -> Vector3:
+	return SaveConfig.get_config(LOCATION_SECTION, saved_position, default)
+#endregion
+
 #region Inventory
 func save_inventory(inventory: Array) -> void:
 	SaveConfig.set_config(INVENTORY_SECTION, "Saved Inventory", inventory)
@@ -59,4 +67,22 @@ func save_enemy_list(enemy_list: Array, default = null) -> void:
 
 #func get_enemy_list_from_config(enemy_list: Array, default = null) -> String:
 	#return SaveConfig.get_config(ENEMY_LIST_SECTION, enemy_list, default)
+#endregion
+
+
+#region World Items
+func set_item_list(item_list: String, default = null)-> void:
+	SaveConfig.set_config(WORLD_ITEMS_SECTION, item_list, default)
+
+func get_item_list(item_list: String, default = null) -> Dictionary:
+	return SaveConfig.get_config(WORLD_ITEMS_SECTION, item_list, default)
+#endregion
+
+
+#region World Items
+func set_item_list(item_list: String, default = null)-> void:
+	SaveConfig.set_config(WORLD_ITEMS_SECTION, item_list, default)
+
+func get_item_list(item_list: String, default = null) -> Dictionary:
+	return SaveConfig.get_config(WORLD_ITEMS_SECTION, item_list, default)
 #endregion

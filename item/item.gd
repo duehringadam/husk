@@ -18,6 +18,9 @@ signal stack_size_changed(amount: int)
 @export var item_stats: ItemStat
 @export var item_required_stats: Dictionary[ItemEquippableType.ITEM_REQUIRED_STAT, int]
 @export var stamina_cost: int = 10
+@export var mana_cost: int = 0
+@export var constant_mana_drain: bool = false
+@export var constant_mana_drain_cost: int = 0
 @export_range(0.0,1.25) var charge_time: float = 1.0
 
 @export_category("Item Scenes")
@@ -37,6 +40,14 @@ signal stack_size_changed(amount: int)
 @export var left_position: Vector3
 @export var left_rotation: Vector3
 
+var unique_id: String = ""
+
+func _init() -> void:
+	update_unique_id()
+
+func update_unique_id() -> void:
+	var int_id = ResourceUID.create_id()
+	unique_id = ResourceUID.id_to_text(int_id)
 
 func _update_stack_size(amount: int):
 	current_stack_size = clampi(current_stack_size+amount, 0, max_stack_size)
