@@ -36,6 +36,7 @@
 [ext_resource type="Script" uid="uid://bb3ghyy64k2bd" path="res://addons/godot_state_charts/state_chart.gd" id="34_sihuc"]
 [ext_resource type="Script" uid="uid://clt3bkcujiepo" path="res://addons/godot_state_charts/compound_state.gd" id="35_t7lcj"]
 [ext_resource type="Script" uid="uid://1xhujeketj0r" path="res://addons/godot_state_charts/atomic_state.gd" id="36_qeowv"]
+[ext_resource type="Script" uid="uid://dax72v211xr44" path="res://components/stance_component.gd" id="40_dp8nh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3jnk5"]
 resource_name = "M_Aranocodus"
@@ -169,6 +170,13 @@ albedo_texture = ExtResource("1_uqj8v")
 normal_enabled = true
 normal_texture = ExtResource("2_3yobm")
 texture_filter = 2
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j1pv0"]
+radius = 0.2915039
+height = 1.3433838
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3nugh"]
+radius = 0.2
 
 [sub_resource type="Animation" id="Animation_fcxq7"]
 resource_name = "Take 001"
@@ -487,6 +495,9 @@ animation = &"Aranocodus@Idle/Take 001"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qeowv"]
 animation = &"Aranocodus@JumpBiteA/Take 001"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jjxrv"]
+animation = &"Aranocodus@StingerAttack/Take 001"
+
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lhwd0"]
 advance_mode = 2
 
@@ -504,12 +515,14 @@ advance_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_683s7"]
+switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4hl0c"]
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c5j2k"]
+switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mjrl7"]
@@ -535,6 +548,15 @@ advance_mode = 2
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fb4lb"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_62hnf"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6rtca"]
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_3nugh"]
 "states/Aranocodus_CrawlForward_Take 001/node" = SubResource("AnimationNodeAnimation_t7lcj")
 "states/Aranocodus_CrawlForward_Take 001/position" = Vector2(977.80005, 246.26927)
@@ -548,16 +570,14 @@ advance_mode = 2
 "states/Aranocodus_Idle_Take 001/position" = Vector2(490.79996, 98.466225)
 "states/Aranocodus_JumpBiteA_Take 001/node" = SubResource("AnimationNodeAnimation_qeowv")
 "states/Aranocodus_JumpBiteA_Take 001/position" = Vector2(713.39996, -119.8)
+"states/Aranocodus_StingerAttack_Take 001/node" = SubResource("AnimationNodeAnimation_jjxrv")
+"states/Aranocodus_StingerAttack_Take 001/position" = Vector2(1315.4, 352)
 states/End/position = Vector2(1562.4, 97.69179)
 states/Start/position = Vector2(-101.600006, 87.09542)
-transitions = ["Aranocodus_Idle_Take 001", "Aranocodus_CrawlForward_Take 001", SubResource("AnimationNodeStateMachineTransition_lhwd0"), "Aranocodus_CrawlForward_Take 001", "Aranocodus_JumpBiteA_Take 001", SubResource("AnimationNodeStateMachineTransition_ooqvr"), "Aranocodus_JumpBiteA_Take 001", "Aranocodus_CrawlForward_Take 001", SubResource("AnimationNodeStateMachineTransition_l0ydb"), "Aranocodus_CrawlForward_Take 001", "Aranocodus_Idle_Take 001", SubResource("AnimationNodeStateMachineTransition_jjxrv"), "Aranocodus_Idle_Take 001", "Aranocodus_GetHitFront_Take 001", SubResource("AnimationNodeStateMachineTransition_dp8nh"), "Aranocodus_GetHitFront_Take 001", "Aranocodus_Idle_Take 001", SubResource("AnimationNodeStateMachineTransition_683s7"), "Aranocodus_CrawlForward_Take 001", "Aranocodus_GetHitFront_Take 001", SubResource("AnimationNodeStateMachineTransition_4hl0c"), "Aranocodus_GetHitFront_Take 001", "Aranocodus_CrawlForward_Take 001", SubResource("AnimationNodeStateMachineTransition_c5j2k"), "Aranocodus_JumpBiteA_Take 001", "Aranocodus_GetHitFront_Take 001", SubResource("AnimationNodeStateMachineTransition_mjrl7"), "Aranocodus_Death_Take 001", "End", SubResource("AnimationNodeStateMachineTransition_27ris"), "Aranocodus_Idle_Take 001", "Aranocodus_Death_Take 001", SubResource("AnimationNodeStateMachineTransition_uegb1"), "Aranocodus_CrawlForward_Take 001", "Aranocodus_Death_Take 001", SubResource("AnimationNodeStateMachineTransition_0nebq"), "Aranocodus_JumpBiteA_Take 001", "Aranocodus_Death_Take 001", SubResource("AnimationNodeStateMachineTransition_r76x0"), "Start", "Aranocodus_GetOutOfTheGround_Take 001", SubResource("AnimationNodeStateMachineTransition_75e4j"), "Aranocodus_GetOutOfTheGround_Take 001", "Aranocodus_Idle_Take 001", SubResource("AnimationNodeStateMachineTransition_engkw")]
-graph_offset = Vector2(513, -208)
+transitions = ["Aranocodus_Idle_Take 001", "Aranocodus_CrawlForward_Take 001", SubResource("AnimationNodeStateMachineTransition_lhwd0"), "Aranocodus_CrawlForward_Take 001", "Aranocodus_JumpBiteA_Take 001", SubResource("AnimationNodeStateMachineTransition_ooqvr"), "Aranocodus_JumpBiteA_Take 001", "Aranocodus_CrawlForward_Take 001", SubResource("AnimationNodeStateMachineTransition_l0ydb"), "Aranocodus_CrawlForward_Take 001", "Aranocodus_Idle_Take 001", SubResource("AnimationNodeStateMachineTransition_jjxrv"), "Aranocodus_Idle_Take 001", "Aranocodus_GetHitFront_Take 001", SubResource("AnimationNodeStateMachineTransition_dp8nh"), "Aranocodus_GetHitFront_Take 001", "Aranocodus_Idle_Take 001", SubResource("AnimationNodeStateMachineTransition_683s7"), "Aranocodus_CrawlForward_Take 001", "Aranocodus_GetHitFront_Take 001", SubResource("AnimationNodeStateMachineTransition_4hl0c"), "Aranocodus_GetHitFront_Take 001", "Aranocodus_CrawlForward_Take 001", SubResource("AnimationNodeStateMachineTransition_c5j2k"), "Aranocodus_JumpBiteA_Take 001", "Aranocodus_GetHitFront_Take 001", SubResource("AnimationNodeStateMachineTransition_mjrl7"), "Aranocodus_Death_Take 001", "End", SubResource("AnimationNodeStateMachineTransition_27ris"), "Aranocodus_Idle_Take 001", "Aranocodus_Death_Take 001", SubResource("AnimationNodeStateMachineTransition_uegb1"), "Aranocodus_CrawlForward_Take 001", "Aranocodus_Death_Take 001", SubResource("AnimationNodeStateMachineTransition_0nebq"), "Aranocodus_JumpBiteA_Take 001", "Aranocodus_Death_Take 001", SubResource("AnimationNodeStateMachineTransition_r76x0"), "Start", "Aranocodus_GetOutOfTheGround_Take 001", SubResource("AnimationNodeStateMachineTransition_75e4j"), "Aranocodus_GetOutOfTheGround_Take 001", "Aranocodus_Idle_Take 001", SubResource("AnimationNodeStateMachineTransition_engkw"), "Aranocodus_CrawlForward_Take 001", "Aranocodus_StingerAttack_Take 001", SubResource("AnimationNodeStateMachineTransition_fb4lb"), "Aranocodus_StingerAttack_Take 001", "Aranocodus_GetHitFront_Take 001", SubResource("AnimationNodeStateMachineTransition_62hnf"), "Aranocodus_StingerAttack_Take 001", "Aranocodus_Death_Take 001", SubResource("AnimationNodeStateMachineTransition_6rtca")]
+graph_offset = Vector2(54, -156)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j1pv0"]
-radius = 0.2915039
-height = 1.3433838
-
-[node name="CorpseCrawler" type="Node3D" unique_id=319898315]
+[node name="CorpseCrawler" type="CharacterBody3D" unique_id=658094616]
 script = ExtResource("1_0g71h")
 
 [node name="SK_Aranocodus" type="Node3D" parent="." unique_id=1234157961]
@@ -801,7 +821,64 @@ skin = SubResource("Skin_om5jh")
 skeleton = NodePath("..")
 surface_material_override/0 = SubResource("StandardMaterial3D_daqul")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="SK_Aranocodus" unique_id=59761023]
+[node name="HealthComponent" type="Node3D" parent="." unique_id=345933468]
+script = ExtResource("31_3yobm")
+max_health = 10.0
+metadata/_custom_type_script = "uid://dgjqgiw3yw42e"
+
+[node name="hurtbox_component" type="Area3D" parent="." unique_id=1270502633 node_paths=PackedStringArray("health_component")]
+collision_layer = 4
+collision_mask = 13
+script = ExtResource("32_0g71h")
+health_component = NodePath("../HealthComponent")
+metadata/_custom_type_script = "uid://c2i6qdosp0h2"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hurtbox_component" unique_id=1907827666]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.17861797, -0.20013428)
+shape = SubResource("CapsuleShape3D_j1pv0")
+
+[node name="StateChart" type="Node" parent="." unique_id=1694696424]
+script = ExtResource("34_sihuc")
+metadata/_custom_type_script = "uid://bb3ghyy64k2bd"
+
+[node name="CompoundState" type="Node" parent="StateChart" unique_id=1267116113]
+script = ExtResource("35_t7lcj")
+initial_state = NodePath("idle")
+
+[node name="idle" type="Node" parent="StateChart/CompoundState" unique_id=1230968468]
+script = ExtResource("36_qeowv")
+
+[node name="searching" type="Node" parent="StateChart/CompoundState" unique_id=906488060]
+script = ExtResource("36_qeowv")
+
+[node name="isAttacker" type="Node" parent="StateChart/CompoundState" unique_id=960284704]
+script = ExtResource("35_t7lcj")
+initial_state = NodePath("lunging")
+metadata/_custom_type_script = "uid://clt3bkcujiepo"
+
+[node name="lunging" type="Node" parent="StateChart/CompoundState/isAttacker" unique_id=800315163]
+script = ExtResource("36_qeowv")
+metadata/_custom_type_script = "uid://1xhujeketj0r"
+
+[node name="stinging" type="Node" parent="StateChart/CompoundState/isAttacker" unique_id=1651939541]
+script = ExtResource("36_qeowv")
+metadata/_custom_type_script = "uid://1xhujeketj0r"
+
+[node name="dead" type="Node" parent="StateChart/CompoundState" unique_id=741566368]
+script = ExtResource("36_qeowv")
+metadata/_custom_type_script = "uid://1xhujeketj0r"
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1433202867]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1696747680]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+shape = SubResource("SphereShape3D_3nugh")
+debug_color = Color(0.9764706, 0, 0.40392157, 1)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1480352205]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=59761023]
+root_node = NodePath("../SK_Aranocodus")
 libraries/ = SubResource("AnimationLibrary_v6msx")
 libraries/Aranocodus@CrawlBackwards = ExtResource("2_hl84f")
 libraries/Aranocodus@CrawlBackwards_RM = ExtResource("3_3yobm")
@@ -834,38 +911,11 @@ libraries/Aranocodus@Turn90Right = ExtResource("29_6rixp")
 libraries/Aranocodus@Turn90Right_RM = ExtResource("30_khgyk")
 autoplay = &"Aranocodus@CrawlForward/Take 001"
 
-[node name="AnimationTree" type="AnimationTree" parent="SK_Aranocodus" unique_id=1514534424]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1514534424]
+root_node = NodePath("../SK_Aranocodus")
 tree_root = SubResource("AnimationNodeStateMachine_3nugh")
 anim_player = NodePath("../AnimationPlayer")
 
-[node name="HealthComponent" type="Node3D" parent="." unique_id=345933468]
-script = ExtResource("31_3yobm")
-max_health = 10.0
-metadata/_custom_type_script = "uid://dgjqgiw3yw42e"
-
-[node name="hurtbox_component" type="Area3D" parent="." unique_id=1270502633 node_paths=PackedStringArray("health_component")]
-collision_layer = 4
-collision_mask = 13
-script = ExtResource("32_0g71h")
-health_component = NodePath("../HealthComponent")
-metadata/_custom_type_script = "uid://c2i6qdosp0h2"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="hurtbox_component" unique_id=1907827666]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.17861797, -0.20013428)
-shape = SubResource("CapsuleShape3D_j1pv0")
-
-[node name="StateChart" type="Node" parent="." unique_id=1694696424]
-script = ExtResource("34_sihuc")
-metadata/_custom_type_script = "uid://bb3ghyy64k2bd"
-
-[node name="CompoundState" type="Node" parent="StateChart" unique_id=1267116113]
-script = ExtResource("35_t7lcj")
-initial_state = NodePath("idle")
-
-[node name="idle" type="Node" parent="StateChart/CompoundState" unique_id=1230968468]
-script = ExtResource("36_qeowv")
-
-[node name="move" type="Node" parent="StateChart/CompoundState" unique_id=906488060]
-script = ExtResource("36_qeowv")
-
-[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
+[node name="StanceComponent" type="Node" parent="." unique_id=245372475]
+script = ExtResource("40_dp8nh")
+metadata/_custom_type_script = "uid://dax72v211xr44"
