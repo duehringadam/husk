@@ -117,6 +117,7 @@ func _update_inventory(item_signal: item):
 			item_add.item_inventory = item_signal
 	inventory.append(item_signal)
 	SaveManager.set_inventory("Saved Inventory", inventory)
+	#SaveManager.save_inventory(inventory)
 
 func _update_equipped_items(item_inv_interact: item_inventory_interact):
 	match item_inv_interact.item_inventory.item_type:

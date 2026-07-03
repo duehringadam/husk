@@ -4,6 +4,7 @@ const LOCATION_SECTION = &'Location'
 const INVENTORY_SECTION = &'Inventory'
 const PLAYER_STATS_SECTION = &'Player_stats'
 const ENEMY_LIST_SECTION = &'Enemy_list'
+const WORLD_ITEMS_SECTION = &'World_Items_List'
 
 #region Save Game
 func save_game() -> void:
@@ -19,11 +20,11 @@ func load_game() -> void:
 	if SaveConfig.get_config("Inventory", "Saved Inventory") != null:
 		var inventory_list = SaveConfig.get_config("Inventory", "Saved Inventory")
 		Global.player.inventory.reset_inventory(inventory_list)
-	if SaveConfig.get_config("Player_stats", "Saved Stats") != null:
-		var stats = SaveConfig.get_config("Player_stats", "Saved Stats")
-		Global.player.player_stats = stats
-		SignalBus.emit_signal("player_stats_changed", stats)
-		SignalBus.emit_signal("player_full_restore")
+	#if SaveConfig.get_config("Player_stats", "Saved Stats") != null:
+		#var stats = SaveConfig.get_config("Player_stats", "Saved Stats")
+		#Global.player.player_stats = stats
+		#SignalBus.emit_signal("player_stats_changed", stats)
+		#SignalBus.emit_signal("player_full_restore")
 #endregion
 
 #region Location
@@ -46,6 +47,9 @@ func get_player_saved_position(saved_position: String, default = null) -> Vector
 #endregion
 
 #region Inventory
+func set_inventory(inventory_list: String, default = null) -> void:
+	SaveConfig.set_config(INVENTORY_SECTION, inventory_list, default)
+
 func save_inventory(inventory: Array) -> void:
 	SaveConfig.set_config(INVENTORY_SECTION, "Saved Inventory", inventory)
 
@@ -75,14 +79,9 @@ func set_item_list(item_list: String, default = null)-> void:
 	SaveConfig.set_config(WORLD_ITEMS_SECTION, item_list, default)
 
 func get_item_list(item_list: String, default = null) -> Dictionary:
-	return SaveConfig.get_config(WORLD_ITEMS_SECTION, item_list, default)
-#endregion
-
-
-#region World Items
-func set_item_list(item_list: String, default = null)-> void:
-	SaveConfig.set_config(WORLD_ITEMS_SECTION, item_list, default)
-
-func get_item_list(item_list: String, default = null) -> Dictionary:
-	return SaveConfig.get_config(WORLD_ITEMS_SECTION, item_list, default)
+	if SaveConfig.has_section(item_list):
+		return SaveConfig.get_config(WORLD_ITEMS_SECTION, item_list, default)
+	else:
+		var empty_dict: Dictionary[String, bool] = {} 
+		return empty_dict
 #endregion
