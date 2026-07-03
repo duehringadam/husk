@@ -13,6 +13,8 @@ var timer: float = 0.0
 var search_position : Vector3
 var first_aggro: bool = true
 
+#test
+
 func _ready() -> void:
 	animation_tree.active = true
 	#if hurtboxes:
