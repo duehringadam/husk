@@ -477,14 +477,11 @@ _data = {
 &"Take 001": SubResource("Animation_uqj8v")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t7lcj"]
-animation = &"Aranocodus@CrawlForward/Take 001"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qeowv"]
+animation = &"Aranocodus@JumpBiteA/Take 001"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lhwd0"]
 animation = &"Aranocodus@Death/Take 001"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ooqvr"]
-animation = &"Aranocodus@GetHitFront/Take 001"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l0ydb"]
 animation = &"Aranocodus@GetOutOfTheGround/Take 001"
@@ -492,11 +489,14 @@ animation = &"Aranocodus@GetOutOfTheGround/Take 001"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sihuc"]
 animation = &"Aranocodus@Idle/Take 001"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qeowv"]
-animation = &"Aranocodus@JumpBiteA/Take 001"
-
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jjxrv"]
 animation = &"Aranocodus@StingerAttack/Take 001"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ooqvr"]
+animation = &"Aranocodus@GetHitFront/Take 001"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t7lcj"]
+animation = &"Aranocodus@CrawlForward/Take 001"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lhwd0"]
 advance_mode = 2
@@ -558,24 +558,24 @@ advance_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_3nugh"]
-"states/Aranocodus_CrawlForward_Take 001/node" = SubResource("AnimationNodeAnimation_t7lcj")
-"states/Aranocodus_CrawlForward_Take 001/position" = Vector2(977.80005, 246.26927)
-"states/Aranocodus_Death_Take 001/node" = SubResource("AnimationNodeAnimation_lhwd0")
-"states/Aranocodus_Death_Take 001/position" = Vector2(1561.44, -53.399986)
-"states/Aranocodus_GetHitFront_Take 001/node" = SubResource("AnimationNodeAnimation_ooqvr")
-"states/Aranocodus_GetHitFront_Take 001/position" = Vector2(590.6, 319.8)
-"states/Aranocodus_GetOutOfTheGround_Take 001/node" = SubResource("AnimationNodeAnimation_l0ydb")
-"states/Aranocodus_GetOutOfTheGround_Take 001/position" = Vector2(164.2, 87.03634)
-"states/Aranocodus_Idle_Take 001/node" = SubResource("AnimationNodeAnimation_sihuc")
-"states/Aranocodus_Idle_Take 001/position" = Vector2(490.79996, 98.466225)
-"states/Aranocodus_JumpBiteA_Take 001/node" = SubResource("AnimationNodeAnimation_qeowv")
-"states/Aranocodus_JumpBiteA_Take 001/position" = Vector2(713.39996, -119.8)
-"states/Aranocodus_StingerAttack_Take 001/node" = SubResource("AnimationNodeAnimation_jjxrv")
-"states/Aranocodus_StingerAttack_Take 001/position" = Vector2(1315.4, 352)
+states/Bite/node = SubResource("AnimationNodeAnimation_qeowv")
+states/Bite/position = Vector2(713.39996, -119.8)
+states/Die/node = SubResource("AnimationNodeAnimation_lhwd0")
+states/Die/position = Vector2(1561.44, -53.399986)
+states/Emerge/node = SubResource("AnimationNodeAnimation_l0ydb")
+states/Emerge/position = Vector2(164.2, 87.03634)
 states/End/position = Vector2(1562.4, 97.69179)
+states/Idle/node = SubResource("AnimationNodeAnimation_sihuc")
+states/Idle/position = Vector2(490.79996, 98.466225)
 states/Start/position = Vector2(-101.600006, 87.09542)
-transitions = ["Aranocodus_Idle_Take 001", "Aranocodus_CrawlForward_Take 001", SubResource("AnimationNodeStateMachineTransition_lhwd0"), "Aranocodus_CrawlForward_Take 001", "Aranocodus_JumpBiteA_Take 001", SubResource("AnimationNodeStateMachineTransition_ooqvr"), "Aranocodus_JumpBiteA_Take 001", "Aranocodus_CrawlForward_Take 001", SubResource("AnimationNodeStateMachineTransition_l0ydb"), "Aranocodus_CrawlForward_Take 001", "Aranocodus_Idle_Take 001", SubResource("AnimationNodeStateMachineTransition_jjxrv"), "Aranocodus_Idle_Take 001", "Aranocodus_GetHitFront_Take 001", SubResource("AnimationNodeStateMachineTransition_dp8nh"), "Aranocodus_GetHitFront_Take 001", "Aranocodus_Idle_Take 001", SubResource("AnimationNodeStateMachineTransition_683s7"), "Aranocodus_CrawlForward_Take 001", "Aranocodus_GetHitFront_Take 001", SubResource("AnimationNodeStateMachineTransition_4hl0c"), "Aranocodus_GetHitFront_Take 001", "Aranocodus_CrawlForward_Take 001", SubResource("AnimationNodeStateMachineTransition_c5j2k"), "Aranocodus_JumpBiteA_Take 001", "Aranocodus_GetHitFront_Take 001", SubResource("AnimationNodeStateMachineTransition_mjrl7"), "Aranocodus_Death_Take 001", "End", SubResource("AnimationNodeStateMachineTransition_27ris"), "Aranocodus_Idle_Take 001", "Aranocodus_Death_Take 001", SubResource("AnimationNodeStateMachineTransition_uegb1"), "Aranocodus_CrawlForward_Take 001", "Aranocodus_Death_Take 001", SubResource("AnimationNodeStateMachineTransition_0nebq"), "Aranocodus_JumpBiteA_Take 001", "Aranocodus_Death_Take 001", SubResource("AnimationNodeStateMachineTransition_r76x0"), "Start", "Aranocodus_GetOutOfTheGround_Take 001", SubResource("AnimationNodeStateMachineTransition_75e4j"), "Aranocodus_GetOutOfTheGround_Take 001", "Aranocodus_Idle_Take 001", SubResource("AnimationNodeStateMachineTransition_engkw"), "Aranocodus_CrawlForward_Take 001", "Aranocodus_StingerAttack_Take 001", SubResource("AnimationNodeStateMachineTransition_fb4lb"), "Aranocodus_StingerAttack_Take 001", "Aranocodus_GetHitFront_Take 001", SubResource("AnimationNodeStateMachineTransition_62hnf"), "Aranocodus_StingerAttack_Take 001", "Aranocodus_Death_Take 001", SubResource("AnimationNodeStateMachineTransition_6rtca")]
-graph_offset = Vector2(54, -156)
+states/Sting/node = SubResource("AnimationNodeAnimation_jjxrv")
+states/Sting/position = Vector2(1315.4, 352)
+states/flinch/node = SubResource("AnimationNodeAnimation_ooqvr")
+states/flinch/position = Vector2(590.6, 319.8)
+states/walk/node = SubResource("AnimationNodeAnimation_t7lcj")
+states/walk/position = Vector2(981.80005, 125.46927)
+transitions = ["Idle", "walk", SubResource("AnimationNodeStateMachineTransition_lhwd0"), "walk", "Bite", SubResource("AnimationNodeStateMachineTransition_ooqvr"), "Bite", "walk", SubResource("AnimationNodeStateMachineTransition_l0ydb"), "walk", "Idle", SubResource("AnimationNodeStateMachineTransition_jjxrv"), "Idle", "flinch", SubResource("AnimationNodeStateMachineTransition_dp8nh"), "flinch", "Idle", SubResource("AnimationNodeStateMachineTransition_683s7"), "walk", "flinch", SubResource("AnimationNodeStateMachineTransition_4hl0c"), "flinch", "walk", SubResource("AnimationNodeStateMachineTransition_c5j2k"), "Bite", "flinch", SubResource("AnimationNodeStateMachineTransition_mjrl7"), "Die", "End", SubResource("AnimationNodeStateMachineTransition_27ris"), "Idle", "Die", SubResource("AnimationNodeStateMachineTransition_uegb1"), "walk", "Die", SubResource("AnimationNodeStateMachineTransition_0nebq"), "Bite", "Die", SubResource("AnimationNodeStateMachineTransition_r76x0"), "Start", "Emerge", SubResource("AnimationNodeStateMachineTransition_75e4j"), "Emerge", "Idle", SubResource("AnimationNodeStateMachineTransition_engkw"), "walk", "Sting", SubResource("AnimationNodeStateMachineTransition_fb4lb"), "Sting", "flinch", SubResource("AnimationNodeStateMachineTransition_62hnf"), "Sting", "Die", SubResource("AnimationNodeStateMachineTransition_6rtca")]
+graph_offset = Vector2(385, -96)
 
 [node name="CorpseCrawler" type="CharacterBody3D" unique_id=658094616]
 script = ExtResource("1_0g71h")

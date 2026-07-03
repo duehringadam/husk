@@ -13,8 +13,6 @@ var timer: float = 0.0
 var search_position : Vector3
 var first_aggro: bool = true
 
-#test
-
 func _ready() -> void:
 	animation_tree.active = true
 	#if hurtboxes:
@@ -37,11 +35,11 @@ func _on_hurtbox_component_damage_taken(actual: float, source: DamageComponent, 
 			if is_instance_valid(i):
 				i.invulnerability(i.invulnerability_duration)
 
-func fall():
-	state_chart.send_event("knocked_down")
-	physical_bone_simulator.physical_bones_start_simulation()
-	SPEED = 0
-	collision_layer = 0
+#func fall():
+	#state_chart.send_event("knocked_down")
+	#physical_bone_simulator.physical_bones_start_simulation()
+	#SPEED = 0
+	#collision_layer = 0
 	
 func _on_health_component_died() -> void:
 	fall()
@@ -92,7 +90,7 @@ func _on_stance_component_stance_changed(amount: float, new_value: float, source
 			state_chart.send_event("knocked_back")
 		if abs(amount) >= stance_component.max_stance:
 			state_chart.set_expression_property("knockback_source", source)
-			state_chart.send_event("knocked_down")
+			#state_chart.send_event("knocked_down")
 			
 
 func _update_target(value: Node3D):
