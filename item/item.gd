@@ -40,6 +40,14 @@ signal stack_size_changed(amount: int)
 @export var left_position: Vector3
 @export var left_rotation: Vector3
 
+var unique_id: String = ""
+
+func _init() -> void:
+	update_unique_id()
+
+func update_unique_id() -> void:
+	var int_id = ResourceUID.create_id()
+	unique_id = ResourceUID.id_to_text(int_id)
 
 func _update_stack_size(amount: int):
 	current_stack_size = clampi(current_stack_size+amount, 0, max_stack_size)

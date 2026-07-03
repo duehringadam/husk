@@ -15,6 +15,7 @@ func _ready() -> void:
 	GamePiecesEventBus.sprint_disable_requested.connect(_on_sprint_disable_requested)
 	GamePiecesEventBus.slow_down_player.connect(_on_slow_player)
 	GamePiecesEventBus.move_disable.connect(_on_move_disabled)
+	
 	SignalBus.emit_signal("player_stats_changed", player_stats)
 	
 	if SaveManager.get_player_saved_position("Saved Position") != null:

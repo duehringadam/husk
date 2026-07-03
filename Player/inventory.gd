@@ -159,6 +159,7 @@ func _remove_item(item_inventory: item):
 
 func _drop_item(item_to_drop: item):
 	var item_drop = item_to_drop.item_dropped_scene.instantiate()
+	item_drop.is_dropped = true
 	get_tree().current_scene.add_child(item_drop)
 	item_drop.global_position = Global.player.camera.global_position + (-Global.player.camera.global_transform.basis.z.normalized()*1.5)
 
