@@ -16,17 +16,17 @@ func save_game() -> void:
 func load_game() -> void:
 	# Re write this later
 	if SaveConfig.has_section(LOCATION_SECTION):
-		Global.player.global_position = SaveConfig.get_config("Location", "Saved Position")
+		Global.player.global_position = get_position("Saved Position")
 	else:
 		save_position(Global.player.global_position)
 	if SaveConfig.has_section(INVENTORY_SECTION):
-		if SaveConfig.get_config(INVENTORY_SECTION, "Saved Inventory") != null:
-			var inventory_list = SaveConfig.get_config("Inventory", "Saved Inventory")
-			Global.player.inventory.reset_inventory(inventory_list)
+		var inventory_list = get_inventory_from_config("Saved Inventory")
+		Global.player.inventory.reset_inventory(inventory_list)
 	else:
 		save_inventory(Global.player.inventory.inventory)
 	if SaveConfig.has_section(PLAYER_STATS_SECTION):
-		var stats = SaveConfig.get_config("Player_stats", "Saved Stats")
+		var stats = get_player_stats_from_config("Saved Stats")
+		print(stats)
 		Global.player.player_stats = stats
 		SignalBus.emit_signal("player_stats_changed", stats)
 		SignalBus.emit_signal("player_full_restore")
@@ -37,6 +37,9 @@ func load_game() -> void:
 #region Location
 func save_position(position_to_save: Vector3) -> void:
 	SaveConfig.set_config(LOCATION_SECTION, "Saved Position", position_to_save)
+
+func get_position(position_to_get: String) -> Vector3:
+	return SaveConfig.get_config(LOCATION_SECTION, position_to_get)
 
 func save_checkpoint(checkpoint: Checkpoint, default = null) -> void:
 	SaveConfig.set_config(LOCATION_SECTION, "Current Checkpoint", checkpoint if checkpoint else default)
@@ -60,7 +63,7 @@ func set_inventory(inventory_list: String, default = null) -> void:
 func save_inventory(inventory: Array) -> void:
 	SaveConfig.set_config(INVENTORY_SECTION, "Saved Inventory", inventory)
 
-func get_inventory_from_config(inventory_list: String, default = null) -> String:
+func get_inventory_from_config(inventory_list: String, default = null) -> Variant:
 	return SaveConfig.get_config(INVENTORY_SECTION, inventory_list, default)
 #endregion
 
@@ -68,7 +71,7 @@ func get_inventory_from_config(inventory_list: String, default = null) -> String
 func save_player_stats(player_stats: Dictionary, default = null) -> void:
 	SaveConfig.set_config(PLAYER_STATS_SECTION, "Saved Stats", player_stats if player_stats else default)
 	
-func get_player_stats_from_config(player_stats: String, default = null) -> String:
+func get_player_stats_from_config(player_stats: String, default = null) -> Variant:
 	return SaveConfig.get_config(PLAYER_STATS_SECTION, player_stats, default)
 #endregion
 
