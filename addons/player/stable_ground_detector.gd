@@ -5,6 +5,5 @@ extends RayCast3D
 
 
 func _on_save_position_timer_timeout() -> void:
-	pass
-	#if is_colliding() && !get_collider().has_meta("Unstable Ground"):
-		#SaveConfig.set_config("Location", "Saved Position", get_collision_point())
+	if is_colliding() && !get_collider().has_meta("Unstable Ground"):
+		SaveManager.save_position(get_collision_point())

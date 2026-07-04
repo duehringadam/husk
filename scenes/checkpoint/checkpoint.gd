@@ -17,3 +17,4 @@ func _on_rest_on_complete(_controller: InteractionController) -> void:
 	Global.player.can_attack = false
 	Global.player.can_move = false
 	SaveManager.save_game()
+	SaveManager.save_checkpoint(self)

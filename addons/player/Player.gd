@@ -692,8 +692,8 @@ func _on_health_component_died() -> void:
 	%deathAnimation.play("death")
 
 func respawn():
-	if SaveManager.get_checkpoint_from_config("Saved Checkpoint") != null:
-		global_position = SaveManager.get_checkpoint_from_config("Saved Checkpoint")
+	if SaveManager.get_checkpoint_from_config("Current Checkpoint") != null:
+		global_position = SaveManager.get_checkpoint_from_config("Current Checkpoint").global_position
 	%deathAnimation.play("RESET")
 	SignalBus.emit_signal("player_full_restore")
 	mainhand.enable()
