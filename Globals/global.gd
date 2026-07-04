@@ -14,6 +14,6 @@ var non_respawnable_items: Dictionary[String, bool]:
 		SaveManager.set_item_list("Non-Respawnable Items", dict)
 var non_respawnable_npcs: Dictionary
 
-
-func _ready() -> void:
-	non_respawnable_items = SaveManager.get_item_list("Non-Respawnable Items")
+#
+#func _ready() -> void:
+	#non_respawnable_items = SaveManager.get_item_list("Non-Respawnable Items")

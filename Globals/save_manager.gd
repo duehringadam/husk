@@ -58,3 +58,7 @@ func set_item_list(item_list: String, default = null)-> void:
 func get_item_list(item_list: String, default = null) -> Dictionary:
 	return SaveConfig.get_config(WORLD_ITEMS_SECTION, item_list, default)
 #endregion
+
+
+func set_defaults():
+	pass
