@@ -53,12 +53,12 @@ property_type = 2
 text = "Directional Combat :"
 
 [node name="OptionButton" parent="VBoxContainer/MarginContainer/VBoxContainer/directionalCombat" index="1" unique_id=957037851]
-selected = 0
 item_count = 2
 popup/item_0/text = "Movement"
 popup/item_0/id = 0
 popup/item_1/text = "Mouse"
 popup/item_1/id = 1
+popup/item_1/disabled = true
 
 [node name="headBob" parent="VBoxContainer/MarginContainer/VBoxContainer" unique_id=1542359513 instance=ExtResource("3_mc4mw")]
 layout_mode = 2
@@ -71,9 +71,6 @@ section = "GameSettings"
 [node name="OptionLabel" parent="VBoxContainer/MarginContainer/VBoxContainer/headBob" index="0" unique_id=1777046824]
 text = "Headbob :"
 
-[node name="CheckButton" parent="VBoxContainer/MarginContainer/VBoxContainer/headBob" index="1" unique_id=1939121227]
-button_pressed = true
-
 [node name="cameraShake" parent="VBoxContainer/MarginContainer/VBoxContainer" unique_id=196643208 instance=ExtResource("3_mc4mw")]
 layout_mode = 2
 lock_config_names = true
@@ -85,9 +82,6 @@ section = "GameSettings"
 [node name="OptionLabel" parent="VBoxContainer/MarginContainer/VBoxContainer/cameraShake" index="0" unique_id=1777046824]
 text = "Camera Shake :"
 
-[node name="CheckButton" parent="VBoxContainer/MarginContainer/VBoxContainer/cameraShake" index="1" unique_id=1939121227]
-button_pressed = true
-
 [node name="Screen Blur" parent="VBoxContainer/MarginContainer/VBoxContainer" unique_id=1919424591 instance=ExtResource("3_mc4mw")]
 layout_mode = 2
 option_name = "Screen Effects"
@@ -97,6 +91,9 @@ default_value = true
 
 [node name="OptionLabel" parent="VBoxContainer/MarginContainer/VBoxContainer/Screen Blur" index="0" unique_id=1777046824]
 text = "Screen Effects :"
+
+[node name="CheckButton" parent="VBoxContainer/MarginContainer/VBoxContainer/Screen Blur" index="1" unique_id=1939121227]
+button_pressed = true
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer" unique_id=1085329460]
 layout_mode = 2

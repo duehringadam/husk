@@ -15,16 +15,23 @@ func save_game() -> void:
 
 func load_game() -> void:
 	# Re write this later
-	if SaveConfig.get_config("Location", "Saved Position") != null && Global.player.spawn_at_checkpoint:
+	if SaveConfig.has_section(LOCATION_SECTION):
 		Global.player.global_position = SaveConfig.get_config("Location", "Saved Position")
-	if SaveConfig.get_config("Inventory", "Saved Inventory") != null:
-		var inventory_list = SaveConfig.get_config("Inventory", "Saved Inventory")
-		Global.player.inventory.reset_inventory(inventory_list)
-	#if SaveConfig.get_config("Player_stats", "Saved Stats") != null:
-		#var stats = SaveConfig.get_config("Player_stats", "Saved Stats")
-		#Global.player.player_stats = stats
-		#SignalBus.emit_signal("player_stats_changed", stats)
-		#SignalBus.emit_signal("player_full_restore")
+	else:
+		save_position(Global.player.global_position)
+	if SaveConfig.has_section(INVENTORY_SECTION):
+		if SaveConfig.get_config(INVENTORY_SECTION, "Saved Inventory") != null:
+			var inventory_list = SaveConfig.get_config("Inventory", "Saved Inventory")
+			Global.player.inventory.reset_inventory(inventory_list)
+	else:
+		save_inventory(Global.player.inventory.inventory)
+	if SaveConfig.has_section(PLAYER_STATS_SECTION):
+		var stats = SaveConfig.get_config("Player_stats", "Saved Stats")
+		Global.player.player_stats = stats
+		SignalBus.emit_signal("player_stats_changed", stats)
+		SignalBus.emit_signal("player_full_restore")
+	else:
+		save_player_stats(Global.player.player_stats)
 #endregion
 
 #region Location

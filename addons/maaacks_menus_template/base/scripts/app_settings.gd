@@ -197,15 +197,19 @@ static func set_head_bob_from_config()->void:
 	set_head_bob(PlayerConfig.get_config(INPUT_SECTION, HEAD_BOB))
 
 static func get_head_bob_from_config()->bool:
-	return PlayerConfig.get_config(INPUT_SECTION, HEAD_BOB)
+	if PlayerConfig.has_section_key(INPUT_SECTION, HEAD_BOB):
+		return PlayerConfig.get_config(INPUT_SECTION, HEAD_BOB)
+	else:
+		PlayerConfig.set_config(INPUT_SECTION, HEAD_BOB, true)
+		return PlayerConfig.get_config(INPUT_SECTION, HEAD_BOB)
 	
 # All
 static func set_from_config() -> void:
 	set_default_inputs()
 	set_inputs_from_config()
 	set_audio_from_config()
-	set_directional_combat_from_config()
-	set_head_bob_from_config()
+	#set_directional_combat_from_config()
+	#set_head_bob_from_config()
 
 static func set_from_config_and_window(window : Window) -> void:
 	set_from_config()
