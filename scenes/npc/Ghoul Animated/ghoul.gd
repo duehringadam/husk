@@ -114,3 +114,7 @@ func _on_visible_on_screen_notifier_3d_screen_exited() -> void:
 
 func _on_visible_on_screen_notifier_3d_screen_entered() -> void:
 	ghoul_parent.visible = true
+
+
+func _on_bone_health_component_bones_severed(bones: Array) -> void:
+	pass # Replace with function body.

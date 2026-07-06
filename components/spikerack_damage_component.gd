@@ -1,6 +1,8 @@
 class_name SingleDamageComponent
 extends DamageComponent
 
+var local_shape_idx: int
+
 func _physics_process(delta: float) -> void:
 	if monitoring:
 		for other in get_overlapping_areas():
@@ -14,5 +16,11 @@ func _physics_process(delta: float) -> void:
 								if hit_sound:
 									hit_sound.pitch_scale = randf_range(0.9,1.2)
 									hit_sound.play()
-						self.monitorable = false
-						self.monitoring = false
+						var damage_collider: CollisionShape3D = get_child(local_shape_idx)
+						damage_collider.disabled = true
+						hits.append(other.owner)
+
+
+func _on_area_shape_entered(area_rid: RID, area: Area3D, area_shape_index: int, _local_shape_index: int) -> void:
+	if area is hurtbox_component:
+		local_shape_idx = _local_shape_index

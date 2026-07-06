@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bb4ay7iiqxjka"]
+
+[ext_resource type="ArrayMesh" uid="uid://bxuhbfnnfrc7r" path="res://scenes/Hivemind/CastleOfEternalMists/mountains_LOD.tres" id="1_204vu"]
+
+[node name="SM_Mountain_A" type="Node3D" unique_id=1688969675]
+transform = Transform3D(7.375, 0, 0, 0, 7.375, 0, 0, 0, 7.375, 0, 0, 0)
+
+[node name="SM_Mountain_A_LOD0" type="MeshInstance3D" parent="." unique_id=527164411]
+transform = Transform3D(0.99445236, -0.10518804, 0, 0.10518804, 0.99445236, 0, 0, 0, 1, 0, 0, 0)
+cast_shadow = 0
+lod_bias = 0.001
+gi_mode = 0
+mesh = ExtResource("1_204vu")
