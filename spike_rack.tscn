@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://h2w3i8nn0qkv" path="res://spike_rack.gd" id="1_n5ng8"]
 [ext_resource type="Texture2D" uid="uid://bw6fhgfxrdaem" path="res://scenes/traps/spike traps/DefaultMaterial_Base_color.png" id="2_85rtt"]
-[ext_resource type="Script" uid="uid://ce7spf1wdpk1u" path="res://spikerack_damage_component.gd" id="3_85rtt"]
+[ext_resource type="Script" uid="uid://ce7spf1wdpk1u" path="res://components/spikerack_damage_component.gd" id="3_85rtt"]
 [ext_resource type="Texture2D" uid="uid://d3pycb7l4uamk" path="res://scenes/traps/spike traps/DefaultMaterial_Base_color_specular(1).png" id="3_a1p7o"]
 [ext_resource type="AudioStream" uid="uid://cdfq0v5deiuol" path="res://sfx/blade-piercing-body-352462.mp3" id="4_n5ng8"]
 [ext_resource type="Texture2D" uid="uid://cy1tjeycgc4s7" path="res://scenes/traps/spike traps/DefaultMaterial_Base_color_normal.png" id="4_t1xi4"]
@@ -93,8 +93,8 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_x7fgg")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_07gd0"]
-points = PackedVector3Array(1.6373422, -3.0598803, -2.0651038, -0.10894662, 3.4896822, 2.4099808, -0.1637, 3.2855022, 2.269607, -0.10894662, 3.4896822, -2.393283, -0.10894662, -3.4968824, -2.393283, -0.10894662, -3.4968824, 2.4099808, 1.6373422, 3.05268, 2.0822718, 1.6373422, -3.0598803, 2.0822718, 1.6373422, 3.05268, -2.0651038, -0.1637, -3.2927024, -2.2529092, -0.1637, -3.2927024, 2.269607, -0.1637, 3.2855022, -2.2529092)
+[sub_resource type="BoxShape3D" id="BoxShape3D_j1pv0"]
+size = Vector3(1.5841064, 8.386719, 4.8322754)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n5ng8"]
 radius = 0.1
@@ -132,14 +132,14 @@ unique_name_in_owner = true
 transform = Transform3D(0.3, 0, 0, 0, 0.30000004, 0, 0, 0, 0.3, -0.03345073, 0.9010836, -0.0007031265)
 collision_layer = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=2137532606]
-transform = Transform3D(0.6353625, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0)
-shape = SubResource("ConvexPolygonShape3D_07gd0")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1378712001]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.29205322, 0, 0)
+shape = SubResource("BoxShape3D_j1pv0")
 
-[node name="DamageComponent6" type="Area3D" parent="." unique_id=96696714 node_paths=PackedStringArray("hit_sound")]
+[node name="DamageComponent" type="Area3D" parent="." unique_id=96696714 node_paths=PackedStringArray("hit_sound")]
 transform = Transform3D(0.29999998, -1.1597211e-08, 9.132659e-08, 1.4827844e-08, 0.29999995, -2.1637439e-08, -4.90155e-08, 7.947414e-09, 0.29999995, 0, 1.6108932, 0.005160481)
 collision_layer = 16
-collision_mask = 12
+collision_mask = 13
 script = ExtResource("3_85rtt")
 hit_sound = NodePath("../spikes/Plane_002/flesh")
 damage_types = Dictionary[int, float]({
@@ -147,417 +147,131 @@ damage_types = Dictionary[int, float]({
 })
 metadata/_custom_type_script = "uid://dlsydctoxqbwy"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent6" unique_id=1937195911]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent" unique_id=1937195911]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.5969128, 0, 0)
 shape = SubResource("CapsuleShape3D_n5ng8")
 debug_color = Color(1, 0, 0, 0.41960785)
 
-[node name="DamageComponent7" type="Area3D" parent="." unique_id=1637931942 node_paths=PackedStringArray("hit_sound")]
-transform = Transform3D(0.29999998, -1.1597211e-08, 9.132659e-08, 1.4827844e-08, 0.29999995, -2.1637439e-08, -4.90155e-08, 7.947414e-09, 0.29999995, 0, 1.6108932, 0.35075405)
-collision_layer = 16
-collision_mask = 12
-script = ExtResource("3_85rtt")
-hit_sound = NodePath("../spikes/Plane_002/flesh")
-damage_types = Dictionary[int, float]({
-2: 300.0
-})
-metadata/_custom_type_script = "uid://dlsydctoxqbwy"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent7" unique_id=2011687936]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.5969128, 0, 0)
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="DamageComponent" unique_id=2011687936]
+transform = Transform3D(-4.371139e-08, 1, 0, -0.99999994, -4.3711385e-08, -7.1054274e-15, -1.7763568e-15, -1.4210855e-14, 0.99999994, 0.59691244, 0, 1.1519789)
 shape = SubResource("CapsuleShape3D_n5ng8")
 debug_color = Color(1, 0, 0, 0.41960785)
 
-[node name="DamageComponent8" type="Area3D" parent="." unique_id=568019067 node_paths=PackedStringArray("hit_sound")]
-transform = Transform3D(0.29999998, -1.1597211e-08, 9.132659e-08, 1.4827844e-08, 0.29999995, -2.1637439e-08, -4.90155e-08, 7.947414e-09, 0.29999995, 0, 1.6108932, 0.66551)
-collision_layer = 16
-collision_mask = 12
-script = ExtResource("3_85rtt")
-hit_sound = NodePath("../spikes/Plane_002/flesh")
-damage_types = Dictionary[int, float]({
-2: 300.0
-})
-metadata/_custom_type_script = "uid://dlsydctoxqbwy"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent8" unique_id=186297527]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.5969128, 0, 0)
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="DamageComponent" unique_id=186297527]
+transform = Transform3D(-4.371139e-08, 1, 0, -0.99999994, -4.3711385e-08, -7.1054274e-15, -1.7763568e-15, -1.4210855e-14, 0.99999994, 0.59691215, 0, 2.2011654)
 shape = SubResource("CapsuleShape3D_n5ng8")
 debug_color = Color(1, 0, 0, 0.41960785)
 
-[node name="DamageComponent9" type="Area3D" parent="." unique_id=1031254408 node_paths=PackedStringArray("hit_sound")]
-transform = Transform3D(0.29999998, -1.1597211e-08, 9.132659e-08, 1.4827844e-08, 0.29999995, -2.1637439e-08, -4.90155e-08, 7.947414e-09, 0.29999995, 7.1054274e-15, 1.6108932, -0.3446689)
-collision_layer = 16
-collision_mask = 12
-script = ExtResource("3_85rtt")
-hit_sound = NodePath("../spikes/Plane_002/flesh")
-damage_types = Dictionary[int, float]({
-2: 300.0
-})
-metadata/_custom_type_script = "uid://dlsydctoxqbwy"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent9" unique_id=42930086]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.5969128, 0, 0)
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="DamageComponent" unique_id=42930086]
+transform = Transform3D(-4.371139e-08, 1, 0, -0.99999994, -4.3711385e-08, -7.1054274e-15, -1.7763568e-15, -1.4210855e-14, 0.99999994, 0.59691316, 0, -1.166098)
 shape = SubResource("CapsuleShape3D_n5ng8")
 debug_color = Color(1, 0, 0, 0.41960785)
 
-[node name="DamageComponent10" type="Area3D" parent="." unique_id=687373823 node_paths=PackedStringArray("hit_sound")]
-transform = Transform3D(0.29999998, -1.1597211e-08, 9.132659e-08, 1.4827844e-08, 0.29999995, -2.1637439e-08, -4.90155e-08, 7.947414e-09, 0.29999995, 0, 1.6108932, -0.66646945)
-collision_layer = 16
-collision_mask = 12
-script = ExtResource("3_85rtt")
-hit_sound = NodePath("../spikes/Plane_002/flesh")
-damage_types = Dictionary[int, float]({
-2: 300.0
-})
-metadata/_custom_type_script = "uid://dlsydctoxqbwy"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent10" unique_id=1868633865]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.5969128, 0, 0)
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="DamageComponent" unique_id=1868633865]
+transform = Transform3D(-4.371139e-08, 1, 0, -0.99999994, -4.3711385e-08, -7.1054274e-15, -1.7763568e-15, -1.4210855e-14, 0.99999994, 0.59691346, 0, -2.2387664)
 shape = SubResource("CapsuleShape3D_n5ng8")
 debug_color = Color(1, 0, 0, 0.41960785)
 
-[node name="DamageComponent11" type="Area3D" parent="." unique_id=870070759 node_paths=PackedStringArray("hit_sound")]
-transform = Transform3D(0.29999998, -1.1597211e-08, 9.132659e-08, 1.4827844e-08, 0.29999995, -2.1637439e-08, -4.90155e-08, 7.947414e-09, 0.29999995, 0, 2.1465614, 0)
-collision_layer = 16
-collision_mask = 12
-script = ExtResource("3_85rtt")
-hit_sound = NodePath("../spikes/Plane_002/flesh")
-damage_types = Dictionary[int, float]({
-2: 300.0
-})
-metadata/_custom_type_script = "uid://dlsydctoxqbwy"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent11" unique_id=1470123384]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.5969128, 0, 0)
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="DamageComponent" unique_id=1470123384]
+transform = Transform3D(-4.371139e-08, 1, 0, -0.99999994, -4.3711385e-08, -7.1054274e-15, -1.7763568e-15, -1.4210855e-14, 0.99999994, 0.5969129, 1.7855606, -0.017201655)
 shape = SubResource("CapsuleShape3D_n5ng8")
 debug_color = Color(1, 0, 0, 0.41960785)
 
-[node name="DamageComponent12" type="Area3D" parent="." unique_id=1559007095 node_paths=PackedStringArray("hit_sound")]
-transform = Transform3D(0.29999998, -1.1597211e-08, 9.132659e-08, 1.4827844e-08, 0.29999995, -2.1637439e-08, -4.90155e-08, 7.947414e-09, 0.29999995, -7.1054274e-15, 2.1465614, 0.3555206)
-collision_layer = 16
-collision_mask = 12
-script = ExtResource("3_85rtt")
-hit_sound = NodePath("../spikes/Plane_002/flesh")
-damage_types = Dictionary[int, float]({
-2: 300.0
-})
-metadata/_custom_type_script = "uid://dlsydctoxqbwy"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent12" unique_id=527005280]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.5969128, 0, 0)
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="DamageComponent" unique_id=527005280]
+transform = Transform3D(-4.371139e-08, 1, 0, -0.99999994, -4.3711385e-08, -7.1054274e-15, -1.7763568e-15, -1.4210855e-14, 0.99999994, 0.59691256, 1.7855606, 1.1678672)
 shape = SubResource("CapsuleShape3D_n5ng8")
 debug_color = Color(1, 0, 0, 0.41960785)
 
-[node name="DamageComponent13" type="Area3D" parent="." unique_id=1779401752 node_paths=PackedStringArray("hit_sound")]
-transform = Transform3D(0.29999998, -1.1597211e-08, 9.132659e-08, 1.4827844e-08, 0.29999995, -2.1637439e-08, -4.90155e-08, 7.947414e-09, 0.29999995, -1.4210855e-14, 2.1465614, 0.69395924)
-collision_layer = 16
-collision_mask = 12
-script = ExtResource("3_85rtt")
-hit_sound = NodePath("../spikes/Plane_002/flesh")
-damage_types = Dictionary[int, float]({
-2: 300.0
-})
-metadata/_custom_type_script = "uid://dlsydctoxqbwy"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent13" unique_id=673589065]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.5969128, 0, 0)
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="DamageComponent" unique_id=673589065]
+transform = Transform3D(-4.371139e-08, 1, 0, -0.99999994, -4.3711385e-08, -7.1054274e-15, -1.7763568e-15, -1.4210855e-14, 0.99999994, 0.5969122, 1.7855606, 2.2959962)
 shape = SubResource("CapsuleShape3D_n5ng8")
 debug_color = Color(1, 0, 0, 0.41960785)
 
-[node name="DamageComponent14" type="Area3D" parent="." unique_id=1761606514 node_paths=PackedStringArray("hit_sound")]
-transform = Transform3D(0.29999998, -1.1597211e-08, 9.132659e-08, 1.4827844e-08, 0.29999995, -2.1637439e-08, -4.90155e-08, 7.947414e-09, 0.29999995, 7.1054274e-15, 2.1465614, -0.36167476)
-collision_layer = 16
-collision_mask = 12
-script = ExtResource("3_85rtt")
-hit_sound = NodePath("../spikes/Plane_002/flesh")
-damage_types = Dictionary[int, float]({
-2: 300.0
-})
-metadata/_custom_type_script = "uid://dlsydctoxqbwy"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent14" unique_id=12434514]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.5969128, 0, 0)
+[node name="CollisionShape3D9" type="CollisionShape3D" parent="DamageComponent" unique_id=12434514]
+transform = Transform3D(-4.371139e-08, 1, 0, -0.99999994, -4.3711385e-08, -7.1054274e-15, -1.7763568e-15, -1.4210855e-14, 0.99999994, 0.5969133, 1.7855606, -1.2227843)
 shape = SubResource("CapsuleShape3D_n5ng8")
 debug_color = Color(1, 0, 0, 0.41960785)
 
-[node name="DamageComponent15" type="Area3D" parent="." unique_id=626214225 node_paths=PackedStringArray("hit_sound")]
-transform = Transform3D(0.29999998, -1.1597211e-08, 9.132659e-08, 1.4827844e-08, 0.29999995, -2.1637439e-08, -4.90155e-08, 7.947414e-09, 0.29999995, -1.4210855e-14, 2.1465614, -0.661962)
-collision_layer = 16
-collision_mask = 12
-script = ExtResource("3_85rtt")
-hit_sound = NodePath("../spikes/Plane_002/flesh")
-damage_types = Dictionary[int, float]({
-2: 300.0
-})
-metadata/_custom_type_script = "uid://dlsydctoxqbwy"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent15" unique_id=971143967]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.5969128, 0, 0)
+[node name="CollisionShape3D10" type="CollisionShape3D" parent="DamageComponent" unique_id=971143967]
+transform = Transform3D(-4.371139e-08, 1, 0, -0.99999994, -4.3711385e-08, -7.1054274e-15, -1.7763568e-15, -1.4210855e-14, 0.99999994, 0.5969136, 1.7855606, -2.2237415)
 shape = SubResource("CapsuleShape3D_n5ng8")
 debug_color = Color(1, 0, 0, 0.41960785)
 
-[node name="DamageComponent16" type="Area3D" parent="." unique_id=1412125614 node_paths=PackedStringArray("hit_sound")]
-transform = Transform3D(0.29999998, -1.1597211e-08, 9.132659e-08, 1.4827844e-08, 0.29999995, -2.1637439e-08, -4.90155e-08, 7.947414e-09, 0.29999995, 0, 1.0544674, 0)
-collision_layer = 16
-collision_mask = 12
-script = ExtResource("3_85rtt")
-hit_sound = NodePath("../spikes/Plane_002/flesh")
-damage_types = Dictionary[int, float]({
-2: 300.0
-})
-metadata/_custom_type_script = "uid://dlsydctoxqbwy"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent16" unique_id=1016113392]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.5969128, 0, 0)
+[node name="CollisionShape3D11" type="CollisionShape3D" parent="DamageComponent" unique_id=1016113392]
+transform = Transform3D(-4.371139e-08, 1, 0, -0.99999994, -4.3711385e-08, -7.1054274e-15, -1.7763568e-15, -1.4210855e-14, 0.99999994, 0.59691274, -1.8547528, -0.017201558)
 shape = SubResource("CapsuleShape3D_n5ng8")
 debug_color = Color(1, 0, 0, 0.41960785)
 
-[node name="DamageComponent17" type="Area3D" parent="." unique_id=2001276030 node_paths=PackedStringArray("hit_sound")]
-transform = Transform3D(0.29999998, -1.1597211e-08, 9.132659e-08, 1.4827844e-08, 0.29999995, -2.1637439e-08, -4.90155e-08, 7.947414e-09, 0.29999995, 0, 1.0544674, 0.3567815)
-collision_layer = 16
-collision_mask = 12
-script = ExtResource("3_85rtt")
-hit_sound = NodePath("../spikes/Plane_002/flesh")
-damage_types = Dictionary[int, float]({
-2: 300.0
-})
-metadata/_custom_type_script = "uid://dlsydctoxqbwy"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent17" unique_id=902894677]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.5969128, 0, 0)
+[node name="CollisionShape3D12" type="CollisionShape3D" parent="DamageComponent" unique_id=902894677]
+transform = Transform3D(-4.371139e-08, 1, 0, -0.99999994, -4.3711385e-08, -7.1054274e-15, -1.7763568e-15, -1.4210855e-14, 0.99999994, 0.5969124, -1.8547528, 1.1720704)
 shape = SubResource("CapsuleShape3D_n5ng8")
 debug_color = Color(1, 0, 0, 0.41960785)
 
-[node name="DamageComponent18" type="Area3D" parent="." unique_id=1148788145 node_paths=PackedStringArray("hit_sound")]
-transform = Transform3D(0.29999998, -1.1597211e-08, 9.132659e-08, 1.4827844e-08, 0.29999995, -2.1637439e-08, -4.90155e-08, 7.947414e-09, 0.29999995, 1.4210855e-14, 1.0544674, 0.66414946)
-collision_layer = 16
-collision_mask = 12
-script = ExtResource("3_85rtt")
-hit_sound = NodePath("../spikes/Plane_002/flesh")
-damage_types = Dictionary[int, float]({
-2: 300.0
-})
-metadata/_custom_type_script = "uid://dlsydctoxqbwy"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent18" unique_id=1405393538]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.5969128, 0, 0)
+[node name="CollisionShape3D13" type="CollisionShape3D" parent="DamageComponent" unique_id=1405393538]
+transform = Transform3D(-4.371139e-08, 1, 0, -0.99999994, -4.3711385e-08, -7.1054274e-15, -1.7763568e-15, -1.4210855e-14, 0.99999994, 0.5969121, -1.8547525, 2.1966305)
 shape = SubResource("CapsuleShape3D_n5ng8")
 debug_color = Color(1, 0, 0, 0.41960785)
 
-[node name="DamageComponent19" type="Area3D" parent="." unique_id=1085120086 node_paths=PackedStringArray("hit_sound")]
-transform = Transform3D(0.29999998, -1.1597211e-08, 9.132659e-08, 1.4827844e-08, 0.29999995, -2.1637439e-08, -4.90155e-08, 7.947414e-09, 0.29999995, -7.1054274e-15, 1.0544674, -0.35814044)
-collision_layer = 16
-collision_mask = 12
-script = ExtResource("3_85rtt")
-hit_sound = NodePath("../spikes/Plane_002/flesh")
-damage_types = Dictionary[int, float]({
-2: 300.0
-})
-metadata/_custom_type_script = "uid://dlsydctoxqbwy"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent19" unique_id=1654155859]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.5969128, 0, 0)
+[node name="CollisionShape3D14" type="CollisionShape3D" parent="DamageComponent" unique_id=1654155859]
+transform = Transform3D(-4.371139e-08, 1, 0, -0.99999994, -4.3711385e-08, -7.1054274e-15, -1.7763568e-15, -1.4210855e-14, 0.99999994, 0.5969131, -1.8547528, -1.2110032)
 shape = SubResource("CapsuleShape3D_n5ng8")
 debug_color = Color(1, 0, 0, 0.41960785)
 
-[node name="DamageComponent20" type="Area3D" parent="." unique_id=342990823 node_paths=PackedStringArray("hit_sound")]
-transform = Transform3D(0.29999998, -1.1597211e-08, 9.132659e-08, 1.4827844e-08, 0.29999995, -2.1637439e-08, -4.90155e-08, 7.947414e-09, 0.29999995, 1.4210855e-14, 1.0544674, -0.671177)
-collision_layer = 16
-collision_mask = 12
-script = ExtResource("3_85rtt")
-hit_sound = NodePath("../spikes/Plane_002/flesh")
-damage_types = Dictionary[int, float]({
-2: 300.0
-})
-metadata/_custom_type_script = "uid://dlsydctoxqbwy"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent20" unique_id=133775597]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.5969128, 0, 0)
+[node name="CollisionShape3D15" type="CollisionShape3D" parent="DamageComponent" unique_id=133775597]
+transform = Transform3D(-4.371139e-08, 1, 0, -0.99999994, -4.3711385e-08, -7.1054274e-15, -1.7763568e-15, -1.4210855e-14, 0.99999994, 0.5969134, -1.854753, -2.2544584)
 shape = SubResource("CapsuleShape3D_n5ng8")
 debug_color = Color(1, 0, 0, 0.41960785)
 
-[node name="DamageComponent26" type="Area3D" parent="." unique_id=607182954 node_paths=PackedStringArray("hit_sound")]
-transform = Transform3D(0.29999998, -1.1597211e-08, 9.132659e-08, 1.4827844e-08, 0.29999995, -2.1637439e-08, -4.90155e-08, 7.947414e-09, 0.29999995, 0, 0.47669715, 0.006613136)
-collision_layer = 16
-collision_mask = 12
-script = ExtResource("3_85rtt")
-hit_sound = NodePath("../spikes/Plane_002/flesh")
-damage_types = Dictionary[int, float]({
-2: 300.0
-})
-metadata/_custom_type_script = "uid://dlsydctoxqbwy"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent26" unique_id=335535593]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.5969128, 0, 0)
+[node name="CollisionShape3D16" type="CollisionShape3D" parent="DamageComponent" unique_id=335535593]
+transform = Transform3D(-4.371139e-08, 1, 0, -0.99999994, -4.3711385e-08, -7.1054274e-15, -1.7763568e-15, -1.4210855e-14, 0.99999994, 0.5969127, -3.780654, 0.0048422813)
 shape = SubResource("CapsuleShape3D_n5ng8")
 debug_color = Color(1, 0, 0, 0.41960785)
 
-[node name="DamageComponent27" type="Area3D" parent="." unique_id=1641860269 node_paths=PackedStringArray("hit_sound")]
-transform = Transform3D(0.29999998, -1.1597211e-08, 9.132659e-08, 1.4827844e-08, 0.29999995, -2.1637439e-08, -4.90155e-08, 7.947414e-09, 0.29999995, 0, 0.47669715, 0.36165223)
-collision_layer = 16
-collision_mask = 12
-script = ExtResource("3_85rtt")
-hit_sound = NodePath("../spikes/Plane_002/flesh")
-damage_types = Dictionary[int, float]({
-2: 300.0
-})
-metadata/_custom_type_script = "uid://dlsydctoxqbwy"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent27" unique_id=120031890]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.5969128, 0, 0)
+[node name="CollisionShape3D17" type="CollisionShape3D" parent="DamageComponent" unique_id=120031890]
+transform = Transform3D(-4.371139e-08, 1, 0, -0.99999994, -4.3711385e-08, -7.1054274e-15, -1.7763568e-15, -1.4210855e-14, 0.99999994, 0.5969123, -3.780654, 1.1883061)
 shape = SubResource("CapsuleShape3D_n5ng8")
 debug_color = Color(1, 0, 0, 0.41960785)
 
-[node name="DamageComponent28" type="Area3D" parent="." unique_id=959984538 node_paths=PackedStringArray("hit_sound")]
-transform = Transform3D(0.29999998, -1.1597211e-08, 9.132659e-08, 1.4827844e-08, 0.29999995, -2.1637439e-08, -4.90155e-08, 7.947414e-09, 0.29999995, -1.4210855e-14, 0.47669715, 0.66165215)
-collision_layer = 16
-collision_mask = 12
-script = ExtResource("3_85rtt")
-hit_sound = NodePath("../spikes/Plane_002/flesh")
-damage_types = Dictionary[int, float]({
-2: 300.0
-})
-metadata/_custom_type_script = "uid://dlsydctoxqbwy"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent28" unique_id=1336510553]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.5969128, 0, 0)
+[node name="CollisionShape3D18" type="CollisionShape3D" parent="DamageComponent" unique_id=1336510553]
+transform = Transform3D(-4.371139e-08, 1, 0, -0.99999994, -4.3711385e-08, -7.1054274e-15, -1.7763568e-15, -1.4210855e-14, 0.99999994, 0.596912, -3.780654, 2.188306)
 shape = SubResource("CapsuleShape3D_n5ng8")
 debug_color = Color(1, 0, 0, 0.41960785)
 
-[node name="DamageComponent29" type="Area3D" parent="." unique_id=2132094747 node_paths=PackedStringArray("hit_sound")]
-transform = Transform3D(0.29999998, -1.1597211e-08, 9.132659e-08, 1.4827844e-08, 0.29999995, -2.1637439e-08, -4.90155e-08, 7.947414e-09, 0.29999995, 0, 0.47669715, -0.3575301)
-collision_layer = 16
-collision_mask = 12
-script = ExtResource("3_85rtt")
-hit_sound = NodePath("../spikes/Plane_002/flesh")
-damage_types = Dictionary[int, float]({
-2: 300.0
-})
-metadata/_custom_type_script = "uid://dlsydctoxqbwy"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent29" unique_id=1850600418]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.5969128, 0, 0)
+[node name="CollisionShape3D19" type="CollisionShape3D" parent="DamageComponent" unique_id=1850600418]
+transform = Transform3D(-4.371139e-08, 1, 0, -0.99999994, -4.3711385e-08, -7.1054274e-15, -1.7763568e-15, -1.4210855e-14, 0.99999994, 0.59691304, -3.780654, -1.2089686)
 shape = SubResource("CapsuleShape3D_n5ng8")
 debug_color = Color(1, 0, 0, 0.41960785)
 
-[node name="DamageComponent30" type="Area3D" parent="." unique_id=801422213 node_paths=PackedStringArray("hit_sound")]
-transform = Transform3D(0.29999998, -1.1597211e-08, 9.132659e-08, 1.4827844e-08, 0.29999995, -2.1637439e-08, -4.90155e-08, 7.947414e-09, 0.29999995, 1.4210855e-14, 0.47669715, -0.6666177)
-collision_layer = 16
-collision_mask = 12
-script = ExtResource("3_85rtt")
-hit_sound = NodePath("../spikes/Plane_002/flesh")
-damage_types = Dictionary[int, float]({
-2: 300.0
-})
-metadata/_custom_type_script = "uid://dlsydctoxqbwy"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent30" unique_id=1577167033]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.5969128, 0, 0)
+[node name="CollisionShape3D20" type="CollisionShape3D" parent="DamageComponent" unique_id=1577167033]
+transform = Transform3D(-4.371139e-08, 1, 0, -0.99999994, -4.3711385e-08, -7.1054274e-15, -1.7763568e-15, -1.4210855e-14, 0.99999994, 0.59691334, -3.780654, -2.2392607)
 shape = SubResource("CapsuleShape3D_n5ng8")
 debug_color = Color(1, 0, 0, 0.41960785)
 
-[node name="DamageComponent31" type="Area3D" parent="." unique_id=1280074997 node_paths=PackedStringArray("hit_sound")]
-transform = Transform3D(0.29999998, -1.1597211e-08, 9.132659e-08, 1.4827844e-08, 0.29999995, -2.1637439e-08, -4.90155e-08, 7.947414e-09, 0.29999995, 0, -0.06260967, 0.006132812)
-collision_layer = 16
-collision_mask = 12
-script = ExtResource("3_85rtt")
-hit_sound = NodePath("../spikes/Plane_002/flesh")
-damage_types = Dictionary[int, float]({
-2: 300.0
-})
-metadata/_custom_type_script = "uid://dlsydctoxqbwy"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent31" unique_id=125224982]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.5969128, 0, 0)
+[node name="CollisionShape3D21" type="CollisionShape3D" parent="DamageComponent" unique_id=125224982]
+transform = Transform3D(-4.371139e-08, 1, 0, -0.99999994, -4.3711385e-08, -7.1054274e-15, -1.7763568e-15, -1.4210855e-14, 0.99999994, 0.5969126, -5.5783434, 0.0032412484)
 shape = SubResource("CapsuleShape3D_n5ng8")
 debug_color = Color(1, 0, 0, 0.41960785)
 
-[node name="DamageComponent32" type="Area3D" parent="." unique_id=650550509 node_paths=PackedStringArray("hit_sound")]
-transform = Transform3D(0.29999998, -1.1597211e-08, 9.132659e-08, 1.4827844e-08, 0.29999995, -2.1637439e-08, -4.90155e-08, 7.947414e-09, 0.29999995, 7.1054274e-15, -0.06260967, 0.35365438)
-collision_layer = 16
-collision_mask = 12
-script = ExtResource("3_85rtt")
-hit_sound = NodePath("../spikes/Plane_002/flesh")
-damage_types = Dictionary[int, float]({
-2: 300.0
-})
-metadata/_custom_type_script = "uid://dlsydctoxqbwy"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent32" unique_id=1142492939]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.5969128, 0, 0)
+[node name="CollisionShape3D22" type="CollisionShape3D" parent="DamageComponent" unique_id=1142492939]
+transform = Transform3D(-4.371139e-08, 1, 0, -0.99999994, -4.3711385e-08, -7.1054274e-15, -1.7763568e-15, -1.4210855e-14, 0.99999994, 0.59691226, -5.5783434, 1.1616467)
 shape = SubResource("CapsuleShape3D_n5ng8")
 debug_color = Color(1, 0, 0, 0.41960785)
 
-[node name="DamageComponent33" type="Area3D" parent="." unique_id=669975383 node_paths=PackedStringArray("hit_sound")]
-transform = Transform3D(0.29999998, -1.1597211e-08, 9.132659e-08, 1.4827844e-08, 0.29999995, -2.1637439e-08, -4.90155e-08, 7.947414e-09, 0.29999995, -1.4210855e-14, -0.06260967, 0.6577349)
-collision_layer = 16
-collision_mask = 12
-script = ExtResource("3_85rtt")
-hit_sound = NodePath("../spikes/Plane_002/flesh")
-damage_types = Dictionary[int, float]({
-2: 300.0
-})
-metadata/_custom_type_script = "uid://dlsydctoxqbwy"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent33" unique_id=1937432908]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.5969128, 0, 0)
+[node name="CollisionShape3D23" type="CollisionShape3D" parent="DamageComponent" unique_id=1937432908]
+transform = Transform3D(-4.371139e-08, 1, 0, -0.99999994, -4.3711385e-08, -7.1054274e-15, -1.7763568e-15, -1.4210855e-14, 0.99999994, 0.59691197, -5.5783434, 2.1752484)
 shape = SubResource("CapsuleShape3D_n5ng8")
 debug_color = Color(1, 0, 0, 0.41960785)
 
-[node name="DamageComponent34" type="Area3D" parent="." unique_id=950855619 node_paths=PackedStringArray("hit_sound")]
-transform = Transform3D(0.29999998, -1.1597211e-08, 9.132659e-08, 1.4827844e-08, 0.29999995, -2.1637439e-08, -4.90155e-08, 7.947414e-09, 0.29999995, -7.1054274e-15, -0.06260967, -0.34503922)
-collision_layer = 16
-collision_mask = 12
-script = ExtResource("3_85rtt")
-hit_sound = NodePath("../spikes/Plane_002/flesh")
-damage_types = Dictionary[int, float]({
-2: 300.0
-})
-metadata/_custom_type_script = "uid://dlsydctoxqbwy"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent34" unique_id=382263935]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.5969128, 0, 0)
+[node name="CollisionShape3D24" type="CollisionShape3D" parent="DamageComponent" unique_id=382263935]
+transform = Transform3D(-4.371139e-08, 1, 0, -0.99999994, -4.3711385e-08, -7.1054274e-15, -1.7763568e-15, -1.4210855e-14, 0.99999994, 0.596913, -5.578344, -1.1673323)
 shape = SubResource("CapsuleShape3D_n5ng8")
 debug_color = Color(1, 0, 0, 0.41960785)
 
-[node name="DamageComponent35" type="Area3D" parent="." unique_id=413245035 node_paths=PackedStringArray("hit_sound")]
-transform = Transform3D(0.29999998, -1.1597211e-08, 9.132659e-08, 1.4827844e-08, 0.29999995, -2.1637439e-08, -4.90155e-08, 7.947414e-09, 0.29999995, -1.4210855e-14, -0.06260967, -0.6670723)
-collision_layer = 16
-collision_mask = 12
-script = ExtResource("3_85rtt")
-hit_sound = NodePath("../spikes/Plane_002/flesh")
-damage_types = Dictionary[int, float]({
-2: 300.0
-})
-metadata/_custom_type_script = "uid://dlsydctoxqbwy"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent35" unique_id=1089141130]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.5969128, 0, 0)
+[node name="CollisionShape3D25" type="CollisionShape3D" parent="DamageComponent" unique_id=1089141130]
+transform = Transform3D(-4.371139e-08, 1, 0, -0.99999994, -4.3711385e-08, -7.1054274e-15, -1.7763568e-15, -1.4210855e-14, 0.99999994, 0.5969133, -5.578344, -2.240776)
 shape = SubResource("CapsuleShape3D_n5ng8")
 debug_color = Color(1, 0, 0, 0.41960785)
 
-[connection signal="damage_dealt" from="DamageComponent6" to="." method="_on_damage_component_damage_dealt"]
-[connection signal="damage_dealt" from="DamageComponent7" to="." method="_on_damage_component_damage_dealt"]
-[connection signal="damage_dealt" from="DamageComponent8" to="." method="_on_damage_component_damage_dealt"]
-[connection signal="damage_dealt" from="DamageComponent9" to="." method="_on_damage_component_damage_dealt"]
-[connection signal="damage_dealt" from="DamageComponent10" to="." method="_on_damage_component_damage_dealt"]
-[connection signal="damage_dealt" from="DamageComponent11" to="." method="_on_damage_component_damage_dealt"]
-[connection signal="damage_dealt" from="DamageComponent12" to="." method="_on_damage_component_damage_dealt"]
-[connection signal="damage_dealt" from="DamageComponent13" to="." method="_on_damage_component_damage_dealt"]
-[connection signal="damage_dealt" from="DamageComponent14" to="." method="_on_damage_component_damage_dealt"]
-[connection signal="damage_dealt" from="DamageComponent15" to="." method="_on_damage_component_damage_dealt"]
-[connection signal="damage_dealt" from="DamageComponent16" to="." method="_on_damage_component_damage_dealt"]
-[connection signal="damage_dealt" from="DamageComponent17" to="." method="_on_damage_component_damage_dealt"]
-[connection signal="damage_dealt" from="DamageComponent18" to="." method="_on_damage_component_damage_dealt"]
-[connection signal="damage_dealt" from="DamageComponent19" to="." method="_on_damage_component_damage_dealt"]
-[connection signal="damage_dealt" from="DamageComponent20" to="." method="_on_damage_component_damage_dealt"]
-[connection signal="damage_dealt" from="DamageComponent26" to="." method="_on_damage_component_damage_dealt"]
-[connection signal="damage_dealt" from="DamageComponent27" to="." method="_on_damage_component_damage_dealt"]
-[connection signal="damage_dealt" from="DamageComponent28" to="." method="_on_damage_component_damage_dealt"]
-[connection signal="damage_dealt" from="DamageComponent29" to="." method="_on_damage_component_damage_dealt"]
-[connection signal="damage_dealt" from="DamageComponent30" to="." method="_on_damage_component_damage_dealt"]
-[connection signal="damage_dealt" from="DamageComponent31" to="." method="_on_damage_component_damage_dealt"]
-[connection signal="damage_dealt" from="DamageComponent32" to="." method="_on_damage_component_damage_dealt"]
-[connection signal="damage_dealt" from="DamageComponent33" to="." method="_on_damage_component_damage_dealt"]
-[connection signal="damage_dealt" from="DamageComponent34" to="." method="_on_damage_component_damage_dealt"]
-[connection signal="damage_dealt" from="DamageComponent35" to="." method="_on_damage_component_damage_dealt"]
+[connection signal="area_shape_entered" from="DamageComponent" to="DamageComponent" method="_on_area_shape_entered"]
+[connection signal="body_entered" from="DamageComponent" to="." method="_on_damage_component_body_entered"]
+[connection signal="damage_dealt" from="DamageComponent" to="." method="_on_damage_component_damage_dealt"]

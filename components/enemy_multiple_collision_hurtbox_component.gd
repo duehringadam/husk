@@ -1,4 +1,4 @@
-class_name multiple_collision_hurtbox_component
+class_name enemy_multiple_collision_hurtbox_component
 extends hurtbox_component
 
 var local_shape_idx: int

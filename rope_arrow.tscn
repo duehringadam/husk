@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://1js27vkofl40" path="res://rope_arrow.gd" id="1_f01kd"]
 [ext_resource type="PackedScene" uid="uid://cvlrs5xd5rjqj" path="res://rope_arrow_creation.tscn" id="2_anwt6"]
-[ext_resource type="ArrayMesh" uid="uid://bmftl4efstwmo" path="res://Player/weapon/ALL/Arrows/arrow_new.tres" id="3_anwt6"]
+[ext_resource type="ArrayMesh" uid="uid://cbsr7dl2ftq1r" path="res://Player/weapon/ALL/Arrows/arrow_new.tres" id="3_anwt6"]
 [ext_resource type="Texture2D" uid="uid://7406rkdcg7h1" path="res://Player/weapon/ALL/Arrows/arrowtexture.png" id="4_f01kd"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="4_lylhm"]
 [ext_resource type="Shader" uid="uid://bd6eynp1qsy0g" path="res://addons/GPUTrail-main/shaders/trail.gdshader" id="5_oc65y"]
@@ -77,7 +77,7 @@ mesh = ExtResource("3_anwt6")
 surface_material_override/0 = SubResource("StandardMaterial3D_wkmag")
 
 [node name="GPUTrail3D" type="GPUParticles3D" parent="MeshInstance3D" unique_id=713023065]
-transform = Transform3D(0.9999998, 0, -9.313226e-10, 0, 1, 0, 9.313226e-10, 0, 0.9999998, -0.008579336, -0.094375655, 8.8947854e-05)
+transform = Transform3D(0.99999946, 0, -1.8626451e-09, 0, 0.30827284, 0, 1.8626451e-09, 0, 0.99999946, 0.009209707, -0.09437563, -9.548401e-05)
 amount = 24
 lifetime = 24.0
 explosiveness = 1.0
@@ -127,7 +127,6 @@ transform = Transform3D(0.021727478, 0, -0.9997639, 0, 1, 0, 0.9997639, 0, 0.021
 collision_mask = 14
 script = ExtResource("4_lylhm")
 hit_sound = NodePath("../AudioStreamPlayer3D")
-can_knockback = false
 damage_types = Dictionary[int, float]({
 2: 20.0
 })
