@@ -4,8 +4,7 @@ extends Node
 @export var animation_tree: AnimationTree
 @export var state_chart: StateChart
 @export var distance: float
-
-@onready var ledge_check: ShapeCast3D = $"../../../../ledgeCheck"
+@export var ledge_check: ShapeCast3D
 
 var knockback_source
 

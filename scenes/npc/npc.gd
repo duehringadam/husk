@@ -34,7 +34,8 @@ func _physics_process(delta: float) -> void:
 	direction = navigation_agent.get_next_path_position() - global_transform.origin
 	direction = direction.normalized()
 	velocity = velocity.lerp(direction * SPEED, delta * 10)
-	
+	if !is_on_floor():
+		velocity.y -= ProjectSettings.get_setting("physics/3d/default_gravity")
 	_push_rigid_bodies()
 	move_and_slide()
 
