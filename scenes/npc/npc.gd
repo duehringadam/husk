@@ -13,6 +13,7 @@ extends CharacterBody3D
 @export var navigation_agent: NavigationAgent3D
 @export var hurtboxes: Array[hurtbox_component]
 @export var health_component: HealthComponent
+@export var look_at_modifier: LookAtModifier3D
 
 @export_category("Behavior")
 @export var state_chart: StateChart
@@ -70,4 +71,4 @@ func _on_stance_component_stance_broken() -> void:
 	pass
 
 func _update_target(value: Node3D):
-	pass
+	target = value

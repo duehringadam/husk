@@ -34,3 +34,7 @@ func _on_idle_state_input(event: InputEvent) -> void:
 				else:
 					animation_tree.set("parameters/conditions/idle", false)
 					state_chart.send_event("activate")
+			else:
+				animation_tree.set("parameters/conditions/idle", false)
+				state_chart.send_event("activate")
+				

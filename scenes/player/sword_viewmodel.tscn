@@ -6,10 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://tj2xrbtj0eqr" path="res://shaders/blood_buildup_noise_2.tres" id="4_xjaq8"]
 [ext_resource type="ArrayMesh" uid="uid://dl501p35tytdj" path="res://Player/weapon/ALL/BrokenSword/sword_final_anime_if_you_change_it_again_i_kill_you.tres" id="5_rrms8"]
 [ext_resource type="Texture2D" uid="uid://dk3fnk8nqropx" path="res://Player/weapon/ALL/BrokenSword/broken_sword_normal.png" id="5_xjaq8"]
-[ext_resource type="AudioStream" uid="uid://duf0yvd24d70c" path="res://sfx/one_handed_sword_swing.ogg" id="8_trg51"]
-[ext_resource type="AudioStream" uid="uid://d0k3cpoaf1t3b" path="res://sfx/one_handed_sword_hit.ogg" id="9_trg51"]
+[ext_resource type="AudioStream" uid="uid://duf0yvd24d70c" path="res://sfx/weapons/one handed/sword/one_handed_sword_swing.ogg" id="8_trg51"]
+[ext_resource type="AudioStream" uid="uid://d0k3cpoaf1t3b" path="res://sfx/weapons/one handed/sword/one_handed_sword_hit.ogg" id="9_trg51"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="10_cngb6"]
-[ext_resource type="AudioStream" uid="uid://7uqjlk5ctnhd" path="res://sfx/one_handed_sword_equip.ogg" id="10_qayxr"]
+[ext_resource type="AudioStream" uid="uid://7uqjlk5ctnhd" path="res://sfx/weapons/one handed/sword/one_handed_sword_equip.ogg" id="10_qayxr"]
 [ext_resource type="Texture2D" uid="uid://cjl4qfjmnnm1w" path="res://shaders/blood_splatter.png" id="10_sv5j2"]
 [ext_resource type="Shader" uid="uid://bd6eynp1qsy0g" path="res://addons/GPUTrail-main/shaders/trail.gdshader" id="11_rrms8"]
 [ext_resource type="Shader" uid="uid://bnbfs08hp70x0" path="res://addons/GPUTrail-main/shaders/trail_draw_pass.gdshader" id="12_niu1w"]
@@ -111,7 +111,7 @@ shader_parameter/uv_offset = Vector2(0, 0)
 shader_parameter/color_ramp = SubResource("GradientTexture1D_rrms8")
 shader_parameter/curve = SubResource("CurveTexture_kefbi")
 shader_parameter/emmission_transform = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
-shader_parameter/flags = 43
+shader_parameter/flags = 3
 
 [sub_resource type="QuadMesh" id="QuadMesh_rul8e"]
 material = SubResource("ShaderMaterial_avp02")

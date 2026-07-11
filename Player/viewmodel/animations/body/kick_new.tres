@@ -1,5 +1,7 @@
 [gd_resource type="Animation" format=3 uid="uid://bs3hg1sgxa4cg"]
 
+[ext_resource type="AudioStream" uid="uid://blfbfyftbde1w" path="res://sfx/movement/kick_2.wav" id="1_b5yf4"]
+
 [resource]
 resource_name = "mixamo_com"
 length = 0.6
@@ -587,3 +589,18 @@ tracks/81/keys = {
 "update": 1,
 "values": [false, true, false]
 }
+tracks/82/type = "audio"
+tracks/82/imported = false
+tracks/82/enabled = true
+tracks/82/path = NodePath("../../AudioStreamPlayer3D")
+tracks/82/interp = 1
+tracks/82/loop_wrap = true
+tracks/82/keys = {
+"clips": [{
+"end_offset": 0.1,
+"start_offset": 0.0,
+"stream": ExtResource("1_b5yf4")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/82/use_blend = true

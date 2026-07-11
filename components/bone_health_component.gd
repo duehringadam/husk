@@ -16,7 +16,8 @@ func _ready() -> void:
 	current_health = max_health
 	emit_signal("max_health_changed", 0, max_health)
 	emit_signal("health_changed", 0, current_health)
-	limb_to_spawn_add = limb_to_spawn.instantiate()
+	if limb_to_spawn:
+		limb_to_spawn_add = limb_to_spawn.instantiate()
 
 func modify_health(amount: float):
 	current_health = clampf(current_health + amount, 0, max_health)
@@ -49,17 +50,17 @@ func break_bones():
 		physical_skeleton.physical_bones_start_simulation(bone_name_array)
 
 func sever_bones():
-	limb_to_spawn_add.global_transform = self.global_transform
-	get_tree().current_scene.add_child(limb_to_spawn_add)
+	if limb_to_spawn:
+		limb_to_spawn_add.global_transform = self.global_transform
+		get_tree().current_scene.add_child(limb_to_spawn_add)
 	if blood_particles:
 		blood_particles.bleed()
 	var bone_names : Array
-	if limb_to_spawn_add.is_inside_tree():
-		for i in bones_to_affect:
+	for i in bones_to_affect:
 			if is_instance_valid(i):
 				var bone = skeleton.find_bone(i.bone_name)
 				skeleton.set_bone_pose_scale(bone, (Vector3(0.01,0.01,0.01)))
 				i.queue_free()
 				bone_names.append(i.bone_name)
 	bones_severed.emit(bone_names)
-	AudioManager.play_sound(load("res://sfx/horror-bone-crack-352450.mp3"),self.global_position,0)
+	AudioManager.play_sound(load("res://sfx/damage/horror-bone-crack-352450.mp3"),self.global_position,0)
