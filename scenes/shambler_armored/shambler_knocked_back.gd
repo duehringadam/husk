@@ -15,11 +15,10 @@ func _ready() -> void:
 func _on_knocked_back_state_entered() -> void:
 	source_npc.SPEED =0
 	animation_tree.set("parameters/conditions/stagger", true)
-	var kb_source = state_chart.get_expression_property("knockback_source")
-	
+	var kb_source: Node3D = state_chart.get_expression_property("knockback_source")
 	if kb_source:
-		ledge_check_parent.rotation.y = atan2(kb_source.global_position.direction_to(ledge_check_parent.global_position).x, kb_source.global_position.direction_to(ledge_check_parent.global_position).z)
-
+		var force_direction: Vector2 = Vector2(kb_source.global_position.z - ledge_check_parent.global_position.z, kb_source.global_position.x - ledge_check_parent.global_position.x)
+		ledge_check_parent.rotation.y = force_direction.angle()
 	
 	if ledge_check.is_colliding():
 		for i in ledge_check.get_collision_count():
