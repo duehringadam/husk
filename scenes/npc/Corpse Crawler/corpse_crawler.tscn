@@ -17,7 +17,9 @@
 [ext_resource type="Script" uid="uid://cj2ar2aoy2aww" path="res://addons/godot_state_charts/history_state.gd" id="11_dp8nh"]
 [ext_resource type="AnimationLibrary" uid="uid://dfa8pietwqcvi" path="res://scenes/npc/Corpse Crawler/FBX files/Aranocodus@GetHitBack.fbx" id="11_ooqvr"]
 [ext_resource type="Script" uid="uid://dgcm4xkuaodoh" path="res://scenes/npc/Ghoul Animated/ghoul_knocked_down.gd" id="12_683s7"]
+[ext_resource type="Script" uid="uid://bintnkm5e12vi" path="res://scenes/npc/Corpse Crawler/scripts/crawler_lunge.gd" id="12_dp8nh"]
 [ext_resource type="AnimationLibrary" uid="uid://d28b0din6bchs" path="res://scenes/npc/Corpse Crawler/FBX files/Aranocodus@GetHitFront.fbx" id="12_l0ydb"]
+[ext_resource type="Script" uid="uid://ng1i71lsvtxc" path="res://scenes/npc/Corpse Crawler/scripts/crawler_support_move.gd" id="13_683s7"]
 [ext_resource type="AnimationLibrary" uid="uid://d4bodib784kvv" path="res://scenes/npc/Corpse Crawler/FBX files/Aranocodus@GetHitLeft.fbx" id="13_jjxrv"]
 [ext_resource type="AnimationLibrary" uid="uid://c8t7k5lgswda5" path="res://scenes/npc/Corpse Crawler/FBX files/Aranocodus@GetHitRigth.fbx" id="14_dp8nh"]
 [ext_resource type="AnimationLibrary" uid="uid://5nsc08fsw60d" path="res://scenes/npc/Corpse Crawler/FBX files/Aranocodus@GetOutOfTheGround.fbx" id="15_683s7"]
@@ -740,7 +742,7 @@ animation = &"Aranocodus@GetOutOfTheGround/Take 001"
 animation = &"Aranocodus@Idle/Take 001"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qeowv"]
-animation = &"Aranocodus@JumpBiteA/Take 001"
+animation = &"Aranocodus@JumpBiteB_RM/Take 001"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jjxrv"]
 animation = &"Aranocodus@StingerAttack/Take 001"
@@ -756,7 +758,7 @@ animation = &"Aranocodus@GetHitFront/Take 001"
 animation = &"Aranocodus@CrawlForward_RM/Take 001"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_4hl0c"]
-graph_offset = Vector2(-719.7874, 10.343725)
+graph_offset = Vector2(-287.2, -7.2)
 nodes/output/position = Vector2(304, 80)
 nodes/Blend2/node = SubResource("AnimationNodeBlend2_jjxrv")
 nodes/Blend2/position = Vector2(-48, 96)
@@ -775,10 +777,12 @@ advance_mode = 2
 advance_condition = &"walk"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ooqvr"]
+xfade_time = 0.1
 advance_mode = 2
 advance_condition = &"lunge"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_l0ydb"]
+xfade_time = 0.25
 switch_mode = 2
 advance_mode = 2
 advance_condition = &"walk"
@@ -854,10 +858,13 @@ states/WalkHitBlendTree/position = Vector2(700, -12.999996)
 states/walk/node = SubResource("AnimationNodeAnimation_t7lcj")
 states/walk/position = Vector2(981.80005, 125.46927)
 transitions = ["Idle", "walk", SubResource("AnimationNodeStateMachineTransition_lhwd0"), "walk", "Lunge", SubResource("AnimationNodeStateMachineTransition_ooqvr"), "Lunge", "walk", SubResource("AnimationNodeStateMachineTransition_l0ydb"), "walk", "Idle", SubResource("AnimationNodeStateMachineTransition_jjxrv"), "Idle", "Die", SubResource("AnimationNodeStateMachineTransition_uegb1"), "walk", "Die", SubResource("AnimationNodeStateMachineTransition_0nebq"), "Lunge", "Die", SubResource("AnimationNodeStateMachineTransition_r76x0"), "Start", "Emerge", SubResource("AnimationNodeStateMachineTransition_75e4j"), "Emerge", "Idle", SubResource("AnimationNodeStateMachineTransition_engkw"), "walk", "Sting", SubResource("AnimationNodeStateMachineTransition_fb4lb"), "Sting", "Die", SubResource("AnimationNodeStateMachineTransition_6rtca"), "WalkHitBlendTree", "walk", SubResource("AnimationNodeStateMachineTransition_c5j2k"), "walk", "WalkHitBlendTree", SubResource("AnimationNodeStateMachineTransition_mjrl7"), "Sting", "walk", SubResource("AnimationNodeStateMachineTransition_dp8nh")]
-graph_offset = Vector2(32, -78)
+graph_offset = Vector2(324, -216)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_l0ydb"]
 radius = 1.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7ywy0"]
+radius = 1.6
 
 [node name="CorpseCrawler" type="CharacterBody3D" unique_id=658094616 node_paths=PackedStringArray("animation_tree", "navigation_agent", "health_component", "state_chart", "mesh")]
 collision_layer = 4
@@ -886,225 +893,225 @@ bones/1/name = "Aranocodus_Body"
 bones/1/parent = 0
 bones/1/rest = Transform3D(3.5762787e-07, -1.7484558e-07, -0.99999994, 0, 1, -1.7484558e-07, 0.99999994, 5.684342e-14, 3.5762787e-07, 3.3881317e-23, -8.742278e-09, 0.2)
 bones/1/enabled = true
-bones/1/position = Vector3(3.3881317e-23, -8.742278e-09, 0.2)
-bones/1/rotation = Quaternion(0.03703212, -0.7061364, -0.03703193, 0.7061364)
+bones/1/position = Vector3(3.3881317e-23, -0.0016392516, 0.20595106)
+bones/1/rotation = Quaternion(0.0012876486, -0.6844348, -0.0393956, 0.72800785)
 bones/1/scale = Vector3(0.99999994, 1, 0.99999994)
 bones/2/name = "Aranocodus_Tail1"
 bones/2/parent = 1
 bones/2/rest = Transform3D(-0.071288005, -0.997456, -1.573169e-07, 0.997456, -0.071288005, 2.615356e-07, -2.7208506e-07, -1.3827234e-07, 1, 0.03456585, 0.22162361, -4.636967e-08)
 bones/2/enabled = true
 bones/2/position = Vector3(0.034565926, 0.22162361, -5.7220465e-08)
-bones/2/rotation = Quaternion(-6.0047016e-05, -6.084789e-05, 0.71210265, 0.7020754)
+bones/2/rotation = Quaternion(0.0462343, -0.047825575, 0.72743493, 0.68294483)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "Aranocodus_Tail2"
 bones/3/parent = 2
 bones/3/rest = Transform3D(0.9993891, -0.034943786, -8.483005e-15, 0.034943786, 0.9993891, 4.554545e-16, 8.4619074e-15, -7.516046e-16, 1, 0.16526197, 1.4012773e-08, 5.1436992e-09)
 bones/3/enabled = true
 bones/3/position = Vector3(0.16526194, 0, 5.1436997e-09)
-bones/3/rotation = Quaternion(6.130698e-05, -1.261275e-06, 0.01831966, 0.9998322)
+bones/3/rotation = Quaternion(-0.004495086, 0.00038533748, 0.025216946, 0.9996718)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/name = "Aranocodus_Tail3"
 bones/4/parent = 3
 bones/4/rest = Transform3D(0.9999769, 0.006805059, 6.5565233e-09, -0.006805059, 0.9999769, 9.634548e-07, -5.107026e-15, -9.634771e-07, 1, 0.21474704, -2.8116895e-08, 7.345413e-09)
 bones/4/enabled = true
 bones/4/position = Vector3(0.21474701, -3.8146972e-08, 7.345416e-09)
-bones/4/rotation = Quaternion(-5.352243e-05, -4.3280575e-06, 0.03626563, 0.9993422)
+bones/4/rotation = Quaternion(-0.0062045874, 0.0538014, -0.0037194956, 0.9985255)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/name = "Aranocodus_Tail4"
 bones/5/parent = 4
 bones/5/rest = Transform3D(0.99664855, 0.0818028, 1.9699823e-07, -0.0818028, 0.99664855, 1.331436e-06, -8.74228e-08, -1.3430887e-06, 1, 0.20813265, 3.0998955e-08, 7.1168627e-09)
 bones/5/enabled = true
 bones/5/position = Vector3(0.20813267, 1.9073486e-08, 7.116869e-09)
-bones/5/rotation = Quaternion(-9.575846e-05, -1.2360517e-05, 0.021975698, 0.99975854)
+bones/5/rotation = Quaternion(-0.009152677, 0.04335403, -0.046911757, 0.99791586)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/name = "Aranocodus_Tail5"
 bones/6/parent = 5
 bones/6/rest = Transform3D(0.9483495, 0.3172274, 1.5285504e-07, -0.3172274, 0.9483495, 1.9600989e-06, 4.768371e-07, -1.9073486e-06, 1, 0.19880289, -5.104423e-06, 2.418063e-08)
 bones/6/enabled = true
 bones/6/position = Vector3(0.19880295, -5.092621e-06, 2.4180663e-08)
-bones/6/rotation = Quaternion(7.042289e-05, 2.0638103e-05, -0.1504759, 0.9886137)
+bones/6/rotation = Quaternion(-0.0123712765, -0.031423178, -0.16049524, 0.98645884)
 bones/6/scale = Vector3(0.99999994, 0.99999994, 1)
 bones/7/name = "Aranocodus_LegLeftD1"
 bones/7/parent = 1
 bones/7/rest = Transform3D(-0.1309974, 0.99138266, -4.7683713e-07, 0.5686338, 0.07513678, -0.8191519, -0.81209296, -0.107307136, -0.5735764, -0.021348597, 0.13202679, -0.16200006)
 bones/7/enabled = true
 bones/7/position = Vector3(-0.02134861, 0.1320268, -0.16200005)
-bones/7/rotation = Quaternion(0.6324892, 0.64404213, -0.33166242, 0.27416685)
+bones/7/rotation = Quaternion(0.7614186, 0.55537575, -0.24998279, 0.22205463)
 bones/7/scale = Vector3(1, 1, 1)
 bones/8/name = "Aranocodus_LegLeftD2"
 bones/8/parent = 7
 bones/8/rest = Transform3D(0.9698898, 0.24354416, 2.735895e-08, -0.24354418, 0.96988976, -1.0803484e-08, -2.9166294e-08, 3.8150763e-09, 1, 0.15688628, 2.0939455e-08, -1.062077e-08)
 bones/8/enabled = true
 bones/8/position = Vector3(0.15688632, 0, 1.4305114e-08)
-bones/8/rotation = Quaternion(2.853654e-09, 1.0805404e-08, -0.25534064, 0.96685123)
+bones/8/rotation = Quaternion(7.3092163e-09, -1.2722383e-07, -0.25453484, 0.96706367)
 bones/8/scale = Vector3(1, 1, 1)
 bones/9/name = "Aranocodus_LegLeftD3"
 bones/9/parent = 8
 bones/9/rest = Transform3D(0.823707, 0.5670161, -2.1687902e-07, -0.5670161, 0.823707, 1.3373641e-06, 9.369518e-07, -9.786223e-07, 1, 0.10860575, 2.6292662e-08, 9.739408e-10)
 bones/9/enabled = true
 bones/9/position = Vector3(0.10860571, 7.6293944e-08, -5.00679e-08)
-bones/9/rotation = Quaternion(-6.0704974e-07, -2.3663922e-07, -0.449569, 0.8932457)
+bones/9/rotation = Quaternion(-6.696503e-07, -3.597807e-07, -0.4478274, 0.89412004)
 bones/9/scale = Vector3(1, 1, 1)
 bones/10/name = "Aranocodus_LegRightD1"
 bones/10/parent = 1
 bones/10/rest = Transform3D(-0.13099813, -0.9913826, -1.7881392e-07, 0.56863433, -0.07513737, -0.8191516, 0.8120927, -0.1073074, 0.5735769, -0.021348698, 0.13202684, 0.16199997)
 bones/10/enabled = true
 bones/10/position = Vector3(-0.02134861, 0.13202685, 0.16199999)
-bones/10/rotation = Quaternion(0.28588444, -0.3349286, 0.650983, 0.6183155)
+bones/10/rotation = Quaternion(0.45149255, -0.32295138, 0.6592755, 0.50716156)
 bones/10/scale = Vector3(0.99999994, 0.99999994, 1)
 bones/11/name = "Aranocodus_LegRightD2"
 bones/11/parent = 10
 bones/11/rest = Transform3D(0.9698896, -0.2435441, -1.1169062e-07, 0.24354412, 0.9698895, 8.18249e-09, 1.0633479e-07, -3.513771e-08, 0.99999976, 0.15688626, 3.9226013e-08, 4.115901e-08)
 bones/11/enabled = true
 bones/11/position = Vector3(0.1568863, 3.8146972e-08, 4.887581e-08)
-bones/11/rotation = Quaternion(-2.6143345e-08, -8.286163e-08, 0.23264694, 0.97256136)
+bones/11/rotation = Quaternion(3.2491023e-09, -1.0405794e-08, 0.31819814, 0.9480243)
 bones/11/scale = Vector3(1, 1, 1)
 bones/12/name = "Aranocodus_LegRightD3"
 bones/12/parent = 11
 bones/12/rest = Transform3D(0.8237069, -0.5670162, -5.514402e-07, 0.5670162, 0.8237069, -9.0545797e-07, 9.676342e-07, 4.3315634e-07, 1.0000004, 0.10860575, -7.898494e-08, -5.3409444e-08)
 bones/12/enabled = true
 bones/12/position = Vector3(0.108605765, -9.536743e-08, -3.4570693e-08)
-bones/12/rotation = Quaternion(4.2176515e-07, -4.2353858e-07, 0.424482, 0.9054365)
+bones/12/rotation = Quaternion(4.4752943e-07, -2.691904e-07, 0.5172782, 0.8558173)
 bones/12/scale = Vector3(1, 1, 1)
 bones/13/name = "Aranocodus_LegRightC1"
 bones/13/parent = 1
 bones/13/rest = Transform3D(0.024609268, -0.99969715, -2.1100044e-05, 4.684925e-05, 2.2172928e-05, -1, 0.99969715, 0.024609298, 4.7326088e-05, -0.017006487, 0.0338945, 0.16299999)
 bones/13/enabled = true
 bones/13/position = Vector3(-0.017006416, 0.03389451, 0.16299999)
-bones/13/rotation = Quaternion(0.46964523, -0.44366008, 0.45391554, 0.61364466)
+bones/13/rotation = Quaternion(0.5681452, -0.31062624, 0.3261002, 0.6887533)
 bones/13/scale = Vector3(0.99999994, 0.99999994, 1)
 bones/14/name = "Aranocodus_LegRightC2"
 bones/14/parent = 13
 bones/14/rest = Transform3D(0.9146761, -0.40418777, -3.6422684e-11, 0.40418777, 0.9146761, -8.977784e-13, 3.3677824e-11, -1.3900426e-11, 1, 0.16958539, -5.6541665e-09, 1.7343678e-08)
 bones/14/enabled = true
 bones/14/position = Vector3(0.16958536, 0, 1.9073486e-08)
-bones/14/rotation = Quaternion(1.3832261e-08, 5.54195e-09, 0.3719139, 0.92826724)
+bones/14/rotation = Quaternion(4.453887e-09, -6.606918e-09, 0.45506012, 0.89046085)
 bones/14/scale = Vector3(1, 1, 1)
 bones/15/name = "Aranocodus_LegRightC3"
 bones/15/parent = 14
 bones/15/rest = Transform3D(0.87520224, -0.48375717, -4.736233e-07, 0.48375717, 0.87520224, 1.8321501e-07, 3.2588463e-07, -3.8946885e-07, 1, 0.1421515, -1.38678935e-08, -1.7392889e-08)
 bones/15/enabled = true
 bones/15/position = Vector3(0.14215153, -3.8146972e-08, -1.9073486e-08)
-bones/15/rotation = Quaternion(-9.313377e-08, -2.3240501e-07, 0.4221569, 0.90652287)
+bones/15/rotation = Quaternion(-9.6474174e-08, -2.534077e-07, 0.5071168, 0.86187744)
 bones/15/scale = Vector3(1, 1, 1)
 bones/16/name = "Aranocodus_LegRightB1"
 bones/16/parent = 1
 bones/16/rest = Transform3D(0.032247182, -0.99936026, 0.015470982, -0.2577702, -0.023271203, -0.96592605, 0.965668, 0.027160525, -0.25835586, -0.018343732, -0.081170216, 0.17)
 bones/16/enabled = true
 bones/16/position = Vector3(-0.018343696, -0.08117021, 0.17000002)
-bones/16/rotation = Quaternion(0.66380304, -0.48475412, 0.36982363, 0.4331392)
+bones/16/rotation = Quaternion(0.5011202, -0.53033304, 0.41935092, 0.54015756)
 bones/16/scale = Vector3(1, 1, 1.0000001)
 bones/17/name = "Aranocodus_LegRightB2"
 bones/17/parent = 16
 bones/17/rest = Transform3D(0.9207043, -0.39026144, -2.972862e-09, 0.39026153, 0.92070407, 5.183171e-09, 7.1433465e-10, -5.93236e-09, 1, 0.16966282, 1.2393119e-08, -5.9158807e-09)
 bones/17/enabled = true
 bones/17/position = Vector3(0.16966283, 0, 2.3841857e-09)
-bones/17/rotation = Quaternion(-1.8550837e-08, -1.9200496e-07, 0.33584037, 0.94191897)
+bones/17/rotation = Quaternion(-6.925762e-09, -1.082334e-07, 0.3431011, 0.93929857)
 bones/17/scale = Vector3(1, 1, 1)
 bones/18/name = "Aranocodus_LegRightB3"
 bones/18/parent = 17
 bones/18/rest = Transform3D(0.81529176, -0.57905036, -6.507351e-07, 0.57905036, 0.81529176, -1.5512655e-06, 1.4288003e-06, 8.87926e-07, 0.9999997, 0.13405187, -4.1357225e-08, -1.3520349e-08)
 bones/18/enabled = true
 bones/18/position = Vector3(0.13405187, -3.8146972e-08, -3.576279e-08)
-bones/18/rotation = Quaternion(7.8299274e-07, -6.0125853e-07, 0.45026118, 0.892897)
+bones/18/rotation = Quaternion(7.817089e-07, -4.5196677e-07, 0.45780665, 0.8890518)
 bones/18/scale = Vector3(1, 1, 1)
 bones/19/name = "Aranocodus_LegRightA1"
 bones/19/parent = 1
 bones/19/rest = Transform3D(0.039249063, -0.99922353, -0.0034454167, -0.7189616, -0.025845526, -0.6945691, 0.69394076, 0.029738335, -0.7194178, -0.0067014135, -0.1696593, 0.12600003)
 bones/19/enabled = true
 bones/19/position = Vector3(-0.0067014312, -0.16965929, 0.12600003)
-bones/19/rotation = Quaternion(0.79510456, -0.50864035, 0.19916692, 0.26348904)
+bones/19/rotation = Quaternion(0.7295975, -0.6276438, 0.22610568, 0.15042275)
 bones/19/scale = Vector3(1, 1, 1)
 bones/20/name = "Aranocodus_LegRightA2"
 bones/20/parent = 19
 bones/20/rest = Transform3D(0.8733731, -0.48705173, 4.3041855e-08, 0.4870517, 0.87337315, 6.856841e-08, -7.0987944e-08, -3.892219e-08, 1.0000001, 0.15257028, -2.3900768e-08, -2.0339396e-08)
 bones/20/enabled = true
 bones/20/position = Vector3(0.15257026, -5.7220458e-08, -4.7683715e-09)
-bones/20/rotation = Quaternion(-2.2556234e-08, 3.6780314e-08, 0.41788757, 0.9084987)
+bones/20/rotation = Quaternion(-2.1357819e-08, 9.44463e-09, 0.31311968, 0.94971377)
 bones/20/scale = Vector3(1, 1, 1)
 bones/21/name = "Aranocodus_LegRightA3"
 bones/21/parent = 20
 bones/21/rest = Transform3D(0.89792514, -0.440148, -4.7964977e-06, 0.4401478, 0.89792556, 6.3094594e-06, 1.5298009e-06, -7.7765935e-06, 1, 0.12446409, -4.695143e-09, 3.5258797e-08)
 bones/21/enabled = true
 bones/21/position = Vector3(0.124464035, 3.8146972e-08, 3.576279e-08)
-bones/21/rotation = Quaternion(-3.1465872e-06, -2.1906726e-06, 0.3996352, 0.9166743)
+bones/21/rotation = Quaternion(-3.3773695e-06, -1.805812e-06, 0.28970268, 0.9571167)
 bones/21/scale = Vector3(1, 1, 1)
 bones/22/name = "Aranocodus_LegLeftA1"
 bones/22/parent = 1
 bones/22/rest = Transform3D(0.03924942, 0.9992234, -0.003445834, -0.71896195, 0.025845526, -0.69456875, -0.6939404, 0.029738842, 0.7194181, -0.0067013535, -0.16965935, -0.12599997)
 bones/22/enabled = true
 bones/22/position = Vector3(-0.0067014503, -0.16965933, -0.12599997)
-bones/22/rotation = Quaternion(0.26348114, 0.19916405, -0.50863534, 0.795111)
+bones/22/rotation = Quaternion(0.52595276, 0.107372604, -0.33874726, 0.7727194)
 bones/22/scale = Vector3(0.99999994, 0.99999994, 0.99999994)
 bones/23/name = "Aranocodus_LegLeftA2"
 bones/23/parent = 22
 bones/23/rest = Transform3D(0.87337285, 0.48705196, 1.16799164e-07, -0.4870519, 0.873373, -3.1675587e-08, -1.17436876e-07, -2.9222667e-08, 1, 0.15257028, -1.7262131e-08, 1.1629464e-09)
 bones/23/enabled = true
 bones/23/position = Vector3(0.15257025, 3.8146972e-08, 3.33786e-08)
-bones/23/rotation = Quaternion(-1.228527e-08, -6.650452e-09, -0.41789618, 0.90849483)
+bones/23/rotation = Quaternion(3.3947234e-08, 4.2221505e-08, -0.57115954, 0.82083905)
 bones/23/scale = Vector3(1, 1, 1)
 bones/24/name = "Aranocodus_LegLeftA3"
 bones/24/parent = 23
 bones/24/rest = Transform3D(0.89792556, 0.4401477, -4.621366e-06, -0.44014764, 0.8979257, -6.1681812e-06, 1.4347323e-06, 7.572652e-06, 1, 0.12446397, 5.5606475e-09, 3.4677086e-08)
 bones/24/enabled = true
 bones/24/position = Vector3(0.124464, 0, 1.66893e-08)
-bones/24/rotation = Quaternion(3.197911e-06, -2.1836233e-06, -0.399644, 0.9166705)
+bones/24/rotation = Quaternion(2.7203891e-06, -2.723239e-06, -0.5646327, 0.8253423)
 bones/24/scale = Vector3(1, 1, 1)
 bones/25/name = "Aranocodus_LegLeftB1"
 bones/25/parent = 1
 bones/25/rest = Transform3D(0.032248016, 0.99936014, 0.015471607, -0.2577707, 0.023271918, -0.9659258, -0.9656677, 0.027161062, 0.25835627, -0.018343605, -0.08117028, -0.16999997)
 bones/25/enabled = true
 bones/25/position = Vector3(-0.018343678, -0.081170276, -0.16999996)
-bones/25/rotation = Quaternion(0.4331178, 0.36967704, -0.48453423, 0.6640591)
+bones/25/rotation = Quaternion(0.40100765, 0.34108803, -0.4802852, 0.70155406)
 bones/25/scale = Vector3(1, 1, 1)
 bones/26/name = "Aranocodus_LegLeftB2"
 bones/26/parent = 25
 bones/26/rest = Transform3D(0.92070395, 0.39026156, 4.4679506e-08, -0.39026156, 0.92070395, -2.3353957e-08, -5.0250748e-08, 4.065386e-09, 1, 0.16966282, -2.2608084e-08, -3.1548664e-09)
 bones/26/enabled = true
 bones/26/position = Vector3(0.16966286, -1.9073486e-08, 4.7683715e-09)
-bones/26/rotation = Quaternion(3.2580474e-09, 1.4659441e-08, -0.3363605, 0.9417333)
+bones/26/rotation = Quaternion(7.621329e-09, 3.8671068e-08, -0.2897111, 0.95711416)
 bones/26/scale = Vector3(1, 1, 1)
 bones/27/name = "Aranocodus_LegLeftB3"
 bones/27/parent = 26
 bones/27/rest = Transform3D(0.8152921, 0.57905036, -6.394484e-07, -0.5790505, 0.81529194, 1.5930693e-06, 1.443805e-06, -9.2854384e-07, 0.99999994, 0.13405187, 1.9826118e-08, -3.1491296e-09)
 bones/27/enabled = true
 bones/27/position = Vector3(0.13405186, 0, -4.7683715e-09)
-bones/27/rotation = Quaternion(-7.393463e-07, -4.2790253e-07, -0.4508031, 0.89262336)
+bones/27/rotation = Quaternion(-7.350967e-07, -4.7512427e-07, -0.40166768, 0.9157856)
 bones/27/scale = Vector3(1, 1, 1)
 bones/28/name = "Aranocodus_LegLeftC1"
 bones/28/parent = 1
 bones/28/rest = Transform3D(0.025016725, 0.9996871, -5.453825e-06, -1.4901161e-07, -5.4836273e-06, -1, -0.9996871, 0.025016695, 0, -0.017006366, 0.033894446, -0.163)
 bones/28/enabled = true
 bones/28/position = Vector3(-0.017006397, 0.033894453, -0.16299999)
-bones/28/rotation = Quaternion(0.6137473, 0.45379445, -0.44360453, 0.4696808)
+bones/28/rotation = Quaternion(0.67348546, 0.45617473, -0.41949195, 0.40292507)
 bones/28/scale = Vector3(1, 0.99999994, 0.99999994)
 bones/29/name = "Aranocodus_LegLeftC2"
 bones/29/parent = 28
 bones/29/rest = Transform3D(0.91467613, 0.4041876, 5.451912e-08, -0.4041876, 0.91467613, -2.4091499e-08, -5.960482e-08, -3.375078e-14, 1, 0.16958536, 2.4909928e-08, 1.9299349e-09)
 bones/29/enabled = true
 bones/29/position = Vector3(0.16958535, 3.8146972e-08, 2.3841857e-09)
-bones/29/rotation = Quaternion(6.9328303e-09, 1.7288167e-08, -0.37220338, 0.9281513)
+bones/29/rotation = Quaternion(4.5926345e-08, 2.6834488e-08, -0.35042992, 0.93658894)
 bones/29/scale = Vector3(0.99999994, 0.99999994, 1)
 bones/30/name = "Aranocodus_LegLeftC3"
 bones/30/parent = 29
 bones/30/rest = Transform3D(0.87520236, 0.4837576, -4.6057983e-07, -0.4837576, 0.87520236, 1.5242446e-07, 4.76837e-07, 8.940674e-08, 1, 0.14215156, 3.9807446e-08, -1.3935639e-08)
 bones/30/enabled = true
 bones/30/position = Vector3(0.14215158, 3.8146972e-08, -1.4305114e-08)
-bones/30/rotation = Quaternion(-6.166174e-08, -2.425239e-07, -0.42245457, 0.9063841)
+bones/30/rotation = Quaternion(-5.5781154e-08, -2.4377812e-07, -0.40001625, 0.9165081)
 bones/30/scale = Vector3(1, 1, 1)
 bones/31/name = "Aranocodus_JawLower"
 bones/31/parent = 1
 bones/31/rest = Transform3D(-0.6225452, 0.782584, -4.024119e-07, -0.782584, -0.6225452, 6.797093e-07, 2.8140997e-07, 7.3807087e-07, 1, 0.024999542, -0.19657865, 4.599474e-08)
 bones/31/enabled = true
 bones/31/position = Vector3(0.024999484, -0.19657865, 3.8146972e-08)
-bones/31/rotation = Quaternion(6.659032e-08, 3.3619156e-07, 0.83984625, -0.5428243)
+bones/31/rotation = Quaternion(8.602949e-08, 3.3174982e-07, 0.8699938, -0.49306267)
 bones/31/scale = Vector3(1, 1, 1)
 bones/32/name = "Aranocodus_JawUpper"
 bones/32/parent = 1
 bones/32/rest = Transform3D(0.74073535, 0.671797, -4.154545e-07, -0.671797, 0.74073535, -1.1195765e-07, 2.3252903e-07, 3.6203204e-07, 1, 0.024999542, -0.19657865, 4.599474e-08)
 bones/32/enabled = true
 bones/32/position = Vector3(0.024999484, -0.19657865, 3.8146972e-08)
-bones/32/rotation = Quaternion(5.7781474e-08, -4.8707445e-08, -0.6445178, 0.7645893)
+bones/32/rotation = Quaternion(5.9573708e-08, -4.6498247e-08, -0.6152848, 0.788305)
 bones/32/scale = Vector3(1, 1, 1)
 
 [node name="SK_Aranocodus" type="MeshInstance3D" parent="SK_Aranocodus/Skeleton3D" unique_id=113119715]
@@ -1198,7 +1205,7 @@ to = NodePath("../../knockedBack")
 event = &"knocked_back"
 delay_in_seconds = "0.0"
 
-[node name="move" type="Node" parent="StateChart/CompoundState/patrolling" unique_id=1324180952 node_paths=PackedStringArray("source_npc", "animation_tree", "state_chart")]
+[node name="patrol" type="Node" parent="StateChart/CompoundState/patrolling" unique_id=1324180952 node_paths=PackedStringArray("source_npc", "animation_tree", "state_chart")]
 script = ExtResource("11_683s7")
 source_npc = NodePath("../../../..")
 animation_tree = NodePath("../../../../AnimationTree")
@@ -1206,16 +1213,79 @@ state_chart = NodePath("../../..")
 
 [node name="isAttacker" type="Node" parent="StateChart/CompoundState" unique_id=960284704]
 script = ExtResource("35_t7lcj")
-initial_state = NodePath("lunging")
+initial_state = NodePath("move")
 metadata/_custom_type_script = "uid://clt3bkcujiepo"
 
 [node name="lunging" type="Node" parent="StateChart/CompoundState/isAttacker" unique_id=800315163]
 script = ExtResource("36_qeowv")
 metadata/_custom_type_script = "uid://1xhujeketj0r"
 
+[node name="toIdle" type="Node" parent="StateChart/CompoundState/isAttacker/lunging" unique_id=452568350]
+script = ExtResource("9_l0ydb")
+to = NodePath("../../../idle")
+event = &"idle"
+delay_in_seconds = "0.0"
+
+[node name="toDead" type="Node" parent="StateChart/CompoundState/isAttacker/lunging" unique_id=1003061499]
+script = ExtResource("9_l0ydb")
+to = NodePath("../../../dead")
+event = &"dead"
+delay_in_seconds = "0.0"
+
+[node name="toKnoackedBack" type="Node" parent="StateChart/CompoundState/isAttacker/lunging" unique_id=798216323]
+script = ExtResource("9_l0ydb")
+to = NodePath("../../../knockedBack")
+event = &"knocked_back"
+delay_in_seconds = "0.0"
+
+[node name="toPatrol" type="Node" parent="StateChart/CompoundState/isAttacker/lunging" unique_id=1395332851]
+script = ExtResource("9_l0ydb")
+to = NodePath("../../../patrolling")
+event = &"patrol"
+delay_in_seconds = "3.0"
+
+[node name="lunging" type="Node" parent="StateChart/CompoundState/isAttacker/lunging" unique_id=1577450022 node_paths=PackedStringArray("source_npc", "animation_tree", "state_chart")]
+script = ExtResource("12_dp8nh")
+source_npc = NodePath("../../../../..")
+animation_tree = NodePath("../../../../../AnimationTree")
+state_chart = NodePath("../../../..")
+
 [node name="stinging" type="Node" parent="StateChart/CompoundState/isAttacker" unique_id=1651939541]
 script = ExtResource("36_qeowv")
 metadata/_custom_type_script = "uid://1xhujeketj0r"
+
+[node name="move" type="Node" parent="StateChart/CompoundState/isAttacker" unique_id=1454323526]
+script = ExtResource("36_qeowv")
+
+[node name="toIdle" type="Node" parent="StateChart/CompoundState/isAttacker/move" unique_id=1841552624]
+script = ExtResource("9_l0ydb")
+to = NodePath("../../../idle")
+event = &"idle"
+delay_in_seconds = "0.0"
+
+[node name="toDead" type="Node" parent="StateChart/CompoundState/isAttacker/move" unique_id=255858641]
+script = ExtResource("9_l0ydb")
+to = NodePath("../../../dead")
+event = &"dead"
+delay_in_seconds = "0.0"
+
+[node name="toKnockedBack" type="Node" parent="StateChart/CompoundState/isAttacker/move" unique_id=60844515]
+script = ExtResource("9_l0ydb")
+to = NodePath("../../../knockedBack")
+event = &"knocked_back"
+delay_in_seconds = "0.0"
+
+[node name="toKnockedDown" type="Node" parent="StateChart/CompoundState/isAttacker/move" unique_id=690839687]
+script = ExtResource("9_l0ydb")
+to = NodePath("../../../knockedDown")
+event = &"knocked_down"
+delay_in_seconds = "0.0"
+
+[node name="move" type="Node" parent="StateChart/CompoundState/isAttacker/move" unique_id=2045191513 node_paths=PackedStringArray("source_npc", "animation_tree", "state_chart")]
+script = ExtResource("13_683s7")
+source_npc = NodePath("../../../../..")
+animation_tree = NodePath("../../../../../AnimationTree")
+state_chart = NodePath("../../../..")
 
 [node name="dead" type="Node" parent="StateChart/CompoundState" unique_id=741566368]
 script = ExtResource("36_qeowv")
@@ -1259,10 +1329,8 @@ to = NodePath("../../dead")
 event = &"dead"
 delay_in_seconds = "0.0"
 
-[node name="knockedDown" type="Node" parent="StateChart/CompoundState/knockedDown" unique_id=1797022334 node_paths=PackedStringArray("source_npc", "state_chart")]
+[node name="knockedDown" type="Node" parent="StateChart/CompoundState/knockedDown" unique_id=1797022334]
 script = ExtResource("12_683s7")
-source_npc = NodePath("")
-state_chart = NodePath("")
 
 [node name="Embedded" type="Node" parent="StateChart/CompoundState" unique_id=1080976773]
 script = ExtResource("36_qeowv")
@@ -1326,7 +1394,7 @@ parameters/conditions/hit = false
 parameters/conditions/idle = false
 parameters/conditions/lunge = false
 parameters/conditions/walk = false
-parameters/WalkHitBlendTree/Blend2/blend_amount = 2.0
+parameters/WalkHitBlendTree/Blend2/blend_amount = 2.5
 
 [node name="StanceComponent" type="Node" parent="." unique_id=245372475]
 script = ExtResource("40_dp8nh")
@@ -1344,12 +1412,23 @@ collision_mask = 2
 [node name="RootMotionView" type="RootMotionView" parent="." unique_id=1217199888]
 animation_path = NodePath("../AnimationPlayer")
 
+[node name="DetectionBox" type="Area3D" parent="." unique_id=32338762]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionBox" unique_id=607012408]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+shape = SubResource("SphereShape3D_7ywy0")
+
 [connection signal="state_entered" from="StateChart/CompoundState/idle" to="StateChart/CompoundState/idle/idling" method="_on_idle_state_entered"]
 [connection signal="state_exited" from="StateChart/CompoundState/idle" to="StateChart/CompoundState/idle/idling" method="_on_idle_state_exited"]
 [connection signal="state_physics_processing" from="StateChart/CompoundState/idle" to="StateChart/CompoundState/idle/idling" method="_on_idle_state_physics_processing"]
-[connection signal="state_entered" from="StateChart/CompoundState/patrolling" to="StateChart/CompoundState/patrolling/move" method="_on_move_state_entered"]
-[connection signal="state_exited" from="StateChart/CompoundState/patrolling" to="StateChart/CompoundState/patrolling/move" method="_on_move_state_exited"]
-[connection signal="state_physics_processing" from="StateChart/CompoundState/patrolling" to="StateChart/CompoundState/patrolling/move" method="_on_move_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/CompoundState/patrolling" to="StateChart/CompoundState/patrolling/patrol" method="_on_move_state_entered"]
+[connection signal="state_exited" from="StateChart/CompoundState/patrolling" to="StateChart/CompoundState/patrolling/patrol" method="_on_move_state_exited"]
+[connection signal="state_physics_processing" from="StateChart/CompoundState/patrolling" to="StateChart/CompoundState/patrolling/patrol" method="_on_move_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/CompoundState/isAttacker/lunging" to="StateChart/CompoundState/isAttacker/lunging/lunging" method="_on_lunging_state_entered"]
+[connection signal="state_exited" from="StateChart/CompoundState/isAttacker/lunging" to="StateChart/CompoundState/isAttacker/lunging/lunging" method="_on_lunging_state_exited"]
+[connection signal="state_entered" from="StateChart/CompoundState/isAttacker/move" to="StateChart/CompoundState/isAttacker/move/move" method="_on_move_state_entered"]
+[connection signal="state_exited" from="StateChart/CompoundState/isAttacker/move" to="StateChart/CompoundState/isAttacker/move/move" method="_on_move_state_exited"]
+[connection signal="state_physics_processing" from="StateChart/CompoundState/isAttacker/move" to="StateChart/CompoundState/isAttacker/move/move" method="_on_move_state_physics_processing"]
 [connection signal="state_entered" from="StateChart/CompoundState/knockedBack" to="StateChart/CompoundState/knockedBack/knockedBack" method="_on_knocked_back_state_entered"]
 [connection signal="state_exited" from="StateChart/CompoundState/knockedBack" to="StateChart/CompoundState/knockedBack/knockedBack" method="_on_knocked_back_state_exited"]
 [connection signal="state_physics_processing" from="StateChart/CompoundState/knockedBack" to="StateChart/CompoundState/knockedBack/knockedBack" method="_on_knocked_back_state_physics_processing"]
@@ -1358,3 +1437,4 @@ animation_path = NodePath("../AnimationPlayer")
 [connection signal="state_physics_processing" from="StateChart/CompoundState/knockedDown" to="StateChart/CompoundState/knockedDown/knockedDown" method="_on_knocked_down_state_physics_processing"]
 [connection signal="stance_broken" from="StanceComponent" to="." method="_on_stance_component_stance_broken"]
 [connection signal="stance_changed" from="StanceComponent" to="." method="_on_stance_component_stance_changed"]
+[connection signal="body_entered" from="DetectionBox" to="." method="_on_detection_box_body_entered"]
