@@ -41,7 +41,7 @@ func _anim_finished(state: StringName):
 		animation_tree.set("parameters/conditions/attack", false)
 		state_chart.send_event("back_away")
 	
-	if state == "attack" + str(attack_counter):
+	if state == "attack1":
 		animation_tree.set("parameters/conditions/attack", false)
 		state_chart.send_event("idle")
 

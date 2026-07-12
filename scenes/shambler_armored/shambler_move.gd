@@ -61,10 +61,6 @@ func _on_move_state_physics_processing(delta: float) -> void:
 		is_patrolling = false
 		timer.stop()
 		state_chart.send_event("idle")
-		
-	#if source_npc.global_position.distance_to(Global.player.global_position) < 3:
-		#state_chart.send_event("attack")
-
 
 
 func end_patrol():
@@ -72,3 +68,8 @@ func end_patrol():
 		is_patrolling = false
 		timer.stop()
 		state_chart.send_event("idle")
+
+func _on_vision_area_max_aggro(aggro_amount: float, aggro_position: Node3D) -> void:
+	if aggro_amount >= 1.0:
+		source_npc.target = aggro_position
+		state_chart.send_event("chase")

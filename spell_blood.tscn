@@ -727,7 +727,7 @@ update_rotation = false
 update_scale = false
 
 [node name="TargetIKLeft" type="Node3D" parent="." unique_id=259210336]
-transform = Transform3D(0.11834004, 0.21582992, -0.9692323, 0.984416, 0.10236599, 0.14298874, 0.13007785, -0.9710495, -0.20035246, 0.24299365, 0.23477522, 0.22506684)
+transform = Transform3D(0.11834004, 0.21582991, -0.9692322, 0.984416, 0.102365986, 0.14298873, 0.13007785, -0.9710494, -0.20035243, 0.24299365, 0.23477522, 0.22506684)
 top_level = true
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="TargetIKLeft" unique_id=229238345]
@@ -769,7 +769,9 @@ hit_sound = NodePath("damage_sound")
 damage_types = Dictionary[int, float]({
 5: 35.0
 })
-stance_damage_value = 0.5
+status_types = Dictionary[int, float]({
+3: 1.0
+})
 metadata/_custom_type_script = "uid://dlsydctoxqbwy"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TargetIKLeft/enemyDamage" unique_id=1656037409]

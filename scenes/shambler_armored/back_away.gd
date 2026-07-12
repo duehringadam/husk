@@ -48,3 +48,7 @@ func _on_back_away_state_physics_processing(delta: float) -> void:
 func face_target(delta: float):
 	var target_dir = (target.global_position - source_npc.global_position).normalized()
 	source_npc.rotation.y = lerp_angle(source_npc.rotation.y, atan2(target_dir.x, target_dir.z),10*delta)
+
+
+func _on_approach_detector_rapid_approach_detected() -> void:
+	state_chart.send_event("attack")

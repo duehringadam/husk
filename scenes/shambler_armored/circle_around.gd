@@ -31,6 +31,7 @@ func _on_circle_around_state_exited() -> void:
 
 func _on_circle_around_state_physics_processing(delta: float) -> void:
 	animation_tree["parameters/walkBlendSpace/blend_position"].x = lerpf(animation_tree["parameters/walkBlendSpace/blend_position"].x, circle_dir, delta*10)
+	
 	if not target or not is_instance_valid(target):
 		state_chart.send_event("idle")
 	
@@ -62,7 +63,13 @@ func roll_attack_chance():
 		if randf() < attack_chance:
 			state_chart.send_event("attack")
 		else:
+			if source_npc.global_position.distance_to(target.global_position) > ideal_distance *2:
+				state_chart.send_event("chase")
 			circle_timer.start()
 			circle_timer.wait_time = randf_range(minimum_circle_time, maximum_circle_time)
 			if randf() > 0.3:
 				circle_dir *= -1
+
+
+func _on_approach_detector_rapid_approach_detected() -> void:
+	state_chart.send_event("attack")
