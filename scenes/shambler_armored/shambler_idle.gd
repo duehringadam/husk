@@ -18,8 +18,6 @@ func _on_idle_state_exited() -> void:
 func _on_idle_state_physics_processing(delta: float) -> void:
 	if source_npc.target != null:
 		state_chart.send_event("chase")
-	#if source_npc.global_position.distance_to(Global.player.global_position) < 3:
-		#state_chart.send_event("attack")
 
 
 func _on_vision_area_max_aggro(aggro_amount: float, aggro_position: Node3D) -> void:

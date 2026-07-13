@@ -14,16 +14,19 @@ func _on_attack_state_entered() -> void:
 	source_npc.target = Global.player
 	if source_npc.look_at_modifier:
 		source_npc.look_at_modifier.target_node = Global.player.head.get_path()
-	attack_counter = 1
 	animation_tree.set("parameters/conditions/idle", false)
 	animation_tree.set("parameters/conditions/walk", false)
-	animation_tree.set("parameters/conditions/attack", true)
+	
 	source_npc.SPEED = 4
-
-
+	
+	if randf() > 0.4:
+		animation_tree.set("parameters/conditions/attack", true)
+	else:
+		animation_tree.set("parameters/conditions/combo_attack", true)
+	
 func _on_attack_state_exited() -> void:
-	attack_counter = 1
-
+	animation_tree.set("parameters/conditions/combo_attack", false)
+	animation_tree.set("parameters/conditions/attack", false)
 
 func _on_attack_state_physics_processing(delta: float) -> void:
 	if attack_tracking:
@@ -35,17 +38,9 @@ func _on_attack_state_physics_processing(delta: float) -> void:
 		var random_pos = NavigationServer3D.map_get_closest_point(get_tree().current_scene.get_world_3d().get_navigation_map(),Global.player.global_position)
 		source_npc.navigation_agent.set_target_position(random_pos)
 
-
 func _anim_finished(state: StringName):
-	if state == "attack2":
-		animation_tree.set("parameters/conditions/attack", false)
+	if state == "attack3":
 		state_chart.send_event("back_away")
-	
-	if state == "attack1":
-		animation_tree.set("parameters/conditions/attack", false)
-		state_chart.send_event("idle")
-
-		
 
 func check_distance_for_next_attack():
 	attack_counter += 1
@@ -54,6 +49,14 @@ func check_distance_for_next_attack():
 	if tree_root.has_node("attack" + str(attack_counter)):
 		if source_npc.global_position.distance_to(Global.player.global_position) < 3:
 			animation_tree_playback.travel("attack" + str(attack_counter))
+		else:
+			animation_tree.set("parameters/conditions/combo_attack", false)
+			animation_tree.set("parameters/conditions/attack", false)
+			state_chart.send_event("back_away")
+	else:
+		animation_tree.set("parameters/conditions/combo_attack", false)
+		animation_tree.set("parameters/conditions/attack", false)
+		state_chart.send_event("back_away")
 
 func set_attack_value(value: bool):
 	animation_tree.set("parameters/conditions/attack", value)
