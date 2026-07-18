@@ -1,14 +1,14 @@
 [gd_scene format=4 uid="uid://bb24ddx38sw06"]
 
 [ext_resource type="Script" uid="uid://yvdnccw3xjcv" path="res://scenes/npc/Ghoul Animated/ghoul.gd" id="1_5uu5o"]
-[ext_resource type="AudioStream" uid="uid://bxoc8a026cn2p" path="res://sfx/zombie-death-2-95167.mp3" id="2_6pan1"]
+[ext_resource type="AudioStream" uid="uid://bxoc8a026cn2p" path="res://sfx/enemies/zombie-death-2-95167.mp3" id="2_6pan1"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://dqnydbfrvkmnj" path="res://scenes/npc/Ghoul Animated/ghoul_animation_state_machine.tres" id="2_tix41"]
 [ext_resource type="Texture2D" uid="uid://c651uj20r0ls0" path="res://scenes/npc/Ghoul Animated/For Unity/T_GhoulA_1024.png" id="3_ck3co"]
 [ext_resource type="Texture2D" uid="uid://cqw8pa3g2qf2v" path="res://scenes/npc/Ghoul Animated/Textures/NormalMap(2).png" id="3_x202g"]
 [ext_resource type="Script" uid="uid://dgjqgiw3yw42e" path="res://components/health_component.gd" id="4_qcdqp"]
 [ext_resource type="PackedScene" uid="uid://c1un17c5tsen5" path="res://scenes/VFX/Scenes/VFX_Blood_Hit_B2.tscn" id="6_exqn4"]
 [ext_resource type="Script" uid="uid://vxrbcfcv6g1i" path="res://scenes/npc/Ghoul Animated/vision_area.gd" id="7_1u4j8"]
-[ext_resource type="AudioStream" uid="uid://28i0pxdfmu06" path="res://sfx/hit-shell-01-266294.mp3" id="7_5vd8j"]
+[ext_resource type="AudioStream" uid="uid://28i0pxdfmu06" path="res://sfx/damage/hit-shell-01-266294.mp3" id="7_5vd8j"]
 [ext_resource type="Script" uid="uid://b2errsixgk2ri" path="res://components/bone_health_component.gd" id="7_28glq"]
 [ext_resource type="Script" uid="uid://dql5v81gqvdat" path="res://components/status_effect_component.gd" id="7_yjoxl"]
 [ext_resource type="PackedScene" uid="uid://cieyrvkejc3w" path="res://scenes/npc/Ghoul Animated/gore/pickable/head_sever.tscn" id="8_tix41"]
@@ -8690,9 +8690,12 @@ unique_name_in_owner = true
 
 [node name="PickableRagdollHip" type="PhysicalBone3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D" unique_id=1336967431 node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component") groups=["disable_collision_while_grabbed", "limb_sever", "throwable"]]
 transform = Transform3D(0.08328082, -0.0028905019, 0.0006290921, 0.0002382231, -0.011111092, -0.08258893, 0.0029485603, 0.08253868, -0.011095827, 0.0002517352, 0.00013669346, 0.081619464)
+transform = Transform3D(0.08328082, -0.0028905019, 0.0006290921, 0.0002382231, -0.011111092, -0.08258893, 0.0029485603, 0.08253868, -0.011095827, 0.0002517352, 0.00013669346, 0.081619464)
 collision_layer = 8
 collision_mask = 15
 joint_type = 5
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0023473052, -0.06980309, 0.011202054)
+body_offset = Transform3D(0.08333334, -7.27682e-06, 3.5911216e-06, 7.2957664e-06, 0.08333224, -0.00043080933, -3.5534904e-06, 0.0004308112, 0.08333223, 0.00019506062, 0.00582169, -0.00090342853)
 joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0023473052, -0.06980309, 0.011202054)
 body_offset = Transform3D(0.08333334, -7.27682e-06, 3.5911216e-06, 7.2957664e-06, 0.08333224, -0.00043080933, -3.5534904e-06, 0.0004308112, 0.08333223, 0.00019506062, 0.00582169, -0.00090342853)
 mass = 5.0
@@ -8890,16 +8893,19 @@ metadata/_custom_type_script = "uid://dpip2f2xmdb3b"
 
 [node name="head" type="CollisionShape3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/PickableRagdollHip/hurtbox_component" unique_id=1072636125 node_paths=PackedStringArray("bone_health_component")]
 transform = Transform3D(0.99999964, 0.0007729195, 0.0003033057, -0.00028176233, -0.027714819, 0.9996158, 0.00078102015, -0.9996155, -0.027714431, 0.0027985387, 0.025942057, 0.19012833)
+transform = Transform3D(0.99999964, 0.0007729195, 0.0003033057, -0.00028176233, -0.027714819, 0.9996158, 0.00078102015, -0.9996155, -0.027714431, 0.0027985387, 0.025942057, 0.19012833)
 shape = SubResource("SphereShape3D_0os5c")
 script = ExtResource("9_hnstf")
 bone_health_component = NodePath("../../../PhysicalBoneHead/BoneHealthComponent")
 
 [node name="hip" type="CollisionShape3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/PickableRagdollHip/hurtbox_component" unique_id=615171268]
 transform = Transform3D(0.99746114, -0.059302446, -0.03942572, 0.02286211, -0.25765914, 0.9659652, -0.06744252, -0.9644142, -0.25564912, 0.028050588, -0.09575459, 0.7201603)
+transform = Transform3D(0.99746114, -0.059302446, -0.03942572, 0.02286211, -0.25765914, 0.9659652, -0.06744252, -0.9644142, -0.25564912, 0.028050588, -0.09575459, 0.7201603)
 shape = SubResource("SphereShape3D_mkt2x")
 script = ExtResource("9_hnstf")
 
 [node name="chest" type="CollisionShape3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/PickableRagdollHip/hurtbox_component" unique_id=71223646]
+transform = Transform3D(-0.99861896, -0.030465141, 0.042802162, -0.052537076, 0.5802987, -0.81270725, -7.8792335e-05, -0.8138336, -0.58109796, 0.011995474, -0.17355219, 0.37002325)
 transform = Transform3D(-0.99861896, -0.030465141, 0.042802162, -0.052537076, 0.5802987, -0.81270725, -7.8792335e-05, -0.8138336, -0.58109796, 0.011995474, -0.17355219, 0.37002325)
 shape = SubResource("SphereShape3D_47v5s")
 script = ExtResource("9_hnstf")
@@ -8960,9 +8966,12 @@ bone_health_component = NodePath("../../../Physical Bone Thigh_R/BoneHealthCompo
 
 [node name="PickableRagdollChest" type="PhysicalBone3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D" unique_id=960286982 node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component") groups=["disable_collision_while_grabbed", "limb_sever", "throwable"]]
 transform = Transform3D(-0.08327192, 0.0017877521, 0.0026527054, -0.00010882141, -0.07064797, 0.044196125, 0.0031970392, 0.044160087, 0.07059824, -0.0002907905, -0.005085648, 0.11107477)
+transform = Transform3D(-0.08327192, 0.0017877521, 0.0026527054, -0.00010882141, -0.07064797, 0.044196125, 0.0031970392, 0.044160087, 0.07059824, -0.0002907905, -0.005085648, 0.11107477)
 collision_layer = 8
 collision_mask = 15
 joint_type = 5
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.001262144, -0.039212395, -0.05448923)
+body_offset = Transform3D(0.08333336, 5.4132324e-06, -7.0277456e-06, -5.3472904e-06, 0.08332998, 0.0007500388, 7.077364e-06, -0.00075003505, 0.08332999, 0.00010500802, 0.0033084303, 0.004511185)
 joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.001262144, -0.039212395, -0.05448923)
 body_offset = Transform3D(0.08333336, 5.4132324e-06, -7.0277456e-06, -5.3472904e-06, 0.08332998, 0.0007500388, 7.077364e-06, -0.00075003505, 0.08332999, 0.00010500802, 0.0033084303, 0.004511185)
 mass = 5.0
@@ -9361,8 +9370,11 @@ remote_path = NodePath("../../PickableRagdollHip/hurtbox_component/head")
 
 [node name="Physical Bone Shoulder_L" type="PhysicalBone3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D" unique_id=366315223]
 transform = Transform3D(-0.0049311602, 0.034728967, -0.07559119, -0.049284097, -0.062223505, -0.025372399, -0.06701646, 0.04320393, 0.024221037, 0.009511154, -0.020445077, 0.11246189)
+transform = Transform3D(-0.0049311602, 0.034728967, -0.07559119, -0.049284097, -0.062223505, -0.025372399, -0.06701646, 0.04320393, 0.024221037, 0.009511154, -0.020445077, 0.11246189)
 collision_mask = 15
 joint_type = 5
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0039467546, 0.0045008226, 0.05093109)
+body_offset = Transform3D(0.08332951, -0.00076216087, -0.00024531037, -0.00024612434, -8.833222e-05, -0.08333296, 0.00076187775, 0.08332983, -9.057298e-05, 0.00034480542, 0.0042436644, -0.00036743283)
 joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0039467546, 0.0045008226, 0.05093109)
 body_offset = Transform3D(0.08332951, -0.00076216087, -0.00024531037, -0.00024612434, -8.833222e-05, -0.08333296, 0.00076187775, 0.08332983, -9.057298e-05, 0.00034480542, 0.0042436644, -0.00036743283)
 bone_name = "Shoulder_L"
@@ -9521,8 +9533,11 @@ metadata/_custom_type_script = "uid://b2errsixgk2ri"
 
 [node name="Physical Bone Forearm_L" type="PhysicalBone3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D" unique_id=751139073]
 transform = Transform3D(-0.03131757, 0.07686915, 0.0074019334, -0.05889343, -0.028940182, 0.051366083, 0.04995216, 0.014072825, 0.06520109, 0.022666339, -0.013647884, 0.088859946)
+transform = Transform3D(-0.03131757, 0.07686915, 0.0074019334, -0.05889343, -0.028940182, 0.051366083, 0.04995216, 0.014072825, 0.06520109, 0.022666339, -0.013647884, 0.088859946)
 collision_mask = 15
 joint_type = 5
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06556186, -0.0024712682, 0.12625429)
+body_offset = Transform3D(0.082791045, -0.0016038734, 0.009355284, 0.009365432, 0.00044731237, -0.0828042, 0.0015434474, 0.08331672, 0.000624666, 0.0042428263, 0.011069506, 0.00022822246)
 joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06556186, -0.0024712682, 0.12625429)
 body_offset = Transform3D(0.082791045, -0.0016038734, 0.009355284, 0.009365432, 0.00044731237, -0.0828042, 0.0015434474, 0.08331672, 0.000624666, 0.0042428263, 0.011069506, 0.00022822246)
 bone_name = "Forearm_L"
@@ -9689,8 +9704,11 @@ shape = SubResource("CapsuleShape3D_p5bm1")
 
 [node name="Physical Bone UpperArm_R" type="PhysicalBone3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D" unique_id=16403591]
 transform = Transform3D(-0.008378105, -0.07633205, 0.03236774, 0.06548807, -0.02604427, -0.044468567, 0.050848443, 0.02096566, 0.06260449, -0.018864987, -0.010567076, 0.10546949)
+transform = Transform3D(-0.008378105, -0.07633205, 0.03236774, 0.06548807, -0.02604427, -0.044468567, 0.050848443, 0.02096566, 0.06260449, -0.018864987, -0.010567076, 0.10546949)
 collision_mask = 15
 joint_type = 5
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03216361, 0.0077562747, 0.1360362)
+body_offset = Transform3D(0.083306745, 0.0006145388, 0.0020134673, 0.002009593, 0.00052685663, -0.08330754, -0.00062705576, 0.08332943, 0.0005118251, 0.0024007745, 0.011393391, -0.0007361211)
 joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03216361, 0.0077562747, 0.1360362)
 body_offset = Transform3D(0.083306745, 0.0006145388, 0.0020134673, 0.002009593, 0.00052685663, -0.08330754, -0.00062705576, 0.08332943, 0.0005118251, 0.0024007745, 0.011393391, -0.0007361211)
 bone_name = "UpperArm_R"
@@ -9867,8 +9885,11 @@ debug_color = Color(1, 0, 0, 0.41960785)
 
 [node name="Physical Bone Thigh_L" type="PhysicalBone3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D" unique_id=1973210050]
 transform = Transform3D(-0.005562979, 0.08223636, -0.0122752255, -0.07973328, -0.001786885, 0.024163114, 0.02358182, 0.013357955, 0.07880297, 0.0101441145, -0.0064100143, 0.06041821)
+transform = Transform3D(-0.005562979, 0.08223636, -0.0122752255, -0.07973328, -0.001786885, 0.024163114, 0.02358182, 0.013357955, 0.07880297, 0.0101441145, -0.0064100143, 0.06041821)
 collision_mask = 15
 joint_type = 5
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018249735, -0.013224844, 0.20433505)
+body_offset = Transform3D(0.08330568, 0.00044514087, 0.0020993222, 0.0020971317, 0.00040782796, -0.08330592, -0.0004552669, 0.083331175, 0.0003964903, 0.0010972284, 0.017065983, 0.0010127164)
 joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018249735, -0.013224844, 0.20433505)
 body_offset = Transform3D(0.08330568, 0.00044514087, 0.0020993222, 0.0020971317, 0.00040782796, -0.08330592, -0.0004552669, 0.083331175, 0.0003964903, 0.0010972284, 0.017065983, 0.0010127164)
 bone_name = "Thigh_L"
@@ -10027,8 +10048,11 @@ shape = SubResource("CapsuleShape3D_40h88")
 
 [node name="Physical Bone Foot_L" type="PhysicalBone3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D" unique_id=646074052]
 transform = Transform3D(-0.08134442, 0.007053758, -0.016666606, -0.018097728, -0.031453785, 0.075017184, 5.910132e-05, 0.07684627, 0.03223496, 0.0188854, 0.005369555, 0.0040336563)
+transform = Transform3D(-0.08134442, 0.007053758, -0.016666606, -0.018097728, -0.031453785, 0.075017184, 5.910132e-05, 0.07684627, 0.03223496, 0.0188854, 0.005369555, 0.0040336563)
 collision_mask = 15
 joint_type = 5
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0023908105, 0.003829293, 0.07659282)
+body_offset = Transform3D(0.08333333, -7.689791e-05, 0.000102164224, 0.00010462105, 0.0027379058, -0.08328829, 7.346878e-05, 0.08328833, 0.0027379785, -0.00020676479, 0.0063685505, -0.00052882056)
 joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0023908105, 0.003829293, 0.07659282)
 body_offset = Transform3D(0.08333333, -7.689791e-05, 0.000102164224, 0.00010462105, 0.0027379058, -0.08328829, 7.346878e-05, 0.08328833, 0.0027379785, -0.00020676479, 0.0063685505, -0.00052882056)
 bone_name = "Foot_L"
@@ -10187,8 +10211,11 @@ metadata/_custom_type_script = "uid://b2errsixgk2ri"
 
 [node name="Physical Bone Calf_R" type="PhysicalBone3D" parent="Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D" unique_id=992299031]
 transform = Transform3D(0.003337765, -0.082757205, 0.009195114, 0.07711924, -0.00039778516, -0.031573888, 0.031399492, 0.009774076, 0.07657013, -0.015238268, -0.012272851, 0.026986059)
+transform = Transform3D(0.003337765, -0.082757205, 0.009195114, 0.07711924, -0.00039778516, -0.031573888, 0.031399492, 0.009774076, 0.07657013, -0.015238268, -0.012272851, 0.026986059)
 collision_mask = 15
 joint_type = 5
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0024338895, -0.0072311973, 0.2479775)
+body_offset = Transform3D(0.083281055, -0.00032559017, -0.0029333998, -0.0029331297, 0.00010153183, -0.083281666, 0.00032894238, 0.08333248, 8.998734e-05, 0.0005223658, 0.020659853, 0.0005794782)
 joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0024338895, -0.0072311973, 0.2479775)
 body_offset = Transform3D(0.083281055, -0.00032559017, -0.0029333998, -0.0029331297, 0.00010153183, -0.083281666, 0.00032894238, 0.08333248, 8.998734e-05, 0.0005223658, 0.020659853, 0.0005794782)
 bone_name = "Calf_R"

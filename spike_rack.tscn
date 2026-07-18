@@ -4,9 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://bw6fhgfxrdaem" path="res://scenes/traps/spike traps/DefaultMaterial_Base_color.png" id="2_85rtt"]
 [ext_resource type="Script" uid="uid://ce7spf1wdpk1u" path="res://components/spikerack_damage_component.gd" id="3_85rtt"]
 [ext_resource type="Texture2D" uid="uid://d3pycb7l4uamk" path="res://scenes/traps/spike traps/DefaultMaterial_Base_color_specular(1).png" id="3_a1p7o"]
-[ext_resource type="AudioStream" uid="uid://cdfq0v5deiuol" path="res://sfx/blade-piercing-body-352462.mp3" id="4_n5ng8"]
+[ext_resource type="AudioStream" uid="uid://cdfq0v5deiuol" path="res://sfx/damage/blade-piercing-body-352462.mp3" id="4_n5ng8"]
 [ext_resource type="Texture2D" uid="uid://cy1tjeycgc4s7" path="res://scenes/traps/spike traps/DefaultMaterial_Base_color_normal.png" id="4_t1xi4"]
 [ext_resource type="AudioStream" uid="uid://b4c4to3elardf" path="res://Player/weapon/ALL/Poleaxe2/sfx/a-massive-axe-impact-hitting-metal-1-450251.mp3" id="5_85rtt"]
+[ext_resource type="PackedScene" uid="uid://d3o0kc8fs618t" path="res://scenes/VFX/Scenes/VFX_Blood_Explosion_A1.tscn" id="8_jlm3y"]
+[ext_resource type="Script" uid="uid://dnkw37ac4lakw" path="res://scenes/VFX/Scenes/limb_sever_bleed.gd" id="9_fm5n7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pnqwi"]
 resource_name = "gate"
@@ -136,14 +138,15 @@ collision_layer = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.29205322, 0, 0)
 shape = SubResource("BoxShape3D_j1pv0")
 
-[node name="DamageComponent" type="Area3D" parent="." unique_id=96696714 node_paths=PackedStringArray("hit_sound")]
+[node name="DamageComponent" type="Area3D" parent="." unique_id=96696714 node_paths=PackedStringArray("blood_vfx", "hit_sound")]
 transform = Transform3D(0.29999998, -1.1597211e-08, 9.132659e-08, 1.4827844e-08, 0.29999995, -2.1637439e-08, -4.90155e-08, 7.947414e-09, 0.29999995, 0, 1.6108932, 0.005160481)
 collision_layer = 16
 collision_mask = 13
 script = ExtResource("3_85rtt")
+blood_vfx = NodePath("VFX_Blood_Explosion_A1")
 hit_sound = NodePath("../spikes/Plane_002/flesh")
 damage_types = Dictionary[int, float]({
-2: 300.0
+2: 999.0
 })
 metadata/_custom_type_script = "uid://dlsydctoxqbwy"
 
@@ -271,6 +274,10 @@ debug_color = Color(1, 0, 0, 0.41960785)
 transform = Transform3D(-4.371139e-08, 1, 0, -0.99999994, -4.3711385e-08, -7.1054274e-15, -1.7763568e-15, -1.4210855e-14, 0.99999994, 0.5969133, -5.578344, -2.240776)
 shape = SubResource("CapsuleShape3D_n5ng8")
 debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="VFX_Blood_Explosion_A1" parent="DamageComponent" unique_id=1982414426 instance=ExtResource("8_jlm3y")]
+script = ExtResource("9_fm5n7")
+bleed_time = 5.0
 
 [connection signal="area_shape_entered" from="DamageComponent" to="DamageComponent" method="_on_area_shape_entered"]
 [connection signal="body_entered" from="DamageComponent" to="." method="_on_damage_component_body_entered"]

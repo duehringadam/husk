@@ -13,6 +13,10 @@ extends CharacterBody3D
 @export var navigation_agent: NavigationAgent3D
 @export var hurtboxes: Array[hurtbox_component]
 @export var health_component: HealthComponent
+@export var look_at_modifier: LookAtModifier3D
+
+@export_category("Look at nodes")
+@export var head_look_at: Node3D
 
 @export_category("Behavior")
 @export var state_chart: StateChart
@@ -27,12 +31,15 @@ var head_attached := true : set = head_lost
 var direction = Vector3()
 var is_leader: bool = false
 
+
 func _ready() -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
 	direction = navigation_agent.get_next_path_position() - global_transform.origin
 	direction = direction.normalized()
+	if !is_on_floor():
+		velocity.y -= ProjectSettings.get_setting("physics/3d/default_gravity")
 	velocity = velocity.lerp(direction * SPEED, delta * 10)
 	if !is_on_floor():
 		velocity.y -= ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -71,4 +78,4 @@ func _on_stance_component_stance_broken() -> void:
 	pass
 
 func _update_target(value: Node3D):
-	pass
+	target = value

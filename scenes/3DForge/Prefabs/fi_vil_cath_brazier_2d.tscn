@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://tpesy3ixn6lc" path="res://scenes/3DForge/Prefabs/flickering_light.gd" id="2_uutcq"]
 [ext_resource type="Texture2D" uid="uid://bgpuc5rjm2yh5" path="res://scenes/misc/Textures/Fire_SubUV_new.png" id="3_u32jd"]
 [ext_resource type="Texture2D" uid="uid://dgnarq1axwhae" path="res://scenes/MysticDungeon/Art/Textures/T_Fire01_Tiled_D_Yellow.png" id="4_tk3c6"]
-[ext_resource type="AudioStream" uid="uid://sppeegtsqrlm" path="res://sfx/crackling-fire-sound-307026.mp3" id="5_u32jd"]
+[ext_resource type="AudioStream" uid="uid://sppeegtsqrlm" path="res://sfx/spells/fire/crackling-fire-sound-307026.mp3" id="5_u32jd"]
 
 [sub_resource type="Gradient" id="Gradient_v4udn"]
 offsets = PackedFloat32Array(0.31178707, 0.6463878)
@@ -84,7 +84,7 @@ size = Vector2(0.5, 0.5)
 script = ExtResource("2_uutcq")
 noise = SubResource("NoiseTexture3D_j1pv0")
 
-[node name="Mesh" parent="." index="0" unique_id=1597438309]
+[node name="Mesh" parent="." index="0" unique_id=7658748]
 surface_material_override/0 = ExtResource("2_m72k")
 
 [node name="StaticBody" type="StaticBody3D" parent="." index="1" unique_id=975356498]
@@ -105,6 +105,7 @@ draw_pass_1 = SubResource("QuadMesh_cd0ql")
 [node name="OmniLight3D" type="OmniLight3D" parent="GPUParticles3D" index="0" unique_id=247553570]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.20000005, 0)
 light_color = Color(1, 0.3882353, 0, 1)
+light_energy = 0.5
 shadow_enabled = true
 distance_fade_enabled = true
 omni_range = 15.0
