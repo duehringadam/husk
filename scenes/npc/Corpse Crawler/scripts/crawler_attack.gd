@@ -42,4 +42,4 @@ func _state_finished(state: StringName):
 	if state == "Lunge":
 		state_chart.send_event("back_away")
 	if state == "Sting":
-		state_chart.send_event("chase")
+		state_chart.send_event("back_away")

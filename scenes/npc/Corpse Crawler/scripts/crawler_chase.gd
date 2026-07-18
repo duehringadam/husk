@@ -1,6 +1,6 @@
 extends Node
 
-@export var attack_range: float = 2.5
+@export var attack_range: float = 3.0
 @export var lose_sight_range: float = 15.0
 
 @export var run_range: float = 10.0

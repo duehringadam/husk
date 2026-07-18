@@ -40,3 +40,7 @@ func align_with_y(xform: Transform3D, new_y):
 
 func _on_vision_area_max_aggro(aggro_amount: float, aggro_position: Node3D) -> void:
 	target = Global.player
+
+
+func _on_damage_component_damage_dealt(types: Dictionary, actual: float, stance_damage: float, target: hurtbox_component) -> void:
+	pass

@@ -59,9 +59,9 @@ func face_target(delta: float):
 
 func roll_attack_chance():
 		if randf() < attack_chance:
-			state_chart.send_event("attack")
+			state_chart.send_event("chase")
 		else:
-			if source_npc.global_position.distance_to(target.global_position) > ideal_distance *2:
+			if source_npc.global_position.distance_to(target.global_position) > ideal_distance:
 				state_chart.send_event("chase")
 			circle_timer.start()
 			circle_timer.wait_time = randf_range(minimum_circle_time, maximum_circle_time)
@@ -70,4 +70,4 @@ func roll_attack_chance():
 
 
 func _on_approach_detector_rapid_approach_detected() -> void:
-	state_chart.send_event("attack")
+	state_chart.send_event("chase")

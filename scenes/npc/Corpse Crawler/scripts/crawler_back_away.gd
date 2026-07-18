@@ -21,6 +21,7 @@ func _on_back_away_state_entered() -> void:
 	back_away_timer.start()
 
 func _on_back_away_state_exited() -> void:
+	back_away_timer.stop()
 	pass
 
 
@@ -42,7 +43,12 @@ func _on_back_away_state_physics_processing(delta: float) -> void:
 	
 	if source_npc.global_position.distance_to(target.global_position) >= desired_distance:
 		state_chart.send_event("circle_around")
-
+	
+	if back_away_timer.time_left == 0:
+		if randf() <= 0.3:
+			state_chart.send_event("chase")
+		else:
+			state_chart.send_event("circle_around")
 
 func face_target(delta: float):
 	var target_dir = (target.global_position - source_npc.global_position).normalized()
@@ -50,4 +56,4 @@ func face_target(delta: float):
 
 
 func _on_approach_detector_rapid_approach_detected() -> void:
-	state_chart.send_event("attack")
+	state_chart.send_event("chase")
