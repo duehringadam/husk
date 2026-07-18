@@ -1,33 +1,34 @@
 extends Node
 
-@export var patrol_speed: float = 3
 @export var source_npc: npc
 @export var animation_tree: AnimationTree
 @export var state_chart: StateChart
- 
+@export var vision_area: Area3D
+
 var is_patrolling := false
 var target_pos
 var timer
- 
- 
+
+
 func _ready() -> void:
+	if !vision_area.is_connected("max_aggro", _on_vision_area_max_aggro):
+		vision_area.connect("max_aggro", _on_vision_area_max_aggro)
 	timer = Timer.new()
 	add_child(timer)
 	timer.one_shot = true
 	timer.wait_time = 7
 	timer.timeout.connect(end_patrol)
- 
+
 func _on_move_state_entered() -> void:
 	is_patrolling = false
 	animation_tree.set("parameters/conditions/idle", false)
 	animation_tree.set("parameters/conditions/walk", true)
-	source_npc.SPEED = patrol_speed
 	timer.start()
 
 func _on_move_state_exited() -> void:
 	pass # Replace with function body.
- 
- 
+
+
 func _on_move_state_physics_processing(delta: float) -> void:
 	source_npc.rotation.y = lerp_angle(source_npc.rotation.y, atan2(source_npc.direction.x, source_npc.direction.z),10*delta)
 	if !is_patrolling:
@@ -41,34 +42,35 @@ func _on_move_state_physics_processing(delta: float) -> void:
 		source_npc.navigation_agent.set_target_position(random_pos)
 		if source_npc.navigation_agent.is_target_reachable():
 			is_patrolling = true
- 
+			
 		else:
 			is_patrolling = false
 			timer.stop()
 			state_chart.send_event("idle")
 		target_pos = random_pos
- 
-	if source_npc.global_position.distance_to(target_pos) > 5 && source_npc.aggro >= 1.0:
-		animation_tree.set("parameters/conditions/run", true)
-		animation_tree.set("parameters/conditions/walk", false)
-		source_npc.SPEED = 5.5
-	elif source_npc.global_position.distance_to(target_pos) < 5:
-		animation_tree.set("parameters/conditions/run", false)
-		animation_tree.set("parameters/conditions/walk", true)
-		source_npc.SPEED = 2.0
- 
+	
+	#if source_npc.global_position.distance_to(target_pos) > 5 && source_npc.aggro >= 1.0:
+		#animation_tree.set("parameters/conditions/run", true)
+		#animation_tree.set("parameters/conditions/walk", false)
+		#source_npc.SPEED = 5.5
+	#elif source_npc.global_position.distance_to(target_pos) < 5:
+		#animation_tree.set("parameters/conditions/run", false)
+		#animation_tree.set("parameters/conditions/walk", true)
+		#source_npc.SPEED = 2.0
+	
 	if source_npc.global_position.distance_to(target_pos) <= 1:
 		is_patrolling = false
 		timer.stop()
 		state_chart.send_event("idle")
- 
-	#if source_npc.global_position.distance_to(Global.player.global_position) < 3:
-		#state_chart.send_event("attack")
- 
- 
- 
+
+
 func end_patrol():
 	if !source_npc.navigation_agent.is_navigation_finished():
 		is_patrolling = false
 		timer.stop()
 		state_chart.send_event("idle")
+
+func _on_vision_area_max_aggro(aggro_amount: float, aggro_position: Node3D) -> void:
+	if aggro_amount >= 1.0:
+		source_npc.target = aggro_position
+		state_chart.send_event("chase")
