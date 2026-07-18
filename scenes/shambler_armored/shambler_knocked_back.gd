@@ -27,38 +27,36 @@ func _on_knocked_back_state_entered() -> void:
 			if collider.owner.is_in_group("traps"):
 				if kb_source:
 					knockback_source = kb_source
-					var kb :Vector3 = kb_source.source.global_position - source_npc.global_position
+					var kb :Vector3 = ledge_check.global_position - source_npc.global_position
 					var kb_dir = kb.normalized()
 					kb_dir.y = 0
-					var kb_amount = kb_dir * (distance/5)
-					source_npc.velocity = -kb_amount
-					await get_tree().create_timer(.5).timeout
+					var kb_amount = kb_dir
+					source_npc.velocity = kb_amount * (distance/5)
 					animation_tree.set("parameters/conditions/stagger", false)
 					state_chart.send_event("knocked_down")
 	else:
 		if kb_source:
-					var kb :Vector3 = kb_source.source.global_position - source_npc.global_position
+					var kb :Vector3 = ledge_check.global_position - source_npc.global_position
 					var kb_dir = kb.normalized()
 					kb_dir.y = 0
-					var kb_amount = kb_dir * (distance/5)
-					source_npc.velocity = -kb_amount
-					await get_tree().create_timer(.5).timeout
+					var kb_amount = kb_dir
+					source_npc.velocity = kb_amount
 					animation_tree.set("parameters/conditions/stagger", false)
 					state_chart.send_event("knocked_down")
 	
 	if kb_source.source:
-		var kb :Vector3 = kb_source.source.global_position - source_npc.global_position
+		var kb :Vector3 = ledge_check.global_position - source_npc.global_position
 		var kb_dir = kb.normalized()
 		kb_dir.y = 0
-		var kb_amount = kb_dir * distance
-		source_npc.velocity = -kb_amount
+		var kb_amount = kb_dir
+		source_npc.velocity = kb_amount * distance
 		knockback_source = kb_source
 	else:
-		var kb :Vector3 = kb_source.global_position - source_npc.global_position
+		var kb :Vector3 = ledge_check.global_position - source_npc.global_position
 		var kb_dir = kb.normalized()
 		kb_dir.y = 0
 		var kb_amount = kb_dir * distance
-		source_npc.velocity = -kb_amount
+		source_npc.velocity = kb_amount
 		knockback_source = kb_source
 
 

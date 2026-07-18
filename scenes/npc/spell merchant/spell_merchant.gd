@@ -1,0 +1,25 @@
+extends npc
+
+@onready var chest_look_at: LookAtModifier3D = $merchant_animated/Armature/Skeleton/GeneralSkeleton/chestLookAt
+@onready var look_at_head: LookAtModifier3D = $merchant_animated/Armature/Skeleton/GeneralSkeleton/headLookAt
+
+@export var sheet_id: String
+
+var is_talking: bool = false
+
+func _ready() -> void:
+	SignalBus.connect("dialogue_ended", dialogue_ended)
+
+func dialogue_ended():
+	is_talking = false
+	look_at_head.target_node = ""
+
+func _on_talk_on_complete(controller: InteractionController) -> void:
+	if is_talking == false:
+		#SignalBus.emit_signal("player_lookat_cutscene", head_look_at, 3)
+		is_talking = true
+		animation_tree.set("parameters/conditions/stand_up", true)
+		await animation_tree["parameters/playback"].state_finished
+		look_at_head.target_node = Global.player.head.get_path()
+		SignalBus.emit_signal("npc_interacted", sheet_id)
+		

@@ -7,6 +7,7 @@ extends npc
 func _on_health_component_died() -> void:
 	fall()
 	state_chart.send_event("dead")
+	collision_layer = 0
 	
 func head_lost(value: bool)-> void:
 	if !is_infested:
@@ -17,7 +18,7 @@ func fall():
 	state_chart.send_event("knocked_down")
 	physical_bone_simulator.physical_bones_start_simulation()
 	SPEED = 0
-	collision_layer = 0
+	
 	
 func _on_stance_component_stance_changed(amount: float, new_value: float, source: DamageComponent) -> void:
 	if stance_component:

@@ -4,8 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://bia32vkq1a5i" path="res://scenes/player/player.tscn" id="5_cnaw2"]
 [ext_resource type="PackedScene" uid="uid://ymiu2vsxluj2" path="res://scenes/ladders/ladder.tscn" id="10_ud3vi"]
 [ext_resource type="Texture2D" uid="uid://bmiecwtrxqg52" path="res://scenes/MysticDungeon/Art/Textures/T_Wood_Planks_01_BC.png" id="12_07jwy"]
-[ext_resource type="PackedScene" uid="uid://j8fyn0h0tusa" path="res://scenes/shambler_armored/undead_shambler_armored.tscn" id="12_ivea3"]
+[ext_resource type="PackedScene" uid="uid://dh564c7854jhe" path="res://scenes/npc/spell merchant/spell_merchant.tscn" id="12_ivea3"]
 [ext_resource type="PackedScene" uid="uid://cqebuck4snj2y" path="res://scenes/cleanser_knight/pyramid_final.tscn" id="12_jvck6"]
+[ext_resource type="PackedScene" uid="uid://j8fyn0h0tusa" path="res://scenes/shambler_armored/undead_shambler_armored.tscn" id="13_07jwy"]
 [ext_resource type="PackedScene" uid="uid://dde8d0d27fgyo" path="res://scenes/npc/undead/shambler.tscn" id="13_jvck6"]
 [ext_resource type="PackedScene" uid="uid://bgo71k4srphvm" path="res://scenes/npc/Corpse Crawler/corpse_crawler.tscn" id="14_07jwy"]
 [ext_resource type="PackedScene" uid="uid://csc3ojr7benhn" path="res://maptestflesh(2).tscn" id="15_urhrq"]
@@ -161,5 +162,8 @@ transform = Transform3D(0.1572791, 0.5648554, -0.8100627, 0.9875542, -0.08995958
 [node name="CorpseCrawler" parent="." unique_id=319898315 instance=ExtResource("14_07jwy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.341679, 0.037545636, 55.729656)
 
-[node name="UndeadShambler_Armored" parent="." unique_id=593733262 instance=ExtResource("12_ivea3")]
-transform = Transform3D(-0.9997683, 0, 0.02152357, 0, 1, 0, -0.02152357, 0, -0.9997683, -8.3768215, 0.12658978, 66.08835)
+[node name="spell_merchant" parent="." unique_id=630712817 instance=ExtResource("12_ivea3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.0519123, -0.013581157, 65.54215)
+
+[node name="UndeadShambler_Armored" parent="." unique_id=593733262 instance=ExtResource("13_07jwy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.930987, 0.0097436905, 67.171684)

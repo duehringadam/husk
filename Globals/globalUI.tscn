@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://cerk3y8j1h1do"]
 
 [ext_resource type="Script" uid="uid://c6av3xe4m2ujl" path="res://addons/madtalk/runtime/madtalk_runtime.gd" id="1_qttj8"]
-[ext_resource type="FontFile" uid="uid://ip8tcqh7uxmx" path="res://fonts/Alkhemikal.ttf" id="3_6sbyu"]
+[ext_resource type="FontFile" uid="uid://bgwsxfa2fbvel" path="res://addons/madtalk/fonts/ShipporiMincho-Regular.ttf" id="4_xcdg0"]
 [ext_resource type="PackedScene" uid="uid://4ggo1b35btnu" path="res://scenes/player/hud.tscn" id="5_svxpm"]
+[ext_resource type="AudioStream" uid="uid://clmll4t1gs143" path="res://sfx/vocal_samples/whisper_2.ogg" id="5_xcdg0"]
 [ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_menus_template/base/scripts/pause_menu_controller.gd" id="6_kthw8"]
-[ext_resource type="AudioStream" uid="uid://bvsxxn2k42rju" path="res://sfx/vocal_samples/whisper_1.ogg" id="6_yumqv"]
 [ext_resource type="Script" uid="uid://ckv1vnt3qim3w" path="res://Globals/prototype_tutorial.gd" id="7_xcdg0"]
 [ext_resource type="PackedScene" uid="uid://cndau4qyl56kx" path="res://scenes/menus/overlaid_menus/pause_menu.tscn" id="7_yumqv"]
 [ext_resource type="Script" uid="uid://07ul8a36b4e8" path="res://Globals/enemyhealth.gd" id="10_xguta"]
@@ -79,7 +79,7 @@ metadata/__load_path__ = "res://button.tscn"
 
 [sub_resource type="Gradient" id="Gradient_1ogho"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0.35051546, 1)
+offsets = PackedFloat32Array(0.53881276, 1)
 colors = PackedColorArray(0, 0, 0, 0.7294118, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_6sbyu"]
@@ -175,11 +175,11 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
-theme_override_fonts/normal_font = ExtResource("3_6sbyu")
-theme_override_fonts/bold_font = ExtResource("3_6sbyu")
-theme_override_fonts/bold_italics_font = ExtResource("3_6sbyu")
-theme_override_fonts/italics_font = ExtResource("3_6sbyu")
-theme_override_fonts/mono_font = ExtResource("3_6sbyu")
+theme_override_fonts/normal_font = ExtResource("4_xcdg0")
+theme_override_fonts/bold_font = ExtResource("4_xcdg0")
+theme_override_fonts/bold_italics_font = ExtResource("4_xcdg0")
+theme_override_fonts/italics_font = ExtResource("4_xcdg0")
+theme_override_fonts/mono_font = ExtResource("4_xcdg0")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 horizontal_alignment = 1
@@ -209,8 +209,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="SFXClick" type="AudioStreamPlayer" parent="Scene/Dialog" unique_id=464333488]
-stream = ExtResource("6_yumqv")
-volume_db = -6.0
+stream = ExtResource("5_xcdg0")
+pitch_scale = 0.8
 max_polyphony = 5
 bus = &"SFX"
 

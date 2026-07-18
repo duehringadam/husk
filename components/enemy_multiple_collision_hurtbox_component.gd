@@ -3,6 +3,7 @@ extends hurtbox_component
 
 var local_shape_idx: int
 var just_damaged:bool = false
+var limb_collider
 
 func take_damage(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float], status_types: Dictionary[Global.STATUS_TYPE, float], stance_damage: float, source: DamageComponent):
 	var hit_dir = (global_position.direction_to(source.global_position)).normalized()
@@ -16,7 +17,7 @@ func take_damage(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float], stat
 			if health_component:
 				health_component.modify_health(-actual)
 				health_component.damage_source = source.source
-			var limb_collider = get_child(local_shape_idx)
+			limb_collider = get_child(local_shape_idx)
 			limb_collider.bone_take_damage(damage_types, actual)
 			sum += actual
 	if stance_component != null:
@@ -32,7 +33,7 @@ func take_damage(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float], stat
 	if damage_particles:
 		damage_particles_add = damage_particles.instantiate()
 		get_tree().current_scene.add_child(damage_particles_add)
-		damage_particles_add.global_position = self.global_position
+		damage_particles_add.global_position = limb_collider.global_position
 		get_tree().create_timer(.1).timeout.connect(func(): damage_particles_add.take_damage())
 	return sum
 

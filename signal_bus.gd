@@ -35,4 +35,5 @@ signal player_current_stamina_changed(value: float)
 signal player_current_mana_changed(value: float)
 signal player_max_mana_changed(value: float)
 signal player_full_restore
+signal player_lookat_cutscene(target: Node3D, duration: float)
 @warning_ignore_restore("unused_signal")
