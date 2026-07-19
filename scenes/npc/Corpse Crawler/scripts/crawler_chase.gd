@@ -9,11 +9,9 @@ extends Node
 @export var animation_tree: AnimationTree
 @export var state_chart: StateChart
 
-var target
 var nav_agent: NavigationAgent3D
 
 func _on_chase_state_entered() -> void:
-	target = source_npc.target
 	nav_agent = source_npc.navigation_agent
 	animation_tree.set("parameters/conditions/idle", false)
 	animation_tree.set("parameters/conditions/walk", true)
@@ -24,31 +22,32 @@ func _on_chase_state_exited() -> void:
 
 
 func _on_chase_state_physics_processing(delta: float) -> void:
-	if not target or not is_instance_valid(target):
+	if not source_npc.target or not is_instance_valid(source_npc.target):
 		state_chart.send_event("idle")
 	animation_tree["parameters/walkBlendSpace/blend_position"].y = lerpf(animation_tree["parameters/walkBlendSpace/blend_position"].y, 1.0, delta*10)
 	animation_tree["parameters/walkBlendSpace/blend_position"].x = lerpf(animation_tree["parameters/walkBlendSpace/blend_position"].x, 0, delta*10)
-	#if source_npc.global_position.distance_to(target.global_position) >= run_range:
+	#if source_npc.global_position.distance_to(source_npc.target.global_position) >= run_range:
 		#animation_tree.set("parameters/conditions/run", true)
 		#animation_tree.set("parameters/conditions/walk", false)
 	#
-	#elif source_npc.global_position.distance_to(target.global_position) <= walk_range:
+	#elif source_npc.global_position.distance_to(source_npc.target.global_position) <= walk_range:
 		#animation_tree.set("parameters/conditions/run", false)
 		#animation_tree.set("parameters/conditions/walk", true)
 	
 	source_npc.rotation.y = lerp_angle(source_npc.rotation.y, atan2(source_npc.direction.x, source_npc.direction.z),10*delta)
-	var current_location = source_npc.global_position
-	var desired_location = source_npc.navigation_agent.get_next_path_position()
-	var new_velocity = (desired_location - current_location).normalized() * source_npc.SPEED
-	source_npc.navigation_agent.set_velocity(new_velocity)
-	var target_pos = NavigationServer3D.map_get_closest_point(get_tree().current_scene.get_world_3d().get_navigation_map(),target.global_position)
-	source_npc.navigation_agent.set_target_position(target_pos)
+	#var current_location = source_npc.global_position
+	#var desired_location = source_npc.navigation_agent.get_next_path_position()
+	#var new_velocity = (desired_location - current_location).normalized() * source_npc.SPEED
+	#source_npc.navigation_agent.set_velocity(new_velocity)
+	if source_npc.target:
+		var target_pos = NavigationServer3D.map_get_closest_point(get_tree().current_scene.get_world_3d().get_navigation_map(), source_npc.target.global_position)
+		source_npc.navigation_agent.set_target_position(target_pos)
 	
-	if source_npc.global_position.distance_to(target.global_position) <= attack_range:
-		state_chart.send_event("attack")
-		
-	if source_npc.global_position.distance_to(target.global_position) >= lose_sight_range:
-		state_chart.send_event("idle")
+		if source_npc.global_position.distance_to(source_npc.target.global_position) <= attack_range:
+			state_chart.send_event("attack")
+			
+		if source_npc.global_position.distance_to(source_npc.target.global_position) >= lose_sight_range:
+			state_chart.send_event("idle")
 
 
 func _on_approach_detector_rapid_approach_detected() -> void:

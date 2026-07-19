@@ -11,20 +11,23 @@ var attack_counter: int = 1
 func _ready() -> void:
 	animation_tree["parameters/playback"].connect("state_finished", _state_finished)
 
-func _on_attack_state_entered() -> void:	
+func _on_attack_state_entered() -> void:
+	source_npc.locked_in = true
 	source_npc.target = Global.player
 	if source_npc.look_at_modifier:
 		source_npc.look_at_modifier.target_node = Global.player.head.get_path()
 	animation_tree.set("parameters/conditions/idle", false)
-	animation_tree.set("parameters/conditions/walk", false)
+	animation_tree.set("parameters/conditions/walk", true)
 	
 	# Either lunge or sting based on distance from target
 	if source_npc.global_position.distance_to(source_npc.target.global_position) >= lunge_range:
 		animation_tree.set("parameters/conditions/lunge", true)
+		
 	else:
 		animation_tree.set("parameters/conditions/sting", true)
 	
 func _on_attack_state_exited() -> void:
+	source_npc.locked_in = false
 	animation_tree.set("parameters/conditions/lunge", false)
 	animation_tree.set("parameters/conditions/sting", false)
 
