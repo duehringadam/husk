@@ -22,11 +22,15 @@ func _on_block_state_exited() -> void:
 
 
 func _on_block_state_processing(delta: float) -> void:
-	if not Input.is_action_pressed("secondary_action") and animation_tree.animation_finished:
+	if not Input.is_action_pressed("secondary_action"):
 		animation_tree.set("parameters/conditions/block", false)
 		animation_tree.set("parameters/conditions/end_block", true)
 		state_chart.send_event("idle")
 	if Input.is_action_just_pressed("sprint"):
+		animation_tree.set("parameters/conditions/block", false)
+		animation_tree.set("parameters/conditions/end_block", true)
+		state_chart.send_event("idle")
+	if Global.player.stamina_component.current_stamina <= 0:
 		animation_tree.set("parameters/conditions/block", false)
 		animation_tree.set("parameters/conditions/end_block", true)
 		state_chart.send_event("idle")

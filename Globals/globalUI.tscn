@@ -61,17 +61,20 @@ func _on_mad_talk_activate_custom_effect(custom_id: Variant, custom_data: Varian
 
 
 func _on_mad_talk_dialog_finished(sheet_name: Variant, sequence_id: Variant) -> void:
-	GamePiecesEventBus.emit_signal(\"move_disable\", true)
 	SignalBus.emit_signal(\"dialogue_ended\")
+	GamePiecesEventBus.emit_signal(\"move_disable\", true)
 	GamePiecesEventBus.emit_signal(\"camera_lock_requested\", false)
+	GamePiecesEventBus.emit_signal(\"attack_lock_requested\", false)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 
 func _on_mad_talk_dialog_started(sheet_name: Variant, sequence_id: Variant) -> void:
 	SignalBus.emit_signal(\"dialogue_started\")
 	GamePiecesEventBus.emit_signal(\"camera_lock_requested\", true)
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	GamePiecesEventBus.emit_signal(\"attack_lock_requested\", true)
 	GamePiecesEventBus.emit_signal(\"move_disable\", false)
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	
 "
 
 [sub_resource type="Resource" id="Resource_6sbyu"]
@@ -347,11 +350,8 @@ metadata/_custom_type_script = "uid://dgjqgiw3yw42e"
 wait_time = 3.0
 
 [connection signal="activate_custom_effect" from="Scene/MadTalk" to="Scene" method="_on_mad_talk_activate_custom_effect"]
-[connection signal="dialog_aborted" from="Scene/MadTalk" to="Scene" method="_on_mad_talk_dialog_aborted"]
-[connection signal="dialog_acknowledged" from="Scene/MadTalk" to="." method="_on_mad_talk_dialog_acknowledged"]
 [connection signal="dialog_finished" from="Scene/MadTalk" to="Scene" method="_on_mad_talk_dialog_finished"]
 [connection signal="dialog_started" from="Scene/MadTalk" to="Scene" method="_on_mad_talk_dialog_started"]
-[connection signal="message_text_shown" from="Scene/MadTalk" to="." method="_on_mad_talk_message_text_shown"]
 [connection signal="pressed" from="Scene/TabContainer/How to play/MarginContainer/VBoxContainer/Button" to="Scene/TabContainer" method="_on_button_pressed"]
 [connection signal="died" from="enemyhealth/HealthComponent" to="enemyhealth" method="_on_health_component_died"]
 [connection signal="health_changed" from="enemyhealth/HealthComponent" to="enemyhealth/VBoxContainer/playerHealth" method="_on_health_changed"]

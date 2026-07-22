@@ -30,6 +30,14 @@ emission_point_count = 512
 [node name="Player" unique_id=926426044 instance=ExtResource("1_lvxji")]
 collision_mask = 14
 script = ExtResource("2_qek5x")
+player_stats = Dictionary[int, int]({
+0: 10,
+1: 99,
+2: 10,
+3: 10,
+4: 10,
+5: 10
+})
 footsteps_sound = SubResource("AudioStreamRandomizer_h17s1")
 walk_speed = 2.5
 sprint_speed = 4.0
@@ -147,6 +155,9 @@ equipped_items = {
 "mainhand_equipped": null,
 "offhand_equipped": null
 }
+
+[node name="SelectionWheel" parent="hud/selectionWheelDarken" parent_id_path=PackedInt32Array(1482172172) index="0" unique_id=1649874519]
+selected_option = 1
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." index="17" unique_id=1276511056]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1513219, 0)
