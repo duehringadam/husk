@@ -10,6 +10,7 @@ extends CharacterBody3D
 @export var hurtbox: hurtbox_component
 @export var health_component: HealthComponent
 @export var mesh: MeshInstance3D
+@export var stance_component: StanceComponent
 
 @export_category("Behavior")
 @export var SPEED: float = 1
