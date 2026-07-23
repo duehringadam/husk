@@ -19,7 +19,7 @@ func _on_timer_timeout() -> void:
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body is Player:
-		AudioManager.play_sound(load("res://sfx/freesound_community-075692_bird-flying-awaywav-86143.mp3"), self.global_position,0)
+		AudioManager.play_sound(load("res://sfx/animals/freesound_community-075692_bird-flying-awaywav-86143.mp3"), self.global_position,0)
 		animation_tree.set("parameters/conditions/scare", true)
 		self.look_at(target_flyaway_point.global_position)
 		var tween = get_tree().create_tween()

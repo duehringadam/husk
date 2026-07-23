@@ -1,7 +1,9 @@
 extends hurtbox_component
 
+signal blocked_attack
+
 @export var player_camera: Camera3D
-@export var viewport_camera: Camera3D
+@export var stamina_component: StaminaComponent
 
 var is_blocking: bool = false
 
@@ -22,13 +24,16 @@ func _update_blocking(value:bool):
 func take_damage(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float], status_types: Dictionary[Global.STATUS_TYPE, float], stance_damage: float, source: DamageComponent):
 	if timer.time_left > 0: return 0
 	if is_blocking && is_facing(source): 
-		player_camera.apply_shake()
-		viewport_camera.apply_shake()
-		#if Global.player.offhand.get_child_count() > 0:
-			#Global.player.offhand.get_child(0).block()
-		#else:
-			#Global.player.mainhand.get_child(0).block()
-		invulnerability(invulnerability_duration)
+		for i in damage_types:
+			player_camera.apply_shake(0.025)
+			var sum:= 0.0
+			var actual = modify_damage(i,damage_types[i],source)
+			sum += actual
+			stamina_component.modify_stamina(-sum)
+			
+			if stamina_component.current_stamina <= 0:
+				$stance_break.play()
+			emit_signal("blocked_attack")
 		return 0 
 	# invulnerability on damage
 	
@@ -49,9 +54,9 @@ func take_damage(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float], stat
 
 func is_facing(source: DamageComponent) -> bool:
 	var player_forward = -Global.player.camera.global_transform.basis.z 
-	var target_direction = (source.owner.global_transform.origin - Global.player.camera.global_transform.origin).normalized()
+	var target_direction = (source.source.global_transform.origin - Global.player.camera.global_transform.origin).normalized()
 	var dot_product = player_forward.dot(target_direction)
 	var angle_to_target = acos(dot_product)
-	if angle_to_target < deg_to_rad(60):
+	if angle_to_target <= deg_to_rad(90):
 		return true
 	return false

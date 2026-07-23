@@ -16,10 +16,8 @@ func dialogue_ended():
 
 func _on_talk_on_complete(controller: InteractionController) -> void:
 	if is_talking == false:
-		#SignalBus.emit_signal("player_lookat_cutscene", head_look_at, 3)
 		is_talking = true
 		animation_tree.set("parameters/conditions/stand_up", true)
-		await animation_tree["parameters/playback"].state_finished
 		look_at_head.target_node = Global.player.head.get_path()
 		SignalBus.emit_signal("npc_interacted", sheet_id)
 		

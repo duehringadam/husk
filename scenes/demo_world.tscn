@@ -22,7 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://d4n4ub6iqofie" path="res://scenes/Hivemind/CastleOfEternalMists/Prefabs/SM_Wall_200_Down_LT_Ruin_G.tscn" id="21_77bw5"]
 [ext_resource type="PackedScene" uid="uid://d4n4ub6iqtttg" path="res://scenes/Hivemind/CastleOfEternalMists/Prefabs/SM_Wall_200_Down_LT_Ruin_A.tscn" id="22_kj8oe"]
 [ext_resource type="PackedScene" uid="uid://d4n4ub6iqwthq" path="res://scenes/Hivemind/CastleOfEternalMists/Prefabs/SM_Stairs_4x6_AM_Stairs_M_Bricks_A_M_Bricks_B_Floor_M_Bricks_C_M_BrickStoneWall_Disp.tscn" id="23_4bbco"]
-[ext_resource type="PackedScene" uid="uid://y1dmf1xrkigw" path="res://scenes/demo scenes/catacomb_test.tscn" id="23_rqtg2"]
+[ext_resource type="PackedScene" uid="uid://bia32vkq1a5i" path="res://scenes/player/player.tscn" id="23_18r7x"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kur6e"]
 
@@ -32,8 +32,6 @@ sky_material = SubResource("ProceduralSkyMaterial_kur6e")
 [sub_resource type="Environment" id="Environment_3imxm"]
 background_mode = 2
 sky = SubResource("Sky_ynu4d")
-ambient_light_sky_contribution = 0.07
-ambient_light_energy = 0.56
 tonemap_mode = 4
 ssao_enabled = true
 sdfgi_bounce_feedback = 1.0
@@ -1349,5 +1347,5 @@ transform = Transform3D(1, -7.642742e-15, 0, -7.642742e-15, -1, 8.742278e-08, 0,
 [node name="SM_Stairs_4x6_AM_Stairs_M_Bricks_A_M_Bricks_B_Floor_M_Bricks_C_M_BrickStoneWall_Disp" parent="." unique_id=842729728 instance=ExtResource("23_4bbco")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 31.6, -6.1, 75.2)
 
-[node name="catacomb_test" parent="." unique_id=2008839470 instance=ExtResource("23_rqtg2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.6, -6.1, 75.2)
+[node name="Player" parent="." unique_id=926426044 instance=ExtResource("23_18r7x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.93479, 29.558674, 92.298386)

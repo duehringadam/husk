@@ -105,3 +105,10 @@ func _on_ray_cast_3d_interaction_controller_pickable_grabbed(value: bool) -> voi
 	elif !value:
 		enable()
 		
+
+func _on_hurtbox_component_blocked_attack() -> void:
+	if bone_attachment.get_child_count() >0:
+		if bone_attachment.get_child(0).block:
+			bone_attachment.get_child(0).block.pitch_scale = randf_range(0.9,1.1)
+			bone_attachment.get_child(0).block.play()
+	animation_tree["parameters/playback"].travel("block_hit")

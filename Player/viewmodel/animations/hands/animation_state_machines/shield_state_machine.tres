@@ -1,5 +1,8 @@
 [gd_resource type="AnimationNodeStateMachine" format=3 uid="uid://csvndnaewcyo4"]
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fi1dk"]
+animation = &"shield_block_hit"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_eqgq3"]
 animation = &"lower"
 
@@ -8,6 +11,9 @@ animation = &"shield_TO"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0t2wf"]
 animation = &"shield_block"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rc6hk"]
+animation = &"shield_block_hold"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sf3ds"]
 animation = &"shield_idle"
@@ -50,14 +56,35 @@ xfade_time = 0.25
 advance_mode = 2
 advance_condition = &"idle"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_clr2t"]
+xfade_time = 0.1
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_eavrw"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_axaxy"]
+xfade_time = 0.25
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dgsar"]
+xfade_time = 0.25
+advance_mode = 2
+advance_condition = &"idle"
+
 [resource]
+states/block_hit/node = SubResource("AnimationNodeAnimation_fi1dk")
+states/block_hit/position = Vector2(739.8544, 226)
 states/lower/node = SubResource("AnimationNodeAnimation_eqgq3")
 states/lower/position = Vector2(531.8544, 189)
 states/shield_TO/node = SubResource("AnimationNodeAnimation_av143")
 states/shield_TO/position = Vector2(340, 100)
 states/shield_block/node = SubResource("AnimationNodeAnimation_0t2wf")
 states/shield_block/position = Vector2(733, 100)
+states/shield_block_hold/node = SubResource("AnimationNodeAnimation_rc6hk")
+states/shield_block_hold/position = Vector2(882.8544, 172)
 states/shield_idle/node = SubResource("AnimationNodeAnimation_sf3ds")
 states/shield_idle/position = Vector2(512.068, 100)
-transitions = ["Start", "shield_TO", SubResource("AnimationNodeStateMachineTransition_sf3ds"), "shield_TO", "shield_idle", SubResource("AnimationNodeStateMachineTransition_2qmfu"), "shield_idle", "shield_block", SubResource("AnimationNodeStateMachineTransition_2dmgv"), "shield_block", "shield_idle", SubResource("AnimationNodeStateMachineTransition_eqgq3"), "shield_idle", "lower", SubResource("AnimationNodeStateMachineTransition_fi1dk"), "shield_block", "lower", SubResource("AnimationNodeStateMachineTransition_rc6hk"), "shield_TO", "lower", SubResource("AnimationNodeStateMachineTransition_xpsvu"), "lower", "shield_TO", SubResource("AnimationNodeStateMachineTransition_grioy")]
+transitions = ["Start", "shield_TO", SubResource("AnimationNodeStateMachineTransition_sf3ds"), "shield_TO", "shield_idle", SubResource("AnimationNodeStateMachineTransition_2qmfu"), "shield_idle", "shield_block", SubResource("AnimationNodeStateMachineTransition_2dmgv"), "shield_block", "shield_idle", SubResource("AnimationNodeStateMachineTransition_eqgq3"), "shield_idle", "lower", SubResource("AnimationNodeStateMachineTransition_fi1dk"), "shield_block", "lower", SubResource("AnimationNodeStateMachineTransition_rc6hk"), "shield_TO", "lower", SubResource("AnimationNodeStateMachineTransition_xpsvu"), "lower", "shield_TO", SubResource("AnimationNodeStateMachineTransition_grioy"), "shield_block", "shield_block_hold", SubResource("AnimationNodeStateMachineTransition_clr2t"), "shield_block_hold", "block_hit", SubResource("AnimationNodeStateMachineTransition_eavrw"), "block_hit", "shield_block_hold", SubResource("AnimationNodeStateMachineTransition_axaxy"), "shield_block_hold", "shield_idle", SubResource("AnimationNodeStateMachineTransition_dgsar")]
 graph_offset = Vector2(-119.1456, 0)

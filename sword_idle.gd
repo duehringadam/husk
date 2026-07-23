@@ -21,6 +21,8 @@ func _on_idle_state_exited() -> void:
 
 func _on_idle_state_processing(delta: float) -> void:
 	if weapon.bone_attachment.get_child_count() > 0:
+		if Global.player.stamina_component.current_stamina < weapon.weapon.stamina_cost:
+			return
 		if Input.is_action_just_pressed("attack_primary") && weapon.can_attack && Global.player.can_attack:
 			
 			if weapon.attack_dir.y < -.5:
@@ -42,4 +44,7 @@ func _on_idle_state_processing(delta: float) -> void:
 			if weapon.weapon:
 				if weapon.weapon.two_handed:
 					state_chart.send_event("block")
+				elif !weapon.weapon.two_handed and weapon.offhand.weapon == null:
+					state_chart.send_event("block")
+					
 		

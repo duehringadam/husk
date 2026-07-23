@@ -121,7 +121,7 @@ var look_target: Node3D
 var mouse_movement: Vector2
 var input_dir: Vector3
 var can_move:=true
-var can_attack:bool = true
+var can_attack:bool = true : set = _set_can_attack
 var previous_fall_velocity: float
 const WALK_SPEED_MINIMUM := 1.5
 const WALK_SPEED_MAXIMUM := 2.5
@@ -145,6 +145,7 @@ func _ready() -> void:
 	SignalBus.connect("kick_active", _animate_camera_swing)
 	SignalBus.connect("player_lookat_cutscene", cutscene)
 	combat_type = PlayerConfig.get_config("GameSettings", "DirectionalCombat", 0)
+	
 	GamePiecesEventBus.combat_type.connect(_on_combat_type_changed)
 	Global.camera_fov = base_fov
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -166,6 +167,16 @@ func _set_walk_speed(value: float):
 	
 func _set_sprint_speed(value:float):
 	sprint_speed = clampf(value, SPRINT_SPEED_MIN, SPRINT_SPEED_MAX)
+
+func _set_can_attack(value: bool):
+	
+	can_attack = value
+	if value:
+		mainhand.enable()
+		offhand.enable()
+	else:
+		mainhand.disable()
+		offhand.disable()
 
 func _update_player_stats(stats: Dictionary[ItemEquippableType.ITEM_REQUIRED_STAT, int]):
 	player_stats = stats
@@ -510,6 +521,7 @@ func weapon_sway(delta):
 
 func _on_hurtbox_component_damage_taken(actual: float, source: DamageComponent, hit_dir: Vector3) -> void:
 	camera_animation_player.play("swing_left",-1,1.5)
+	slowed = true
 	if source.can_knockback:
 		var knockback_source
 		knockback_source = source
@@ -519,6 +531,8 @@ func _on_hurtbox_component_damage_taken(actual: float, source: DamageComponent, 
 		var kb_amount = kb_dir * 50
 		kb_amount.y /= 5
 		self.velocity = -kb_amount
+	await get_tree().create_timer(1).timeout
+	slowed= false
 
 var active_segments: Array[RigidBody3D] = []
 var current_segment: RigidBody3D = null
@@ -727,3 +741,9 @@ func _on_rope_detection_body_exited(body: Node3D) -> void:
 				mainhand.enable()
 				offhand.enable()
 				is_climbing = false
+
+
+func _on_hurtbox_component_blocked_attack() -> void:
+	slowed = true
+	await get_tree().create_timer(1).timeout
+	slowed= false

@@ -21,6 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://d32grx7plyrmc" path="res://scenes/traps/rope_climbing.ogg" id="15_epd12"]
 [ext_resource type="Script" uid="uid://iiobepm77ak5" path="res://addons/player/fall_damage_component.gd" id="15_paiqy"]
 [ext_resource type="AudioStream" uid="uid://dk0ftcdtucymv" path="res://sfx/damage/fall_damage.ogg" id="16_paiqy"]
+[ext_resource type="AudioStream" uid="uid://d080lesgk7dj6" path="res://sfx/damage/stance_break.ogg" id="16_ujn18"]
 [ext_resource type="Script" uid="uid://bxoydk8unigg3" path="res://addons/player/player_hud.gd" id="21_ujn18"]
 [ext_resource type="Shader" uid="uid://dc66sjqqg3w1a" path="res://scenes/player/circular_bar.gdshader" id="22_2m5xu"]
 [ext_resource type="Script" uid="uid://83vqngoyog5j" path="res://scenes/player/hold_attack_bar.gd" id="23_5fkmn"]
@@ -762,8 +763,8 @@ _data = [Vector2(0.0033670068, 0.99), 0.0, 5346.501, 0, 0, Vector2(1, 1900), 0.0
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_ojoix"]
-_limits = [0.0, 200.0, 0.0, 1.0]
-_data = [Vector2(0, 0), 0.0, 648.0529, 0, 0, Vector2(1, 200), 0.0, 0.0, 0, 0]
+_limits = [0.0, 400.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 1217.6233, 0, 0, Vector2(1, 400), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [node name="Player" type="CharacterBody3D" unique_id=1383979839 node_paths=PackedStringArray("player_body", "mainhand", "offhand", "consumable") groups=["player"]]
@@ -927,7 +928,7 @@ unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_3br5i")
 autoplay = &"footsteps"
 
-[node name="fallDamageComponent" type="Area3D" parent="." unique_id=478023997 node_paths=PackedStringArray("hit_sound")]
+[node name="fallDamageComponent" type="Area3D" parent="." unique_id=478023997 node_paths=PackedStringArray("hit_sound", "source")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3359272, 0)
 collision_layer = 4
 collision_mask = 13
@@ -938,6 +939,7 @@ hit_sound = NodePath("falldamage")
 damage_types = Dictionary[int, float]({
 0: 1.0
 })
+source = NodePath("..")
 metadata/_custom_type_script = "uid://dlsydctoxqbwy"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="fallDamageComponent" unique_id=1980769383]
@@ -950,10 +952,11 @@ volume_db = 6.0
 max_db = 6.0
 bus = &"SFX"
 
-[node name="hurtbox_component" type="Area3D" parent="." unique_id=802643040 node_paths=PackedStringArray("player_camera", "health_component", "status_component", "source")]
+[node name="hurtbox_component" type="Area3D" parent="." unique_id=802643040 node_paths=PackedStringArray("player_camera", "stamina_component", "health_component", "status_component", "source")]
 collision_mask = 13
 script = ExtResource("5_eon52")
 player_camera = NodePath("../Head/Neck/Camera3D")
+stamina_component = NodePath("../StaminaComponent")
 damage_resistances = Dictionary[int, float]({
 0: 0.1,
 1: 0.1,
@@ -983,6 +986,10 @@ metadata/_custom_type_script = "uid://c2i6qdosp0h2"
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="hurtbox_component" unique_id=856968540]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9914551, 0)
 shape = SubResource("CapsuleShape3D_wydro")
+
+[node name="stance_break" type="AudioStreamPlayer3D" parent="hurtbox_component" unique_id=1329569800]
+stream = ExtResource("16_ujn18")
+bus = &"SFX"
 
 [node name="status_effect_component" type="GPUParticles3D" parent="." unique_id=1465415421 node_paths=PackedStringArray("hurtbox", "mesh_to_affect", "health_component")]
 script = ExtResource("6_eon52")
@@ -1171,7 +1178,6 @@ color = Color(0, 0, 0, 0.446)
 [node name="SelectionWheel" parent="hud/selectionWheelDarken" unique_id=1649874519 instance=ExtResource("40_avbty")]
 unique_name_in_owner = true
 layout_mode = 1
-selected_option = 2
 
 [node name="death" type="ColorRect" parent="." unique_id=575191084]
 z_index = 1
@@ -1220,10 +1226,13 @@ script = ExtResource("39_6havu")
 max_mana = 50.0
 metadata/_custom_type_script = "uid://cvtlc2d4aaybe"
 
-[node name="StaminaComponent" type="Node3D" parent="." unique_id=726180377]
+[node name="StaminaComponent" type="Node3D" parent="." unique_id=726180377 node_paths=PackedStringArray("player_hurtbox")]
 unique_name_in_owner = true
 script = ExtResource("38_v5tlk")
+player_hurtbox = NodePath("../hurtbox_component")
 player_stamina_scaling_curve = SubResource("Curve_ojoix")
+max_stamina = 50.0
+base_stamina = 50.0
 metadata/_custom_type_script = "uid://x336a4ypdit5"
 
 [node name="enemy_look_at" type="Node3D" parent="." unique_id=1527806411]
@@ -1246,6 +1255,9 @@ autostart = true
 [connection signal="unequip_item" from="Head/Neck/Camera3D/LeftHand" to="hud/inventory" method="_on_left_hand_unequip_item"]
 [connection signal="body_entered" from="Head/rope_detection" to="." method="_on_rope_detection_body_entered"]
 [connection signal="body_exited" from="Head/rope_detection" to="." method="_on_rope_detection_body_exited"]
+[connection signal="blocked_attack" from="hurtbox_component" to="." method="_on_hurtbox_component_blocked_attack"]
+[connection signal="blocked_attack" from="hurtbox_component" to="Head/Neck/Camera3D/RightHand" method="_on_hurtbox_component_blocked_attack"]
+[connection signal="blocked_attack" from="hurtbox_component" to="Head/Neck/Camera3D/LeftHand" method="_on_hurtbox_component_blocked_attack"]
 [connection signal="damage_taken" from="hurtbox_component" to="." method="_on_hurtbox_component_damage_taken"]
 [connection signal="damage_taken" from="hurtbox_component" to="hud/radial_blur" method="_on_hurtbox_component_damage_taken"]
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]

@@ -9,8 +9,8 @@ extends Node
 func _on_throw_state_entered() -> void:
 	spell.deactivate()
 	SignalBus.emit_signal("telekinesis_throw")
-	AudioManager.play_sound(load("res://sfx/fire-magic-6-378641.mp3"), spell_telekinesis.global_position, 0)
-	AudioManager.play_sound(load("res://sfx/teleketeletThrowTHREE.wav"), spell_telekinesis.global_position, 10)
+	AudioManager.play_sound(load("res://sfx/spells/fire/fire-magic-6-378641.mp3"), spell_telekinesis.global_position, 0)
+	AudioManager.play_sound(load("res://sfx/spells/telekinesis/teleketeletThrowTHREE.wav"), spell_telekinesis.global_position, 10)
 	hold_particles.emitting = false
 	var tween = get_tree().create_tween()
 	tween.tween_property(Global.player.camera,"fov",Global.camera_fov,.25)

@@ -61,15 +61,15 @@ alpha_curve = SubResource("CurveTexture_r7lbi")
 
 [sub_resource type="BoxMesh" id="BoxMesh_3t31v"]
 
-[node name="VFX_Blood_Mark_A3" type="Node3D" unique_id=528592489]
-
-[node name="Blood_Mark_A3" type="GPUParticles3D" parent="." unique_id=403984570]
+[node name="Blood_Mark_A3" type="GPUParticles3D" unique_id=403984570]
 transform = Transform3D(1, 0, 0, 0, 0.98762, 0.156865, 0, -0.156865, 0.98762, 0, 0.086, 0)
 layers = 4
 material_override = SubResource("ShaderMaterial_aobnp")
 cast_shadow = 0
-amount = 7
+amount = 16
 lifetime = 2.5
 explosiveness = 0.9
 process_material = SubResource("ParticleProcessMaterial_msio1")
 draw_pass_1 = SubResource("BoxMesh_3t31v")
+
+[node name="VFX_Blood_Mark_A3" type="Node3D" parent="." unique_id=528592489]
