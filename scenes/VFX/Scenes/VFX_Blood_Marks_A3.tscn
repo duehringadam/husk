@@ -68,9 +68,7 @@ alpha_curve = SubResource("CurveTexture_v4kf7")
 [sub_resource type="PlaneMesh" id="PlaneMesh_h542t"]
 size = Vector2(4, 4)
 
-[node name="VFX_Blood_Marks_A3" type="Node3D" unique_id=1951186015]
-
-[node name="Blood_Marks_A3" type="GPUParticles3D" parent="." unique_id=271459776]
+[node name="Blood_Marks_A3" type="GPUParticles3D" unique_id=271459776]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.384, 0)
 layers = 4
 material_override = SubResource("ShaderMaterial_le8wj")
@@ -79,3 +77,5 @@ amount = 10
 lifetime = 2.0
 process_material = SubResource("ParticleProcessMaterial_5frql")
 draw_pass_1 = SubResource("PlaneMesh_h542t")
+
+[node name="VFX_Blood_Marks_A3" type="Node3D" parent="." unique_id=1951186015]
