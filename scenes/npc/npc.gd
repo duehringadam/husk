@@ -14,6 +14,7 @@ extends CharacterBody3D
 @export var hurtboxes: Array[hurtbox_component]
 @export var health_component: HealthComponent
 @export var look_at_modifier: LookAtModifier3D
+@export var stance_component: StanceComponent
 
 @export_category("Look at nodes")
 @export var head_look_at: Node3D

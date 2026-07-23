@@ -1,4 +1,4 @@
-extends  npc
+extends npc
 
 @onready var patrol: Node = $StateChart/CompoundState/patrol/patroling
 @onready var body: Node3D = $SK_Aranocodus
@@ -48,3 +48,31 @@ func _on_vision_area_max_aggro(aggro_amount: float, aggro_position: Node3D) -> v
 
 func _on_damage_component_damage_dealt(types: Dictionary, actual: float, stance_damage: float, target: hurtbox_component) -> void:
 	pass
+	
+func _on_health_component_died() -> void:
+	fall()
+	state_chart.send_event("dead")
+	
+func fall()-> void:
+	physical_bone_simulator.physical_bones_start_simulation()
+	collision_layer = 0
+
+
+func _on_stance_component_stance_changed(amount: float, new_value: float, source: DamageComponent) -> void:
+	if stance_component:
+		if abs(amount) >= stance_component.max_stance/2:
+			state_chart.set_expression_property("knockback_source", source)
+			state_chart.send_event("knocked_back")
+		if abs(amount) >= stance_component.max_stance:
+			state_chart.set_expression_property("knockback_source", source)
+			state_chart.send_event("knocked_down")
+
+
+func _on_hurtbox_component_damage_taken(actual: float, source: DamageComponent, hit_dir: Vector3) -> void:
+	animation_tree.set("parameters/conditions/hit", true)
+	await get_tree().create_timer(.25).timeout
+	animation_tree.set("parameters/conditions/hit", false)
+
+
+func _on_approach_detector_rapid_approach_detected() -> void:
+	state_chart.send_event("chase")

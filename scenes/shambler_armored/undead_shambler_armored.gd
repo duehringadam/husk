@@ -1,7 +1,6 @@
 extends npc
 
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
-@onready var stance_component: StanceComponent = $StanceComponent
 @export var is_infested: bool = false
 
 func _on_health_component_died() -> void:

@@ -4,7 +4,6 @@ extends npc
 
 @onready var ghoul_parent: Node3D = %Skeleton3D
 @onready var aggro_look_at: LookAtModifier3D = $Ghoul/Armature/Skeleton3D/aggroLookAt
-@onready var stance_component: StanceComponent = $StanceComponent
 @onready var ragdoll_collision1: CollisionShape3D = $Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/PickableRagdollHip/CollisionShape3D
 @onready var ragdoll_collision2: CollisionShape3D = $Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/PickableRagdollChest/CollisionShape3D
 @onready var bounding_box_ragdoll: bounding_box_ragdoll_component = $Ghoul/Armature/Skeleton3D/PhysicalBoneSimulator3D/PickableRagdollHip/bounding_box_ragdoll_component

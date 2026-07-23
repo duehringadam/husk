@@ -74,3 +74,7 @@ func _on_vision_area_max_aggro(aggro_amount: float, aggro_position: Node3D) -> v
 	if aggro_amount >= 1.0:
 		source_npc.target = aggro_position
 		state_chart.send_event("chase")
+
+
+func _on_approach_detector_rapid_approach_detected() -> void:
+	state_chart.send_event("chase")

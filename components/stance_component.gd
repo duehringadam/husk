@@ -2,7 +2,7 @@ class_name StanceComponent
 extends Node
 
 signal max_stance_changed(amount: float, new_value: float)
-signal stance_changed(amount: float, new_value: float)
+signal stance_changed(amount: float, new_value: float,source: DamageComponent)
 signal stance_broken
 
 @export var max_stance: float = 1.0

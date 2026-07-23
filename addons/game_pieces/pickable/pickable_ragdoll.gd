@@ -34,12 +34,13 @@ func _physics_process(_delta: float) -> void:
 		var distance_to_player: float = ray_cast.global_position.distance_to(global_position)
 		if distance_to_player > release_distance * _position_offset:
 			_released(_interaction_controller)
-	if linear_velocity.length() > 15:
-		damage_component.monitorable = true
-		damage_component.monitoring = true
-	else:
-		damage_component.monitorable = false
-		damage_component.monitoring = false
+	if damage_component:
+		if linear_velocity.length() > 15:
+			damage_component.monitorable = true
+			damage_component.monitoring = true
+		else:
+			damage_component.monitorable = false
+			damage_component.monitoring = false
 
 
 func _integrate_forces(_state: PhysicsDirectBodyState3D) -> void:
