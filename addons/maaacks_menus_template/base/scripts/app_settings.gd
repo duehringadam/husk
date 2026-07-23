@@ -181,23 +181,23 @@ static func set_video_from_config(window : Window) -> void:
 	
 # Gameplay
 static func set_directional_combat(index: int)->void:
-	PlayerConfig.set_config(INPUT_SECTION, DIRECTIONAL_COMBAT, index)
+	PlayerConfig.set_config(GAME_SECTION, DIRECTIONAL_COMBAT, index)
 	GamePiecesEventBus.emit_signal("combat_type", index)
 
 static func set_directional_combat_from_config()->void:
-	set_directional_combat(PlayerConfig.get_config(INPUT_SECTION, DIRECTIONAL_COMBAT))
+	set_directional_combat(PlayerConfig.get_config(GAME_SECTION, DIRECTIONAL_COMBAT,0))
 	
 static func get_directional_combat_from_config()->int:
-	return PlayerConfig.get_config(INPUT_SECTION, DIRECTIONAL_COMBAT)
+	return PlayerConfig.get_config(GAME_SECTION, DIRECTIONAL_COMBAT)
 	
 static func set_head_bob(value: bool)->void:
-	PlayerConfig.set_config(INPUT_SECTION, HEAD_BOB, value)
+	PlayerConfig.set_config(GAME_SECTION, HEAD_BOB, value)
 	
 static func set_head_bob_from_config()->void:
-	set_head_bob(PlayerConfig.get_config(INPUT_SECTION, HEAD_BOB))
+	set_head_bob(PlayerConfig.get_config(GAME_SECTION, HEAD_BOB, true))
 
 static func get_head_bob_from_config()->bool:
-	return PlayerConfig.get_config(INPUT_SECTION, HEAD_BOB)
+	return PlayerConfig.get_config(GAME_SECTION, HEAD_BOB)
 	
 # All
 static func set_from_config() -> void:

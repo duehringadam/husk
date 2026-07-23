@@ -28,8 +28,12 @@ static func set_config(section: String, key: String, value) -> void:
 	_save_config_file()
 
 static func get_config(section: String, key: String, default = null) -> Variant:
-	load_config_file()
-	return config_file.get_value(section, key, default)
+	if has_section_key(section, key):
+		load_config_file()
+		return config_file.get_value(section, key, default)
+	else:
+		set_config(section,key,default)
+		return config_file.get_value(section, key, default)
 
 static func has_section(section: String) -> bool:
 	load_config_file()
