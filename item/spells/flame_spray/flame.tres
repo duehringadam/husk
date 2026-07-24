@@ -15,7 +15,7 @@ metadata/_custom_type_script = "uid://bbtfrupllo3w6"
 
 [resource]
 script = ExtResource("4_yj7e3")
-item_name = "Flame"
+item_name = "Flame Spray"
 item_description = "Spew flames on foes to light them ablaze."
 item_icon = ExtResource("2_2o21i")
 item_type = 1
@@ -23,11 +23,12 @@ item_stats = SubResource("Resource_76boi")
 item_required_stats = Dictionary[int, int]({
 3: 15
 })
-mana_cost = 10
+mana_cost = 5
 constant_mana_drain = true
 constant_mana_drain_cost = 10
 item_scene = ExtResource("2_kbpfs")
 animation_state_machine = ExtResource("1_tx6k7")
+can_be_dropped = false
 position = Vector3(0.104, 0.081, -0.004)
 rotation = Vector3(-12.9, -66.5, 3.1)
 metadata/_custom_type_script = "uid://dcfd18dx8x1bm"

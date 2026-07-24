@@ -44,6 +44,8 @@ func _disable_options_on_item_type():
 				self["popup/item_2/disabled"] = true
 			ItemEquippableType.ITEM_EQUIPPABLE_TYPES.KEY:
 				self["popup/item_3/disabled"] = true
+		if !item_inventory.can_be_dropped:
+			self["popup/item_3/disabled"] = true
 
 func _item_menu_selected(value: int):
 	match value:
@@ -86,6 +88,7 @@ func _item_menu_selected(value: int):
 				if item_inventory.item_type == ItemEquippableType.ITEM_EQUIPPABLE_TYPES.OFFHAND:
 					Global.player.offhand.unequip()
 					Global.player.offhand.disable()
+			
 			if item_inventory.is_stackable:
 				item_inventory._update_stack_size(-1)
 				item_drop.emit(item_inventory)

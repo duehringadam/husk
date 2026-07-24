@@ -31,6 +31,7 @@ signal stack_size_changed(amount: int)
 @export_category("Misc")
 @export var two_handed: bool
 @export var animation_state_machine: AnimationNodeStateMachine
+@export var can_be_dropped: bool = true
 
 @export_category("Weapon_Position")
 @export var position: Vector3
