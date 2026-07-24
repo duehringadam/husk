@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://cqicbmbnfbalc" path="res://sfx/UI/gui_click_1.ogg" id="4_ushjy"]
 [ext_resource type="Script" uid="uid://dhak65rm0c3gy" path="res://Globals/item_required_stats_value.gd" id="5_lt8sb"]
 [ext_resource type="Shader" uid="uid://211yn521kpxn" path="res://shaders/texture_edge_fade.gdshader" id="5_ushjy"]
+[ext_resource type="Theme" uid="uid://ctn68w4yfl5oa" path="res://scenes/ui/ui themee/UI_Theme.tres" id="6_eekrg"]
 [ext_resource type="Texture2D" uid="uid://by0pnn4vskmeg" path="res://scenes/ui/AdobeStock_73802034.jpeg" id="6_heia8"]
 [ext_resource type="AudioStream" uid="uid://dcuoy8njoatd8" path="res://sfx/UI/inventory_close.ogg" id="8_06a5j"]
 [ext_resource type="Texture2D" uid="uid://dk2tidxm1p74q" path="res://assets/kenney_fantasy-ui-borders/PNG/Default/Divider Fade/divider-fade-002.png" id="8_amt8r"]
@@ -119,6 +120,7 @@ thickness = 2
 
 [node name="inventory" type="PanelContainer" unique_id=227349631 node_paths=PackedStringArray("equipped_items")]
 custom_minimum_size = Vector2(550, 0)
+custom_maximum_size = Vector2(1920, 1080)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -163,6 +165,7 @@ theme_override_constants/margin_bottom = 80
 [node name="items" type="PanelContainer" parent="MarginContainer" unique_id=1742691814]
 material = SubResource("ShaderMaterial_heia8")
 layout_mode = 2
+theme = ExtResource("6_eekrg")
 theme_override_styles/panel = SubResource("StyleBoxTexture_eekrg")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/items" unique_id=1951647075]

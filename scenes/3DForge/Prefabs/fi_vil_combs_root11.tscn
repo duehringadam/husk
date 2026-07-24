@@ -1,9 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://tujc"]
+[gd_scene format=3 uid="uid://tujc"]
 
-[ext_resource type="PackedScene" uid="uid://oqmw" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Meshes/Catacombs/catacombs_props/roots/fi_vil_combs_root11.glb" id="1_oqmw"]
-[ext_resource type="Material" uid="uid://m713" path="res://3DForge/Fantasy_Interiors/Villages_&_Towns/Materials/fi_village_catacombs.tres" id="2_m713"]
+[ext_resource type="PackedScene" uid="uid://oqmw" path="res://scenes/3DForge/3DForge/Fantasy_Interiors/Villages_&_Towns/Meshes/Catacombs/catacombs_props/roots/fi_vil_combs_root11.glb" id="1_oqmw"]
+[ext_resource type="Material" uid="uid://m713" path="res://scenes/3DForge/3DForge/Fantasy_Interiors/Villages_&_Towns/Materials/fi_village_catacombs.tres" id="2_m713"]
 
-[node name="fi_vil_combs_root11" instance=ExtResource("1_oqmw")]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_68y6w"]
+points = PackedVector3Array(0.00013899803, 0.1895784, 0.22049081, -2.4914742e-05, -6.7204237e-06, 0.11095846, -2.4914742e-05, -6.7204237e-06, -0.10790348, -2.4914742e-05, 0.1895784, -0.21743584, -2.4914742e-05, 0.37912643, -0.10790348, -2.4914742e-05, 0.37912643, 0.11095846, -1.6744407, -6.7204237e-06, -0.14421141, -0.89124364, -6.7204237e-06, -1.8516995, -0.74552107, 0.23630661, -0.33852994, -0.5648842, 0.28355443, -0.11277163, -0.31572974, 0.33080226, 0.029011965, -0.86731166, 0.14177385, -0.9158062, -0.83846223, 0.18902168, -0.61378074, -1.4746255, 0.0472411, -0.38457417, -1.4113533, -6.7204237e-06, -1.1304085, -1.2379289, 0.027941125, -1.1943023)
 
-[node name="Mesh" parent="." index="0"]
+[node name="fi_vil_combs_root11" unique_id=1869754184 instance=ExtResource("1_oqmw")]
+
+[node name="Mesh" parent="." index="0" unique_id=1571403481]
 surface_material_override/0 = ExtResource("2_m713")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Mesh" index="0" unique_id=1246225367]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/StaticBody3D" index="0" unique_id=313880615]
+shape = SubResource("ConvexPolygonShape3D_68y6w")

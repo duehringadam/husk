@@ -727,7 +727,7 @@ update_rotation = false
 update_scale = false
 
 [node name="TargetIKLeft" type="Node3D" parent="." unique_id=259210336]
-transform = Transform3D(0.11834004, 0.21582994, -0.96923244, 0.984416, 0.102366, 0.14298876, 0.13007785, -0.97104955, -0.20035248, 0.24299365, 0.23477522, 0.22506684)
+transform = Transform3D(0.11834004, 0.21582992, -0.9692323, 0.984416, 0.10236599, 0.14298874, 0.13007785, -0.9710495, -0.20035246, 0.24299365, 0.23477522, 0.22506684)
 top_level = true
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="TargetIKLeft" unique_id=229238345]
@@ -737,7 +737,7 @@ update_rotation = false
 update_scale = false
 
 [node name="RayCast3D" type="RayCast3D" parent="TargetIKLeft" unique_id=932150377]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.9999999, 0, 0, 0, 0.99999917, 0.24299365, 0.23477522, 0.22506684)
+transform = Transform3D(0.99999994, 0, 0, 0, 0.9999999, 0, 0, 0, 0.99999917, 0, 0, 0)
 top_level = true
 target_position = Vector3(0, -2, 0)
 collision_mask = 2
@@ -767,7 +767,7 @@ monitorable = false
 script = ExtResource("10_f701h")
 hit_sound = NodePath("damage_sound")
 damage_types = Dictionary[int, float]({
-5: 20.0
+5: 35.0
 })
 stance_damage_value = 0.5
 metadata/_custom_type_script = "uid://dlsydctoxqbwy"
@@ -787,7 +787,7 @@ monitoring = false
 monitorable = false
 script = ExtResource("10_f701h")
 damage_types = Dictionary[int, float]({
-5: 1.0
+5: 25.0
 })
 stance_damage_value = 0.5
 metadata/_custom_type_script = "uid://dlsydctoxqbwy"
@@ -807,6 +807,7 @@ explosiveness = 0.8
 randomness = 1.0
 fixed_fps = 60
 transform_align = 1
+transform_align_channel_filter = 1
 process_material = SubResource("ParticleProcessMaterial_pelbr")
 draw_pass_1 = ExtResource("11_d7ah0")
 
