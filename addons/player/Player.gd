@@ -212,6 +212,8 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		mouse_movement = event.relative
 		look_around(get_process_delta_time())
+	if event is InputEventJoypadMotion:
+		joy_look_around(get_process_delta_time())
 		
 func handle_effects(delta) -> void:
 	if is_on_floor():
@@ -365,7 +367,17 @@ func look_around(delta: float) -> void:
 	head.rotate_y(look_control.value_axis_2d().x * (mouse_sensitivity * sens_mult * delta)) 
 	neck.rotate_x(look_control.value_axis_2d().y * (mouse_sensitivity * sens_mult * delta))
 	neck.rotation.x = clamp(neck.rotation.x, deg_to_rad(-85), deg_to_rad(85))
-	
+
+func joy_look_around(delta: float) -> void:
+	var joy_look = Input.get_vector("look_left", "look_right", "look_up", "look_down")
+	var sens_mult = PlayerConfig.get_config("InputSettings", "MouseSensitivity", 1.0)
+	if joy_look.length() > 0.01:
+		var mag = joy_look.length()
+		var scaled_mag = pow(mag, 2.0)
+		var final_joy = joy_look.normalized() * scaled_mag
+		head.rotate_y(mouse_sensitivity / 100.0 * sens_mult * -final_joy.x * delta) 
+		neck.rotate_x(mouse_sensitivity / 100.0 * sens_mult * -final_joy.y * delta)
+		neck.rotation.x = clamp(neck.rotation.x, deg_to_rad(-85), deg_to_rad(85))
 
 
 func handle_movement(delta: float) -> void:
