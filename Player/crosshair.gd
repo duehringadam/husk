@@ -9,16 +9,17 @@ extends CenterContainer
 
 var combat_type: int
 var attack_dir
+var lock_arrows: bool = false
 
 func _process(delta: float) -> void:
 	match combat_type:
 		0:
 			attack_dir = Global.player.input_dir
 			attack_dir.y = Global.player.input_dir.z
-			
 		1:
 			attack_dir = Input.get_last_mouse_velocity().normalized()
-	adjust_reticle_lines()
+	if !lock_arrows:
+		adjust_reticle_lines()
 	
 func _ready() -> void:
 	queue_redraw()
@@ -99,3 +100,6 @@ func adjust_reticle_lines():
 		RETICLE_LINES[3].scale = lerp(Vector2.ONE,Vector2.ONE*2, RETICLE_SPEED)
 		return
 	
+
+func _on_hold_attack_bar_charging(value: bool) -> void:
+	lock_arrows = value

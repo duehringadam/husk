@@ -177,3 +177,19 @@ func loot_object():
 	tween.tween_property(throwable_mesh, "transparency", 1, .25).set_trans(Tween.TRANS_CIRC)
 	await tween.finished
 	self.queue_free()
+
+func equip_item():
+	match item_to_loot.item_type:
+			ItemEquippableType.ITEM_EQUIPPABLE_TYPES.WEAPON:
+				if Global.player.mainhand.bone_attachment.get_child_count() <= 0:
+					Global.player.mainhand.weapon = item_to_loot
+			ItemEquippableType.ITEM_EQUIPPABLE_TYPES.OFFHAND:
+				if Global.player.mainhand.bone_attachment.get_child_count() > 0:
+					if !Global.player.mainhand.weapon.two_handed:
+						Global.player.offhand.weapon = item_to_loot
+				else:
+					Global.player.offhand.weapon = item_to_loot
+			ItemEquippableType.ITEM_EQUIPPABLE_TYPES.ARMOR:
+				pass
+			ItemEquippableType.ITEM_EQUIPPABLE_TYPES.JEWELRY:
+				pass

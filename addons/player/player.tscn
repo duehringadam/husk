@@ -1231,8 +1231,6 @@ unique_name_in_owner = true
 script = ExtResource("38_v5tlk")
 player_hurtbox = NodePath("../hurtbox_component")
 player_stamina_scaling_curve = SubResource("Curve_ojoix")
-max_stamina = 50.0
-base_stamina = 50.0
 metadata/_custom_type_script = "uid://x336a4ypdit5"
 
 [node name="enemy_look_at" type="Node3D" parent="." unique_id=1527806411]
@@ -1260,6 +1258,7 @@ autostart = true
 [connection signal="blocked_attack" from="hurtbox_component" to="Head/Neck/Camera3D/LeftHand" method="_on_hurtbox_component_blocked_attack"]
 [connection signal="damage_taken" from="hurtbox_component" to="." method="_on_hurtbox_component_damage_taken"]
 [connection signal="damage_taken" from="hurtbox_component" to="hud/radial_blur" method="_on_hurtbox_component_damage_taken"]
+[connection signal="charging" from="hud/hold_attack_bar" to="hud/crosshair" method="_on_hold_attack_bar_charging"]
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="health_changed" from="HealthComponent" to="hud/playerHP/VBoxContainer/playerHealth" method="_on_health_changed"]
 [connection signal="max_health_changed" from="HealthComponent" to="hud/playerHP/VBoxContainer/playerHealth" method="_on_max_health_changed"]

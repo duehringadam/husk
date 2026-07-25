@@ -28,6 +28,7 @@ func _on_attack_state_entered() -> void:
 func _on_attack_state_exited() -> void:
 	animation_tree.set("parameters/conditions/combo_attack", false)
 	animation_tree.set("parameters/conditions/attack", false)
+	source_npc.activate_mainhand_weapon(false)
 
 func _on_attack_state_physics_processing(delta: float) -> void:
 	if attack_tracking:

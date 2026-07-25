@@ -169,7 +169,6 @@ func _set_sprint_speed(value:float):
 	sprint_speed = clampf(value, SPRINT_SPEED_MIN, SPRINT_SPEED_MAX)
 
 func _set_can_attack(value: bool):
-	
 	can_attack = value
 	if value:
 		mainhand.enable()
@@ -259,7 +258,7 @@ func handle_jump() -> void:
 		camera_animation_player.play("jump")
 	if vault_ray_cast.is_colliding() && !is_on_floor() && !is_vaulting && !ceiling.is_colliding():
 		#camera_animation_player.play("vault")
-		if vault_ray_cast.get_collider() is Terrain3D:
+		if vault_ray_cast.get_collider() is Terrain3D or vault_ray_cast.get_collider().is_in_group("disable_collision_while_grabbed"):
 			return
 		_handle_vault(vault_ray_cast.get_collision_point())
 
@@ -712,8 +711,8 @@ func _on_health_component_died() -> void:
 	%deathAnimation.play("death")
 
 func respawn():
-	if SaveManager.get_checkpoint_from_config("Saved Checkpoint") != null:
-		global_position = SaveManager.get_checkpoint_from_config("Saved Checkpoint")
+	#if SaveManager.get_checkpoint_from_config("Saved Checkpoint") != null:
+		#global_position = SaveManager.get_checkpoint_from_config("Saved Checkpoint")
 	%deathAnimation.play("RESET")
 	SignalBus.emit_signal("player_full_restore")
 	mainhand.enable()

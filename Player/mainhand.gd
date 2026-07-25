@@ -239,6 +239,8 @@ func disable():
 	#state_chart.send_event("lower")
 
 func enable():
+	if bone_attachment.get_child_count() <= 0:
+		return
 	@warning_ignore("shadowed_variable")
 	var tween = get_tree().create_tween()
 	tween.tween_property(arms_base, "rotation_degrees:x", 0, .25)

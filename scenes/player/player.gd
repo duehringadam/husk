@@ -18,11 +18,11 @@ func _ready() -> void:
 	GamePiecesEventBus.attack_lock_requested.connect(_on_attack_lock_requested)
 	SignalBus.emit_signal("player_stats_changed", player_stats)
 	
-	if SaveManager.get_player_saved_position("Saved Position") != null:
-		global_position = SaveConfig.get_config("Location", "Saved Position")
-	
-	if SaveConfig.get_config("Location", "Saved Position") != null && spawn_at_checkpoint:
-		global_position = SaveConfig.get_config("Location", "Saved Position")
+	#if SaveManager.get_player_saved_position("Saved Position") != null:
+		#global_position = SaveConfig.get_config("Location", "Saved Position")
+	#
+	#if SaveConfig.get_config("Location", "Saved Position") != null && spawn_at_checkpoint:
+		#global_position = SaveConfig.get_config("Location", "Saved Position")
 		
 	if SaveConfig.get_config("Inventory", "Saved Inventory") != null:
 		var inventory_list = SaveConfig.get_config("Inventory", "Saved Inventory")

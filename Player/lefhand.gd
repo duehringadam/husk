@@ -66,6 +66,8 @@ func disable():
 	tween.tween_property(arms_base, "rotation_degrees:x", -90, .25)
 	
 func enable():
+	if bone_attachment.get_child_count() <= 0:
+		return
 	can_activate = true
 	var tween = get_tree().create_tween()
 	tween.tween_property(arms_base, "rotation_degrees:x", 0, .25)

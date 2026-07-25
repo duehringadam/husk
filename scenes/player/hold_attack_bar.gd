@@ -1,5 +1,7 @@
 extends ColorRect
 
+signal charging(value: bool)
+
 @onready var complete: AudioStreamPlayer = $AudioStreamPlayer
 @onready var camera: Camera3D = %Camera3D
 
@@ -16,7 +18,8 @@ func update_charge(value: float):
 
 func lerp_color(value: bool):
 	is_charging = value
-
+	charging.emit(value)
+	
 func _process(delta: float) -> void:
 	if is_charging:
 		self.material["shader_parameter/progress_color"] = lerp(self.material["shader_parameter/progress_color"], Color.WHITE, 2*delta)

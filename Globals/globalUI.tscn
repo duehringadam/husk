@@ -42,7 +42,7 @@ func _input(event):
 	# it can be a key press, a mouse click, touch event, etc
 	# All you have to do is call dialog_acknowledge() 
 	if (
-		(event is InputEventKey) and (event.pressed) and (not event.echo) and (event.keycode in [KEY_SPACE, KEY_ENTER, KEY_KP_ENTER, KEY_E])
+		(event is InputEventKey) and (event.pressed) and (not event.echo) and (event.keycode in [KEY_SPACE, KEY_ENTER, KEY_KP_ENTER])
 	) or (
 		(event is InputEventMouseButton) and (event.pressed) and (event.button_index == MOUSE_BUTTON_LEFT)
 	):

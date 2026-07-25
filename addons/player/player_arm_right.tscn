@@ -21211,6 +21211,7 @@ metadata/_custom_type_script = "uid://bi3exllfsv6q"
 [connection signal="state_entered" from="ghoul_arms2(1)/StateChart/CompoundState/idle" to="ghoul_arms2(1)/StateChart/CompoundState/idle/idle" method="_on_idle_state_entered"]
 [connection signal="state_exited" from="ghoul_arms2(1)/StateChart/CompoundState/idle" to="ghoul_arms2(1)/StateChart/CompoundState/idle/idle" method="_on_idle_state_exited"]
 [connection signal="state_processing" from="ghoul_arms2(1)/StateChart/CompoundState/idle" to="ghoul_arms2(1)/StateChart/CompoundState/idle/idle" method="_on_idle_state_processing"]
+[connection signal="state_unhandled_input" from="ghoul_arms2(1)/StateChart/CompoundState/idle" to="ghoul_arms2(1)/StateChart/CompoundState/idle/idle" method="_on_idle_state_unhandled_input"]
 [connection signal="state_entered" from="ghoul_arms2(1)/StateChart/CompoundState/lower_arm" to="ghoul_arms2(1)/StateChart/CompoundState/lower_arm/lower" method="_on_lower_arm_state_entered"]
 [connection signal="state_exited" from="ghoul_arms2(1)/StateChart/CompoundState/lower_arm" to="ghoul_arms2(1)/StateChart/CompoundState/lower_arm/lower" method="_on_lower_arm_state_exited"]
 [connection signal="state_physics_processing" from="ghoul_arms2(1)/StateChart/CompoundState/lower_arm" to="ghoul_arms2(1)/StateChart/CompoundState/lower_arm/lower" method="_on_lower_arm_state_physics_processing"]
