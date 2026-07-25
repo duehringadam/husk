@@ -113,8 +113,8 @@ section = "InputSettings"
 text = "Mouse Sensitivity :"
 
 [node name="HSlider" parent="VBoxContainer/MarginContainer/VBoxContainer/MouseSensitivityControl" index="1" unique_id=864094681]
-min_value = 0.25
-max_value = 2.0
+min_value = 1.0
+max_value = 10.0
 value = 2.0
 tick_count = 8
 
@@ -129,8 +129,8 @@ section = "InputSettings"
 text = "Joypad Sensitivity :"
 
 [node name="HSlider" parent="VBoxContainer/MarginContainer/VBoxContainer/JoypadSensitivityControl" index="1" unique_id=864094681]
-min_value = 0.25
-max_value = 2.0
+min_value = 1.0
+max_value = 10.0
 tick_count = 8
 
 [editable path="VBoxContainer/MarginContainer/VBoxContainer/directionalCombat"]

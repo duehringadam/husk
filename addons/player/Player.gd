@@ -16,7 +16,7 @@ const LEAN_SPEED: float = 0.1
 
 @export_category("User Settings")
 ## Look/Mouse sensitivity
-@export var mouse_sensitivity: float = 4.0
+@export var mouse_sensitivity_multiplier: float = 200.0
 
 ## How much head bobs
 @export var head_bob_strength: float = 0.025
@@ -366,8 +366,8 @@ func set_movement_speed(delta: float) -> void:
 func look_around(delta: float) -> void:
 	if lock_camera: return
 	var sens_mult = PlayerConfig.get_config("InputSettings", "MouseSensitivity", 1.0)
-	head.rotate_y(look_control.value_axis_2d().x * (mouse_sensitivity * sens_mult * delta)) 
-	neck.rotate_x(look_control.value_axis_2d().y * (mouse_sensitivity * sens_mult * delta))
+	head.rotate_y(look_control.value_axis_2d().x * (mouse_sensitivity_multiplier * sens_mult * delta)) 
+	neck.rotate_x(look_control.value_axis_2d().y * (mouse_sensitivity_multiplier * sens_mult * delta))
 	neck.rotation.x = clamp(neck.rotation.x, deg_to_rad(-85), deg_to_rad(85))
 
 func joy_look_around(delta: float) -> void:
