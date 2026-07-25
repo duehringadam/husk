@@ -1,3 +1,4 @@
+class_name limb_collision_shape
 extends CollisionShape3D
 
 @export var bone_health_component: BoneHealthComponent

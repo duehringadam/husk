@@ -39,5 +39,5 @@ func _on_idle_state_physics_processing(delta: float) -> void:
 					if base_object.is_in_group("throwable"):
 						spell.grabbed_object = base_object
 						state_chart.send_event("pull")
-						AudioManager.play_sound(load("res://sfx/fire-magic-5-378639.mp3"), spell.global_position, -20)
+						AudioManager.play_sound(load("res://sfx/spells/fire/fire-magic-5-378639.mp3"), spell.global_position, -20)
 		

@@ -15,12 +15,12 @@ func _ready() -> void:
 	GamePiecesEventBus.sprint_disable_requested.connect(_on_sprint_disable_requested)
 	GamePiecesEventBus.slow_down_player.connect(_on_slow_player)
 	GamePiecesEventBus.move_disable.connect(_on_move_disabled)
-	
+	GamePiecesEventBus.attack_lock_requested.connect(_on_attack_lock_requested)
 	SignalBus.emit_signal("player_stats_changed", player_stats)
 	
 	#if SaveManager.get_player_saved_position("Saved Position") != null:
 		#global_position = SaveConfig.get_config("Location", "Saved Position")
-	
+	#
 	#if SaveConfig.get_config("Location", "Saved Position") != null && spawn_at_checkpoint:
 		#global_position = SaveConfig.get_config("Location", "Saved Position")
 		
@@ -49,3 +49,6 @@ func _on_slow_player(value: float):
 
 func _on_combat_type_changed(value: int):
 	combat_type = value
+
+func _on_attack_lock_requested(enable: bool)->void:
+	can_attack = !enable

@@ -19,7 +19,7 @@ var amount: float
 @export var status_types: Dictionary[Global.STATUS_TYPE, float]
 @export_range(0.0,1.0) var stance_damage_value: float
 
-@export_range(0.0,1.0) var damage_interval: float
+@export_range(0.1,1.0) var damage_interval: float
 @export var source: Node3D
 
 var hits: Array
@@ -51,7 +51,7 @@ func _physics_process(_delta: float) -> void:
 					if other.owner != self.owner:
 						hits.append(other.owner)
 						var damage = get_damage(other)
-						get_tree().create_timer(1).timeout.connect(func(): hits.clear())
+						get_tree().create_timer(damage_interval).timeout.connect(func(): hits.clear())
 						for i in damage:
 							if i > 0:
 								var actual = other.take_damage(damage_types, status_types, stance_damage_value, self)

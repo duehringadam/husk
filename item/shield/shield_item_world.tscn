@@ -1,11 +1,12 @@
 [gd_scene format=3 uid="uid://d4mr6pgmbentk"]
 
 [ext_resource type="Script" uid="uid://dixki0innbjf2" path="res://addons/game_pieces/pickable/item_world_pickable.gd" id="1_l6snh"]
+[ext_resource type="Resource" uid="uid://crf08k5nswvsi" path="res://item/shield/shield.tres" id="2_bjq00"]
 [ext_resource type="Script" uid="uid://ck3cei0hvspym" path="res://addons/interaction_system/interaction_container.gd" id="2_f4f37"]
 [ext_resource type="Script" uid="uid://5tinbhq6p45k" path="res://addons/interaction_system/interaction.gd" id="3_2hojr"]
 [ext_resource type="Script" uid="uid://bxe74cq2uqemi" path="res://addons/game_controls/vanilla/input_map_game_control.gd" id="4_ko48h"]
 [ext_resource type="Script" uid="uid://doc0okecalxnp" path="res://addons/interaction_system/interaction_context.gd" id="5_jr7rp"]
-[ext_resource type="AudioStream" uid="uid://dcr4in8lcdk51" path="res://sfx/dark_souls_item.wav" id="6_h876u"]
+[ext_resource type="AudioStream" uid="uid://dcr4in8lcdk51" path="res://sfx/UI/dark_souls_item.wav" id="6_h876u"]
 [ext_resource type="Script" uid="uid://cp0p4yckxtvmw" path="res://addons/game_pieces/collision_sound/collision_sound_player.gd" id="6_vns1g"]
 [ext_resource type="ArrayMesh" uid="uid://cdseku0jalk88" path="res://scenes/Hivemind/MedievalWeapons/Art/Models/SM_Kite_Wood_Shield/SM_Kite_wood_shield_mesh.tres" id="8_kj0rm"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="8_thjlx"]
@@ -22,6 +23,7 @@ contact_monitor = true
 max_contacts_reported = 1
 angular_damp = 5.0
 script = ExtResource("1_l6snh")
+item_to_loot = ExtResource("2_bjq00")
 change_distance_interaction = NodePath("InteractionContainer/WhileGrabbed/Change Distance")
 throwable_mesh = NodePath("Shield")
 throwable = NodePath(".")

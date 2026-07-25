@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://1gqpr75ri7ke" path="res://status_effects/kick_damage_component.gd" id="2_3s51s"]
 [ext_resource type="Texture2D" uid="uid://d1ifjeke4twp1" path="res://Player/viewmodel/Iron_Armor_Set/player_legs.jpg" id="2_cyivd"]
 [ext_resource type="Texture2D" uid="uid://b0lcij7d02pla" path="res://Player/viewmodel/Iron_Armor_Set/ironarmor_bump_512x512.jpg" id="4_1dbwf"]
-[ext_resource type="AudioStream" uid="uid://dcv2w0otyprn3" path="res://sfx/kick.ogg" id="5_cyivd"]
+[ext_resource type="AudioStream" uid="uid://dcv2w0otyprn3" path="res://sfx/damage/kick.ogg" id="5_cyivd"]
 [ext_resource type="Animation" uid="uid://bs3hg1sgxa4cg" path="res://Player/viewmodel/animations/body/kick_new.tres" id="6_cyivd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_240rc"]
@@ -21869,7 +21869,7 @@ transform = Transform3D(0.46467143, 0.87546974, -0.13278958, -0.017884104, 0.159
 transform = Transform3D(0.035707187, -0.003662018, 0.06585277, 0.065547064, 0.010281255, -0.034969684, -0.007319857, 0.07420165, 0.00809532, 0, 0, 0)
 
 [node name="varsoi_male" type="Node3D" parent="Root/Standing Melee Attack Kick Ver_ 1" unique_id=85423772]
-transform = Transform3D(8.9386215, 11.12071, -0.9596578, -0.8223889, 1.8822377, 14.151711, 11.131703, -8.790737, 1.8160946, 1.1062042, -1.4792114, 0.34172317)
+transform = Transform3D(8.938622, 11.1207075, -0.9596581, -0.82238805, 1.882238, 14.151711, 11.131701, -8.790739, 1.8160945, 1.1062042, -1.4792114, 0.34172317)
 
 [node name="Skeleton3D" type="Skeleton3D" parent="Root/Standing Melee Attack Kick Ver_ 1/varsoi_male" unique_id=1167163448]
 bones/0/name = "root"
@@ -22682,7 +22682,7 @@ collision_mask = 12
 monitoring = false
 monitorable = false
 script = ExtResource("2_3s51s")
-kick_strength = 25.0
+kick_strength = 15.0
 hit_sound = NodePath("AudioStreamPlayer3D")
 damage_types = Dictionary[int, float]({
 0: 5.0

@@ -20,9 +20,3 @@ func _process(delta: float) -> void:
 		self.material["shader_parameter/blur_power"] = lerpf(self.material["shader_parameter/blur_power"],blur_amount,4*delta)
 	else:
 		self.material["shader_parameter/blur_power"] = lerpf(self.material["shader_parameter/blur_power"],0,4*delta)
-
-
-func _on_hurtbox_component_damage_taken(actual: float, source: DamageComponent, hit_dir: Vector3) -> void:
-	blur = true
-	await get_tree().create_timer(.5).timeout
-	blur = false

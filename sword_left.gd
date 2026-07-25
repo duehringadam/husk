@@ -13,7 +13,7 @@ func _on_left_state_exited() -> void:
 
 
 func _on_left_state_processing(delta: float) -> void:
-	Global.player.stamina_component.modify_stamina(-right_hand.weapon.stamina_cost*delta)
+	Global.player.stamina_component.modify_stamina(-right_hand.weapon.constant_stamina_drain*delta)
 	if Global.player.stamina_component.current_stamina <=0: state_chart.send_event("swing")
 	if not (Input.is_action_pressed("attack_primary")):
 		state_chart.send_event("swing")

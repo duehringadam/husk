@@ -5,6 +5,9 @@ extends Camera3D
 var rng = RandomNumberGenerator.new()
 var shake_strength: float = 0.0
 var offset
+
+var isLooking: bool = false
+var look_target: Node3D
 ###################
 # lerps screenshake by randomstrength and fade amount
 ###################
@@ -13,7 +16,7 @@ var offset
 func _ready() -> void:
 	if !hurtbox.is_connected("damage_taken", _on_hurtbox_component_damage_taken):
 		hurtbox.connect("damage_taken", _on_hurtbox_component_damage_taken)
-		
+
 func _process(delta: float) -> void:
 	if PlayerConfig.get_config("GameSettings", "CameraShake", true):
 		if shake_strength > 0:
@@ -21,7 +24,7 @@ func _process(delta: float) -> void:
 			offset = randomOffset()
 			h_offset = offset.x
 			v_offset = offset.y
-		
+
 ###################
 # this is called when you want to apply screen shake to camera
 ###################

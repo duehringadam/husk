@@ -6,7 +6,6 @@ extends Node
 
 
 func _ready() -> void:
-	
 	animation_tree["parameters/playback"].connect("state_finished", _anim_finished)
 	
 func _on_swing_state_entered() -> void:

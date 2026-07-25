@@ -7,6 +7,9 @@ extends Offhand
 
 var is_active: bool = false
 
+func _ready() -> void:
+	damage_component.source = Global.player
+
 func activate():
 	if !is_active:
 		damage_component.source = Global.player

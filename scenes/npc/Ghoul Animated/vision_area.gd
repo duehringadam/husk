@@ -1,12 +1,14 @@
 extends Area3D
 
 signal aggro_changed(aggro_amount: float, aggro_position: Node3D)
+signal max_aggro(aggro_amount: float, aggro_position: Node3D)
 
 @onready var raycasts: Node3D = $raycasts
 @onready var raycast_look: Marker3D = $raycasts/raycast_look
 @onready var aggrotimer: Timer = $aggrotimer
 
 var aggro_amount := 0.0
+var is_aggro: bool = false
 var lose_aggro: bool = false
 var has_player := false
 
@@ -23,8 +25,13 @@ func _on_timer_timeout() -> void:
 						if ray.is_colliding():
 							if ray.get_collider() is Player:
 								aggro_amount = clampf(aggro_amount+.04,0,1.0)
-								emit_signal("aggro_changed", aggro_amount, ray.get_collider())
-								aggrotimer.start()
+								if aggro_amount != 1.0:
+									emit_signal("aggro_changed", aggro_amount, ray.get_collider())
+									aggrotimer.start()
+								elif aggro_amount >= 1.0 && !is_aggro:
+									is_aggro = true
+									max_aggro.emit(aggro_amount, ray.get_collider())
+								
 
 func _process(delta: float) -> void:
 	if lose_aggro:
@@ -32,6 +39,7 @@ func _process(delta: float) -> void:
 
 func _on_aggrotimer_timeout() -> void:
 	lose_aggro = true
+	is_aggro = false
 
 
 func _on_body_entered(body: Node3D) -> void:

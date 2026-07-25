@@ -196,6 +196,7 @@ func _perform_area_check(origin: Vector3, direction: Vector3):
 	check_area.damage_types = damage_component.damage_types
 	check_area.status_types = damage_component.status_types
 	check_area.stance_damage_value = damage_component.stance_damage_value
+	check_area.damage_interval = 1.0
 	check_area.source = Global.player
 	if damage_component.hit_sound:
 		check_area.hit_sound = damage_component.hit_sound
@@ -225,6 +226,7 @@ func _perform_area_check(origin: Vector3, direction: Vector3):
 
 func _update_hits(types: Dictionary, actual: float, stance_damage: float, target: hurtbox_component, check_area: DamageComponent):
 	hits.append(check_area.hits)
+	_on_damage_dealt(target)
 	
 func _on_swing_state_exited() -> void:
 	hits.clear()
@@ -237,10 +239,12 @@ func disable():
 	#state_chart.send_event("lower")
 
 func enable():
-	can_attack = true
+	if bone_attachment.get_child_count() <= 0:
+		return
 	@warning_ignore("shadowed_variable")
 	var tween = get_tree().create_tween()
 	tween.tween_property(arms_base, "rotation_degrees:x", 0, .25)
+	tween.tween_callback(func(): can_attack = true)
 
 func activate_left():
 	left_bone_attachment.get_child(0).activate()
@@ -258,3 +262,17 @@ func _on_ray_cast_3d_interaction_controller_pickable_grabbed(value: bool) -> voi
 	else:
 		enable()
 		state_chart.send_event("idle")
+
+
+func _on_hurtbox_component_blocked_attack() -> void:
+	if offhand.weapon: return
+	
+	var weapon
+	animation_tree["parameters/playback"].travel("block_hit")
+	for i in bone_attachment.get_children():
+		if i is Weapon:
+			weapon = i
+	if weapon:
+		if weapon.block_sound:
+			weapon.block_sound.pitch_scale = randf_range(0.9,1.1)
+			weapon.block_sound.play()

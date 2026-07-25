@@ -27,6 +27,7 @@ func _on_idle_state_physics_processing(delta: float) -> void:
 
 func _on_idle_state_input(event: InputEvent) -> void:
 	if bone_attach.get_child_count() > 0:
+		if Global.player.stamina_component.current_stamina <= 0: return
 		if event.is_action_pressed("attack_secondary") && left_hand.can_activate:
 			if left_hand.weapon.mana_cost > 0:
 				if Global.player.mana_component.current_mana <= 0:
@@ -34,3 +35,7 @@ func _on_idle_state_input(event: InputEvent) -> void:
 				else:
 					animation_tree.set("parameters/conditions/idle", false)
 					state_chart.send_event("activate")
+			else:
+				animation_tree.set("parameters/conditions/idle", false)
+				state_chart.send_event("activate")
+				

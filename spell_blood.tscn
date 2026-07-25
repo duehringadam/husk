@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dbnf0aulan0lb" path="res://scenes/VFX/textures/T_Blood_Mist_04a_alpha_normal(1).png" id="6_ji3dv"]
 [ext_resource type="Texture2D" uid="uid://bs5888n022i54" path="res://scenes/VFX/textures/T_Blood_bulb_UJ1_N.png" id="7_2xhu8"]
 [ext_resource type="AudioStream" uid="uid://ddjlvrgjycj4r" path="res://sfx/spells/blood/universfield-slime-impact-352473.mp3" id="8_d7ah0"]
-[ext_resource type="AudioStream" uid="uid://blbqtisskes0w" path="res://sfx/deep-whoosh-bass-impact-effect-04-407108 (2).mp3" id="8_f701h"]
+[ext_resource type="AudioStream" uid="uid://blbqtisskes0w" path="res://sfx/spells/telekinesis/deep-whoosh-bass-impact-effect-04-407108 (2).mp3" id="8_f701h"]
 [ext_resource type="Texture2D" uid="uid://cxsmx407d722t" path="res://scenes/VFX/textures/T_NP41.PNG" id="8_kfvg2"]
 [ext_resource type="AudioStream" uid="uid://bcbfxlgkj8wxf" path="res://sfx/spells/blood/ragecore29-htf-flesh-impact-1-480118.mp3" id="8_q3for"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="10_f701h"]
@@ -727,7 +727,7 @@ update_rotation = false
 update_scale = false
 
 [node name="TargetIKLeft" type="Node3D" parent="." unique_id=259210336]
-transform = Transform3D(0.11834004, 0.21582992, -0.9692323, 0.984416, 0.10236599, 0.14298874, 0.13007785, -0.9710495, -0.20035246, 0.24299365, 0.23477522, 0.22506684)
+transform = Transform3D(0.11834004, 0.21582991, -0.9692322, 0.984416, 0.102365986, 0.14298873, 0.13007785, -0.9710494, -0.20035243, 0.24299365, 0.23477522, 0.22506684)
 top_level = true
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="TargetIKLeft" unique_id=229238345]
@@ -769,7 +769,9 @@ hit_sound = NodePath("damage_sound")
 damage_types = Dictionary[int, float]({
 5: 35.0
 })
-stance_damage_value = 0.5
+status_types = Dictionary[int, float]({
+3: 1.0
+})
 metadata/_custom_type_script = "uid://dlsydctoxqbwy"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TargetIKLeft/enemyDamage" unique_id=1656037409]

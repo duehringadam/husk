@@ -7,12 +7,14 @@ signal died
 
 @onready var player: Player = $".."
 
+@export var player_hurtbox: hurtbox_component
+
 @export var player_stamina_scaling_curve: Curve
 @export var max_stamina: float = 100.0
 @export var base_stamina: float = 100
 @export var stamina_regen_time: float = 1.0
 @export var stamina_regen_rate: float = 1.0
-@export var staming_cost_mult: float = 1.0
+@export var stamina_cost_mult: float = 1.0
 
 var current_stamina: float = max_stamina
 var regen: bool = false
@@ -46,10 +48,10 @@ func modify_max_stamina(amount: float):
 	SignalBus.emit_signal("player_max_stamina_changed", max_stamina)
 
 func set_max_stamina(amount: float):
-	max_stamina += amount + player_stamina_scaling_curve.sample(player.player_stats[1]/100.0)+1
+	max_stamina = amount + player_stamina_scaling_curve.sample(player.player_stats[1]/100.0)+1
 	emit_signal("max_stamina_changed", amount, max_stamina)
 	SignalBus.emit_signal("player_max_stamina_changed", max_stamina)
 
-func _physics_process(delta: float) -> void:
-	if regen:
-		modify_stamina(stamina_regen_rate)
+func _physics_process(_delta: float) -> void:
+	if regen && !player_hurtbox.is_blocking:
+		modify_stamina(max_stamina/100.0)

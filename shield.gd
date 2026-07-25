@@ -3,6 +3,7 @@ extends Offhand
 var primary_active_bool: bool = false
 @onready var raise: AudioStreamPlayer3D = $Cube/raise
 @onready var equip: AudioStreamPlayer3D = $equip
+@onready var block: AudioStreamPlayer3D = $block
 
 
 func _ready() -> void:

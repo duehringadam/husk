@@ -552,9 +552,8 @@ func _anim_dialog_text_visible(show: bool = true, percent_visible_range: Array= 
 					animated_text_tween.tween_callback(_on_animated_text_tween_completed)
 
 					if sfx_key_press:
-						#sfx_key_press.play()
-						#sfx_key_press.pitch_scale = randf_range(.9,1.2)
-						AudioManager.play_sound_non_positional(sfx_key_press.stream,0.0)
+						sfx_key_press.play()
+						sfx_key_press.pitch_scale = randf_range(.8,1.2)
 					await self.text_display_completed # both user interaction or animation_finished are routed here
 					if sfx_key_press:
 						sfx_key_press.stop()
@@ -608,7 +607,6 @@ func _anim_dialog_menu_visible(show: bool = true) -> void:
 			else:
 				if dialog_menu:
 					dialog_menu.hide()
-					SignalBus.emit_signal("dialogue_ended")
 					Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 			
 			dialog_menu_active = false

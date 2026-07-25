@@ -23,6 +23,10 @@ func _on_activate_state_physics_processing(delta: float) -> void:
 		if Global.player.mana_component.current_mana <= 0:
 			left_hand.bone_attachment.get_child(0).deactivate()
 			state_chart.send_event("cant_use")
+	if Global.player.stamina_component.current_stamina <= 0:
+		left_hand.bone_attachment.get_child(0).deactivate()
+		animation_tree.set("parameters/conditions/activate", false)
+		state_chart.send_event("idle")
 
 
 func _on_activate_state_input(event: InputEvent) -> void:

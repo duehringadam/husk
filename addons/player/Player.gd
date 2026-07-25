@@ -121,7 +121,7 @@ var look_target: Node3D
 var mouse_movement: Vector2
 var input_dir: Vector3
 var can_move:=true
-var can_attack:bool = true
+var can_attack:bool = true : set = _set_can_attack
 var previous_fall_velocity: float
 const WALK_SPEED_MINIMUM := 1.5
 const WALK_SPEED_MAXIMUM := 2.5
@@ -143,7 +143,9 @@ func _ready() -> void:
 	SignalBus.connect("primary_active", _set_weapon_active)
 	SignalBus.connect("secondary_active", _set_weapon_active)
 	SignalBus.connect("kick_active", _animate_camera_swing)
+	SignalBus.connect("player_lookat_cutscene", cutscene)
 	combat_type = PlayerConfig.get_config("GameSettings", "DirectionalCombat", 0)
+	
 	GamePiecesEventBus.combat_type.connect(_on_combat_type_changed)
 	Global.camera_fov = base_fov
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -165,6 +167,15 @@ func _set_walk_speed(value: float):
 	
 func _set_sprint_speed(value:float):
 	sprint_speed = clampf(value, SPRINT_SPEED_MIN, SPRINT_SPEED_MAX)
+
+func _set_can_attack(value: bool):
+	can_attack = value
+	if value:
+		mainhand.enable()
+		offhand.enable()
+	else:
+		mainhand.disable()
+		offhand.disable()
 
 func _update_player_stats(stats: Dictionary[ItemEquippableType.ITEM_REQUIRED_STAT, int]):
 	player_stats = stats
@@ -200,7 +211,7 @@ func _physics_process(delta) -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		mouse_movement = event.relative
-		look_around()
+		look_around(get_process_delta_time())
 		
 func handle_effects(delta) -> void:
 	if is_on_floor():
@@ -247,7 +258,7 @@ func handle_jump() -> void:
 		camera_animation_player.play("jump")
 	if vault_ray_cast.is_colliding() && !is_on_floor() && !is_vaulting && !ceiling.is_colliding():
 		#camera_animation_player.play("vault")
-		if vault_ray_cast.get_collider() is Terrain3D:
+		if vault_ray_cast.get_collider() is Terrain3D or vault_ray_cast.get_collider().is_in_group("disable_collision_while_grabbed"):
 			return
 		_handle_vault(vault_ray_cast.get_collision_point())
 
@@ -348,11 +359,11 @@ func set_movement_speed(delta: float) -> void:
 		footsteps.volume_linear = speed / walk_speed
 
 
-func look_around() -> void:
+func look_around(delta: float) -> void:
 	if lock_camera: return
 	var sens_mult = PlayerConfig.get_config("InputSettings", "MouseSensitivity", 1.0)
-	head.rotate_y(look_control.value_axis_2d().x * (mouse_sensitivity * sens_mult))
-	neck.rotate_x(look_control.value_axis_2d().y * (mouse_sensitivity * sens_mult))
+	head.rotate_y(look_control.value_axis_2d().x * (mouse_sensitivity * sens_mult * delta)) 
+	neck.rotate_x(look_control.value_axis_2d().y * (mouse_sensitivity * sens_mult * delta))
 	neck.rotation.x = clamp(neck.rotation.x, deg_to_rad(-85), deg_to_rad(85))
 	
 
@@ -446,29 +457,34 @@ func _get_configuration_warnings() -> PackedStringArray:
 func _y_rotate(to: float) -> float:
 	# find shortest distance to loop so it doesn't go full circle
 	# in situtations like 350 deg to 10 deg.
-	var difference = fmod(to - rotation.y, PI * 2)
-	return fmod(2 * difference, PI * 2) - difference
+	#var difference = fmod(to - rotation.y, PI * 2)
+	#return fmod(2 * difference, PI * 2) - difference
+	return wrapf(to - rotation.y, -PI, PI)
 
-func cutscene():
+func cutscene(target: Node3D, duration: float):
 	isLooking = true
+	look_target = target
 	smooth_lookat()
-	await get_tree().create_timer(99).timeout
+	await get_tree().create_timer(duration).timeout
 	ResumeControl()
 
 func ResumeControl():
 	isLooking = false
-	
+	camera.isLooking = false
+	camera.look_target = null
+
 func smooth_lookat():
 	if isLooking:
 		# look at logic
 		var target_global_pos := look_target.global_position
 		var camera_basis := Basis.looking_at(target_global_pos - camera.global_position)
 		var rotations = camera_basis.get_euler()
-		# reset rotations except X
+		
+		## reset rotations except X
 		camera_basis = camera_basis.rotated(Vector3.UP, -rotations.y)
 		camera_basis = camera_basis.rotated(Vector3.BACK, -rotations.z)
-
-		var dir = global_position - target_global_pos
+		
+		var dir = target_global_pos - global_position
 		var angle = atan2(dir.x, dir.z)
 		var new_rotation = Vector3(
 			rotation.x,
@@ -504,6 +520,7 @@ func weapon_sway(delta):
 
 func _on_hurtbox_component_damage_taken(actual: float, source: DamageComponent, hit_dir: Vector3) -> void:
 	camera_animation_player.play("swing_left",-1,1.5)
+	slowed = true
 	if source.can_knockback:
 		var knockback_source
 		knockback_source = source
@@ -513,6 +530,8 @@ func _on_hurtbox_component_damage_taken(actual: float, source: DamageComponent, 
 		var kb_amount = kb_dir * 50
 		kb_amount.y /= 5
 		self.velocity = -kb_amount
+	await get_tree().create_timer(1).timeout
+	slowed= false
 
 var active_segments: Array[RigidBody3D] = []
 var current_segment: RigidBody3D = null
@@ -692,8 +711,8 @@ func _on_health_component_died() -> void:
 	%deathAnimation.play("death")
 
 func respawn():
-	if SaveManager.get_checkpoint_from_config("Saved Checkpoint") != null:
-		global_position = SaveManager.get_checkpoint_from_config("Saved Checkpoint")
+	#if SaveManager.get_checkpoint_from_config("Saved Checkpoint") != null:
+		#global_position = SaveManager.get_checkpoint_from_config("Saved Checkpoint")
 	%deathAnimation.play("RESET")
 	SignalBus.emit_signal("player_full_restore")
 	mainhand.enable()
@@ -721,3 +740,9 @@ func _on_rope_detection_body_exited(body: Node3D) -> void:
 				mainhand.enable()
 				offhand.enable()
 				is_climbing = false
+
+
+func _on_hurtbox_component_blocked_attack() -> void:
+	slowed = true
+	await get_tree().create_timer(1).timeout
+	slowed= false

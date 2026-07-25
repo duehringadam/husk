@@ -9,13 +9,13 @@
 [sub_resource type="Resource" id="1"]
 script = ExtResource("2_48vp3")
 message_speaker_id = "foo"
-message_text = "This is an example sheet. You can rename and use it, or discard and create your own."
+message_text = "Ah, its you."
 condition_type = 0
 effect_type = 0
 
 [sub_resource type="Resource" id="4"]
 script = ExtResource("2_48vp3")
-message_text = "Would you like to see more dialog messages?"
+message_text = "You were the corpse thrown down that well, yes?"
 message_hide_on_end = 1
 condition_type = 0
 effect_type = 0
@@ -28,6 +28,7 @@ connected_to_id = 8
 [sub_resource type="Resource" id="6"]
 script = ExtResource("3_dways")
 text = "No"
+connected_to_id = 11
 
 [sub_resource type="Resource" id="2"]
 script = ExtResource("4_f2ijm")
@@ -57,20 +58,20 @@ continue_port_index = 0
 [sub_resource type="Resource" id="7"]
 script = ExtResource("2_48vp3")
 message_speaker_id = "bar"
-message_text = "The speaker IDs are \"foo\" and \"bar\", but the display names are \"Maria\" and \"Francesco\"."
+message_text = "Ohoho! Splendid."
 condition_type = 0
 effect_type = 0
 
 [sub_resource type="Resource" id="8"]
 script = ExtResource("2_48vp3")
 message_speaker_id = "bar"
-message_text = "This is so you can have fancy nice looking display names, but you don't have to type them all the time in the system."
+message_text = "The maiden walks with thee, I can see it!"
 condition_type = 0
 effect_type = 0
 
 [sub_resource type="Resource" id="9"]
 script = ExtResource("2_48vp3")
-message_text = "A blank speaker ID is valid. If there are no characters with blank ID, it's treated as empty name."
+message_text = "Truly you are among the blessed."
 condition_type = 0
 effect_type = 0
 
@@ -81,12 +82,27 @@ position = Vector2(460, 60)
 items = [SubResource("7"), SubResource("8"), SubResource("9")]
 continue_port_index = 0
 
+[sub_resource type="Resource" id="kur6e"]
+script = ExtResource("2_48vp3")
+message_text = "A different accursed corpse, then."
+
+[sub_resource type="Resource" id="gi4cx"]
+script = ExtResource("2_48vp3")
+message_text = "We have nothing left to speak of."
+
+[sub_resource type="Resource" id="Resource_6yf53"]
+script = ExtResource("4_f2ijm")
+sequence_id = 11
+position = Vector2(400, 460)
+items = [SubResource("kur6e"), SubResource("gi4cx")]
+continue_port_index = 0
+
 [sub_resource type="Resource" id="3"]
 script = ExtResource("5_vkpn8")
 sheet_id = "1_start_here"
 sheet_description = "Demonstration sheet. You can delete this in your game, or repurpose it."
-next_sequence_id = 11
-nodes = [SubResource("2"), SubResource("Resource_ixt6j"), SubResource("Resource_j2kw6")]
+next_sequence_id = 12
+nodes = [SubResource("2"), SubResource("Resource_ixt6j"), SubResource("Resource_j2kw6"), SubResource("Resource_6yf53")]
 
 [sub_resource type="Resource" id="Resource_vx7w3"]
 script = ExtResource("2_48vp3")
@@ -429,7 +445,7 @@ sheet_id = "minimum_menu"
 next_sequence_id = 4
 nodes = [SubResource("Resource_28bfi"), SubResource("Resource_wn6qm"), SubResource("Resource_5vhe7"), SubResource("Resource_pnwrx")]
 
-[sub_resource type="Resource" id="kur6e"]
+[sub_resource type="Resource" id="Resource_wspnu"]
 script = ExtResource("4_f2ijm")
 continue_port_index = 0
 
@@ -437,7 +453,7 @@ continue_port_index = 0
 script = ExtResource("5_vkpn8")
 sheet_id = "new_sheet_1"
 next_sequence_id = 1
-nodes = [SubResource("kur6e")]
+nodes = [SubResource("Resource_wspnu")]
 
 [resource]
 script = ExtResource("1_giduu")

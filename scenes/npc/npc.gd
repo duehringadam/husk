@@ -1,23 +1,25 @@
 class_name npc
 extends CharacterBody3D
 
-@export_category("Variables")
+@export_category("Name")
 @export var npc_name: String
-@export var SPEED: float = 1
-@export_range(0.0,1.0) var aggro := 0.0
-@export var target: Node3D: set = _update_target
 
 @export_category("Components")
 @export var physical_bone_simulator: PhysicalBoneSimulator3D
 @export var animation_tree: AnimationTree
-@export var navigation_agent: NavigationAgent3D
-@export var hurtboxes: Array[hurtbox_component]
+@export var hurtbox: hurtbox_component
 @export var health_component: HealthComponent
+@export var mesh: MeshInstance3D
+@export var stance_component: StanceComponent
 
 @export_category("Behavior")
+@export var SPEED: float = 1
+@export_range(0.0,1.0) var aggro := 0.0
+@export var target: Node3D: set = _update_target
 @export var state_chart: StateChart
-
-@export var mesh: MeshInstance3D
+@export var navigation_agent: NavigationAgent3D
+@export var look_at_modifier: LookAtModifier3D
+@export var head_look_at: Node3D
 
 var left_arm := true
 var right_arm := true
@@ -26,6 +28,7 @@ var head_attached := true : set = head_lost
 
 var direction = Vector3()
 var is_leader: bool = false
+
 
 func _ready() -> void:
 	pass
@@ -70,4 +73,4 @@ func _on_stance_component_stance_broken() -> void:
 	pass
 
 func _update_target(value: Node3D):
-	pass
+	target = value
