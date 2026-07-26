@@ -10,7 +10,7 @@ const WORLD_ITEMS_SECTION = &'World_Items_List'
 func set_checkpoint(checkpoint_location: String, default = null) -> void:
 	SaveConfig.set_config(LOCATION_SECTION, checkpoint_location, default)
 
-func get_checkpoint_from_config(checkpoint_location: String, default = null) -> Vector3:
+func get_checkpoint_from_config(checkpoint_location: String, default = null) -> String:
 	return SaveConfig.get_config(LOCATION_SECTION, checkpoint_location, default)
 #endregion
 
@@ -18,7 +18,7 @@ func get_checkpoint_from_config(checkpoint_location: String, default = null) -> 
 func set_player_saved_position(saved_position: String, default = null)->void:
 	SaveConfig.set_config(LOCATION_SECTION, saved_position, default)
 
-func get_player_saved_position(saved_position: String, default = null) -> Vector3:
+func get_player_saved_position(saved_position: String, default = null):
 	return SaveConfig.get_config(LOCATION_SECTION, saved_position, default)
 #endregion
 

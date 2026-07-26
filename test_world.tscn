@@ -6,8 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://bmiecwtrxqg52" path="res://scenes/MysticDungeon/Art/Textures/T_Wood_Planks_01_BC.png" id="12_07jwy"]
 [ext_resource type="PackedScene" uid="uid://dh564c7854jhe" path="res://scenes/npc/spell merchant/spell_merchant.tscn" id="12_ivea3"]
 [ext_resource type="PackedScene" uid="uid://cqebuck4snj2y" path="res://scenes/cleanser_knight/pyramid_final.tscn" id="12_jvck6"]
+[ext_resource type="Script" uid="uid://bhg2f71yxm1lc" path="res://components/current_level_area_component.gd" id="13_07jwy"]
 [ext_resource type="PackedScene" uid="uid://dde8d0d27fgyo" path="res://scenes/npc/undead/shambler.tscn" id="13_jvck6"]
 [ext_resource type="PackedScene" uid="uid://bgo71k4srphvm" path="res://scenes/npc/Corpse Crawler/corpse_crawler.tscn" id="14_07jwy"]
+[ext_resource type="PackedScene" uid="uid://bych3ad16mxen" path="res://scenes/checkpoint/checkpoint.tscn" id="14_urhrq"]
 [ext_resource type="PackedScene" uid="uid://csc3ojr7benhn" path="res://maptestflesh(2).tscn" id="15_urhrq"]
 [ext_resource type="Texture2D" uid="uid://bpyuecyduy6u2" path="res://scenes/npc/howler/howler textures/howler_Base_color.png" id="17_blr6d"]
 [ext_resource type="Texture2D" uid="uid://dyg67rjl2h6j0" path="res://scenes/npc/howler/howler textures/howler_normal.jpg" id="18_f2a6c"]
@@ -94,6 +96,9 @@ texture_filter = 4
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ivea3"]
 points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_urhrq"]
+size = Vector3(56.137207, 50, 53.671265)
+
 [node name="test_world" type="Node3D" unique_id=1619667254]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=771142050]
@@ -106,9 +111,17 @@ light_bake_mode = 1
 shadow_enabled = true
 
 [node name="Player2" parent="." unique_id=1592911738 instance=ExtResource("5_cnaw2")]
-transform = Transform3D(-0.99971205, 0, -0.023996044, 0, 1, 0, 0.023996044, 0, -0.99971205, -8.8617, 0.2, 56.889206)
+transform = Transform3D(-0.99971205, 0, -0.023996044, 0, 1, 0, 0.023996044, 0, -0.99971205, -8.8617, 0.2, -3.5095203)
 collision_mask = 46
 spawn_at_checkpoint = false
+player_stats = Dictionary[int, int]({
+0: 10,
+1: 10,
+2: 10,
+3: 10,
+4: 10,
+5: 10
+})
 footsteps_sound = ExtResource("3_ivea3")
 mouse_sensitivity = 200.0
 head_bob_strength = 0.05
@@ -117,15 +130,15 @@ jump_power = 4.5
 climb_speed = 1.5
 fov_change = 2.0
 crouch_height = 0.65
+current_area_default_spawn = null
 
 [node name="maptestflesh(2)" parent="." unique_id=396135325 instance=ExtResource("15_urhrq")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -7.099941, -0.0052917004, 57.7272)
 
 [node name="shambler" parent="." unique_id=631193332 instance=ExtResource("13_jvck6")]
-transform = Transform3D(-0.95489043, 0, -0.29695833, 0, 1, 0, 0.29695833, 0, -0.95489043, -10.035519, 8.809897, 86.14025)
+transform = Transform3D(-0.95489043, 0, -0.29695833, 0, 1, 0, 0.29695833, 0, -0.95489043, -2.7573338, 8.77783, 28.561241)
 
 [node name="howler_low" type="Node3D" parent="." unique_id=603567008]
-transform = Transform3D(-0.9941867, 0, -0.10766971, 0, 1, 0, 0.10766971, 0, -0.9941867, -8.5923605, 8.918676, 85.87388)
+transform = Transform3D(-0.9941867, 0, -0.10766971, 0, 1, 0, 0.10766971, 0, -0.9941867, -1.3141756, 8.886609, 28.294868)
 
 [node name="polySurface5" type="MeshInstance3D" parent="howler_low" unique_id=175927533]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.001312685, 1.0301152, 0.009317351)
@@ -136,13 +149,13 @@ surface_material_override/0 = SubResource("StandardMaterial3D_07e4k")
 libraries/ = SubResource("AnimationLibrary_oqc2s")
 
 [node name="ladder" parent="." unique_id=1495957820 instance=ExtResource("10_ud3vi")]
-transform = Transform3D(-8.742278e-08, 0, -2, 0, 2, 0, 2, 0, -8.742278e-08, -18, 2.8, 70.4)
+transform = Transform3D(-8.742278e-08, 0, -2, 0, 2, 0, 2, 0, -8.742278e-08, -10.721815, 2.7679327, 12.8209915)
 
 [node name="ladder2" parent="." unique_id=1170092630 instance=ExtResource("10_ud3vi")]
-transform = Transform3D(-8.742278e-08, 0, -2, 0, 2, 0, 2, 0, -8.742278e-08, -18, 6.8, 70.4)
+transform = Transform3D(-8.742278e-08, 0, -2, 0, 2, 0, 2, 0, -8.742278e-08, -10.721815, 6.767933, 12.8209915)
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1528275583]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 8.8, 62)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.721815, 8.767933, 4.42099)
 mesh = SubResource("BoxMesh_5457m")
 surface_material_override/0 = SubResource("StandardMaterial3D_urhrq")
 
@@ -154,14 +167,35 @@ metadata/ground_type = "wood"
 shape = SubResource("ConvexPolygonShape3D_ivea3")
 
 [node name="pyramid_final" parent="." unique_id=1488241507 instance=ExtResource("12_jvck6")]
-transform = Transform3D(-1.75, 0, 2.6424266e-07, 0, 1.75, 0, -2.6424266e-07, 0, -1.75, -14, 9, 86)
+transform = Transform3D(-1.75, 0, 2.6424266e-07, 0, 1.75, 0, -2.6424266e-07, 0, -1.75, -6.721815, 8.967933, 28.42099)
 
 [node name="sword(1)" parent="." unique_id=1629618071 instance=ExtResource("20_8wsjh")]
-transform = Transform3D(0.1572791, 0.5648554, -0.8100627, 0.9875542, -0.08995958, 0.12901159, 0, -0.8202717, -0.5719741, -14.398417, 10.131123, 86.52436)
+transform = Transform3D(0.1572791, 0.5648554, -0.8100627, 0.9875542, -0.08995958, 0.12901159, 0, -0.8202717, -0.5719741, -7.1202326, 10.099055, 28.94535)
 
 [node name="CorpseCrawler" parent="." unique_id=319898315 instance=ExtResource("14_07jwy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.341679, 0.037545636, 55.729656)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.0634937, 0.0054783374, -1.8493538)
 
 [node name="spell_merchant" parent="." unique_id=630712817 instance=ExtResource("12_ivea3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.0519123, -0.013581157, 65.54215)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2262726, -0.045648456, 7.9631424)
 collision_mask = 2
+
+[node name="CurrentLevelArea" type="Area3D" parent="." unique_id=609912352 node_paths=PackedStringArray("default_spawn_node")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.630619, -0.0320673, 5.3050117)
+script = ExtResource("13_07jwy")
+default_spawn_node = NodePath("CollisionShape3D/Marker3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CurrentLevelArea" unique_id=1348481280]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0686035, 0, 5.615902)
+shape = SubResource("BoxShape3D_urhrq")
+
+[node name="Marker3D" type="Marker3D" parent="CurrentLevelArea/CollisionShape3D" unique_id=1064290727]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.97357464, 0.112837315, -12.650459)
+
+[node name="StaticBody3D3" parent="." unique_id=1352087755 instance=ExtResource("14_urhrq")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -1.7653332, 8.789879, 15.142746)
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Reflecting Pool","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":true,"display_name":"Rest at Reflecting Pool","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[connection signal="body_entered" from="CurrentLevelArea" to="CurrentLevelArea" method="_on_body_entered"]
