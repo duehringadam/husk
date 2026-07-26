@@ -7,7 +7,8 @@ signal active(value: bool)
 @export var offhand: Node3D
 @export var animation_state_machine :AnimationNodeStateMachine
 @export var animation_tree: AnimationTree
-@export var bone_attachment: BoneAttachment3D
+@export var offhand_attachment: BoneAttachment3D
+@export var mainhand_attachment: BoneAttachment3D
 @onready var arms_base: Node3D = $"ghoul_arms2(1)"
 @onready var animation_player: AnimationPlayer = $"ghoul_arms2(1)/AnimationPlayer"
 var can_activate: bool = true
@@ -34,17 +35,20 @@ func _set_item(new_item):
 	await get_tree().create_timer(0.25).timeout
 	if new_item != null:
 		consumable_item = new_item
-		if bone_attachment.get_child_count() != 0:
+		if mainhand_attachment.get_child_count() > 0 or offhand_attachment.get_child_count() > 0:
 			unequip()
 		var item_add = new_item.item_scene.instantiate()
 		item_add.position = consumable_item.position
-		item_add.rotation_degrees = consumable_item.rotation
+		item_add.rotation = consumable_item.rotation
 		animation_state_machine = consumable_item.animation_state_machine
 		animation_tree.tree_root = animation_state_machine
 		animation_tree.active = false
 		await get_tree().create_timer(.1).timeout
 		animation_tree.active = true
-		bone_attachment.add_child(item_add)
+		if consumable_item.item_scene:
+			mainhand_attachment.add_child(item_add)
+		if consumable_item.item_left_scene:
+			offhand_attachment.add_child(item_add)
 		activate()
 	await get_tree().create_timer(1.6167).timeout
 	unequip()
@@ -60,12 +64,17 @@ func _set_item(new_item):
 
 func unequip():
 	consumable_item = null
-	for i in bone_attachment.get_children():
+	for i in mainhand_attachment.get_children():
+		i.queue_free()
+	for i in offhand_attachment.get_children():
 		i.queue_free()
 	#animation_tree.active = false
 
 func activate():
-	bone_attachment.get_child(0).activate()
+	mainhand_attachment.get_child(0).activate()
+
+func activate_offhand():
+	offhand_attachment.get_child(0).activate()
 
 func disable():
 	var tween = get_tree().create_tween()

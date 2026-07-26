@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="item" format=3 uid="uid://btnpk1mhijo5b"]
+
+[ext_resource type="AnimationNodeStateMachine" uid="uid://qdouj24v1xem" path="res://Player/viewmodel/animations/hands/animation_state_machines/two_handed_sword_animation_state_machine.tres" id="1_66iaa"]
+[ext_resource type="Texture2D" uid="uid://0qdslu5anwee" path="res://item/icons/blade/blade.svg/icons/ffffff/000000/1x1/delapouite/rusty-sword.svg" id="2_66iaa"]
+[ext_resource type="PackedScene" uid="uid://2wyp4yju80lh" path="res://scenes/weapons/great axe/demon cleaver/scene/demon cleaver.tscn" id="3_66iaa"]
+[ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/item_stat.gd" id="4_y3wht"]
+[ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/item.gd" id="5_pd64w"]
+
+[sub_resource type="Resource" id="Resource_2e86q"]
+script = ExtResource("4_y3wht")
+damage_types = Dictionary[int, float]({
+1: 50.0
+})
+stance_damage = 0.66
+strength_scale = 0.65
+range = 3.0
+metadata/_custom_type_script = "uid://bbtfrupllo3w6"
+
+[resource]
+script = ExtResource("5_pd64w")
+item_name = "Demon Cleaver"
+item_description = "Demon Cleaver"
+item_icon = ExtResource("2_66iaa")
+item_stats = SubResource("Resource_2e86q")
+stamina_cost = 45
+item_scene = ExtResource("3_66iaa")
+two_handed = true
+animation_state_machine = ExtResource("1_66iaa")
+position = Vector3(-0.009, 0.162, -0.001)
+rotation = Vector3(-3.6, 90, 0)
+metadata/_custom_type_script = "uid://dcfd18dx8x1bm"
