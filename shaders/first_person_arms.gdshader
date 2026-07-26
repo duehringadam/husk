@@ -2,7 +2,7 @@
 
 shader_type spatial;
 render_mode blend_mix, depth_draw_opaque, cull_disabled;
-
+global uniform vec4 overlay_color;
 uniform vec4 albedo : source_color;
 uniform sampler2D texture_albedo : source_color, filter_nearest_mipmap_anisotropic, repeat_enable;
 uniform ivec2 albedo_texture_size;
@@ -27,7 +27,6 @@ uniform vec3 uv2_offset;
 uniform float FOV : hint_range(20, 120) = 75;
 
 // --- New Uniforms for Customizable Noise Overlay ---
-uniform vec4 overlay_color : source_color = vec4(1.0, 0.0, 0.0, 1.0); // Now you can pick any color in the Inspector
 uniform sampler2D noise_texture : filter_linear_mipmap, repeat_enable;
 uniform float progress : hint_range(0.0, 1.0) = 0.0;
 uniform float noise_softness : hint_range(0.01, 1.0) = 0.05;
