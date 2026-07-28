@@ -8,8 +8,7 @@
 		{
 			"name":"Scene",
 			"nodes":[
-				0,
-				1
+				0
 			]
 		}
 	],
@@ -33,37 +32,6 @@
 				-247.1561279296875,
 				31.16107177734375
 			]
-		},
-		{
-			"extras":{
-				"center_x":0.0,
-				"center_z":0.0,
-				"center_y":0.0,
-				"collision":"trimesh"
-			},
-			"mesh":1,
-			"name":"Plane",
-			"translation":[
-				-27.416152954101562,
-				11.907408714294434,
-				-32.5472526550293
-			]
-		}
-	],
-	"materials":[
-		{
-			"doubleSided":true,
-			"name":"Material.002",
-			"pbrMetallicRoughness":{
-				"baseColorFactor":[
-					0.7679980993270874,
-					0.7759311199188232,
-					0.8000156879425049,
-					1
-				],
-				"metallicFactor":0,
-				"roughnessFactor":0.5
-			}
 		}
 	],
 	"meshes":[
@@ -77,28 +45,6 @@
 						"TEXCOORD_0":2
 					},
 					"indices":3
-				}
-			]
-		},
-		{
-			"name":"Plane",
-			"primitives":[
-				{
-					"attributes":{
-						"POSITION":4,
-						"NORMAL":5,
-						"TEXCOORD_0":6
-					},
-					"indices":7
-				},
-				{
-					"attributes":{
-						"POSITION":8,
-						"NORMAL":9,
-						"TEXCOORD_0":10
-					},
-					"indices":11,
-					"material":0
 				}
 			]
 		}
@@ -137,74 +83,6 @@
 			"componentType":5123,
 			"count":774,
 			"type":"SCALAR"
-		},
-		{
-			"bufferView":4,
-			"componentType":5126,
-			"count":693,
-			"max":[
-				121.22425842285156,
-				27.36300277709961,
-				63.26688003540039
-			],
-			"min":[
-				-61.423011779785156,
-				-104.84107208251953,
-				-87.15815734863281
-			],
-			"type":"VEC3"
-		},
-		{
-			"bufferView":5,
-			"componentType":5126,
-			"count":693,
-			"type":"VEC3"
-		},
-		{
-			"bufferView":6,
-			"componentType":5126,
-			"count":693,
-			"type":"VEC2"
-		},
-		{
-			"bufferView":7,
-			"componentType":5123,
-			"count":1236,
-			"type":"SCALAR"
-		},
-		{
-			"bufferView":8,
-			"componentType":5126,
-			"count":4,
-			"max":[
-				12.84744644165039,
-				-28.95655059814453,
-				-47.35093688964844
-			],
-			"min":[
-				4.935884952545166,
-				-28.95655059814453,
-				-64.5482177734375
-			],
-			"type":"VEC3"
-		},
-		{
-			"bufferView":9,
-			"componentType":5126,
-			"count":4,
-			"type":"VEC3"
-		},
-		{
-			"bufferView":10,
-			"componentType":5126,
-			"count":4,
-			"type":"VEC2"
-		},
-		{
-			"bufferView":11,
-			"componentType":5123,
-			"count":6,
-			"type":"SCALAR"
 		}
 	],
 	"bufferViews":[
@@ -231,59 +109,11 @@
 			"byteLength":1548,
 			"byteOffset":13344,
 			"target":34963
-		},
-		{
-			"buffer":0,
-			"byteLength":8316,
-			"byteOffset":14892,
-			"target":34962
-		},
-		{
-			"buffer":0,
-			"byteLength":8316,
-			"byteOffset":23208,
-			"target":34962
-		},
-		{
-			"buffer":0,
-			"byteLength":5544,
-			"byteOffset":31524,
-			"target":34962
-		},
-		{
-			"buffer":0,
-			"byteLength":2472,
-			"byteOffset":37068,
-			"target":34963
-		},
-		{
-			"buffer":0,
-			"byteLength":48,
-			"byteOffset":39540,
-			"target":34962
-		},
-		{
-			"buffer":0,
-			"byteLength":48,
-			"byteOffset":39588,
-			"target":34962
-		},
-		{
-			"buffer":0,
-			"byteLength":32,
-			"byteOffset":39636,
-			"target":34962
-		},
-		{
-			"buffer":0,
-			"byteLength":12,
-			"byteOffset":39668,
-			"target":34963
 		}
 	],
 	"buffers":[
 		{
-			"byteLength":39680,
+			"byteLength":14892,
 			"uri":"GraveyardMap.bin"
 		}
 	]

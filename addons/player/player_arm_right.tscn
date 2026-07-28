@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c5uu825dg725o" path="res://Player/mainhand.gd" id="1_mucxr"]
 [ext_resource type="Material" uid="uid://ccjem4uniqo0n" path="res://Player/viewmodel/hands/arms.tres" id="3_w1sxo"]
 [ext_resource type="Material" uid="uid://d0p82r0xbudbp" path="res://shaders/first_person_arms.tres" id="4_rnyv4"]
-[ext_resource type="Animation" uid="uid://bjttilf5yop4o" path="res://Player/viewmodel/animations/hands/mace_two_handed_block_hit.tres" id="5_uqleb"]
+[ext_resource type="Animation" uid="uid://bbeyl3oepvl6b" path="res://Player/viewmodel/animations/hands/mace_two_handed_block_hit.tres" id="5_uqleb"]
 [ext_resource type="Animation" uid="uid://bjnsd5fcng6sj" path="res://Player/viewmodel/animations/hands/two_handed_sword/twohanded_TO.tres" id="8_8kes2"]
 [ext_resource type="Animation" uid="uid://dvsyagvqihg8h" path="res://Player/viewmodel/animations/hands/two_handed_sword/twohanded_charge_down.tres" id="9_e7rlq"]
 [ext_resource type="Animation" uid="uid://blcanssy38ipo" path="res://Player/viewmodel/animations/hands/two_handed_sword/twohanded_charge_left.tres" id="10_3t0co"]
@@ -14,11 +14,11 @@
 [ext_resource type="Script" uid="uid://1xhujeketj0r" path="res://addons/godot_state_charts/atomic_state.gd" id="12_rnyv4"]
 [ext_resource type="Script" uid="uid://8kg3tepcr415" path="res://addons/godot_state_charts/transition.gd" id="13_5kuli"]
 [ext_resource type="Animation" uid="uid://b2w8lpddbhvrx" path="res://Player/viewmodel/animations/hands/two_handed_sword/twohanded_swing_down.tres" id="13_586lr"]
-[ext_resource type="Animation" uid="uid://dpqytt0a2j22" path="res://Player/viewmodel/animations/hands/two_handed_sword/twohanded_sword_block.tres" id="14_l0ppy"]
+[ext_resource type="Animation" uid="uid://d0xipwd54auim" path="res://Player/viewmodel/animations/hands/two_handed_sword/twohanded_sword_block.tres" id="14_l0ppy"]
 [ext_resource type="Animation" uid="uid://dy4t40stm4h8l" path="res://Player/viewmodel/animations/hands/two_handed_sword/twohanded_swing_left.tres" id="14_pmqbr"]
 [ext_resource type="Animation" uid="uid://c0tvg53vd55i" path="res://Player/viewmodel/animations/hands/two_handed_sword/twohanded_swing_right.tres" id="15_eraao"]
 [ext_resource type="Script" uid="uid://dpv7g2x61s03p" path="res://addons/player/right_hand_lower.gd" id="15_sfya3"]
-[ext_resource type="Animation" uid="uid://cuujibpn7o1dv" path="res://Player/viewmodel/animations/hands/two_handed_sword/twohanded_sword_block_hit.tres" id="15_uqleb"]
+[ext_resource type="Animation" uid="uid://y134sauno0qv" path="res://Player/viewmodel/animations/hands/two_handed_sword/twohanded_sword_block_hit.tres" id="15_uqleb"]
 [ext_resource type="Script" uid="uid://d3uud607qvbfb" path="res://sword_idle.gd" id="16_hkunp"]
 [ext_resource type="Animation" uid="uid://dgslys2yft2q" path="res://Player/viewmodel/animations/hands/two_handed_sword/twohanded_swing_up.tres" id="16_hnmgg"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://bnag3oppwh7b3" path="res://Player/viewmodel/animations/hands/animation_state_machines/two_handed_mace_state_machine.tres" id="17_gk53t"]
@@ -20815,7 +20815,7 @@ bones/26/rest = Transform3D(1, -1.493868e-07, 2.384187e-07, 1.493868e-07, 1, 2.3
 bones/26/enabled = true
 bones/26/position = Vector3(4.531385e-09, 0.47012398, 1.0887968e-08)
 bones/26/rotation = Quaternion(5.5878226e-09, 1.11758766e-07, 5.513563e-08, 1)
-bones/26/scale = Vector3(1, 1, 1)
+bones/26/scale = Vector3(0.99999994, 1, 1)
 bones/27/name = "segment3.L"
 bones/27/parent = 26
 bones/27/rest = Transform3D(1, 1.3577231e-07, -1.2370789e-07, -1.3922967e-07, 0.99959683, -0.028390123, 1.1980343e-07, 0.02839012, 0.9995969, -1.5249171e-09, 0.08228908, 1.4464391e-08)
@@ -20984,7 +20984,7 @@ bone_name = "weapons.R"
 bone_idx = 24
 
 [node name="leftBoneAttach" type="BoneAttachment3D" parent="ghoul_arms2(1)/Armature/Skeleton3D" unique_id=175715778]
-transform = Transform3D(0.13352059, 0.98599356, -0.099939056, -0.18704827, 0.12410178, 0.9744801, 0.9732338, -0.11141963, 0.20099857, -0.49195874, -1.6087842, 0.109026775)
+transform = Transform3D(0.13352053, 0.9859935, -0.099939056, -0.18704824, 0.12410179, 0.9744801, 0.9732338, -0.11141966, 0.20099857, -0.49195874, -1.6087842, 0.109026775)
 bone_name = "weapons.L"
 bone_idx = 48
 
