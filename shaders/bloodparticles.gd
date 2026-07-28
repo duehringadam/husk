@@ -3,7 +3,7 @@ extends Node3D
 @onready var blood_pos: RayCast3D = $blood_pos
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-var blood_decal = preload("res://scenes/decals/blood_decal.tscn")
+var blood_decal = preload("res://scenes/VFX/Scenes/Blood_Pool_Decal.tscn")
 
 func _ready() -> void:
 	get_tree().create_timer(1).timeout.connect(func(): self.queue_free())
@@ -17,7 +17,7 @@ func take_damage() -> void:
 		blood_decal_add.global_position = blood_pos.get_collision_point()
 		blood_decal_add.global_position.x += randf_range(-.3,.3)
 		blood_decal_add.global_position.z += randf_range(-.3,.3)
-		blood_decal_add.emitting = true
+		#blood_decal_add.emitting = true
 
 
 func _on_hurtbox_component_damage_taken(actual: float, source: DamageComponent, hit_dir: Vector3) -> void:

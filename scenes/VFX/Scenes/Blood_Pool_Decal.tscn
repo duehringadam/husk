@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://betqhcel05i5m"]
+
+[ext_resource type="Texture2D" uid="uid://dbolhruq43rtu" path="res://scenes/VFX/textures/T_Blood_bulb_UJ1_testtyyxx.png" id="1_v73b0"]
+[ext_resource type="Texture2D" uid="uid://bs5888n022i54" path="res://scenes/VFX/textures/T_Blood_bulb_UJ1_N.png" id="2_whfxb"]
+[ext_resource type="Script" uid="uid://clbfen1n4no6h" path="res://scenes/VFX/Scenes/blood_pool_decal.gd" id="3_v73b0"]
+
+[sub_resource type="Gradient" id="Gradient_v73b0"]
+offsets = PackedFloat32Array(0, 0.99170125)
+colors = PackedColorArray(0.38039216, 0, 0, 1, 0.38039216, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_v4udn"]
+gradient = SubResource("Gradient_v73b0")
+
+[node name="Decal" type="Decal" unique_id=695111248]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+size = Vector3(0.001, 0.1, 0.001)
+texture_albedo = ExtResource("1_v73b0")
+texture_normal = ExtResource("2_whfxb")
+texture_orm = SubResource("GradientTexture1D_v4udn")
+modulate = Color(0.38039216, 0, 0, 1)
+script = ExtResource("3_v73b0")

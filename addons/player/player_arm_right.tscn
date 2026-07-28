@@ -21,7 +21,7 @@
 [ext_resource type="Animation" uid="uid://cuujibpn7o1dv" path="res://Player/viewmodel/animations/hands/two_handed_sword/twohanded_sword_block_hit.tres" id="15_uqleb"]
 [ext_resource type="Script" uid="uid://d3uud607qvbfb" path="res://sword_idle.gd" id="16_hkunp"]
 [ext_resource type="Animation" uid="uid://dgslys2yft2q" path="res://Player/viewmodel/animations/hands/two_handed_sword/twohanded_swing_up.tres" id="16_hnmgg"]
-[ext_resource type="AnimationNodeStateMachine" uid="uid://bnag3oppwh7b3" path="res://Player/viewmodel/animations/hands/animation_state_machines/two_handed_mace_state_machine.tres" id="17_gk53t"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://qdouj24v1xem" path="res://Player/viewmodel/animations/hands/animation_state_machines/two_handed_sword_animation_state_machine.tres" id="17_uqleb"]
 [ext_resource type="Script" uid="uid://c3csf7xo741r7" path="res://sword_left.gd" id="17_yjtgc"]
 [ext_resource type="Script" uid="uid://4edxvrrmei6h" path="res://sword_right.gd" id="18_cm5a7"]
 [ext_resource type="Script" uid="uid://wvdotxijfutl" path="res://sword_forward.gd" id="19_l0ppy"]
@@ -20993,7 +20993,7 @@ libraries/ = SubResource("AnimationLibrary_6pntq")
 
 [node name="AnimationTree" type="AnimationTree" parent="ghoul_arms2(1)" unique_id=1330822349]
 active = false
-tree_root = ExtResource("17_gk53t")
+tree_root = ExtResource("17_uqleb")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/block = false
 parameters/conditions/end_block = false

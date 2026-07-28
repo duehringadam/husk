@@ -11,7 +11,7 @@
 [ext_resource type="Shader" uid="uid://bfwwv62cr7k2o" path="res://scenes/VFX/shaders/ss_Disolver_subUV_small_Liquid_Treshold_p.gdshader" id="8_o6737"]
 [ext_resource type="Texture2D" uid="uid://etftten2vtpl" path="res://scenes/VFX/textures/T_Blood_MultiUV_f3.png" id="9_7nsg6"]
 [ext_resource type="Texture2D" uid="uid://c3maw4p2qvh0" path="res://scenes/VFX/textures/T_Blood_MultiUV_f3_N.png" id="10_b31ja"]
-[ext_resource type="Texture2D" uid="uid://brnp67jnwwro6" path="res://scenes/VFX/textures/T_smoke_K97.png" id="11_pwpvd"]
+[ext_resource type="Texture2D" uid="uid://byj5sgyu8cxwx" path="res://scenes/VFX/textures/T_smoke_K97.bak.png" id="11_7thti"]
 
 [sub_resource type="Gradient" id="Gradient_imd17"]
 colors = PackedColorArray(0.51, 0.0765, 0.0837249, 1, 1, 0.2, 0.226667, 1)
@@ -144,7 +144,7 @@ diffuse_mode = 3
 specular_mode = 2
 vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
-albedo_texture = ExtResource("11_pwpvd")
+albedo_texture = ExtResource("11_7thti")
 albedo_texture_msdf = true
 billboard_mode = 3
 billboard_keep_scale = true
@@ -307,7 +307,6 @@ one_shot = true
 autostart = true
 
 [node name="bleed_timer" type="Timer" parent="." unique_id=1812833745]
-wait_time = 0.1
 autostart = true
 
 [node name="blood_pos" type="RayCast3D" parent="." unique_id=1943333567]

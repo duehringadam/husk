@@ -12,6 +12,7 @@ extends Node
 var nav_agent: NavigationAgent3D
 
 func _on_chase_state_entered() -> void:
+	
 	nav_agent = source_npc.navigation_agent
 	animation_tree.set("parameters/conditions/idle", false)
 	animation_tree.set("parameters/conditions/walk", true)
