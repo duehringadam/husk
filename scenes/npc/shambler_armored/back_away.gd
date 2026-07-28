@@ -29,19 +29,20 @@ func _on_back_away_state_physics_processing(delta: float) -> void:
 	if not target:
 		state_chart.send_event("idle")
 	
-	var to_target = (target.global_position - source_npc.global_position).normalized()
-	var retreat_dir = -to_target
+	if target:
+		var to_target = (target.global_position - source_npc.global_position).normalized()
+		var retreat_dir = -to_target
+		
+		var current_location = source_npc.global_position
+		var desired_location = source_npc.navigation_agent.get_next_path_position()
+		var new_velocity = (desired_location - current_location).normalized() * back_up_speed
+		source_npc.navigation_agent.set_velocity(new_velocity)
+		var retreat_pos = NavigationServer3D.map_get_closest_point(get_tree().current_scene.get_world_3d().get_navigation_map(), source_npc.global_position + (retreat_dir * back_up_speed))
+		source_npc.navigation_agent.set_target_position(retreat_pos)
+		face_target(delta)
 	
-	var current_location = source_npc.global_position
-	var desired_location = source_npc.navigation_agent.get_next_path_position()
-	var new_velocity = (desired_location - current_location).normalized() * back_up_speed
-	source_npc.navigation_agent.set_velocity(new_velocity)
-	var retreat_pos = NavigationServer3D.map_get_closest_point(get_tree().current_scene.get_world_3d().get_navigation_map(), source_npc.global_position + (retreat_dir * back_up_speed))
-	source_npc.navigation_agent.set_target_position(retreat_pos)
-	face_target(delta)
-	
-	if source_npc.global_position.distance_to(target.global_position) >= desired_distance:
-		state_chart.send_event("circle_around")
+		if source_npc.global_position.distance_to(target.global_position) >= desired_distance:
+			state_chart.send_event("circle_around")
 
 
 func face_target(delta: float):

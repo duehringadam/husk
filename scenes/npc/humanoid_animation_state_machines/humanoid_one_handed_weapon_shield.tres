@@ -12,6 +12,9 @@ animation = &"Enemy_Attack_2_Run_OffBeat_InPlace/Enemy_Attack_2_Run_OffBeat_InPl
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ma1ph"]
 animation = &"Enemy_Attack_5_OffBeat_InPlace/Enemy_Attack_5_OffBeat_InPlace"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0cg2h"]
+animation = &"Die_F_5/Die_F_5"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pasl2"]
 animation = &"Hit_B_1_InPlace/get_up_back"
 
@@ -274,6 +277,36 @@ priority = 0
 advance_mode = 2
 advance_condition = &"stagger"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0cg2h"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_d0hyq"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_88ibd"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iri6k"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fcmu4"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_laxcr"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_r2tna"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_eh6sv"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w3du5"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iy442"]
+xfade_time = 0.25
+
 [resource]
 states/KnockedBack/node = SubResource("AnimationNodeAnimation_6ossm")
 states/KnockedBack/position = Vector2(151, 248)
@@ -284,6 +317,8 @@ states/attack2/node = SubResource("AnimationNodeAnimation_oxcej")
 states/attack2/position = Vector2(443, 305.2008)
 states/attack3/node = SubResource("AnimationNodeAnimation_ma1ph")
 states/attack3/position = Vector2(624, 248)
+states/death_special/node = SubResource("AnimationNodeAnimation_0cg2h")
+states/death_special/position = Vector2(855.85016, 286.35574)
 states/get_up/node = SubResource("AnimationNodeAnimation_pasl2")
 states/get_up/position = Vector2(-39.14984, 305.2008)
 states/idle/node = SubResource("AnimationNodeAnimation_47j7q")
@@ -300,5 +335,5 @@ states/walkBlendSpace/node = SubResource("AnimationNodeBlendSpace2D_lbatg")
 states/walkBlendSpace/position = Vector2(521.3358, 100)
 states/walkHitBlendTree/node = SubResource("AnimationNodeBlendTree_oxcej")
 states/walkHitBlendTree/position = Vector2(467, 12.472797)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_6hdhf"), "idle", "attack1", SubResource("AnimationNodeStateMachineTransition_xrvdv"), "attack1", "idle", SubResource("AnimationNodeStateMachineTransition_x72ub"), "idle", "KnockedBack", SubResource("AnimationNodeStateMachineTransition_wlnfa"), "attack1", "KnockedBack", SubResource("AnimationNodeStateMachineTransition_6vuvf"), "KnockedBack", "idle", SubResource("AnimationNodeStateMachineTransition_v386k"), "idle", "idleHitBlendTree", SubResource("AnimationNodeStateMachineTransition_tmhhx"), "idleHitBlendTree", "idle", SubResource("AnimationNodeStateMachineTransition_qw8uh"), "idleHitBlendTree", "KnockedBack", SubResource("AnimationNodeStateMachineTransition_rl354"), "walkHitBlendTree", "KnockedBack", SubResource("AnimationNodeStateMachineTransition_2nijg"), "attack1", "attack2", SubResource("AnimationNodeStateMachineTransition_jlp0r"), "attack2", "idle", SubResource("AnimationNodeStateMachineTransition_7i0xt"), "run_forward", "runHitBlendTree", SubResource("AnimationNodeStateMachineTransition_51ufe"), "runHitBlendTree", "run_forward", SubResource("AnimationNodeStateMachineTransition_erwj1"), "run_forward", "KnockedBack", SubResource("AnimationNodeStateMachineTransition_ma1ph"), "runHitBlendTree", "KnockedBack", SubResource("AnimationNodeStateMachineTransition_pasl2"), "idle", "walkBlendSpace", SubResource("AnimationNodeStateMachineTransition_k37tl"), "walkBlendSpace", "idle", SubResource("AnimationNodeStateMachineTransition_k0h4o"), "walkBlendSpace", "run_forward", SubResource("AnimationNodeStateMachineTransition_ncs55"), "run_forward", "walkBlendSpace", SubResource("AnimationNodeStateMachineTransition_fcxp4"), "walkBlendSpace", "walkHitBlendTree", SubResource("AnimationNodeStateMachineTransition_v4ayx"), "walkHitBlendTree", "walkBlendSpace", SubResource("AnimationNodeStateMachineTransition_5gco2"), "walkBlendSpace", "attack1", SubResource("AnimationNodeStateMachineTransition_lq2oa"), "walkBlendSpace", "KnockedBack", SubResource("AnimationNodeStateMachineTransition_lxpj0"), "idle", "run_forward", SubResource("AnimationNodeStateMachineTransition_lbatg"), "run_forward", "idle", SubResource("AnimationNodeStateMachineTransition_jqkt0"), "attack2", "KnockedBack", SubResource("AnimationNodeStateMachineTransition_1ykdk"), "attack3", "idle", SubResource("AnimationNodeStateMachineTransition_o0rbq"), "walkBlendSpace", "attack3", SubResource("AnimationNodeStateMachineTransition_rr1jg"), "attack3", "KnockedBack", SubResource("AnimationNodeStateMachineTransition_yxx8i"), "attack2", "attack3", SubResource("AnimationNodeStateMachineTransition_lgk4g"), "KnockedBack", "on_ground", SubResource("AnimationNodeStateMachineTransition_brt0v"), "on_ground", "get_up", SubResource("AnimationNodeStateMachineTransition_edpin"), "get_up", "idle", SubResource("AnimationNodeStateMachineTransition_tnlxd"), "get_up", "KnockedBack", SubResource("AnimationNodeStateMachineTransition_yargi")]
-graph_offset = Vector2(-217.14984, 65.65173)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_6hdhf"), "idle", "attack1", SubResource("AnimationNodeStateMachineTransition_xrvdv"), "attack1", "idle", SubResource("AnimationNodeStateMachineTransition_x72ub"), "idle", "KnockedBack", SubResource("AnimationNodeStateMachineTransition_wlnfa"), "attack1", "KnockedBack", SubResource("AnimationNodeStateMachineTransition_6vuvf"), "KnockedBack", "idle", SubResource("AnimationNodeStateMachineTransition_v386k"), "idle", "idleHitBlendTree", SubResource("AnimationNodeStateMachineTransition_tmhhx"), "idleHitBlendTree", "idle", SubResource("AnimationNodeStateMachineTransition_qw8uh"), "idleHitBlendTree", "KnockedBack", SubResource("AnimationNodeStateMachineTransition_rl354"), "walkHitBlendTree", "KnockedBack", SubResource("AnimationNodeStateMachineTransition_2nijg"), "attack1", "attack2", SubResource("AnimationNodeStateMachineTransition_jlp0r"), "attack2", "idle", SubResource("AnimationNodeStateMachineTransition_7i0xt"), "run_forward", "runHitBlendTree", SubResource("AnimationNodeStateMachineTransition_51ufe"), "runHitBlendTree", "run_forward", SubResource("AnimationNodeStateMachineTransition_erwj1"), "run_forward", "KnockedBack", SubResource("AnimationNodeStateMachineTransition_ma1ph"), "runHitBlendTree", "KnockedBack", SubResource("AnimationNodeStateMachineTransition_pasl2"), "idle", "walkBlendSpace", SubResource("AnimationNodeStateMachineTransition_k37tl"), "walkBlendSpace", "idle", SubResource("AnimationNodeStateMachineTransition_k0h4o"), "walkBlendSpace", "run_forward", SubResource("AnimationNodeStateMachineTransition_ncs55"), "run_forward", "walkBlendSpace", SubResource("AnimationNodeStateMachineTransition_fcxp4"), "walkBlendSpace", "walkHitBlendTree", SubResource("AnimationNodeStateMachineTransition_v4ayx"), "walkHitBlendTree", "walkBlendSpace", SubResource("AnimationNodeStateMachineTransition_5gco2"), "walkBlendSpace", "attack1", SubResource("AnimationNodeStateMachineTransition_lq2oa"), "walkBlendSpace", "KnockedBack", SubResource("AnimationNodeStateMachineTransition_lxpj0"), "idle", "run_forward", SubResource("AnimationNodeStateMachineTransition_lbatg"), "run_forward", "idle", SubResource("AnimationNodeStateMachineTransition_jqkt0"), "attack2", "KnockedBack", SubResource("AnimationNodeStateMachineTransition_1ykdk"), "attack3", "idle", SubResource("AnimationNodeStateMachineTransition_o0rbq"), "walkBlendSpace", "attack3", SubResource("AnimationNodeStateMachineTransition_rr1jg"), "attack3", "KnockedBack", SubResource("AnimationNodeStateMachineTransition_yxx8i"), "attack2", "attack3", SubResource("AnimationNodeStateMachineTransition_lgk4g"), "KnockedBack", "on_ground", SubResource("AnimationNodeStateMachineTransition_brt0v"), "on_ground", "get_up", SubResource("AnimationNodeStateMachineTransition_edpin"), "get_up", "idle", SubResource("AnimationNodeStateMachineTransition_tnlxd"), "get_up", "KnockedBack", SubResource("AnimationNodeStateMachineTransition_yargi"), "run_forward", "death_special", SubResource("AnimationNodeStateMachineTransition_0cg2h"), "walkBlendSpace", "death_special", SubResource("AnimationNodeStateMachineTransition_d0hyq"), "idle", "death_special", SubResource("AnimationNodeStateMachineTransition_88ibd"), "runHitBlendTree", "death_special", SubResource("AnimationNodeStateMachineTransition_iri6k"), "idleHitBlendTree", "death_special", SubResource("AnimationNodeStateMachineTransition_fcmu4"), "walkHitBlendTree", "death_special", SubResource("AnimationNodeStateMachineTransition_laxcr"), "attack3", "death_special", SubResource("AnimationNodeStateMachineTransition_r2tna"), "attack1", "death_special", SubResource("AnimationNodeStateMachineTransition_eh6sv"), "attack2", "death_special", SubResource("AnimationNodeStateMachineTransition_w3du5"), "KnockedBack", "death_special", SubResource("AnimationNodeStateMachineTransition_iy442")]
+graph_offset = Vector2(-217.14984, -5.6442623)

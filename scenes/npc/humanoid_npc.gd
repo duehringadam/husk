@@ -14,6 +14,8 @@ extends npc
 
 @export_category("Infestation")
 @export var is_infested: bool = false
+@export var infestation_bone_attach: infestation_attach
+@export var infestation_enemy_scene: PackedScene
 
 var secondary_weapon_active: bool = false: set = _update_secondary_weapon_active
 

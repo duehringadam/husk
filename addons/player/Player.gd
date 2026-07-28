@@ -66,7 +66,7 @@ Optional: %jump, %sprint, %crouch, %lean, %zoom, %switch_hands
 @export var invert_weapon_sway : bool = false
 
 @export_category("Checkpoint and Respawn")
-@export var current_checkpoint: Node3D
+@export var current_area_default_spawn: Vector3
 ## Control where x and z values will control the movement direction of the player
 ## The value_3d must have a value of (0, 0, -1) for moving forward
 ## and a value of (1, 0, 0) for moving/strafing right
@@ -711,8 +711,17 @@ func _on_health_component_died() -> void:
 	%deathAnimation.play("death")
 
 func respawn():
-	#if SaveManager.get_checkpoint_from_config("Saved Checkpoint") != null:
-		#global_position = SaveManager.get_checkpoint_from_config("Saved Checkpoint")
+	var checkpoint = SaveManager.get_checkpoint_from_config("Saved Checkpoint").split("::")[1]
+	var saved_scene_file_path = SaveManager.get_checkpoint_from_config("Saved Checkpoint").split("::")[0]
+	
+	if saved_scene_file_path == get_tree().current_scene.scene_file_path:
+		if get_tree().current_scene.has_node(checkpoint):
+			var checkpoint_node: Checkpoint = get_tree().current_scene.get_node(checkpoint)
+			global_position = checkpoint_node.checkpoint_respawn_point.global_position
+		else:
+			global_position = current_area_default_spawn
+	else:
+			global_position = current_area_default_spawn
 	%deathAnimation.play("RESET")
 	SignalBus.emit_signal("player_full_restore")
 	mainhand.enable()

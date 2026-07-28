@@ -60,6 +60,10 @@ func activate():
 	if is_instance_valid(bone_attachment.get_child(0)):
 		bone_attachment.get_child(0).activate()
 
+func deactivate():
+	if is_instance_valid(bone_attachment.get_child(0)):
+		bone_attachment.get_child(0).deactivate()
+
 func disable():
 	can_activate = false
 	var tween = get_tree().create_tween()

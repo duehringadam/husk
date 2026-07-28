@@ -1,6 +1,8 @@
 class_name enemy_multiple_collision_hurtbox_component
 extends hurtbox_component
 
+signal damage_types_taken(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float])
+
 var local_shape_idx: int
 var just_damaged:bool = false
 var limb_collider
@@ -20,6 +22,7 @@ func take_damage(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float], stat
 			limb_collider = get_child(local_shape_idx)
 			limb_collider.bone_take_damage(damage_types, actual)
 			sum += actual
+	damage_types_taken.emit(damage_types)
 	if stance_component != null:
 		stance_component.modify_stance(-stance_damage, source)
 	if status_component != null:

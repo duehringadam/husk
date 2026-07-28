@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bi4oekh6pl3s6"]
 
+[ext_resource type="Script" uid="uid://ikastsf77y3p" path="res://scenes/VFX/Scenes/blood_effect.gd" id="1_7xvph"]
 [ext_resource type="Shader" uid="uid://b12xkugsj15ox" path="res://scenes/VFX/shaders/ss_Disolver_subUV_small_Liquid_Tresh_p_us.gdshader" id="1_f5nu6"]
 [ext_resource type="Texture2D" uid="uid://etftten2vtpl" path="res://scenes/VFX/textures/T_Blood_MultiUV_f3.png" id="2_5xf0v"]
 
@@ -13,7 +14,7 @@ gradient = SubResource("Gradient_4nlk8")
 
 [sub_resource type="Gradient" id="Gradient_4cgbc"]
 offsets = PackedFloat32Array(0, 0.799065)
-colors = PackedColorArray(0.43, 0.0989, 0.104418, 1, 1, 0, 0.0333333, 1)
+colors = PackedColorArray(0.43, 0.0989, 0.104418, 1, 0.6784314, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_cyguc"]
 gradient = SubResource("Gradient_4cgbc")
@@ -69,10 +70,9 @@ scale_min = 0.8
 scale_max = 1.5
 scale_curve = SubResource("CurveTexture_mw7uv")
 alpha_curve = SubResource("CurveTexture_6i6d4")
-hue_variation_min = -1.0
-hue_variation_max = 1.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_mvfgu"]
+size = Vector2(2, 2)
 
 [sub_resource type="Animation" id="Animation_g8tma"]
 resource_name = "Init"
@@ -96,9 +96,9 @@ _data = {
 }
 
 [node name="VFX_Blood_Explosion_K1" type="Node3D" unique_id=1113293498]
+script = ExtResource("1_7xvph")
 
 [node name="Blood_Explosion_K1" type="GPUParticles3D" parent="." unique_id=266628135]
-layers = 4
 material_override = SubResource("ShaderMaterial_4bqov")
 emitting = false
 lifetime = 0.4

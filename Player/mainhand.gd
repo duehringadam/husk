@@ -104,8 +104,8 @@ func _on_damage_dealt(target: hurtbox_component) -> void:
 		
 	var weapon_mesh_shader = bone_attachment.get_child(0).weapon_mesh.get_surface_override_material(0)
 	var hand_mesh_shader = hands.get_surface_override_material(0)
-	weapon_mesh_shader["shader_parameter/progress"] = clampf(weapon_mesh_shader["shader_parameter/progress"]+.05,0,.6)
-	hand_mesh_shader["shader_parameter/progress"] = clampf(hand_mesh_shader["shader_parameter/progress"]+.05,0,.6)
+	weapon_mesh_shader["shader_parameter/progress"] = clampf(weapon_mesh_shader["shader_parameter/progress"]+.05,0,.5)
+	hand_mesh_shader["shader_parameter/progress"] = clampf(hand_mesh_shader["shader_parameter/progress"]+.05,0,.5)
 	if weapon_mesh_shader["shader_parameter/progress"] >= .4 && bone_attachment.get_child(0).blood_drip != null:
 		bone_attachment.get_child(0).blood_drip.emitting = true
 		bone_attachment.get_child(0).bloodtimer.start()
