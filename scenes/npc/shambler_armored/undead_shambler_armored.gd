@@ -14,12 +14,17 @@ func _ready() -> void:
 func _update_blocking(value: bool):
 	if value:
 		is_blocking = value
+		hurtbox.is_blocking = value
+		activate_main_offhand_weapon(true)
 		animation_tree.set("parameters/walkBlendTree/Transition/transition_request", "walk with shield")
 		animation_tree.set("parameters/runBlendTree/Transition/transition_request", "run with shield")
 	else:
 		is_blocking = value
+		hurtbox.is_blocking = value
+		activate_main_offhand_weapon(false)
 		animation_tree.set("parameters/walkBlendTree/Transition/transition_request", "walk")
 		animation_tree.set("parameters/runBlendTree/Transition/transition_request", "run")
+
 func _on_health_component_died() -> void:
 	fall()
 	state_chart.send_event("dead")
@@ -51,16 +56,19 @@ func _on_stance_component_stance_changed(amount: float, new_value: float, source
 	if stance_component:
 		if abs(amount) >= stance_component.max_stance/2:
 			if !is_facing(source):
+				is_blocking = false
 				var animation_state_tree_root = animation_tree.get("tree_root")
 				var knocked_back_node = animation_state_tree_root.get_node("KnockedBack")
 				knocked_back_node.animation = "Hit_B_2_InPlace"
 			else:
+				is_blocking = false
 				var animation_state_tree_root = animation_tree.get("tree_root")
 				var knocked_back_node = animation_state_tree_root.get_node("KnockedBack")
 				knocked_back_node.animation = "Hit_F_1_InPlace"
 			state_chart.set_expression_property("knockback_source", source)
 			state_chart.send_event("knocked_back")
 		if abs(amount) >= stance_component.max_stance:
+			is_blocking = false
 			state_chart.set_expression_property("knockback_source", source)
 			state_chart.send_event("knocked_down")
 
@@ -100,22 +108,16 @@ func _on_hurtbox_component_damage_taken(actual: float, source: DamageComponent, 
 	var current_state = animation_tree.get("parameters/playback").get_current_node()
 
 	if current_state == "walkBlendTree":
-		if is_blocking:
-			animation_tree.set("parameters/walkBlendTree/shieldWalkHit/request",AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-		else:
-			animation_tree.set("parameters/walkBlendTree/walkHit/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-			animation_tree.set("parameters/walkBlendTree/shieldWalkHit/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-			animation_tree.set("parameters/runBlendTree/shieldWalkHit/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
-			animation_tree.set("parameters/runBlendTree/runHit/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
+		animation_tree.set("parameters/walkBlendTree/walkHit/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+		animation_tree.set("parameters/walkBlendTree/shieldWalkHit/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+		animation_tree.set("parameters/runBlendTree/shieldWalkHit/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
+		animation_tree.set("parameters/runBlendTree/runHit/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
 	if current_state == "runBlendTree":
-		if is_blocking:
-			animation_tree.set("parameters/runBlendTree/shieldWalkHit/request",AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-		else:
-			animation_tree.set("parameters/runBlendTree/shieldWalkHit/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-			animation_tree.set("parameters/runBlendTree/runHit/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-			animation_tree.set("parameters/walkBlendTree/walkHit/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
-			animation_tree.set("parameters/walkBlendTree/shieldWalkHit/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
-	
+		animation_tree.set("parameters/runBlendTree/shieldWalkHit/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+		animation_tree.set("parameters/runBlendTree/runHit/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+		animation_tree.set("parameters/walkBlendTree/walkHit/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
+		animation_tree.set("parameters/walkBlendTree/shieldWalkHit/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
+
 	
 func leg_lost(value: bool)-> void:
 	if !value:
@@ -141,3 +143,13 @@ func _on_status_effect_component_status_activated(effects: Array[status_effect])
 			await get_tree().create_timer(5).timeout
 			state_chart.send_event("dead")
 			SPEED = 0
+
+
+func _on_hurtbox_component_damage_blocked() -> void:
+	if offhand.get_child_count() > 0:
+		if offhand.get_child(0) is npc_shield:
+			var current_state = animation_tree.get("parameters/playback").get_current_node()
+			if current_state == "walkBlendTree":
+				animation_tree.set("parameters/walkBlendTree/shieldWalkHit/request",AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+			if current_state == "runBlendTree":
+				animation_tree.set("parameters/runBlendTree/shieldWalkHit/request",AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)

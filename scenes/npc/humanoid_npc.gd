@@ -39,9 +39,9 @@ func _update_main_weapon(weapon: npc_weapon):
 		main_weapon_add.rotation = weapon.main_weapon_rotation
 		main_weapon_add.scale = weapon.main_weapon_scale
 		main_weapon_add.damage_component.source = self
-		
 		mainhand.add_child(main_weapon_add)
-	
+		main_weapon_add.owner = self
+		
 	if weapon.main_weapon_offhand_scene != null:
 		main_weapon_offhand_add = weapon.main_weapon_offhand_scene.instantiate()
 		main_weapon_offhand_add.position = weapon.main_weapon_offhand_position
@@ -49,7 +49,8 @@ func _update_main_weapon(weapon: npc_weapon):
 		main_weapon_offhand_add.scale = weapon.main_weapon_offhand_scale
 		main_weapon_offhand_add.damage_component.source = self
 		offhand.add_child(main_weapon_offhand_add)
-
+		main_weapon_offhand_add.owner = self
+		
 func _update_secondary_weapon(weapon: npc_weapon):
 	if weapon == null: return
 	secondary_weapon = weapon

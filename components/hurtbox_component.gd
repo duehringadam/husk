@@ -6,6 +6,8 @@ signal apply_statuses(status_types: Global.STATUS_TYPE, application_amount: floa
 
 @onready var timer: Timer
 
+@export var is_blocking: bool = false
+
 ## Reduction on incoming damage. Zero takes full damage, one takes none. For more complex behavior, override [method reduce_damage]
 @export var damage_resistances: Dictionary[DamageTypes.DAMAGE_TYPES, float]: set = _update_damage_resistances
 @export var damage_weakness: Dictionary[DamageTypes.DAMAGE_TYPES, float]

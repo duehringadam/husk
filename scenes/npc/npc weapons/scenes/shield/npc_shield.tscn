@@ -1,9 +1,11 @@
 [gd_scene format=4 uid="uid://cr6qdqmrnkey6"]
 
 [ext_resource type="Texture2D" uid="uid://hqky" path="res://scenes/Hivemind/MedievalWeapons/Art/Models/SM_Round_Wood_Shield/T_Round_Wood_Shield_C.png" id="1_1xtif"]
-[ext_resource type="Script" uid="uid://ct0ho42visgfx" path="res://scenes/npc/npc weapons/scenes/npc_weapon_scene.gd" id="1_bvbh6"]
+[ext_resource type="Script" uid="uid://lu4ih8xwv4ln" path="res://scenes/npc/npc weapons/scenes/shield/npc_shield.gd" id="1_p1b3f"]
 [ext_resource type="Texture2D" uid="uid://hqkw" path="res://scenes/Hivemind/MedievalWeapons/Art/Models/SM_Round_Wood_Shield/T_Round_Wood_Shield_N.png" id="2_70q4k"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="4_uioec"]
+[ext_resource type="AudioStream" uid="uid://dhtnv1kdswd6x" path="res://sfx/weapons/shield/Fantasy_Game_Weapons_Wood Shield_1_Block_Defend_Buckler_Deflect.wav" id="5_uioec"]
+[ext_resource type="AudioStream" uid="uid://dnk7ycpa3ttsr" path="res://sfx/weapons/shield/shield_raise.ogg" id="6_2st4c"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6lppa"]
 resource_name = "M_Round_Wood_Shield"
@@ -52,7 +54,7 @@ texture_filter = 4
 
 [node name="SM_Round_Wood_Shield2" type="Node3D" unique_id=1611214883 node_paths=PackedStringArray("damage_component")]
 transform = Transform3D(1, 0, 0, 0, 1.0000002, 0, 0, 0, 0.99999994, 0, 0, 0)
-script = ExtResource("1_bvbh6")
+script = ExtResource("1_p1b3f")
 damage_component = NodePath("DamageComponent")
 
 [node name="SM_Round_Wood_Shield" type="MeshInstance3D" parent="." unique_id=1961178003]
@@ -65,3 +67,13 @@ metadata/_custom_type_script = "uid://dlsydctoxqbwy"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent" unique_id=1721668899]
 shape = SubResource("SphereShape3D_j1pv0")
+
+[node name="block" type="AudioStreamPlayer3D" parent="." unique_id=533443320]
+stream = ExtResource("5_uioec")
+max_distance = 10.0
+bus = &"SFX"
+
+[node name="raise shield" type="AudioStreamPlayer3D" parent="." unique_id=1020157447]
+stream = ExtResource("6_2st4c")
+max_distance = 10.0
+bus = &"SFX"
