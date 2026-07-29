@@ -29,8 +29,11 @@ func _on_chase_state_exited() -> void:
 func _on_chase_state_physics_processing(delta: float) -> void:
 	if not target or not is_instance_valid(target):
 		state_chart.send_event("idle")
-	animation_tree["parameters/walkBlendSpace/blend_position"].y = lerpf(animation_tree["parameters/walkBlendSpace/blend_position"].y, 1.0, delta*10)
-	animation_tree["parameters/walkBlendSpace/blend_position"].x = lerpf(animation_tree["parameters/walkBlendSpace/blend_position"].x, 0, delta*10)
+	animation_tree["parameters/walkBlendTree/walkBlend/blend_position"].y = lerpf(animation_tree["parameters/walkBlendTree/walkBlend/blend_position"].y, 1.0, delta*10)
+	animation_tree["parameters/walkBlendTree/walkBlend/blend_position"].x = lerpf(animation_tree["parameters/walkBlendTree/walkBlend/blend_position"].x, 0, delta*10)
+	
+	animation_tree["parameters/walkBlendTree/shieldWalkBlend/blend_position"].y = lerpf(animation_tree["parameters/walkBlendTree/shieldWalkBlend/blend_position"].y, 1.0, delta*10)
+	animation_tree["parameters/walkBlendTree/shieldWalkBlend/blend_position"].x = lerpf(animation_tree["parameters/walkBlendTree/shieldWalkBlend/blend_position"].x, 0, delta*10)
 	if source_npc.global_position.distance_to(target.global_position) >= run_range:
 		animation_tree.set("parameters/conditions/run", true)
 		animation_tree.set("parameters/conditions/walk", false)

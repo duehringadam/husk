@@ -11,6 +11,15 @@ func _ready() -> void:
 		infestation_enemy_add.collision_layer = 0
 		infestation_bone_attach.remote_transform.remote_path = infestation_enemy_add.get_path()
 
+func _update_blocking(value: bool):
+	if value:
+		is_blocking = value
+		animation_tree.set("parameters/walkBlendTree/Transition/transition_request", "walk with shield")
+		animation_tree.set("parameters/runBlendTree/Transition/transition_request", "run with shield")
+	else:
+		is_blocking = value
+		animation_tree.set("parameters/walkBlendTree/Transition/transition_request", "walk")
+		animation_tree.set("parameters/runBlendTree/Transition/transition_request", "run")
 func _on_health_component_died() -> void:
 	fall()
 	state_chart.send_event("dead")
@@ -69,16 +78,16 @@ func is_facing(source: DamageComponent) -> bool:
 func _on_hurtbox_component_damage_taken(actual: float, source: DamageComponent, hit_dir: Vector3) -> void:
 	var animation_state_tree_root = animation_tree.get("tree_root")
 	
-	var walk_hit_node = animation_state_tree_root.get_node("walkHitBlendTree")
+	var walk_hit_node = animation_state_tree_root.get_node("walkBlendTree")
 	var walk_blend_tree_node = walk_hit_node.get_node("flinch")
 	
 	var idle_hit_node = animation_state_tree_root.get_node("idleHitBlendTree")
 	var idle_blend_tree_node = idle_hit_node.get_node("flinch")
 	
-	var run_hit_node = animation_state_tree_root.get_node("runHitBlendTree")
+	var run_hit_node = animation_state_tree_root.get_node("runBlendTree")
 	var run_hit_blend_tree_node = run_hit_node.get_node("flinch")
 	
-	if !is_facing(source):
+	if is_facing(source):
 		walk_blend_tree_node.animation = "Hit_B_3_InPlace"
 		idle_blend_tree_node.animation = "Hit_B_3_InPlace"
 		run_hit_blend_tree_node.animation = "Hit_B_3_InPlace"
@@ -88,10 +97,26 @@ func _on_hurtbox_component_damage_taken(actual: float, source: DamageComponent, 
 		run_hit_blend_tree_node.animation = "Hit_F_2_InPlace"
 		
 	target = source.source
-	animation_tree.set("parameters/conditions/hit", true)
-	await get_tree().create_timer(.25).timeout
-	animation_tree.set("parameters/conditions/hit", false)
+	var current_state = animation_tree.get("parameters/playback").get_current_node()
 
+	if current_state == "walkBlendTree":
+		if is_blocking:
+			animation_tree.set("parameters/walkBlendTree/shieldWalkHit/request",AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+		else:
+			animation_tree.set("parameters/walkBlendTree/walkHit/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+			animation_tree.set("parameters/walkBlendTree/shieldWalkHit/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+			animation_tree.set("parameters/runBlendTree/shieldWalkHit/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
+			animation_tree.set("parameters/runBlendTree/runHit/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
+	if current_state == "runBlendTree":
+		if is_blocking:
+			animation_tree.set("parameters/runBlendTree/shieldWalkHit/request",AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+		else:
+			animation_tree.set("parameters/runBlendTree/shieldWalkHit/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+			animation_tree.set("parameters/runBlendTree/runHit/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+			animation_tree.set("parameters/walkBlendTree/walkHit/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
+			animation_tree.set("parameters/walkBlendTree/shieldWalkHit/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
+	
+	
 func leg_lost(value: bool)-> void:
 	if !value:
 		fall()

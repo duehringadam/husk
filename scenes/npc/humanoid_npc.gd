@@ -23,6 +23,10 @@ var main_weapon_add
 var main_weapon_offhand_add
 var secondary_weapon_add
 var secondary_weapon_offhand_add
+var is_blocking: bool = false: set = _update_blocking
+
+func _update_blocking(value: bool):
+	pass
 
 func _update_main_weapon(weapon: npc_weapon):
 	if weapon == null:return
@@ -41,7 +45,7 @@ func _update_main_weapon(weapon: npc_weapon):
 	if weapon.main_weapon_offhand_scene != null:
 		main_weapon_offhand_add = weapon.main_weapon_offhand_scene.instantiate()
 		main_weapon_offhand_add.position = weapon.main_weapon_offhand_position
-		main_weapon_offhand_add.rotation_degrees = weapon.main_weapon_offhand_rotation
+		main_weapon_offhand_add.rotation = weapon.main_weapon_offhand_rotation
 		main_weapon_offhand_add.scale = weapon.main_weapon_offhand_scale
 		main_weapon_offhand_add.damage_component.source = self
 		offhand.add_child(main_weapon_offhand_add)
@@ -53,7 +57,7 @@ func _update_secondary_weapon(weapon: npc_weapon):
 	if weapon.secondary_weapon_scene != null:
 		secondary_weapon_add = weapon.secondary_weapon_scene.instantiate()
 		secondary_weapon_add.position = weapon.secondary_weapon_position
-		secondary_weapon_add.rotation_degrees = weapon.secondary_weapon_rotation
+		secondary_weapon_add.rotation = weapon.secondary_weapon_rotation
 		secondary_weapon_add.scale = weapon.secondary_weapon_scale
 		
 		mainhand.add_child(secondary_weapon_add)
@@ -61,7 +65,7 @@ func _update_secondary_weapon(weapon: npc_weapon):
 	if weapon.secondary_weapon_offhand_scene != null:
 		secondary_weapon_offhand_add = weapon.secondary_weapon_offhand_scene.instantiate()
 		secondary_weapon_offhand_add.position = weapon.secondary_weapon_offhand_position
-		secondary_weapon_offhand_add.rotation_degrees = weapon.secondary_weapon_offhand_rotation
+		secondary_weapon_offhand_add.rotation = weapon.secondary_weapon_offhand_rotation
 		secondary_weapon_offhand_add.scale = weapon.secondary_weapon_offhand_scale
 	
 		offhand.add_child(secondary_weapon_offhand_add)
