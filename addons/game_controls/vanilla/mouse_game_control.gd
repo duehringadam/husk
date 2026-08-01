@@ -12,7 +12,7 @@ func value() -> float:
 
 
 func value_axis_2d() -> Vector2:
-	var window = Engine.get_main_loop().get_root()
+	var window: Window = Engine.get_main_loop().get_root()
 	var input: Vector2 = _mouse_movement
 	# We want real pixels, so we need to factor in any scaling that the window does.
 	var window_size:Vector2 = window.get_screen_transform().affine_inverse() * Vector2(window.size)

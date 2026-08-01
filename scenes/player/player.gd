@@ -1,4 +1,3 @@
-@tool 
 extends Player
 
 @onready var _interaction_controller: RayCast3DInteractionController = $Head/Neck/Camera3D/RayCast3D/RayCast3DInteractionController

@@ -1,5 +1,3 @@
-@tool
-## Stuff here?
 class_name Player extends CharacterBody3D
 
 @export var spawn_at_checkpoint: bool = false
@@ -119,6 +117,7 @@ var isLooking : bool
 const LOOK_AT_DURATION := 1
 var look_target: Node3D
 var mouse_movement: Vector2
+var joy_look: Vector2
 var input_dir: Vector3
 var can_move:=true
 var can_attack:bool = true : set = _set_can_attack
@@ -200,9 +199,9 @@ func _physics_process(delta) -> void:
 			0:
 				attack_dir = input_dir
 				attack_dir.y = input_dir.z
-				
 			1:
-				attack_dir = mouse_movement.normalized()
+				attack_dir = (Input.get_last_mouse_velocity() + joy_look).normalized()
+				print(attack_dir)
 	if is_climbing:
 		_handle_rope_climbing(delta)
 	_handle_ladder_physics(delta)
@@ -371,7 +370,8 @@ func look_around(delta: float) -> void:
 	neck.rotation.x = clamp(neck.rotation.x, deg_to_rad(-85), deg_to_rad(85))
 
 func joy_look_around(delta: float) -> void:
-	var joy_look = Input.get_vector("look_left", "look_right", "look_up", "look_down")
+	if lock_camera: return
+	joy_look = Input.get_vector("look_left", "look_right", "look_up", "look_down")
 	var sens_mult = PlayerConfig.get_config("InputSettings", "JoypadSensitivity", 1.0)
 	if joy_look.length() > 0.01:
 		var mag = joy_look.length()

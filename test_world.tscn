@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://dh564c7854jhe" path="res://scenes/npc/spell merchant/spell_merchant.tscn" id="12_ivea3"]
 [ext_resource type="PackedScene" uid="uid://cqebuck4snj2y" path="res://scenes/cleanser_knight/pyramid_final.tscn" id="12_jvck6"]
 [ext_resource type="PackedScene" uid="uid://dde8d0d27fgyo" path="res://scenes/npc/undead/shambler.tscn" id="13_jvck6"]
-[ext_resource type="PackedScene" uid="uid://bgo71k4srphvm" path="res://scenes/npc/Corpse Crawler/corpse_crawler.tscn" id="14_07jwy"]
 [ext_resource type="PackedScene" uid="uid://csc3ojr7benhn" path="res://maptestflesh(2).tscn" id="15_urhrq"]
 [ext_resource type="Texture2D" uid="uid://bpyuecyduy6u2" path="res://scenes/npc/howler/howler textures/howler_Base_color.png" id="17_blr6d"]
 [ext_resource type="Texture2D" uid="uid://dyg67rjl2h6j0" path="res://scenes/npc/howler/howler textures/howler_normal.jpg" id="18_f2a6c"]
@@ -110,7 +109,6 @@ transform = Transform3D(-0.99971205, 0, -0.023996044, 0, 1, 0, 0.023996044, 0, -
 collision_mask = 46
 spawn_at_checkpoint = false
 footsteps_sound = ExtResource("3_ivea3")
-mouse_sensitivity = 200.0
 head_bob_strength = 0.05
 toggle_crouch = false
 jump_power = 4.5
@@ -158,9 +156,6 @@ transform = Transform3D(-1.75, 0, 2.6424266e-07, 0, 1.75, 0, -2.6424266e-07, 0, 
 
 [node name="sword(1)" parent="." unique_id=1629618071 instance=ExtResource("20_8wsjh")]
 transform = Transform3D(0.1572791, 0.5648554, -0.8100627, 0.9875542, -0.08995958, 0.12901159, 0, -0.8202717, -0.5719741, -14.398417, 10.131123, 86.52436)
-
-[node name="CorpseCrawler" parent="." unique_id=319898315 instance=ExtResource("14_07jwy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.341679, 0.037545636, 55.729656)
 
 [node name="spell_merchant" parent="." unique_id=630712817 instance=ExtResource("12_ivea3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.0519123, -0.013581157, 65.54215)
