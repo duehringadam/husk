@@ -12,15 +12,17 @@ extends Node
 
 var target
 
-
 func _on_back_away_state_entered() -> void:
-	source_npc.is_blocking = true
+	if source_npc.has_shield:
+		animation_tree["parameters/walkBlendTree/shieldWalkBlend/blend_position"] = Vector2(0.0,-1.0)
+		source_npc.is_blocking = true
+		
 	target = source_npc.target
 	back_away_timer.wait_time = max_back_away_time
 	animation_tree.set("parameters/conditions/idle", false)
 	animation_tree.set("parameters/conditions/walk", true)
 	animation_tree["parameters/walkBlendTree/walkBlend/blend_position"] = Vector2(0.0,-1.0)
-	animation_tree["parameters/walkBlendTree/shieldWalkBlend/blend_position"] = Vector2(0.0,-1.0)
+	
 	back_away_timer.start()
 	source_npc.SPEED = back_up_speed
 

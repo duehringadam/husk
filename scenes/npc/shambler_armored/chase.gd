@@ -13,8 +13,12 @@ extends Node
 
 var target
 var nav_agent: NavigationAgent3D
+var tree_root: AnimationNodeStateMachine
 
 func _on_chase_state_entered() -> void:
+	if source_npc.has_shield:
+		animation_tree["parameters/walkBlendTree/shieldWalkBlend/blend_position"] = Vector2(0.0,-1.0)
+	
 	target = source_npc.target
 	nav_agent = source_npc.navigation_agent
 	animation_tree.set("parameters/conditions/idle", false)
@@ -31,9 +35,9 @@ func _on_chase_state_physics_processing(delta: float) -> void:
 		state_chart.send_event("idle")
 	animation_tree["parameters/walkBlendTree/walkBlend/blend_position"].y = lerpf(animation_tree["parameters/walkBlendTree/walkBlend/blend_position"].y, 1.0, delta*10)
 	animation_tree["parameters/walkBlendTree/walkBlend/blend_position"].x = lerpf(animation_tree["parameters/walkBlendTree/walkBlend/blend_position"].x, 0, delta*10)
-	
-	animation_tree["parameters/walkBlendTree/shieldWalkBlend/blend_position"].y = lerpf(animation_tree["parameters/walkBlendTree/shieldWalkBlend/blend_position"].y, 1.0, delta*10)
-	animation_tree["parameters/walkBlendTree/shieldWalkBlend/blend_position"].x = lerpf(animation_tree["parameters/walkBlendTree/shieldWalkBlend/blend_position"].x, 0, delta*10)
+	if source_npc.has_shield:
+		animation_tree["parameters/walkBlendTree/shieldWalkBlend/blend_position"].y = lerpf(animation_tree["parameters/walkBlendTree/shieldWalkBlend/blend_position"].y, 1.0, delta*10)
+		animation_tree["parameters/walkBlendTree/shieldWalkBlend/blend_position"].x = lerpf(animation_tree["parameters/walkBlendTree/shieldWalkBlend/blend_position"].x, 0, delta*10)
 	if source_npc.global_position.distance_to(target.global_position) >= run_range:
 		animation_tree.set("parameters/conditions/run", true)
 		animation_tree.set("parameters/conditions/walk", false)
@@ -62,8 +66,11 @@ func _on_chase_state_physics_processing(delta: float) -> void:
 	if !source_npc.navigation_agent.is_target_reachable():
 		state_chart.send_event("back_away")
 	
-	if source_npc.global_position.distance_to(target.global_position) <= attack_range:
+	if source_npc.global_position.distance_to(target.global_position) <= attack_range && source_npc.right_arm:
 		state_chart.send_event("attack")
+		
+	elif source_npc.global_position.distance_to(target.global_position) <= attack_range && !source_npc.right_arm:
+		state_chart.send_event("back_away")
 		
 	if source_npc.global_position.distance_to(target.global_position) >= lose_sight_range:
 		state_chart.send_event("idle")

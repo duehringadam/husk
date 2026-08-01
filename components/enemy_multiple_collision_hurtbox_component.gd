@@ -54,10 +54,12 @@ func _on_area_shape_entered(area_rid: RID, area: Area3D, area_shape_index: int, 
 		get_tree().create_timer(.25).timeout.connect(func(): just_damaged = false)
 
 func is_facing(source: DamageComponent) -> bool:
-	var self_forward = self.global_transform.basis.z 
-	var target_direction = (source.source.global_transform.origin - self.global_transform.origin).normalized()
-	var dot_product = self_forward.dot(target_direction)
-	var angle_to_target = acos(dot_product)
-	if angle_to_target < deg_to_rad(90):
-		return true
+	if source.source:
+		var self_forward = self.global_transform.basis.z 
+		var target_direction = (source.source.global_transform.origin - self.global_transform.origin).normalized()
+		var dot_product = self_forward.dot(target_direction)
+		var angle_to_target = acos(dot_product)
+		if angle_to_target < deg_to_rad(90):
+			return true
+		return false
 	return false
