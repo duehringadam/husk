@@ -129,7 +129,6 @@ const WALK_SPEED_MAXIMUM := 2.5
 const SPRINT_SPEED_MIN := 2.0
 const SPRINT_SPEED_MAX := 4.0
 
-var combat_type: int = 0
 var slowed :bool = false
 var slow_speed = 0
 var attack_dir
@@ -144,16 +143,10 @@ func _ready() -> void:
 	SignalBus.connect("secondary_active", _set_weapon_active)
 	SignalBus.connect("kick_active", _animate_camera_swing)
 	SignalBus.connect("player_lookat_cutscene", cutscene)
-	combat_type = PlayerConfig.get_config("GameSettings", "DirectionalCombat", 0)
-	
-	GamePiecesEventBus.combat_type.connect(_on_combat_type_changed)
 	Global.camera_fov = base_fov
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	footsteps.stream = footsteps_sound
 	SignalBus.emit_signal("player_ready")
-	
-func _on_combat_type_changed(value: int):
-	combat_type = value
 	
 func _animate_camera_swing(value: bool):
 	if value:
@@ -200,7 +193,6 @@ func _physics_process(delta) -> void:
 			0:
 				attack_dir = input_dir
 				attack_dir.y = input_dir.z
-				
 			1:
 				attack_dir = mouse_movement.normalized()
 	if is_climbing:

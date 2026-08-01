@@ -267,12 +267,9 @@ func _on_ray_cast_3d_interaction_controller_pickable_grabbed(value: bool) -> voi
 func _on_hurtbox_component_blocked_attack() -> void:
 	if offhand.weapon: return
 	
-	var weapon
+	var _weapon = bone_attachment.get_child(0)
 	animation_tree["parameters/playback"].travel("block_hit")
-	for i in bone_attachment.get_children():
-		if i is Weapon:
-			weapon = i
-	if weapon:
-		if weapon.block_sound:
-			weapon.block_sound.pitch_scale = randf_range(0.9,1.1)
-			weapon.block_sound.play()
+	if _weapon:
+		if _weapon.block_sound:
+			_weapon.block_sound.pitch_scale = randf_range(0.9,1.1)
+			_weapon.block_sound.play()

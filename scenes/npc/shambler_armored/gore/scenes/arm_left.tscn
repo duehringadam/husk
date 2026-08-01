@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://8o45fbxpqdy1"]
 
-[ext_resource type="Material" uid="uid://deeoy7sfpxsb8" path="res://scenes/shambler_armored/shambler_armored_material.tres" id="1_17a6q"]
+[ext_resource type="Material" uid="uid://deeoy7sfpxsb8" path="res://scenes/npc/shambler_armored/shambler_armored_material.tres" id="1_17a6q"]
 [ext_resource type="Script" uid="uid://dlojjjuet8kit" path="res://scenes/pieces/sack.gd" id="1_btgfv"]
 [ext_resource type="PackedScene" uid="uid://el0a5hjf7h2o" path="res://scenes/npc/Ghoul Animated/gore/pickable/limb_sever_bleed.tscn" id="2_btgfv"]
 [ext_resource type="Script" uid="uid://b8ltdmwdav2x3" path="res://addons/game_pieces/pickable/pickable_ragdoll.gd" id="3_osfck"]
@@ -334,8 +334,8 @@ joint_constraints/x/linear_equilibrium_point = 0.0
 joint_constraints/x/linear_restitution = 0.5
 joint_constraints/x/linear_damping = 1.0
 joint_constraints/x/angular_limit_enabled = true
-joint_constraints/x/angular_limit_upper = 9.999997
-joint_constraints/x/angular_limit_lower = -9.999997
+joint_constraints/x/angular_limit_upper = 9.999996
+joint_constraints/x/angular_limit_lower = -9.999996
 joint_constraints/x/angular_limit_softness = 0.5
 joint_constraints/x/angular_restitution = 0.0
 joint_constraints/x/angular_damping = 1.0
@@ -355,8 +355,8 @@ joint_constraints/y/linear_equilibrium_point = 0.0
 joint_constraints/y/linear_restitution = 0.5
 joint_constraints/y/linear_damping = 1.0
 joint_constraints/y/angular_limit_enabled = true
-joint_constraints/y/angular_limit_upper = 9.999997
-joint_constraints/y/angular_limit_lower = -9.999997
+joint_constraints/y/angular_limit_upper = 9.999996
+joint_constraints/y/angular_limit_lower = -9.999996
 joint_constraints/y/angular_limit_softness = 0.5
 joint_constraints/y/angular_restitution = 0.0
 joint_constraints/y/angular_damping = 1.0
@@ -376,8 +376,8 @@ joint_constraints/z/linear_equilibrium_point = 0.0
 joint_constraints/z/linear_restitution = 0.5
 joint_constraints/z/linear_damping = 1.0
 joint_constraints/z/angular_limit_enabled = true
-joint_constraints/z/angular_limit_upper = 9.999997
-joint_constraints/z/angular_limit_lower = -9.999997
+joint_constraints/z/angular_limit_upper = 9.999996
+joint_constraints/z/angular_limit_lower = -9.999996
 joint_constraints/z/angular_limit_softness = 0.5
 joint_constraints/z/angular_restitution = 0.0
 joint_constraints/z/angular_damping = 1.0
@@ -386,8 +386,7 @@ joint_constraints/z/angular_spring_enabled = false
 joint_constraints/z/angular_spring_stiffness = 0.0
 joint_constraints/z/angular_spring_damping = 0.0
 joint_constraints/z/angular_equilibrium_point = 0.0
-metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("5_82cv5"),"default_context_id":0,"display_name":"Severed Arm","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("6_h65t6")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("6_h65t6"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("7_culj7"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
-,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("5_82cv5"),"default_context_id":0,"display_name":"Severed Arm","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("6_h65t6")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("6_h65t6"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":null,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
 ]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
 
 
@@ -396,12 +395,12 @@ transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_mxqku")
 
 [node name="Physical Bone mixamorig_RightArm" type="PhysicalBone3D" parent="Skeleton3D/PhysicalBoneSimulator3D" unique_id=1796867196 node_paths=PackedStringArray("throwable_mesh", "throwable", "damage_component") groups=["disable_collision_while_grabbed", "limb_sever", "throwable"]]
-transform = Transform3D(0.033080343, -0.7768382, -0.62883085, 0.08536284, -0.6246801, 0.776201, -0.9958007, -0.079355784, 0.04564847, 0.28415674, 1.5825374, -0.10286629)
+transform = Transform3D(0.033080343, -0.7768382, -0.62883085, 0.08536284, -0.6246801, 0.77620107, -0.9958007, -0.079355784, 0.045648474, 0.28415674, 1.5825374, -0.10286629)
 collision_layer = 8
 collision_mask = 7
 joint_type = 5
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4038914e-07, -1.6438377e-06, 0.13726445)
-body_offset = Transform3D(1.0000002, 2.4586916e-07, 3.7252903e-08, -2.2351742e-08, 1.5569385e-06, -1.0000004, -1.1175871e-07, 1.0000002, 1.7983839e-06, 3.3527613e-07, 0.13726449, 1.3969839e-06)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.398778e-07, -1.6479923e-06, 0.13726446)
+body_offset = Transform3D(1.0000002, 2.4586916e-07, 3.3527613e-08, -2.2351742e-08, 1.5569385e-06, -1.0000002, -1.1175871e-07, 1.0000002, 1.8286519e-06, 3.3527613e-07, 0.13726449, 1.3969839e-06)
 bone_name = "mixamorig_LeftArm"
 joint_constraints/x/linear_limit_enabled = true
 joint_constraints/x/linear_limit_upper = 0.0
@@ -414,8 +413,8 @@ joint_constraints/x/linear_equilibrium_point = 0.0
 joint_constraints/x/linear_restitution = 0.5
 joint_constraints/x/linear_damping = 1.0
 joint_constraints/x/angular_limit_enabled = true
-joint_constraints/x/angular_limit_upper = 9.999997
-joint_constraints/x/angular_limit_lower = -9.999997
+joint_constraints/x/angular_limit_upper = 9.999996
+joint_constraints/x/angular_limit_lower = -9.999996
 joint_constraints/x/angular_limit_softness = 0.5
 joint_constraints/x/angular_restitution = 0.0
 joint_constraints/x/angular_damping = 1.0
@@ -435,8 +434,8 @@ joint_constraints/y/linear_equilibrium_point = 0.0
 joint_constraints/y/linear_restitution = 0.5
 joint_constraints/y/linear_damping = 1.0
 joint_constraints/y/angular_limit_enabled = true
-joint_constraints/y/angular_limit_upper = 9.999997
-joint_constraints/y/angular_limit_lower = -9.999997
+joint_constraints/y/angular_limit_upper = 9.999996
+joint_constraints/y/angular_limit_lower = -9.999996
 joint_constraints/y/angular_limit_softness = 0.5
 joint_constraints/y/angular_restitution = 0.0
 joint_constraints/y/angular_damping = 1.0
@@ -456,8 +455,8 @@ joint_constraints/z/linear_equilibrium_point = 0.0
 joint_constraints/z/linear_restitution = 0.5
 joint_constraints/z/linear_damping = 1.0
 joint_constraints/z/angular_limit_enabled = true
-joint_constraints/z/angular_limit_upper = 9.999997
-joint_constraints/z/angular_limit_lower = -9.999997
+joint_constraints/z/angular_limit_upper = 9.999996
+joint_constraints/z/angular_limit_lower = -9.999996
 joint_constraints/z/angular_limit_softness = 0.5
 joint_constraints/z/angular_restitution = 0.0
 joint_constraints/z/angular_damping = 1.0
@@ -480,11 +479,11 @@ transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_x8gc3")
 
 [node name="GPUParticles3D" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone mixamorig_RightArm" unique_id=1676088552 instance=ExtResource("2_btgfv")]
-transform = Transform3D(-0.9964714, 0.03311639, 0.077125035, 0.03376086, 0.9994054, 0.0070306477, -0.07684369, 0.009609769, -0.99699664, 0.078266725, -0.016330525, -0.107596815)
+transform = Transform3D(-0.99647164, 0.033116393, 0.07712505, 0.033760868, 0.9994055, 0.0070306496, -0.0768437, 0.009609452, -0.9969969, 0.038970068, 0.0048059374, -0.107596815)
 top_level = true
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone mixamorig_RightArm" unique_id=1943360626]
-transform = Transform3D(1, 2.3283064e-10, 7.450581e-09, 8.731149e-10, 1, -9.313226e-10, -7.450581e-09, 9.313226e-10, 1, 0.01201717, -0.0015027695, 0.15590727)
+transform = Transform3D(1.0000002, 7.450581e-09, 1.1175871e-08, 7.450581e-09, 1.0000002, -1.17346644e-07, -7.450581e-09, 9.313226e-10, 1.0000002, 0.01252149, 0.015820853, 0.19702435)
 remote_path = NodePath("../GPUParticles3D")
 update_rotation = false
 
@@ -566,12 +565,12 @@ shape = SubResource("CapsuleShape3D_bof64")
 [node name="PickupSound" type="AudioStreamPlayer" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone mixamorig_RightArm" unique_id=675833593]
 
 [node name="Physical Bone mixamorig_RightForeArm" type="PhysicalBone3D" parent="Skeleton3D/PhysicalBoneSimulator3D" unique_id=729735824 node_paths=PackedStringArray("throwable_mesh", "throwable", "damage_component")]
-transform = Transform3D(-0.010297901, -0.7006657, -0.7134155, -0.5515384, -0.591133, 0.5885298, -0.834086, 0.39953664, -0.38035658, 0.510392, 1.3605596, -0.034546405)
+transform = Transform3D(-0.010297901, -0.7006657, -0.71341544, -0.5515384, -0.591133, 0.58852977, -0.834086, 0.39953667, -0.38035652, 0.510392, 1.3605596, -0.034546405)
 collision_layer = 8
 collision_mask = 7
 joint_type = 5
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.24817e-06, -2.8183814e-07, 0.19609056)
-body_offset = Transform3D(1.0000002, -1.2516975e-06, -8.34465e-07, -8.940697e-07, 2.026558e-06, -1.0000004, 1.2218952e-06, 1.0000005, 2.2351742e-06, -3.0845404e-06, 0.19609064, -1.5646219e-07)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.24817e-06, -2.7599418e-07, 0.19609055)
+body_offset = Transform3D(1.0000002, -1.2218952e-06, -8.34465e-07, -8.940697e-07, 2.0116568e-06, -1.0000005, 1.2218952e-06, 1.0000005, 2.2053719e-06, -3.0845404e-06, 0.19609064, -1.5646219e-07)
 bone_name = "mixamorig_LeftForeArm"
 joint_constraints/x/linear_limit_enabled = true
 joint_constraints/x/linear_limit_upper = 0.0
@@ -584,8 +583,8 @@ joint_constraints/x/linear_equilibrium_point = 0.0
 joint_constraints/x/linear_restitution = 0.5
 joint_constraints/x/linear_damping = 1.0
 joint_constraints/x/angular_limit_enabled = true
-joint_constraints/x/angular_limit_upper = 9.999997
-joint_constraints/x/angular_limit_lower = -9.999997
+joint_constraints/x/angular_limit_upper = 9.999996
+joint_constraints/x/angular_limit_lower = -9.999996
 joint_constraints/x/angular_limit_softness = 0.5
 joint_constraints/x/angular_restitution = 0.0
 joint_constraints/x/angular_damping = 1.0
@@ -605,8 +604,8 @@ joint_constraints/y/linear_equilibrium_point = 0.0
 joint_constraints/y/linear_restitution = 0.5
 joint_constraints/y/linear_damping = 1.0
 joint_constraints/y/angular_limit_enabled = true
-joint_constraints/y/angular_limit_upper = 9.999997
-joint_constraints/y/angular_limit_lower = -9.999997
+joint_constraints/y/angular_limit_upper = 9.999996
+joint_constraints/y/angular_limit_lower = -9.999996
 joint_constraints/y/angular_limit_softness = 0.5
 joint_constraints/y/angular_restitution = 0.0
 joint_constraints/y/angular_damping = 1.0
@@ -626,8 +625,8 @@ joint_constraints/z/linear_equilibrium_point = 0.0
 joint_constraints/z/linear_restitution = 0.5
 joint_constraints/z/linear_damping = 1.0
 joint_constraints/z/angular_limit_enabled = true
-joint_constraints/z/angular_limit_upper = 9.999997
-joint_constraints/z/angular_limit_lower = -9.999997
+joint_constraints/z/angular_limit_upper = 9.999996
+joint_constraints/z/angular_limit_lower = -9.999996
 joint_constraints/z/angular_limit_softness = 0.5
 joint_constraints/z/angular_restitution = 0.0
 joint_constraints/z/angular_damping = 1.0
@@ -721,8 +720,8 @@ joint_constraints/x/linear_equilibrium_point = 0.0
 joint_constraints/x/linear_restitution = 0.5
 joint_constraints/x/linear_damping = 1.0
 joint_constraints/x/angular_limit_enabled = true
-joint_constraints/x/angular_limit_upper = 9.999997
-joint_constraints/x/angular_limit_lower = -9.999997
+joint_constraints/x/angular_limit_upper = 9.999996
+joint_constraints/x/angular_limit_lower = -9.999996
 joint_constraints/x/angular_limit_softness = 0.5
 joint_constraints/x/angular_restitution = 0.0
 joint_constraints/x/angular_damping = 1.0
@@ -742,8 +741,8 @@ joint_constraints/y/linear_equilibrium_point = 0.0
 joint_constraints/y/linear_restitution = 0.5
 joint_constraints/y/linear_damping = 1.0
 joint_constraints/y/angular_limit_enabled = true
-joint_constraints/y/angular_limit_upper = 9.999997
-joint_constraints/y/angular_limit_lower = -9.999997
+joint_constraints/y/angular_limit_upper = 9.999996
+joint_constraints/y/angular_limit_lower = -9.999996
 joint_constraints/y/angular_limit_softness = 0.5
 joint_constraints/y/angular_restitution = 0.0
 joint_constraints/y/angular_damping = 1.0
@@ -763,8 +762,8 @@ joint_constraints/z/linear_equilibrium_point = 0.0
 joint_constraints/z/linear_restitution = 0.5
 joint_constraints/z/linear_damping = 1.0
 joint_constraints/z/angular_limit_enabled = true
-joint_constraints/z/angular_limit_upper = 9.999997
-joint_constraints/z/angular_limit_lower = -9.999997
+joint_constraints/z/angular_limit_upper = 9.999996
+joint_constraints/z/angular_limit_lower = -9.999996
 joint_constraints/z/angular_limit_softness = 0.5
 joint_constraints/z/angular_restitution = 0.0
 joint_constraints/z/angular_damping = 1.0

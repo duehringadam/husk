@@ -17,7 +17,7 @@ func _process(delta: float) -> void:
 			attack_dir = Global.player.input_dir
 			attack_dir.y = Global.player.input_dir.z
 		1:
-			attack_dir = Input.get_last_mouse_velocity().normalized()
+			attack_dir = Global.player.attack_dir
 	if !lock_arrows:
 		adjust_reticle_lines()
 	

@@ -64,9 +64,8 @@ func check_distance_for_next_attack():
 func set_attack_value(value: bool):
 	animation_tree.set("parameters/conditions/attack", value)
 
-func update_attack_tracking(value: bool):
+func update_attack_tracking(value: bool, speed = 4):
 	attack_tracking = value
-	if !value:
-		source_npc.SPEED = 0
-	if value:
-		source_npc.SPEED = 4
+	source_npc.SPEED = speed
+
+	

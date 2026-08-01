@@ -86,3 +86,9 @@ func enable():
 	visible = true
 	var tween = get_tree().create_tween()
 	tween.tween_property(arms_base, "rotation_degrees:x", 0, .25)
+
+func enable_mainhand_offhand():
+	mainhand.enable()
+	mainhand.visible = true
+	offhand.enable()
+	offhand.visible = true

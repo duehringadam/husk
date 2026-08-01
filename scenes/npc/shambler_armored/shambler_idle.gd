@@ -5,6 +5,7 @@ extends Node
 @export var state_chart: StateChart
 
 func _on_idle_state_entered() -> void:
+	animation_tree.active = true
 	animation_tree.set("parameters/conditions/idle", true)
 	animation_tree.set("parameters/conditions/walk", false)
 	source_npc.SPEED = 0

@@ -46,8 +46,5 @@ func _on_slow_player(value: float):
 	walk_speed -= value
 	sprint_speed -= value
 
-func _on_combat_type_changed(value: int):
-	combat_type = value
-
 func _on_attack_lock_requested(enable: bool)->void:
 	can_attack = !enable
