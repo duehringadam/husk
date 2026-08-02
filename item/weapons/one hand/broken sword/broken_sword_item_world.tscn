@@ -11,6 +11,7 @@
 [ext_resource type="ArrayMesh" uid="uid://dl501p35tytdj" path="res://item/weapons/one hand/broken sword/BrokenSword/sword_final_anime_if_you_change_it_again_i_kill_you.tres" id="7_guvum"]
 [ext_resource type="PackedScene" uid="uid://dhws2ueoubwwx" path="res://components/bounding_box_component.tscn" id="8_7cjlg"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="8_xbs6s"]
+[ext_resource type="Material" uid="uid://dalyw7abdi1og" path="res://item/weapons/one hand/broken sword/BrokenSword/broken_sword_material.tres" id="10_3w5sf"]
 [ext_resource type="PackedScene" uid="uid://bvb1ic1mm6bap" path="res://item/item glint/item_glint.tscn" id="10_ga4lm"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7cjlg"]
@@ -31,8 +32,10 @@ change_distance_interaction = NodePath("InteractionContainer/WhileGrabbed/Change
 throwable_mesh = NodePath("Broken Sword")
 throwable = NodePath(".")
 damage_component = NodePath("DamageComponent")
-metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("2_v235k"),"default_context_id":0,"display_name":"Broken Sword","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("3_guvum")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_guvum"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":null,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
-, Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_guvum"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":null,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("2_v235k"),"default_context_id":0,"display_name":"Broken Sword","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("3_guvum")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_guvum"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("4_v235k"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+, Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_guvum"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("4_v235k"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
 ]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
 
 
@@ -113,6 +116,7 @@ metadata/_custom_type_script = "uid://cp0p4yckxtvmw"
 
 [node name="Broken Sword" type="MeshInstance3D" parent="." unique_id=1316351081]
 mesh = ExtResource("7_guvum")
+surface_material_override/0 = ExtResource("10_3w5sf")
 
 [node name="OmniLight3D" parent="Broken Sword" unique_id=1151187837 instance=ExtResource("10_ga4lm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009974502, -0.15082838, 0.005729839)

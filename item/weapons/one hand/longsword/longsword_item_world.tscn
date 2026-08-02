@@ -9,9 +9,10 @@
 [ext_resource type="Script" uid="uid://cp0p4yckxtvmw" path="res://addons/game_pieces/collision_sound/collision_sound_player.gd" id="6_frsy1"]
 [ext_resource type="AudioStream" uid="uid://dcr4in8lcdk51" path="res://sfx/UI/dark_souls_item.wav" id="7_dguxm"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="8_yp5h5"]
-[ext_resource type="ArrayMesh" uid="uid://doy8sxblf5nrh" path="res://item/weapons/one hand/SM_Sword_2/M_Sword_2_Mesh.tres" id="9_gy6y3"]
+[ext_resource type="ArrayMesh" uid="uid://doy8sxblf5nrh" path="res://item/weapons/one hand/longsword/SM_Sword_2/M_Sword_2_Mesh.tres" id="9_gy6y3"]
 [ext_resource type="PackedScene" uid="uid://dhws2ueoubwwx" path="res://components/bounding_box_component.tscn" id="9_k6q4i"]
 [ext_resource type="PackedScene" uid="uid://bvb1ic1mm6bap" path="res://item/item glint/item_glint.tscn" id="10_hxpeq"]
+[ext_resource type="Material" uid="uid://c87o60d8xcp8o" path="res://item/weapons/one hand/longsword/SM_Sword_2/longsword_item_world_material.tres" id="10_v6ve5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xbs6s"]
 size = Vector3(0.18457031, 1.3070923, 0.05834961)
@@ -28,8 +29,10 @@ change_distance_interaction = NodePath("InteractionContainer/WhileGrabbed/Change
 throwable_mesh = NodePath("Longsword")
 throwable = NodePath(".")
 damage_component = NodePath("DamageComponent")
-metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("2_1wyfq"),"default_context_id":0,"display_name":"Longsword","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("3_gy6y3")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_gy6y3"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":null,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
-, Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_gy6y3"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":null,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("2_1wyfq"),"default_context_id":0,"display_name":"Longsword","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("3_gy6y3")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_gy6y3"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("4_hxpeq"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+, Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_gy6y3"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("4_hxpeq"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
 ]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
 
 
@@ -112,6 +115,7 @@ metadata/_custom_type_script = "uid://cp0p4yckxtvmw"
 [node name="Longsword" type="MeshInstance3D" parent="." unique_id=1316351081]
 transform = Transform3D(-1.55, 1.355053e-07, 0, -1.355053e-07, -1.55, 0, 0, 0, 1.55, 0, 0.33761027, 0)
 mesh = ExtResource("9_gy6y3")
+surface_material_override/0 = ExtResource("10_v6ve5")
 
 [node name="OmniLight3D" parent="Longsword" unique_id=1151187837 instance=ExtResource("10_hxpeq")]
 transform = Transform3D(1, 5.5067065e-15, 0, -5.5067065e-15, 1, 0, 0, 0, 1, 2.3339801e-08, 0.2669762, 0.00028728836)

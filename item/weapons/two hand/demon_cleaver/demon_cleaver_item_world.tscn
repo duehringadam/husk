@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://doc0okecalxnp" path="res://addons/interaction_system/interaction_context.gd" id="6_1xo65"]
 [ext_resource type="AudioStream" uid="uid://dcr4in8lcdk51" path="res://sfx/UI/dark_souls_item.wav" id="7_2k88r"]
 [ext_resource type="Script" uid="uid://cp0p4yckxtvmw" path="res://addons/game_pieces/collision_sound/collision_sound_player.gd" id="8_d4kbv"]
-[ext_resource type="Material" uid="uid://dbt0tdag40w0g" path="res://item/weapons/two hand/great axe/demon cleaver/demon cleaver.tres" id="9_4lkl4"]
+[ext_resource type="Material" uid="uid://d266b4aqi87o3" path="res://item/weapons/two hand/demon_cleaver/demon_cleaver_item_world_material.tres" id="9_tvtkl"]
 [ext_resource type="PackedScene" uid="uid://bvb1ic1mm6bap" path="res://item/item glint/item_glint.tscn" id="11_du08k"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="12_j1hti"]
 [ext_resource type="PackedScene" uid="uid://dhws2ueoubwwx" path="res://components/bounding_box_component.tscn" id="13_pdlij"]
@@ -154,7 +154,7 @@ metadata/_custom_type_script = "uid://cp0p4yckxtvmw"
 [node name="SM_Demon_Greatsword" type="MeshInstance3D" parent="." unique_id=1299665685]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.33761027, 0)
 mesh = SubResource("ArrayMesh_onye7")
-surface_material_override/0 = ExtResource("9_4lkl4")
+surface_material_override/0 = ExtResource("9_tvtkl")
 
 [node name="OmniLight3D" parent="SM_Demon_Greatsword" unique_id=1151187837 instance=ExtResource("11_du08k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3339798e-08, 0.2669762, -0.029356902)

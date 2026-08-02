@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://bky3rbcy6gkpt"]
+
+[ext_resource type="ArrayMesh" uid="uid://cdseku0jalk88" path="res://item/weapons/shield/wooden_kite_shield/SM_Kite_Wood_Shield/SM_Kite_wood_shield_mesh.tres" id="1_gsuci"]
+[ext_resource type="Script" uid="uid://bdj1wfqnsi1rd" path="res://item/weapons/shield/wooden_kite_shield/shield.gd" id="1_obilp"]
+[ext_resource type="Shader" uid="uid://cba8frjri8tvn" path="res://Player/shaders/first_person_arms.gdshader" id="2_obilp"]
+[ext_resource type="Texture2D" uid="uid://hqnc" path="res://item/weapons/shield/wooden_kite_shield/SM_Kite_Wood_Shield/T_Kite_Wood_Shield_C.png" id="3_ferha"]
+[ext_resource type="Texture2D" uid="uid://hqna" path="res://item/weapons/shield/wooden_kite_shield/SM_Kite_Wood_Shield/T_Kite_Wood_Shield_N.png" id="4_dcbq7"]
+[ext_resource type="AudioStream" uid="uid://dnk7ycpa3ttsr" path="res://sfx/weapons/shield/shield_raise.ogg" id="6_w6uds"]
+[ext_resource type="AudioStream" uid="uid://dln8cj8m3uwyo" path="res://sfx/weapons/shield/shield_equip.ogg" id="7_mdu3e"]
+[ext_resource type="AudioStream" uid="uid://dhtnv1kdswd6x" path="res://sfx/weapons/shield/Fantasy_Game_Weapons_Wood Shield_1_Block_Defend_Buckler_Deflect.wav" id="8_torsg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w6uds"]
+render_priority = 0
+shader = ExtResource("2_obilp")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("3_ferha")
+shader_parameter/albedo_texture_size = Vector2i(0, 0)
+shader_parameter/point_size = 0.0
+shader_parameter/roughness = 0.0
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
+shader_parameter/specular = 0.0
+shader_parameter/metallic = 0.0
+shader_parameter/texture_normal = ExtResource("4_dcbq7")
+shader_parameter/normal_scale = 1.0
+shader_parameter/uv1_scale = Vector3(0, 0, 0)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(0, 0, 0)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/FOV = 75.0
+shader_parameter/progress = 0.0
+shader_parameter/noise_softness = 0.05
+
+[node name="KiteShield" type="Node3D" unique_id=1468510221]
+script = ExtResource("1_obilp")
+
+[node name="SM_Kite_Wood_Shield1" type="MeshInstance3D" parent="." unique_id=66288085]
+transform = Transform3D(1.25, 5.463923e-08, 2.3883566e-15, 0, -5.4639237e-08, 1.25, 5.463923e-08, -1.25, -5.4639237e-08, 0, 0, -1.4901161e-08)
+mesh = ExtResource("1_gsuci")
+surface_material_override/0 = SubResource("ShaderMaterial_w6uds")
+
+[node name="raise" type="AudioStreamPlayer3D" parent="." unique_id=1919975379]
+stream = ExtResource("6_w6uds")
+bus = &"SFX"
+
+[node name="equip" type="AudioStreamPlayer3D" parent="." unique_id=800525931]
+stream = ExtResource("7_mdu3e")
+bus = &"SFX"
+
+[node name="block" type="AudioStreamPlayer3D" parent="." unique_id=1087985912]
+stream = ExtResource("8_torsg")
+bus = &"SFX"

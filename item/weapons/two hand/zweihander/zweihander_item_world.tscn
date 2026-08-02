@@ -8,9 +8,8 @@
 [ext_resource type="Script" uid="uid://doc0okecalxnp" path="res://addons/interaction_system/interaction_context.gd" id="6_mynwr"]
 [ext_resource type="AudioStream" uid="uid://dcr4in8lcdk51" path="res://sfx/UI/dark_souls_item.wav" id="7_c2tqp"]
 [ext_resource type="Script" uid="uid://cp0p4yckxtvmw" path="res://addons/game_pieces/collision_sound/collision_sound_player.gd" id="8_gtr1w"]
-[ext_resource type="Texture2D" uid="uid://hqq7" path="res://item/weapons/two hand/SM_HeavySword/T_HeavySword_C.png" id="9_gr7xb"]
+[ext_resource type="Material" uid="uid://bo8kw7hu2c5jf" path="res://item/weapons/two hand/zweihander/zweihander_item_world_material.tres" id="9_ohxys"]
 [ext_resource type="PackedScene" uid="uid://bvb1ic1mm6bap" path="res://item/item glint/item_glint.tscn" id="10_iu5my"]
-[ext_resource type="Texture2D" uid="uid://hqq5" path="res://item/weapons/two hand/SM_HeavySword/T_HeavySword_N.png" id="10_ul2nd"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="11_85rua"]
 [ext_resource type="PackedScene" uid="uid://dhws2ueoubwwx" path="res://components/bounding_box_component.tscn" id="12_oogr1"]
 
@@ -51,12 +50,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_5b5u5")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0xous"]
-albedo_texture = ExtResource("9_gr7xb")
-normal_enabled = true
-normal_texture = ExtResource("10_ul2nd")
-texture_filter = 4
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_xbs6s"]
 size = Vector3(0.25097656, 2.3295417, 0.05834961)
 
@@ -72,8 +65,10 @@ change_distance_interaction = NodePath("InteractionContainer/WhileGrabbed/Change
 throwable_mesh = NodePath("Zweihander")
 throwable = NodePath(".")
 damage_component = NodePath("DamageComponent")
-metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_ul2nd"),"default_context_id":0,"display_name":"Longsword","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("4_227hg")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("4_227hg"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":null,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
-, Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("4_227hg"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":null,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_ul2nd"),"default_context_id":0,"display_name":"Longsword","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("4_227hg")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("4_227hg"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("5_0xous"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+, Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("4_227hg"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("5_0xous"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
 ]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
 
 
@@ -156,7 +151,7 @@ metadata/_custom_type_script = "uid://cp0p4yckxtvmw"
 [node name="Zweihander" type="MeshInstance3D" parent="." unique_id=1316351081]
 transform = Transform3D(-1.2, 1.8119498e-07, 0, -1.8119498e-07, -1.2, 0, 0, 0, 1.2, 0, 0.33761027, 0)
 mesh = SubResource("ArrayMesh_227hg")
-surface_material_override/0 = SubResource("StandardMaterial3D_0xous")
+surface_material_override/0 = ExtResource("9_ohxys")
 
 [node name="OmniLight3D" parent="Zweihander" unique_id=1151187837 instance=ExtResource("10_iu5my")]
 transform = Transform3D(1, 5.5067065e-15, 0, -5.5067065e-15, 1, 0, 0, 0, 1, 2.3339801e-08, 0.2669762, 0.00028728836)
