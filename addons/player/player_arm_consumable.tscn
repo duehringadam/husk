@@ -1,18 +1,18 @@
 [gd_scene format=4 uid="uid://c3edfhdllccxg"]
 
-[ext_resource type="Script" uid="uid://p3carixd5qtj" path="res://Player/consumable_hand.gd" id="1_dwli0"]
-[ext_resource type="Material" uid="uid://ccjem4uniqo0n" path="res://Player/viewmodel/hands/arms.tres" id="2_4x6lu"]
+[ext_resource type="Script" uid="uid://p3carixd5qtj" path="res://Player/scripts/consumable_hand.gd" id="1_dwli0"]
+[ext_resource type="Material" uid="uid://ccjem4uniqo0n" path="res://Player/hands/art/arms.tres" id="2_4x6lu"]
 [ext_resource type="Material" uid="uid://d0p82r0xbudbp" path="res://shaders/first_person_arms.tres" id="3_a0ygj"]
-[ext_resource type="PackedScene" uid="uid://i31mck2qxma" path="res://item/consumables/health_potion.tscn" id="4_3ls7t"]
-[ext_resource type="Animation" uid="uid://bmv6m8fbmy68n" path="res://Player/viewmodel/animations/hands/spell_fire/fire_equip.tres" id="5_871oq"]
-[ext_resource type="Animation" uid="uid://dsovpxxdyad36" path="res://Player/viewmodel/animations/hands/spell_fire/fire_idle.tres" id="6_bjoni"]
-[ext_resource type="Animation" uid="uid://n77wflivid5l" path="res://Player/viewmodel/animations/hands/spell_fire/fire_nomana.tres" id="7_3y4y0"]
-[ext_resource type="Animation" uid="uid://d0xlc8jv2a32x" path="res://Player/viewmodel/animations/hands/consumables/healing_use.tres" id="8_y4s1y"]
-[ext_resource type="Animation" uid="uid://dcn8w14uio0rx" path="res://Player/viewmodel/animations/hands/spell_fire/fire_use.tres" id="8_yd36n"]
-[ext_resource type="Animation" uid="uid://de5mlpadwodgy" path="res://Player/viewmodel/animations/hands/throwing_knife/throw_charge.tres" id="9_e8l6l"]
-[ext_resource type="Animation" uid="uid://dt3wud84y54vo" path="res://Player/viewmodel/animations/hands/throwing_knife/throwing_TO.tres" id="10_7rvww"]
-[ext_resource type="AnimationNodeStateMachine" uid="uid://b16vrolklqa3y" path="res://Player/viewmodel/animations/hands/animation_state_machines/consumable_state_machine.tres" id="11_dwli0"]
-[ext_resource type="Animation" uid="uid://bonix6viiggr4" path="res://Player/viewmodel/animations/hands/throwing_knife/throwing_throw.tres" id="11_u1ds2"]
+[ext_resource type="PackedScene" uid="uid://i31mck2qxma" path="res://item/consumables/potion/health_potion.tscn" id="4_3ls7t"]
+[ext_resource type="Animation" uid="uid://bmv6m8fbmy68n" path="res://Player/hands/animations/hands/spell_fire/fire_equip.tres" id="5_871oq"]
+[ext_resource type="Animation" uid="uid://dsovpxxdyad36" path="res://Player/hands/animations/hands/spell_fire/fire_idle.tres" id="6_bjoni"]
+[ext_resource type="Animation" uid="uid://n77wflivid5l" path="res://Player/hands/animations/hands/spell_fire/fire_nomana.tres" id="7_3y4y0"]
+[ext_resource type="Animation" uid="uid://d0xlc8jv2a32x" path="res://Player/hands/animations/hands/consumables/healing_use.tres" id="8_y4s1y"]
+[ext_resource type="Animation" uid="uid://dcn8w14uio0rx" path="res://Player/hands/animations/hands/spell_fire/fire_use.tres" id="8_yd36n"]
+[ext_resource type="Animation" uid="uid://de5mlpadwodgy" path="res://Player/hands/animations/hands/throwing_knife/throw_charge.tres" id="9_e8l6l"]
+[ext_resource type="Animation" uid="uid://dt3wud84y54vo" path="res://Player/hands/animations/hands/throwing_knife/throwing_TO.tres" id="10_7rvww"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://b16vrolklqa3y" path="res://Player/hands/animations/hands/animation_state_machines/consumable_state_machine.tres" id="11_dwli0"]
+[ext_resource type="Animation" uid="uid://bonix6viiggr4" path="res://Player/hands/animations/hands/throwing_knife/throwing_throw.tres" id="11_u1ds2"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_wgaes"]
 resource_name = "ghoul_arms2(1)_RetopoFlow_002"
@@ -22908,12 +22908,12 @@ skeleton = NodePath("..")
 surface_material_override/0 = ExtResource("3_a0ygj")
 
 [node name="offhandAttach" type="BoneAttachment3D" parent="ghoul_arms2(1)/Armature/Skeleton3D" unique_id=618378062]
-transform = Transform3D(0.37848553, 0.9215992, 0.08604012, -0.8561135, 0.31321558, 0.41105494, 0.35187867, -0.22923835, 0.9075407, -0.20722523, -1.1729027, -0.32223943)
+transform = Transform3D(9.305877e-08, 0.99999, -0.0043892018, -0.95270985, 0.001333876, 0.30387694, 0.3038797, 0.004181601, 0.9527011, -0.42439768, -0.51040804, -1.156716)
 bone_name = "weapons.L"
 bone_idx = 48
 
 [node name="mainAttach" type="BoneAttachment3D" parent="ghoul_arms2(1)/Armature/Skeleton3D" unique_id=434209681]
-transform = Transform3D(-3.2583887e-07, -0.0043896027, -0.9999903, 1, -1.9189983e-10, -3.258408e-07, 1.2384298e-09, -0.9999903, 0.004389599, 0.32935885, -0.3940043, -1.0471478)
+transform = Transform3D(0.36280516, 0.5049163, -0.7832188, 0.732172, 0.36546987, 0.57476574, 0.57645154, -0.78197896, -0.23709117, 1.0586734, -0.32081935, -0.65739167)
 bone_name = "hand.R"
 bone_idx = 4
 

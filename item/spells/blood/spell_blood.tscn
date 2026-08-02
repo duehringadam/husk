@@ -1,0 +1,843 @@
+[gd_scene format=3 uid="uid://ctfq2toui1ut"]
+
+[ext_resource type="Script" uid="uid://blrl00udyuq0c" path="res://item/spells/blood/spell_blood.gd" id="1_cdpo5"]
+[ext_resource type="Shader" uid="uid://b6yr6gpb6uvnl" path="res://Player/shaders/first_person_particle.gdshader" id="2_d7ah0"]
+[ext_resource type="Texture2D" uid="uid://00btsgwaneit" path="res://scenes/VFX/textures/T_Blood_Mist_04a_alpha.png" id="4_q3for"]
+[ext_resource type="Material" uid="uid://co368jldtlx0m" path="res://shaders/blood_explosion.tres" id="5_6kw77"]
+[ext_resource type="Texture2D" uid="uid://d1487hs54xk4g" path="res://scenes/VFX/textures/T_Blood_bulb_UJ1.png" id="6_fv411"]
+[ext_resource type="Texture2D" uid="uid://dbnf0aulan0lb" path="res://scenes/VFX/textures/T_Blood_Mist_04a_alpha_normal(1).png" id="6_ji3dv"]
+[ext_resource type="Texture2D" uid="uid://bs5888n022i54" path="res://scenes/VFX/textures/T_Blood_bulb_UJ1_N.png" id="7_2xhu8"]
+[ext_resource type="AudioStream" uid="uid://ddjlvrgjycj4r" path="res://sfx/spells/blood/universfield-slime-impact-352473.mp3" id="8_d7ah0"]
+[ext_resource type="AudioStream" uid="uid://blbqtisskes0w" path="res://sfx/spells/telekinesis/deep-whoosh-bass-impact-effect-04-407108 (2).mp3" id="8_f701h"]
+[ext_resource type="Texture2D" uid="uid://cxsmx407d722t" path="res://scenes/VFX/textures/T_NP41.PNG" id="8_kfvg2"]
+[ext_resource type="AudioStream" uid="uid://bcbfxlgkj8wxf" path="res://sfx/spells/blood/ragecore29-htf-flesh-impact-1-480118.mp3" id="8_q3for"]
+[ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="10_f701h"]
+[ext_resource type="ArrayMesh" uid="uid://bmi0bbugbvf62" path="res://scenes/VFX/objects/sm_muzzle_crossplanes.obj" id="11_d7ah0"]
+[ext_resource type="Shader" uid="uid://co7jgochvp3jd" path="res://scenes/VFX/shaders/ss_decal2_treshold_p.gdshader" id="12_ji3dv"]
+[ext_resource type="Shader" uid="uid://cxwh4tdds7nvc" path="res://scenes/VFX/shaders/s_Disolver_small_Liquid_p_Treshold_ds.tres" id="13_f701h"]
+[ext_resource type="Texture2D" uid="uid://dbq4afiw01u8h" path="res://scenes/VFX/textures/T_Gib_Red_C.PNG" id="14_5p55a"]
+[ext_resource type="ArrayMesh" uid="uid://cm4x8hlhnxh4" path="res://scenes/VFX/objects/sm_plane_coned_spiked_waved2.obj" id="15_thsj3"]
+
+[sub_resource type="Curve" id="Curve_q3for"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.08988774), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_d7ah0"]
+curve = SubResource("Curve_q3for")
+
+[sub_resource type="Curve" id="Curve_5gxup"]
+_data = [Vector2(0, 0), 0.0, 1.2530035, 0, 0, Vector2(0.48484844, 0.46067423), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.1547601, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_v7qe8"]
+curve = SubResource("Curve_5gxup")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5ha2o"]
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, 1, 0)
+spread = 0.0
+angular_velocity_min = -85.65002
+angular_velocity_max = 112.40998
+gravity = Vector3(0, 0, 0)
+scale_max = 1.3
+scale_curve = SubResource("CurveTexture_v7qe8")
+alpha_curve = SubResource("CurveTexture_d7ah0")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ji3dv"]
+render_priority = 0
+shader = ExtResource("2_d7ah0")
+shader_parameter/albedo = Color(0.59000057, 0, 0, 1)
+shader_parameter/texture_albedo = ExtResource("4_q3for")
+shader_parameter/albedo_texture_size = Vector2i(1024, 1024)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 1.0
+shader_parameter/particles_anim_h_frames = 1
+shader_parameter/particles_anim_v_frames = 1
+shader_parameter/particles_anim_loop = false
+shader_parameter/emission = Color(0, 0, 0, 1)
+shader_parameter/emission_energy = 0.0
+shader_parameter/texture_normal = ExtResource("6_ji3dv")
+shader_parameter/normal_scale = 1.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_o87rs"]
+material = SubResource("ShaderMaterial_ji3dv")
+size = Vector2(0.25, 0.25)
+
+[sub_resource type="Curve" id="Curve_5tjjd"]
+_data = [Vector2(0, 0.054945), 0.0, -0.0668502, 0, 0, Vector2(1, 1), 3.5682, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_6i6d4"]
+texture_mode = 1
+curve = SubResource("Curve_5tjjd")
+
+[sub_resource type="Curve" id="Curve_6kxjq"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.595652, 0.120879), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_cba3o"]
+curve = SubResource("Curve_6kxjq")
+
+[sub_resource type="Curve" id="Curve_kw7sj"]
+_data = [Vector2(0, 0.153846), 0.0, 1.81662, 0, 0, Vector2(1, 1), -0.052317, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_mw7uv"]
+curve = SubResource("Curve_kw7sj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k45jt"]
+particle_flag_rotate_y = true
+angle_min = 1.07288e-05
+angle_max = 1.07288e-05
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 0.5
+initial_velocity_max = 2.0
+angular_velocity_min = -1.60933e-05
+angular_velocity_max = -1.60933e-05
+radial_velocity_min = -2.23517e-05
+radial_velocity_max = 0.999978
+radial_velocity_curve = SubResource("CurveTexture_cba3o")
+gravity = Vector3(0, 0, 0)
+scale_min = 0.8
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_mw7uv")
+alpha_curve = SubResource("CurveTexture_6i6d4")
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_ji3dv"]
+size = Vector2(0.25, 0.25)
+
+[sub_resource type="Animation" id="Animation_2w6yx"]
+resource_name = "Init"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../enemyDamage:monitoring")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.36666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../enemyDamage:monitorable")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.36666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../enemyDamage/CollisionShape3D:shape:radius")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.35189924, 0.40781823),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.1, 3.0, 0.1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../Blood_Marks_B5:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../../splatter2:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../BloodExplosion_O1:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../playerDamage:monitorable")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.060828265, 0.1395472),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../playerDamage:monitoring")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.060828265, 0.1395472),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_si7o1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../enemyDamage:monitoring")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../enemyDamage:monitorable")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../enemyDamage/CollisionShape3D:shape:radius")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../Blood_Marks_B5:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../../splatter2:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../BloodExplosion_O1:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../playerDamage:monitorable")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../playerDamage:monitoring")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_15yxu"]
+_data = {
+&"Init": SubResource("Animation_2w6yx"),
+&"RESET": SubResource("Animation_si7o1")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_q3for"]
+radius = 0.1
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6kw77"]
+radius = 0.41792196
+
+[sub_resource type="Curve" id="Curve_ju26p"]
+_data = [Vector2(0.143478, 0.043956), 0.0, -0.0668502, 0, 0, Vector2(1, 1), 3.5682, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_8pb4f"]
+texture_mode = 1
+curve = SubResource("Curve_ju26p")
+
+[sub_resource type="Curve" id="Curve_lcxcc"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.634783, 0.362637), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_tym0i"]
+curve = SubResource("Curve_lcxcc")
+
+[sub_resource type="Curve" id="Curve_v0dj6"]
+_data = [Vector2(0, 0.153846), 0.0, 1.81662, 0, 0, Vector2(1, 1), -0.052317, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_wahbp"]
+curve = SubResource("Curve_v0dj6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pelbr"]
+lifetime_randomness = 0.21
+particle_flag_align_y = true
+angle_min = -180.0
+angle_max = 180.0
+direction = Vector3(0, 1, 0)
+angular_velocity_min = -1.60933e-05
+angular_velocity_max = -1.60933e-05
+radial_velocity_min = 0.999978
+radial_velocity_max = 0.999978
+radial_velocity_curve = SubResource("CurveTexture_tym0i")
+gravity = Vector3(0, 0, 0)
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_wahbp")
+alpha_curve = SubResource("CurveTexture_8pb4f")
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+
+[sub_resource type="Animation" id="Animation_cdpo5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TargetIKLeft:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.24299365, 0.23477522, 0.22506684)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TargetIKLeft:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.14348066, -1.7746378, 1.4671822)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("mist:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TargetIKLeft/OmniLight3D:light_energy")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.15]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("mist/splash:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_6kw77"]
+resource_name = "spell_blood_aoe"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TargetIKLeft:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.47055948, 0.8470071),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.24299365, 0.23477522, 0.22506684), Vector3(0.2367928, 0.30559382, 0.25854018), Vector3(0.2367928, 0.30559382, 0.25854018), Vector3(0.24299365, 0.23477522, 0.22506684)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TargetIKLeft:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.46666667, 0.8470071),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.14348066, -1.7746378, 1.4671822), Vector3(-0.24691041, -1.5407054, 0.37900132), Vector3(-0.24691041, -1.5407054, 0.37900132), Vector3(-0.14348066, -1.7746378, 1.4671822)]
+}
+tracks/2/type = "animation"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TargetIKLeft/VFX_BloodExplosion_O1/bloodanim")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": PackedStringArray("Init"),
+"times": PackedFloat32Array(0.1)
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("mist:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TargetIKLeft/bloodsfx")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.40000007,
+"start_offset": 0.0,
+"stream": ExtResource("8_q3for")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/4/use_blend = true
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TargetIKLeft/OmniLight3D:light_energy")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.08408613, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.25, 0.0, 0.0, 0.15]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("mist/splash:emitting")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.06, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_hi32k"]
+resource_name = "spell_blood_idle"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TargetIKLeft:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.9666667, 4.95),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.24299365, 0.23477522, 0.22506684), Vector3(0.24299365, 0.25233388, 0.22506684), Vector3(0.24299365, 0.23477522, 0.22506684)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TargetIKLeft:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.9333333, 4.95),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.14348066, -1.7746378, 1.4671822), Vector3(-0.14348067, -1.721667, 1.4671822), Vector3(-0.14348066, -1.7746378, 1.4671822)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yg7xy"]
+_data = {
+&"RESET": SubResource("Animation_cdpo5"),
+&"spell_blood_aoe": SubResource("Animation_6kw77"),
+&"spell_blood_idle": SubResource("Animation_hi32k")
+}
+
+[sub_resource type="Gradient" id="Gradient_pdwka"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.56530833, 0.033151425, 0.03341232, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ik1w0"]
+gradient = SubResource("Gradient_pdwka")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yumkm"]
+render_priority = 0
+shader = ExtResource("12_ji3dv")
+shader_parameter/Scale = Vector2(1, 1)
+shader_parameter/Color_1D_gradient = SubResource("GradientTexture1D_ik1w0")
+shader_parameter/Albedo = ExtResource("6_fv411")
+shader_parameter/Normal = ExtResource("7_2xhu8")
+shader_parameter/Roughtness = ExtResource("8_kfvg2")
+shader_parameter/cube_half_size = 0.5
+shader_parameter/enable_y_fade = true
+shader_parameter/fade_start = 0.01
+shader_parameter/fade_end = 0.385
+shader_parameter/fade_power = 3.0
+shader_parameter/normal_intensity = 0.5
+
+[sub_resource type="Curve" id="Curve_0vmht"]
+_data = [Vector2(0.436019, 0.0659341), 0.0, 0.100812, 0, 0, Vector2(1, 0.978022), 5.35081, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_i5j5l"]
+texture_mode = 1
+curve = SubResource("Curve_0vmht")
+
+[sub_resource type="Gradient" id="Gradient_ew61y"]
+colors = PackedColorArray(1, 1, 1, 1, 0.244776, 0.244776, 0.244776, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hlpr4"]
+gradient = SubResource("Gradient_ew61y")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4rxjb"]
+particle_flag_rotate_y = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.5
+emission_ring_radius = 1.8
+emission_ring_inner_radius = 0.5
+emission_ring_cone_angle = 90.0
+angle_min = -180.0
+angle_max = 180.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.8
+scale_max = 1.5
+color_ramp = SubResource("GradientTexture1D_hlpr4")
+alpha_curve = SubResource("CurveTexture_i5j5l")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fo2vw"]
+
+[sub_resource type="Gradient" id="Gradient_223bv"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.414535, 0.0303455, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3ixhd"]
+gradient = SubResource("Gradient_223bv")
+
+[sub_resource type="Gradient" id="Gradient_qe7nn"]
+offsets = PackedFloat32Array(0.00806452, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_efkce"]
+gradient = SubResource("Gradient_qe7nn")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vlx0u"]
+render_priority = 0
+shader = ExtResource("13_f701h")
+shader_parameter/Scale = Vector2(1, 1)
+shader_parameter/Speed_XY = Vector2(0, 0)
+shader_parameter/Disolver_Texture = ExtResource("6_fv411")
+shader_parameter/Color_1D_Gradient = SubResource("GradientTexture1D_3ixhd")
+shader_parameter/Metallic_Texture = ExtResource("14_5p55a")
+shader_parameter/Texture_Roughtness = ExtResource("8_kfvg2")
+shader_parameter/Roughtness_1D_Gradient = SubResource("GradientTexture1D_efkce")
+shader_parameter/Specular = 0.5
+shader_parameter/Normal_Texture = ExtResource("7_2xhu8")
+shader_parameter/Normal_Map_Depth = 1.0
+
+[sub_resource type="Curve" id="Curve_eprdw"]
+_data = [Vector2(0, 0.0219779), 0.0, 0.189561, 0, 0, Vector2(1, 1), 3.65079, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vsjy2"]
+texture_mode = 1
+curve = SubResource("Curve_eprdw")
+
+[sub_resource type="Curve" id="Curve_uhcjy"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 0.206167), 0.0, 0.340165, 0, 0, Vector2(0.66055, 2), 0.279362, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_yrn44"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.373913, 3), 0.0, 0.0, 0, 0, Vector2(1, 0.626374), -5.59655, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_ilwaj"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 0.206167), 0.0, 0.340165, 0, 0, Vector2(0.66055, 2), 0.279362, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_5im0m"]
+curve_x = SubResource("Curve_uhcjy")
+curve_y = SubResource("Curve_yrn44")
+curve_z = SubResource("Curve_ilwaj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_107bc"]
+particle_flag_rotate_y = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.0
+emission_ring_radius = 2.0
+emission_ring_inner_radius = 0.5
+emission_ring_cone_angle = 90.0
+angle_min = -180.0
+angle_max = 180.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.05
+scale_max = 0.2
+scale_curve = SubResource("CurveXYZTexture_5im0m")
+alpha_curve = SubResource("CurveTexture_vsjy2")
+
+[node name="spell_blood" type="Node3D" unique_id=1881406381]
+script = ExtResource("1_cdpo5")
+
+[node name="mist" type="GPUParticles3D" parent="." unique_id=747802765]
+transform = Transform3D(0.9999998, 0, 0, 0, 1.0000002, 0, 0, 0, 0.99999917, 0, 0, 0)
+cast_shadow = 0
+amount = 16
+lifetime = 1.1
+explosiveness = 1.0
+randomness = 1.0
+fixed_fps = 60
+visibility_aabb = AABB(-1.5, -1.5, -1.5, 3, 3, 3)
+local_coords = true
+transform_align = 3
+process_material = SubResource("ParticleProcessMaterial_5ha2o")
+draw_pass_1 = SubResource("QuadMesh_o87rs")
+
+[node name="splash" type="GPUParticles3D" parent="mist" unique_id=778671155]
+transform = Transform3D(1, 0, 0, 0, 0.9999995, 0, 0, 0, 0.9999999, 0, 0, 0)
+material_override = ExtResource("5_6kw77")
+emitting = false
+amount = 16
+lifetime = 0.4
+one_shot = true
+explosiveness = 0.8
+randomness = 1.0
+fixed_fps = 60
+local_coords = true
+transform_align = 3
+process_material = SubResource("ParticleProcessMaterial_k45jt")
+draw_pass_1 = SubResource("QuadMesh_ji3dv")
+
+[node name="ambient" type="AudioStreamPlayer3D" parent="mist" unique_id=425047687]
+stream = ExtResource("8_f701h")
+volume_db = -39.054
+max_db = 0.0
+autoplay = true
+bus = &"SFX"
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="." unique_id=849499829]
+remote_path = NodePath("../TargetIKLeft")
+update_rotation = false
+update_scale = false
+
+[node name="TargetIKLeft" type="Node3D" parent="." unique_id=259210336]
+transform = Transform3D(0.11834004, 0.21582991, -0.9692322, 0.984416, 0.102365986, 0.14298873, 0.13007785, -0.9710494, -0.20035243, 0.24299365, 0.23477522, 0.22506684)
+top_level = true
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="TargetIKLeft" unique_id=229238345]
+transform = Transform3D(1, 0, 1.8626451e-09, 0, 1, 0, -1.1175871e-08, -1.4901161e-08, 1, 0, 0, 0)
+remote_path = NodePath("../RayCast3D")
+update_rotation = false
+update_scale = false
+
+[node name="RayCast3D" type="RayCast3D" parent="TargetIKLeft" unique_id=932150377]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.9999999, 0, 0, 0, 0.99999917, 0, 0, 0)
+top_level = true
+target_position = Vector3(0, -2, 0)
+collision_mask = 2
+
+[node name="VFX_BloodExplosion_O1" type="Node3D" parent="TargetIKLeft" unique_id=332476470]
+transform = Transform3D(0.11834005, 0.9844161, 0.13007787, 0.21583006, 0.10236603, -0.97105014, -0.9692337, 0.14298894, -0.20035274, 0.12671295, 0.070379406, 0.019422293)
+
+[node name="bloodanim" type="AnimationPlayer" parent="TargetIKLeft/VFX_BloodExplosion_O1" unique_id=1160967910]
+libraries/ = SubResource("AnimationLibrary_15yxu")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="TargetIKLeft" unique_id=1875973942]
+transform = Transform3D(1.0000001, -7.450581e-09, -2.9802322e-08, 7.450581e-09, 1.0000001, -5.5879354e-09, 2.9802322e-08, -2.7939677e-08, 1.000001, 0, 0, 0)
+light_color = Color(1, 0, 0, 1)
+light_energy = 0.15
+light_bake_mode = 0
+omni_range = 0.4
+
+[node name="bloodsfx" type="AudioStreamPlayer3D" parent="TargetIKLeft" unique_id=939075384]
+transform = Transform3D(0.11834011, 0.9844164, 0.13007788, 0.21583013, 0.10236604, -0.9710503, -0.96923405, 0.14298902, -0.20035282, 0.12671298, 0.070379406, 0.019422293)
+bus = &"SFX"
+
+[node name="enemyDamage" type="Area3D" parent="TargetIKLeft" unique_id=655993611 node_paths=PackedStringArray("hit_sound")]
+transform = Transform3D(1.0000007, 0, 0, 0, 0.99999994, 0, 0, 0, 1.0000001, 0, 0, 0)
+collision_mask = 12
+monitoring = false
+monitorable = false
+script = ExtResource("10_f701h")
+hit_sound = NodePath("damage_sound")
+damage_types = Dictionary[int, float]({
+5: 35.0
+})
+status_types = Dictionary[int, float]({
+3: 1.0
+})
+metadata/_custom_type_script = "uid://dlsydctoxqbwy"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TargetIKLeft/enemyDamage" unique_id=1656037409]
+shape = SubResource("SphereShape3D_q3for")
+
+[node name="damage_sound" type="AudioStreamPlayer3D" parent="TargetIKLeft/enemyDamage" unique_id=1321950331]
+stream = ExtResource("8_d7ah0")
+volume_db = 6.0
+max_db = 6.0
+bus = &"SFX"
+
+[node name="playerDamage" type="Area3D" parent="TargetIKLeft" unique_id=998501954]
+transform = Transform3D(1.0000007, 0, 0, 0, 0.99999994, 0, 0, 0, 1.0000001, 0, 0, 0)
+monitoring = false
+monitorable = false
+script = ExtResource("10_f701h")
+damage_types = Dictionary[int, float]({
+5: 25.0
+})
+stance_damage_value = 0.5
+metadata/_custom_type_script = "uid://dlsydctoxqbwy"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TargetIKLeft/playerDamage" unique_id=725666877]
+transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0)
+shape = SubResource("SphereShape3D_6kw77")
+
+[node name="BloodExplosion_O1" type="GPUParticles3D" parent="TargetIKLeft" unique_id=27687119]
+transform = Transform3D(0.9999995, 0, 0, 0, 0.9999996, 0, 0, 0, 0.99999964, 0, 0, 0)
+material_override = ExtResource("5_6kw77")
+emitting = false
+amount = 20
+lifetime = 0.4
+one_shot = true
+explosiveness = 0.8
+randomness = 1.0
+fixed_fps = 60
+transform_align = 1
+transform_align_channel_filter = 1
+process_material = SubResource("ParticleProcessMaterial_pelbr")
+draw_pass_1 = ExtResource("11_d7ah0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1770035413]
+libraries/ = SubResource("AnimationLibrary_yg7xy")
+
+[node name="Blood_Marks_B5" type="GPUParticles3D" parent="." unique_id=44952363]
+transform = Transform3D(0.9999999, 1.4901161e-08, -1.4901161e-08, 0, 0.9999998, 3.7252903e-09, 0, -1.3038516e-08, 0.99999994, 0.04075417, -1.0299346, 0.24291596)
+top_level = true
+material_override = SubResource("ShaderMaterial_yumkm")
+cast_shadow = 0
+emitting = false
+amount = 50
+lifetime = 2.5
+one_shot = true
+explosiveness = 0.85
+process_material = SubResource("ParticleProcessMaterial_4rxjb")
+draw_pass_1 = SubResource("PlaneMesh_fo2vw")
+
+[node name="splatter2" type="GPUParticles3D" parent="." unique_id=1343604720]
+transform = Transform3D(0.9999999, 1.4901161e-08, -1.4901161e-08, 0, 0.9999998, 3.7252903e-09, 0, -1.3038516e-08, 0.99999994, 0.26994953, -1.4951146, 0.1693157)
+top_level = true
+material_override = SubResource("ShaderMaterial_vlx0u")
+emitting = false
+amount = 25
+lifetime = 0.7
+one_shot = true
+explosiveness = 0.5
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_107bc")
+draw_pass_1 = ExtResource("15_thsj3")

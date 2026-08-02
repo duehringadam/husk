@@ -1,0 +1,145 @@
+[gd_scene format=3 uid="uid://b7kyc6fhoqad1"]
+
+[ext_resource type="Script" uid="uid://dixki0innbjf2" path="res://addons/game_pieces/pickable/item_world_pickable.gd" id="1_nxtkl"]
+[ext_resource type="Script" uid="uid://ck3cei0hvspym" path="res://addons/interaction_system/interaction_container.gd" id="2_1wyfq"]
+[ext_resource type="Resource" uid="uid://j2kounr4gxnk" path="res://item/weapons/one hand/longsword/longsword.tres" id="2_gy6y3"]
+[ext_resource type="Script" uid="uid://5tinbhq6p45k" path="res://addons/interaction_system/interaction.gd" id="3_gy6y3"]
+[ext_resource type="Script" uid="uid://bxe74cq2uqemi" path="res://addons/game_controls/vanilla/input_map_game_control.gd" id="4_hxpeq"]
+[ext_resource type="Script" uid="uid://doc0okecalxnp" path="res://addons/interaction_system/interaction_context.gd" id="5_dguxm"]
+[ext_resource type="Script" uid="uid://cp0p4yckxtvmw" path="res://addons/game_pieces/collision_sound/collision_sound_player.gd" id="6_frsy1"]
+[ext_resource type="AudioStream" uid="uid://dcr4in8lcdk51" path="res://sfx/UI/dark_souls_item.wav" id="7_dguxm"]
+[ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="8_yp5h5"]
+[ext_resource type="ArrayMesh" uid="uid://doy8sxblf5nrh" path="res://item/weapons/one hand/SM_Sword_2/M_Sword_2_Mesh.tres" id="9_gy6y3"]
+[ext_resource type="PackedScene" uid="uid://dhws2ueoubwwx" path="res://components/bounding_box_component.tscn" id="9_k6q4i"]
+[ext_resource type="PackedScene" uid="uid://bvb1ic1mm6bap" path="res://item/item glint/item_glint.tscn" id="10_hxpeq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xbs6s"]
+size = Vector3(0.18457031, 1.3070923, 0.05834961)
+
+[node name="Pickable" type="RigidBody3D" unique_id=2119350781 node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component")]
+collision_layer = 8
+collision_mask = 15
+contact_monitor = true
+max_contacts_reported = 1
+angular_damp = 5.0
+script = ExtResource("1_nxtkl")
+item_to_loot = ExtResource("2_gy6y3")
+change_distance_interaction = NodePath("InteractionContainer/WhileGrabbed/Change Distance")
+throwable_mesh = NodePath("Longsword")
+throwable = NodePath(".")
+damage_component = NodePath("DamageComponent")
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("2_1wyfq"),"default_context_id":0,"display_name":"Longsword","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("3_gy6y3")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_gy6y3"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":null,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+, Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_gy6y3"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":null,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="InteractionContainer" type="Node" parent="." unique_id=675653858]
+script = ExtResource("2_1wyfq")
+display_name = "Longsword"
+metadata/_custom_type_script = "uid://ck3cei0hvspym"
+
+[node name="Take" type="Node" parent="InteractionContainer" unique_id=1494656254]
+script = ExtResource("3_gy6y3")
+hide_while_grabbed = true
+display_name = "Grab"
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="interact" type="Node" parent="InteractionContainer/Take" unique_id=658629802]
+script = ExtResource("4_hxpeq")
+action = &"interact"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="Hold" type="Node" parent="InteractionContainer" unique_id=2043500295]
+script = ExtResource("3_gy6y3")
+hide_while_grabbed = true
+display_name = "Grab"
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="interact" type="Node" parent="InteractionContainer/Hold" unique_id=47041581]
+script = ExtResource("4_hxpeq")
+action = &"interact"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="WhileGrabbed" type="Node" parent="InteractionContainer" unique_id=1598984081]
+script = ExtResource("5_dguxm")
+context_id = 1
+metadata/_custom_type_script = "uid://doc0okecalxnp"
+
+[node name="Change Distance" type="Node" parent="InteractionContainer/WhileGrabbed" unique_id=1387568767]
+script = ExtResource("3_gy6y3")
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="scroll" type="Node" parent="InteractionContainer/WhileGrabbed/Change Distance" unique_id=2094094583]
+script = ExtResource("4_hxpeq")
+type = 1
+action = &"scroll"
+negative_x = &"scroll_down"
+positive_x = &"scroll_up"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="Rotate" type="Node" parent="InteractionContainer/WhileGrabbed" unique_id=802756841]
+script = ExtResource("3_gy6y3")
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="rotate" type="Node" parent="InteractionContainer/WhileGrabbed/Rotate" unique_id=1279692524]
+script = ExtResource("4_hxpeq")
+action = &"rotate"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="Throw" type="Node" parent="InteractionContainer/WhileGrabbed" unique_id=696603547]
+script = ExtResource("3_gy6y3")
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="secondary_action" type="Node" parent="InteractionContainer/WhileGrabbed/Throw" unique_id=629675826]
+script = ExtResource("4_hxpeq")
+action = &"secondary_action"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="PickupSound" type="AudioStreamPlayer" parent="." unique_id=290488532]
+stream = ExtResource("7_dguxm")
+bus = &"SFX"
+
+[node name="CollisionSoundPlayer" type="AudioStreamPlayer3D" parent="." unique_id=135415267]
+max_polyphony = 3
+script = ExtResource("6_frsy1")
+sounds_per_velocity = Dictionary[int, AudioStream]({
+2: null,
+6: null,
+12: null
+})
+metadata/_custom_type_script = "uid://cp0p4yckxtvmw"
+
+[node name="Longsword" type="MeshInstance3D" parent="." unique_id=1316351081]
+transform = Transform3D(-1.55, 1.355053e-07, 0, -1.355053e-07, -1.55, 0, 0, 0, 1.55, 0, 0.33761027, 0)
+mesh = ExtResource("9_gy6y3")
+
+[node name="OmniLight3D" parent="Longsword" unique_id=1151187837 instance=ExtResource("10_hxpeq")]
+transform = Transform3D(1, 5.5067065e-15, 0, -5.5067065e-15, 1, 0, 0, 0, 1, 2.3339801e-08, 0.2669762, 0.00028728836)
+
+[node name="DamageComponent" type="Area3D" parent="." unique_id=1429514769 node_paths=PackedStringArray("source")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.20540297, 0)
+collision_mask = 13
+script = ExtResource("8_yp5h5")
+damage_types = Dictionary[int, float]({
+1: 10.0
+})
+source = NodePath("..")
+metadata/_custom_type_script = "uid://dlsydctoxqbwy"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent" unique_id=1120683591]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13915408, 0)
+shape = SubResource("BoxShape3D_xbs6s")
+
+[node name="bounding_box_component" parent="." unique_id=326409759 node_paths=PackedStringArray("mesh") instance=ExtResource("9_k6q4i")]
+mesh = NodePath("../Longsword")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2041675035]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37005144, 0)
+shape = SubResource("BoxShape3D_xbs6s")
+
+[connection signal="on_complete" from="InteractionContainer/Take" to="." method="_released"]
+[connection signal="on_trigger" from="InteractionContainer/Take" to="." method="_while_grabbed"]
+[connection signal="on_trigger" from="InteractionContainer/WhileGrabbed/Change Distance" to="." method="_on_change_distance"]
+[connection signal="on_complete" from="InteractionContainer/WhileGrabbed/Rotate" to="." method="_stopped_rotating"]
+[connection signal="on_trigger" from="InteractionContainer/WhileGrabbed/Rotate" to="." method="_while_rotating"]
+[connection signal="on_complete" from="InteractionContainer/WhileGrabbed/Throw" to="." method="_on_throw"]

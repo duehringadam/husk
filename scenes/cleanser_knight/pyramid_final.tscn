@@ -3,9 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://desvtdxqapls5" path="res://scenes/cleanser_knight/texx/texx/pyramid_Base_color.png" id="1_6pf8w"]
 [ext_resource type="Texture2D" uid="uid://b1855gqi5tlxg" path="res://scenes/cleanser_knight/texx/texx/pyramid_Mixed_AO.png" id="2_hvwl1"]
 [ext_resource type="Texture2D" uid="uid://dkjr0h2r05qex" path="res://scenes/cleanser_knight/texx/texx/pyramid_Normal_OpenGL.png" id="3_ws5m5"]
-[ext_resource type="ArrayMesh" uid="uid://bmftl4efstwmo" path="res://Player/weapon/ALL/Arrows/arrow_new.tres" id="6_1ciqh"]
-[ext_resource type="Texture2D" uid="uid://7406rkdcg7h1" path="res://Player/weapon/ALL/Arrows/arrowtexture.png" id="7_7boxu"]
-[ext_resource type="PackedScene" uid="uid://wjn7vhj212us" path="res://Player/weapon/ALL/BrokenSword/sword(2).blend" id="8_ee2ul"]
+[ext_resource type="ArrayMesh" uid="uid://cbsr7dl2ftq1r" path="res://item/weapons/ranged/Arrows/arrow_new.tres" id="6_1ciqh"]
+[ext_resource type="Texture2D" uid="uid://7406rkdcg7h1" path="res://item/weapons/ranged/Arrows/arrowtexture.png" id="7_7boxu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6eryj"]
 resource_name = "pyramid"
@@ -92,9 +91,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_42nsl")
 transform = Transform3D(0.086259596, 0.04147297, -0.11549585, -0.10856113, 0.091612436, -0.048183545, 0.057216946, 0.11129767, 0.08269867, -0.2576933, 0.54301596, -0.20160675)
 mesh = ExtResource("6_1ciqh")
 surface_material_override/0 = SubResource("StandardMaterial3D_42nsl")
-
-[node name="sword(2)" parent="polySurface1" unique_id=1284970108 instance=ExtResource("8_ee2ul")]
-transform = Transform3D(-0.4748846, 0.15145889, 0.27942005, 0.20648976, -0.23487824, 0.47825208, 0.24161401, 0.49842083, 0.14046437, -0.20179129, 0.33087587, -0.30192566)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=964418756]
 libraries/ = SubResource("AnimationLibrary_47ueh")

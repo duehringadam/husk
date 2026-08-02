@@ -138,7 +138,7 @@ func _on_back_button_pressed() -> void:
 
 func _on_playground_pressed() -> void:
 	if signal_game_start:
-		SceneLoader.load_scene("res://test_world.tscn", true)
+		SceneLoader.load_scene("res://scenes/test/test_world.tscn", true)
 		game_started.emit()
 	else:
-		SceneLoader.load_scene("res://test_world.tscn")
+		SceneLoader.load_scene("res://scenes/test/test_world.tscn")
