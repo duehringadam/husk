@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://d4n4ub6isxk2s"]
+
+[ext_resource type="PackedScene" uid="uid://cvb1" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Meshes/Props/Sculpture_04/SM_Scuplture_Stand_01.glb" id="1_cvb1"]
+[ext_resource type="Material" uid="uid://bi8e" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Trim/M_StructureTrim_02_01.tres" id="2_bi8e"]
+[ext_resource type="Material" uid="uid://bieg" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Trim/M_StructureTrim_01_01.tres" id="3_bieg"]
+[ext_resource type="Material" uid="uid://bia3" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Tiling/M_Concrete_01_01.tres" id="4_bia3"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_tldgq"]
+points = PackedVector3Array(-1.3011805, 0.008037068, -1.3174288, -1.3174291, 0.008037068, -1.2996327, -1.3122708, 1.7998263, -1.3120127, -1.2996329, 1.7849166, -1.3174288, 1.299375, 0.008037068, -1.3174288, -1.3174291, 1.7849166, -1.2996327, -1.3174291, 0.008037068, 1.2993748, -1.3174291, 1.7849166, 1.2993748, -1.3120129, 1.7998263, 1.3120124, 1.311755, 1.7998263, -1.3122705, 1.299375, 1.7849166, -1.3174288, 1.3174291, 0.008037068, -1.2996327, -1.2996329, 0.008037068, 1.3174288, -1.2996329, 1.7849166, 1.3174288, 1.299375, 1.7849166, 1.3174288, 1.3120129, 1.7998263, 1.3117547, 1.3174291, 1.7849166, -1.2996327, 1.3171711, 0.008037068, 1.2993748, 1.299375, 0.008037068, 1.3174288, 1.3171711, 1.7849166, 1.2993748)
+
+[node name="SM_Scuplture_Stand_01" unique_id=840666952 instance=ExtResource("1_cvb1")]
+
+[node name="SM_Scuplture_Stand_01_LOD0" parent="." index="0" unique_id=288354682]
+surface_material_override/0 = ExtResource("2_bi8e")
+surface_material_override/1 = ExtResource("3_bieg")
+surface_material_override/2 = ExtResource("4_bia3")
+
+[node name="SM_Scuplture_Stand_01_LOD0StaticBody" type="StaticBody3D" parent="SM_Scuplture_Stand_01_LOD0" index="0" unique_id=1988678068]
+collision_layer = 2
+metadata/ground_type = "stone"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SM_Scuplture_Stand_01_LOD0/SM_Scuplture_Stand_01_LOD0StaticBody" index="0" unique_id=165272457]
+shape = SubResource("ConvexPolygonShape3D_tldgq")

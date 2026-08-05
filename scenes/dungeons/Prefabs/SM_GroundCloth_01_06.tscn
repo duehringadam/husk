@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://d4n4ub6is1pxc"]
+
+[ext_resource type="PackedScene" uid="uid://cv0i" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Meshes/Props/GroundCloth/SM_GroundCloth_01_06.glb" id="1_cv0i"]
+[ext_resource type="Material" uid="uid://biiq" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Props/M_GroundCloth_01_01.tres" id="2_biiq"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_b4gxg"]
+points = PackedVector3Array(0.4896456, 0.013446704, -0.8359654, 0.20003903, 0.00091622677, -0.99189997, 0.23488915, 0.01802973, -1.03654, 0.20227802, 0.08288091, -0.98741555, 0.45645034, 0.08878851, -0.6863498, 0.4874066, 0.0025851913, -0.042228103, -0.011495471, 0.02616262, -0.7839873, 0.092470884, -0.0064484077, -0.6947071, -0.3093765, 0.00075727794, -0.33473277, -0.17494065, 0.0035123937, -0.5646597, 0.08575392, 0.050216895, -0.881217, -0.31677485, 0.01731446, -0.36958867, -0.39815676, 0.09814, -0.021640658, 0.24929649, 0.25873142, -0.2065199, 0.29884595, 0.24802886, 0.10901821, -0.15508193, -0.011905655, -0.022048354, 0.029682219, -0.008567727, -0.22262293, 0.34975833, 0.08447039, 0.64836824, 0.4139098, 0.039805736, 0.32488048, 0.2766509, 0.049210217, 0.8393625, 0.13072813, 0.00025394, 1.0458484, -0.49414063, 0.0021348353, 0.31366956, -0.5048488, 0.14807647, 0.59129417, 0.26896054, 0.1548318, 0.61962736, 0.0648244, 0.05397869, 0.9088706, -0.44624603, 0.14097674, 0.6353227, -0.3289432, 0.04536895, 0.710742, -0.25203928, 0.01763236, 0.70156944, -0.43398035, 0.030295294, 0.5493039)
+
+[node name="SM_GroundCloth_01_06" unique_id=100091827 instance=ExtResource("1_cv0i")]
+
+[node name="SM_GroundCloth_01_06_LOD0" parent="." index="0" unique_id=2116952941]
+surface_material_override/0 = ExtResource("2_biiq")
+
+[node name="SM_GroundCloth_01_06_LOD0StaticBody" type="StaticBody3D" parent="SM_GroundCloth_01_06_LOD0" index="0" unique_id=2130832886]
+collision_layer = 2
+metadata/ground_type = "stone"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SM_GroundCloth_01_06_LOD0/SM_GroundCloth_01_06_LOD0StaticBody" index="0" unique_id=316317908]
+shape = SubResource("ConvexPolygonShape3D_b4gxg")

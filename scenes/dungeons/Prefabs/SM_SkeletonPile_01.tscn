@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://d4n4ub6istd05"]
+
+[ext_resource type="PackedScene" uid="uid://cn7q" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Meshes/Props/Skeleton/SM_SkeletonPile_01.glb" id="1_cn7q"]
+[ext_resource type="Material" uid="uid://bidi" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Props/M_Skeleton_01_01.tres" id="2_bidi"]
+[ext_resource type="Script" uid="uid://ca67j88u50d15" path="res://components/water_area.gd" id="3_beqm5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j1pv0"]
+size = Vector3(1.5, 0.5, 1.2)
+
+[node name="SM_SkeletonPile_01" unique_id=220821199 instance=ExtResource("1_cn7q")]
+
+[node name="SM_SkeletonPile_01_LOD0" parent="." index="0" unique_id=1798543796]
+surface_material_override/0 = ExtResource("2_bidi")
+
+[node name="Area3D" type="Area3D" parent="." index="1" unique_id=964575275 groups=["water"]]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("3_beqm5")
+metadata/ground_type = "dirt"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0" unique_id=697887538]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05000007, 0.25, 0.100000024)
+shape = SubResource("BoxShape3D_j1pv0")
+
+[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
+[connection signal="body_exited" from="Area3D" to="Area3D" method="_on_body_exited"]

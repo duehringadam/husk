@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://d4n4ub6iswpwk"]
+
+[ext_resource type="PackedScene" uid="uid://c0yc" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Meshes/Props/GroundCloth/SM_GroundCloth_01_04.glb" id="1_c0yc"]
+[ext_resource type="Material" uid="uid://biiq" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Props/M_GroundCloth_01_01.tres" id="2_biiq"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7aisp"]
+points = PackedVector3Array(0.48240602, 0.062305078, -0.88316303, 0.3828435, 0.10177427, -0.8410212, 0.72814524, 0.03301681, -0.8656473, 0.5482743, 0.0074197324, -0.8202104, -0.45115, 0.0060204575, -0.708179, -0.43214953, 0.08570674, -0.7034966, -0.45393676, 0.12811925, -0.6943051, 0.14673114, 0.20534474, -0.6226813, 0.69850457, 0.19803473, -0.35196763, 0.92828333, 0.014874489, -0.8080708, 1.0927008, 0.0011712471, -0.7458118, 0.017021298, -0.0053426176, -0.7092195, -1.1686074, 0.0014366275, -0.33809376, -1.1556871, 0.006575343, -0.38855994, -0.50992477, 0.10003724, -0.6785236, -1.2152219, 0.14915662, -0.316069, -0.18109012, 0.21591167, 0.38126594, 0.23413324, 0.23511551, 0.5649211, 0.9133364, 0.14995275, -0.17316824, 1.171996, 0.035574105, -0.16154891, 1.2973992, 0.004018048, 0.24183363, 1.1421019, -0.0038227155, -0.16085517, 0.71497166, -0.00975757, -0.31312078, -0.44430983, -0.0113498485, 0.18234938, -1.0135636, 0.0024257693, 0.08870083, -1.2071149, 0.004331679, -0.22866368, -1.290717, 0.013040957, -0.28780103, -1.2106618, 0.14228086, -0.2817312, -0.9803761, 0.16483814, -0.059402585, -0.616834, 0.12399379, 0.47925, 0.20170581, 0.15924104, 0.68649083, 0.30608165, 0.01091792, 0.8885289, 0.44111168, 0.0022327658, 0.8498555, 0.011701226, 0.1971662, 0.56630844, -0.43316287, -0.0032919561, 0.484973, -0.7163964, 0.002112139, 0.4983266, -1.151127, 0.00669597, 0.05470991, -1.2636096, 0.02790222, -0.23733485, -1.210155, 0.09296849, -0.18704212, -1.1531537, 0.091617465, -0.047436416, -0.33588052, 0.023969773, 0.64209443, 0.1583848, 0.08143654, 0.7981754, -0.006032586, 0.16206372, 0.61920255)
+
+[node name="SM_GroundCloth_01_04" unique_id=1275461322 instance=ExtResource("1_c0yc")]
+
+[node name="SM_GroundCloth_01_04_LOD0" parent="." index="0" unique_id=1964372214]
+surface_material_override/0 = ExtResource("2_biiq")
+
+[node name="SM_GroundCloth_01_04_LOD0StaticBody" type="StaticBody3D" parent="SM_GroundCloth_01_04_LOD0" index="0" unique_id=1463747448]
+collision_layer = 2
+metadata/ground_type = "stone"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SM_GroundCloth_01_04_LOD0/SM_GroundCloth_01_04_LOD0StaticBody" index="0" unique_id=1810635281]
+shape = SubResource("ConvexPolygonShape3D_7aisp")

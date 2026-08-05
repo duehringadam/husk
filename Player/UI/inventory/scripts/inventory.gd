@@ -53,6 +53,8 @@ func _ready() -> void:
 	
 
 func open_inventory():
+	%inventoryTabs.focus_mode = FOCUS_ALL
+	%inventoryTabs.grab_focus()
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "modulate:a", 1,.1).set_trans(Tween.TRANS_SINE)
 	tween.parallel()

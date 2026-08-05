@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bi1k"]
+
+[ext_resource type="Texture2D" uid="uid://bac" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Textures/Misc/T_Cloud_Alpha.png" id="1_bac"]
+[ext_resource type="Shader" uid="uid://bajkkph" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Shaders/S_FogPlane.tres" id="1_vg"]
+
+[resource]
+resource_name = "M_VolumetricFog_04"
+render_priority = 0
+shader = ExtResource("1_vg")
+shader_parameter/BaseMap = ExtResource("1_bac")
+shader_parameter/Tint = Color(1, 1, 1, 0)
+shader_parameter/GlobalOpacity = 0.1
+shader_parameter/FadeMinDist = 20.0
+shader_parameter/FadeMaxDist = 500.0
+shader_parameter/Distance = 20.0

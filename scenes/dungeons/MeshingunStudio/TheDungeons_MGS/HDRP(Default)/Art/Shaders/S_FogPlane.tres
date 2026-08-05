@@ -1,0 +1,752 @@
+[gd_resource type="Shader" format=3 uid="uid://bajkkph"]
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, depth_test_default, cull_disabled, diffuse_lambert, specular_schlick_ggx, depth_prepass_alpha;
+
+uniform sampler2D BaseMap : source_color, filter_nearest_mipmap_anisotropic;
+uniform vec4 Tint : source_color = vec4(1.000000, 1.000000, 1.000000, 0.000000);
+uniform float GlobalOpacity = 1.0;
+uniform float FadeMinDist = 0.0;
+uniform float FadeMaxDist = 0.0;
+uniform sampler2D depth_tex_frg_36 : hint_depth_texture;
+uniform float Distance = 1.0;
+
+
+// GlobalExpression:0
+	//Exported with UnityToGodot 1.03 Get it from https://relativegames.gumroad.com/l/unitytogodot
+	
+	float saturate(float val)
+	{
+	    return clamp( val, 0.0, 1.0 );
+	}
+	vec2 saturate2(vec2 val)
+	{
+	    return clamp( val, 0.0, 1.0 );
+	}
+	vec3 saturate3(vec3 val)
+	{
+	    return clamp( val, 0.0, 1.0 );
+	}
+	void Unity_Hue(vec3 In, float pOffset, bool Normalized, out vec3 Out)
+	{
+	    // RGB to HSV
+	    vec4 K = vec4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);
+	    vec4 P = mix(vec4(In.bg, K.wz), vec4(In.gb, K.xy), step(In.b, In.g));
+	    vec4 Q = mix(vec4(P.xyw, In.r), vec4(In.r, P.yzx), step(P.x, In.r));
+	    float D = Q.x - min(Q.w, Q.y);
+	    float E2 = 1e-10;
+	    float V = (D == 0.0) ? Q.x : (Q.x + E2);
+	    vec3 hsv = vec3(abs(Q.z + (Q.w - Q.y)/(6.0 * D + E2)), D / (Q.x + E2), V);
+	
+	    float hue = hsv.x + pOffset / 360.0;
+	    if ( Normalized )
+	        hue = hsv.x + pOffset;
+	
+	    float temp = (hue > 1.0)
+	                ? hue - 1.0
+	                : hue;
+	    hsv.x = (hue < 0.0)
+	            ? hue + 1.0
+	            : temp;
+	
+	    // HSV to RGB
+	    vec4 K2 = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
+	    vec3 P2 = abs(fract(hsv.xxx + K2.xyz) * 6.0 - K2.www);
+	    Out = hsv.z * mix(K2.xxx, saturate3(P2 - K2.xxx), hsv.y);
+	}
+	void Unity_Remap_float(float In, vec2 InMinMax, vec2 OutMinMax, out float Out)
+	{
+	    Out = OutMinMax.x + (In - InMinMax.x) * (OutMinMax.y - OutMinMax.x) / (InMinMax.y - InMinMax.x);
+	}
+	float Unity_SimpleNoise_RandomValue_float (vec2 uv)
+	{
+	    float angle = dot(uv, vec2(12.9898, 78.233));
+	    //#if defined(SHADER_API_MOBILE) && (defined(SHADER_API_GLES) || defined(SHADER_API_GLES3) || defined(SHADER_API_VULKAN))
+	        // 'sin()' has bad precision on Mali GPUs for inputs > 10000
+	        //angle = mod(angle, 2.0 * PI); // Avoid large inputs to sin()
+	    //#endif
+	    return fract(sin(angle)*43758.5453);
+	}
+	        
+	float Unity_SimpleNnoise_Interpolate_float (float a, float b, float t)
+	{
+	    return (1.0-t)*a + (t*b);
+	}
+	        
+	        
+	float Unity_SimpleNoise_ValueNoise_float (vec2 uv)
+	{
+	    vec2 i = floor(uv);
+	    vec2 f = fract(uv);
+	    f = f * f * (3.0 - 2.0 * f);
+	        
+	    uv = abs(fract(uv) - 0.5);
+	    vec2 c0 = i + vec2(0.0, 0.0);
+	    vec2 c1 = i + vec2(1.0, 0.0);
+	    vec2 c2 = i + vec2(0.0, 1.0);
+	    vec2 c3 = i + vec2(1.0, 1.0);
+	    float r0 = Unity_SimpleNoise_RandomValue_float(c0);
+	    float r1 = Unity_SimpleNoise_RandomValue_float(c1);
+	    float r2 = Unity_SimpleNoise_RandomValue_float(c2);
+	    float r3 = Unity_SimpleNoise_RandomValue_float(c3);
+	        
+	    float bottomOfGrid = Unity_SimpleNnoise_Interpolate_float(r0, r1, f.x);
+	    float topOfGrid = Unity_SimpleNnoise_Interpolate_float(r2, r3, f.x);
+	    float t = Unity_SimpleNnoise_Interpolate_float(bottomOfGrid, topOfGrid, f.y);
+	    return t;
+	}
+	void Unity_SimpleNoise_float(vec2 pUV, float pScale, out float Out)
+	{
+	    float t = 0.0;
+	        
+	    float freq = pow(2.0, float(0));
+	    float amp = pow(0.5, float(3-0));
+	    t += Unity_SimpleNoise_ValueNoise_float(vec2(pUV.x*pScale/freq, pUV.y*pScale/freq))*amp;
+	        
+	    freq = pow(2.0, float(1));
+	    amp = pow(0.5, float(3-1));
+	    t += Unity_SimpleNoise_ValueNoise_float(vec2(pUV.x*pScale/freq, pUV.y*pScale/freq))*amp;
+	        
+	    freq = pow(2.0, float(2));
+	    amp = pow(0.5, float(3-2));
+	    t += Unity_SimpleNoise_ValueNoise_float(vec2(pUV.x*pScale/freq, pUV.y*pScale/freq))*amp;
+	        
+	    Out = t;
+	}
+	void Unity_Blend_Burn_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+	{
+	    Out =  vec4(1,1,1,1) - (vec4(1,1,1,1) - pBlend)/pBase;
+	    Out = mix(pBase, Out, pOpacity);
+	}
+	void Unity_Blend_Darken_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+	{
+	    Out = min(pBlend, pBase);
+	    Out = mix(pBase, Out, pOpacity);
+	}
+	void Unity_Blend_Difference_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+	{
+	    Out = abs(pBlend - pBase);
+	    Out = mix(pBase, Out, pOpacity);
+	}
+	void Unity_Blend_Dodge_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+	{
+	    Out = pBase / (vec4(1,1,1,1) - pBlend);
+	    Out = mix(pBase, Out, pOpacity);
+	}
+	void Unity_Blend_Divide_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+	{
+	    Out = pBase / (pBlend + 0.000000000001);
+	    Out = mix(pBase, Out, pOpacity);
+	}
+	void Unity_Blend_Exclusion_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+	{
+	    Out = pBlend + pBase - (vec4(2.0,2.0,2.0,2.0) * pBlend * pBase);
+	    Out = mix(pBase, Out, pOpacity);
+	}
+	void Unity_Blend_HardLight_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+	{
+	    vec4 result1 = vec4(1,1,1,1) - vec4(2.0,2.0,2.0,2.0) * (vec4(1,1,1,1) - pBase) * (vec4(1,1,1,1) - pBlend);
+	    vec4 result2 = vec4(2.0,2.0,2.0,2.0) * pBase * pBlend;
+	    vec4 zeroOrOne = step(pBlend, vec4(0.5,0.5,0.5,0.5));
+	    Out = result2 * zeroOrOne + ( vec4(1,1,1,1) - zeroOrOne) * result1;
+	    Out = mix(pBase, Out, pOpacity);
+	}
+	void Unity_Blend_HardMix_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+	{
+	    Out = step( vec4(1,1,1,1) - pBase, pBlend);
+	    Out = mix(pBase, Out, pOpacity);
+	}
+	void Unity_Blend_Lighten_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+	{
+	    Out = max(pBlend, pBase);
+	    Out = mix(pBase, Out, pOpacity);
+	}
+	void Unity_Blend_LinearBurn_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+	{
+	    Out = pBase + pBlend - vec4(1,1,1,1);
+	    Out = mix(pBase, Out, pOpacity);
+	}
+	void Unity_Blend_LinearDodge_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+	{
+	    Out = pBase + pBlend;
+	    Out = mix(pBase, Out, pOpacity);
+	}
+	void Unity_Blend_LinearLight_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+	{
+	    //Out = pBlend < vec4(0.5,0.5,0.5,0.5) ? max(pBase + (vec4(2,2,2,2) * pBlend) - vec4(1,1,1,1), vec4(0,0,0,0)) : min(pBase + vec4(2,2,2,2) * (pBlend - vec4(0.5,0.5,0.5,0.5)), vec4(1,1,1,1));
+	    Out.x = pBlend.x < 0.5 ? max(pBase.x + (2.0 * pBlend.x) - 1.0, 0.0) : min(pBase.x + 2.0 * (pBlend.x - 0.5), 1.0);
+	    Out.y = pBlend.y < 0.5 ? max(pBase.y + (2.0 * pBlend.y) - 1.0, 0.0) : min(pBase.y + 2.0 * (pBlend.y - 0.5), 1.0);
+	    Out.z = pBlend.z < 0.5 ? max(pBase.z + (2.0 * pBlend.z) - 1.0, 0.0) : min(pBase.z + 2.0 * (pBlend.z - 0.5), 1.0);
+	    Out.w = pBlend.w < 0.5 ? max(pBase.w + (2.0 * pBlend.w) - 1.0, 0.0) : min(pBase.w + 2.0 * (pBlend.w - 0.5), 1.0);
+	    Out = mix(pBase, Out, pOpacity);
+	}
+	void Unity_Blend_LinearLightAddSub_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+	{
+	    Out = pBlend + vec4(2.0,2.0,2.0,2.0) * pBase - vec4(1,1,1,1);
+	    Out = mix(pBase, Out, pOpacity);
+	}
+	void Unity_Blend_Multiply_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+	{
+	    Out = pBase * pBlend;
+	    Out = mix(pBase, Out, pOpacity);
+	}
+	void Unity_Blend_Negation_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+	{
+	    Out = vec4(1,1,1,1) - abs(vec4(1,1,1,1) - pBlend - pBase);
+	    Out = mix(pBase, Out, pOpacity);
+	}
+	void Unity_Blend_Overlay_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+	{
+	    vec4 result1 = vec4(1,1,1,1) - vec4(2.0,2.0,2.0,2.0) * (vec4(1,1,1,1) - pBase) * (vec4(1,1,1,1) - pBlend);
+	    vec4 result2 = vec4(2.0,2.0,2.0,2.0) * pBase * pBlend;
+	    vec4 zeroOrOne = step(pBase, vec4(0.5,0.5,0.5,0.5));
+	    Out = result2 * zeroOrOne + ( vec4(1,1,1,1) - zeroOrOne) * result1;
+	    Out = mix(pBase, Out, pOpacity);
+	}
+	void Unity_Blend_PinLight_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+	{
+	    vec4 check = step( vec4(0.5,0.5,0.5,0.5), pBlend);
+	    vec4 result1 = check * max(vec4(2.0,2.0,2.0,2.0) * (pBase - vec4(0.5,0.5,0.5,0.5)), pBlend);
+	    Out = result1 + (vec4(1,1,1,1) - check) * min(vec4(2.0,2.0,2.0,2.0) * pBase, pBlend);
+	    Out = mix(pBase, Out, pOpacity);
+	}
+	void Unity_Blend_Screen_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+	{
+	    Out = vec4(1,1,1,1) - (vec4(1,1,1,1) - pBlend) * (vec4(1,1,1,1) - pBase);
+	    Out = mix(pBase, Out, pOpacity);
+	}
+	void Unity_Blend_SoftLight_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+	{
+	    vec4 result1 = vec4(2.0,2.0,2.0,2.0) * pBase * pBlend + pBase * pBase * (vec4(1,1,1,1) - vec4(2.0,2.0,2.0,2.0) * pBlend);
+	    vec4 result2 = sqrt(pBase) * (vec4(2.0,2.0,2.0,2.0) * pBlend - vec4(1,1,1,1)) + vec4(2.0,2.0,2.0,2.0) * pBase * (vec4(1,1,1,1) - pBlend);
+	    vec4 zeroOrOne = step( vec4(0.5,0.5,0.5,0.5), pBlend);
+	    Out = result2 * zeroOrOne + ( vec4(1,1,1,1) - zeroOrOne) * result1;
+	    Out = mix(pBase, Out, pOpacity);
+	}
+	void Unity_Blend_Subtract_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+	{
+	    Out = pBase - pBlend;
+	    Out = mix(pBase, Out, pOpacity);
+	}
+	void Unity_Blend_VividLight_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+	{
+	    vec4 result1 = vec4(1,1,1,1) - (vec4(1,1,1,1) - pBlend) / (vec4(2.0,2.0,2.0,2.0) * pBase);
+	    vec4 result2 = pBlend / (vec4(2.0,2.0,2.0,2.0) * (vec4(1,1,1,1) - pBase));
+	    vec4 zeroOrOne = step( vec4(0.5,0.5,0.5,0.5), pBase);
+	    Out = result2 * zeroOrOne + (vec4(1,1,1,1) - zeroOrOne) * result1;
+	    Out = mix(pBase, Out, pOpacity);
+	}
+	void Unity_Blend_Overwrite_vec4(vec4 pBase, vec4 pBlend, float pOpacity, out vec4 Out)
+	{
+	    Out = mix(pBase, pBlend, pOpacity);
+	}
+	void Unity_Rotate_About_Axis_Degrees_float(vec3 In, vec3 Axis, float pRotation, out vec3 Out)
+	{    
+	    float s = sin(pRotation);
+	    float c = cos(pRotation);
+	    float one_minus_c = 1.0 - c;
+	        
+	    Axis = normalize(Axis);
+	        
+	    mat3 rot_mat = mat3( vec3( one_minus_c * Axis.x * Axis.x + c,            one_minus_c * Axis.x * Axis.y - Axis.z * s,     one_minus_c * Axis.z * Axis.x + Axis.y * s ),
+	                        vec3( one_minus_c * Axis.x * Axis.y + Axis.z * s,   one_minus_c * Axis.y * Axis.y + c,              one_minus_c * Axis.y * Axis.z - Axis.x * s ),
+	                        vec3( one_minus_c * Axis.z * Axis.x - Axis.y * s,   one_minus_c * Axis.y * Axis.z + Axis.x * s,     one_minus_c * Axis.z * Axis.z + c )
+	                            );
+	        
+	    Out = In * rot_mat;
+	}
+	void Unity_Rotate_Radians_float(vec2 pUV, vec2 Center, float pRotation, out vec2 Out)
+	{
+	    //rotation matrix
+	    pUV -= Center;
+	    float s = sin(pRotation);
+	    float c = cos(pRotation);
+	        
+	    //center rotation matrix
+	    mat2 rMatrix = mat2( vec2(c, -s), vec2(s, c) );
+	    rMatrix *= 0.5;
+	    rMatrix += 0.5;
+	    rMatrix = rMatrix*2.0 - 1.0;
+	        
+	    //multiply the UVs by the rotation matrix
+	    pUV.xy = pUV.xy * rMatrix;
+	    pUV += Center;
+	        
+	    Out = pUV;
+	}
+	const float FLT_MIN = 1.175494351e-38F;
+	vec3 SafeNormalize(vec3 inVec)
+	{
+	    float dp3 = max(FLT_MIN, dot(inVec, inVec));
+	    return inVec * inversesqrt(dp3);
+	}
+	vec3 TransformWorldToTangent(vec3 normalWS, mat3 tangentToWorld )
+	{
+	    bool doNormalize = true;
+	    // Note matrix is in row major convention with left multiplication as it is build on the fly
+	    vec3 row0 = tangentToWorld[0];
+	    vec3 row1 = tangentToWorld[1];
+	    vec3 row2 = tangentToWorld[2];
+	
+	    // these are the columns of the inverse matrix but scaled by the determinant
+	    vec3 col0 = cross(row1, row2);
+	    vec3 col1 = cross(row2, row0);
+	    vec3 col2 = cross(row0, row1);
+	
+	    float determinant = dot(row0, col0);
+	
+	    // inverse transposed but scaled by determinant
+	    // Will remove transpose part by using matrix as the first arg in the mul() below
+	    // this makes it the exact inverse of what TransformTangentToWorld() does.
+	    mat3 matTBN_I_T = mat3(col0, col1, col2);
+	    vec3 result = normalWS * matTBN_I_T;
+	    if (doNormalize)
+	    {
+	        float sgn = determinant < 0.0 ? (-1.0) : 1.0;
+	        return SafeNormalize(sgn * result);
+	    }
+	    else
+	        return result / determinant;
+	}
+	void Hash_Tchou_2_2_uint(uvec2 v, out uvec2 o)
+	{
+	    // ~8 alu (2 mul)
+	    v.y ^= 1103515245U;
+	    v.x += v.y;
+	    v.x *= v.y;
+	    v.x ^= v.x >> 5u;
+	    v.x *= 0x27d4eb2du;
+	    v.y ^= (v.x << 3u);
+	    o = v;
+	}
+	void Hash_Tchou_2_2_float(vec2 i, out vec2 o)
+	{
+	    uvec2 r;
+	    uvec2 v = uvec2(ivec2(round(i)));
+	    Hash_Tchou_2_2_uint(v, r);
+	    o.x = float(r.x >> 8u) * (1.0 / float(0x00ffffff));
+	    o.y = float(r.y >> 8u) * (1.0 / float(0x00ffffff));
+	}
+	vec2 Unity_Voronoi_RandomVector_Deterministic_float(vec2 uv, float offset)
+	{
+	    Hash_Tchou_2_2_float(uv, uv);
+	    return vec2(sin(uv.y * offset), cos(uv.x * offset)) * 0.5 + 0.5;
+	}
+	void Hash_LegacySine_2_2_float(vec2 i, out vec2 o)
+	{
+	    mat2 m = mat2( vec2( 15.27, 47.63), vec2( 99.41, 89.98) );
+	    vec2 angles = i * m;
+	
+	    o = fract(sin(angles));
+	}
+	vec2 Unity_Voronoi_RandomVector_LegacySine_float(vec2 uv, float offset)
+	{
+	    Hash_LegacySine_2_2_float(uv, uv);
+	    return vec2(sin(uv.y * offset), cos(uv.x * offset)) * 0.5 + 0.5;
+	}
+	float SafePositivePow_float( float pBase, float power)
+	{
+	    float FLT_EPS =  5.960464478e-8;
+	    return pow(max(abs(pBase), float(FLT_EPS)), power);
+	}
+	struct Gradient
+	{
+	    int type;
+	    int colorsLength;
+	    int alphasLength;
+	    vec4 colors[8];
+	    vec2 alphas[8];
+	};
+	
+	Gradient NewGradient(int type, int colorsLength, int alphasLength,
+	    vec4 colors0, vec4 colors1, vec4 colors2, vec4 colors3, vec4 colors4, vec4 colors5, vec4 colors6, vec4 colors7,
+	    vec2 alphas0, vec2 alphas1, vec2 alphas2, vec2 alphas3, vec2 alphas4, vec2 alphas5, vec2 alphas6, vec2 alphas7)
+	{
+	    vec4 colors[8] = { colors0, colors1, colors2, colors3, colors4, colors5, colors6, colors7 };
+		vec2 alphas[8] = { alphas0, alphas1, alphas2, alphas3, alphas4, alphas5, alphas6, alphas7 };
+	    Gradient output = Gradient(    
+	        type, colorsLength, alphasLength,
+	        colors, alphas        
+	    );
+	    return output;
+	}
+	vec3 LinearToOklab(vec3 rgb)
+	{
+	    float l = 0.4122214708f * rgb.r + 0.5363325363f * rgb.g + 0.0514459929f * rgb.b;
+	    float m = 0.2119034982f * rgb.r + 0.6806995451f * rgb.g + 0.1073969566f * rgb.b;
+	    float s = 0.0883024619f * rgb.r + 0.2817188376f * rgb.g + 0.6299787005f * rgb.b;
+	
+	    float l_ = pow(l, 0.333333f);
+	    float m_ = pow(m, 0.333333f);
+	    float s_ = pow(s, 0.333333f);
+	
+	    return vec3(
+	        0.2104542553f * l_ + 0.7936177850f * m_ - 0.0040720468f * s_,
+	        1.9779984951f * l_ - 2.4285922050f * m_ + 0.4505937099f * s_,
+	        0.0259040371f * l_ + 0.7827717662f * m_ - 0.8086757660f * s_);
+	}
+	
+	vec3 OklabToLinear(vec3 lab)
+	{
+	    float l_ = lab.r + 0.3963377774f * lab.g + 0.2158037573f * lab.b;
+	    float m_ = lab.r - 0.1055613458f * lab.g - 0.0638541728f * lab.b;
+	    float s_ = lab.r - 0.0894841775f * lab.g - 1.2914855480f * lab.b;
+	
+	    float l = l_ * l_ * l_;
+	    float m = m_ * m_ * m_;
+	    float s = s_ * s_ * s_;
+	
+	    return vec3(
+	         4.0767416621f * l - 3.3077115913f * m + 0.2309699292f * s,
+			-1.2684380046f * l + 2.6097574011f * m - 0.3413193965f * s,
+			-0.0041960863f * l - 0.7034186147f * m + 1.7076147010f * s);
+	}
+	void Hash_Tchou_2_1_uint(uvec2 v, out uint o)
+	{
+	    // ~6 alu (2 mul)
+	    v.y ^= 1103515245U;
+	    v.x += v.y;
+	    v.x *= v.y;
+	    v.x ^= v.x >> 5u;
+	    v.x *= 0x27d4eb2du;
+	    o = v.x;
+	}
+	void Hash_Tchou_2_1_float(vec2 i, out float o)
+	{
+	    uint r;
+	    uvec2 v = uvec2(ivec2( round(i) ));
+	    Hash_Tchou_2_1_uint(v, r);
+	    o = float(r >> 8u) * (1.0 / float(0x00ffffff));
+	}
+	vec2 Unity_GradientNoise_Deterministic_Dir_float(vec2 p)
+	{
+	    float x; Hash_Tchou_2_1_float(p, x);
+	    return normalize(vec2(x - floor(x + 0.5), abs(x) - 0.5));
+	}
+	vec3 UnpackNormalmap(vec4 packednormal)
+	{
+	    // This do the trick
+	   //packednormal.x *= packednormal.w;
+	
+	    vec3 normal;
+	    normal.xy = packednormal.xy * vec2( 2.0, 2.0 ) - vec2( 1.0, 1.0 );
+	    normal.z = sqrt(1.0 - saturate(dot(normal.xy, normal.xy)));
+	    return normalize( normal );
+	}
+	vec4 SampleNormalMap( sampler2D pNormalMap, vec2 puv )
+	{
+	    vec4 Ret = texture( pNormalMap, puv );
+	    Ret.xyz = UnpackNormalmap( Ret );
+	    return Ret;
+	}
+	float ComputeFogFactorZ0ToFar(float z, float RenderSettingsDensity)
+	{
+	    float start = 0.0;
+	    float end = 1000.0;
+	    vec4 unity_FogParams = vec4( RenderSettingsDensity / sqrt(log(2.0)),
+	    RenderSettingsDensity / log(2.0),
+	    -1.0/(end-start),
+	    end/(end-start)
+	    );
+	
+	    #if 1//defined(FOG_LINEAR)
+	    // factor = (end-z)/(end-start) = z * (-1/(end-start)) + (end/(end-start))
+	    float fogFactor = saturate(z * unity_FogParams.z + unity_FogParams.w);
+	    return float(fogFactor);
+	    #elif defined(FOG_EXP) || defined(FOG_EXP2)
+	    // factor = exp(-(density*z)^2)
+	    // -density * z computed at vertex
+	    return float(unity_FogParams.x * z);
+	    #else
+	        return float(0.0);
+	    #endif
+	}
+	float ComputeFogIntensity(float fogFactor)
+	{
+	    float fogIntensity = 0.0;
+	    #if defined(FOG_LINEAR) || defined(FOG_EXP) || defined(FOG_EXP2)
+	        #if defined(FOG_EXP)
+	            // factor = exp(-density*z)
+	            // fogFactor = density*z compute at vertex
+	            fogIntensity = saturate(exp2(-fogFactor));
+	        #elif defined(FOG_EXP2)
+	            // factor = exp(-(density*z)^2)
+	            // fogFactor = density*z compute at vertex
+	            fogIntensity = saturate(exp2(-fogFactor * fogFactor));
+	        #else//if defined(FOG_LINEAR)
+	            fogIntensity = fogFactor;
+	        #endif
+	    #endif
+	    return fogIntensity;
+	}
+	vec4 TransformWorldToShadowCoord(vec3 WorldPos)
+	{
+		return vec4(0,0,0,0);
+	}
+	struct Light
+	{
+	    vec3 direction;
+	    vec3 color;
+	    float distanceAttenuation;
+	    float shadowAttenuation;
+	};
+	Light GetMainLight(vec4 shadowCoord)
+	{
+	    Light MainLight;
+	    MainLight.direction = vec3(0,-1,0);
+	    MainLight.color = vec3(1,1,1);
+	    MainLight.distanceAttenuation = 1.0f;
+	    MainLight.shadowAttenuation = 1.0f;
+	    return MainLight;
+	}
+	vec3 SHEvalLinearL0L1(vec3 N, vec4 shAr, vec4 shAg, vec4 shAb)
+	{
+	    vec4 vA = vec4(N, 1.0);
+	
+	    vec3 x1;
+	    // Linear (L1) + constant (L0) polynomial terms
+	    x1.r = dot(shAr, vA);
+	    x1.g = dot(shAg, vA);
+	    x1.b = dot(shAb, vA);
+	
+	    return x1;
+	}
+	vec3 SHEvalLinearL2(vec3 N, vec4 shBr, vec4 shBg, vec4 shBb, vec4 shC)
+	{
+	    vec3 x2;
+	    // 4 of the quadratic (L2) polynomials
+	    vec4 vB = N.xyzz * N.yzzx;
+	    x2.r = dot(shBr, vB);
+	    x2.g = dot(shBg, vB);
+	    x2.b = dot(shBb, vB);
+	
+	    // Final (5th) quadratic (L2) polynomial
+	    float vC = N.x * N.x - N.y * N.y;
+	    vec3 x3 = shC.rgb * vC;
+	
+	    return x2 + x3;
+	}
+	vec3 SampleSH9(vec4 SHCoefficients[7], vec3 N)
+	{
+	    vec4 shAr = SHCoefficients[0];
+	    vec4 shAg = SHCoefficients[1];
+	    vec4 shAb = SHCoefficients[2];
+	    vec4 shBr = SHCoefficients[3];
+	    vec4 shBg = SHCoefficients[4];
+	    vec4 shBb = SHCoefficients[5];
+	    vec4 shCr = SHCoefficients[6];
+	
+	    // Linear + constant polynomial terms
+	    vec3 res = SHEvalLinearL0L1(N, shAr, shAg, shAb);
+	
+	    // Quadratic polynomials
+	    res += SHEvalLinearL2(N, shBr, shBg, shBb, shCr);
+	
+	#ifdef UNITY_COLORSPACE_GAMMA
+	    res = LinearToSRGB(res);
+	#endif
+	
+	    return res;
+	}
+	
+
+void fragment() {
+// Input:9
+	vec2 n_out9p0 = UV;
+
+
+	vec4 n_out8p0;
+// Texture2D:8
+	n_out8p0 = texture(BaseMap, n_out9p0);
+
+
+	float n_out22p0;
+	float n_out22p1;
+	float n_out22p2;
+	float n_out22p3;
+// Expression:22
+	n_out22p0 = 0.0;
+	n_out22p1 = 0.0;
+	n_out22p2 = 0.0;
+	n_out22p3 = 0.0;
+	{
+		//SplitNode:22()
+		n_out22p0 =  n_out8p0.x;
+		n_out22p1 =  n_out8p0.y;
+		n_out22p2 =  n_out8p0.z;
+		n_out22p3 =  n_out8p0.w;
+		
+	}
+
+
+// ColorParameter:12
+	vec4 n_out12p0 = Tint;
+
+
+// VectorOp:11
+	vec4 n_out11p0 = vec4(n_out22p3) * n_out12p0;
+
+
+// FloatParameter:20
+	float n_out20p0 = GlobalOpacity;
+
+
+// FloatOp:19
+	float n_out19p0 = n_out22p3 * n_out20p0;
+
+
+// FloatParameter:17
+	float n_out17p0 = FadeMinDist;
+
+
+// FloatParameter:18
+	float n_out18p0 = FadeMaxDist;
+
+
+	vec3 n_out13p0;
+// Expression:13
+	n_out13p0 = vec3(0.0, 0.0, 0.0);
+	{
+		//PositionNode World:13
+		n_out13p0 = ( INV_VIEW_MATRIX * vec4( VERTEX, 1.0) ).xyz;
+		
+	}
+
+
+	vec3 n_out14p0;
+	vec3 n_out14p1;
+	float n_out14p2;
+	float n_out14p3;
+	float n_out14p4;
+	float n_out14p5;
+	float n_out14p6;
+	float n_out14p7;
+// Expression:14
+	n_out14p0 = vec3(0.0, 0.0, 0.0);
+	n_out14p1 = vec3(0.0, 0.0, 0.0);
+	n_out14p2 = 0.0;
+	n_out14p3 = 0.0;
+	n_out14p4 = 0.0;
+	n_out14p5 = 0.0;
+	n_out14p6 = 0.0;
+	n_out14p7 = 0.0;
+	{
+		//CameraNode:14
+		n_out14p0 = CAMERA_POSITION_WORLD;
+		n_out14p1 = CAMERA_DIRECTION_WORLD;
+		n_out14p2 = 0.0;//Orthografic
+		n_out14p3 = 1.0;//NearPlane
+		n_out14p4 = 10000.0;//FarPlane
+		n_out14p5 = 1.0;//ZBufferSign
+		n_out14p6 = 1920.0;//Width
+		n_out14p7 = 1080.0;//Height
+		
+	}
+
+
+// Distance:15
+	float n_out15p0 = distance(n_out13p0, n_out14p0);
+
+
+// SmoothStep:16
+	float n_out16p0 = smoothstep(n_out17p0, n_out18p0, n_out15p0);
+
+
+// FloatOp:21
+	float n_out21p0 = n_out19p0 * n_out16p0;
+
+
+	float n_out36p0;
+// LinearSceneDepth:36
+	{
+		float __log_depth = textureLod(depth_tex_frg_36, SCREEN_UV, 0.0).x;
+	vec4 __depth_view = INV_PROJECTION_MATRIX * vec4(SCREEN_UV * 2.0 - 1.0, __log_depth, 1.0);
+		__depth_view.xyz /= __depth_view.w;
+		n_out36p0 = -__depth_view.z;
+	}
+
+
+	vec4 n_out37p0;
+// Expression:37
+	n_out37p0 = vec4(0.0, 0.0, 0.0, 0.0);
+	{
+		//ScreenPositionNode:37
+		n_out37p0 = FRAGCOORD;
+		float depth = FRAGCOORD.z;
+		float linear_depth = PROJECTION_MATRIX[3][2] / 
+		            (depth - PROJECTION_MATRIX[2][2]);
+		n_out37p0.w = linear_depth;
+		
+	}
+
+
+	float n_out38p0;
+	float n_out38p1;
+	float n_out38p2;
+	float n_out38p3;
+// Expression:38
+	n_out38p0 = 0.0;
+	n_out38p1 = 0.0;
+	n_out38p2 = 0.0;
+	n_out38p3 = 0.0;
+	{
+		//SplitNode:38(S_DepthFade)
+		n_out38p0 =  n_out37p0.x;
+		n_out38p1 =  n_out37p0.y;
+		n_out38p2 =  n_out37p0.z;
+		n_out38p3 =  n_out37p0.w;
+		
+	}
+
+
+// FloatOp:39
+	float n_out39p0 = n_out36p0 - n_out38p3;
+
+
+// FloatParameter:43
+	float n_out43p0 = Distance;
+
+
+// Reroute:42
+	vec4 n_out42p0 = vec4(n_out43p0);
+
+
+// FloatOp:40
+	float n_out40p0 = n_out39p0 / n_out42p0.x;
+
+
+// FloatFunc:41
+	float n_out41p0 = min(max(n_out40p0, 0.0), 1.0);
+
+
+// Reroute:53
+	vec4 n_out53p0 = vec4(n_out41p0);
+
+
+// VectorOp:33
+	vec4 n_out33p0 = vec4(n_out21p0) * n_out53p0;
+
+
+// FloatConstant:46
+	float n_out46p0 = 0.500000;
+
+
+// Clamp:54
+	float n_in54p1 = 0.00000;
+	float n_in54p2 = 1.00000;
+	float n_out54p0 = clamp(n_out46p0, n_in54p1, n_in54p2);
+
+
+// FloatFunc:55
+	float n_out55p0 = 1.0 - n_out54p0;
+
+
+// Output:0
+	ALBEDO = vec3(n_out11p0.xyz);
+	ALPHA = n_out33p0.x;
+	ROUGHNESS = n_out55p0;
+
+
+}
+"

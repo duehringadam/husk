@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://d4n4ub6isrcne"]
+
+[ext_resource type="PackedScene" uid="uid://bxcjsf0w78370" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Meshes/BaseMesh/SM_Box_01M_VolumetricFog_02.glb" id="1_cvri"]
+[ext_resource type="Material" uid="uid://bipa" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Volumetric/M_VolumetricFog_02.tres" id="2_bipa"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_gmi2a"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[node name="SM_Box_01M_VolumetricFog_02" unique_id=464015187 instance=ExtResource("1_cvri")]
+
+[node name="SM_Box_01" parent="." index="0" unique_id=824488013]
+surface_material_override/0 = ExtResource("2_bipa")
+
+[node name="SM_Box_01StaticBody" type="StaticBody3D" parent="SM_Box_01" index="0" unique_id=473722793]
+collision_layer = 2
+metadata/ground_type = "stone"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SM_Box_01/SM_Box_01StaticBody" index="0" unique_id=1647493692]
+shape = SubResource("ConvexPolygonShape3D_gmi2a")
