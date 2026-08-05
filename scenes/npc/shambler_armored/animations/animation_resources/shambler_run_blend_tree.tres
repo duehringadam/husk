@@ -1,0 +1,67 @@
+[gd_resource type="AnimationNodeBlendTree" format=3 uid="uid://ddnpya6x0o116"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tufug"]
+animation = &"1Hand_Base_Run_A_F_InPlace/1Hand_Base_Run_A_F_InPlace"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hji2x"]
+animation = &"1Hand_Base_Run_A_F_InPlace/1Hand_Base_Run_A_F_InPlace"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_88ibd"]
+animation = &"1Hand_Base_Shield_Block_Hit_1/1Hand_Base_Shield_Block_Hit_1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r2tna"]
+animation = &"1Hand_Base_Shield_Block_Idle_1/1Hand_Base_Shield_Block_Idle_1"
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_eh6sv"]
+sync = true
+xfade_time = 0.25
+input_0/name = "run"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "run with shield"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_iri6k"]
+filter_enabled = true
+filters = ["%GeneralSkeleton:LeftHand", "%GeneralSkeleton:LeftIndexDistal", "%GeneralSkeleton:LeftIndexIntermediate", "%GeneralSkeleton:LeftIndexProximal", "%GeneralSkeleton:LeftLittleDistal", "%GeneralSkeleton:LeftLittleIntermediate", "%GeneralSkeleton:LeftLittleProximal", "%GeneralSkeleton:LeftLowerArm", "%GeneralSkeleton:LeftMiddleDistal", "%GeneralSkeleton:LeftMiddleIntermediate", "%GeneralSkeleton:LeftMiddleProximal", "%GeneralSkeleton:LeftRingDistal", "%GeneralSkeleton:LeftRingIntermediate", "%GeneralSkeleton:LeftRingProximal", "%GeneralSkeleton:LeftShoulder", "%GeneralSkeleton:LeftThumbDistal", "%GeneralSkeleton:LeftThumbMetacarpal", "%GeneralSkeleton:LeftThumbProximal", "%GeneralSkeleton:LeftUpperArm"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d0hyq"]
+animation = &"Hit_F_2_InPlace"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_laxcr"]
+filter_enabled = true
+filters = ["%GeneralSkeleton:Chest", "%GeneralSkeleton:Head", "%GeneralSkeleton:LeftHand", "%GeneralSkeleton:LeftIndexDistal", "%GeneralSkeleton:LeftIndexIntermediate", "%GeneralSkeleton:LeftIndexProximal", "%GeneralSkeleton:LeftLittleDistal", "%GeneralSkeleton:LeftLittleIntermediate", "%GeneralSkeleton:LeftLittleProximal", "%GeneralSkeleton:LeftLowerArm", "%GeneralSkeleton:LeftMiddleDistal", "%GeneralSkeleton:LeftMiddleIntermediate", "%GeneralSkeleton:LeftMiddleProximal", "%GeneralSkeleton:LeftRingDistal", "%GeneralSkeleton:LeftRingIntermediate", "%GeneralSkeleton:LeftRingProximal", "%GeneralSkeleton:LeftShoulder", "%GeneralSkeleton:LeftThumbDistal", "%GeneralSkeleton:LeftThumbMetacarpal", "%GeneralSkeleton:LeftThumbProximal", "%GeneralSkeleton:LeftUpperArm", "%GeneralSkeleton:Neck", "%GeneralSkeleton:RightHand", "%GeneralSkeleton:RightIndexDistal", "%GeneralSkeleton:RightIndexIntermediate", "%GeneralSkeleton:RightIndexProximal", "%GeneralSkeleton:RightLittleDistal", "%GeneralSkeleton:RightLittleIntermediate", "%GeneralSkeleton:RightLittleProximal", "%GeneralSkeleton:RightLowerArm", "%GeneralSkeleton:RightMiddleDistal", "%GeneralSkeleton:RightMiddleIntermediate", "%GeneralSkeleton:RightMiddleProximal", "%GeneralSkeleton:RightRingDistal", "%GeneralSkeleton:RightRingIntermediate", "%GeneralSkeleton:RightRingProximal", "%GeneralSkeleton:RightShoulder", "%GeneralSkeleton:RightThumbDistal", "%GeneralSkeleton:RightThumbMetacarpal", "%GeneralSkeleton:RightThumbProximal", "%GeneralSkeleton:RightUpperArm", "%GeneralSkeleton:UpperChest"]
+fadein_time = 0.1
+fadeout_time = 0.25
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_fcmu4"]
+filter_enabled = true
+filters = ["%GeneralSkeleton:Chest", "%GeneralSkeleton:Head", "%GeneralSkeleton:LeftHand", "%GeneralSkeleton:LeftIndexDistal", "%GeneralSkeleton:LeftIndexIntermediate", "%GeneralSkeleton:LeftIndexProximal", "%GeneralSkeleton:LeftLittleDistal", "%GeneralSkeleton:LeftLittleIntermediate", "%GeneralSkeleton:LeftLittleProximal", "%GeneralSkeleton:LeftLowerArm", "%GeneralSkeleton:LeftMiddleDistal", "%GeneralSkeleton:LeftMiddleIntermediate", "%GeneralSkeleton:LeftMiddleProximal", "%GeneralSkeleton:LeftRingDistal", "%GeneralSkeleton:LeftRingIntermediate", "%GeneralSkeleton:LeftRingProximal", "%GeneralSkeleton:LeftShoulder", "%GeneralSkeleton:LeftThumbDistal", "%GeneralSkeleton:LeftThumbMetacarpal", "%GeneralSkeleton:LeftThumbProximal", "%GeneralSkeleton:LeftUpperArm", "%GeneralSkeleton:Neck", "%GeneralSkeleton:Spine", "%GeneralSkeleton:UpperChest"]
+sync = true
+fadein_time = 0.1
+fadeout_time = 0.1
+
+[resource]
+graph_offset = Vector2(-808.32544, 130.47209)
+nodes/Transition/node = SubResource("AnimationNodeTransition_eh6sv")
+nodes/Transition/position = Vector2(60, 100)
+nodes/shieldWalkHit/node = SubResource("AnimationNodeOneShot_fcmu4")
+nodes/shieldWalkHit/position = Vector2(-120, 300)
+nodes/blend2/node = SubResource("AnimationNodeBlend2_iri6k")
+nodes/blend2/position = Vector2(-320, 360)
+nodes/ShieldBlock/node = SubResource("AnimationNodeAnimation_r2tna")
+nodes/ShieldBlock/position = Vector2(-1000, 640)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_88ibd")
+nodes/Animation/position = Vector2(-420, 660)
+nodes/flinch/node = SubResource("AnimationNodeAnimation_d0hyq")
+nodes/flinch/position = Vector2(-580, 240)
+nodes/runHit/node = SubResource("AnimationNodeOneShot_laxcr")
+nodes/runHit/position = Vector2(-280, 40)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_tufug")
+"nodes/Animation 3/position" = Vector2(-1000, 60)
+"nodes/Animation 4/node" = SubResource("AnimationNodeAnimation_hji2x")
+"nodes/Animation 4/position" = Vector2(-900, 440)
+node_connections = [&"output", 0, &"Transition", &"Transition", 0, &"runHit", &"Transition", 1, &"shieldWalkHit", &"shieldWalkHit", 0, &"blend2", &"shieldWalkHit", 1, &"Animation", &"blend2", 0, &"Animation 4", &"blend2", 1, &"ShieldBlock", &"runHit", 0, &"Animation 3", &"runHit", 1, &"flinch"]

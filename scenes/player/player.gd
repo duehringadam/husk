@@ -19,16 +19,15 @@ func _ready() -> void:
 	
 	#if SaveManager.get_player_saved_position("Saved Position") != null:
 		#global_position = SaveConfig.get_config("Location", "Saved Position")
-	#
-	#if SaveConfig.get_config("Location", "Saved Position") != null && spawn_at_checkpoint:
-		#global_position = SaveConfig.get_config("Location", "Saved Position")
+	#else:
+		#global_position = current_area_default_spawn
 		
 	if SaveConfig.get_config("Inventory", "Saved Inventory") != null:
-		var inventory_list = SaveConfig.get_config("Inventory", "Saved Inventory")
+		var inventory_list = SaveConfig.get_config("Inventory", "Saved Inventory", inventory.inventory)
 		inventory.reset_inventory(inventory_list)
 		
-	if SaveConfig.get_config("Player_stats", "Saved Stats") != null:
-		var stats = SaveConfig.get_config("Player_stats", "Saved Stats")
+	if SaveConfig.get_config("Player_stats", "Saved Stats", player_stats) != null:
+		var stats = SaveConfig.get_config("Player_stats", "Saved Stats", player_stats)
 		player_stats = stats
 		SignalBus.emit_signal("player_stats_changed", stats)
 		SignalBus.emit_signal("player_full_restore")

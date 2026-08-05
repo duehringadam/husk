@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bbp6oxjtmv0di"]
 
+[ext_resource type="Script" uid="uid://ikastsf77y3p" path="res://scenes/VFX/Scenes/blood_effect.gd" id="1_00r21"]
 [ext_resource type="Texture2D" uid="uid://brjjwdwx65oij" path="res://scenes/VFX/textures/T_Blood_Mist_04x_alpha.png" id="1_hfvd4"]
 [ext_resource type="Shader" uid="uid://chv45m88mxrg6" path="res://scenes/VFX/shaders/s_Disolver_small_Liquid_pF_Treshold.tres" id="3_0vuxo"]
 [ext_resource type="Texture2D" uid="uid://d1487hs54xk4g" path="res://scenes/VFX/textures/T_Blood_bulb_UJ1.png" id="4_no0x1"]
@@ -12,6 +13,7 @@ diffuse_mode = 3
 specular_mode = 2
 vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
+albedo_color = Color(0.38039216, 0, 0, 1)
 albedo_texture = ExtResource("1_hfvd4")
 albedo_texture_msdf = true
 metallic_specular = 1.0
@@ -67,8 +69,8 @@ alpha_curve = SubResource("CurveTexture_2wb3e")
 
 [sub_resource type="Gradient" id="Gradient_a3bcn"]
 interpolation_color_space = 1
-offsets = PackedFloat32Array(0.137931, 0.521073)
-colors = PackedColorArray(0.366101, 0.031567, 0.0366713, 1, 0.773719, 0.140572, 0.170957, 1)
+offsets = PackedFloat32Array(0.137931, 0.78280544)
+colors = PackedColorArray(0.366101, 0.031567, 0.0366713, 1, 0.38039216, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_1mueb"]
 gradient = SubResource("Gradient_a3bcn")
@@ -135,6 +137,7 @@ scale_curve = SubResource("CurveTexture_k6m3j")
 alpha_curve = SubResource("CurveTexture_jug1i")
 
 [sub_resource type="QuadMesh" id="QuadMesh_7m77s"]
+size = Vector2(2, 2)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ml0qn"]
 render_priority = 0
@@ -213,7 +216,7 @@ tracks/1/path = NodePath("blooddrops1:emitting")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.06666667),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -237,13 +240,13 @@ _data = {
 }
 
 [node name="VFX_Blood_Explosion_A2" type="Node3D" unique_id=602481496]
+script = ExtResource("1_00r21")
 
 [node name="mist" type="GPUParticles3D" parent="." unique_id=489109415]
 layers = 4
 material_override = SubResource("StandardMaterial3D_ah1qh")
 cast_shadow = 0
 emitting = false
-amount = 6
 lifetime = 0.7
 one_shot = true
 explosiveness = 0.7
@@ -255,6 +258,7 @@ draw_pass_1 = SubResource("QuadMesh_k8uit")
 [node name="blooddrops1" type="GPUParticles3D" parent="." unique_id=1508327372]
 material_override = SubResource("ShaderMaterial_wlw4f")
 emitting = false
+amount = 16
 lifetime = 1.4
 one_shot = true
 explosiveness = 0.9
@@ -267,7 +271,6 @@ draw_pass_1 = SubResource("QuadMesh_7m77s")
 layers = 4
 material_override = SubResource("ShaderMaterial_ml0qn")
 emitting = false
-amount = 4
 lifetime = 0.7
 one_shot = true
 explosiveness = 0.9
@@ -278,4 +281,3 @@ draw_pass_1 = SubResource("QuadMesh_ilm5h")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=821864516]
 libraries/ = SubResource("AnimationLibrary_r25d0")
-autoplay = &"Init"

@@ -1,6 +1,8 @@
 class_name status_effect_component
 extends GPUParticles3D
 
+signal status_activated(effects: Array[status_effect])
+
 @export var available_statuses: Dictionary[Global.STATUS_TYPE, float]
 @export var hurtbox: hurtbox_component
 @export var statuses: Dictionary[Global.STATUS_TYPE, status_effect]
@@ -49,7 +51,7 @@ func _apply_statuses(effects: Array[status_effect]):
 	mesh_to_affect.get_surface_override_material(0).next_pass = null
 	if effects.size() == 0:
 		return
-		
+	status_activated.emit(effects)
 	if effects.size() > 1:
 		for i in effects:
 			var additional_particles = GPUParticles3D.new()

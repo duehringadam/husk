@@ -11,13 +11,14 @@ func _ready() -> void:
 	animation_tree["parameters/playback"].connect("state_finished", _anim_finished)
 
 func _on_attack_state_entered() -> void:
+	if source_npc.has_shield:
+		source_npc.is_blocking = false
 	attack_counter = 1
 	source_npc.target = Global.player
 	if source_npc.look_at_modifier:
 		source_npc.look_at_modifier.target_node = Global.player.head.get_path()
 	animation_tree.set("parameters/conditions/idle", false)
 	animation_tree.set("parameters/conditions/walk", false)
-	
 	source_npc.SPEED = 4
 	
 	if randf() > 0.4:

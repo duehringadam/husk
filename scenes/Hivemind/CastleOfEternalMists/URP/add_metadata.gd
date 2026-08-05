@@ -1,8 +1,8 @@
 @tool
 extends EditorScript
 
-const META_KEY = "ground_type"
-const META_VALUE = "stone"
+const META_KEY = "Unstable Ground"
+const META_VALUE = ""
 
 func _run() -> void:
 	# 1. Get the currently selected nodes in the Scene dock

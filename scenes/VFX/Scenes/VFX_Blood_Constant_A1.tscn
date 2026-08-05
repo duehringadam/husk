@@ -10,7 +10,7 @@
 [ext_resource type="Shader" uid="uid://bfwwv62cr7k2o" path="res://scenes/VFX/shaders/ss_Disolver_subUV_small_Liquid_Treshold_p.gdshader" id="7_qn2xb"]
 [ext_resource type="Texture2D" uid="uid://etftten2vtpl" path="res://scenes/VFX/textures/T_Blood_MultiUV_f3.png" id="8_b0fsf"]
 [ext_resource type="Texture2D" uid="uid://c3maw4p2qvh0" path="res://scenes/VFX/textures/T_Blood_MultiUV_f3_N.png" id="9_27wbr"]
-[ext_resource type="Texture2D" uid="uid://brnp67jnwwro6" path="res://scenes/VFX/textures/T_smoke_K97.png" id="10_l5wxp"]
+[ext_resource type="Texture2D" uid="uid://byj5sgyu8cxwx" path="res://scenes/VFX/textures/T_smoke_K97.bak.png" id="11_udkir"]
 
 [sub_resource type="Gradient" id="Gradient_imd17"]
 offsets = PackedFloat32Array(0)
@@ -147,8 +147,9 @@ specular_mode = 2
 vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
 albedo_color = Color(0.5649617, 0.5649616, 0.5649616, 1)
-albedo_texture = ExtResource("10_l5wxp")
+albedo_texture = ExtResource("11_udkir")
 albedo_texture_msdf = true
+texture_filter = 4
 billboard_mode = 3
 billboard_keep_scale = true
 particles_anim_h_frames = 8

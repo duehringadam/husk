@@ -2,11 +2,20 @@ extends npc
 
 @onready var patrol: Node = $StateChart/CompoundState/patrol/patroling
 @onready var body: Node3D = $SK_Aranocodus
+
+@export var is_embedded: bool = false
 @export var sample_area: float = 0.5
+
 var timer: float = 0.0
 var search_position : Vector3
 var first_aggro: bool = true
 var locked_in: bool = false
+
+func _ready() -> void:
+	if is_embedded:
+		animation_tree.active = false
+		state_chart.call_deferred("send_event", "embed")
+		self.visible = false
 
 func _physics_process(delta: float) -> void:
 	#var curr_rot = (animation_tree.get_root_motion_rotation_accumulator().inverse() * get_quaternion())
@@ -44,6 +53,9 @@ func align_with_y(xform: Transform3D, new_y):
 
 func _on_vision_area_max_aggro(aggro_amount: float, aggro_position: Node3D) -> void:
 	target = Global.player
+	if !is_embedded:
+		$trill.pitch_scale = randf_range(0.8,1.2)
+		$trill.play()
 
 
 func _on_damage_component_damage_dealt(types: Dictionary, actual: float, stance_damage: float, target: hurtbox_component) -> void:

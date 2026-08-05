@@ -99,7 +99,7 @@ func _state_init():
 ## initial child state should be activated. If the state entering was not caused by a transition
 ## this can be null.
 func _state_enter(_transition_target:StateChartState):
-	# print("state_enter: " + name)
+	#print("state_enter: " + name)
 	_state_active = true
 	
 	process_mode = Node.PROCESS_MODE_INHERIT

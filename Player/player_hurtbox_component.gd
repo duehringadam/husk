@@ -5,8 +5,6 @@ signal blocked_attack
 @export var player_camera: Camera3D
 @export var stamina_component: StaminaComponent
 
-var is_blocking: bool = false
-
 func _ready():
 	SignalBus.connect("is_blocking", _update_blocking)
 	timer = Timer.new()

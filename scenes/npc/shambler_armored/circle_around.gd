@@ -23,15 +23,18 @@ func _on_circle_around_state_entered() -> void:
 	circle_timer.wait_time = maximum_circle_time
 	circle_timer.start()
 	source_npc.SPEED = circle_speed
-	animation_tree["parameters/walkBlendSpace/blend_position"].y = 0.0
+	animation_tree["parameters/walkBlendTree/walkBlend/blend_position"].y = 0.0
+	if source_npc.has_shield:
+		animation_tree["parameters/walkBlendTree/shieldWalkBlend/blend_position"].y = 0.0
 	
 func _on_circle_around_state_exited() -> void:
 	pass # Replace with function body.
 
 
 func _on_circle_around_state_physics_processing(delta: float) -> void:
-	animation_tree["parameters/walkBlendSpace/blend_position"].x = lerpf(animation_tree["parameters/walkBlendSpace/blend_position"].x, circle_dir, delta*10)
-	
+	animation_tree["parameters/walkBlendTree/walkBlend/blend_position"].x = lerpf(animation_tree["parameters/walkBlendTree/walkBlend/blend_position"].x, circle_dir, delta*10)
+	if source_npc.has_shield:
+		animation_tree["parameters/walkBlendTree/shieldWalkBlend/blend_position"].x = lerpf(animation_tree["parameters/walkBlendTree/walkBlend/blend_position"].x, circle_dir, delta*10)
 	if not target or not is_instance_valid(target):
 		state_chart.send_event("idle")
 	

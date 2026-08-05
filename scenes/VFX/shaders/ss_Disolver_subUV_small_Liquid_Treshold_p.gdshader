@@ -3,12 +3,12 @@ render_mode blend_mix, cull_back, diffuse_lambert, specular_schlick_ggx;
 
 uniform vec2 Scale = vec2(1.0, 1.0);
 uniform vec2 Speed_XY;
-uniform sampler2D Disolver_Texture : source_color, repeat_enable;
-uniform sampler2D Color_1D_Gradient : source_color, repeat_disable;
-uniform sampler2D Metallic_Texture : source_color, repeat_disable;
-uniform sampler2D Texture_Roughtness : source_color, repeat_enable;
-uniform sampler2D Roughtness_1D_Gradient : source_color, repeat_disable;
-uniform sampler2D Normal_Texture : hint_normal, repeat_enable;
+uniform sampler2D Disolver_Texture : source_color, repeat_enable,filter_nearest;
+uniform sampler2D Color_1D_Gradient : source_color, repeat_disable,filter_nearest;
+uniform sampler2D Metallic_Texture : source_color, repeat_disable,filter_nearest;
+uniform sampler2D Texture_Roughtness : source_color, repeat_enable,filter_nearest;
+uniform sampler2D Roughtness_1D_Gradient : source_color, repeat_disable,filter_nearest;
+uniform sampler2D Normal_Texture : hint_normal, repeat_enable,filter_nearest;
 uniform float Normal_Map_Depth = 1.0;
 uniform float Color_Intensity = 1.0;
 uniform sampler2D ColorTime_1D_Gradient : source_color, repeat_disable;

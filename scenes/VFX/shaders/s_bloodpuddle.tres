@@ -9,14 +9,14 @@ uniform float ZoomStrenght = 1.0;
 uniform float Repeat = 1.0;
 uniform vec2 Scale = vec2(1.000000, 1.000000);
 uniform vec2 Offset;
-uniform sampler2D TextureDistortion : source_color, repeat_enable;
+uniform sampler2D TextureDistortion : source_color, repeat_enable,filter_nearest;
 uniform float DistortionFactor : hint_range(0.0, 1.0) = 0.10000000149012;
-uniform sampler2D TextureAlpha : source_color, repeat_disable;
-uniform sampler2D Color_1D_Alpha : source_color, repeat_disable;
-uniform sampler2D Texture_Metallic : source_color, repeat_disable;
-uniform sampler2D Texture_Rougthness : source_color, repeat_disable;
-uniform sampler2D Rought_1D_Color : source_color, repeat_disable;
-uniform sampler2D Texture_Normal : hint_normal, repeat_disable;
+uniform sampler2D TextureAlpha : source_color, repeat_disable,filter_nearest;
+uniform sampler2D Color_1D_Alpha : source_color, repeat_disable,filter_nearest;
+uniform sampler2D Texture_Metallic : source_color, repeat_disable,filter_nearest;
+uniform sampler2D Texture_Rougthness : source_color, repeat_disable,filter_nearest;
+uniform sampler2D Rought_1D_Color : source_color, repeat_disable,filter_nearest;
+uniform sampler2D Texture_Normal : hint_normal, repeat_disable,filter_nearest;
 uniform float Normal_Depth = 1.0;
 
 
