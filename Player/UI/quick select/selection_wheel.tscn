@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://bmphfd5h5ant7"]
+
+[ext_resource type="Script" uid="uid://cwk3t1jeu2lmk" path="res://Player/UI/quick select/selection_wheel.gd" id="1_0sbqa"]
+[ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/scripts/item.gd" id="2_h4tg1"]
+[ext_resource type="Resource" uid="uid://j2kounr4gxnk" path="res://item/weapons/one hand/longsword/longsword.tres" id="3_xhbl1"]
+[ext_resource type="AudioStream" uid="uid://ck86x8a33bwti" path="res://sfx/UI/radial_menu_open.ogg" id="4_iopko"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_xhbl1"]
+
+[sub_resource type="Resource" id="Resource_iopko"]
+script = ExtResource("2_h4tg1")
+item_icon = SubResource("ImageTexture_xhbl1")
+metadata/_custom_type_script = "uid://dcfd18dx8x1bm"
+
+[node name="SelectionWheel" type="Control" unique_id=1649874519]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_0sbqa")
+active = true
+background_color = Color(0, 0, 0, 0.69803923)
+line_color = Color(1, 1, 1, 1)
+highlight_color = Color(0.613057, 0.613057, 0.613057, 0.29000002)
+inner_radius = 32
+outer_radius = 128
+options = Array[ExtResource("2_h4tg1")]([SubResource("Resource_iopko"), ExtResource("3_xhbl1"), ExtResource("3_xhbl1"), ExtResource("3_xhbl1")])
+selected_option = 2
+
+[node name="open" type="AudioStreamPlayer" parent="." unique_id=1016534042]
+stream = ExtResource("4_iopko")
+bus = &"SFX"

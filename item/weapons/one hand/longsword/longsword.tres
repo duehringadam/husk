@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="item" format=3 uid="uid://j2kounr4gxnk"]
+
+[ext_resource type="AnimationNodeStateMachine" uid="uid://bjj1ust2y45ae" path="res://Player/hands/animations/hands/animation_state_machines/one_handed_sword_animation_state_machine.tres" id="1_m6o6b"]
+[ext_resource type="PackedScene" uid="uid://dolh7osohdf1j" path="res://item/weapons/one hand/longsword/longsword.tscn" id="2_1kayq"]
+[ext_resource type="Texture2D" uid="uid://bfhvavykmnic7" path="res://item/icons/blade/blade.svg/icons/ffffff/000000/1x1/lorc/broadsword.svg" id="2_dopyo"]
+[ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/scripts/item_stat.gd" id="3_ooyp7"]
+[ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/scripts/item.gd" id="4_xatil"]
+
+[sub_resource type="Resource" id="Resource_rh6kp"]
+script = ExtResource("3_ooyp7")
+damage_types = Dictionary[int, float]({
+1: 25.0
+})
+strength_scale = 0.25
+dex_scale = 0.25
+range = 2.0
+metadata/_custom_type_script = "uid://bbtfrupllo3w6"
+
+[resource]
+script = ExtResource("4_xatil")
+item_name = "longsword"
+item_description = "a long sword"
+item_icon = ExtResource("2_dopyo")
+item_stats = SubResource("Resource_rh6kp")
+item_required_stats = Dictionary[int, int]({
+0: 10
+})
+item_scene = ExtResource("2_1kayq")
+animation_state_machine = ExtResource("1_m6o6b")
+position = Vector3(-0.004, 0.118, 0.002)
+rotation = Vector3(0, -90, 0)
+metadata/_custom_type_script = "uid://dcfd18dx8x1bm"

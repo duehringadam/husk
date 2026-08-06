@@ -1,8 +1,8 @@
 [gd_scene format=4 uid="uid://buesmfsm2r5fj"]
 
 [ext_resource type="Script" uid="uid://ct0ho42visgfx" path="res://scenes/npc/npc weapons/scenes/npc_weapon_scene.gd" id="1_w46j1"]
-[ext_resource type="Texture2D" uid="uid://hqfs" path="res://scenes/Hivemind/MedievalWeapons/Art/Models/SM_Sword_1/T_Sword1_C.png" id="2_feyd1"]
-[ext_resource type="Texture2D" uid="uid://hqfq" path="res://scenes/Hivemind/MedievalWeapons/Art/Models/SM_Sword_1/T_Sword1_N.png" id="3_2tbdr"]
+[ext_resource type="Texture2D" uid="uid://hqfs" path="res://item/weapons/one hand/SM_Sword_1/T_Sword1_C.png" id="2_feyd1"]
+[ext_resource type="Texture2D" uid="uid://hqfq" path="res://item/weapons/one hand/SM_Sword_1/T_Sword1_N.png" id="3_2tbdr"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="4_b01j7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xyxwb"]
@@ -49,7 +49,7 @@ normal_texture = ExtResource("3_2tbdr")
 texture_filter = 4
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j1pv0"]
-radius = 0.18701172
+radius = 0.1
 height = 1.0825348
 
 [node name="npcLongSword" type="Node3D" unique_id=1362721370 node_paths=PackedStringArray("damage_component")]
@@ -58,7 +58,7 @@ script = ExtResource("1_w46j1")
 damage_component = NodePath("SM_Sword_1/DamageComponent")
 
 [node name="SM_Sword_1" type="MeshInstance3D" parent="." unique_id=1895491838]
-transform = Transform3D(-1.5, -2.2649371e-07, 0, 2.264937e-07, -1.4999999, 0, 0, 0, 1.4999999, 0, 0.5000001, 0)
+transform = Transform3D(-1.25, -1.8874475e-07, 0, 1.8874475e-07, -1.25, 0, 0, 0, 1.25, 0, 0.5000001, 0)
 mesh = SubResource("ArrayMesh_4qnn7")
 surface_material_override/0 = SubResource("StandardMaterial3D_23tqj")
 
@@ -74,5 +74,5 @@ damage_interval = 0.25
 metadata/_custom_type_script = "uid://dlsydctoxqbwy"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SM_Sword_1/DamageComponent" unique_id=259679966]
-transform = Transform3D(0.9999355, 0.0062364936, -0.010007694, -0.006203413, 0.999978, 0.0033685565, 0.010028571, -0.0033058375, 0.9999482, 0, 0, 0)
+transform = Transform3D(0.99993557, 0.0062364945, -0.010007694, -0.006203413, 0.999978, 0.0033685565, 0.01002857, -0.0033058373, 0.9999482, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_j1pv0")

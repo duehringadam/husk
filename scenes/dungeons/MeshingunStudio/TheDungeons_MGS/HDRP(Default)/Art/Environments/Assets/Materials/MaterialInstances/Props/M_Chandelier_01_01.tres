@@ -1,0 +1,28 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bi85"]
+
+[ext_resource type="Texture2D" uid="uid://dlf3" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Textures/Props/T_Chandelier01_Albedo.png" id="1_dlf3"]
+[ext_resource type="Shader" uid="uid://fi8dpx" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Shaders/S_Master.tres" id="1_vi"]
+[ext_resource type="Texture2D" uid="uid://dlf7" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Textures/Props/T_Chandelier01_ORM.png" id="2_dlf7"]
+[ext_resource type="Texture2D" uid="uid://dlf5" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Textures/Props/T_Chandelier01_N.png" id="3_dlf5"]
+
+[resource]
+resource_name = "M_Chandelier_01_01"
+render_priority = 0
+shader = ExtResource("1_vi")
+shader_parameter/Tiling = Vector2(1, 1)
+shader_parameter/BaseMap = ExtResource("1_dlf3")
+shader_parameter/Tint = Color(0.953, 0.953, 0.953, 0)
+shader_parameter/Saturation = 1.0
+shader_parameter/Contrast = 1.0
+shader_parameter/UseOpacity_ = false
+shader_parameter/ORM = ExtResource("2_dlf7")
+shader_parameter/Metallic = 1.0
+shader_parameter/UseRAD_ = false
+shader_parameter/Roughness = 5.0
+shader_parameter/UseEmissive_ = false
+shader_parameter/EmissiveColor = Color(0, 0, 0, 1)
+shader_parameter/AOIntensity = 1.0
+shader_parameter/NormalMap = ExtResource("3_dlf5")
+shader_parameter/NormalStrength = 1.0
+shader_parameter/EnableAlphaClipping = false
+shader_parameter/AlphaClipping = 0.5

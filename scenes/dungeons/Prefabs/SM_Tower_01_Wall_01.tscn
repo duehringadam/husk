@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://d4n4ub6isqcdg"]
+
+[ext_resource type="PackedScene" uid="uid://cv6m" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Meshes/Structures/Tower/SM_Tower_01_Wall_01.glb" id="1_cv6m"]
+[ext_resource type="Material" uid="uid://bia3" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Tiling/M_Concrete_01_01.tres" id="2_bia3"]
+[ext_resource type="Material" uid="uid://bieg" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Trim/M_StructureTrim_01_01.tres" id="3_bieg"]
+[ext_resource type="Material" uid="uid://bivu" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Structures/M_StoneBricks_01_01.tres" id="4_bivu"]
+[ext_resource type="Material" uid="uid://bi8e" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Trim/M_StructureTrim_02_01.tres" id="5_bi8e"]
+[ext_resource type="Material" uid="uid://bigi" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Tiling/M_StoneWall_01_01.tres" id="6_bigi"]
+[ext_resource type="Material" uid="uid://bi0i" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Structures/M_TW02_02_Part_01.tres" id="7_bi0i"]
+[ext_resource type="Material" uid="uid://bh8c" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Structures/M_TW02_02_Part_03.tres" id="8_bh8c"]
+[ext_resource type="Material" uid="uid://bit3" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Structures/M_TW01_01_Part_02.tres" id="9_bit3"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_x54nr"]
+points = PackedVector3Array(-3.2587018, 9.85744, 4.069555, -2.3475168, 7.8844104, 2.075409, -2.3473334, 8.02052, 2.0315905, -2.3477, 8.176878, 1.935986, -3.2587018, 9.873189, 4.0528235, -3.7507634, 11.453637, 4.0584006, -4.0536976, 9.85744, 4.069555, -3.2587018, 9.612218, 4.069555, -2.2472718, 0.958559, 3.1206822, -2.34825, 8.324237, 1.7559314, -3.5599866, 11.230912, 3.2481546, -3.5599866, 11.230912, -3.2489514, -3.7507634, 11.452512, -3.6616433, -3.9177163, 11.389519, -2.8928256, -3.9177163, 11.389519, 3.7397199, -4.0696416, 9.85744, 4.0528235, -4.0536976, 9.612218, 4.069555, -3.3937666, -0.0043334365, 3.6194177, -2.851674, -0.008832935, 3.6186209, -2.821069, 0.054160025, 3.6186209, -2.7864323, 0.3916223, 3.602687, -2.2472718, 0.66496676, 3.1206822, -2.2472718, 0.958559, -3.1214793, -2.3473334, 8.400728, -1.5264814, -2.3475168, 8.397353, 1.3496132, -2.3475168, 8.392854, 1.5519757, -3.2587018, 9.873189, -4.053621, -2.3475168, 8.344484, -1.709723, -3.258885, 9.85744, -4.069555, -4.0536976, 9.85744, -4.069555, -4.0696416, 9.85744, -4.053621, -4.119489, 9.19039, -0.007966995, -4.103179, 0.87644315, 3.5174398, -4.0696416, 9.612218, 4.0528235, -4.094932, 0.008040179, 3.6010938, -4.076606, 0.0046655573, 3.6186209, -3.8007944, -0.014457306, 3.6178246, -3.2013402, -0.018956805, 3.6178246, -2.857172, -0.032455295, 3.597907, -2.8192363, 0.030537669, 3.5963135, -2.8417778, -0.03358017, 3.52461, -2.8153877, -0.011082683, 3.421836, -2.773604, -0.022331428, 1.524888, -2.7554607, -0.0065831877, -1.2651632, -2.2472718, 0.66496676, -3.1214793, -3.2587018, 9.612218, -4.069555, -2.3475168, 7.894534, -2.0738158, -2.3477, 8.077889, -2.006893, -2.3477, 8.24887, -1.8642833, -4.0536976, 9.612218, -4.069555, -4.0696416, 9.612218, -4.053621, -4.09035, 0.7909527, -3.5357642, -4.1022625, 0.8966909, 0.084450245, -4.104645, 0.89781576, 1.1846962, -4.104095, 0.7695801, 3.0354352, -4.095115, -0.017831929, 3.5046926, -4.0641437, -0.034705043, 3.584363, -3.8563232, -0.032455295, 3.600297, -3.0899162, -0.034705043, 3.5899396, -2.8095236, -0.034705043, 2.353458, -2.799444, -0.03358017, 0.1306591, -2.7781854, -0.024581175, -1.5886242, -2.7607756, -0.009957809, -1.597388, -2.7963285, -0.017831929, -3.4560943, -2.7965117, 0.0035406835, -3.5763962, -2.8283997, -0.013332432, -3.6098576, -2.7835002, 0.4793625, -3.6218083, -3.3039677, 0.0024158098, -3.6114511, -3.8730001, -0.008832935, -3.609061, -4.0311565, 0.0024158098, -3.609061, -4.0753226, 0.067658514, -3.58994, -4.076789, -0.012207558, -3.5851598, -4.077522, 0.84157205, -3.6218083, -4.085952, -0.022331428, -1.1360974, -4.096215, 0.0012909323, 2.8721113, -4.095848, -0.011082683, 3.276836, -4.0952983, -0.016707055, 2.7908478, -4.0828366, -0.029080674, -0.7130487, -4.076056, -0.032455295, 2.877688, -4.07404, -0.03358017, 3.3126874, -4.0668926, -0.038079668, -0.8907132, -3.1960256, -0.038079668, -0.013544083, -2.8269334, -0.038079668, -0.9831307, -2.8126388, -0.029080674, -3.1182923, -2.8172204, -0.029080674, -3.4927425, -2.884295, -0.030205548, -3.579583, -3.3332899, -0.029080674, -3.5947204, -4.0472836, -0.027955798, -3.5987039, -3.272263, -0.014457306, -3.6098576, -4.06506, -0.027955798, -3.4465337, -4.076422, -0.0155821815, -3.459281, -4.068359, -0.029080674, -2.9995837, -4.066526, -0.038079668, -1.1456578, -4.0689087, -0.036954794, -0.13384604, -2.854423, -0.038079668, -1.1472514, -2.9898543, -0.038079668, -1.1791193, -3.5775797, -0.038079668, -1.1878831, -4.010814, -0.038079668, -1.1846962, -4.063044, -0.029080674, -3.2951603)
+
+[node name="SM_Tower_01_Wall_01" unique_id=362295247 instance=ExtResource("1_cv6m")]
+
+[node name="SM_Tower_01_Wall_01_LOD0" parent="." index="0" unique_id=843814838]
+surface_material_override/0 = ExtResource("2_bia3")
+surface_material_override/1 = ExtResource("3_bieg")
+surface_material_override/2 = ExtResource("4_bivu")
+surface_material_override/3 = ExtResource("5_bi8e")
+surface_material_override/4 = ExtResource("6_bigi")
+surface_material_override/5 = ExtResource("7_bi0i")
+surface_material_override/6 = ExtResource("8_bh8c")
+surface_material_override/7 = ExtResource("9_bit3")
+
+[node name="SM_Tower_01_Wall_01_LOD0StaticBody" type="StaticBody3D" parent="SM_Tower_01_Wall_01_LOD0" index="0" unique_id=678434745]
+collision_layer = 2
+metadata/ground_type = "stone"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SM_Tower_01_Wall_01_LOD0/SM_Tower_01_Wall_01_LOD0StaticBody" index="0" unique_id=2097047209]
+shape = SubResource("ConvexPolygonShape3D_x54nr")

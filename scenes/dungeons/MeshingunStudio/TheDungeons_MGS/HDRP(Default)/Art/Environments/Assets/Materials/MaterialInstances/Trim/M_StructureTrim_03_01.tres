@@ -1,0 +1,28 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bivs"]
+
+[ext_resource type="Texture2D" uid="uid://c3ea" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Textures/Trim/StructureTrim_03/T_StructureTrim_03_Albedo.png" id="1_c3ea"]
+[ext_resource type="Shader" uid="uid://fi8dpx" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Shaders/S_Master.tres" id="1_vi"]
+[ext_resource type="Texture2D" uid="uid://c3ee" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Textures/Trim/StructureTrim_03/T_StructureTrim_03_RAD.png" id="2_c3ee"]
+[ext_resource type="Texture2D" uid="uid://c3ec" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Textures/Trim/StructureTrim_03/T_StructureTrim_03_N.png" id="3_c3ec"]
+
+[resource]
+resource_name = "M_StructureTrim_03_01"
+render_priority = 0
+shader = ExtResource("1_vi")
+shader_parameter/Tiling = Vector2(1, 1)
+shader_parameter/BaseMap = ExtResource("1_c3ea")
+shader_parameter/Tint = Color(1, 1, 1, 0)
+shader_parameter/Saturation = 1.0
+shader_parameter/Contrast = 1.0
+shader_parameter/UseOpacity_ = false
+shader_parameter/ORM = ExtResource("2_c3ee")
+shader_parameter/Metallic = 0.0
+shader_parameter/UseRAD_ = true
+shader_parameter/Roughness = 3.0
+shader_parameter/UseEmissive_ = false
+shader_parameter/EmissiveColor = Color(0, 0, 0, 1)
+shader_parameter/AOIntensity = 1.0
+shader_parameter/NormalMap = ExtResource("3_c3ec")
+shader_parameter/NormalStrength = 1.0
+shader_parameter/EnableAlphaClipping = false
+shader_parameter/AlphaClipping = 0.5

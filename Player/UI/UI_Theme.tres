@@ -1,0 +1,82 @@
+[gd_resource type="Theme" format=3 uid="uid://ctn68w4yfl5oa"]
+
+[ext_resource type="FontFile" uid="uid://bgwsxfa2fbvel" path="res://addons/madtalk/fonts/ShipporiMincho-Regular.ttf" id="1_8y5bj"]
+[ext_resource type="Texture2D" uid="uid://dk2tidxm1p74q" path="res://assets/kenney_fantasy-ui-borders/PNG/Default/Divider Fade/divider-fade-002.png" id="2_6fbi5"]
+[ext_resource type="Texture2D" uid="uid://by0pnn4vskmeg" path="res://Player/UI/inventory/textures/AdobeStock_73802034.jpeg" id="3_vqoha"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v4udn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v4udn"]
+draw_center = false
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 0.827451, 0.47843137, 1)
+border_blend = true
+
+[sub_resource type="Gradient" id="Gradient_8y5bj"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 0.827222, 0.4788676, 0.102000006, 0.012617188, 0.008213789, 0.0024603514, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kur6e"]
+gradient = SubResource("Gradient_8y5bj")
+width = 1024
+height = 1024
+fill = 1
+fill_from = Vector2(0.51272726, 0.5090909)
+fill_to = Vector2(0.51282054, 0.0042735045)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v4udn"]
+texture = SubResource("GradientTexture2D_kur6e")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7qavm"]
+texture = ExtResource("2_6fbi5")
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+region_rect = Rect2(0, 0, 94, 10)
+modulate_color = Color(1, 0.827222, 0.4788676, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eekrg"]
+texture = ExtResource("3_vqoha")
+expand_margin_left = 50.0
+expand_margin_top = 50.0
+expand_margin_right = 50.0
+expand_margin_bottom = 50.0
+
+[resource]
+Button/colors/font_color = Color(1, 0.827222, 0.4788676, 1)
+Button/colors/font_disabled_color = Color(0.49341863, 0.3623615, 0, 0.62600005)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/align_to_largest_stylebox = 0
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/line_spacing = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 24
+Button/fonts/font = ExtResource("1_8y5bj")
+Button/icons/icon = null
+Button/styles/disabled = SubResource("StyleBoxEmpty_v4udn")
+Button/styles/disabled_mirrored = SubResource("StyleBoxEmpty_v4udn")
+Button/styles/focus = SubResource("StyleBoxFlat_v4udn")
+Button/styles/hover = SubResource("StyleBoxTexture_v4udn")
+Button/styles/hover_mirrored = SubResource("StyleBoxEmpty_v4udn")
+Button/styles/hover_pressed = SubResource("StyleBoxEmpty_v4udn")
+Button/styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_v4udn")
+Button/styles/normal = SubResource("StyleBoxEmpty_v4udn")
+Button/styles/normal_mirrored = SubResource("StyleBoxEmpty_v4udn")
+Button/styles/pressed = SubResource("StyleBoxEmpty_v4udn")
+Button/styles/pressed_mirrored = SubResource("StyleBoxEmpty_v4udn")
+HSeparator/constants/separation = 24
+HSeparator/styles/separator = SubResource("StyleBoxTexture_7qavm")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_eekrg")

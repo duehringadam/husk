@@ -4,7 +4,7 @@ render_mode depth_prepass_alpha;
 render_mode diffuse_toon;
 render_mode specular_toon;
 
-uniform sampler2D noise : repeat_enable; // cutout & shading texture
+uniform sampler2D noise : repeat_enable, filter_linear_mipmap_anisotropic; // cutout & shading texture
 uniform float noise_shading : hint_range(0.0, 1.0) = 1.0; // shading from noise
 uniform float progress : hint_range(0.0, 1.0) = 0.0; // amount of blood
 uniform vec4 color : source_color = vec4(1.0, 0.0, 0.0, 1.0); // color of blood

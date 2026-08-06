@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://d4n4ub6istpgi"]
+
+[ext_resource type="PackedScene" uid="uid://crys" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Meshes/Structures/TombWall_01/SM_TombWall_01_Trim_22.glb" id="1_crys"]
+[ext_resource type="Material" uid="uid://bia3" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Tiling/M_Concrete_01_01.tres" id="2_bia3"]
+[ext_resource type="Material" uid="uid://biy7" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Structures/M_TW01_01_Part_01.tres" id="3_biy7"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2cmol"]
+points = PackedVector3Array(-5.221367e-05, 1.2207032e-06, -6, -0.60347605, 0.021784391, -0.6945381, -0.61010045, 0.02263034, -5.6434693, -0.573892, 0.021784391, -5.7756925, -0.52330554, 0.022841828, -5.822915, -0.44426426, 0.021572905, -5.8571515, -0.47181582, 0.15396383, -5.8630543, -0.6327589, 1.8636255, -5.9846525, -5.221367e-05, 2.1605535, -6, 0.03743595, 0.021995878, -5.325897, 0.03751123, 0.021995878, -4.792281, -5.221367e-05, 1.2207032e-06, 5.9992685, -0.6091971, 0.022418853, -3.1312256, -0.60347605, 0.021784391, 1.8165245, -0.613789, 0.06577371, -0.64377403, -0.6173271, 0.13577594, -5.703678, -0.6055085, 0.02411075, -5.706039, -0.61010045, 0.02263034, 5.7513494, -0.6877115, 2.0108206, -5.9209023, -0.55085707, 0.13218066, -5.814651, -0.6723549, 2.0101862, -5.932708, 0.03743595, 1.3704376, -5.089784, 0.03736067, 1.3351192, -5.1983957, 0.035629272, 1.18306, -5.314091, 0.036005676, 1.0921206, -5.327078, -0.6484919, 2.0243556, -5.923263, -0.67769957, 2.0243556, -5.8972907, -0.7127788, 2.0243556, -2.9576826, -5.221367e-05, 2.1605535, 5.9992685, 0.03758651, 1.1597965, -4.7970037, 0.03751123, 0.021995878, 2.7597961, 0.03434956, 0.021995878, 5.276762, -0.22565866, 1.8046206, 6.0606575, -0.6323073, 1.8249234, 6.048852, -0.43809152, 0.02263034, 5.923712, -0.5284997, 0.021995878, 5.889476, -0.576075, 0.021784391, 5.841073, -0.73144764, 1.9786745, -2.9340713, -0.613789, 0.06577371, 1.8672891, -0.6912495, 1.9708495, -5.904374, -0.5817961, 0.09770826, 5.8528786, -0.68778676, 2.0072253, 5.9756575, -0.6173271, 0.13577594, 5.691141, -0.7232424, 2.0095515, -2.9824743, 0.03751123, 1.3304665, -4.9174213, 0.03743595, 1.3704376, 2.461113, -0.6871845, 2.0156848, 5.841073, -0.6778501, 2.0243556, 5.946143, -0.6537613, 2.0243556, 5.991004, -0.676721, 2.0068023, 6.00163, -0.6076915, 1.8744113, 6.0476713, 0.03306985, 1.1906736, 5.2614145, 0.033897877, 1.2644826, 5.2248173, 0.03306985, 1.3647275, 5.072524, 0.03442484, 1.3530957, 4.909606, 0.03547871, 1.3733984, 3.7656384, 0.03751123, 1.3304665, 2.634657, 0.03751123, 1.2606758, 2.709032, 0.03751123, 1.1597965, 2.7550745, -0.6336623, 1.872508, 6.0441303, -0.6912495, 1.9708495, 5.490445, -0.68214095, 1.9668312, 5.9815598, 0.03743595, 1.3662078, 2.5449333)
+
+[node name="SM_TombWall_01_Trim_22" unique_id=1351567818 instance=ExtResource("1_crys")]
+
+[node name="SM_TombWall_01_Trim_22_LOD0" parent="." index="0" unique_id=1846747340]
+surface_material_override/0 = ExtResource("2_bia3")
+surface_material_override/1 = ExtResource("3_biy7")
+
+[node name="SM_TombWall_01_Trim_22_LOD0StaticBody" type="StaticBody3D" parent="SM_TombWall_01_Trim_22_LOD0" index="0" unique_id=1236795249]
+collision_layer = 2
+metadata/ground_type = "stone"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SM_TombWall_01_Trim_22_LOD0/SM_TombWall_01_Trim_22_LOD0StaticBody" index="0" unique_id=227330372]
+shape = SubResource("ConvexPolygonShape3D_2cmol")

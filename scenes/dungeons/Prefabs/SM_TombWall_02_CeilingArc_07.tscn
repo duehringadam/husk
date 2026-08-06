@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://d4n4ub6iss51w"]
+
+[ext_resource type="PackedScene" uid="uid://c2km" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Meshes/Structures/TombWall_02/SM_TombWall_02_CeilingArc_07.glb" id="1_c2km"]
+[ext_resource type="Material" uid="uid://bi4s" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Tiling/M_Concrete_02_01.tres" id="2_bi4s"]
+[ext_resource type="Material" uid="uid://bigi" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Tiling/M_StoneWall_01_01.tres" id="3_bigi"]
+[ext_resource type="Material" uid="uid://bivu" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Structures/M_StoneBricks_01_01.tres" id="4_bivu"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_gmlru"]
+points = PackedVector3Array(6.0026765, 3.6811078, 6.002678, -6.0038514, 3.6811078, 6.002678, 5.4620004, -2.9516723, 6.003853, 6.0026765, -2.9516723, 6.002678, 6.0026765, 3.6811078, -6.0038548, 0.21862125, 3.6824067, -3.684825, -6.0038514, -2.9516723, 6.002678, -6.0038514, 3.6811078, -6.0038548, 6.0026765, -2.9516723, -6.0038548, -6.0038514, -2.9516723, -6.0038548)
+
+[node name="SM_TombWall_02_CeilingArc_07" unique_id=999416114 instance=ExtResource("1_c2km")]
+
+[node name="SM_TombWall_02_CeilingArc_07_LOD0" parent="." index="0" unique_id=351428292]
+surface_material_override/0 = ExtResource("2_bi4s")
+surface_material_override/1 = ExtResource("3_bigi")
+surface_material_override/2 = ExtResource("4_bivu")
+
+[node name="SM_TombWall_02_CeilingArc_07_LOD0StaticBody" type="StaticBody3D" parent="SM_TombWall_02_CeilingArc_07_LOD0" index="0" unique_id=368822769]
+collision_layer = 2
+metadata/ground_type = "stone"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SM_TombWall_02_CeilingArc_07_LOD0/SM_TombWall_02_CeilingArc_07_LOD0StaticBody" index="0" unique_id=1497676476]
+shape = SubResource("ConvexPolygonShape3D_gmlru")

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://d4n4ub6is166y"]
+
+[ext_resource type="PackedScene" uid="uid://cl7y" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Meshes/Plane.glb" id="1_cl7y"]
+[ext_resource type="Material" uid="uid://biw7" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Volumetric/M_FakeVolumetricFog.tres" id="2_biw7"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_rn2iq"]
+points = PackedVector3Array(-0.5, 5.9706444e-09, -0.5, -0.5, 5.9706444e-09, 0.5, 0.5, -6.083982e-09, -0.5, 0.5, -6.083982e-09, 0.5)
+
+[node name="Plane" unique_id=284436485 instance=ExtResource("1_cl7y")]
+
+[node name="Plane" parent="." index="0" unique_id=850714492]
+surface_material_override/0 = ExtResource("2_biw7")
+
+[node name="PlaneStaticBody" type="StaticBody3D" parent="Plane" index="0" unique_id=361943478]
+collision_layer = 2
+metadata/ground_type = "stone"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Plane/PlaneStaticBody" index="0" unique_id=222748188]
+shape = SubResource("ConvexPolygonShape3D_rn2iq")

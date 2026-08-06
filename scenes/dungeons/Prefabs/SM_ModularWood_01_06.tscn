@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://d4n4ub6issg6c"]
+
+[ext_resource type="PackedScene" uid="uid://cyfm" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Meshes/Props/ModularWood/ModularWood_01/SM_ModularWood_01_06.glb" id="1_cyfm"]
+[ext_resource type="Material" uid="uid://bjaa" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Props/M_ModularWood_01_01.tres" id="2_bjaa"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_oqr5p"]
+points = PackedVector3Array(0.12190884, -0.019552395, -1.9812717, 0.101068795, -0.0422709, -1.992637, 0.11461483, 0.032631457, -1.980488, 0.11720772, 0.04479605, -1.1057575, 0.116868466, 0.04213786, -0.058588862, 0.11512372, 0.03281167, 1.8793783, 0.11737734, -0.024114117, 0.8992255, 0.11454213, -0.043543678, 1.9871519, 0.095955715, -0.04624692, -0.8278972, 0.047975153, -0.05791592, 1.7849293, -0.09831711, -0.04929933, -1.5062838, -0.08220242, -0.04692273, -1.9992994, -0.020772763, 0.04523533, -2.0000832, 0.081295, 0.042701036, -1.9898937, 0.10361323, 0.05148658, -0.7812606, 0.11328204, 0.052466504, 1.6783314, 0.1032255, 0.050720662, 1.9891114, 0.11417864, 0.016659796, 1.9201362, 0.08972794, -0.05159709, 2.0036118, -0.115013376, -0.03945502, 1.9973414, -0.116588496, -0.043115664, 0.42815638, -0.12441563, -0.021906469, -1.9812717, -0.10941564, 0.045212805, -1.9867585, -0.104036, 0.056645267, -1.4341733, -0.07546575, 0.057152122, -1.1621916, 0.09547107, 0.055338703, 0.17537808, -0.04742863, 0.053908236, 1.999301, -0.12007799, 0.042464502, 1.9969497, -0.12560304, -0.015114572, 1.991463, -0.12143502, -0.033316407, 0.96428156, -0.1256515, 0.021593213, -1.7324126, -0.123785585, 0.041743644, 0.78126216, -0.09938335, 0.054865636, 1.1273139)
+
+[node name="SM_ModularWood_01_06" unique_id=1636738327 instance=ExtResource("1_cyfm")]
+
+[node name="SM_ModularWood_01_06_LOD0" parent="." index="0" unique_id=274650776]
+surface_material_override/0 = ExtResource("2_bjaa")
+
+[node name="SM_ModularWood_01_06_LOD0StaticBody" type="StaticBody3D" parent="SM_ModularWood_01_06_LOD0" index="0" unique_id=304171789]
+collision_layer = 2
+metadata/ground_type = "stone"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SM_ModularWood_01_06_LOD0/SM_ModularWood_01_06_LOD0StaticBody" index="0" unique_id=944864867]
+shape = SubResource("ConvexPolygonShape3D_oqr5p")

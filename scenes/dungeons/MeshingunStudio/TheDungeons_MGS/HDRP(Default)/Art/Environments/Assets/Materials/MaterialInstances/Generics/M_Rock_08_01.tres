@@ -1,0 +1,42 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bie7"]
+
+[ext_resource type="Texture2D" uid="uid://c3es" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Textures/Generics/T_Rock08_Mask.png" id="1_c3es"]
+[ext_resource type="Shader" uid="uid://d4n4ub48gq5ox" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Shaders/S_Rocks.tres" id="1_vk"]
+[ext_resource type="Texture2D" uid="uid://c3eu" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Textures/Generics/T_Rock08_N.png" id="2_c3eu"]
+[ext_resource type="Texture2D" uid="uid://c3ew" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Textures/Generics/T_Rock08_ORM.png" id="3_c3ew"]
+[ext_resource type="Texture2D" uid="uid://bag" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Textures/Tiling/Rock_01/T_Rock_01_Albedo.png" id="4_bag"]
+[ext_resource type="Texture2D" uid="uid://c3ba" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Textures/Tiling/Concrete_03/T_Concerete_03_Albedo.png" id="5_c3ba"]
+[ext_resource type="Texture2D" uid="uid://bam" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Textures/Tiling/Rock_01/T_Rock_01_N.png" id="6_bam"]
+[ext_resource type="Texture2D" uid="uid://c3b7" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Textures/Tiling/Rock_02/T_Rock_01_N02.png" id="7_c3b7"]
+[ext_resource type="Texture2D" uid="uid://c3bg" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Textures/Tiling/Concrete_03/T_Concerete_03_N.png" id="8_c3bg"]
+[ext_resource type="Texture2D" uid="uid://bae" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Textures/Misc/T_Moss_01_Albedo.PNG" id="9_bae"]
+
+[resource]
+resource_name = "M_Rock_08_01"
+render_priority = 0
+shader = ExtResource("1_vk")
+shader_parameter/UseMoss_ = false
+shader_parameter/MossTiling = 1.0
+shader_parameter/T_Moss_01_Albedo = ExtResource("9_bae")
+shader_parameter/Brightness = 1.0
+shader_parameter/Tiling = Vector2(3, 3)
+shader_parameter/Albedo_01 = ExtResource("4_bag")
+shader_parameter/Color_00 = Color(1, 1, 1, 1)
+shader_parameter/Color_01 = Color(0.913, 0.791, 0.723, 1)
+shader_parameter/BaseMask = ExtResource("1_c3es")
+shader_parameter/RChannelContrast = 1.0
+shader_parameter/Albedo_02 = ExtResource("5_c3ba")
+shader_parameter/Color_02 = Color(1.171, 1.171, 1.171, 1)
+shader_parameter/GChannelContrast = 1.0
+shader_parameter/Albedo_03 = ExtResource("5_c3ba")
+shader_parameter/Color_03 = Color(0.511, 0.404, 0.33, 1)
+shader_parameter/BChannelContrast = 1.0
+shader_parameter/MaskDirection = Vector3(0, 0, 1)
+shader_parameter/BlendSharpness = 4.0
+shader_parameter/BlendBias = 0.5
+shader_parameter/ORM = ExtResource("3_c3ew")
+shader_parameter/Roughness = 2.0
+shader_parameter/BaseNormal = ExtResource("2_c3eu")
+shader_parameter/Normal_01 = ExtResource("6_bam")
+shader_parameter/Normal_02 = ExtResource("7_c3b7")
+shader_parameter/Normal_03 = ExtResource("8_c3bg")

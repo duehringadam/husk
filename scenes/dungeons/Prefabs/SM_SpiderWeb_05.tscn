@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://d4n4ub6isxype"]
+
+[ext_resource type="PackedScene" uid="uid://cx2m" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Meshes/Props/SpiderWeb/SM_SpiderWeb_05.glb" id="1_cx2m"]
+[ext_resource type="Material" uid="uid://bi8c" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Props/M_SpiderWeb.tres" id="2_bi8c"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_tcpqc"]
+points = PackedVector3Array(3.456696e-07, 0.9966327, 0.33332187, 0.048170395, 0.9966327, -6.508827e-05, 0.09314916, 0.9966327, -0.3333215, 3.456696e-07, -0.99682796, -0.3333215, 3.456696e-07, 0.0031223893, 0.33332187, 0.048170395, 0.0031223893, -6.508827e-05, 0.048170395, -0.7249836, -0.085026875, 0.067928955, 0.0031223893, -0.3333215, 3.456696e-07, -0.45313913, 0.16333303)
+
+[node name="SM_SpiderWeb_05" unique_id=1205141602 instance=ExtResource("1_cx2m")]
+
+[node name="SM_SpiderWeb_05" parent="." index="0" unique_id=1067716520]
+surface_material_override/0 = ExtResource("2_bi8c")
+
+[node name="SM_SpiderWeb_05StaticBody" type="StaticBody3D" parent="SM_SpiderWeb_05" index="0" unique_id=1024157799]
+collision_layer = 2
+metadata/ground_type = "stone"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SM_SpiderWeb_05/SM_SpiderWeb_05StaticBody" index="0" unique_id=2000545118]
+shape = SubResource("ConvexPolygonShape3D_tcpqc")

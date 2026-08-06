@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://d4n4ub6isv1ri"]
+
+[ext_resource type="PackedScene" uid="uid://c0nk" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Meshes/Props/Skeleton/SM_Skeleton_02.glb" id="1_c0nk"]
+[ext_resource type="Material" uid="uid://bidi" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Props/M_Skeleton_01_01.tres" id="2_bidi"]
+
+[node name="SM_Skeleton_02" unique_id=1868091348 instance=ExtResource("1_c0nk")]
+
+[node name="SM_Skeleton_02_LOD0" parent="." index="0" unique_id=83799257]
+surface_material_override/0 = ExtResource("2_bidi")

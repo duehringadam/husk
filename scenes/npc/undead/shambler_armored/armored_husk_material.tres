@@ -1,0 +1,17 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://sda0b8xygahn"]
+
+[ext_resource type="Texture2D" uid="uid://cxnd1w61unt4o" path="res://scenes/npc/undead/shambler_armored/textures/textures/soldier_Base_color.png" id="1_ff6nt"]
+[ext_resource type="Texture2D" uid="uid://bjunm86fm2kvl" path="res://scenes/npc/undead/shambler_armored/textures/textures/soldier_Mixed_AO.png" id="2_tg2qq"]
+[ext_resource type="Texture2D" uid="uid://47kf5dqv4xvg" path="res://scenes/npc/undead/shambler_armored/textures/textures/soldier_Normal_OpenGL.png" id="3_8hcg6"]
+[ext_resource type="Texture2D" uid="uid://dq1srtsxpxl6r" path="res://scenes/npc/undead/shambler_armored/textures/textures/soldier_Roughness.png" id="4_258g2"]
+
+[resource]
+cull_mode = 2
+albedo_texture = ExtResource("1_ff6nt")
+roughness_texture = ExtResource("4_258g2")
+normal_enabled = true
+normal_texture = ExtResource("3_8hcg6")
+ao_enabled = true
+ao_light_affect = 1.0
+ao_texture = ExtResource("2_tg2qq")
+texture_filter = 4

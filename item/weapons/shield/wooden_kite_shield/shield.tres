@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="item" format=3 uid="uid://crf08k5nswvsi"]
+
+[ext_resource type="AnimationNodeStateMachine" uid="uid://csvndnaewcyo4" path="res://Player/hands/animations/hands/animation_state_machines/shield_state_machine.tres" id="1_uky14"]
+[ext_resource type="Texture2D" uid="uid://du7vvfxipxeoe" path="res://item/icons/shields/shield.svg/icons/ffffff/000000/1x1/lorc/checked-shield.svg" id="2_w0br7"]
+[ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/scripts/item_stat.gd" id="3_cadg3"]
+[ext_resource type="PackedScene" uid="uid://bky3rbcy6gkpt" path="res://item/weapons/shield/wooden_kite_shield/kite_shield.tscn" id="3_w0br7"]
+[ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/scripts/item.gd" id="4_qqeoi"]
+
+[sub_resource type="Resource" id="Resource_1qk6h"]
+script = ExtResource("3_cadg3")
+damage_types = Dictionary[int, float]({
+0: 0.0
+})
+metadata/_custom_type_script = "uid://bbtfrupllo3w6"
+
+[resource]
+script = ExtResource("4_qqeoi")
+item_name = "Kite Shield"
+item_description = "a shield for blocking"
+item_icon = ExtResource("2_w0br7")
+item_type = 1
+item_stats = SubResource("Resource_1qk6h")
+item_required_stats = Dictionary[int, int]({
+0: 10
+})
+stamina_cost = 0
+item_scene = ExtResource("3_w0br7")
+animation_state_machine = ExtResource("1_uky14")
+position = Vector3(-0.061, -0.366, 0.159)
+rotation = Vector3(85.8, -94.6, -82.3)
+metadata/_custom_type_script = "uid://dcfd18dx8x1bm"

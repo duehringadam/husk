@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://d4n4ub6isp6lw"]
+
+[ext_resource type="PackedScene" uid="uid://cn5q" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Meshes/Structures/TombWall_02/SM_Tomb_WallDecore_01.glb" id="1_cn5q"]
+[ext_resource type="Material" uid="uid://bi8e" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Trim/M_StructureTrim_02_01.tres" id="2_bi8e"]
+[ext_resource type="Material" uid="uid://bieg" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Trim/M_StructureTrim_01_01.tres" id="3_bieg"]
+[ext_resource type="Material" uid="uid://bi4s" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Tiling/M_Concrete_02_01.tres" id="4_bi4s"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7rlql"]
+points = PackedVector3Array(-0.7, 0.00450301, -1.6999999, -0.7, 2.004503, -1.6999999, 0.699863, 0.00450301, -1.6999999, -0.7, 0.00450301, 1.6999999, 0.7, 2.004503, -1.6999999, -0.7, 2.004503, 1.6999999, 0.7, 1.9003527, -1.6999999, 0.699863, 0.00450301, 1.6999999, 0.699863, 2.004503, 1.6999999)
+
+[node name="SM_Tomb_WallDecore_01" unique_id=78931408 instance=ExtResource("1_cn5q")]
+
+[node name="SM_Tomb_WallDecore_01_LOD0" parent="." index="0" unique_id=1769302199]
+surface_material_override/0 = ExtResource("2_bi8e")
+surface_material_override/1 = ExtResource("3_bieg")
+surface_material_override/2 = ExtResource("4_bi4s")
+
+[node name="SM_Tomb_WallDecore_01_LOD0StaticBody" type="StaticBody3D" parent="SM_Tomb_WallDecore_01_LOD0" index="0" unique_id=1691129454]
+collision_layer = 2
+metadata/ground_type = "stone"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SM_Tomb_WallDecore_01_LOD0/SM_Tomb_WallDecore_01_LOD0StaticBody" index="0" unique_id=815183535]
+shape = SubResource("ConvexPolygonShape3D_7rlql")

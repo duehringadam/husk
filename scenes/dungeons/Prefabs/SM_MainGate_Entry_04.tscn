@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://d4n4ub6isvtxy"]
+
+[ext_resource type="PackedScene" uid="uid://cqmy" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Meshes/Structures/MainGate/SM_MainGate_Entry_04.glb" id="1_cqmy"]
+[ext_resource type="Material" uid="uid://bidy" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Tiling/M_Concrete_03_01.tres" id="2_bidy"]
+[ext_resource type="Material" uid="uid://bi0i" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Structures/M_TW02_02_Part_01.tres" id="3_bi0i"]
+[ext_resource type="Material" uid="uid://bias" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Structures/M_TW02_02_Part_02.tres" id="4_bias"]
+[ext_resource type="Material" uid="uid://bi8e" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Trim/M_StructureTrim_02_01.tres" id="5_bi8e"]
+[ext_resource type="Material" uid="uid://bieg" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Trim/M_StructureTrim_01_01.tres" id="6_bieg"]
+[ext_resource type="Material" uid="uid://bivu" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Structures/M_StoneBricks_01_01.tres" id="7_bivu"]
+[ext_resource type="Material" uid="uid://bigi" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Tiling/M_StoneWall_01_01.tres" id="8_bigi"]
+[ext_resource type="Material" uid="uid://bi51" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Structures/M_TW_Decorative_01_01.tres" id="9_bi51"]
+[ext_resource type="Material" uid="uid://biws" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Structures/M_TW02_01_Part_03.tres" id="10_biws"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_j7guv"]
+points = PackedVector3Array(0.24247253, -0.013679456, 2.4297602, -0.017485857, -0.013679456, 2.4264295, 0.24247253, -0.013679456, -0.72902155, 1.1458278, -0.0011071181, 1.358753, 1.1458278, 1.8836006, 1.358753, 0.25031602, 11.520869, 2.4102528, 0.24673045, 11.646592, 2.4112046, -0.5461426, 11.66145, 2.4240506, -0.8058768, 11.66145, 2.4278572, -0.81013477, 0.001178761, 2.4131076, -0.48429042, -0.013679456, 2.4112046, 0.2382145, -0.013679456, -1.0944296, 1.1458278, -0.0011071181, -1.312818, 1.1458278, 1.8836006, -1.312818, 0.7110698, 11.032833, 1.358753, 0.25098836, 11.659164, 2.3969305, -0.07911396, 11.66145, 2.4088256, -1.1099832, 11.66145, 1.7736433, -1.0983299, 11.659164, 2.103843, -1.1122242, 11.646592, 2.0995605, -1.111552, 11.520869, 2.1028912, -1.116034, -0.013679456, 2.1066978, -0.81372035, 0.12690213, 2.4126318, -0.8143927, -0.011393577, 2.3993094, -0.93428725, -0.013679456, 2.2066138, -0.07149446, -0.013679456, -2.4271226, 0.21289098, -0.012536516, -2.0426826, 0.25614274, -0.011393577, -2.3866801, 0.25322938, 0.001178761, -2.400954, 0.25681496, 0.12690213, -2.3995266, 0.2516607, 11.66145, -2.4157035, 0.7110698, 11.032833, -1.312818, 0.29311955, 11.64202, 2.0833838, 0.2516607, 11.66145, 0.74307823, 0.24740267, 11.66145, 1.1089623, 0.23776639, 11.660308, 2.050554, -1.140013, 11.66145, 1.3068917, -1.135979, -0.013679456, 1.6185353, -0.32674664, -0.013679456, -2.4280741, -0.099058986, 0.115472734, -2.42855, -0.23688173, 11.66145, -2.430453, 0.29311955, 11.64202, -2.0859797, -1.1435986, 11.66145, 1.0471094, -1.135979, -0.013679456, -1.5407224, -0.815065, -0.013679456, -2.4133246, -0.4645694, 11.532298, -2.430453, -0.49190986, 11.66145, -2.4290257, -1.1435986, 11.66145, -2.1116726, -1.1303766, -0.010250636, -1.7324665, -1.1016915, -0.011393577, -2.1088178, -1.1135689, -0.013679456, -1.7786183, -1.1339622, 0.14176035, -1.7372243, -1.1158099, 0.001178761, -2.1045356, -1.1151376, 0.12690213, -2.1078663, -0.82021934, 11.520869, -2.4019055, -0.8168578, 11.646592, -2.402857, -0.8197712, 11.659164, -2.3885834)
+
+[node name="SM_MainGate_Entry_04" unique_id=25891992 instance=ExtResource("1_cqmy")]
+
+[node name="SM_MainGate_Entry_04_LOD0" parent="." index="0" unique_id=1072613085]
+surface_material_override/0 = ExtResource("2_bidy")
+surface_material_override/1 = ExtResource("3_bi0i")
+surface_material_override/2 = ExtResource("4_bias")
+surface_material_override/3 = ExtResource("5_bi8e")
+surface_material_override/4 = ExtResource("6_bieg")
+surface_material_override/5 = ExtResource("7_bivu")
+surface_material_override/6 = ExtResource("8_bigi")
+surface_material_override/7 = ExtResource("9_bi51")
+surface_material_override/8 = ExtResource("10_biws")
+
+[node name="SM_MainGate_Entry_04_LOD0StaticBody" type="StaticBody3D" parent="SM_MainGate_Entry_04_LOD0" index="0" unique_id=828193021]
+collision_layer = 2
+metadata/ground_type = "stone"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SM_MainGate_Entry_04_LOD0/SM_MainGate_Entry_04_LOD0StaticBody" index="0" unique_id=1646962829]
+shape = SubResource("ConvexPolygonShape3D_j7guv")

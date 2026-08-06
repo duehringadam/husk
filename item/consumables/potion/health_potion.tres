@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="item" format=3 uid="uid://dkb1m33kr2wtk"]
 
-[ext_resource type="AnimationNodeStateMachine" uid="uid://b16vrolklqa3y" path="res://Player/viewmodel/animations/hands/animation_state_machines/consumable_state_machine.tres" id="1_cecw0"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://b16vrolklqa3y" path="res://Player/hands/animations/hands/animation_state_machines/consumable_state_machine.tres" id="1_cecw0"]
 [ext_resource type="Texture2D" uid="uid://ch3xks6u07ycd" path="res://item/icons/potions/chemical.svg/icons/ffffff/000000/1x1/delapouite/magic-potion.svg" id="2_cs27g"]
-[ext_resource type="PackedScene" uid="uid://i31mck2qxma" path="res://item/consumables/health_potion.tscn" id="2_v3ai6"]
-[ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/item_stat.gd" id="3_cs27g"]
-[ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/item.gd" id="4_jiof4"]
+[ext_resource type="PackedScene" uid="uid://i31mck2qxma" path="res://item/consumables/potion/health_potion.tscn" id="2_v3ai6"]
+[ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/scripts/item_stat.gd" id="3_cs27g"]
+[ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/scripts/item.gd" id="4_jiof4"]
 
 [sub_resource type="Resource" id="Resource_tx71q"]
 script = ExtResource("3_cs27g")

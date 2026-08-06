@@ -1,0 +1,14 @@
+[gd_resource type = "ShaderMaterial" load_steps=2 format=3 uid="uid://bi8c"]
+
+[ext_resource type="Shader" uid="uid://d4n4ub5e33njc" path="res://MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Shaders/S_Spiderweb.tres" id="1_vm"]
+[ext_resource type="Texture2D" uid="uid://baq" path="res://MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Textures/Props/T_SpiderWeb_Mask.png" id="1_baq"]
+
+[resource]
+resource_name = "M_SpiderWeb"
+render_priority = 0
+shader = ExtResource("1_vm")
+shader_parameter/OpacityMap = ExtResource("1_baq")
+shader_parameter/Opacity = 0.500
+shader_parameter/Color = Color( 0.453, 0.400, 0.267, 1.000)
+shader_parameter/AlphaClipping = 0.025
+shader_parameter/EnableAlphaClipping = true
