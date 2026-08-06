@@ -509,6 +509,8 @@ use_hidden_tabs_for_min_size = true
 
 [node name="Mainhand" type="ScrollContainer" parent="MarginContainer/items/HBoxContainer/inventory_list_container/HBoxContainer/itemList/MarginContainer/itemListTabs" unique_id=1720165062]
 layout_mode = 2
+focus_neighbor_right = NodePath("../Offhand")
+focus_neighbor_bottom = NodePath("mainhand")
 horizontal_scroll_mode = 0
 metadata/_tab_index = 0
 
@@ -524,6 +526,9 @@ columns = 5
 [node name="Offhand" type="ScrollContainer" parent="MarginContainer/items/HBoxContainer/inventory_list_container/HBoxContainer/itemList/MarginContainer/itemListTabs" unique_id=476055794]
 visible = false
 layout_mode = 2
+focus_neighbor_left = NodePath("../Mainhand")
+focus_neighbor_right = NodePath("../Jewelry")
+focus_neighbor_bottom = NodePath("offhand")
 horizontal_scroll_mode = 0
 metadata/_tab_index = 1
 
@@ -536,6 +541,9 @@ columns = 5
 [node name="Jewelry" type="ScrollContainer" parent="MarginContainer/items/HBoxContainer/inventory_list_container/HBoxContainer/itemList/MarginContainer/itemListTabs" unique_id=524010548]
 visible = false
 layout_mode = 2
+focus_neighbor_left = NodePath("../Offhand")
+focus_neighbor_right = NodePath("../Armor")
+focus_neighbor_bottom = NodePath("jewelry")
 horizontal_scroll_mode = 0
 metadata/_tab_index = 2
 
@@ -548,6 +556,9 @@ columns = 5
 [node name="Armor" type="ScrollContainer" parent="MarginContainer/items/HBoxContainer/inventory_list_container/HBoxContainer/itemList/MarginContainer/itemListTabs" unique_id=114815340]
 visible = false
 layout_mode = 2
+focus_neighbor_left = NodePath("../Jewelry")
+focus_neighbor_right = NodePath("../Key Items")
+focus_neighbor_bottom = NodePath("Armor")
 horizontal_scroll_mode = 0
 metadata/_tab_index = 3
 
@@ -560,6 +571,9 @@ columns = 5
 [node name="Key Items" type="ScrollContainer" parent="MarginContainer/items/HBoxContainer/inventory_list_container/HBoxContainer/itemList/MarginContainer/itemListTabs" unique_id=1052748428]
 visible = false
 layout_mode = 2
+focus_neighbor_left = NodePath("../Armor")
+focus_neighbor_right = NodePath("../Consumables")
+focus_neighbor_bottom = NodePath("key")
 horizontal_scroll_mode = 0
 metadata/_tab_index = 4
 
@@ -572,6 +586,9 @@ columns = 5
 [node name="Consumables" type="ScrollContainer" parent="MarginContainer/items/HBoxContainer/inventory_list_container/HBoxContainer/itemList/MarginContainer/itemListTabs" unique_id=1607804343]
 visible = false
 layout_mode = 2
+focus_neighbor_left = NodePath("../Key Items")
+focus_neighbor_right = NodePath("../../../../../../menuRight/inventoryTabs")
+focus_neighbor_bottom = NodePath("consumable")
 horizontal_scroll_mode = 0
 metadata/_tab_index = 5
 
@@ -989,7 +1006,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_left = NodePath("../../equipment/MarginContainer/HBoxContainer/VBoxContainer/quickselect")
-focus_neighbor_bottom = NodePath("../../equipment/MarginContainer/HBoxContainer/VBoxContainer/quickselect")
+focus_neighbor_bottom = NodePath("../../inventory_list_container/HBoxContainer/itemList/MarginContainer/itemListTabs/Mainhand")
 theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/tab_selected = SubResource("StyleBoxFlat_ocrfs")
