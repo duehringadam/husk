@@ -224,7 +224,25 @@ func _on_tab_bar_tab_changed(tab: int) -> void:
 	if inventory_tabs.get_tab_title(tab) == "Inventory":
 		equipment.visible = false
 		inventory_list_container.visible = true
+		#inventory_list_container.grab_focus()
+		var current_scroll_container = item_list_tabs.get_current_tab_control().get_child(0)
+		var buttons: Array = current_scroll_container.get_children()
+		for button in buttons:
+			button.focus_mode = Control.FOCUS_ALL
+		if buttons.size() > 0:
+			buttons[0].grab_focus()
+			print("grab focus", buttons[0])
 
 func reset_inventory(inventory_list) -> void:
 	for inventory_item in inventory_list:
 		_update_inventory(inventory_item)
+
+
+func _on_item_list_tabs_tab_changed(_tab: int) -> void:
+	var current_scroll_container = item_list_tabs.get_current_tab_control().get_child(0)
+	var buttons: Array = current_scroll_container.get_children()
+	for button in buttons:
+		button.focus_mode = Control.FOCUS_ALL
+	if buttons.size() > 0:
+		buttons[0].grab_focus()
+		print("grab focus", buttons[0])
