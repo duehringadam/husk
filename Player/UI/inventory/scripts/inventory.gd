@@ -181,6 +181,7 @@ func _on_mainhand_button_pressed() -> void:
 	for i in item_list_count:
 		if item_list_tabs.get_tab_title(i) == "Mainhand":
 			item_list_tabs.current_tab = i
+	item_grab_focus(item_list_tabs.get_current_tab_control().get_child(0).get_children())
 
 
 func _on_offhand_button_pressed() -> void:
@@ -190,6 +191,7 @@ func _on_offhand_button_pressed() -> void:
 	for i in item_list_count:
 		if item_list_tabs.get_tab_title(i) == "Offhand":
 			item_list_tabs.current_tab = i
+	item_grab_focus(item_list_tabs.get_current_tab_control().get_child(0).get_children())
 
 func _on_jewelry_button_pressed() -> void:
 	inventory_tabs.current_tab = 1
@@ -198,6 +200,7 @@ func _on_jewelry_button_pressed() -> void:
 	for i in item_list_count:
 		if item_list_tabs.get_tab_title(i) == "Jewelry":
 			item_list_tabs.current_tab = i
+	item_grab_focus(item_list_tabs.get_current_tab_control().get_child(0).get_children())
 
 
 func _on_leg_button_pressed() -> void:
@@ -224,25 +227,12 @@ func _on_tab_bar_tab_changed(tab: int) -> void:
 	if inventory_tabs.get_tab_title(tab) == "Inventory":
 		equipment.visible = false
 		inventory_list_container.visible = true
-		#inventory_list_container.grab_focus()
-		var current_scroll_container = item_list_tabs.get_current_tab_control().get_child(0)
-		var buttons: Array = current_scroll_container.get_children()
-		for button in buttons:
-			button.focus_mode = Control.FOCUS_ALL
-		if buttons.size() > 0:
-			buttons[0].grab_focus()
-			print("grab focus", buttons[0])
+		item_list_tabs.get_tab_bar().grab_focus()
 
 func reset_inventory(inventory_list) -> void:
 	for inventory_item in inventory_list:
 		_update_inventory(inventory_item)
 
-
-func _on_item_list_tabs_tab_changed(_tab: int) -> void:
-	var current_scroll_container = item_list_tabs.get_current_tab_control().get_child(0)
-	var buttons: Array = current_scroll_container.get_children()
-	for button in buttons:
-		button.focus_mode = Control.FOCUS_ALL
-	if buttons.size() > 0:
-		buttons[0].grab_focus()
-		print("grab focus", buttons[0])
+func item_grab_focus(items: Array) -> void:
+	if items.size() > 0:
+		items[0].grab_focus()

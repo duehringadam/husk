@@ -409,7 +409,7 @@ offset_bottom = 809.0
 size_flags_vertical = 4
 focus_neighbor_left = NodePath("../ammo_button")
 focus_neighbor_top = NodePath("../chest_button")
-focus_neighbor_right = NodePath("../mainhand_button")
+focus_neighbor_right = NodePath("../jewelry_button")
 focus_neighbor_bottom = NodePath("../chest_button")
 theme_override_styles/normal = SubResource("StyleBoxFlat_heia8")
 icon_alignment = 1
@@ -469,19 +469,16 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
-focus_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_w1pca")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/inventory_list_container" unique_id=2077732239]
 layout_mode = 2
-focus_mode = 2
 
 [node name="itemList" type="NinePatchRect" parent="MarginContainer/items/HBoxContainer/inventory_list_container/HBoxContainer" unique_id=497090422]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 3
-focus_mode = 2
 texture = ExtResource("8_h6vk2")
 patch_margin_left = 24
 patch_margin_top = 24
@@ -495,7 +492,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-focus_mode = 2
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
@@ -504,6 +500,7 @@ theme_override_constants/margin_bottom = 24
 [node name="itemListTabs" type="TabContainer" parent="MarginContainer/items/HBoxContainer/inventory_list_container/HBoxContainer/itemList/MarginContainer" unique_id=1027681829]
 unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_right = NodePath("../../../../../menuRight/inventoryTabs")
 focus_mode = 2
 theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_amt8r")
@@ -514,9 +511,6 @@ use_hidden_tabs_for_min_size = true
 
 [node name="Mainhand" type="ScrollContainer" parent="MarginContainer/items/HBoxContainer/inventory_list_container/HBoxContainer/itemList/MarginContainer/itemListTabs" unique_id=1720165062]
 layout_mode = 2
-focus_neighbor_right = NodePath("../Offhand")
-focus_neighbor_bottom = NodePath("mainhand")
-focus_mode = 2
 horizontal_scroll_mode = 0
 metadata/_tab_index = 0
 
@@ -525,7 +519,6 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-focus_mode = 2
 theme_override_constants/h_separation = 5
 theme_override_constants/v_separation = 5
 columns = 5
@@ -533,9 +526,6 @@ columns = 5
 [node name="Offhand" type="ScrollContainer" parent="MarginContainer/items/HBoxContainer/inventory_list_container/HBoxContainer/itemList/MarginContainer/itemListTabs" unique_id=476055794]
 visible = false
 layout_mode = 2
-focus_neighbor_left = NodePath("../Mainhand")
-focus_neighbor_right = NodePath("../Jewelry")
-focus_neighbor_bottom = NodePath("offhand")
 horizontal_scroll_mode = 0
 metadata/_tab_index = 1
 
@@ -548,9 +538,6 @@ columns = 5
 [node name="Jewelry" type="ScrollContainer" parent="MarginContainer/items/HBoxContainer/inventory_list_container/HBoxContainer/itemList/MarginContainer/itemListTabs" unique_id=524010548]
 visible = false
 layout_mode = 2
-focus_neighbor_left = NodePath("../Offhand")
-focus_neighbor_right = NodePath("../Armor")
-focus_neighbor_bottom = NodePath("jewelry")
 horizontal_scroll_mode = 0
 metadata/_tab_index = 2
 
@@ -563,9 +550,6 @@ columns = 5
 [node name="Armor" type="ScrollContainer" parent="MarginContainer/items/HBoxContainer/inventory_list_container/HBoxContainer/itemList/MarginContainer/itemListTabs" unique_id=114815340]
 visible = false
 layout_mode = 2
-focus_neighbor_left = NodePath("../Jewelry")
-focus_neighbor_right = NodePath("../Key Items")
-focus_neighbor_bottom = NodePath("Armor")
 horizontal_scroll_mode = 0
 metadata/_tab_index = 3
 
@@ -578,9 +562,6 @@ columns = 5
 [node name="Key Items" type="ScrollContainer" parent="MarginContainer/items/HBoxContainer/inventory_list_container/HBoxContainer/itemList/MarginContainer/itemListTabs" unique_id=1052748428]
 visible = false
 layout_mode = 2
-focus_neighbor_left = NodePath("../Armor")
-focus_neighbor_right = NodePath("../Consumables")
-focus_neighbor_bottom = NodePath("key")
 horizontal_scroll_mode = 0
 metadata/_tab_index = 4
 
@@ -593,9 +574,6 @@ columns = 5
 [node name="Consumables" type="ScrollContainer" parent="MarginContainer/items/HBoxContainer/inventory_list_container/HBoxContainer/itemList/MarginContainer/itemListTabs" unique_id=1607804343]
 visible = false
 layout_mode = 2
-focus_neighbor_left = NodePath("../Key Items")
-focus_neighbor_right = NodePath("../../../../../../menuRight/inventoryTabs")
-focus_neighbor_bottom = NodePath("consumable")
 horizontal_scroll_mode = 0
 metadata/_tab_index = 5
 
@@ -1013,7 +991,6 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_left = NodePath("../../equipment/MarginContainer/HBoxContainer/VBoxContainer/quickselect")
-focus_neighbor_bottom = NodePath("../../inventory_list_container/HBoxContainer/itemList/MarginContainer/itemListTabs/Mainhand")
 theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/tab_selected = SubResource("StyleBoxFlat_ocrfs")
@@ -1510,5 +1487,4 @@ bus = &"SFX"
 [connection signal="pressed" from="MarginContainer/items/HBoxContainer/equipment/jewelry_button" to="." method="_on_jewelry_button_pressed"]
 [connection signal="pressed" from="MarginContainer/items/HBoxContainer/equipment/leg_button" to="." method="_on_leg_button_pressed"]
 [connection signal="pressed" from="MarginContainer/items/HBoxContainer/equipment/chest_button" to="." method="_on_chest_button_pressed"]
-[connection signal="tab_changed" from="MarginContainer/items/HBoxContainer/inventory_list_container/HBoxContainer/itemList/MarginContainer/itemListTabs" to="." method="_on_item_list_tabs_tab_changed"]
 [connection signal="tab_changed" from="MarginContainer/items/HBoxContainer/menuRight/inventoryTabs" to="." method="_on_tab_bar_tab_changed"]
