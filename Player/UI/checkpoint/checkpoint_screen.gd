@@ -12,3 +12,4 @@ func _on_exit_pressed() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	Global.player.can_attack = true
 	Global.player.can_move = true
+	Global.player.can_jump = true

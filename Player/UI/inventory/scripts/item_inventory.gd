@@ -79,6 +79,7 @@ func _item_menu_selected(value: int):
 					pass
 				elif item_inventory.item_type == ItemEquippableType.ITEM_EQUIPPABLE_TYPES.JEWELRY:
 					pass
+				Global.player.inventory.unequip(item_inventory.item_type)
 		3:
 			if self.is_equipped:
 				self.is_equipped = false
