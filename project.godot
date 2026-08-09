@@ -24,10 +24,10 @@ buses/default_bus_layout="uid://ou7tvf6lmdvx"
 
 Global="*res://Globals/global.gd"
 AudioManager="*res://Globals/audio_manager.gd"
-DamageTypes="*res://damage_types.gd"
-SignalBus="*res://signal_bus.gd"
-HitStop="*res://hit_stop.gd"
-ItemEquippableType="*res://item_equippable_types.gd"
+DamageTypes="*res://Globals/damage_types.gd"
+SignalBus="*res://Globals/signal_bus.gd"
+HitStop="*res://Globals/hit_stop.gd"
+ItemEquippableType="*res://Globals/item_equippable_types.gd"
 AppConfig="*uid://cjke6crjg14a0"
 SceneLoader="*uid://cbwmrnp0af35y"
 ProjectMusicController="*uid://r5t485lr3p7t"
@@ -61,7 +61,7 @@ movie_writer/movie_file="C:/Users/adamf/Documents/husk/movie.avi"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/GPUTrail-main/plugin.cfg", "res://addons/convex_cone_shape3d_plugin/plugin.cfg", "res://addons/credits_generator/plugin.cfg", "res://addons/deformablemesh/plugin.cfg", "res://addons/freecam_3D/plugin.cfg", "res://addons/game_pieces/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/maaacks_menus_template/plugin.cfg", "res://addons/madtalk/plugin.cfg", "res://addons/meshcombiner/plugin.cfg", "res://addons/prompt_formatters/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
+enabled=PackedStringArray("res://addons/GPUTrail-main/plugin.cfg", "res://addons/convex_cone_shape3d_plugin/plugin.cfg", "res://addons/credits_generator/plugin.cfg", "res://addons/deformablemesh/plugin.cfg", "res://addons/freecam_3D/plugin.cfg", "res://addons/game_pieces/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/godotresourcecleaner/plugin.cfg", "res://addons/maaacks_menus_template/plugin.cfg", "res://addons/madtalk/plugin.cfg", "res://addons/meshcombiner/plugin.cfg", "res://addons/prompt_formatters/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
 
 [file_customization]
 
@@ -77,7 +77,8 @@ folder_colors={
 "res://item/": "green",
 "res://scenes/": "blue",
 "res://sfx/": "purple",
-"res://shaders/": "pink"
+"res://shaders/": "pink",
+"res://utilities/": "gray"
 }
 
 [global_group]

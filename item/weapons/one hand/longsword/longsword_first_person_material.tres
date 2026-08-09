@@ -1,0 +1,28 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://8yj18tctsp1c"]
+
+[ext_resource type="Shader" uid="uid://cba8frjri8tvn" path="res://Player/shaders/first_person_arms.gdshader" id="1_7bvg2"]
+[ext_resource type="Texture2D" uid="uid://tj2xrbtj0eqr" path="res://shaders/blood_buildup_noise_2.tres" id="2_qu02x"]
+[ext_resource type="Texture2D" uid="uid://hqns" path="res://item/weapons/one hand/longsword/SM_Sword_2/T_Sword_2_C.png" id="3_e276y"]
+[ext_resource type="Texture2D" uid="uid://hqnq" path="res://item/weapons/one hand/longsword/SM_Sword_2/T_Sword_2_N.png" id="4_2hem1"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_7bvg2")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("3_e276y")
+shader_parameter/albedo_texture_size = Vector2i(0, 0)
+shader_parameter/point_size = 0.0
+shader_parameter/roughness = 0.0
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
+shader_parameter/specular = 0.0
+shader_parameter/metallic = 0.0
+shader_parameter/texture_normal = ExtResource("4_2hem1")
+shader_parameter/normal_scale = 1.0
+shader_parameter/uv1_scale = Vector3(0, 0, 0)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(0, 0, 0)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/FOV = 75.0
+shader_parameter/noise_texture = ExtResource("2_qu02x")
+shader_parameter/progress = 0.0
+shader_parameter/noise_softness = 0.05

@@ -1,0 +1,126 @@
+[gd_scene format=3 uid="uid://c7i7yrkyha1bf"]
+
+[ext_resource type="Script" uid="uid://bkhj8t8isbpc0" path="res://Player/UI/inventory/scripts/item_inventory.gd" id="1_wbt12"]
+[ext_resource type="Texture2D" uid="uid://e3utw70yh625" path="res://item/icons/stiletto.svg" id="2_0ojc5"]
+[ext_resource type="FontFile" uid="uid://bgwsxfa2fbvel" path="res://addons/madtalk/fonts/ShipporiMincho-Regular.ttf" id="3_wbt12"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ec2al"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.09985284, 0.09985284, 0.09985284, 0)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ojc5"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.6)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 0.5847179, 1)
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wbt12"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.225, 0.225, 0.225, 0.6)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="Gradient" id="Gradient_wbt12"]
+interpolation_mode = 1
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0ojc5"]
+gradient = SubResource("Gradient_wbt12")
+fill = 1
+fill_from = Vector2(0.491453, 0.508547)
+fill_to = Vector2(0.6923077, 0.32478634)
+
+[node name="item" type="MenuButton" unique_id=452370190]
+custom_minimum_size = Vector2(100, 100)
+offset_right = 100.0
+offset_bottom = 100.0
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_ec2al")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0ojc5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wbt12")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_0ojc5")
+theme_override_styles/focus = SubResource("StyleBoxFlat_0ojc5")
+toggle_mode = false
+icon = ExtResource("2_0ojc5")
+icon_alignment = 1
+expand_icon = true
+item_count = 4
+popup/item_0/text = "Use"
+popup/item_0/id = 0
+popup/item_1/text = "Equip"
+popup/item_1/id = 1
+popup/item_2/text = "Unequip"
+popup/item_2/id = 2
+popup/item_3/text = "Drop"
+popup/item_3/id = 3
+script = ExtResource("1_wbt12")
+
+[node name="Label" type="Label" parent="." unique_id=1119010652]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -45.0
+offset_top = -35.0
+offset_right = -5.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_wbt12")
+theme_override_font_sizes/font_size = 24
+text = "999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="equipped" type="TextureRect" parent="." unique_id=676281120]
+visible = false
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = -64.0
+offset_right = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_0ojc5")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]
