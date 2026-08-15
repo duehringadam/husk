@@ -1,5 +1,3 @@
-@tool
-## Stuff here?
 class_name Player extends CharacterBody3D
 
 @export var spawn_at_checkpoint: bool = false
@@ -16,7 +14,7 @@ const LEAN_SPEED: float = 0.1
 
 @export_category("User Settings")
 ## Look/Mouse sensitivity
-@export var mouse_sensitivity: float = 4.0
+@export var mouse_sensitivity_multiplier: float = 200.0
 
 ## How much head bobs
 @export var head_bob_strength: float = 0.025
@@ -119,8 +117,10 @@ var isLooking : bool
 const LOOK_AT_DURATION := 1
 var look_target: Node3D
 var mouse_movement: Vector2
+var joy_look: Vector2
 var input_dir: Vector3
 var can_move:=true
+var can_jump:=true
 var can_attack:bool = true : set = _set_can_attack
 var previous_fall_velocity: float
 const WALK_SPEED_MINIMUM := 1.5
@@ -194,17 +194,22 @@ func _physics_process(delta) -> void:
 				attack_dir = input_dir
 				attack_dir.y = input_dir.z
 			1:
-				attack_dir = mouse_movement.normalized()
+				attack_dir = (Input.get_last_mouse_velocity() + joy_look).normalized()
+				print(attack_dir)
 	if is_climbing:
 		_handle_rope_climbing(delta)
 	_handle_ladder_physics(delta)
+
+
+func _process(delta: float) -> void:
+	joy_look_around(delta)
 
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		mouse_movement = event.relative
 		look_around(get_process_delta_time())
-		
+
 func handle_effects(delta) -> void:
 	if is_on_floor():
 		var horizontal_velocity: Vector2 = Vector2(velocity.x, velocity.z)
@@ -244,7 +249,7 @@ func handle_falling(delta: float) -> void:
 
 
 func handle_jump() -> void:
-	if get_node_or_null("%jump") != null and %jump.is_triggered() and is_on_floor():
+	if get_node_or_null("%jump") != null and %jump.is_triggered() and is_on_floor() and can_move and can_jump:
 		velocity.y = jump_power
 		footsteps.play()
 		camera_animation_player.play("jump")
@@ -354,10 +359,21 @@ func set_movement_speed(delta: float) -> void:
 func look_around(delta: float) -> void:
 	if lock_camera: return
 	var sens_mult = PlayerConfig.get_config("InputSettings", "MouseSensitivity", 1.0)
-	head.rotate_y(look_control.value_axis_2d().x * (mouse_sensitivity * sens_mult * delta)) 
-	neck.rotate_x(look_control.value_axis_2d().y * (mouse_sensitivity * sens_mult * delta))
+	head.rotate_y(look_control.value_axis_2d().x * (mouse_sensitivity_multiplier * sens_mult * delta)) 
+	neck.rotate_x(look_control.value_axis_2d().y * (mouse_sensitivity_multiplier * sens_mult * delta))
 	neck.rotation.x = clamp(neck.rotation.x, deg_to_rad(-85), deg_to_rad(85))
-	
+
+func joy_look_around(delta: float) -> void:
+	if lock_camera: return
+	joy_look = Input.get_vector("look_left", "look_right", "look_up", "look_down")
+	var sens_mult = PlayerConfig.get_config("InputSettings", "JoypadSensitivity", 1.0)
+	if joy_look.length() > 0.01:
+		var mag = joy_look.length()
+		var scaled_mag = pow(mag, 2.0)
+		var final_joy = joy_look.normalized() * scaled_mag
+		head.rotate_y(sens_mult * -final_joy.x * delta) 
+		neck.rotate_x(sens_mult * -final_joy.y * delta)
+		neck.rotation.x = clamp(neck.rotation.x, deg_to_rad(-85), deg_to_rad(85))
 
 
 func handle_movement(delta: float) -> void:

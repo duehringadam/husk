@@ -21,6 +21,7 @@ func _on_rest_on_complete(controller: InteractionController) -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	Global.player.can_attack = false
 	Global.player.can_move = false
+	Global.player.can_jump = false
 	SaveConfig.set_config("Location", "Saved Checkpoint", checkpoint_id)
 	SaveConfig.set_config("Player_stats", "Saved Stats", Global.player.player_stats)
 	SaveConfig.set_config("Enemy_list", "Saved Enemies", "lorem ipsum")

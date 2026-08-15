@@ -67,6 +67,7 @@ custom_minimum_size = Vector2(100, 100)
 offset_right = 100.0
 offset_bottom = 100.0
 size_flags_horizontal = 3
+focus_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_ec2al")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_0ojc5")
 theme_override_styles/hover = SubResource("StyleBoxFlat_wbt12")
@@ -76,7 +77,7 @@ toggle_mode = false
 icon = ExtResource("2_0ojc5")
 icon_alignment = 1
 expand_icon = true
-item_count = 4
+item_count = 5
 popup/item_0/text = "Use"
 popup/item_0/id = 0
 popup/item_1/text = "Equip"
@@ -85,6 +86,8 @@ popup/item_2/text = "Unequip"
 popup/item_2/id = 2
 popup/item_3/text = "Drop"
 popup/item_3/id = 3
+popup/item_4/text = "Cancel"
+popup/item_4/id = 4
 script = ExtResource("1_wbt12")
 
 [node name="Label" type="Label" parent="." unique_id=1119010652]

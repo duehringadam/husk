@@ -45,14 +45,16 @@ signal focused_item_changed(_item: item)
 var focused_item: item
 var item_add_inventory = preload("res://Player/UI/inventory/item_inventory.tscn")
 var transition_from_equip_screen: bool = false
-
+var prev_equip_button: Control
 
 func _ready() -> void:
 	SignalBus.item_interact.connect(_update_inventory)
 	SignalBus.remove_item.connect(_remove_item)
-	
+	prev_equip_button = quickselect
 
 func open_inventory():
+	%inventoryTabs.focus_mode = FOCUS_ALL
+	%inventoryTabs.grab_focus()
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "modulate:a", 1,.1).set_trans(Tween.TRANS_SINE)
 	tween.parallel()
@@ -62,6 +64,7 @@ func open_inventory():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	visible = true
 	Global.player.can_attack = false
+	Global.player.can_jump = false
 
 func close_inventory():
 	var tween = get_tree().create_tween()
@@ -72,6 +75,7 @@ func close_inventory():
 	GamePiecesEventBus.emit_signal("camera_lock_requested", false)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	Global.player.can_attack = true
+	Global.player.can_jump = true
 	await tween.finished
 	visible = false
 	
@@ -151,6 +155,15 @@ func _update_equipped_items(item_inv_interact: item_inventory_interact):
 	if transition_from_equip_screen:
 		transition_from_equip_screen = false
 		inventory_tabs.current_tab = 0
+		match item_inv_interact.item_inventory.item_type:
+			ItemEquippableType.ITEM_EQUIPPABLE_TYPES.WEAPON:
+				mainhand_button.grab_focus()
+			ItemEquippableType.ITEM_EQUIPPABLE_TYPES.OFFHAND:
+				offhand_button.grab_focus()
+			ItemEquippableType.ITEM_EQUIPPABLE_TYPES.ARMOR:
+				chest_button.grab_focus()
+			ItemEquippableType.ITEM_EQUIPPABLE_TYPES.JEWELRY:
+				jewelry_button.grab_focus()
 
 func _remove_item(item_inventory: item):
 	if inventory.has(item_inventory):
@@ -179,6 +192,7 @@ func _on_mainhand_button_pressed() -> void:
 	for i in item_list_count:
 		if item_list_tabs.get_tab_title(i) == "Mainhand":
 			item_list_tabs.current_tab = i
+	item_grab_focus(item_list_tabs.get_current_tab_control().get_child(0).get_children())
 
 
 func _on_offhand_button_pressed() -> void:
@@ -188,6 +202,7 @@ func _on_offhand_button_pressed() -> void:
 	for i in item_list_count:
 		if item_list_tabs.get_tab_title(i) == "Offhand":
 			item_list_tabs.current_tab = i
+	item_grab_focus(item_list_tabs.get_current_tab_control().get_child(0).get_children())
 
 func _on_jewelry_button_pressed() -> void:
 	inventory_tabs.current_tab = 1
@@ -196,15 +211,15 @@ func _on_jewelry_button_pressed() -> void:
 	for i in item_list_count:
 		if item_list_tabs.get_tab_title(i) == "Jewelry":
 			item_list_tabs.current_tab = i
+	item_grab_focus(item_list_tabs.get_current_tab_control().get_child(0).get_children())
 
 
 func _on_leg_button_pressed() -> void:
 	inventory_tabs.current_tab = 1
-	pass # Replace with function body.
 
 
 func _on_chest_button_pressed() -> void:
-	pass # Replace with function body.
+	pass
 
 
 func _on_ammo_button_pressed() -> void:
@@ -222,7 +237,23 @@ func _on_tab_bar_tab_changed(tab: int) -> void:
 	if inventory_tabs.get_tab_title(tab) == "Inventory":
 		equipment.visible = false
 		inventory_list_container.visible = true
+		item_list_tabs.get_tab_bar().grab_focus()
 
 func reset_inventory(inventory_list) -> void:
 	for inventory_item in inventory_list:
 		_update_inventory(inventory_item)
+
+func item_grab_focus(items: Array) -> void:
+	if items.size() > 0:
+		items[0].grab_focus()
+
+func unequip(type) -> void:
+	match type:
+		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.WEAPON:
+			mainhand_button.icon = null
+		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.OFFHAND:
+			offhand_button.icon = null
+		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.ARMOR:
+			chest_button.icon = null
+		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.JEWELRY:
+			jewelry_button.icon = null

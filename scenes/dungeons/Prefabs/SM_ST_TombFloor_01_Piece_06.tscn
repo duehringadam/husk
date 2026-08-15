@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://d4n4ub6isw1ko"]
+
+[ext_resource type="PackedScene" uid="uid://cuj7" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Meshes/Structures/TombFloor/SM_ST_TombFloor_01_Piece_06.glb" id="1_cuj7"]
+[ext_resource type="Material" uid="uid://bix1" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Structures/M_TombFloor_01_01.tres" id="2_bix1"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_o86cl"]
+points = PackedVector3Array(0.15386847, -0.055991586, -0.33557767, -0.014094889, 0.03541883, -0.3345276, 0.26054883, 0.05618798, -0.33360884, 0.3381164, 0.0023016408, -0.33328068, 0.31890726, -0.055773422, -0.33124623, 0.21003354, -0.062158335, -0.32501158, -0.31818372, -0.058653176, -0.3323619, -0.32084242, 0.03917124, -0.33459324, 0.21707904, 0.06090031, -0.31582367, 0.30960184, 0.055809833, -0.32560223, -0.29957283, 0.04542525, -0.33433074, -0.31751904, 0.06367824, -0.2935758, 0.33412832, 0.051664717, -0.28812867, 0.34090805, 0.015405983, 0.3339584, 0.3304062, -0.06761242, 0.11075783, 0.32847863, -0.07252836, 0.24299812, 0.29158914, -0.076775275, 0.1586006, -0.19661467, -0.06406362, -0.31293604, -0.31419566, -0.062347412, -0.230573, -0.33546528, -0.05311183, -0.3067014, -0.33812398, 0.04621064, -0.31116408, 0.07065117, 0.071808465, 0.32450795, 0.13200065, 0.06955411, 0.21930641, 0.31757796, 0.060827576, -0.23149177, -0.33433533, 0.031506434, 0.26498348, -0.30974236, 0.04907585, 0.2923503, 0.3315361, 0.04779596, 0.2982568, 0.30794013, 0.052799173, 0.30363828, -0.0033936203, 0.050181217, 0.3331709, -0.09764455, -0.056675166, 0.3348772, 0.21621501, -0.031702742, 0.33356464, 0.30561376, -0.058027774, 0.31381065, 0.15160859, -0.057126038, 0.3247049, -0.30568784, -0.06294373, 0.31551695, -0.32303587, -0.06739426, 0.26373655, -0.30874535, -0.0656344, -0.098923385, -0.33493355, -0.043628998, 0.27476203, -0.16105455, 0.055911638, 0.31965148, -0.2549731, 0.046719693, 0.32365483, -0.31140405, 0.019202024, 0.3313989, -0.31306574, -0.042959966, 0.33238333)
+
+[node name="SM_ST_TombFloor_01_Piece_06" unique_id=383652191 instance=ExtResource("1_cuj7")]
+
+[node name="SM_ST_TombFloor_01_Piece_06_LOD0" parent="." index="0" unique_id=1195378919]
+surface_material_override/0 = ExtResource("2_bix1")
+
+[node name="SM_ST_TombFloor_01_Piece_06_LOD0StaticBody" type="StaticBody3D" parent="SM_ST_TombFloor_01_Piece_06_LOD0" index="0" unique_id=1038420806]
+collision_layer = 2
+metadata/ground_type = "stone"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SM_ST_TombFloor_01_Piece_06_LOD0/SM_ST_TombFloor_01_Piece_06_LOD0StaticBody" index="0" unique_id=1955701686]
+shape = SubResource("ConvexPolygonShape3D_o86cl")

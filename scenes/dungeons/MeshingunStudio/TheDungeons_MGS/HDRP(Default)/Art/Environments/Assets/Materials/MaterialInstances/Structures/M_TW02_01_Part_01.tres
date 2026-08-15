@@ -1,0 +1,28 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bijo"]
+
+[ext_resource type="Texture2D" uid="uid://dlfc" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Textures/Structures/T_TombWall_02_01_01_Albedo.png" id="1_dlfc"]
+[ext_resource type="Shader" uid="uid://fi8dpx" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Shaders/S_Master.tres" id="1_vi"]
+[ext_resource type="Texture2D" uid="uid://dlfg" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Textures/Structures/T_TombWall_02_01_01_ORM.png" id="2_dlfg"]
+[ext_resource type="Texture2D" uid="uid://dlfe" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Textures/Structures/T_TombWall_02_01_01_N.png" id="3_dlfe"]
+
+[resource]
+resource_name = "M_TW02_01_Part_01"
+render_priority = 0
+shader = ExtResource("1_vi")
+shader_parameter/Tiling = Vector2(1, 1)
+shader_parameter/BaseMap = ExtResource("1_dlfc")
+shader_parameter/Tint = Color(1, 1, 1, 0)
+shader_parameter/Saturation = 1.0
+shader_parameter/Contrast = 1.0
+shader_parameter/UseOpacity_ = false
+shader_parameter/ORM = ExtResource("2_dlfg")
+shader_parameter/Metallic = 0.0
+shader_parameter/UseRAD_ = false
+shader_parameter/Roughness = 1.5
+shader_parameter/UseEmissive_ = false
+shader_parameter/EmissiveColor = Color(0, 0, 0, 1)
+shader_parameter/AOIntensity = 1.0
+shader_parameter/NormalMap = ExtResource("3_dlfe")
+shader_parameter/NormalStrength = 1.0
+shader_parameter/EnableAlphaClipping = false
+shader_parameter/AlphaClipping = 0.5

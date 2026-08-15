@@ -735,10 +735,6 @@ shader_parameter/gradient_strength = 1.0
 shader_parameter/use_gradient = false
 shader_parameter/rotation_offset = 3.14000014915
 
-[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_863th"]
-length = 0.5
-slide_on_slope = true
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jng3h"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7vtq1"]
@@ -767,6 +763,10 @@ _limits = [0.0, 400.0, 0.0, 1.0]
 _data = [Vector2(0, 0), 0.0, 1217.6233, 0, 0, Vector2(1, 400), 0.0, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_863th"]
+length = 0.5
+slide_on_slope = true
+
 [node name="Player" type="CharacterBody3D" unique_id=1383979839 node_paths=PackedStringArray("player_body", "mainhand", "offhand", "consumable") groups=["player"]]
 collision_mask = 35
 script = ExtResource("1_cyojo")
@@ -779,8 +779,8 @@ player_stats = Dictionary[int, int]({
 4: 10,
 5: 10
 })
-mouse_sensitivity = 100.0
 player_body = NodePath("Head/Neck/Camera3D/playerBody")
+jump_power = 5.0
 climb_speed = 3.0
 camera_lean_position = Vector3(0, 0, 0)
 mainhand = NodePath("Head/Neck/Camera3D/RightHand")
@@ -873,20 +873,30 @@ libraries/ = SubResource("AnimationLibrary_by45h")
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_by45h")
 
-[node name="stepDetect" type="Node3D" parent="Head" unique_id=838693918 node_paths=PackedStringArray("separation_ray", "player")]
+[node name="stepDetect" type="Node3D" parent="Head" unique_id=838693918 node_paths=PackedStringArray("step_detect", "separation_ray", "player")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5979036, 0)
 script = ExtResource("9_863th")
-separation_ray = NodePath("../../hud/autostep")
+step_detect = NodePath("stepDetect")
+separation_ray = NodePath("../../autostep")
 player = NodePath("../..")
 
-[node name="stepBase" type="RayCast3D" parent="Head/stepDetect" unique_id=1607411453]
-target_position = Vector3(0, 0, -0.6)
+[node name="stepDetect" type="RayCast3D" parent="Head/stepDetect" unique_id=1607411453]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, -0.6)
+target_position = Vector3(0, -0.35, 0)
 collision_mask = 2
+hit_back_faces = false
 
-[node name="stepHeight" type="RayCast3D" parent="Head/stepDetect" unique_id=1871655106]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+[node name="frontRaycast" type="RayCast3D" parent="Head/stepDetect" unique_id=277529003]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, -0.1)
+target_position = Vector3(0, 0, -0.5)
+collision_mask = 2
+hit_back_faces = false
+
+[node name="frontWallRaycast" type="RayCast3D" parent="Head/stepDetect" unique_id=341471180]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -0.1)
 target_position = Vector3(0, 0, -0.6)
 collision_mask = 2
+hit_back_faces = false
 
 [node name="FootSteps" type="AudioStreamPlayer3D" parent="Head" unique_id=241221636]
 unique_name_in_owner = true
@@ -1117,12 +1127,6 @@ script = ExtResource("23_5fkmn")
 stream = ExtResource("28_7vtq1")
 bus = &"SFX"
 
-[node name="autostep" type="CollisionShape3D" parent="hud" unique_id=378412171]
-transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, 0, 0.0522469, 0)
-shape = SubResource("SeparationRayShape3D_863th")
-disabled = true
-debug_color = Color(1, 0, 0, 1)
-
 [node name="playerHP" type="MarginContainer" parent="hud" unique_id=232751793]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 0
@@ -1155,7 +1159,6 @@ layout_mode = 2
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
-anchors_preset = 15
 offset_top = 0.0
 offset_bottom = 0.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_jng3h")
@@ -1252,6 +1255,12 @@ script = ExtResource("42_jng3h")
 [node name="savePositionTimer" type="Timer" parent="stableGroundDetector" unique_id=1823385340]
 wait_time = 2.0
 autostart = true
+
+[node name="autostep" type="CollisionShape3D" parent="." unique_id=378412171]
+transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, 0, 0.0522469, 0)
+shape = SubResource("SeparationRayShape3D_863th")
+disabled = true
+debug_color = Color(1, 0, 0, 1)
 
 [connection signal="unequip_item" from="Head/Neck/Camera3D/RightHand" to="hud/inventory" method="_on_right_hand_unequip_item"]
 [connection signal="unequip_item" from="Head/Neck/Camera3D/LeftHand" to="hud/inventory" method="_on_left_hand_unequip_item"]

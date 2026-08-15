@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://d4n4ub6isy6xy"]
+
+[ext_resource type="PackedScene" uid="uid://cvj7" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Meshes/Structures/Tower/SM_Tower_01_Roof_02.glb" id="1_cvj7"]
+[ext_resource type="Material" uid="uid://bia3" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Tiling/M_Concrete_01_01.tres" id="2_bia3"]
+[ext_resource type="Material" uid="uid://bieg" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Trim/M_StructureTrim_01_01.tres" id="3_bieg"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2ml0b"]
+points = PackedVector3Array(-4.883091, 0.31372023, -4.897473, -4.5877852, -0.561738, -4.603126, -4.897473, 0.31372023, -4.883091, -4.883091, 0.5616256, -4.897473, 4.882132, 0.31372023, -4.897473, -4.5877852, -0.5766394, -4.5877852, -4.603126, -0.561738, -4.5877852, 4.586827, -0.561738, -4.603126, -4.897473, 0.31372023, 4.882132, -4.897473, 0.5616256, -4.883091, -4.883091, 0.5766399, -4.883091, 4.882132, 0.5616256, -4.897473, 4.897473, 0.31372023, -4.883091, -4.5877852, -0.5766394, 4.586827, 4.586827, -0.5766394, -4.5877852, -4.603126, -0.561738, 4.586827, 4.6021676, -0.561738, -4.5877852, -4.883091, 0.31372023, 4.897473, -4.897473, 0.5616256, 4.882132, -4.883091, 0.5766399, 4.882132, 4.882132, 0.576527, -4.883091, 4.897473, 0.5616256, -4.883091, 4.897473, 0.31372023, 4.882132, -4.5877852, -0.561738, 4.6021676, 4.586827, -0.5766394, 4.586827, 4.6021676, -0.561738, 4.586827, -4.883091, 0.5616256, 4.897473, 4.882132, 0.31372023, 4.897473, 4.882132, 0.5616256, 4.897473, 4.882132, 0.576527, 4.882132, 4.897473, 0.5616256, 4.882132, 4.586827, -0.561738, 4.6021676)
+
+[node name="SM_Tower_01_Roof_02" unique_id=1460024423 instance=ExtResource("1_cvj7")]
+
+[node name="SM_Tower_01_Roof_02_LOD0" parent="." index="0" unique_id=1472978539]
+surface_material_override/0 = ExtResource("2_bia3")
+surface_material_override/1 = ExtResource("3_bieg")
+
+[node name="SM_Tower_01_Roof_02_LOD0StaticBody" type="StaticBody3D" parent="SM_Tower_01_Roof_02_LOD0" index="0" unique_id=1172137846]
+collision_layer = 2
+metadata/ground_type = "stone"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SM_Tower_01_Roof_02_LOD0/SM_Tower_01_Roof_02_LOD0StaticBody" index="0" unique_id=921294050]
+shape = SubResource("ConvexPolygonShape3D_2ml0b")

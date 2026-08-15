@@ -1,0 +1,40 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bi5u"]
+
+[ext_resource type="Texture2D" uid="uid://c3aq" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Textures/Generics/T_Rock07_Mask.PNG" id="1_c3aq"]
+[ext_resource type="Shader" uid="uid://d4n4ub48gq5ox" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Shaders/S_Rocks.tres" id="1_vk"]
+[ext_resource type="Texture2D" uid="uid://c3as" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Textures/Generics/T_Rock07_N.PNG" id="2_c3as"]
+[ext_resource type="Texture2D" uid="uid://c3au" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Textures/Generics/T_Rock07_ORM.PNG" id="3_c3au"]
+[ext_resource type="Texture2D" uid="uid://bag" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Textures/Tiling/Rock_01/T_Rock_01_Albedo.png" id="4_bag"]
+[ext_resource type="Texture2D" uid="uid://c3ao" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Textures/Tiling/Rock_02/T_Rock_01_Albedo02.png" id="5_c3ao"]
+[ext_resource type="Texture2D" uid="uid://bam" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Textures/Tiling/Rock_01/T_Rock_01_N.png" id="6_bam"]
+[ext_resource type="Texture2D" uid="uid://bae" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Textures/Misc/T_Moss_01_Albedo.PNG" id="7_bae"]
+
+[resource]
+resource_name = "M_Rock_07_01"
+render_priority = 0
+shader = ExtResource("1_vk")
+shader_parameter/UseMoss_ = false
+shader_parameter/MossTiling = 1.0
+shader_parameter/T_Moss_01_Albedo = ExtResource("7_bae")
+shader_parameter/Brightness = 1.0
+shader_parameter/Tiling = Vector2(3, 3)
+shader_parameter/Albedo_01 = ExtResource("4_bag")
+shader_parameter/Color_00 = Color(1, 1, 1, 1)
+shader_parameter/Color_01 = Color(0.913, 0.791, 0.723, 1)
+shader_parameter/BaseMask = ExtResource("1_c3aq")
+shader_parameter/RChannelContrast = 1.0
+shader_parameter/Albedo_02 = ExtResource("5_c3ao")
+shader_parameter/Color_02 = Color(1.171, 1.171, 1.171, 1)
+shader_parameter/GChannelContrast = 1.0
+shader_parameter/Albedo_03 = ExtResource("4_bag")
+shader_parameter/Color_03 = Color(0.511, 0.404, 0.33, 1)
+shader_parameter/BChannelContrast = 1.0
+shader_parameter/MaskDirection = Vector3(0, 0, 1)
+shader_parameter/BlendSharpness = 4.0
+shader_parameter/BlendBias = 0.5
+shader_parameter/ORM = ExtResource("3_c3au")
+shader_parameter/Roughness = 5.0
+shader_parameter/BaseNormal = ExtResource("2_c3as")
+shader_parameter/Normal_01 = ExtResource("6_bam")
+shader_parameter/Normal_02 = ExtResource("6_bam")
+shader_parameter/Normal_03 = ExtResource("6_bam")

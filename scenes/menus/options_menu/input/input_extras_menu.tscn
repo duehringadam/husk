@@ -85,9 +85,6 @@ section = "GameSettings"
 [node name="OptionLabel" parent="VBoxContainer/MarginContainer/VBoxContainer/cameraShake" index="0" unique_id=1777046824]
 text = "Camera Shake :"
 
-[node name="CheckButton" parent="VBoxContainer/MarginContainer/VBoxContainer/cameraShake" index="1" unique_id=1939121227]
-button_pressed = true
-
 [node name="Screen Blur" parent="VBoxContainer/MarginContainer/VBoxContainer" unique_id=1919424591 instance=ExtResource("3_mc4mw")]
 layout_mode = 2
 option_name = "Screen Effects"
@@ -97,6 +94,9 @@ default_value = true
 
 [node name="OptionLabel" parent="VBoxContainer/MarginContainer/VBoxContainer/Screen Blur" index="0" unique_id=1777046824]
 text = "Screen Effects :"
+
+[node name="CheckButton" parent="VBoxContainer/MarginContainer/VBoxContainer/Screen Blur" index="1" unique_id=1939121227]
+button_pressed = true
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer" unique_id=1085329460]
 layout_mode = 2
@@ -113,8 +113,9 @@ section = "InputSettings"
 text = "Mouse Sensitivity :"
 
 [node name="HSlider" parent="VBoxContainer/MarginContainer/VBoxContainer/MouseSensitivityControl" index="1" unique_id=864094681]
-min_value = 0.25
-max_value = 2.0
+min_value = 1.0
+max_value = 10.0
+value = 2.25
 tick_count = 8
 
 [node name="JoypadSensitivityControl" parent="VBoxContainer/MarginContainer/VBoxContainer" unique_id=2141070036 instance=ExtResource("2_goqr1")]
@@ -128,8 +129,9 @@ section = "InputSettings"
 text = "Joypad Sensitivity :"
 
 [node name="HSlider" parent="VBoxContainer/MarginContainer/VBoxContainer/JoypadSensitivityControl" index="1" unique_id=864094681]
-min_value = 0.25
-max_value = 2.0
+min_value = 1.0
+max_value = 10.0
+value = 3.55
 tick_count = 8
 
 [editable path="VBoxContainer/MarginContainer/VBoxContainer/directionalCombat"]

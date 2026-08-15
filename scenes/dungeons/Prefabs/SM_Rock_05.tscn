@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://d4n4ub6is0ceg"]
+
+[ext_resource type="PackedScene" uid="uid://cjro" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Meshes/Generics/SM_Rock_05.glb" id="1_cjro"]
+[ext_resource type="Shader" uid="uid://d4n4ub48gq5ox" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Shaders/S_Rocks.tres" id="2_byig1"]
+[ext_resource type="Texture2D" uid="uid://c3ao" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Textures/Tiling/Rock_02/T_Rock_01_Albedo02.png" id="3_nvk3e"]
+[ext_resource type="Texture2D" uid="uid://ej3k" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Textures/Generics/T_Rock06_Mask.png" id="4_y72f7"]
+[ext_resource type="Texture2D" uid="uid://ej3m" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Textures/Generics/T_Rock06_N.png" id="5_x3v38"]
+[ext_resource type="Texture2D" uid="uid://c3b7" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Textures/Tiling/Rock_02/T_Rock_01_N02.png" id="6_u5csv"]
+[ext_resource type="Texture2D" uid="uid://c3bg" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Textures/Tiling/Concrete_03/T_Concerete_03_N.png" id="7_uhrrb"]
+[ext_resource type="Texture2D" uid="uid://ej3i" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Textures/Generics/T_Rock_05_ORM.png" id="8_qnnfj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6b7xt"]
+resource_name = "M_Rock_06_01"
+render_priority = 0
+shader = ExtResource("2_byig1")
+shader_parameter/UseMoss_ = false
+shader_parameter/MossTiling = 1.0
+shader_parameter/Brightness = 1.0
+shader_parameter/Tiling = Vector2(3, 3)
+shader_parameter/Albedo_01 = ExtResource("3_nvk3e")
+shader_parameter/Color_00 = Color(1, 1, 1, 1)
+shader_parameter/Color_01 = Color(1.099, 1.099, 1.099, 1)
+shader_parameter/BaseMask = ExtResource("4_y72f7")
+shader_parameter/RChannelContrast = 1.0
+shader_parameter/Albedo_02 = ExtResource("3_nvk3e")
+shader_parameter/Color_02 = Color(1.171, 1.171, 1.171, 1)
+shader_parameter/GChannelContrast = 1.0
+shader_parameter/Albedo_03 = ExtResource("3_nvk3e")
+shader_parameter/Color_03 = Color(0.732, 0.557, 0.32, 1)
+shader_parameter/BChannelContrast = 1.0
+shader_parameter/MaskDirection = Vector3(0, 0, 1)
+shader_parameter/BlendSharpness = 4.0
+shader_parameter/BlendBias = 0.5
+shader_parameter/ORM = ExtResource("8_qnnfj")
+shader_parameter/Roughness = 5.0
+shader_parameter/BaseNormal = ExtResource("5_x3v38")
+shader_parameter/Normal_01 = ExtResource("6_u5csv")
+shader_parameter/Normal_02 = ExtResource("6_u5csv")
+shader_parameter/Normal_03 = ExtResource("7_uhrrb")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_pcplg"]
+points = PackedVector3Array(-1.007634, -0.08183859, -0.19009972, -1.0556872, -0.07687052, -0.101140976, -1.1021699, -0.07604251, -0.3263178, -0.3939364, 0.010070682, -6.2962847, 1.7009271, -0.0056615397, -6.6813097, 1.9631778, -0.020565744, 6.605516, 1.0266136, -0.039610006, 6.5401864, 0.43364465, -0.03712597, 6.373389, 0.031631827, -0.02553381, 6.426208, -0.75260717, -0.007317558, 5.8118367, -0.8628466, 0.3156069, 6.0912232, -0.26610887, 7.672489, -0.14423037, -0.98596305, 1.0119646, -3.8276792, -0.9586387, 0.15662871, -4.0667562, -0.86692953, 0.008414656, -4.169615, -0.72653913, 0.033255003, -5.415037, -0.81385136, 0.39261198, -5.6735735, -0.71868736, 0.91922724, -6.0196786, -0.24977708, 0.86871856, -6.6896496, -0.06761503, 0.28331447, -6.8230877, 0.170766, 0.04484716, -6.9050965, 0.31995046, 0.028286934, -6.9134364, 1.9091574, 0.04236313, -6.7549787, 2.033216, 0.7768093, 6.4859776, 2.0705905, 1.2876924, 6.460958, 2.0928898, 2.3516872, 6.6472154, 2.0709047, 6.1034074, 6.862662, 1.7960912, 0.62776726, 6.736174, 1.6839672, -0.02553381, 6.680575, 1.0834607, 0.027458921, 6.6916947, 0.09852934, 0.8206939, 6.7723136, -0.43507987, 0.024146877, 6.32752, -0.43476582, 0.2063094, 6.3789487, 0.7229054, 5.390489, 6.733394, 0.60010314, 5.167754, 6.6194158, 0.81147385, 7.7710223, 5.960564, 0.73452616, 7.6741447, 5.8660455, 0.5090221, 7.7163734, 5.262794, 0.391559, 7.6998134, 4.8471904, 0.2954527, 7.7254815, 4.4329762, -0.050655127, 7.9150963, -0.20955944, 0.32057858, 7.749494, -6.4033136, -0.062589884, 6.0346823, -5.355268, -0.84211785, 0.65840364, -5.3219085, 0.7756696, 7.535867, -6.9231663, 1.9229764, 7.0688686, -7.297071, 1.3519927, 0.18478112, -7.024635, 1.8752373, 0.41414028, -6.8411574, 1.9763688, 2.8807864, -6.789728, 2.0489197, 4.8299255, -6.5562115, 2.1019979, 4.4656005, 6.6569448, 2.104196, 5.5552635, 6.808453, 2.0027509, 7.808283, 6.805673, 0.9904953, 5.7937307, 6.779263, 1.0994784, 1.0989058, 6.9029717, 2.0793848, 7.6236362, 6.7431235, 1.0818902, 0.59050673, 6.8612723, 0.9443265, 6.6349907, 6.605516, 1.0109099, 7.799175, 6.137092, 0.91574585, 7.971401, 5.9411044, 0.538859, 7.7892385, 5.187735, 0.36988795, 7.804143, 4.206409, 1.2452079, 8.31337, -4.219654, 0.74834526, 8.07159, -6.303235, 0.4986577, 7.939109, -5.9599094, 0.36517692, 8.05089, 0.2046547, 0.9970907, 8.028534, -6.67019, 1.4948956, 8.103883, -6.796678, 1.9182655, 7.4331937, -7.241472, 1.9232906, 8.066623, -6.4783726, 1.9575244, 8.290186, -5.22322, 2.077186, 7.838919, -1.7315884, 2.1063948, 6.950463, 6.7111545, 2.090691, 8.251269, 6.4011884, 1.6776859, 8.141144, 6.442888, 1.3648697, 7.3280363, 6.623585, 2.0800128, 7.910128, 6.712544, 2.0932035, 8.353943, 5.283644, 2.090691, 8.377127, 4.8930593, 1.414179, 8.170124, 5.0237174, 1.5121697, 8.373815, -4.8284655, 1.3611008, 8.139487, -6.6826997, 1.6296328, 8.133692, -6.4894924, 2.0489197, 7.957325, -2.4849577)
+
+[node name="SM_Rock_05" unique_id=950695795 instance=ExtResource("1_cjro")]
+
+[node name="SM_Rock_05_LOD0" parent="." index="0" unique_id=28003960]
+surface_material_override/0 = SubResource("ShaderMaterial_6b7xt")
+
+[node name="SM_Rock_05_LOD0StaticBody" type="StaticBody3D" parent="SM_Rock_05_LOD0" index="0" unique_id=16637277]
+collision_layer = 2
+metadata/ground_type = "stone"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SM_Rock_05_LOD0/SM_Rock_05_LOD0StaticBody" index="0" unique_id=313103197]
+shape = SubResource("ConvexPolygonShape3D_pcplg")

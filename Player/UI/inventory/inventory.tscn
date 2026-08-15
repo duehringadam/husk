@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://b5oej1q4h7jvh" path="res://addons/maaacks_menus_template/base/scripts/ui_sound_controller.gd" id="2_by6k1"]
 [ext_resource type="AudioStream" uid="uid://cvbcul6u08tp5" path="res://sfx/UI/huskitemhover.ogg" id="3_83jst"]
 [ext_resource type="AudioStream" uid="uid://cqicbmbnfbalc" path="res://sfx/UI/gui_click_1.ogg" id="4_pbu8b"]
+[ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_menus_template/base/scripts/capture_focus.gd" id="5_by6k1"]
 [ext_resource type="Shader" uid="uid://211yn521kpxn" path="res://shaders/texture_edge_fade.gdshader" id="5_thcbn"]
 [ext_resource type="Theme" uid="uid://ctn68w4yfl5oa" path="res://Player/UI/UI_Theme.tres" id="6_g2448"]
 [ext_resource type="Texture2D" uid="uid://by0pnn4vskmeg" path="res://Player/UI/inventory/textures/AdobeStock_73802034.jpeg" id="7_yl3lq"]
@@ -121,6 +122,7 @@ thickness = 2
 [node name="inventory" type="PanelContainer" unique_id=227349631 node_paths=PackedStringArray("equipped_items")]
 custom_minimum_size = Vector2(550, 0)
 custom_maximum_size = Vector2(1920, 1080)
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = -21.5
@@ -129,8 +131,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-focus_behavior_recursive = 1
-mouse_filter = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ldn6o")
 script = ExtResource("1_5f0k8")
 equipped_items = {
@@ -152,6 +153,7 @@ metadata/_custom_type_script = "uid://b5oej1q4h7jvh"
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1963609365]
 layout_mode = 2
+mouse_filter = 1
 color = Color(0, 0, 0, 0.82600003)
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=169257523]
@@ -160,10 +162,15 @@ theme_override_constants/margin_left = 80
 theme_override_constants/margin_top = 80
 theme_override_constants/margin_right = 80
 theme_override_constants/margin_bottom = 80
+script = ExtResource("5_by6k1")
+search_depth = 99
+enabled = true
+null_focus_enabled = false
 
 [node name="items" type="PanelContainer" parent="MarginContainer" unique_id=1742691814]
 material = SubResource("ShaderMaterial_heia8")
 layout_mode = 2
+mouse_filter = 1
 theme = ExtResource("6_g2448")
 theme_override_styles/panel = SubResource("StyleBoxTexture_eekrg")
 
@@ -175,6 +182,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 texture = ExtResource("8_h6vk2")
 patch_margin_left = 24
 patch_margin_top = 24
@@ -200,6 +208,7 @@ layout_mode = 2
 modulate = Color(0.46229059, 0.46229059, 0.46229059, 1)
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 texture = ExtResource("9_q3v0e")
 expand_mode = 1
 stretch_mode = 5
@@ -222,6 +231,11 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 200)
 layout_mode = 2
 size_flags_vertical = 4
+focus_neighbor_left = NodePath("../../../../mainhand_button")
+focus_neighbor_top = NodePath("../quickselect4")
+focus_neighbor_right = NodePath("../../../../../menuRight/inventoryTabs")
+focus_neighbor_bottom = NodePath("../quickselect2")
+theme = ExtResource("6_g2448")
 theme_override_styles/normal = SubResource("StyleBoxFlat_heia8")
 script = ExtResource("11_2cesb")
 
@@ -230,6 +244,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 200)
 layout_mode = 2
 size_flags_vertical = 4
+theme = ExtResource("6_g2448")
 theme_override_styles/normal = SubResource("StyleBoxFlat_heia8")
 script = ExtResource("11_2cesb")
 
@@ -238,6 +253,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 200)
 layout_mode = 2
 size_flags_vertical = 4
+theme = ExtResource("6_g2448")
 theme_override_styles/normal = SubResource("StyleBoxFlat_heia8")
 script = ExtResource("11_2cesb")
 
@@ -246,6 +262,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 200)
 layout_mode = 2
 size_flags_vertical = 4
+theme = ExtResource("6_g2448")
 theme_override_styles/normal = SubResource("StyleBoxFlat_heia8")
 script = ExtResource("11_2cesb")
 
@@ -258,6 +275,10 @@ offset_top = 193.0
 offset_right = 810.0
 offset_bottom = 393.0
 size_flags_vertical = 4
+focus_neighbor_left = NodePath("../chest_button")
+focus_neighbor_top = NodePath("../jewelry_button")
+focus_neighbor_right = NodePath("../MarginContainer/HBoxContainer/VBoxContainer/quickselect")
+focus_neighbor_bottom = NodePath("../jewelry_button")
 theme_override_styles/normal = SubResource("StyleBoxFlat_heia8")
 icon_alignment = 1
 expand_icon = true
@@ -287,6 +308,10 @@ offset_top = 193.0
 offset_right = 343.0
 offset_bottom = 393.0
 size_flags_vertical = 4
+focus_neighbor_left = NodePath("../jewelry_button")
+focus_neighbor_top = NodePath("../ammo_button")
+focus_neighbor_right = NodePath("../chest_button")
+focus_neighbor_bottom = NodePath("../ammo_button")
 theme_override_styles/normal = SubResource("StyleBoxFlat_heia8")
 icon_alignment = 1
 expand_icon = true
@@ -316,6 +341,10 @@ offset_top = 492.0
 offset_right = 349.0
 offset_bottom = 692.0
 size_flags_vertical = 4
+focus_neighbor_left = NodePath("../jewelry_button")
+focus_neighbor_top = NodePath("../offhand_button")
+focus_neighbor_right = NodePath("../leg_button")
+focus_neighbor_bottom = NodePath("../offhand_button")
 theme_override_styles/normal = SubResource("StyleBoxFlat_heia8")
 icon_alignment = 1
 expand_icon = true
@@ -345,6 +374,10 @@ offset_top = 496.5
 offset_right = 816.0
 offset_bottom = 696.5
 size_flags_vertical = 4
+focus_neighbor_left = NodePath("../leg_button")
+focus_neighbor_top = NodePath("../mainhand_button")
+focus_neighbor_right = NodePath("../MarginContainer/HBoxContainer/VBoxContainer/quickselect")
+focus_neighbor_bottom = NodePath("../mainhand_button")
 theme_override_styles/normal = SubResource("StyleBoxFlat_heia8")
 icon_alignment = 1
 expand_icon = true
@@ -374,6 +407,10 @@ offset_top = 609.0
 offset_right = 572.0
 offset_bottom = 809.0
 size_flags_vertical = 4
+focus_neighbor_left = NodePath("../ammo_button")
+focus_neighbor_top = NodePath("../chest_button")
+focus_neighbor_right = NodePath("../jewelry_button")
+focus_neighbor_bottom = NodePath("../chest_button")
 theme_override_styles/normal = SubResource("StyleBoxFlat_heia8")
 icon_alignment = 1
 expand_icon = true
@@ -403,6 +440,10 @@ offset_top = 300.5
 offset_right = 578.0
 offset_bottom = 500.5
 size_flags_vertical = 4
+focus_neighbor_left = NodePath("../offhand_button")
+focus_neighbor_top = NodePath("../leg_button")
+focus_neighbor_right = NodePath("../mainhand_button")
+focus_neighbor_bottom = NodePath("../leg_button")
 theme_override_styles/normal = SubResource("StyleBoxFlat_heia8")
 icon_alignment = 1
 expand_icon = true
@@ -459,6 +500,8 @@ theme_override_constants/margin_bottom = 24
 [node name="itemListTabs" type="TabContainer" parent="MarginContainer/items/HBoxContainer/inventory_list_container/HBoxContainer/itemList/MarginContainer" unique_id=1027681829]
 unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_right = NodePath("../../../../../menuRight/inventoryTabs")
+focus_mode = 2
 theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_amt8r")
 tab_alignment = 1
@@ -938,14 +981,16 @@ layout_mode = 2
 theme_override_constants/separation = 10
 theme_override_styles/separator = SubResource("StyleBoxTexture_b206x")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/items/HBoxContainer" unique_id=149052028]
+[node name="menuRight" type="VBoxContainer" parent="MarginContainer/items/HBoxContainer" unique_id=149052028]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="inventoryTabs" type="TabBar" parent="MarginContainer/items/HBoxContainer/VBoxContainer" unique_id=1648545809]
+[node name="inventoryTabs" type="TabBar" parent="MarginContainer/items/HBoxContainer/menuRight" unique_id=1648545809]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
+focus_neighbor_left = NodePath("../../equipment/MarginContainer/HBoxContainer/VBoxContainer/quickselect")
 theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/tab_selected = SubResource("StyleBoxFlat_ocrfs")
@@ -957,7 +1002,7 @@ tab_0/tooltip = "View equipped items"
 tab_1/title = "Inventory"
 tab_1/tooltip = "View all items in inventory"
 
-[node name="playerStats" type="NinePatchRect" parent="MarginContainer/items/HBoxContainer/VBoxContainer" unique_id=886018216]
+[node name="playerStats" type="NinePatchRect" parent="MarginContainer/items/HBoxContainer/menuRight" unique_id=886018216]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(584, 920)
 layout_mode = 2
@@ -969,7 +1014,7 @@ patch_margin_right = 24
 patch_margin_bottom = 24
 script = ExtResource("16_w3uno")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats" unique_id=1440130975]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats" unique_id=1440130975]
 layout_mode = 0
 offset_right = 584.0
 offset_bottom = 920.0
@@ -978,31 +1023,31 @@ theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer" unique_id=138700455]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer" unique_id=138700455]
 layout_mode = 2
 horizontal_scroll_mode = 0
 
-[node name="playerstats" type="VBoxContainer" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer" unique_id=1162650827]
+[node name="playerstats" type="VBoxContainer" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer" unique_id=1162650827]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HBoxContainer10" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats" unique_id=1316558588]
+[node name="HBoxContainer10" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats" unique_id=1316558588]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer10" unique_id=940716290]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer10" unique_id=940716290]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="level" type="Label" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer10/HBoxContainer" unique_id=1202764977]
+[node name="level" type="Label" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer10/HBoxContainer" unique_id=1202764977]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_font_sizes/font_size = 24
 text = "LEVEL:"
 
-[node name="levelValue" type="Label" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer10/HBoxContainer" unique_id=123189427]
+[node name="levelValue" type="Label" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer10/HBoxContainer" unique_id=123189427]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
@@ -1010,22 +1055,22 @@ theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_font_sizes/font_size = 24
 text = "99"
 
-[node name="HBoxContainer11" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats" unique_id=1946701103]
+[node name="HBoxContainer11" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats" unique_id=1946701103]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer11" unique_id=1496144161]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer11" unique_id=1496144161]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ichor" type="Label" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer11/HBoxContainer" unique_id=1079887165]
+[node name="ichor" type="Label" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer11/HBoxContainer" unique_id=1079887165]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_font_sizes/font_size = 24
 text = "ICHOR:"
 
-[node name="ichorValue" type="Label" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer11/HBoxContainer" unique_id=478300616]
+[node name="ichorValue" type="Label" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer11/HBoxContainer" unique_id=478300616]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
@@ -1033,27 +1078,27 @@ theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_font_sizes/font_size = 24
 text = "999"
 
-[node name="HSeparator8" type="HSeparator" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats" unique_id=1315935364]
+[node name="HSeparator8" type="HSeparator" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats" unique_id=1315935364]
 layout_mode = 2
 theme_override_constants/separation = 24
 theme_override_styles/separator = SubResource("StyleBoxTexture_b206x")
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats" unique_id=1161328868]
+[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats" unique_id=1161328868]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer4" unique_id=145308567]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer4" unique_id=145308567]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="health" type="Label" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer4/HBoxContainer" unique_id=1553754749]
+[node name="health" type="Label" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer4/HBoxContainer" unique_id=1553754749]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_font_sizes/font_size = 24
 text = "HEALTH:"
 
-[node name="healthValue" type="Label" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer4/HBoxContainer" unique_id=1633050906]
+[node name="healthValue" type="Label" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer4/HBoxContainer" unique_id=1633050906]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
@@ -1061,22 +1106,22 @@ theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_font_sizes/font_size = 24
 text = "99/99"
 
-[node name="HBoxContainer5" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats" unique_id=106889636]
+[node name="HBoxContainer5" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats" unique_id=106889636]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer5" unique_id=508908784]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer5" unique_id=508908784]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="stamina" type="Label" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer5/HBoxContainer" unique_id=566676609]
+[node name="stamina" type="Label" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer5/HBoxContainer" unique_id=566676609]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_font_sizes/font_size = 24
 text = "STAMINA:"
 
-[node name="staminaValue" type="Label" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer5/HBoxContainer" unique_id=1819988448]
+[node name="staminaValue" type="Label" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer5/HBoxContainer" unique_id=1819988448]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
@@ -1084,39 +1129,39 @@ theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_font_sizes/font_size = 24
 text = "99/99"
 
-[node name="HSeparator4" type="HSeparator" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats" unique_id=1771890519]
+[node name="HSeparator4" type="HSeparator" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats" unique_id=1771890519]
 layout_mode = 2
 theme_override_constants/separation = 24
 theme_override_styles/separator = SubResource("StyleBoxTexture_b206x")
 
-[node name="Label" type="Label" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats" unique_id=1558128094]
+[node name="Label" type="Label" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats" unique_id=1558128094]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_font_sizes/font_size = 24
 text = "Attributes"
 horizontal_alignment = 1
 
-[node name="HSeparator5" type="HSeparator" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats" unique_id=2082549608]
+[node name="HSeparator5" type="HSeparator" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats" unique_id=2082549608]
 layout_mode = 2
 theme_override_constants/separation = 24
 theme_override_styles/separator = SubResource("StyleBoxLine_b206x")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats" unique_id=20027223]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats" unique_id=20027223]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer" unique_id=907728711]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer" unique_id=907728711]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VIG" type="Label" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer/HBoxContainer" unique_id=850780695]
+[node name="VIG" type="Label" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer/HBoxContainer" unique_id=850780695]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_font_sizes/font_size = 24
 text = "VGR:"
 
-[node name="vigorValue" type="Label" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer/HBoxContainer" unique_id=727556955]
+[node name="vigorValue" type="Label" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer/HBoxContainer" unique_id=727556955]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -1124,18 +1169,18 @@ theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_font_sizes/font_size = 24
 text = "99"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer" unique_id=1609934206]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer" unique_id=1609934206]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="will" type="Label" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer/HBoxContainer2" unique_id=702634034]
+[node name="will" type="Label" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer/HBoxContainer2" unique_id=702634034]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_font_sizes/font_size = 24
 text = "END:"
 
-[node name="enduranceValue" type="Label" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer/HBoxContainer2" unique_id=496173002]
+[node name="enduranceValue" type="Label" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer/HBoxContainer2" unique_id=496173002]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -1143,22 +1188,22 @@ theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_font_sizes/font_size = 24
 text = "99"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats" unique_id=1482607025]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats" unique_id=1482607025]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer2" unique_id=1579865625]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer2" unique_id=1579865625]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="STR" type="Label" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer2/HBoxContainer2" unique_id=771505499]
+[node name="STR" type="Label" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer2/HBoxContainer2" unique_id=771505499]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_font_sizes/font_size = 24
 text = "STR:"
 
-[node name="strengthValue" type="Label" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer2/HBoxContainer2" unique_id=1943653425]
+[node name="strengthValue" type="Label" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer2/HBoxContainer2" unique_id=1943653425]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -1166,18 +1211,18 @@ theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_font_sizes/font_size = 24
 text = "99"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer2" unique_id=1275383306]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer2" unique_id=1275383306]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="DEX" type="Label" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer2/HBoxContainer" unique_id=757420288]
+[node name="DEX" type="Label" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer2/HBoxContainer" unique_id=757420288]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_font_sizes/font_size = 24
 text = "DEX:"
 
-[node name="dexValue" type="Label" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer2/HBoxContainer" unique_id=902205435]
+[node name="dexValue" type="Label" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer2/HBoxContainer" unique_id=902205435]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -1185,22 +1230,22 @@ theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_font_sizes/font_size = 24
 text = "99"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats" unique_id=2050472378]
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats" unique_id=2050472378]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer3" unique_id=235834212]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer3" unique_id=235834212]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="INT" type="Label" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer3/HBoxContainer" unique_id=1279058108]
+[node name="INT" type="Label" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer3/HBoxContainer" unique_id=1279058108]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_font_sizes/font_size = 24
 text = "INT:"
 
-[node name="intValue" type="Label" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer3/HBoxContainer" unique_id=132942214]
+[node name="intValue" type="Label" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer3/HBoxContainer" unique_id=132942214]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -1208,18 +1253,18 @@ theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_font_sizes/font_size = 24
 text = "99"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer3" unique_id=1340652052]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer3" unique_id=1340652052]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="FAITH" type="Label" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer3/HBoxContainer2" unique_id=514550591]
+[node name="FAITH" type="Label" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer3/HBoxContainer2" unique_id=514550591]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_font_sizes/font_size = 24
 text = "FTH:"
 
-[node name="faithValue" type="Label" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer3/HBoxContainer2" unique_id=2073141927]
+[node name="faithValue" type="Label" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer3/HBoxContainer2" unique_id=2073141927]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -1227,39 +1272,39 @@ theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_font_sizes/font_size = 24
 text = "99"
 
-[node name="HSeparator3" type="HSeparator" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats" unique_id=724060444]
+[node name="HSeparator3" type="HSeparator" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats" unique_id=724060444]
 layout_mode = 2
 theme_override_constants/separation = 10
 theme_override_styles/separator = SubResource("StyleBoxTexture_b206x")
 
-[node name="Label2" type="Label" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats" unique_id=1809867707]
+[node name="Label2" type="Label" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats" unique_id=1809867707]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_font_sizes/font_size = 24
 text = "Resistances"
 horizontal_alignment = 1
 
-[node name="HSeparator7" type="HSeparator" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats" unique_id=1469652105]
+[node name="HSeparator7" type="HSeparator" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats" unique_id=1469652105]
 layout_mode = 2
 theme_override_constants/separation = 10
 theme_override_styles/separator = SubResource("StyleBoxLine_t0bqp")
 
-[node name="HBoxContainer6" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats" unique_id=1452488193]
+[node name="HBoxContainer6" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats" unique_id=1452488193]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer6" unique_id=1806732420]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer6" unique_id=1806732420]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Strike" type="Label" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer6/HBoxContainer" unique_id=1367595144]
+[node name="Strike" type="Label" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer6/HBoxContainer" unique_id=1367595144]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_font_sizes/font_size = 24
 text = "STRIKE:"
 
-[node name="strikeResistance" type="Label" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer6/HBoxContainer" unique_id=1535182669]
+[node name="strikeResistance" type="Label" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer6/HBoxContainer" unique_id=1535182669]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -1267,18 +1312,18 @@ theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_font_sizes/font_size = 24
 text = "99"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer6" unique_id=1605246469]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer6" unique_id=1605246469]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Slash" type="Label" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer6/HBoxContainer2" unique_id=1420850033]
+[node name="Slash" type="Label" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer6/HBoxContainer2" unique_id=1420850033]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_font_sizes/font_size = 24
 text = "SLASH:"
 
-[node name="slashResistance" type="Label" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer6/HBoxContainer2" unique_id=1786566006]
+[node name="slashResistance" type="Label" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer6/HBoxContainer2" unique_id=1786566006]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -1286,22 +1331,22 @@ theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_font_sizes/font_size = 24
 text = "99"
 
-[node name="HBoxContainer7" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats" unique_id=1358150648]
+[node name="HBoxContainer7" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats" unique_id=1358150648]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer7" unique_id=574929857]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer7" unique_id=574929857]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Thrust" type="Label" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer7/HBoxContainer" unique_id=1871290159]
+[node name="Thrust" type="Label" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer7/HBoxContainer" unique_id=1871290159]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_font_sizes/font_size = 24
 text = "THRUST:"
 
-[node name="thrustResistance" type="Label" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer7/HBoxContainer" unique_id=1650806980]
+[node name="thrustResistance" type="Label" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer7/HBoxContainer" unique_id=1650806980]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -1309,18 +1354,18 @@ theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_font_sizes/font_size = 24
 text = "99"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer7" unique_id=1350166188]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer7" unique_id=1350166188]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Magic" type="Label" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer7/HBoxContainer2" unique_id=1015950630]
+[node name="Magic" type="Label" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer7/HBoxContainer2" unique_id=1015950630]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_font_sizes/font_size = 24
 text = "MAGIC:"
 
-[node name="magicResistance" type="Label" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer7/HBoxContainer2" unique_id=650618371]
+[node name="magicResistance" type="Label" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer7/HBoxContainer2" unique_id=650618371]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -1328,22 +1373,22 @@ theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_font_sizes/font_size = 24
 text = "99"
 
-[node name="HBoxContainer8" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats" unique_id=307913288]
+[node name="HBoxContainer8" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats" unique_id=307913288]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer8" unique_id=1249352797]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer8" unique_id=1249352797]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HOLY" type="Label" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer8/HBoxContainer" unique_id=218268547]
+[node name="HOLY" type="Label" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer8/HBoxContainer" unique_id=218268547]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_font_sizes/font_size = 24
 text = "HOLY:"
 
-[node name="holyResistasnce" type="Label" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer8/HBoxContainer" unique_id=1350478568]
+[node name="holyResistasnce" type="Label" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer8/HBoxContainer" unique_id=1350478568]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -1351,18 +1396,18 @@ theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_font_sizes/font_size = 24
 text = "99"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer8" unique_id=1413160314]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer8" unique_id=1413160314]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Murk" type="Label" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer8/HBoxContainer2" unique_id=1795270831]
+[node name="Murk" type="Label" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer8/HBoxContainer2" unique_id=1795270831]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_font_sizes/font_size = 24
 text = "MURK:"
 
-[node name="murkResistance" type="Label" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer8/HBoxContainer2" unique_id=633796596]
+[node name="murkResistance" type="Label" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer8/HBoxContainer2" unique_id=633796596]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -1370,22 +1415,22 @@ theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_font_sizes/font_size = 24
 text = "99"
 
-[node name="HBoxContainer9" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats" unique_id=1902735788]
+[node name="HBoxContainer9" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats" unique_id=1902735788]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer9" unique_id=483077236]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer9" unique_id=483077236]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="FIRE" type="Label" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer9/HBoxContainer" unique_id=1205397827]
+[node name="FIRE" type="Label" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer9/HBoxContainer" unique_id=1205397827]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_font_sizes/font_size = 24
 text = "FIRE:"
 
-[node name="fireResistance" type="Label" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer9/HBoxContainer" unique_id=230626158]
+[node name="fireResistance" type="Label" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer9/HBoxContainer" unique_id=230626158]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -1393,18 +1438,18 @@ theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_font_sizes/font_size = 24
 text = "99"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer9" unique_id=706007207]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer9" unique_id=706007207]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="POISON" type="Label" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer9/HBoxContainer2" unique_id=1581028003]
+[node name="POISON" type="Label" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer9/HBoxContainer2" unique_id=1581028003]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_font_sizes/font_size = 24
 text = "POISON:"
 
-[node name="poisonResistance" type="Label" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer9/HBoxContainer2" unique_id=1446074904]
+[node name="poisonResistance" type="Label" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats/HBoxContainer9/HBoxContainer2" unique_id=1446074904]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -1412,7 +1457,7 @@ theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_font_sizes/font_size = 24
 text = "99"
 
-[node name="HSeparator6" type="HSeparator" parent="MarginContainer/items/HBoxContainer/VBoxContainer/playerStats/MarginContainer/ScrollContainer/playerstats" unique_id=1198594317]
+[node name="HSeparator6" type="HSeparator" parent="MarginContainer/items/HBoxContainer/menuRight/playerStats/MarginContainer/ScrollContainer/playerstats" unique_id=1198594317]
 layout_mode = 2
 theme_override_constants/separation = 24
 theme_override_styles/separator = SubResource("StyleBoxTexture_b206x")
@@ -1442,4 +1487,4 @@ bus = &"SFX"
 [connection signal="pressed" from="MarginContainer/items/HBoxContainer/equipment/jewelry_button" to="." method="_on_jewelry_button_pressed"]
 [connection signal="pressed" from="MarginContainer/items/HBoxContainer/equipment/leg_button" to="." method="_on_leg_button_pressed"]
 [connection signal="pressed" from="MarginContainer/items/HBoxContainer/equipment/chest_button" to="." method="_on_chest_button_pressed"]
-[connection signal="tab_changed" from="MarginContainer/items/HBoxContainer/VBoxContainer/inventoryTabs" to="." method="_on_tab_bar_tab_changed"]
+[connection signal="tab_changed" from="MarginContainer/items/HBoxContainer/menuRight/inventoryTabs" to="." method="_on_tab_bar_tab_changed"]

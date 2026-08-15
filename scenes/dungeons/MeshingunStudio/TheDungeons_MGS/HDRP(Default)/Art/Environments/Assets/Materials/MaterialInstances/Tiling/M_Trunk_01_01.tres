@@ -1,0 +1,28 @@
+[gd_resource type = "ShaderMaterial" load_steps=4 format=3 uid="uid://bie1"]
+
+[ext_resource type="Shader" uid="uid://fi8dpx" path="res://MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Shaders/S_Master.tres" id="1_vi"]
+[ext_resource type="Texture2D" uid="uid://c3bw" path="res://MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Textures/Tiling/Trunk_01/T_Trunk_01_Albedo.png" id="1_c3bw"]
+[ext_resource type="Texture2D" uid="uid://c3b1" path="res://MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Textures/Misc/T_Mask.png" id="2_c3b1"]
+[ext_resource type="Texture2D" uid="uid://c3by" path="res://MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Textures/Tiling/Trunk_01/T_Trunk_01_N.png" id="3_c3by"]
+
+[resource]
+resource_name = "M_Trunk_01_01"
+render_priority = 0
+shader = ExtResource("1_vi")
+shader_parameter/Tiling = Vector2( 1.000, 1.000 )
+shader_parameter/BaseMap = ExtResource("1_c3bw")
+shader_parameter/ORM = ExtResource("2_c3b1")
+shader_parameter/NormalMap = ExtResource("3_c3by")
+shader_parameter/NormalStrength = 1.000
+shader_parameter/Roughness = 3.000
+shader_parameter/Tint = Color( 1.233, 1.137, 1.094, 0.000)
+shader_parameter/Saturation = 0.600
+shader_parameter/Contrast = 1.100
+shader_parameter/UseOpacity_ = false
+shader_parameter/AOIntensity = 1.000
+shader_parameter/Metallic = 0.000
+shader_parameter/UseEmissive_ = false
+shader_parameter/EmissiveColor = Color( 0.000, 0.000, 0.000, 1.000)
+shader_parameter/AlphaClipping = 0.500
+shader_parameter/UseRAD_ = false
+shader_parameter/EnableAlphaClipping = false

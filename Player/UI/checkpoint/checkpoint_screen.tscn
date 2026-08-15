@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://1j6adky4avis" path="res://Player/UI/checkpoint/checkpoint_screen.gd" id="1_ujn78"]
 [ext_resource type="Theme" uid="uid://ctn68w4yfl5oa" path="res://Player/UI/UI_Theme.tres" id="2_ujn78"]
 [ext_resource type="Texture2D" uid="uid://slqquuvjjo3l" path="res://assets/kenney_fantasy-ui-borders/PNG/Double/Border/panel-border-002.png" id="4_25y1c"]
+[ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_menus_template/base/scripts/capture_focus.gd" id="5_5w0eq"]
 [ext_resource type="Script" uid="uid://y83pi8jh16qn" path="res://Player/UI/inventory/scripts/inventory_player_stats.gd" id="5_kn5l7"]
 [ext_resource type="FontFile" uid="uid://bgwsxfa2fbvel" path="res://addons/madtalk/fonts/ShipporiMincho-Regular.ttf" id="6_phlv2"]
 [ext_resource type="Texture2D" uid="uid://dk2tidxm1p74q" path="res://assets/kenney_fantasy-ui-borders/PNG/Default/Divider Fade/divider-fade-002.png" id="7_pvdeo"]
@@ -126,6 +127,7 @@ theme_override_constants/margin_bottom = 40
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer/equipment/MarginContainer" unique_id=1170932379]
 layout_mode = 2
+script = ExtResource("5_5w0eq")
 
 [node name="levelUp" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer/equipment/MarginContainer/VBoxContainer" unique_id=1849309097]
 unique_name_in_owner = true

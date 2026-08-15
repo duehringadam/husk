@@ -10,9 +10,9 @@ signal equipped_signal(item_to_equip: item_inventory_interact)
 
 @onready var stack_size: Label = $Label
 @onready var equipped: TextureRect = $equipped
+@onready var popup: PopupMenu = get_popup()
 
 func _ready() -> void:
-	var popup: PopupMenu = get_popup()
 	popup.id_pressed.connect(_item_menu_selected)
 
 func _update_item(_item: item):
@@ -79,6 +79,7 @@ func _item_menu_selected(value: int):
 					pass
 				elif item_inventory.item_type == ItemEquippableType.ITEM_EQUIPPABLE_TYPES.JEWELRY:
 					pass
+				Global.player.inventory.unequip(item_inventory.item_type)
 		3:
 			if self.is_equipped:
 				self.is_equipped = false

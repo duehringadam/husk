@@ -6,6 +6,15 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v4udn"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v4udn"]
+draw_center = false
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 0.827451, 0.47843137, 1)
+border_blend = true
+
 [sub_resource type="Gradient" id="Gradient_8y5bj"]
 interpolation_mode = 2
 colors = PackedColorArray(1, 0.827222, 0.4788676, 0.102000006, 0.012617188, 0.008213789, 0.0024603514, 0)
@@ -59,7 +68,7 @@ Button/fonts/font = ExtResource("1_8y5bj")
 Button/icons/icon = null
 Button/styles/disabled = SubResource("StyleBoxEmpty_v4udn")
 Button/styles/disabled_mirrored = SubResource("StyleBoxEmpty_v4udn")
-Button/styles/focus = SubResource("StyleBoxEmpty_v4udn")
+Button/styles/focus = SubResource("StyleBoxFlat_v4udn")
 Button/styles/hover = SubResource("StyleBoxTexture_v4udn")
 Button/styles/hover_mirrored = SubResource("StyleBoxEmpty_v4udn")
 Button/styles/hover_pressed = SubResource("StyleBoxEmpty_v4udn")

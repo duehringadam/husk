@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://d4n4ub6is2i05"]
+
+[ext_resource type="PackedScene" uid="uid://cvf1" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Meshes/Props/GroundCloth/SM_GroundCloth_01_03.glb" id="1_cvf1"]
+[ext_resource type="Material" uid="uid://biiq" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Props/M_GroundCloth_01_01.tres" id="2_biiq"]
+
+[node name="SM_GroundCloth_01_03" unique_id=73016700 instance=ExtResource("1_cvf1")]
+
+[node name="SM_GroundCloth_01_03_LOD0" parent="." index="0" unique_id=87876538]
+surface_material_override/0 = ExtResource("2_biiq")

@@ -29,4 +29,3 @@ Maaack's Game Template is a culmination of a suite of plugins, that can be downl
 ## YouTube Video
 
 [![All Plugins Video](https://img.youtube.com/vi/3yzaUSaROhw/hqdefault.jpg)](https://youtu.be/3yzaUSaROhw)  
-
