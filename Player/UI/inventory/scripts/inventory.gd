@@ -64,7 +64,6 @@ func open_inventory():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	visible = true
 	Global.player.can_attack = false
-	Global.player.can_jump = false
 
 func close_inventory():
 	var tween = get_tree().create_tween()
@@ -75,7 +74,6 @@ func close_inventory():
 	GamePiecesEventBus.emit_signal("camera_lock_requested", false)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	Global.player.can_attack = true
-	Global.player.can_jump = true
 	await tween.finished
 	visible = false
 	

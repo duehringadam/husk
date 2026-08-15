@@ -41,11 +41,7 @@ func _input(event):
 	# How the user tells the dialog to continue is up to you
 	# it can be a key press, a mouse click, touch event, etc
 	# All you have to do is call dialog_acknowledge() 
-	if (
-		(event is InputEventKey) and (event.pressed) and (not event.echo) and (event.keycode in [KEY_SPACE, KEY_ENTER, KEY_KP_ENTER])
-	) or (
-		(event is InputEventMouseButton) and (event.pressed) and (event.button_index == MOUSE_BUTTON_LEFT)
-	):
+	if event.is_action_pressed(\"ui_accept\") or event.is_action_pressed(\"primary_action\"):
 		$MadTalk.dialog_acknowledge()
 
 #func _on_ItemList_item_activated(index):

@@ -120,7 +120,6 @@ var mouse_movement: Vector2
 var joy_look: Vector2
 var input_dir: Vector3
 var can_move:=true
-var can_jump:=true
 var can_attack:bool = true : set = _set_can_attack
 var previous_fall_velocity: float
 const WALK_SPEED_MINIMUM := 1.5
@@ -249,7 +248,7 @@ func handle_falling(delta: float) -> void:
 
 
 func handle_jump() -> void:
-	if get_node_or_null("%jump") != null and %jump.is_triggered() and is_on_floor() and can_jump:
+	if get_node_or_null("%jump") != null and %jump.is_triggered() and is_on_floor() and can_move:
 		velocity.y = jump_power
 		footsteps.play()
 		camera_animation_player.play("jump")
