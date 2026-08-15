@@ -64,6 +64,7 @@ func open_inventory():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	visible = true
 	Global.player.can_attack = false
+	Global.player.can_jump = false
 
 func close_inventory():
 	var tween = get_tree().create_tween()
@@ -74,6 +75,7 @@ func close_inventory():
 	GamePiecesEventBus.emit_signal("camera_lock_requested", false)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	Global.player.can_attack = true
+	Global.player.can_jump = true
 	await tween.finished
 	visible = false
 	
@@ -232,8 +234,6 @@ func _on_tab_bar_tab_changed(tab: int) -> void:
 	if inventory_tabs.get_tab_title(tab) == "Equipment":
 		equipment.visible = true
 		inventory_list_container.visible = false
-		#prev_equip_button.grab_focus()
-		print(prev_equip_button)
 	if inventory_tabs.get_tab_title(tab) == "Inventory":
 		equipment.visible = false
 		inventory_list_container.visible = true
