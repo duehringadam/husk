@@ -146,7 +146,8 @@ func _update_inventory(item_signal: item):
 			if item_exists && item_signal.is_stackable:
 				var item_to_find = consumable.find_child(item_signal.item_name, false, false)
 				if item_to_find:
-					item_to_find.connect("stack_size_changed", save_inventory)
+					if !item_to_find.is_connected("stack_size_changed",save_inventory):
+						item_to_find.connect("stack_size_changed", save_inventory)
 					item_to_find.update_stack_size(item_signal.pick_up_stack_size)
 					inventory[item_index][item_signal] += item_signal.pick_up_stack_size
 			else:
@@ -354,3 +355,14 @@ func _set_inventory_from_save_file(item_signal: item, stack_size: int):
 	var item_dict: Dictionary
 	item_dict[item_signal] = stack_size
 	inventory.append(item_dict)
+
+
+func _on_left_hand_consumable_offhand_stack_size_update(weapon: item, value: int) -> void:
+	for _item in inventory:
+			if _item.get(weapon) != null:
+				_item[weapon] += value
+				break
+			break
+	var item_to_find = offhand.find_child(weapon.item_name, false, false)
+	if item_to_find:
+		item_to_find.update_stack_size(value)

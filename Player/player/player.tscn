@@ -35,7 +35,6 @@
 [ext_resource type="PackedScene" uid="uid://fiysa8sddku3" path="res://Player/UI/progress bars/player_stamina.tscn" id="31_ojoix"]
 [ext_resource type="Texture2D" uid="uid://biqgxpwwr01ye" path="res://scenes/VFX/textures/CloudNoise_Tiled.png" id="31_waixc"]
 [ext_resource type="Script" uid="uid://da13b6wjrk5g7" path="res://Player/scripts/death_overlay.gd" id="32_ae3c0"]
-[ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/scripts/item.gd" id="33_jonee"]
 [ext_resource type="PackedScene" uid="uid://18cnn4ekidb8" path="res://Player/UI/currency/player_currency.tscn" id="34_47e5g"]
 [ext_resource type="FontFile" uid="uid://bgwsxfa2fbvel" path="res://addons/madtalk/fonts/ShipporiMincho-Regular.ttf" id="35_t571y"]
 [ext_resource type="Script" uid="uid://dd8swdueuaqv5" path="res://components/player_health_component.gd" id="36_jaogv"]
@@ -1165,7 +1164,6 @@ layout_mode = 1
 offset_top = 0.0
 offset_bottom = 0.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_jng3h")
-inventory = Dictionary[ExtResource("33_jonee"), int]({})
 equipped_items = {
 "armor_equipped": null,
 "jewelry_equipped": null,
@@ -1272,6 +1270,7 @@ disabled = true
 debug_color = Color(1, 0, 0, 1)
 
 [connection signal="unequip_item" from="Head/Neck/Camera3D/RightHand" to="hud/inventory" method="_on_right_hand_unequip_item"]
+[connection signal="consumable_offhand_stack_size_update" from="Head/Neck/Camera3D/LeftHand" to="hud/inventory" method="_on_left_hand_consumable_offhand_stack_size_update"]
 [connection signal="unequip_item" from="Head/Neck/Camera3D/LeftHand" to="hud/inventory" method="_on_left_hand_unequip_item"]
 [connection signal="body_entered" from="Head/rope_detection" to="." method="_on_rope_detection_body_entered"]
 [connection signal="body_exited" from="Head/rope_detection" to="." method="_on_rope_detection_body_exited"]

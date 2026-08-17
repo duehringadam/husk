@@ -3,6 +3,8 @@ extends Node3D
 signal unequip_item
 signal active(value: bool)
 
+signal consumable_offhand_stack_size_update(weapon: item, value: int)
+
 @export var weapon: item: set = _set_item
 @export var mainhand: Node3D
 @export var animation_state_machine :AnimationNodeStateMachine
@@ -101,7 +103,7 @@ func consumable_offhand_reequip():
 
 func consumable_offhand_stack_size_change(value: int):
 	if weapon.is_stackable:
-		weapon.update_stack_size.emit(value)
+		consumable_offhand_stack_size_update.emit(weapon, value)
 
 func _on_ray_cast_3d_interaction_controller_pickable_grabbed(value: bool) -> void:
 	if value and !telekinesis_hold_bool:
