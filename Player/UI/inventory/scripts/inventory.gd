@@ -1,8 +1,10 @@
+@tool
 extends PanelContainer
 
 signal focused_item_changed(_item: item)
 
-@export var inventory: Array[item]
+
+@export var inventory: Array[Dictionary]
 
 @export var equipped_items: Dictionary[String, item_inventory_interact]
 
@@ -37,6 +39,7 @@ signal focused_item_changed(_item: item)
 @onready var item_list: NinePatchRect = %itemList
 @onready var item_info: NinePatchRect = %itemInfo
 @onready var player_stats: NinePatchRect = %playerStats
+@onready var drop_amount_pop_up: MarginContainer = $dropAmountPopUp
 
 
 @onready var open: AudioStreamPlayer = %open
@@ -46,6 +49,7 @@ var focused_item: item
 var item_add_inventory = preload("res://Player/UI/inventory/item_inventory.tscn")
 var transition_from_equip_screen: bool = false
 
+var item_save_file_path: String = "res://item/save_file_resources/"
 
 func _ready() -> void:
 	SignalBus.item_interact.connect(_update_inventory)
@@ -77,49 +81,92 @@ func close_inventory():
 	await tween.finished
 	visible = false
 	
+func save_inventory():
+	SaveManager.set_inventory("Saved Inventory", inventory)
 
 func _update_inventory(item_signal: item):
 	var item_add = item_add_inventory.instantiate()
 	item_add.connect("item_info", _update_display_text)
 	item_add.connect("item_drop", _drop_item)
+	item_add.connect("stack_size_changed", save_inventory)
+	item_add.name = item_signal.item_name
 	if !SignalBus.is_connected("player_stats_changed", item_signal.item_stats._update_player_stats):
 		SignalBus.connect("player_stats_changed", item_signal.item_stats._update_player_stats)
 	if !item_add.is_connected("equipped_signal",_update_equipped_items):
 		item_add.connect("equipped_signal", _update_equipped_items)
 	item_signal.item_stats._update_player_stats(Global.player.player_stats)
 	
+	var item_exists: bool
+	var item_index: int
+	
+	for _item in inventory:
+		if _item.get(item_signal) != null:
+			item_exists = true
+			item_index = inventory.find(_item)
+	
 	match item_signal.item_type:
 		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.WEAPON:
 			mainhand.add_child(item_add)
 			item_add.item_inventory = item_signal
+			var item_dict: Dictionary
+			item_dict[item_signal] = item_signal.pick_up_stack_size
+			inventory.append(item_dict)
+			save_inventory()
 		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.OFFHAND:
-			if inventory.has(item_signal):
-				var stackable_offhand: int = inventory.find(item_signal)
-				if inventory[stackable_offhand].is_stackable:
-					inventory[stackable_offhand]._update_stack_size(1)
-			else:
+			if item_exists && item_signal.is_stackable:
+				var item_to_find = offhand.find_child(item_signal.item_name, false, false)
+				if item_to_find:
+					if !item_to_find.is_connected("stack_size_changed",save_inventory):
+						item_to_find.connect("stack_size_changed", save_inventory)
+					item_to_find.update_stack_size(item_signal.pick_up_stack_size)
+					inventory[item_index][item_signal] += item_signal.pick_up_stack_size
+			if !item_exists:
 				offhand.add_child(item_add)
 				item_add.item_inventory = item_signal
+				item_add.item_stack_size = item_signal.pick_up_stack_size
+				var item_dict: Dictionary
+				item_dict[item_signal] = item_signal.pick_up_stack_size
+				inventory.append(item_dict)
+				save_inventory()
 		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.ARMOR:
 			armor.add_child(item_add)
 			item_add.item_inventory = item_signal
+			var item_dict: Dictionary
+			item_dict[item_signal] = item_signal.pick_up_stack_size
+			inventory.append(item_dict)
+			save_inventory()
 		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.JEWELRY:
 			jewelry.add_child(item_add)
 			item_add.item_inventory = item_signal
+			var item_dict: Dictionary
+			item_dict[item_signal] = item_signal.pick_up_stack_size
+			inventory.append(item_dict)
+			save_inventory()
 		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.CONSUMABLE:
-			if inventory.has(item_signal):
-				var consumable_item: int = inventory.find(item_signal)
-				if inventory[consumable_item].is_stackable:
-					inventory[consumable_item]._update_stack_size(1)
+			if item_exists && item_signal.is_stackable:
+				var item_to_find = consumable.find_child(item_signal.item_name, false, false)
+				if item_to_find:
+					item_to_find.connect("stack_size_changed", save_inventory)
+					item_to_find.update_stack_size(item_signal.pick_up_stack_size)
+					inventory[item_index][item_signal] += item_signal.pick_up_stack_size
 			else:
 				consumable.add_child(item_add)
 				item_add.item_inventory = item_signal
+				item_add.item_stack_size = item_signal.pick_up_stack_size
+				var item_dict: Dictionary
+				item_dict[item_signal] = item_signal.pick_up_stack_size
+				inventory.append(item_dict)
+				save_inventory()
 		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.KEY:
+			if inventory.has(item_signal):
+				item_signal = item_signal.duplicate()
 			key.add_child(item_add)
 			item_add.item_inventory = item_signal
-	inventory.append(item_signal)
-	SaveManager.set_inventory("Saved Inventory", inventory)
-
+			var item_dict: Dictionary
+			item_dict[item_signal] = item_signal.pick_up_stack_size
+			inventory.append(item_dict)
+			save_inventory()
+	
 func _update_equipped_items(item_inv_interact: item_inventory_interact):
 	match item_inv_interact.item_inventory.item_type:
 		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.WEAPON:
@@ -155,14 +202,48 @@ func _update_equipped_items(item_inv_interact: item_inventory_interact):
 		inventory_tabs.current_tab = 0
 
 func _remove_item(item_inventory: item):
-	if inventory.has(item_inventory):
-		inventory.erase(item_inventory)
-		SaveManager.set_inventory("Saved Inventory", inventory)
-
+	for _item in inventory:
+		if _item.get(item_inventory) != null:
+			inventory.erase(_item)
+			save_inventory()
+			break
+		break
+	
 func _drop_item(item_to_drop: item):
-	var item_drop = item_to_drop.item_dropped_scene.instantiate()
+	var item_exists: bool = false
+	var item_index: int
+	
+	for _item in inventory:
+		if _item.get(item_to_drop) != null:
+			item_exists = true
+			item_index = inventory.find(_item)
+			
+	if !item_exists:
+		return
+	
+	var inventory_stack_size: int = inventory[item_index][item_to_drop]
+	if item_to_drop.is_stackable && inventory_stack_size > 0:
+		drop_amount_pop_up.show_drop_popup()
+		drop_amount_pop_up.update_slider_amounts(inventory_stack_size)
+		if !drop_amount_pop_up.drop_amount.is_connected(popup_drop_item):
+			drop_amount_pop_up.drop_amount.connect(popup_drop_item.bind(item_to_drop,item_index))
+	elif !item_to_drop.is_stackable:
+		var item_drop_add = load(item_to_drop.item_dropped_scene_path)
+		var item_drop = item_drop_add.instantiate()
+		item_drop.is_dropped = true
+		get_tree().current_scene.add_child(item_drop)
+		item_drop.global_position = Global.player.camera.global_position + (-Global.player.camera.global_transform.basis.z.normalized()*1.5)
+
+func popup_drop_item(amount_to_drop: int, item_to_drop: item, item_index: int):
+	var item_drop_add = load(item_to_drop.item_dropped_scene_path)
+	inventory[item_index][item_to_drop] -= amount_to_drop
+	var item_to_find = offhand.find_child(item_to_drop.item_name, false, false)
+	if item_to_find:
+		item_to_find.update_stack_size(-amount_to_drop)
+	var item_drop = item_drop_add.instantiate()
 	item_drop.is_dropped = true
 	get_tree().current_scene.add_child(item_drop)
+	item_drop.item_to_loot.pick_up_stack_size = amount_to_drop
 	item_drop.global_position = Global.player.camera.global_position + (-Global.player.camera.global_transform.basis.z.normalized()*1.5)
 
 func _update_display_text(_item: item):
@@ -181,7 +262,6 @@ func _on_mainhand_button_pressed() -> void:
 	for i in item_list_count:
 		if item_list_tabs.get_tab_title(i) == "Mainhand":
 			item_list_tabs.current_tab = i
-
 
 func _on_offhand_button_pressed() -> void:
 	inventory_tabs.current_tab = 1
@@ -225,6 +305,52 @@ func _on_tab_bar_tab_changed(tab: int) -> void:
 		equipment.visible = false
 		inventory_list_container.visible = true
 
-func reset_inventory(inventory_list) -> void:
-	for inventory_item in inventory_list:
-		_update_inventory(inventory_item)
+func reset_inventory(inventory_list: Array) -> void:
+	for inventory_item: Dictionary in inventory_list:
+		var _item = inventory_item.keys()[0]
+		var stack_size = inventory_item.values()[0]
+		_set_inventory_from_save_file(_item, stack_size)
+
+
+func _set_inventory_from_save_file(item_signal: item, stack_size: int):
+	var item_add = item_add_inventory.instantiate()
+	item_add.connect("item_info", _update_display_text)
+	item_add.connect("item_drop", _drop_item)
+	item_add.connect("stack_size_changed", save_inventory)
+	item_add.name = item_signal.item_name
+	
+	if !SignalBus.is_connected("player_stats_changed", item_signal.item_stats._update_player_stats):
+		SignalBus.connect("player_stats_changed", item_signal.item_stats._update_player_stats)
+	if !item_add.is_connected("equipped_signal",_update_equipped_items):
+		item_add.connect("equipped_signal", _update_equipped_items)
+	item_signal.item_stats._update_player_stats(Global.player.player_stats)
+	
+	match item_signal.item_type:
+		
+		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.WEAPON:
+			mainhand.add_child(item_add)
+			item_add.item_inventory = item_signal
+			item_add.item_stack_size = stack_size
+		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.OFFHAND:
+			offhand.add_child(item_add)
+			item_add.item_inventory = item_signal
+			item_add.item_stack_size = stack_size
+		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.ARMOR:
+			armor.add_child(item_add)
+			item_add.item_inventory = item_signal
+			item_add.item_stack_size = stack_size
+		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.JEWELRY:
+			jewelry.add_child(item_add)
+			item_add.item_inventory = item_signal
+			item_add.item_stack_size = stack_size
+		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.CONSUMABLE:
+			consumable.add_child(item_add)
+			item_add.item_inventory = item_signal
+			item_add.item_stack_size = stack_size
+		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.KEY:
+			key.add_child(item_add)
+			item_add.item_inventory = item_signal
+			item_add.item_stack_size = stack_size
+	var item_dict: Dictionary
+	item_dict[item_signal] = stack_size
+	inventory.append(item_dict)

@@ -23,8 +23,8 @@ func _ready() -> void:
 	#else:
 		#global_position = current_area_default_spawn
 		
-	if SaveConfig.get_config("Inventory", "Saved Inventory") != null:
-		var inventory_list = SaveConfig.get_config("Inventory", "Saved Inventory", inventory.inventory)
+	if SaveManager.get_inventory_from_config("Saved Inventory", inventory.inventory) != null:
+		var inventory_list = SaveManager.get_inventory_from_config("Saved Inventory", inventory.inventory)
 		inventory.reset_inventory(inventory_list)
 		
 	if SaveConfig.get_config("Player_stats", "Saved Stats", player_stats) != null:

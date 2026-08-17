@@ -1,14 +1,11 @@
 class_name InteractableDoor extends StaticBody3D
 
-#@onready var wall_doorway_door: MeshInstance3D = $wall_doorway/wall_doorway_door
-#@onready var door_body: StaticBody3D = $wall_doorway/wall_doorway_door/StaticBody3D
-#@onready var collider: CollisionShape3D = $wall_doorway/wall_doorway_door/StaticBody3D/CollisionShape3D
-@export var locked: bool = false
-#@onready var dooropen: AudioStreamPlayer3D = $AudioStreamPlayer3D
-#@onready var doorlocked: AudioStreamPlayer3D = $doorlocked
-#@onready var doorclose: AudioStreamPlayer3D = $doorclose
+signal door_activated(value: bool)
 
+@export var other_door: InteractableDoor
+@export var locked: bool = false
 @export var swing_angle : float = 90.0
+
 var starting_rot : float
 var target_rot : float
 var open_time : float = 2.0
@@ -23,7 +20,6 @@ var is_closed: bool:
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	starting_rot = rotation.y
-	GamePiecesEventBus.connect("close_door", close)
 
 func set_lock(value: bool):
 	locked = value
@@ -44,7 +40,6 @@ func open(interact_pos: Vector3 = Vector3.BACK) -> void:
 		#dooropen.play()
 		var swing_dir: float = sign(self.global_transform.origin.direction_to(interact_pos).dot(Vector3.BACK.rotated(Vector3.UP, global_rotation.y)))
 		target_rot = starting_rot + (deg_to_rad(swing_angle) * swing_dir)
-		
 		_swing()
 	#else:
 		#doorlocked.play()

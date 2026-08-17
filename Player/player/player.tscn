@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://dql5v81gqvdat" path="res://components/status_effect_component.gd" id="6_eon52"]
 [ext_resource type="AudioStream" uid="uid://b4ajsd7gilmx" path="res://sfx/UI/huskdeathlongerlouder.wav" id="8_jaogv"]
 [ext_resource type="AudioStream" uid="uid://df2b8w21sb3xf" path="res://sfx/damage/hit-rock-03-266305.mp3" id="8_jux4o"]
-[ext_resource type="Shader" uid="uid://dgt3e85o3avu2" path="res://Player/shaders/damage.gdshader" id="9_4ng6s"]
+[ext_resource type="Shader" uid="uid://dgt3e85o3avu2" path="res://shaders/player_shaders/shaders/damage.gdshader" id="9_4ng6s"]
 [ext_resource type="Script" uid="uid://dmju02n5xp4s0" path="res://Player/scripts/step_detect.gd" id="9_863th"]
 [ext_resource type="PackedScene" uid="uid://b5corv5nqshay" path="res://Player/player/player_arm_right.tscn" id="9_hqsyx"]
 [ext_resource type="PackedScene" uid="uid://bplg0u3sd3j28" path="res://Player/player/player_arm_left.tscn" id="10_hqsyx"]
@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://c3edfhdllccxg" path="res://Player/player/player_arm_consumable.tscn" id="10_v5tlk"]
 [ext_resource type="AudioStream" uid="uid://br26jgupi66u0" path="res://Player/sfx/footsteps/stone/footstep_stone.tres" id="12_hqsyx"]
 [ext_resource type="Script" uid="uid://sj3mml8ulasu" path="res://Player/scripts/crosshair.gd" id="12_qk8yx"]
-[ext_resource type="Shader" uid="uid://b6aaasr8tdyr5" path="res://Player/shaders/distort.gdshader" id="12_vnn13"]
+[ext_resource type="Shader" uid="uid://b6aaasr8tdyr5" path="res://shaders/player_shaders/shaders/distort.gdshader" id="12_vnn13"]
 [ext_resource type="Script" uid="uid://b74g26tt85wqw" path="res://Player/scripts/launch.gd" id="13_tio5b"]
 [ext_resource type="Script" uid="uid://xc7bfscwsgbt" path="res://Player/scripts/ground_material_detector.gd" id="14_y1ty0"]
 [ext_resource type="AudioStream" uid="uid://d32grx7plyrmc" path="res://scenes/traps/rope_climbing.ogg" id="15_epd12"]
@@ -23,18 +23,20 @@
 [ext_resource type="AudioStream" uid="uid://du7ihf843sngd" path="res://sfx/damage/husk_Poise_break.wav" id="16_0ay5n"]
 [ext_resource type="AudioStream" uid="uid://dk0ftcdtucymv" path="res://sfx/damage/fall_damage.ogg" id="16_paiqy"]
 [ext_resource type="Script" uid="uid://bxoydk8unigg3" path="res://Player/scripts/player_hud.gd" id="21_ujn18"]
-[ext_resource type="Shader" uid="uid://dc66sjqqg3w1a" path="res://Player/shaders/circular_bar.gdshader" id="22_2m5xu"]
+[ext_resource type="Shader" uid="uid://dc66sjqqg3w1a" path="res://shaders/player_shaders/shaders/circular_bar.gdshader" id="22_2m5xu"]
 [ext_resource type="Script" uid="uid://83vqngoyog5j" path="res://Player/UI/scripts/hold_attack_bar.gd" id="23_5fkmn"]
-[ext_resource type="Shader" uid="uid://2i33d2n3yv47" path="res://Player/shaders/radial_blur.gdshader" id="25_k1tkb"]
+[ext_resource type="Shader" uid="uid://2i33d2n3yv47" path="res://shaders/player_shaders/shaders/radial_blur.gdshader" id="25_k1tkb"]
 [ext_resource type="Script" uid="uid://8jstcds4fmx8" path="res://Player/scripts/radial_blur.gd" id="26_hqsyx"]
 [ext_resource type="AudioStream" uid="uid://cc67f271a754i" path="res://sfx/UI/chargecomplete.wav" id="28_7vtq1"]
-[ext_resource type="Shader" uid="uid://dn324eo1sre1n" path="res://Player/shaders/death.gdshader" id="29_f81pb"]
+[ext_resource type="Shader" uid="uid://dn324eo1sre1n" path="res://shaders/player_shaders/shaders/death.gdshader" id="29_f81pb"]
 [ext_resource type="PackedScene" uid="uid://bb5rujo1j4mr6" path="res://Player/UI/progress bars/player_mana.tscn" id="29_v5tlk"]
 [ext_resource type="PackedScene" uid="uid://78q517wrknfe" path="res://Player/UI/progress bars/player_health.tscn" id="29_wbjo2"]
 [ext_resource type="Texture2D" uid="uid://bheudhnmjwpme" path="res://scenes/VFX/textures/T_VFX_Noise_14.PNG" id="30_ae3c0"]
 [ext_resource type="PackedScene" uid="uid://fiysa8sddku3" path="res://Player/UI/progress bars/player_stamina.tscn" id="31_ojoix"]
 [ext_resource type="Texture2D" uid="uid://biqgxpwwr01ye" path="res://scenes/VFX/textures/CloudNoise_Tiled.png" id="31_waixc"]
 [ext_resource type="Script" uid="uid://da13b6wjrk5g7" path="res://Player/scripts/death_overlay.gd" id="32_ae3c0"]
+[ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/scripts/item.gd" id="33_jonee"]
+[ext_resource type="PackedScene" uid="uid://18cnn4ekidb8" path="res://Player/UI/currency/player_currency.tscn" id="34_47e5g"]
 [ext_resource type="FontFile" uid="uid://bgwsxfa2fbvel" path="res://addons/madtalk/fonts/ShipporiMincho-Regular.ttf" id="35_t571y"]
 [ext_resource type="Script" uid="uid://dd8swdueuaqv5" path="res://components/player_health_component.gd" id="36_jaogv"]
 [ext_resource type="AudioStream" uid="uid://c6mukshc0b37u" path="res://Player/sfx/movement/huskVaultTest.wav" id="37_jaogv"]
@@ -782,7 +784,6 @@ player_stats = Dictionary[int, int]({
 mouse_sensitivity = 100.0
 player_body = NodePath("Head/Neck/Camera3D/playerBody")
 jump_power = 5.0
-climb_speed = 3.0
 camera_lean_position = Vector3(0, 0, 0)
 mainhand = NodePath("Head/Neck/Camera3D/RightHand")
 offhand = NodePath("Head/Neck/Camera3D/LeftHand")
@@ -912,6 +913,7 @@ bus = &"SFX"
 [node name="groundMaterialDetector" type="RayCast3D" parent="Head" unique_id=51581699 node_paths=PackedStringArray("footstep_sounds")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 collision_mask = 10
+hit_from_inside = true
 collide_with_areas = true
 script = ExtResource("14_y1ty0")
 footstep_sounds = NodePath("../FootSteps")
@@ -1163,6 +1165,7 @@ layout_mode = 1
 offset_top = 0.0
 offset_bottom = 0.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_jng3h")
+inventory = Dictionary[ExtResource("33_jonee"), int]({})
 equipped_items = {
 "armor_equipped": null,
 "jewelry_equipped": null,
@@ -1185,6 +1188,12 @@ color = Color(0, 0, 0, 0.446)
 [node name="SelectionWheel" parent="hud/selectionWheelDarken" unique_id=1649874519 instance=ExtResource("40_avbty")]
 unique_name_in_owner = true
 layout_mode = 1
+
+[node name="playerCurrency" parent="hud" unique_id=415251137 instance=ExtResource("34_47e5g")]
+z_index = 999
+layout_mode = 1
+offset_left = -330.0
+offset_top = -175.0
 
 [node name="death" type="ColorRect" parent="." unique_id=575191084]
 z_index = 1

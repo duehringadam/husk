@@ -1,10 +1,22 @@
 [gd_scene format=4 uid="uid://d4n4ub6iqwkku"]
 
+[ext_resource type="Script" uid="uid://tpesy3ixn6lc" path="res://scenes/3DForge/Prefabs/flickering_light.gd" id="1_hkj55"]
 [ext_resource type="Script" uid="uid://cmrc6hxb0a6wm" path="res://components/fire_damage_component.gd" id="2_a4fpb"]
 [ext_resource type="Material" uid="uid://biya" path="res://scenes/Hivemind/CastleOfEternalMists/URP/Art/Materials/Instances/M_IronTrim.tres" id="2_biya"]
 [ext_resource type="Texture2D" uid="uid://bgpuc5rjm2yh5" path="res://scenes/misc/Textures/Fire_SubUV_new.png" id="3_2x00u"]
 [ext_resource type="Texture2D" uid="uid://dgnarq1axwhae" path="res://scenes/MysticDungeon/Art/Textures/T_Fire01_Tiled_D_Yellow.png" id="5_hmcyp"]
 [ext_resource type="Texture2D" uid="uid://185sjxt7oawt" path="res://scenes/misc/Textures/T_Fire01_SubUV_normal.png" id="6_0nhv8"]
+
+[sub_resource type="Gradient" id="Gradient_v4udn"]
+offsets = PackedFloat32Array(0.31178707, 0.6463878)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hkj55"]
+noise_type = 3
+frequency = 0.8028
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_a4fpb"]
+noise = SubResource("FastNoiseLite_hkj55")
+color_ramp = SubResource("Gradient_v4udn")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_near1"]
 resource_name = "M_IronTrim"
@@ -28,7 +40,7 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ohhyp"]
-radius = 0.75
+radius = 0.1
 
 [sub_resource type="Curve" id="Curve_67hdg"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.80288464, 0.41573036), 0.0, 0.0, 0, 0]
@@ -98,7 +110,10 @@ resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_hkj55")
 size = Vector2(0.15, 0.15)
 
-[node name="SM_Torch_A" type="Node3D" unique_id=1142107888]
+[node name="SM_Torch_A" type="Node3D" unique_id=1142107888 node_paths=PackedStringArray("light")]
+script = ExtResource("1_hkj55")
+noise = SubResource("NoiseTexture3D_a4fpb")
+light = NodePath("SM_Torch_A_LOD0/GPUParticles3D/OmniLight3D")
 
 [node name="SM_Torch_A_LOD0" type="MeshInstance3D" parent="." unique_id=1448704296]
 lod_bias = 0.05
@@ -126,16 +141,14 @@ debug_color = Color(0.9764706, 0, 0, 0.41960785)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="SM_Torch_A_LOD0" unique_id=897028893]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27138656, 0.2199561, 0)
-top_level = true
-layers = 2
 amount = 16
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_4wjrq")
 draw_pass_1 = SubResource("QuadMesh_a4fpb")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="SM_Torch_A_LOD0/GPUParticles3D" unique_id=274809955]
-layers = 3
 light_color = Color(1, 0.3882353, 0, 1)
-light_bake_mode = 0
+light_volumetric_fog_energy = 0.0
+omni_range = 10.0
 
 [connection signal="tree_exiting" from="SM_Torch_A_LOD0/DamageComponent" to="SM_Torch_A_LOD0/DamageComponent" method="_on_tree_exiting"]

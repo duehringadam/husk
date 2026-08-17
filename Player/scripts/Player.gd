@@ -96,6 +96,7 @@ Optional: %jump, %sprint, %crouch, %lean, %zoom, %switch_hands
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var stamina_component: StaminaComponent = %StaminaComponent
 @onready var mana_component: ManaComponent = $ManaComponent
+@onready var player_currency: MarginContainer = $hud/playerCurrency
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -248,8 +249,7 @@ func handle_jump() -> void:
 		velocity.y = jump_power
 		footsteps.play()
 		camera_animation_player.play("jump")
-	if vault_ray_cast.is_colliding() && !is_on_floor() && !is_vaulting && !ceiling.is_colliding():
-		#camera_animation_player.play("vault")
+	if vault_ray_cast.is_colliding() && !is_on_floor() && !is_vaulting && !ceiling.is_colliding() &&  %jump.is_triggered():
 		if vault_ray_cast.get_collider() is Terrain3D or vault_ray_cast.get_collider().is_in_group("disable_collision_while_grabbed"):
 			return
 		_handle_vault(vault_ray_cast.get_collision_point())

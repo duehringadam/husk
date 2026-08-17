@@ -15,6 +15,7 @@ func _on_dead_state_entered() -> void:
 		physical_bone_sim.influence = 1.0
 		physical_bone_sim.active = true
 		animation_tree.active = false
+	SignalBus.emit_signal("enemy_currency_dropped", source_npc.currency_dropped)
 
 func _state_finished(state: StringName):
 	if state == "death_special":

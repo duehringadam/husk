@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://mwv1ujywgrt8"]
+
+[ext_resource type="Script" uid="uid://bl0o6bw1abcys" path="res://scenes/doors/OneSidedDoor.gd" id="1_0pgxp"]
+[ext_resource type="Script" uid="uid://ck3cei0hvspym" path="res://addons/interaction_system/interaction_container.gd" id="2_6rqyo"]
+[ext_resource type="Script" uid="uid://doc0okecalxnp" path="res://addons/interaction_system/interaction_context.gd" id="3_vihc3"]
+[ext_resource type="Script" uid="uid://5tinbhq6p45k" path="res://addons/interaction_system/interaction.gd" id="4_4dyy1"]
+[ext_resource type="Script" uid="uid://bxe74cq2uqemi" path="res://addons/game_controls/vanilla/input_map_game_control.gd" id="5_myxl1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qw13a"]
+size = Vector3(0.12823837, 2.8207934, 3)
+
+[node name="DoesNotOpenFromThisSide" type="StaticBody3D" unique_id=1953274271]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_0pgxp")
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("2_6rqyo"),"default_context_id":0,"display_name":"Door","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("4_4dyy1")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("4_4dyy1"),"hide_while_grabbed":false,"override_display_name":false,"display_name":"","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("5_myxl1"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="InteractionContainer" type="Node" parent="." unique_id=1891921132]
+script = ExtResource("2_6rqyo")
+display_name = "Door"
+metadata/_custom_type_script = "uid://ck3cei0hvspym"
+
+[node name="Closed" type="Node" parent="InteractionContainer" unique_id=430299207]
+script = ExtResource("3_vihc3")
+override_display_name = true
+display_name = "Closed Door"
+metadata/_custom_type_script = "uid://doc0okecalxnp"
+
+[node name="Open" type="Node" parent="InteractionContainer/Closed" unique_id=688680795]
+script = ExtResource("4_4dyy1")
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="interact" type="Node" parent="InteractionContainer/Closed/Open" unique_id=1737829793]
+script = ExtResource("5_myxl1")
+action = &"interact"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1494129317]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.09999995, 1.4, -1.0484813)
+shape = SubResource("BoxShape3D_qw13a")
+
+[connection signal="on_complete" from="InteractionContainer/Closed/Open" to="." method="_interact"]

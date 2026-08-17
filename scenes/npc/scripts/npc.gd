@@ -1,8 +1,17 @@
 class_name npc
 extends CharacterBody3D
 
+
 @export_category("Name")
 @export var npc_name: String
+@export var currency_dropped: int
+
+@export_category("Dialogue")
+@export var sheet_id: String
+
+@export_category("Shop Inventory")
+@export var npc_inventory: Array[item]
+@export var npc_shop: Shop
 
 @export_category("Components")
 @export var physical_bone_simulator: PhysicalBoneSimulator3D
@@ -67,10 +76,15 @@ func fall()-> void:
 	pass
 
 func _on_health_component_died() -> void:
-	pass
+	SignalBus.emit_signal("enemy_currency_dropped", currency_dropped)
 
 func _on_stance_component_stance_broken() -> void:
 	pass
-
+	
 func _update_target(value: Node3D):
 	target = value
+
+func _npc_shop_open(custom_id: Variant, custom_data: Variant):
+	if npc_shop == null: return
+	if custom_id == "npc_open_shop" && custom_data[0] == sheet_id:
+		npc_shop.open_shop()

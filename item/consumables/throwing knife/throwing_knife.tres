@@ -1,11 +1,12 @@
-[gd_resource type="Resource" script_class="item" format=3 uid="uid://cgk67iwvp47fb"]
+[gd_resource type="Resource" script_class="item" format=3 uid="uid://dxghkhcufj6jp"]
 
 [ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/scripts/item_stat.gd" id="1_lhyhf"]
 [ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/scripts/item.gd" id="1_rr254"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://cd70r3lq6edrg" path="res://Player/hands/animations/hands/animation_state_machines/throwing_knife_state_machine.tres" id="1_yxoqy"]
 [ext_resource type="PackedScene" uid="uid://c1un1ajbl1gde" path="res://item/weapons/ranged/throwing_knife/throwing_knife_scene.tscn" id="2_d6st2"]
+[ext_resource type="Texture2D" uid="uid://b2gopsyqrcvyj" path="res://item/icons/blade/blade.svg/icons/ffffff/000000/1x1/lorc/thrown-knife.svg" id="2_yxoqy"]
 
-[sub_resource type="Resource" id="Resource_i8spd"]
+[sub_resource type="Resource" id="Resource_v4udn"]
 script = ExtResource("1_lhyhf")
 metadata/_custom_type_script = "uid://bbtfrupllo3w6"
 
@@ -13,12 +14,14 @@ metadata/_custom_type_script = "uid://bbtfrupllo3w6"
 script = ExtResource("1_rr254")
 item_name = "Throwing Knife"
 item_description = "a throwing knife"
+item_icon = ExtResource("2_yxoqy")
 item_type = 1
 is_stackable = true
-max_stack_size = 999
-item_stats = SubResource("Resource_i8spd")
+max_stack_size = 99
+item_stats = SubResource("Resource_v4udn")
 item_scene = ExtResource("2_d6st2")
+item_dropped_scene_path = "res://item/consumables/throwing knife/throwing_knife_item_world.tscn"
 animation_state_machine = ExtResource("1_yxoqy")
-position = Vector3(0.010187447, 0.070758075, 0.0061125457)
-rotation = Vector3(0.2, 0.3, -177.9)
+position = Vector3(-0.0034232736, 0.047118604, -0.0032013059)
+rotation = Vector3(-0.02604844, -0.27343383, 2.992652)
 metadata/_custom_type_script = "uid://dcfd18dx8x1bm"

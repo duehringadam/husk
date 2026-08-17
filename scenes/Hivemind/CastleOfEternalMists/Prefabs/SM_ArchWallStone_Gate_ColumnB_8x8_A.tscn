@@ -1,6 +1,8 @@
 [gd_scene format=4 uid="uid://d4n4ub6iqmr2c"]
 
 [ext_resource type="Material" uid="uid://bi1a" path="res://scenes/Hivemind/CastleOfEternalMists/URP/Art/Materials/Instances/M_ArchStone_A.tres" id="2_bi1a"]
+[ext_resource type="Material" uid="uid://bh83" path="res://scenes/Hivemind/CastleOfEternalMists/URP/Art/Materials/Instances/M_Column_B.tres" id="2_j6w5o"]
+[ext_resource type="Material" uid="uid://bigi" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Tiling/M_StoneWall_01_01.tres" id="3_t1v8u"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mo4lw"]
 resource_name = "M_ArchStone_A"
@@ -60,3 +62,5 @@ blend_shape_mode = 0
 lod_bias = 0.05
 mesh = SubResource("ArrayMesh_p6on4")
 surface_material_override/0 = ExtResource("2_bi1a")
+surface_material_override/1 = ExtResource("2_j6w5o")
+surface_material_override/2 = ExtResource("3_t1v8u")

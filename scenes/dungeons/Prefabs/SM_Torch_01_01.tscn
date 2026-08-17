@@ -2,9 +2,84 @@
 
 [ext_resource type="PackedScene" uid="uid://coso" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Meshes/Props/Torch/SM_Torch_01_01.glb" id="1_coso"]
 [ext_resource type="Material" uid="uid://biom" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Props/M_Torch_01_01.tres" id="2_biom"]
+[ext_resource type="Script" uid="uid://cmrc6hxb0a6wm" path="res://components/fire_damage_component.gd" id="3_1tdxq"]
+[ext_resource type="Texture2D" uid="uid://bgpuc5rjm2yh5" path="res://scenes/misc/Textures/Fire_SubUV_new.png" id="4_ye8ne"]
+[ext_resource type="Texture2D" uid="uid://dgnarq1axwhae" path="res://scenes/MysticDungeon/Art/Textures/T_Fire01_Tiled_D_Yellow.png" id="5_j6ig4"]
+[ext_resource type="Texture2D" uid="uid://185sjxt7oawt" path="res://scenes/misc/Textures/T_Fire01_SubUV_normal.png" id="6_82eyn"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_f337w"]
 points = PackedVector3Array(-0.5262383, 0.66091186, 0.00050371885, -0.5217024, 0.6433913, 0.011236861, -0.52525896, 0.6611156, 0.004220642, -0.5252074, 0.6653939, -0.0026285201, -0.5077853, 0.618944, -0.04516436, -0.51232123, 0.6181291, -0.032176003, -0.51711494, 0.6121191, -0.00755658, -0.51742417, 0.60835016, -0.0035681948, -0.5173726, 0.6031551, 0.0018401444, -0.5139707, 0.6135452, 0.026751906, -0.50366175, 0.62047195, 0.05381447, -0.49995053, 0.671302, 0.067867786, -0.52293944, 0.6674312, 0.0017774925, -0.49984744, 0.66946846, -0.06944968, -0.49768257, 0.6748672, -0.06711093, -0.5007237, 0.616703, -0.056336023, -0.49711555, 0.5929687, -0.052076172, -0.5026824, 0.59164447, -0.039818667, -0.5079915, 0.5901165, -0.02325955, -0.50773376, 0.59286684, 0.027273938, -0.49206418, 0.52940565, 0.001380749, -0.49685785, 0.5973488, 0.055839986, -0.48732206, 0.6065166, 0.07461254, -0.49788874, 0.6702834, 0.07154295, -0.49742484, 0.67537653, 0.06696989, -0.49443525, 0.6760896, -0.06406222, -0.49593005, 0.6724225, -0.07228957, -0.4943837, 0.6656995, -0.073479824, -0.48773444, 0.61048925, -0.075359166, -0.43278778, 0.690045, -0.09918509, -0.21501142, -0.2238777, -0.027957916, -0.21913499, -0.22723922, -0.018060036, -0.22377402, -0.22693363, -0.008684188, -0.4768585, 0.5206453, 0.03940615, -0.224908, -0.22632244, 0.0052229613, -0.22753677, -0.20971863, 0.0132415, -0.21743402, -0.22754481, 0.02192825, -0.46727118, 0.60356253, 0.08578421, -0.47309574, 0.624139, 0.08555451, -0.2088776, -0.22316466, 0.032306403, -0.45268404, 0.63116765, 0.09658, -0.4320146, 0.690045, 0.09994194, -0.43129298, 0.6908599, 0.09536886, -0.36634666, 0.7107233, 0.06536199, -0.3676868, 0.7095009, -0.066902116, -0.45577672, 0.63086206, -0.0957605, -0.46917835, 0.62974155, -0.088618994, -0.47232255, 0.62403715, -0.086656116, -0.47288954, 0.60264575, -0.08291831, -0.36248082, 0.7106215, -0.06844735, -0.4277364, 0.6912674, -0.098475106, -0.4283034, 0.6873965, -0.10066768, -0.4325816, 0.680266, -0.10022917, -0.43521038, 0.6685517, -0.100354455, -0.20021808, -0.22184043, -0.037104063, -0.19583678, -0.2600394, -0.026955597, -0.20047581, -0.2619748, -0.022278115, -0.2034654, -0.26126176, -0.017454468, -0.19841403, -0.27725437, -0.012004368, -0.2098054, -0.26238224, -0.00031066686, -0.20274377, -0.26044685, 0.020988584, -0.43825153, 0.6105911, 0.10027605, -0.18877515, -0.2763376, 0.021677673, -0.18197125, -0.2545387, 0.032995507, -0.19784701, -0.22194229, 0.036566257, -0.4407772, 0.6370757, 0.09979577, -0.43469495, 0.669061, 0.10038045, -0.42768484, 0.69106364, 0.100359574, -0.411706, 0.63289934, 0.10687463, -0.3644395, 0.70960283, 0.07106267, -0.33521366, 0.71673334, 0.0020489544, -0.33418274, 0.71703887, -0.0019811913, -0.33887333, 0.7164277, 0.001631327, -0.44108647, 0.63727945, -0.10108531, -0.44129264, 0.61018366, -0.09905979, -0.4505707, 0.6105911, -0.09488347, -0.4263447, 0.53724915, -0.091062136, -0.4388185, 0.53072983, -0.08387886, -0.3619138, 0.70909345, -0.07147519, -0.41325232, 0.6748672, -0.10075121, -0.41186064, 0.62638, -0.106451884, -0.18728036, -0.21583046, -0.038941644, -0.1850124, -0.25555736, -0.03251011, -0.42314893, 0.6148694, -0.10306907, -0.39330453, 0.556807, -0.10102267, -0.1845485, -0.2747078, -0.024366282, -0.16465223, -0.3208521, -0.0042572916, -0.16686866, -0.31942603, 0.0016730875, -0.19820783, -0.27827302, 0.0066220313, -0.1680542, -0.31412908, 0.0063714534, -0.39345917, 0.55660325, 0.10186304, -0.41593266, 0.62515765, 0.10549645, -0.4296951, 0.63809437, 0.10261479, -0.19552752, -0.21807146, 0.03756857, -0.1755797, -0.2723649, 0.026083693, -0.18130118, -0.21623792, 0.03919734, 0.00018775463, -0.15674941, 0.042433992, 0.00018775463, -0.13912697, 0.0472994, -0.36686212, 0.68607223, 0.07987471, -0.36196536, 0.7035929, 0.072273806, -0.3894387, 0.6478733, 0.09969136, -0.37103721, 0.65510565, 0.0911299, -0.009399593, -0.13708968, 0.047800556, 0.00018775463, -0.08880621, 0.049429327, 0.00018775463, 0.09770653, 0.049429327, 0.00018775463, 0.14700866, 0.047591746, -0.36201692, 0.7091954, 0.07006036, 0.00018775463, 0.24622405, 0.0015686825, 0.00013619661, 0.24622405, -0.0015009195, -0.3720681, 0.65571684, -0.09248209, 0.00018775463, 0.22096181, -0.019062348, 0.00018775463, 0.20670086, -0.025431238, 0.00013619661, 0.16615906, -0.041092448, 0.00018775463, 0.15383354, -0.045602877, -0.39495397, 0.6495031, -0.101001784, -0.39691266, 0.6442062, -0.10265143, 0.00018775463, 0.14405459, -0.047440458, 0.00018775463, 0.09740093, -0.04942421, 0.00018775463, -0.09033418, -0.049445093, 0.00018775463, -0.1364785, -0.047941614, -0.17810541, -0.21593232, -0.039150454, -0.16547695, -0.26961458, -0.02674678, -0.15893078, -0.3205465, -0.006178394, 0.00018775463, -0.14941521, -0.04487202, -0.16475531, -0.31474027, -0.007953331, -0.15795141, -0.32360244, -0.001647085, -0.15960085, -0.32176888, 0.0025709942, -0.16233271, -0.31616637, 0.0063088015, -0.15625045, -0.31993535, 0.0043250546, 8.4638596e-05, -0.20095834, 0.025311068, 0.00018775463, -0.21633978, 0.017355174, 0.00034236908, 0.09943822, 0.0401579, 0.00013619661, 0.16544601, 0.041348144, 0.00018775463, 0.21709102, 0.021406204, -0.37614015, 0.6517441, -0.094507605, -0.15532264, -0.32044464, -0.004445225, 0.00018775463, -0.20849627, -0.022006653, 3.3080578e-05, -0.2343697, -0.004821092, -0.0011008978, -0.2399722, 0.00019049644, 0.00018775463, -0.23946288, 0.0012972206)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_sb1ug"]
+radius = 0.75
+
+[sub_resource type="Curve" id="Curve_w7ma0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.80288464, 0.41573036), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_2x00u"]
+curve = SubResource("Curve_w7ma0")
+
+[sub_resource type="Gradient" id="Gradient_pp326"]
+colors = PackedColorArray(0.99999994, 0.86646223, 0.36267662, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hkj55"]
+gradient = SubResource("Gradient_pp326")
+
+[sub_resource type="Curve" id="Curve_xhjdu"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.20224726), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_a4fpb"]
+curve = SubResource("Curve_xhjdu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6l4i6"]
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 0.05
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, 1, 0)
+gravity = Vector3(0, 4.8, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = -2.23517e-06
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_a4fpb")
+color_ramp = SubResource("GradientTexture1D_hkj55")
+alpha_curve = SubResource("CurveTexture_2x00u")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+turbulence_noise_speed = Vector3(0, 1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wcly0"]
+resource_local_to_scene = true
+transparency = 1
+diffuse_mode = 3
+specular_mode = 1
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_color = Color(1, 0.5176471, 0, 1)
+albedo_texture = ExtResource("4_ye8ne")
+emission = Color(1, 0.29748532, 0, 1)
+emission_texture = ExtResource("5_j6ig4")
+normal_enabled = true
+normal_texture = ExtResource("6_82eyn")
+backlight = Color(1, 1, 1, 1)
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 6
+particles_anim_loop = true
+grow_amount = -0.264
+proximity_fade_distance = 0.01
+distance_fade_max_distance = 1.0
+stencil_flags = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_hugqv"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_wcly0")
+size = Vector2(0.15, 0.15)
 
 [node name="SM_Torch_01_01" unique_id=435021806 instance=ExtResource("1_coso")]
 
@@ -17,3 +92,36 @@ metadata/ground_type = "stone"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SM_Torch_01_01_LOD0/SM_Torch_01_01_LOD0StaticBody" index="0" unique_id=2106245424]
 shape = SubResource("ConvexPolygonShape3D_f337w")
+
+[node name="DamageComponent" type="Area3D" parent="SM_Torch_01_01_LOD0/SM_Torch_01_01_LOD0StaticBody" index="1" unique_id=1262435019]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.41426945, 0.6174841, 0.004105568)
+collision_layer = 8
+collision_mask = 13
+script = ExtResource("3_1tdxq")
+damage_types = Dictionary[int, float]({
+6: 10.0
+})
+status_types = Dictionary[int, float]({
+0: 0.25
+})
+metadata/_custom_type_script = "uid://dlsydctoxqbwy"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SM_Torch_01_01_LOD0/SM_Torch_01_01_LOD0StaticBody/DamageComponent" index="0" unique_id=253050293]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03285253, 0.032521367, -0.008831084)
+shape = SubResource("SphereShape3D_sb1ug")
+debug_color = Color(0.9764706, 0, 0, 0.41960785)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="SM_Torch_01_01_LOD0/SM_Torch_01_01_LOD0StaticBody" index="2" unique_id=192429892]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4301669, 0.61995614, 0)
+top_level = true
+layers = 2
+amount = 16
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_6l4i6")
+draw_pass_1 = SubResource("QuadMesh_hugqv")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SM_Torch_01_01_LOD0/SM_Torch_01_01_LOD0StaticBody/GPUParticles3D" index="0" unique_id=437869696]
+light_color = Color(1, 0.3882353, 0, 1)
+light_bake_mode = 0
+
+[connection signal="tree_exiting" from="SM_Torch_01_01_LOD0/SM_Torch_01_01_LOD0StaticBody/DamageComponent" to="SM_Torch_01_01_LOD0/SM_Torch_01_01_LOD0StaticBody/DamageComponent" method="_on_tree_exiting"]

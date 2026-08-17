@@ -8,7 +8,7 @@
 [ext_resource type="Shader" uid="uid://211yn521kpxn" path="res://shaders/texture_edge_fade.gdshader" id="5_thcbn"]
 [ext_resource type="Theme" uid="uid://ctn68w4yfl5oa" path="res://Player/UI/UI_Theme.tres" id="6_g2448"]
 [ext_resource type="Texture2D" uid="uid://by0pnn4vskmeg" path="res://Player/UI/inventory/textures/AdobeStock_73802034.jpeg" id="7_yl3lq"]
-[ext_resource type="Texture2D" uid="uid://slqquuvjjo3l" path="res://assets/kenney_fantasy-ui-borders/PNG/Double/Border/panel-border-002.png" id="8_h6vk2"]
+[ext_resource type="Texture2D" uid="uid://de6tcw73ykju" path="res://Player/UI/HuskFrames/SVG/Option 1.svg" id="9_by6k1"]
 [ext_resource type="Texture2D" uid="uid://bkkwoa5ooe2xw" path="res://Player/UI/inventory/textures/Inventory_Man_transparent.png" id="9_q3v0e"]
 [ext_resource type="FontFile" uid="uid://bgwsxfa2fbvel" path="res://addons/madtalk/fonts/ShipporiMincho-Regular.ttf" id="10_sd12b"]
 [ext_resource type="Script" uid="uid://bi51tsotnj4cu" path="res://Player/UI/inventory/scripts/equipment_screen_button.gd" id="11_2cesb"]
@@ -19,6 +19,8 @@
 [ext_resource type="Script" uid="uid://y83pi8jh16qn" path="res://Player/UI/inventory/scripts/inventory_player_stats.gd" id="16_w3uno"]
 [ext_resource type="AudioStream" uid="uid://c5ynb6jb63fmb" path="res://sfx/UI/inventory_open.ogg" id="17_lsyix"]
 [ext_resource type="AudioStream" uid="uid://dcuoy8njoatd8" path="res://sfx/UI/inventory_close.ogg" id="18_hmctt"]
+[ext_resource type="Script" uid="uid://dcoxba7a6v2y7" path="res://Player/UI/inventory/drop_amount_pop_up.gd" id="20_pbu8b"]
+[ext_resource type="Texture2D" uid="uid://noitn23wqr58" path="res://Player/UI/inventory/textures/AdobeStock_1863314883.jpeg" id="21_thcbn"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ldn6o"]
 
@@ -26,7 +28,7 @@
 noise_type = 2
 frequency = 0.0768
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_heia8"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_by6k1"]
 width = 256
 height = 256
 noise = SubResource("FastNoiseLite_ushjy")
@@ -34,7 +36,7 @@ in_3d_space = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_heia8"]
 shader = ExtResource("5_thcbn")
-shader_parameter/textureNoise = SubResource("NoiseTexture2D_heia8")
+shader_parameter/textureNoise = SubResource("NoiseTexture2D_by6k1")
 shader_parameter/radius = 0.4150000197125
 shader_parameter/effectControl = 0.022000001045
 shader_parameter/burnSpeed = 0.010000000475
@@ -119,6 +121,53 @@ grow_begin = -100.0
 grow_end = -100.0
 thickness = 2
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_g2448"]
+noise_type = 2
+frequency = 0.0768
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yl3lq"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_g2448")
+in_3d_space = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h6vk2"]
+shader = ExtResource("5_thcbn")
+shader_parameter/textureNoise = SubResource("NoiseTexture2D_yl3lq")
+shader_parameter/radius = 0.4150000197125
+shader_parameter/effectControl = 0.022000001045
+shader_parameter/burnSpeed = 0.010000000475
+shader_parameter/shape = 1.0
+shader_parameter/my_color = Color(0.22670749, 0.22670752, 0.2267074, 1)
+shader_parameter/feather = 0.0110000005225
+shader_parameter/radius_scale = 0.10000000149012
+shader_parameter/rounded_corner_top_left = true
+shader_parameter/rounded_corner_top_right = true
+shader_parameter/rounded_corner_bottom_left = true
+shader_parameter/rounded_corner_bottom_right = true
+shader_parameter/width = 0.635
+shader_parameter/height = 0.3
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q3v0e"]
+texture = ExtResource("21_thcbn")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sd12b"]
+texture = ExtResource("13_g8av6")
+texture_margin_top = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2cesb"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_blend = true
+corner_detail = 5
+
 [node name="inventory" type="PanelContainer" unique_id=227349631 node_paths=PackedStringArray("equipped_items")]
 custom_minimum_size = Vector2(550, 0)
 custom_maximum_size = Vector2(1920, 1080)
@@ -183,7 +232,7 @@ custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
-texture = ExtResource("8_h6vk2")
+texture = ExtResource("9_by6k1")
 patch_margin_left = 24
 patch_margin_top = 24
 patch_margin_right = 24
@@ -479,7 +528,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("8_h6vk2")
+texture = ExtResource("9_by6k1")
 patch_margin_left = 24
 patch_margin_top = 24
 patch_margin_right = 24
@@ -586,7 +635,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("8_h6vk2")
+texture = ExtResource("9_by6k1")
 patch_margin_left = 24
 patch_margin_top = 24
 patch_margin_right = 24
@@ -1006,7 +1055,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(584, 920)
 layout_mode = 2
 size_flags_horizontal = 8
-texture = ExtResource("8_h6vk2")
+texture = ExtResource("9_by6k1")
 patch_margin_left = 24
 patch_margin_top = 24
 patch_margin_right = 24
@@ -1471,6 +1520,116 @@ unique_name_in_owner = true
 stream = ExtResource("18_hmctt")
 bus = &"SFX"
 
+[node name="dropAmountPopUp" type="MarginContainer" parent="." unique_id=1673186547]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+script = ExtResource("20_pbu8b")
+
+[node name="tweenBox" type="PanelContainer" parent="dropAmountPopUp" unique_id=2112055348]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_h6vk2")
+custom_minimum_size = Vector2(500, 200)
+custom_maximum_size = Vector2(500, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_position = Vector2(0, 30)
+theme_override_styles/panel = SubResource("StyleBoxTexture_q3v0e")
+
+[node name="MarginContainer" type="MarginContainer" parent="dropAmountPopUp/tweenBox" unique_id=1159328329]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="NinePatchRect" type="NinePatchRect" parent="dropAmountPopUp/tweenBox/MarginContainer" unique_id=895478186]
+layout_mode = 2
+texture = ExtResource("9_by6k1")
+patch_margin_left = 24
+patch_margin_top = 24
+patch_margin_right = 24
+patch_margin_bottom = 24
+
+[node name="MarginContainer" type="MarginContainer" parent="dropAmountPopUp/tweenBox/MarginContainer/NinePatchRect" unique_id=700247631]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="dropAmountPopUp/tweenBox/MarginContainer/NinePatchRect/MarginContainer" unique_id=318066995]
+layout_mode = 2
+
+[node name="messageText" type="Label" parent="dropAmountPopUp/tweenBox/MarginContainer/NinePatchRect/MarginContainer/VBoxContainer" unique_id=1643677032]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_fonts/font = ExtResource("10_sd12b")
+theme_override_font_sizes/font_size = 24
+text = "Select Amount to Drop"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="dropAmountSlider" type="HSlider" parent="dropAmountPopUp/tweenBox/MarginContainer/NinePatchRect/MarginContainer/VBoxContainer" unique_id=700048642]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 1.0
+value = 1.0
+rounded = true
+
+[node name="sliderValue" type="Label" parent="dropAmountPopUp/tweenBox/MarginContainer/NinePatchRect/MarginContainer/VBoxContainer" unique_id=1556905930]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_fonts/font = ExtResource("10_sd12b")
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator8" type="HSeparator" parent="dropAmountPopUp/tweenBox/MarginContainer/NinePatchRect/MarginContainer/VBoxContainer" unique_id=1442221191]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_constants/separation = 24
+theme_override_styles/separator = SubResource("StyleBoxTexture_sd12b")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="dropAmountPopUp/tweenBox/MarginContainer/NinePatchRect/MarginContainer/VBoxContainer" unique_id=688769836]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 50
+
+[node name="Confirm" type="Button" parent="dropAmountPopUp/tweenBox/MarginContainer/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1604102567]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+theme = ExtResource("6_g2448")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("10_sd12b")
+theme_override_styles/normal = SubResource("StyleBoxFlat_2cesb")
+text = "OK"
+
+[node name="Cancel" type="Button" parent="dropAmountPopUp/tweenBox/MarginContainer/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer" unique_id=448458225]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+theme = ExtResource("6_g2448")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("10_sd12b")
+theme_override_styles/normal = SubResource("StyleBoxFlat_2cesb")
+text = "Cancel"
+
 [connection signal="focused_item_changed" from="." to="MarginContainer/items/HBoxContainer/inventory_list_container/HBoxContainer/itemInfo/item_stats/MarginContainer/ScrollContainer/items/HBoxContainer/HBoxContainer/strikeValue" method="_on_inventory_focused_item_changed"]
 [connection signal="focused_item_changed" from="." to="MarginContainer/items/HBoxContainer/inventory_list_container/HBoxContainer/itemInfo/item_stats/MarginContainer/ScrollContainer/items/HBoxContainer/HBoxContainer2/slashValue" method="_on_inventory_focused_item_changed"]
 [connection signal="focused_item_changed" from="." to="MarginContainer/items/HBoxContainer/inventory_list_container/HBoxContainer/itemInfo/item_stats/MarginContainer/ScrollContainer/items/HBoxContainer2/HBoxContainer/thrustValue" method="_on_inventory_focused_item_changed"]
@@ -1487,3 +1646,6 @@ bus = &"SFX"
 [connection signal="pressed" from="MarginContainer/items/HBoxContainer/equipment/leg_button" to="." method="_on_leg_button_pressed"]
 [connection signal="pressed" from="MarginContainer/items/HBoxContainer/equipment/chest_button" to="." method="_on_chest_button_pressed"]
 [connection signal="tab_changed" from="MarginContainer/items/HBoxContainer/menuRight/inventoryTabs" to="." method="_on_tab_bar_tab_changed"]
+[connection signal="value_changed" from="dropAmountPopUp/tweenBox/MarginContainer/NinePatchRect/MarginContainer/VBoxContainer/dropAmountSlider" to="dropAmountPopUp" method="_on_drop_amount_slider_value_changed"]
+[connection signal="pressed" from="dropAmountPopUp/tweenBox/MarginContainer/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer/Confirm" to="dropAmountPopUp" method="_on_confirm_pressed"]
+[connection signal="pressed" from="dropAmountPopUp/tweenBox/MarginContainer/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer/Cancel" to="dropAmountPopUp" method="_on_cancel_pressed"]

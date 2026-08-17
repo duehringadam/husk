@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://cqebuck4snj2y" path="res://scenes/npc/cleanser_knight/pyramid_final.tscn" id="12_jvck6"]
 [ext_resource type="Script" uid="uid://bhg2f71yxm1lc" path="res://components/current_level_area_component.gd" id="13_07jwy"]
 [ext_resource type="PackedScene" uid="uid://dde8d0d27fgyo" path="res://scenes/npc/undead/feral husk/shambler.tscn" id="13_jvck6"]
-[ext_resource type="PackedScene" uid="uid://bgo71k4srphvm" path="res://scenes/npc/Corpse Crawler/corpse_crawler.tscn" id="14_07jwy"]
 [ext_resource type="PackedScene" uid="uid://bych3ad16mxen" path="res://scenes/checkpoint/checkpoint.tscn" id="14_urhrq"]
 [ext_resource type="PackedScene" uid="uid://d0c1n7fh0rjts" path="res://item/weapons/two hand/demon_cleaver/demon_cleaver_item_world.tscn" id="15_kfu6g"]
 [ext_resource type="PackedScene" uid="uid://csc3ojr7benhn" path="res://scenes/test/maptestflesh(2).tscn" id="15_urhrq"]
@@ -128,7 +127,6 @@ mouse_sensitivity = 300.0
 head_bob_strength = 0.05
 toggle_crouch = false
 jump_power = 4.5
-climb_speed = 1.5
 fov_change = 2.0
 crouch_height = 0.65
 
@@ -171,9 +169,6 @@ transform = Transform3D(-1.75, 0, 2.6424266e-07, 0, 1.75, 0, -2.6424266e-07, 0, 
 
 [node name="sword(1)" parent="." unique_id=1629618071 instance=ExtResource("20_8wsjh")]
 transform = Transform3D(0.1572791, 0.5648554, -0.8100627, 0.9875542, -0.08995958, 0.12901159, 0, -0.8202717, -0.5719741, -7.1202326, 10.099055, 28.94535)
-
-[node name="CorpseCrawler" parent="." unique_id=319898315 instance=ExtResource("14_07jwy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.0634937, 0.0054783374, -1.8493538)
 
 [node name="spell_merchant" parent="." unique_id=630712817 instance=ExtResource("12_ivea3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2262726, -0.045648456, 7.9631424)

@@ -26,7 +26,7 @@ func get_player_saved_position(saved_position: String, default = null):
 func set_inventory(inventory_list: String, default = null) -> void:
 	SaveConfig.set_config(INVENTORY_SECTION, inventory_list, default)
 	
-func get_inventory_from_config(inventory_list: String, default = null) -> String:
+func get_inventory_from_config(inventory_list: String, default = null) -> Array[Dictionary]:
 	return SaveConfig.get_config(INVENTORY_SECTION, inventory_list, default)
 #endregion
 
@@ -34,9 +34,14 @@ func get_inventory_from_config(inventory_list: String, default = null) -> String
 func set_player_stats(player_stats: String, default = null) -> void:
 	return SaveConfig.set_config(PLAYER_STATS_SECTION, player_stats, default)
 
-
 func get_player_stats_from_config(player_stats: String, default = null) -> String:
 	return SaveConfig.get_config(PLAYER_STATS_SECTION, player_stats, default)
+	
+func set_player_currency(currency: String, default = null)-> void:
+	return SaveConfig.set_config(PLAYER_STATS_SECTION, currency, default)
+
+func get_player_currency_from_config(currency: String, default = null) -> int:
+	return SaveConfig.get_config(PLAYER_STATS_SECTION, currency, default)
 #endregion
 
 #region Enemy List
@@ -49,7 +54,6 @@ func set_enemy_list(enemy_list: String, default = null) -> void:
 func get_enemy_list_from_config(enemy_list: String, default = null) -> String:
 	return SaveConfig.get_config(ENEMY_LIST_SECTION, enemy_list, default)
 #endregion
-
 
 #region World Items
 func set_item_list(item_list: String, default = null)-> void:

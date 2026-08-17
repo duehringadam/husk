@@ -13,7 +13,7 @@ func _ready() -> void:
 	if shattered_mesh:
 		shattered_mesh_add = shattered_mesh.instantiate()
 	if item_to_loot:
-		item_to_loot.item_dropped_scene = load(get_scene_file_path())
+		item_to_loot.item_dropped_scene_path = get_scene_file_path()
 	if !is_dropped:
 		uid_string = item_to_loot.unique_id
 		var global_item_stored = Global.non_respawnable_items.has(uid_string)
