@@ -19,8 +19,9 @@ func _update_damage_resistances(resists: Dictionary[DamageTypes.DAMAGE_TYPES, fl
 func _update_blocking(value:bool):
 	is_blocking = value
 
-func take_damage(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float], status_types: Dictionary[Global.STATUS_TYPE, float], stance_damage: float, source: DamageComponent):
+func take_damage(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float], status_types: Dictionary[Global.STATUS_TYPE, float], stance_damage: float, source: DamageComponent, slow_amount: float):
 	if timer.time_left > 0: return 0
+	apply_slow.emit(slow_amount)
 	if is_blocking && is_facing(source): 
 		for i in damage_types:
 			player_camera.apply_shake(0.025)

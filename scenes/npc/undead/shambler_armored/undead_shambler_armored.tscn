@@ -53,6 +53,7 @@
 [ext_resource type="Script" uid="uid://dvqrit635k8bv" path="res://addons/convex_cone_shape3d_plugin/src/convex_cone_shape_3d.gd" id="33_lbatg"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://ddnap6t6fqsyv" path="res://scenes/npc/humanoid_animation_state_machines/humanoid_one_handed_weapon.tres" id="36_06x00"]
 [ext_resource type="Script" uid="uid://cj7a0vrr662fw" path="res://scenes/npc/undead/shambler_armored/scripts/dead.gd" id="45_lgk4g"]
+[ext_resource type="QuadMesh" uid="uid://dive7lbkclbk3" path="res://status_effects/burning_mesh.tres" id="51_gx7hk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4bal0"]
 resource_name = "soldier"
@@ -12216,43 +12217,43 @@ bones/0/name = "Hips"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0033899308, 1.1907399, 0.0033769382)
 bones/0/enabled = true
-bones/0/position = Vector3(0.009867307, 1.1027129, 0.013230275)
-bones/0/rotation = Quaternion(-0.065202035, -0.0042645657, 0.001560075, 0.99786174)
+bones/0/position = Vector3(0.010005726, 1.110677, 0.010972262)
+bones/0/rotation = Quaternion(-0.06917285, -0.0035495055, -0.0013599269, 0.99759746)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "Spine"
 bones/1/parent = 0
 bones/1/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11558792, -0.01996944)
 bones/1/enabled = true
 bones/1/position = Vector3(0, 0.11558792, -0.01996944)
-bones/1/rotation = Quaternion(0.04485163, 0.004948103, -0.0020787942, 0.99897933)
+bones/1/rotation = Quaternion(0.030462049, 0.0048709475, -0.0013685867, 0.99952316)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "Chest"
 bones/2/parent = 1
 bones/2/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1348526, -0.023297677)
 bones/2/enabled = true
 bones/2/position = Vector3(0, 0.1348526, -0.023297677)
-bones/2/rotation = Quaternion(0.08759809, 0.0018193903, -0.0035698013, 0.99614793)
+bones/2/rotation = Quaternion(0.06315979, 0.0017765268, -0.002628814, 0.9979985)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "UpperChest"
 bones/3/parent = 2
 bones/3/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3368087e-19, 0.15411712, -0.026625926)
 bones/3/enabled = true
 bones/3/position = Vector3(-4.3368087e-19, 0.15411712, -0.026625926)
-bones/3/rotation = Quaternion(0.1342674, -0.00568102, -0.0005390856, 0.99092877)
+bones/3/rotation = Quaternion(0.10945998, -0.0056466884, 5.8181886e-05, 0.9939752)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/name = "Neck"
 bones/4/parent = 3
 bones/4/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3368087e-19, 0.17338195, -0.029954158)
 bones/4/enabled = true
 bones/4/position = Vector3(4.3368087e-19, 0.17338195, -0.029954158)
-bones/4/rotation = Quaternion(-0.1140736, -0.0048193643, 0.0036731963, 0.99345386)
+bones/4/rotation = Quaternion(-0.0637931, -0.0048283, 0.002936078, 0.99794716)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/name = "Head"
 bones/5/parent = 4
 bones/5/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.033841398, 0.020622939)
 bones/5/enabled = true
 bones/5/position = Vector3(0, 0.033841398, 0.020622939)
-bones/5/rotation = Quaternion(0.0020558431, 0.001830316, 0.0026054403, 0.99999285)
+bones/5/rotation = Quaternion(0.00456797, 0.0014849077, 0.003798667, 0.99998134)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/name = "mixamorig_HeadTop_End"
 bones/6/parent = 5
@@ -12266,28 +12267,28 @@ bones/7/parent = 3
 bones/7/rest = Transform3D(0, 1, 0, 0, 0, 1, 1, 0, 0, 0.066787586, 0.1468936, -0.029997338)
 bones/7/enabled = true
 bones/7/position = Vector3(0.066787586, 0.1468936, -0.029997338)
-bones/7/rotation = Quaternion(0.4894406, 0.50724703, 0.50880027, -0.49423748)
+bones/7/rotation = Quaternion(0.48264873, 0.49728012, 0.5188719, -0.50053453)
 bones/7/scale = Vector3(1, 1, 1)
 bones/8/name = "LeftUpperArm"
 bones/8/parent = 7
 bones/8/rest = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -8.634261e-05, 0.13444424, -0.053107947)
 bones/8/enabled = true
 bones/8/position = Vector3(-8.634261e-05, 0.13444424, -0.053107947)
-bones/8/rotation = Quaternion(-0.029840346, 0.9797721, -0.17513743, 0.092104524)
+bones/8/rotation = Quaternion(-0.019399252, 0.9762522, -0.18525784, 0.11061121)
 bones/8/scale = Vector3(1, 1, 1)
 bones/9/name = "LeftLowerArm"
 bones/9/parent = 8
 bones/9/rest = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 0.012533672, 0.1726563, 0.21312018)
 bones/9/enabled = true
 bones/9/position = Vector3(0.012533672, 0.1726563, 0.21312018)
-bones/9/rotation = Quaternion(0.014001185, -0.72004443, 0.009160192, 0.69372624)
+bones/9/rotation = Quaternion(-0.038920872, -0.6688131, -0.025460616, 0.74197435)
 bones/9/scale = Vector3(1, 1, 1)
 bones/10/name = "LeftHand"
 bones/10/parent = 9
 bones/10/rest = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0.23140395, 0.28050676, 0.14955269)
 bones/10/enabled = true
 bones/10/position = Vector3(0.23140395, 0.28050676, 0.14955269)
-bones/10/rotation = Quaternion(0.04628593, 0.5767309, -0.17565273, 0.79648304)
+bones/10/rotation = Quaternion(0.033239413, 0.60100096, -0.16605969, 0.7810999)
 bones/10/scale = Vector3(1, 1, 1)
 bones/11/name = "LeftThumbMetacarpal"
 bones/11/parent = 10
@@ -12434,28 +12435,28 @@ bones/31/parent = 3
 bones/31/rest = Transform3D(0, -1, 0, 0, 0, 1, -1, 0, 0, -0.066787586, 0.1468936, -0.029910984)
 bones/31/enabled = true
 bones/31/position = Vector3(-0.066787586, 0.1468936, -0.029910984)
-bones/31/rotation = Quaternion(0.504761, -0.5032041, -0.49701428, -0.49495348)
+bones/31/rotation = Quaternion(0.49464837, -0.4914422, -0.5082511, -0.5054588)
 bones/31/scale = Vector3(1, 1, 1)
 bones/32/name = "RightUpperArm"
 bones/32/parent = 31
 bones/32/rest = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -8.636038e-05, 0.13444424, -0.053107906)
 bones/32/enabled = true
 bones/32/position = Vector3(-8.636038e-05, 0.13444424, -0.053107906)
-bones/32/rotation = Quaternion(0.06837333, 0.97977686, -0.1712973, -0.077586405)
+bones/32/rotation = Quaternion(0.061375473, 0.97542906, -0.18409279, -0.10431305)
 bones/32/scale = Vector3(1, 1, 1)
 bones/33/name = "RightLowerArm"
 bones/33/parent = 32
 bones/33/rest = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -0.0115900645, 0.17265628, 0.2131201)
 bones/33/enabled = true
 bones/33/position = Vector3(-0.0115900645, 0.17265628, 0.2131201)
-bones/33/rotation = Quaternion(0.0074229096, 0.7140212, -0.0048563895, 0.70006794)
+bones/33/rotation = Quaternion(-0.047077104, 0.6603508, 0.030798327, 0.74884725)
 bones/33/scale = Vector3(1, 1, 1)
 bones/34/name = "RightHand"
 bones/34/parent = 33
 bones/34/rest = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -0.23140386, 0.28050658, 0.14689298)
 bones/34/enabled = true
 bones/34/position = Vector3(-0.23140386, 0.28050658, 0.14689298)
-bones/34/rotation = Quaternion(0.06953169, -0.5848642, 0.22801033, 0.7753132)
+bones/34/rotation = Quaternion(0.11206751, -0.60465306, 0.21402326, 0.7589662)
 bones/34/scale = Vector3(1, 1, 1)
 bones/35/name = "RightThumbMetacarpal"
 bones/35/parent = 34
@@ -12602,21 +12603,21 @@ bones/55/parent = 0
 bones/55/rest = Transform3D(-1, 0, 0, 0, -1, 0, 0, 0, 1, 0.10079262, -0.06436287, 0.0037098324)
 bones/55/enabled = true
 bones/55/position = Vector3(0.10079262, -0.06436287, 0.0037098324)
-bones/55/rotation = Quaternion(0.031218018, 0.031767204, 0.9981091, -0.042364154)
+bones/55/rotation = Quaternion(0.032569073, 0.005079088, 0.9984856, -0.044047214)
 bones/55/scale = Vector3(1, 1, 1)
 bones/56/name = "LeftLowerLeg"
 bones/56/parent = 55
 bones/56/rest = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -0.022335269, 0.51203793, -0.012870914)
 bones/56/enabled = true
 bones/56/position = Vector3(-0.022335269, 0.51203793, -0.012870914)
-bones/56/rotation = Quaternion(-0.0002355704, 0.985818, -0.1677127, 0.005949776)
+bones/56/rotation = Quaternion(-0.00016530248, 0.99307644, -0.11739614, 0.0041652103)
 bones/56/scale = Vector3(1, 1, 1)
 bones/57/name = "LeftFoot"
 bones/57/parent = 56
 bones/57/rest = Transform3D(-1, 0, 0, 0, 0, -1, 0, -1, 0, 0.030733919, 0.47579297, 0.035698578)
 bones/57/enabled = true
 bones/57/position = Vector3(0.030733919, 0.47579297, 0.035698578)
-bones/57/rotation = Quaternion(-0.052122965, 0.65501684, -0.75290906, -0.036933716)
+bones/57/rotation = Quaternion(-0.052403606, 0.6748318, -0.7352449, -0.03564798)
 bones/57/scale = Vector3(1, 1, 1)
 bones/58/name = "LeftToes"
 bones/58/parent = 57
@@ -12637,21 +12638,21 @@ bones/60/parent = 0
 bones/60/rest = Transform3D(-1, 0, 0, 0, -1, 0, 0, 0, 1, -0.10079262, -0.06436287, 0.005949444)
 bones/60/enabled = true
 bones/60/position = Vector3(-0.10079262, -0.06436287, 0.005949444)
-bones/60/rotation = Quaternion(-0.04299867, 0.038819313, 0.9980305, 0.02407143)
+bones/60/rotation = Quaternion(-0.04668448, 0.011160366, 0.9986428, 0.020212637)
 bones/60/scale = Vector3(1, 1, 1)
 bones/61/name = "RightLowerLeg"
 bones/61/parent = 60
 bones/61/rest = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0.02233527, 0.51203793, -0.020991605)
 bones/61/enabled = true
 bones/61/position = Vector3(0.02233527, 0.51203793, -0.020991605)
-bones/61/rotation = Quaternion(0.0002644159, 0.9820007, -0.18875843, -0.006696366)
+bones/61/rotation = Quaternion(0.0001927025, 0.9905224, -0.13726504, -0.0048699738)
 bones/61/scale = Vector3(1, 1, 1)
 bones/62/name = "RightFoot"
 bones/62/parent = 61
 bones/62/rest = Transform3D(-1, 0, 0, 0, 0, -1, 0, -1, 0, -0.030733977, 0.47579366, 0.03381498)
 bones/62/enabled = true
 bones/62/position = Vector3(-0.030733977, 0.47579366, 0.03381498)
-bones/62/rotation = Quaternion(0.033649884, 0.64543515, -0.7612862, 0.052198555)
+bones/62/rotation = Quaternion(0.03479791, 0.665523, -0.74374384, 0.052090585)
 bones/62/scale = Vector3(1, 1, 1)
 bones/63/name = "RightToes"
 bones/63/parent = 62
@@ -12687,12 +12688,12 @@ secondary_limit_angle = 1.5707964
 secondary_damp_threshold = 1.0
 
 [node name="mainhand" type="BoneAttachment3D" parent="Standing Idle/GeneralSkeleton" unique_id=454599645]
-transform = Transform3D(-0.4710575, -0.66471326, 0.5798801, -0.09091329, -0.6172989, -0.78145826, 0.877405, -0.42083055, 0.23035212, -0.49191067, 1.0348122, -0.09821116)
+transform = Transform3D(-0.45086002, -0.62748027, 0.6348177, -0.14055803, -0.65242153, -0.74470776, 0.8814582, -0.4249877, 0.20595334, -0.48160952, 1.0245032, -0.124097966)
 bone_name = "RightHand"
 bone_idx = 34
 
 [node name="offhand" type="BoneAttachment3D" parent="Standing Idle/GeneralSkeleton" unique_id=398080404]
-transform = Transform3D(-0.33912104, 0.74969995, -0.5682841, 0.0059698224, -0.6023531, -0.7982073, -0.94072384, -0.2740816, 0.19979514, 0.484254, 1.0126724, -0.039711915)
+transform = Transform3D(-0.36687988, 0.7499166, -0.5504763, 0.0861239, -0.56181705, -0.8227661, -0.9262731, -0.34926552, 0.14153348, 0.4809711, 1.0043778, -0.061401613)
 bone_name = "LeftHand"
 bone_idx = 10
 
@@ -12701,11 +12702,11 @@ unique_name_in_owner = true
 top_level = true
 
 [node name="Physical Bone Hips" type="PhysicalBone3D" parent="Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D" unique_id=1585393074]
-transform = Transform3D(0.9999691, -0.007783501, 0.0011472583, 0.0035330586, 0.31396, -0.9494297, 0.0070296936, 0.9494043, 0.31397778, 0.011340215, 1.1603434, -0.0063316263)
+transform = Transform3D(0.9999793, -0.0049095736, -0.004170512, -0.0023691824, 0.32174093, -0.94682485, 0.00599033, 0.9468151, 0.32172263, 0.011803551, 1.1682435, -0.009076099)
 collision_mask = 15
 joint_type = 5
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0015389604, 0.00048993435, 0.06085647)
-body_offset = Transform3D(0.9999992, 0.0012560575, 0.00027154456, 3.0884752e-05, 0.18775477, -0.982216, -0.0012847045, 0.98221505, 0.18775457, 0.0015218183, 0.05968225, -0.011909276)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0015413054, 0.00046943035, 0.060962852)
+body_offset = Transform3D(0.99999934, 0.0012590112, 0.00027265446, 3.1122996e-05, 0.18798105, -0.98217285, -0.0012878207, 0.9821719, 0.18798083, 0.0015240917, 0.05978787, -0.011922896)
 gravity_scale = 1.5
 linear_damp = 1.0
 angular_damp = 1.0
@@ -12791,81 +12792,81 @@ can_bleed = true
 metadata/_custom_type_script = "uid://dpip2f2xmdb3b"
 
 [node name="head" type="CollisionShape3D" parent="Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D/Physical Bone Hips/hurtbox_component" unique_id=110368269 node_paths=PackedStringArray("bone_health_component")]
-transform = Transform3D(0.7362045, -0.17759502, -0.6530411, -0.032717932, 0.95448554, -0.29645753, 0.6759674, 0.23961964, 0.6968861, -0.106514245, 1.7429543, 0.21013176)
+transform = Transform3D(0.734425, -0.16832426, -0.6574848, -0.02666106, 0.9608536, -0.27577132, 0.67816556, 0.22006269, 0.70118725, -0.08190064, 1.757434, 0.18059823)
 shape = SubResource("SphereShape3D_ai6cu")
 debug_color = Color(0.9906158, 0, 0.28187194, 0.41960785)
 script = ExtResource("11_6vuvf")
 bone_health_component = NodePath("../../../Physical Bone Head/BoneHealthComponent")
 
 [node name="hip" type="CollisionShape3D" parent="Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D/Physical Bone Hips/hurtbox_component" unique_id=1484904674]
-transform = Transform3D(0.73049426, -0.6790942, -0.07217592, -0.029915456, 0.07376565, -0.99682695, 0.6822633, 0.7303354, 0.033569977, 0.061264172, 1.1545438, 0.0033810735)
+transform = Transform3D(0.73049414, -0.6790941, -0.072175935, -0.02991549, 0.07376568, -0.9968268, 0.6822635, 0.7303353, 0.033569947, 0.061264157, 1.1545438, 0.003381133)
 shape = SubResource("SphereShape3D_v386k")
 debug_color = Color(0.9923009, 0, 0.26025322, 0.41960785)
 script = ExtResource("11_6vuvf")
 
 [node name="chest" type="CollisionShape3D" parent="Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D/Physical Bone Hips/hurtbox_component" unique_id=685258081]
-transform = Transform3D(0.74032265, -0.6631921, 0.10999453, -0.038329165, -0.20499626, -0.978012, 0.6711582, 0.7198283, -0.177183, 0.05149068, 1.4346857, 0.023756713)
+transform = Transform3D(0.7395638, -0.67037666, 0.06033609, -0.03558555, -0.12845829, -0.9910762, 0.67214507, 0.730817, -0.11885881, 0.058398798, 1.4359517, 0.015600741)
 shape = SubResource("SphereShape3D_tmhhx")
 debug_color = Color(0.9923009, 0, 0.26025322, 0.41960785)
 script = ExtResource("11_6vuvf")
 
 [node name="spine" type="CollisionShape3D" parent="Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D/Physical Bone Hips/hurtbox_component" unique_id=1138777267]
-transform = Transform3D(0.7366513, -0.67626494, -0.0032811314, -0.032622665, -0.030688703, -0.9989965, 0.6754857, 0.736019, -0.04466848, 0.06376994, 1.2916663, 0.0069588423)
+transform = Transform3D(0.73641044, -0.6761883, -0.02165316, -0.031388655, -0.0021776408, -0.9995048, 0.67580634, 0.73672545, -0.022828266, 0.0652453, 1.291692, 0.005202934)
 shape = SubResource("SphereShape3D_qw8uh")
 debug_color = Color(0.9923009, 0, 0.26025322, 0.41960785)
 script = ExtResource("11_6vuvf")
 
 [node name="upperarm_L" type="CollisionShape3D" parent="Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D/Physical Bone Hips/hurtbox_component" unique_id=288917436 node_paths=PackedStringArray("bone_health_component")]
-transform = Transform3D(-0.5233275, -0.56482995, -0.6380404, -0.37816808, 0.8249288, -0.42009687, 0.7636212, 0.021438286, -0.64530855, 0.25588277, 1.4560329, 0.17704126)
+transform = Transform3D(-0.5545903, -0.47076723, -0.68615425, -0.25521237, 0.88107115, -0.3982212, 0.7920203, -0.045734577, -0.60877913, 0.2601914, 1.4526491, 0.16505632)
 shape = SubResource("CapsuleShape3D_32xxe")
 debug_color = Color(0.98617727, 0, 0.3310366, 0.41960785)
 script = ExtResource("11_6vuvf")
 bone_health_component = NodePath("../../../Physical Bone LeftUpperArm/BoneHealthComponent")
 
 [node name="forearm_L" type="CollisionShape3D" parent="Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D/Physical Bone Hips/hurtbox_component" unique_id=796533663 node_paths=PackedStringArray("bone_health_component")]
-transform = Transform3D(-0.5134821, -0.3217053, -0.7955135, -0.025637448, 0.9324011, -0.36051428, 0.85771763, -0.16472256, -0.4870187, 0.40431684, 1.1577036, 0.20051426)
+transform = Transform3D(-0.46736613, -0.36792657, -0.80386466, -0.06449355, 0.92105025, -0.38406557, 0.88170844, -0.12765515, -0.45419645, 0.40755916, 1.1490211, 0.18803349)
 shape = SubResource("CapsuleShape3D_jlp0r")
 debug_color = Color(0.9924596, 0, 0.25810924, 0.41960785)
 script = ExtResource("11_6vuvf")
 bone_health_component = NodePath("../../../Physical Bone LeftUpperArm/BoneHealthComponent")
 
 [node name="upperarm_R" type="CollisionShape3D" parent="Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D/Physical Bone Hips/hurtbox_component" unique_id=459767467 node_paths=PackedStringArray("bone_health_component")]
-transform = Transform3D(0.85255075, 0.13110197, 0.5059345, 0.16910902, 0.84675753, -0.5043847, -0.4945296, 0.5155716, 0.6997331, -0.11808431, 1.4749377, -0.1658099)
+transform = Transform3D(0.86347425, 0.19445482, 0.4654026, 0.042764008, 0.89115286, -0.45168328, -0.5025768, 0.40991932, 0.7611718, -0.10752268, 1.4698949, -0.17276578)
 shape = SubResource("CapsuleShape3D_lbatg")
 debug_color = Color(0.9924596, 0, 0.25810924, 0.41960785)
 script = ExtResource("11_6vuvf")
 bone_health_component = NodePath("../../../Physical Bone RightUpperArm/BoneHealthComponent")
 
 [node name="forearm_R" type="CollisionShape3D" parent="Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D/Physical Bone Hips/hurtbox_component" unique_id=209405188 node_paths=PackedStringArray("bone_health_component")]
-transform = Transform3D(0.39917052, 0.33374077, 0.853979, 0.19674239, 0.8785271, -0.43529648, -0.8955196, 0.3417713, 0.28502086, -0.16020885, 1.2025486, -0.3544555)
+transform = Transform3D(0.4617532, 0.28265405, 0.8407678, 0.23170999, 0.8765192, -0.42192936, -0.8562093, 0.38964143, 0.33924162, -0.14239012, 1.1880598, -0.360221)
 shape = SubResource("CapsuleShape3D_51ufe")
 debug_color = Color(0.9924596, 0, 0.25810924, 0.41960785)
 script = ExtResource("11_6vuvf")
 bone_health_component = NodePath("../../../Physical Bone RightUpperArm/BoneHealthComponent")
 
 [node name="thigh_L" type="CollisionShape3D" parent="Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D/Physical Bone Hips/hurtbox_component" unique_id=2111595839 node_paths=PackedStringArray("bone_health_component")]
-transform = Transform3D(0.4858015, -0.13732052, 0.8632151, 0.18256491, 0.98174095, 0.053431496, -0.8547907, 0.1316357, 0.50200105, 0.1678677, 0.7280414, 0.072413385)
+transform = Transform3D(0.47462228, -0.17419133, 0.8627809, 0.23300992, 0.9701162, 0.06768131, -0.84878737, 0.16891347, 0.5010271, 0.17931044, 0.7293769, 0.061013788)
 shape = SubResource("CapsuleShape3D_erwj1")
 debug_color = Color(0.9924596, 0, 0.25810924, 0.41960785)
 script = ExtResource("11_6vuvf")
 bone_health_component = NodePath("../../../Physical Bone LeftUpperLeg/BoneHealthComponent")
 
 [node name="calf_L" type="CollisionShape3D" parent="Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D/Physical Bone Hips/hurtbox_component" unique_id=631861157 node_paths=PackedStringArray("bone_health_component")]
-transform = Transform3D(0.6993545, -0.33312404, 0.6324015, 0.27441406, 0.942088, 0.19278793, -0.66000015, 0.038712822, 0.7502674, 0.29256392, 0.2592484, 0.0066197217)
+transform = Transform3D(0.71094394, -0.30744478, 0.6324841, 0.22895652, 0.9515652, 0.2051886, -0.66493416, -0.0010662638, 0.74690115, 0.30538687, 0.2569281, -0.0018468201)
 shape = SubResource("CapsuleShape3D_ma1ph")
 debug_color = Color(0.9924596, 0, 0.25810924, 0.41960785)
 script = ExtResource("11_6vuvf")
 bone_health_component = NodePath("../../../Physical Bone LeftUpperLeg/BoneHealthComponent")
 
 [node name="thigh_R" type="CollisionShape3D" parent="Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D/Physical Bone Hips/hurtbox_component" unique_id=1788825931 node_paths=PackedStringArray("bone_health_component")]
-transform = Transform3D(-0.49179706, 0.05838813, 0.86875015, -0.1788729, -0.9832432, -0.035176348, 0.85213864, -0.1726955, 0.49400008, -0.018804833, 0.7432787, -0.117417395)
+transform = Transform3D(-0.4922046, 0.10372919, 0.86427695, -0.2289564, -0.9733419, -0.013571359, 0.8398294, -0.20456162, 0.5028329, -0.005423531, 0.745011, -0.12708677)
 shape = SubResource("CapsuleShape3D_pasl2")
 debug_color = Color(0.9924596, 0, 0.25810924, 0.41960785)
 script = ExtResource("11_6vuvf")
 bone_health_component = NodePath("../../../Physical Bone RightUpperLeg/BoneHealthComponent")
 
 [node name="calf_R" type="CollisionShape3D" parent="Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D/Physical Bone Hips/hurtbox_component" unique_id=389508033 node_paths=PackedStringArray("bone_health_component")]
-transform = Transform3D(-0.7821959, 0.13051333, 0.6092093, -0.26656446, -0.95390135, -0.13789809, 0.5631279, -0.27025694, 0.7809278, 0.020578086, 0.26177377, -0.24236427)
+transform = Transform3D(-0.789209, 0.09883463, 0.60611933, -0.22037464, -0.96680814, -0.12929398, 0.5732224, -0.2356133, 0.78479445, 0.035174146, 0.2587755, -0.24995355)
 shape = SubResource("CapsuleShape3D_k37tl")
 debug_color = Color(0.9924596, 0, 0.25810924, 0.41960785)
 script = ExtResource("11_6vuvf")
@@ -12875,11 +12876,11 @@ bone_health_component = NodePath("../../../Physical Bone RightUpperLeg/BoneHealt
 remote_path = NodePath("../hurtbox_component/hip")
 
 [node name="Physical Bone Spine" type="PhysicalBone3D" parent="Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D" unique_id=1841144054]
-transform = Transform3D(0.9999985, 0.0014475255, -0.0010357872, -0.0013208655, 0.21342827, -0.97695786, -0.001193105, 0.9769577, 0.21342985, 0.011266803, 1.2936383, -0.038797952)
+transform = Transform3D(0.9999798, 0.0035431292, -0.005278636, -0.0059948647, 0.24910302, -0.9684585, -0.0021164494, 0.9684705, 0.24911924, 0.012380044, 1.3007143, -0.04485347)
 collision_mask = 15
 joint_type = 5
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0014373377, -5.4956414e-05, 0.080770485)
-body_offset = Transform3D(1.0000001, -3.2777898e-06, -2.5188783e-06, -1.9120707e-06, 0.17344208, -0.9848441, 3.6675483e-06, 0.984844, 0.1734421, 0.0014375411, 0.07955587, -0.013954874)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0014392904, -5.1676296e-05, 0.080858245)
+body_offset = Transform3D(0.99999994, -3.1366944e-06, -2.3414032e-06, -1.7630664e-06, 0.17338538, -0.98485404, 3.494788e-06, 0.984854, 0.17338538, 0.0014394794, 0.079642534, -0.01396874)
 gravity_scale = 1.5
 linear_damp = 1.0
 angular_damp = 1.0
@@ -12956,11 +12957,11 @@ shape = SubResource("CapsuleShape3D_hei1j")
 remote_path = NodePath("../../Physical Bone Hips/hurtbox_component/spine")
 
 [node name="Physical Bone Chest" type="PhysicalBone3D" parent="Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D" unique_id=707295356]
-transform = Transform3D(0.999952, 0.0056240824, -0.008024388, -0.008239599, 0.039349083, -0.9991916, -0.005303783, 0.9992097, 0.039393533, 0.009074601, 1.4373933, -0.05353725)
+transform = Transform3D(0.99992007, 0.0070988648, -0.010468313, -0.011272855, 0.124837026, -0.99211323, -0.005736044, 0.9921519, 0.12490706, 0.010641053, 1.4434395, -0.06919229)
 collision_mask = 15
 joint_type = 5
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.001528774, -0.00034271274, 0.08892887)
-body_offset = Transform3D(1, 0.00013546413, 4.5716457e-05, 2.1569955e-05, 0.17316654, -0.98489255, -0.00014133053, 0.9848924, 0.17316653, -0.0015327932, 0.087644696, -0.015061751)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0015309984, -0.00034909602, 0.08903681)
+body_offset = Transform3D(1.0000001, 0.00013395166, 4.522357e-05, 2.1334941e-05, 0.17323668, -0.9848802, -0.00013976032, 0.98488027, 0.17323667, -0.0015349784, 0.08775103, -0.015080407)
 gravity_scale = 1.5
 linear_damp = 1.0
 angular_damp = 1.0
@@ -13037,11 +13038,11 @@ shape = SubResource("CapsuleShape3D_47j7q")
 remote_path = NodePath("../../Physical Bone Hips/hurtbox_component/chest")
 
 [node name="Physical Bone UpperChest" type="PhysicalBone3D" parent="Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D" unique_id=540403933]
-transform = Transform3D(0.9998965, -0.00905064, -0.011188471, -0.013087479, -0.2485839, -0.96852195, 0.0059844693, 0.96856815, -0.24867658, 0.012589045, 1.6113412, -0.030358037)
+transform = Transform3D(0.99988794, -0.0076855104, -0.012844226, -0.013645129, -0.11531629, -0.9932351, 0.00615237, 0.9932991, -0.11540823, 0.014503652, 1.619522, -0.06638844)
 collision_mask = 15
 joint_type = 5
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00019601903, 0.0015817992, 0.109599106)
-body_offset = Transform3D(0.99999976, -0.00065561803, -0.00060134265, -0.00049463473, 0.15208638, -0.9883671, 0.00073944405, 0.98836684, 0.15208605, 0.00026296265, 0.10808349, -0.01823175)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0001959955, 0.001583999, 0.109815635)
+body_offset = Transform3D(0.9999997, -0.0006539435, -0.0006046695, -0.00049825595, 0.15198633, -0.98838264, 0.0007382482, 0.9883825, 0.15198599, 0.00026343344, 0.10829902, -0.01825589)
 gravity_scale = 1.5
 linear_damp = 1.0
 angular_damp = 1.0
@@ -13115,10 +13116,10 @@ transform = Transform3D(1, 5.005859e-09, 3.259629e-09, -4.656613e-09, -2.9802322
 shape = SubResource("CapsuleShape3D_mj0lv")
 
 [node name="Physical Bone Neck" type="PhysicalBone3D" parent="Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D" unique_id=945643701]
-transform = Transform3D(0.99999857, -0.0014032214, -0.0009165481, 0.0013707237, 0.9994023, -0.034543406, 0.0009644722, 0.034542102, 0.9994028, 0.01304216, 1.6759905, -0.015470095)
+transform = Transform3D(0.99999994, 0.0003134608, -3.956921e-05, -0.0003134543, 1, 0.0001630758, 3.9620325e-05, -0.0001630634, 1, 0.01506109, 1.6853763, -0.060420573)
 collision_mask = 15
 joint_type = 5
-body_offset = Transform3D(0.99982965, -0.008870324, 0.016185513, 0.0065135136, 0.9900943, 0.14025219, -0.017269272, -0.14012283, 0.98998344, 0, 0, 0)
+body_offset = Transform3D(0.9998298, -0.008867376, 0.016178366, 0.0065124, 0.990101, 0.14020611, -0.017261473, -0.14007692, 0.9899902, 0, 0, 0)
 gravity_scale = 1.5
 linear_damp = 1.0
 angular_damp = 1.0
@@ -13192,10 +13193,10 @@ transform = Transform3D(0.99999774, 0.0015261881, 8.1521284e-05, -0.001092714, 0
 shape = SubResource("CapsuleShape3D_6hdhf")
 
 [node name="Physical Bone Head" type="PhysicalBone3D" parent="Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D" unique_id=1680760005]
-transform = Transform3D(1, -1.4479273e-05, 0.00011921298, 1.487229e-05, 0.99999464, -0.0032974314, -0.000119164586, 0.0032974333, 0.9999946, 0.012840419, 1.7057192, 0.010735003)
+transform = Transform3D(0.9999998, -0.0006352226, -6.9587535e-05, 0.00063684006, 0.9996504, 0.02643433, 5.2771524e-05, -0.026434373, 0.99965054, 0.014934098, 1.715998, -0.035264295)
 collision_mask = 15
 joint_type = 5
-body_offset = Transform3D(0.9998957, -0.0022468932, 0.0142765585, -0.00028760283, 0.98455155, 0.17509508, -0.014449431, -0.1750809, 0.98444796, 0, 0, 0)
+body_offset = Transform3D(0.9998959, -0.0022464388, 0.014271829, -0.0002866358, 0.98455876, 0.17505512, -0.014444705, -0.17504096, 0.9844553, 0, 0, 0)
 gravity_scale = 1.5
 linear_damp = 1.0
 angular_damp = 1.0
@@ -13283,11 +13284,11 @@ max_health = 1.0
 metadata/_custom_type_script = "uid://b2errsixgk2ri"
 
 [node name="Physical Bone LeftShoulder" type="PhysicalBone3D" parent="Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D" unique_id=2259833]
-transform = Transform3D(-0.041958533, 0.3720578, -0.9272608, -0.4090793, 0.8403227, 0.35568523, 0.91153365, 0.3942472, 0.116942436, 0.15446776, 1.6178006, -0.034957122)
+transform = Transform3D(-0.04201675, 0.3793798, -0.92428654, -0.31349212, 0.8733791, 0.3727354, 0.9486608, 0.3054177, 0.08223603, 0.15622757, 1.6245795, -0.073250264)
 collision_mask = 15
 joint_type = 5
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0017982643, 0.0035985615, 0.082286865)
-body_offset = Transform3D(0.99993, 0.010823995, 0.0047280416, 0.0004197657, 0.36747676, -0.9300326, -0.011804193, 0.92996967, 0.36744642, 0.001370132, 0.07520782, -0.033603787)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.001822463, 0.0035905913, 0.08235115)
+body_offset = Transform3D(0.999929, 0.010924637, 0.0047513545, 0.0004047677, 0.36743993, -0.93004733, -0.011906445, 0.92998314, 0.3674096, 0.0013918281, 0.07527189, -0.033617496)
 gravity_scale = 1.5
 linear_damp = 1.0
 angular_damp = 1.0
@@ -13361,11 +13362,11 @@ transform = Transform3D(1, -5.2154064e-07, -2.9802322e-08, 1.7881393e-07, 1.4901
 shape = SubResource("CapsuleShape3D_sc27s")
 
 [node name="Physical Bone LeftUpperArm" type="PhysicalBone3D" parent="Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D" unique_id=901175359]
-transform = Transform3D(0.02843821, 0.94503444, -0.32573184, -0.30507725, 0.31852168, 0.8974808, 0.9519029, 0.07385063, 0.29736668, 0.26213863, 1.4599799, -0.08786978)
+transform = Transform3D(0.016688459, 0.95437646, -0.29813954, -0.16714409, 0.2966481, 0.9402461, 0.98579127, 0.034141, 0.16446894, 0.2594296, 1.4590409, -0.10379969)
 collision_mask = 15
 joint_type = 5
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.7390264e-05, 0.0018615797, 0.15440935)
-body_offset = Transform3D(-0.997273, -0.043556105, -0.059578896, 0.004596196, 0.7690574, -0.6391633, 0.07365908, -0.6376941, -0.76676005, 0.009183496, 0.09726158, 0.11958921)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0001084432, 0.0018694699, 0.15454361)
+body_offset = Transform3D(-0.9972643, -0.043596253, -0.059693128, 0.0046528503, 0.7689313, -0.6393148, 0.073771805, -0.63784343, -0.766625, 0.009198546, 0.09736502, 0.119677424)
 gravity_scale = 1.5
 linear_damp = 1.0
 angular_damp = 1.0
@@ -13453,11 +13454,11 @@ max_health = 125.0
 metadata/_custom_type_script = "uid://b2errsixgk2ri"
 
 [node name="Physical Bone LeftLowerArm" type="PhysicalBone3D" parent="Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D" unique_id=1835952148]
-transform = Transform3D(0.23675731, 0.8537533, -0.46373624, 0.34485903, 0.3723802, 0.8616295, 0.90830517, -0.3639207, -0.20626082, 0.40451428, 1.1599075, -0.07588676)
+transform = Transform3D(0.2880988, 0.8336593, -0.4711808, 0.3130925, 0.38299653, 0.8690724, 0.9049709, -0.39790186, -0.15067163, 0.40002596, 1.1527215, -0.08800694)
 collision_mask = 15
 joint_type = 5
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0007990375, -0.0025143474, 0.2218789)
-body_offset = Transform3D(-0.5537649, -0.5849121, -0.59264046, 0.013524249, 0.7053204, -0.7087598, 0.83256334, -0.40050107, -0.38267112, 0.13046622, 0.15902145, 0.0832344)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0008098781, -0.0025325082, 0.22211072)
+body_offset = Transform3D(-0.55390275, -0.58479357, -0.59262854, 0.013615444, 0.70533895, -0.7087397, 0.83247006, -0.40064186, -0.382727, 0.13059676, 0.15919393, 0.08331895)
 gravity_scale = 1.5
 linear_damp = 1.0
 angular_damp = 1.0
@@ -13535,11 +13536,11 @@ transform = Transform3D(0.9905355, 0.108288266, -0.08434141, -0.09186202, 0.0664
 remote_path = NodePath("../../Physical Bone Hips/hurtbox_component/forearm_L")
 
 [node name="Physical Bone RightShoulder" type="PhysicalBone3D" parent="Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D" unique_id=385642969]
-transform = Transform3D(0.011332311, -0.37531123, 0.9268296, 0.38756117, 0.8560861, 0.34192553, -0.9217743, 0.35532835, 0.15515749, -0.13324659, 1.6234885, -0.035303254)
+transform = Transform3D(0.011485267, -0.37618732, 0.92647254, 0.30125922, 0.8847849, 0.3555258, -0.9534732, 0.27502504, 0.12349189, -0.131367, 1.6308995, -0.07419686)
 collision_mask = 15
 joint_type = 5
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0037377847, -0.0017299242, 0.084774874)
-body_offset = Transform3D(0.99994683, -0.008585483, -0.005685538, -0.0019906363, 0.3805465, -0.9247596, 0.010103017, 0.9247218, 0.38050914, -0.0032704473, 0.07906214, -0.030695677)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0037600372, -0.0017254464, 0.08490523)
+body_offset = Transform3D(0.99994546, -0.008736879, -0.005751908, -0.0019943947, 0.38054454, -0.9247606, 0.01026848, 0.9247215, 0.3805064, -0.0032865405, 0.07918112, -0.030750036)
 gravity_scale = 1.5
 linear_damp = 1.0
 angular_damp = 1.0
@@ -13613,11 +13614,11 @@ transform = Transform3D(0.99999905, 1.4901161e-07, -1.2516975e-06, -1.3709068e-0
 shape = SubResource("CapsuleShape3D_dwdwq")
 
 [node name="Physical Bone RightUpperArm" type="PhysicalBone3D" parent="Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D" unique_id=1990879369]
-transform = Transform3D(0.15797243, -0.9256316, 0.34387636, 0.30784965, 0.37705943, 0.8735301, -0.9382288, -0.032131452, 0.34452036, -0.24091575, 1.4656376, -0.09828525)
+transform = Transform3D(0.15420416, -0.93382347, 0.32279235, 0.1683632, 0.3467567, 0.9227208, -0.97358876, -0.08794102, 0.2106928, -0.23559152, 1.4646631, -0.11417829)
 collision_mask = 15
 joint_type = 5
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0029363045, 0.0023793876, 0.15683034)
-body_offset = Transform3D(-0.9981327, 0.03155578, 0.052298784, -0.009210914, 0.7686649, -0.6395852, -0.060382754, -0.6388727, -0.766939, -0.005346298, 0.098504454, 0.12197673)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.002962695, 0.0024022758, 0.15698731)
+body_offset = Transform3D(-0.9981263, 0.0315321, 0.052438304, -0.009326309, 0.76858276, -0.6396827, -0.060473807, -0.63897294, -0.76684844, -0.0053507537, 0.09860337, 0.12209964)
 gravity_scale = 1.5
 linear_damp = 1.0
 angular_damp = 1.0
@@ -13705,11 +13706,11 @@ max_health = 125.0
 metadata/_custom_type_script = "uid://b2errsixgk2ri"
 
 [node name="Physical Bone RightLowerArm" type="PhysicalBone3D" parent="Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D" unique_id=50490751]
-transform = Transform3D(0.31576693, -0.77035224, 0.5539392, -0.32471338, 0.4608227, 0.8259563, -0.89154494, -0.44068116, -0.10463113, -0.402156, 1.1743709, -0.11482898)
+transform = Transform3D(0.38451895, -0.74289453, 0.5479534, -0.29208755, 0.4651785, 0.8356398, -0.87568843, -0.48136967, -0.0381203, -0.3930512, 1.1654238, -0.12974605)
 collision_mask = 15
 joint_type = 5
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0010911226, 0.0031222776, 0.22540486)
-body_offset = Transform3D(-0.55266786, 0.6014279, 0.5769252, -0.007926822, 0.6884288, -0.7252606, -0.833364, -0.40540126, -0.37570494, -0.13252258, 0.16131914, 0.08504218)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0011482835, 0.0031106696, 0.22563134)
+body_offset = Transform3D(-0.55285555, 0.60130525, 0.57687336, -0.007931381, 0.688466, -0.7252254, -0.83323944, -0.40552035, -0.37585312, -0.13266599, 0.16148287, 0.085108876)
 gravity_scale = 1.5
 linear_damp = 1.0
 angular_damp = 1.0
@@ -13787,11 +13788,11 @@ transform = Transform3D(0.7582061, 0.029988997, 0.6513249, 0.64188945, 0.1410323
 remote_path = NodePath("../../Physical Bone Hips/hurtbox_component/forearm_R")
 
 [node name="Physical Bone LeftUpperLeg" type="PhysicalBone3D" parent="Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D" unique_id=599779246]
-transform = Transform3D(-0.5808804, -0.802502, -0.13626678, -0.20827302, -0.015302785, 0.97795105, -0.78689283, 0.5964533, -0.15825042, 0.1499931, 0.74563843, 0.075677894)
+transform = Transform3D(-0.58716637, -0.79852384, -0.13264763, -0.16978459, -0.038732667, 0.98471975, -0.79146004, 0.6007158, -0.11283451, 0.14870301, 0.75066066, 0.060224645)
 collision_mask = 15
 joint_type = 5
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0005132174, -0.002596448, 0.3008114)
-body_offset = Transform3D(0.54122293, 0.8394157, 0.049588088, 0.0023795068, 0.05744261, -0.9983461, -0.84087574, 0.5404458, 0.029091865, -0.0130149275, 0.30046183, -0.006916374)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0005065766, -0.0026348394, 0.30114314)
+body_offset = Transform3D(0.54169667, 0.8391042, 0.049688123, 0.0024193674, 0.057555463, -0.99833935, -0.84057057, 0.5409172, 0.029147483, -0.013026744, 0.30079347, -0.0069265217)
 gravity_scale = 1.5
 linear_damp = 1.0
 angular_damp = 1.0
@@ -13879,11 +13880,11 @@ max_health = 125.0
 metadata/_custom_type_script = "uid://b2errsixgk2ri"
 
 [node name="Physical Bone LeftLowerLeg" type="PhysicalBone3D" parent="Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D" unique_id=709326484]
-transform = Transform3D(-0.78332937, -0.60822994, -0.12826313, 0.034616847, -0.24870531, 0.9679604, -0.6206422, 0.7537917, 0.2158732, 0.21130857, 0.2629106, 0.046314865)
+transform = Transform3D(-0.7799276, -0.6117988, -0.13196644, -0.0021359064, -0.20824984, 0.9780733, -0.6258661, 0.76310825, 0.16111305, 0.21028349, 0.26351443, 0.03670053)
 collision_mask = 15
 joint_type = 5
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0033552488, -0.00042800512, 0.28455013)
-body_offset = Transform3D(-0.7269587, -0.68312734, -0.069770835, 0.004126817, 0.09725785, -0.9952509, 0.6866687, -0.72379416, -0.06788325, 0.017121792, 0.28325427, 0.021310346)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.003388877, -0.00041294005, 0.28487942)
+body_offset = Transform3D(-0.72663033, -0.6834711, -0.069826126, 0.0041865185, 0.09722816, -0.9952534, 0.6870159, -0.72347355, -0.06778754, 0.017147332, 0.28358153, 0.021340735)
 gravity_scale = 1.5
 linear_damp = 1.0
 angular_damp = 1.0
@@ -13961,11 +13962,11 @@ transform = Transform3D(0.5739563, 0.21654323, -0.7897362, -0.79670274, -0.07528
 remote_path = NodePath("../../Physical Bone Hips/hurtbox_component/calf_L")
 
 [node name="Physical Bone RightUpperLeg" type="PhysicalBone3D" parent="Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D" unique_id=1649595394]
-transform = Transform3D(-0.74458253, 0.66143364, 0.09001386, 0.17288496, 0.060834438, 0.98306155, 0.64475405, 0.7475325, -0.15964817, -0.11750122, 0.7423575, 0.07398535)
+transform = Transform3D(-0.74924916, 0.6568121, 0.08499176, 0.13829651, 0.029660301, 0.98994666, 0.64768803, 0.7534708, -0.113057785, -0.116229385, 0.74868214, 0.058282435)
 collision_mask = 15
 joint_type = 5
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00095393695, 0.0003484646, 0.30187142)
-body_offset = Transform3D(0.6803701, -0.73150975, -0.044613294, -0.00069077313, 0.060234725, -0.9981841, 0.73286855, 0.6791653, 0.040476605, 0.013073355, 0.3013029, -0.013154507)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0009640502, 0.00036090706, 0.30218726)
+body_offset = Transform3D(0.6803737, -0.7315059, -0.044614367, -0.00071213394, 0.06021673, -0.99818504, 0.7328648, 0.6791707, 0.04044898, 0.013089985, 0.30161774, -0.013174802)
 gravity_scale = 1.5
 linear_damp = 1.0
 angular_damp = 1.0
@@ -14053,11 +14054,11 @@ max_health = 125.0
 metadata/_custom_type_script = "uid://b2errsixgk2ri"
 
 [node name="Physical Bone RightLowerLeg" type="PhysicalBone3D" parent="Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D" unique_id=1741960362]
-transform = Transform3D(-0.78707254, 0.6127261, 0.07129984, -0.095753066, -0.23553959, 0.96713626, 0.6093836, 0.7543791, 0.24405715, -0.15474977, 0.26037824, 0.038315304)
+transform = Transform3D(-0.78663236, 0.6126218, 0.07683879, -0.056667916, -0.19556284, 0.9790526, 0.6148157, 0.7658001, 0.18855204, -0.15396559, 0.2617891, 0.028428465)
 collision_mask = 15
 joint_type = 5
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00198285, -0.00057286303, 0.2839665)
-body_offset = Transform3D(-0.70904976, 0.70166075, 0.070148915, -0.0025820807, 0.0968955, -0.9952913, -0.7051538, -0.705892, -0.06689191, -0.018112049, 0.28269002, 0.019988896)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.002014664, -0.0005730875, 0.28427672)
+body_offset = Transform3D(-0.70868325, 0.70202285, 0.070226096, -0.0026311353, 0.096906655, -0.9952901, -0.70552176, -0.70553017, -0.06682895, -0.018133566, 0.28299862, 0.020014975)
 gravity_scale = 1.5
 linear_damp = 1.0
 angular_damp = 1.0
@@ -14135,7 +14136,7 @@ transform = Transform3D(0.74809694, 0.11205271, -0.6540605, 0.6349683, 0.1654733
 remote_path = NodePath("../../Physical Bone Hips/hurtbox_component/calf_R")
 
 [node name="head" type="BoneAttachment3D" parent="Standing Idle/GeneralSkeleton" unique_id=273031506]
-transform = Transform3D(0.9998972, -0.00028098538, -0.014329534, -0.0022790874, 0.9839688, -0.17832634, 0.014149924, 0.17834067, 0.98386717, 0.012840419, 1.7057192, 0.010735003)
+transform = Transform3D(0.9998958, -0.00092423125, -0.014402013, -0.0012316138, 0.98884165, -0.14896552, 0.01437899, 0.14896774, 0.9887375, 0.014934098, 1.715998, -0.035264295)
 bone_name = "Head"
 bone_idx = 5
 
@@ -14144,7 +14145,7 @@ transform = Transform3D(0.9999999, -0.0004482565, 0.00050673634, 0.00041697186, 
 top_level = false
 
 [node name="armL" type="BoneAttachment3D" parent="Standing Idle/GeneralSkeleton" unique_id=1824792691]
-transform = Transform3D(-0.042312656, 0.9990877, 0.005778944, -0.3982734, -0.022171589, 0.9169988, 0.91629046, 0.036498927, 0.39884824, 0.07958072, 1.6508284, -0.025554754)
+transform = Transform3D(-0.04226069, 0.99901223, 0.013725535, -0.30215734, -0.025874004, 0.9529067, 0.9523208, 0.03612335, 0.3029525, 0.08155027, 1.658982, -0.0671103)
 bone_name = "LeftShoulder"
 bone_idx = 7
 
@@ -14153,7 +14154,7 @@ transform = Transform3D(0.99703735, 0.0052837394, -0.07673706, -0.00034835562, 0
 top_level = false
 
 [node name="armR" type="BoneAttachment3D" parent="Standing Idle/GeneralSkeleton" unique_id=1826878886]
-transform = Transform3D(0.009284464, -0.9999405, 0.0057232524, 0.37824678, 0.008810063, 0.925663, -0.92565835, -0.006429482, 0.378306, -0.053983107, 1.6524429, -0.026209883)
+transform = Transform3D(0.0094424365, -0.999944, 0.004778023, 0.29146737, 0.0073230863, 0.9565526, -0.9565341, -0.0076394645, 0.2915203, -0.052012358, 1.6606916, -0.06777139)
 bone_name = "RightShoulder"
 bone_idx = 31
 
@@ -14162,7 +14163,7 @@ transform = Transform3D(0.99971193, 0.0011185985, -0.02397129, 0.00031861523, 0.
 top_level = false
 
 [node name="LegL" type="BoneAttachment3D" parent="Standing Idle/GeneralSkeleton" unique_id=1972475220]
-transform = Transform3D(-0.9947758, 0.08856138, 0.050775222, -0.07707282, -0.9777079, 0.19531181, 0.066940434, 0.19037807, 0.9794259, 0.11078803, 1.0397501, 0.02612185)
+transform = Transform3D(-0.9947017, 0.085047364, 0.057753038, -0.075543605, -0.9857245, 0.15046687, 0.0697254, 0.14530678, 0.98692673, 0.11056361, 1.0472183, 0.024261583)
 bone_name = "LeftUpperLeg"
 bone_idx = 55
 
@@ -14171,7 +14172,7 @@ transform = Transform3D(0.9999999, -0.00012964594, 0.00050498755, 9.8399025e-05,
 top_level = false
 
 [node name="LegR" type="BoneAttachment3D" parent="Standing Idle/GeneralSkeleton" unique_id=1700980490]
-transform = Transform3D(-0.99445236, -0.04949478, -0.09281492, 0.02926714, -0.97773135, 0.20780954, -0.10103355, 0.20394027, 0.97375596, -0.09080841, 1.0393018, 0.026667677)
+transform = Transform3D(-0.99402344, -0.044752862, -0.09957298, 0.028230786, -0.98646235, 0.16153938, -0.10545434, 0.15776289, 0.98183006, -0.09103123, 1.0479754, 0.025014162)
 bone_name = "RightUpperLeg"
 bone_idx = 60
 
@@ -14180,7 +14181,7 @@ transform = Transform3D(0.9999999, -0.00012964586, 0.0005049861, 9.8399025e-05, 
 top_level = false
 
 [node name="infestation_attachment" parent="Standing Idle/GeneralSkeleton" unique_id=1837262394 node_paths=PackedStringArray("target_bone", "health_component") instance=ExtResource("18_1i30s")]
-transform = Transform3D(0.9999523, 0.00889863, 0.0040082345, -0.0082799485, 0.99091005, -0.13427079, -0.0051666284, 0.1342312, 0.99093664, 0.0098877745, 1.3485103, -0.05038458)
+transform = Transform3D(0.9999204, 0.011561151, 0.005038286, -0.011300999, 0.9987388, -0.048919298, -0.005597495, 0.048858464, 0.99879, 0.011237386, 1.355044, -0.058426104)
 linear_force = 16.0
 target_bone = NodePath("../PhysicalBoneSimulator3D/Physical Bone Chest")
 health_component = NodePath("../../../HealthComponent")
@@ -14641,7 +14642,10 @@ script = ExtResource("18_x72ub")
 metadata/_custom_type_script = "uid://dax72v211xr44"
 
 [node name="status_effect_component" type="GPUParticles3D" parent="." unique_id=1165865290 node_paths=PackedStringArray("hurtbox", "mesh_to_affect", "health_component")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3357736, 0)
+amount = 16
 process_material = ExtResource("28_7i0xt")
+draw_pass_1 = ExtResource("51_gx7hk")
 script = ExtResource("28_qw8uh")
 available_statuses = Dictionary[int, float]({
 0: 0.0,

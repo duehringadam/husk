@@ -8,7 +8,7 @@ var local_shape_idx: int
 var just_damaged:bool = false
 var limb_collider
 
-func take_damage(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float], status_types: Dictionary[Global.STATUS_TYPE, float], stance_damage: float, source: DamageComponent):
+func take_damage(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float], status_types: Dictionary[Global.STATUS_TYPE, float], stance_damage: float, source: DamageComponent, slow_amount: float):
 	var hit_dir = (global_position.direction_to(source.global_position)).normalized()
 	# take damage
 	var sum := 0.0

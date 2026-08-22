@@ -3,6 +3,7 @@ extends Area3D
 
 signal damage_taken(actual: float, source: DamageComponent, hit_dir: Vector3)
 signal apply_statuses(status_types: Global.STATUS_TYPE, application_amount: float)
+signal apply_slow(slow_amount: float)
 
 @onready var timer: Timer
 
@@ -64,9 +65,10 @@ func apply_status(status_types: Dictionary[Global.STATUS_TYPE, float]):
 	for i in status_types:
 		emit_signal("apply_statuses", i, status_types[i] * (1 - status_resistance_curve.sample(status_resistances[i])))
 
-func take_damage(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float], status_types: Dictionary[Global.STATUS_TYPE, float], stance_damage: float, source: DamageComponent):
+func take_damage(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float], status_types: Dictionary[Global.STATUS_TYPE, float], stance_damage: float, source: DamageComponent, slow_amount):
 	var hit_dir = (global_position.direction_to(source.global_position)).normalized()
 	if timer.time_left > 0: return 0
+	apply_slow.emit(slow_amount)
 	# take damage
 	var sum := 0.0
 	for i in damage_types:

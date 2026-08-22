@@ -2,6 +2,7 @@ class_name status_effect_component
 extends GPUParticles3D
 
 signal status_activated(effects: Array[status_effect])
+signal status_removed(effect: status_effect)
 
 @export var available_statuses: Dictionary[Global.STATUS_TYPE, float]
 @export var hurtbox: hurtbox_component
@@ -100,7 +101,8 @@ func check_status_type(status: Global.STATUS_TYPE) -> status_effect:
 			return burning_preload
 
 func remove_status(effect: status_effect):
-	if statuses.has(effect.effect_type): 
+	if statuses.has(effect.effect_type):
+		status_removed.emit(effect)
 		statuses.erase(effect.effect_type)
 		if is_instance_valid(child_damage_component):
 			child_damage_component.queue_free()

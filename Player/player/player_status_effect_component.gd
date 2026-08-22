@@ -2,6 +2,7 @@ extends status_effect_component
 
 signal statuses_increased(statuses: Dictionary[int,float])
 
+
 func _ready() -> void:
 	if hurtbox != null:
 		if !hurtbox.is_connected("apply_statuses", _on_status_increment):
@@ -82,18 +83,6 @@ func check_status_type(status: Global.STATUS_TYPE) -> status_effect:
 		_:
 			return burning_preload
 
-func remove_status(effect: status_effect):
-	if statuses.has(effect.effect_type): 
-		statuses.erase(effect.effect_type)
-		if is_instance_valid(child_damage_component):
-			child_damage_component.queue_free()
-		emitting = false
-		available_statuses[effect.effect_type] = 0
-		if mesh_to_affect:
-			var material = mesh_to_affect.get_surface_override_material(0).next_pass
-			var tween = get_tree().create_tween()
-			tween.tween_property(material, "shader_parameter/progress",0,1)
-	
 
 func increment_shader(_amount: float, new_value: float):
 	if not mesh_to_affect: return
