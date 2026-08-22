@@ -1,20 +1,24 @@
 [gd_scene format=3 uid="uid://r8h2k5l6aoy4"]
 
 [ext_resource type="Script" uid="uid://dixki0innbjf2" path="res://addons/game_pieces/pickable/item_world_pickable.gd" id="1_jqw0n"]
-[ext_resource type="Resource" uid="uid://cgk67iwvp47fb" path="res://item/consumables/throwing knife/throwing_knife.tres" id="2_r8x4n"]
+[ext_resource type="Resource" uid="uid://dxghkhcufj6jp" path="res://item/consumables/throwing knife/throwing_knife.tres" id="2_r8x4n"]
 [ext_resource type="Script" uid="uid://ck3cei0hvspym" path="res://addons/interaction_system/interaction_container.gd" id="2_usko3"]
 [ext_resource type="Script" uid="uid://5tinbhq6p45k" path="res://addons/interaction_system/interaction.gd" id="3_krj0w"]
 [ext_resource type="Script" uid="uid://bxe74cq2uqemi" path="res://addons/game_controls/vanilla/input_map_game_control.gd" id="4_76lam"]
 [ext_resource type="Script" uid="uid://doc0okecalxnp" path="res://addons/interaction_system/interaction_context.gd" id="5_83ph5"]
 [ext_resource type="AudioStream" uid="uid://dcr4in8lcdk51" path="res://sfx/UI/dark_souls_item.wav" id="6_lxr3h"]
 [ext_resource type="Script" uid="uid://cp0p4yckxtvmw" path="res://addons/game_pieces/collision_sound/collision_sound_player.gd" id="7_n5m01"]
-[ext_resource type="PackedScene" uid="uid://bvb1ic1mm6bap" path="res://item/item glint/item_glint.tscn" id="9_h48lg"]
+[ext_resource type="PackedScene" uid="uid://bvb1ic1mm6bap" path="res://shaders/item glint/item_glint.tscn" id="9_h48lg"]
 [ext_resource type="ArrayMesh" uid="uid://cxijj5wff5qg1" path="res://item/weapons/ranged/SM_ThrowingKnife/M_ThrowingKnife_Mesh.tres" id="9_mkyf6"]
+[ext_resource type="Texture2D" uid="uid://hqi3" path="res://item/weapons/ranged/SM_ThrowingKnife/Throwingknife_C.png" id="10_h5ds3"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="10_w5e0d"]
 [ext_resource type="PackedScene" uid="uid://dhws2ueoubwwx" path="res://components/bounding_box_component.tscn" id="11_ra23y"]
 [ext_resource type="Shader" uid="uid://bd6eynp1qsy0g" path="res://addons/GPUTrail-main/shaders/trail.gdshader" id="13_qwy8w"]
 [ext_resource type="Shader" uid="uid://bnbfs08hp70x0" path="res://addons/GPUTrail-main/shaders/trail_draw_pass.gdshader" id="14_h5ds3"]
 [ext_resource type="Script" uid="uid://dwsn7gxfshtf8" path="res://addons/GPUTrail-main/GPUTrail3D.gd" id="15_vmvb5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vmvb5"]
+albedo_texture = ExtResource("10_h5ds3")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ob0cg"]
 shader = ExtResource("13_qwy8w")
@@ -69,7 +73,6 @@ max_contacts_reported = 1
 angular_damp = 5.0
 script = ExtResource("1_jqw0n")
 item_to_loot = ExtResource("2_r8x4n")
-can_pin = true
 change_distance_interaction = NodePath("InteractionContainer/WhileGrabbed/Change Distance")
 throwable_mesh = NodePath("Throwing Knife")
 throwable = NodePath(".")
@@ -159,6 +162,7 @@ metadata/_custom_type_script = "uid://cp0p4yckxtvmw"
 [node name="Throwing Knife" type="MeshInstance3D" parent="." unique_id=1316351081]
 transform = Transform3D(3, 0, 0, 0, -1.3113416e-07, -3, 0, 3, -1.3113416e-07, 0, -0.00044437125, 0.05)
 mesh = ExtResource("9_mkyf6")
+surface_material_override/0 = SubResource("StandardMaterial3D_vmvb5")
 
 [node name="OmniLight3D" parent="Throwing Knife" unique_id=1151187837 instance=ExtResource("9_h48lg")]
 transform = Transform3D(0.33333334, 0, 0, 0, 0.33333334, 0, 0, 0, 0.33333334, 0, 0, 0)

@@ -1,18 +1,20 @@
 extends Resource
 class_name item
 
-signal stack_size_changed(amount: int)
+signal update_stack_size(value: int)
+signal set_stack_size(value: int)
 
 @export_category("Item Display")
 @export var item_name: String
 @export_multiline var item_description: String
 @export var item_icon: Texture2D
 @export var item_type: ItemEquippableType.ITEM_EQUIPPABLE_TYPES
+@export var item_cost: int
 
 @export_category("Item Stack")
 @export var is_stackable: bool
-@export_range(0,999,1.0,"or_less","prefer_slider") var max_stack_size: int
-@export var current_stack_size: int
+@export_range(0,999,1.0,"or_less","prefer_slider") var max_stack_size: int = 1
+@export var pick_up_stack_size: int = 1
 
 @export_category("Item Stats")
 @export var item_stats: ItemStat
@@ -27,7 +29,7 @@ signal stack_size_changed(amount: int)
 @export_category("Item Scenes")
 @export var item_scene: PackedScene
 @export var item_left_scene: PackedScene
-@export var item_dropped_scene: PackedScene
+@export_file("*.tscn") var item_dropped_scene_path: String
 
 @export_category("Misc")
 @export var two_handed: bool
@@ -50,7 +52,4 @@ func _init() -> void:
 func update_unique_id() -> void:
 	var int_id = ResourceUID.create_id()
 	unique_id = ResourceUID.id_to_text(int_id)
-
-func _update_stack_size(amount: int):
-	current_stack_size = clampi(current_stack_size+amount, 0, max_stack_size)
-	stack_size_changed.emit(current_stack_size)
+	

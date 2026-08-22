@@ -15,7 +15,7 @@ func _on_idle_state_exited() -> void:
 
 func _on_idle_state_input(event: InputEvent) -> void:
 	if event.is_action_pressed("attack_secondary"):
-		SignalBus.emit_signal("raidal_blur", true)
+		SignalBus.emit_signal("raidal_blur", true, 1)
 		GamePiecesEventBus.slow_player_requested(2)
 		firesfx.play()
 		AudioManager.play_sound(load("res://sfx/fire-magic-5-378639.mp3"), firesfx.global_position, -15)

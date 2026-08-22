@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://c6av3xe4m2ujl" path="res://addons/madtalk/runtime/madtalk_runtime.gd" id="1_qttj8"]
 [ext_resource type="FontFile" uid="uid://bgwsxfa2fbvel" path="res://addons/madtalk/fonts/ShipporiMincho-Regular.ttf" id="4_xcdg0"]
-[ext_resource type="PackedScene" uid="uid://4ggo1b35btnu" path="res://Player/UI/hud.tscn" id="5_svxpm"]
 [ext_resource type="AudioStream" uid="uid://clmll4t1gs143" path="res://sfx/vocal_samples/whisper_2.ogg" id="5_xcdg0"]
 [ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_menus_template/base/scripts/pause_menu_controller.gd" id="6_kthw8"]
 [ext_resource type="Script" uid="uid://ckv1vnt3qim3w" path="res://Globals/prototype_tutorial.gd" id="7_xcdg0"]
@@ -37,7 +36,7 @@ func _on_SheetID_text_entered(new_text):
 	$MadTalk.start_dialog(new_text)
 
 
-func _input(event):
+func _unhandled_input(event: InputEvent) -> void:
 	# How the user tells the dialog to continue is up to you
 	# it can be a key press, a mouse click, touch event, etc
 	# All you have to do is call dialog_acknowledge() 
@@ -122,7 +121,6 @@ AnimatedTextMilisecondPerCharacter = 25.0
 KeyPressAudioStreamPlayer = NodePath("../Dialog/SFXClick")
 
 [node name="Dialog" type="Control" parent="Scene" unique_id=1285987606]
-visible = false
 anchors_preset = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -306,8 +304,6 @@ custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Close"
-
-[node name="HUD" parent="." unique_id=1609284944 instance=ExtResource("5_svxpm")]
 
 [node name="enemyhealth" type="MarginContainer" parent="." unique_id=1446100428]
 visible = false

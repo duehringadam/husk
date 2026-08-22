@@ -1,0 +1,177 @@
+[gd_scene format=3 uid="uid://x4pvj5kuxkbt"]
+
+[ext_resource type="Script" uid="uid://crt0xlv38tb2o" path="res://Player/UI/pop up/context_pop_up.gd" id="1_im6s7"]
+[ext_resource type="Shader" uid="uid://211yn521kpxn" path="res://shaders/texture_edge_fade.gdshader" id="2_5k1fi"]
+[ext_resource type="Texture2D" uid="uid://de6tcw73ykju" path="res://Player/UI/HuskFrames/SVG/Option 1.svg" id="2_l4hyb"]
+[ext_resource type="FontFile" uid="uid://bgwsxfa2fbvel" path="res://addons/madtalk/fonts/ShipporiMincho-Regular.ttf" id="3_fwjpu"]
+[ext_resource type="Texture2D" uid="uid://noitn23wqr58" path="res://Player/UI/inventory/textures/AdobeStock_1863314883.jpeg" id="3_rr0dm"]
+[ext_resource type="Texture2D" uid="uid://dk2tidxm1p74q" path="res://assets/kenney_fantasy-ui-borders/PNG/Default/Divider Fade/divider-fade-002.png" id="4_l4hyb"]
+[ext_resource type="Theme" uid="uid://ctn68w4yfl5oa" path="res://Player/UI/UI_Theme.tres" id="7_3jmie"]
+[ext_resource type="AudioStream" uid="uid://b2fi41f2ilam2" path="res://sfx/UI/Fantasy_Game_UI_Shadow_Select.wav" id="8_rr0dm"]
+[ext_resource type="AudioStream" uid="uid://ccbatp2n6vtn4" path="res://sfx/UI/Fantasy_Game_UI_Shadow_Confirm.wav" id="9_3jmie"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ushjy"]
+noise_type = 2
+frequency = 0.0768
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_heia8"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_ushjy")
+in_3d_space = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ofwna"]
+shader = ExtResource("2_5k1fi")
+shader_parameter/textureNoise = SubResource("NoiseTexture2D_heia8")
+shader_parameter/radius = 0.4150000197125
+shader_parameter/effectControl = 0.022000001045
+shader_parameter/burnSpeed = 0.010000000475
+shader_parameter/shape = 1.0
+shader_parameter/my_color = Color(0.22670749, 0.22670752, 0.2267074, 1)
+shader_parameter/feather = 0.0110000005225
+shader_parameter/radius_scale = 0.10000000149012
+shader_parameter/rounded_corner_top_left = true
+shader_parameter/rounded_corner_top_right = true
+shader_parameter/rounded_corner_bottom_left = true
+shader_parameter/rounded_corner_bottom_right = true
+shader_parameter/width = 0.635
+shader_parameter/height = 0.3
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v4udn"]
+texture = ExtResource("3_rr0dm")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j8pub"]
+texture = ExtResource("4_l4hyb")
+texture_margin_top = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ild55"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_blend = true
+corner_detail = 5
+
+[node name="contextPopUp" type="Control" unique_id=454623377]
+visible = false
+z_index = 99
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = -180.0
+offset_bottom = -180.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+script = ExtResource("1_im6s7")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=127855965]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -290.0
+offset_top = -140.0
+offset_right = 290.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="tweenBox" type="PanelContainer" parent="MarginContainer" unique_id=1113524143]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+material = SubResource("ShaderMaterial_ofwna")
+custom_minimum_size = Vector2(500, 200)
+custom_maximum_size = Vector2(500, 200)
+layout_mode = 2
+size_flags_vertical = 8
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 30)
+theme_override_styles/panel = SubResource("StyleBoxTexture_v4udn")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/tweenBox" unique_id=1529476390]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/tweenBox/MarginContainer" unique_id=557161802]
+layout_mode = 2
+texture = ExtResource("2_l4hyb")
+patch_margin_left = 24
+patch_margin_top = 24
+patch_margin_right = 24
+patch_margin_bottom = 24
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/tweenBox/MarginContainer/NinePatchRect" unique_id=1947361286]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/tweenBox/MarginContainer/NinePatchRect/MarginContainer" unique_id=1611173932]
+layout_mode = 2
+
+[node name="messageText" type="Label" parent="MarginContainer/tweenBox/MarginContainer/NinePatchRect/MarginContainer/VBoxContainer" unique_id=1281303149]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_fonts/font = ExtResource("3_fwjpu")
+theme_override_font_sizes/font_size = 24
+text = "Does Not Open From This Side"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator8" type="HSeparator" parent="MarginContainer/tweenBox/MarginContainer/NinePatchRect/MarginContainer/VBoxContainer" unique_id=1394792275]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_constants/separation = 24
+theme_override_styles/separator = SubResource("StyleBoxTexture_j8pub")
+
+[node name="Confirm" type="Button" parent="MarginContainer/tweenBox/MarginContainer/NinePatchRect/MarginContainer/VBoxContainer" unique_id=68705628]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+theme = ExtResource("7_3jmie")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_fwjpu")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ild55")
+text = "OK"
+
+[node name="open" type="AudioStreamPlayer" parent="." unique_id=891005108]
+stream = ExtResource("8_rr0dm")
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="close" type="AudioStreamPlayer" parent="." unique_id=1875544817]
+stream = ExtResource("9_3jmie")
+volume_db = -5.0
+bus = &"SFX"
+
+[connection signal="pressed" from="MarginContainer/tweenBox/MarginContainer/NinePatchRect/MarginContainer/VBoxContainer/Confirm" to="." method="_on_confirm_pressed"]

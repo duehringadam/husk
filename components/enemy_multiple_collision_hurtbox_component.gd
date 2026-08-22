@@ -8,7 +8,7 @@ var local_shape_idx: int
 var just_damaged:bool = false
 var limb_collider
 
-func take_damage(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float], status_types: Dictionary[Global.STATUS_TYPE, float], stance_damage: float, source: DamageComponent):
+func take_damage(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float], status_types: Dictionary[Global.STATUS_TYPE, float], stance_damage: float, source: DamageComponent, slow_amount: float):
 	var hit_dir = (global_position.direction_to(source.global_position)).normalized()
 	# take damage
 	var sum := 0.0
@@ -35,8 +35,6 @@ func take_damage(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float], stat
 		for i in status_types:
 			if status_resistances.keys().has(i):
 				status_component._on_status_increment(i,(1-status_resistances[i]))
-			if status_weaknesses.keys().has(i):
-				status_component._on_status_increment(i,(1*status_weaknesses[i]))
 	if hit_sound != null:
 		AudioManager.play_sound(hit_sound,self.global_position,-10.0)
 	if damage_particles:

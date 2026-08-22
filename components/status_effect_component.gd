@@ -2,6 +2,7 @@ class_name status_effect_component
 extends GPUParticles3D
 
 signal status_activated(effects: Array[status_effect])
+signal status_removed(effect: status_effect)
 
 @export var available_statuses: Dictionary[Global.STATUS_TYPE, float]
 @export var hurtbox: hurtbox_component
@@ -48,7 +49,7 @@ func _on_status_increment(status_type: Global.STATUS_TYPE, application_amount: f
 					times_applied += 1
 
 func _apply_statuses(effects: Array[status_effect]):
-	mesh_to_affect.get_surface_override_material(0).next_pass = null
+	#mesh_to_affect.get_surface_override_material(0).next_pass = null
 	if effects.size() == 0:
 		return
 	status_activated.emit(effects)
@@ -100,18 +101,21 @@ func check_status_type(status: Global.STATUS_TYPE) -> status_effect:
 			return burning_preload
 
 func remove_status(effect: status_effect):
-	if statuses.has(effect.effect_type): 
+	if statuses.has(effect.effect_type):
+		status_removed.emit(effect)
 		statuses.erase(effect.effect_type)
 		if is_instance_valid(child_damage_component):
 			child_damage_component.queue_free()
 		emitting = false
 		available_statuses[effect.effect_type] = 0
-		var material = mesh_to_affect.get_surface_override_material(0).next_pass
-		var tween = get_tree().create_tween()
-		tween.tween_property(material, "shader_parameter/progress",0,1)
+		if mesh_to_affect:
+			var material = mesh_to_affect.get_surface_override_material(0).next_pass
+			var tween = get_tree().create_tween()
+			tween.tween_property(material, "shader_parameter/progress",0,1)
 	
 
 func increment_shader(_amount: float, new_value: float):
+	if not mesh_to_affect: return
 	if mesh_to_affect.get_surface_override_material(0).next_pass:
 		if health_component != null:
 			if new_value <= 0:

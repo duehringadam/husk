@@ -1,0 +1,140 @@
+[gd_scene format=3 uid="uid://18cnn4ekidb8"]
+
+[ext_resource type="Shader" uid="uid://211yn521kpxn" path="res://shaders/texture_edge_fade.gdshader" id="1_17hlg"]
+[ext_resource type="Script" uid="uid://7of3qi0jsykl" path="res://Player/UI/currency/player_currency.gd" id="1_r4sxh"]
+[ext_resource type="Texture2D" uid="uid://noitn23wqr58" path="res://Player/UI/inventory/textures/AdobeStock_1863314883.jpeg" id="2_r4sxh"]
+[ext_resource type="Texture2D" uid="uid://m1co4chjurpw" path="res://Player/UI/HuskFrames/SVG/Option 2.svg" id="3_nqyrx"]
+[ext_resource type="Texture2D" uid="uid://j6cqewu4o2xi" path="res://item/icons/potions/chemical.svg/icons/ffffff/000000/1x1/lorc/droplets.svg" id="4_geeaw"]
+[ext_resource type="FontFile" uid="uid://bgwsxfa2fbvel" path="res://addons/madtalk/fonts/ShipporiMincho-Regular.ttf" id="5_ta81f"]
+[ext_resource type="AudioStream" uid="uid://okoy7ao7ac4k" path="res://sfx/UI/IchorPickupExample.wav" id="7_nqyrx"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_kmb8e"]
+noise_type = 2
+frequency = 0.0768
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_56h8e"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_kmb8e")
+in_3d_space = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mrkp7"]
+shader = ExtResource("1_17hlg")
+shader_parameter/textureNoise = SubResource("NoiseTexture2D_56h8e")
+shader_parameter/radius = 0.422000020045
+shader_parameter/effectControl = 0.0510000024225
+shader_parameter/burnSpeed = 0.0250000011875
+shader_parameter/shape = 1.0
+shader_parameter/my_color = Color(0.22670749, 0.22670752, 0.2267074, 1)
+shader_parameter/feather = 0.05
+shader_parameter/radius_scale = 0.30000000447036
+shader_parameter/rounded_corner_top_left = true
+shader_parameter/rounded_corner_top_right = true
+shader_parameter/rounded_corner_bottom_left = true
+shader_parameter/rounded_corner_bottom_right = true
+shader_parameter/width = 0.635
+shader_parameter/height = 0.3
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_spsvl"]
+texture = ExtResource("2_r4sxh")
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_jonee"]
+content_margin_left = 0.0
+content_margin_top = 4.0
+content_margin_right = 0.0
+content_margin_bottom = 4.0
+color = Color(1, 1, 1, 1)
+thickness = 3
+vertical = true
+
+[node name="playerCurrency" type="MarginContainer" unique_id=415251137]
+custom_minimum_size = Vector2(250, 100)
+custom_maximum_size = Vector2(600, 175)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 80
+script = ExtResource("1_r4sxh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1594424140]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=841659138]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
+
+[node name="addedCurrency" type="Label" parent="VBoxContainer/MarginContainer" unique_id=374383458]
+unique_name_in_owner = true
+layout_mode = 2
+offset_transform_enabled = true
+theme_override_fonts/font = ExtResource("5_ta81f")
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 2
+
+[node name="tweenBox" type="PanelContainer" parent="VBoxContainer" unique_id=1037418923]
+material = SubResource("ShaderMaterial_mrkp7")
+custom_minimum_size = Vector2(250, 150)
+layout_mode = 2
+offset_transform_position = Vector2(0, 30)
+theme_override_styles/panel = SubResource("StyleBoxTexture_spsvl")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="VBoxContainer/tweenBox" unique_id=1524176048]
+layout_mode = 2
+texture = ExtResource("3_nqyrx")
+patch_margin_left = 24
+patch_margin_top = 24
+patch_margin_right = 24
+patch_margin_bottom = 24
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/tweenBox/NinePatchRect" unique_id=789382240]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/tweenBox/NinePatchRect/MarginContainer" unique_id=1415823003]
+layout_mode = 2
+
+[node name="currencyIcon" type="TextureRect" parent="VBoxContainer/tweenBox/NinePatchRect/MarginContainer/HBoxContainer" unique_id=1918456798]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("4_geeaw")
+expand_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/tweenBox/NinePatchRect/MarginContainer/HBoxContainer" unique_id=1260877965]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 4
+theme_override_styles/separator = SubResource("StyleBoxLine_jonee")
+
+[node name="currencyLabel" type="Label" parent="VBoxContainer/tweenBox/NinePatchRect/MarginContainer/HBoxContainer" unique_id=340040264]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("5_ta81f")
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 2
+
+[node name="currencyTimer" type="Timer" parent="." unique_id=2033083453]
+wait_time = 2.0
+one_shot = true
+
+[node name="currencyGain" type="AudioStreamPlayer" parent="." unique_id=1982625851]
+stream = ExtResource("7_nqyrx")
+bus = &"SFX"
+
+[connection signal="timeout" from="currencyTimer" to="." method="_on_currency_timer_timeout"]

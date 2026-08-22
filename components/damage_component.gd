@@ -18,8 +18,8 @@ var amount: float
 @export var damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float]
 @export var status_types: Dictionary[Global.STATUS_TYPE, float]
 @export_range(0.0,1.0) var stance_damage_value: float
-
-@export_range(0.1,1.0) var damage_interval: float
+@export_range(0.0,2.0) var slow_amount: float
+@export_range(0.01,1.0) var damage_interval: float = 0.1
 @export var source: Node3D
 
 var hits: Array
@@ -54,8 +54,8 @@ func _physics_process(_delta: float) -> void:
 						get_tree().create_timer(damage_interval).timeout.connect(func(): hits.clear())
 						for i in damage:
 							if i > 0:
-								var actual = other.take_damage(damage_types, status_types, stance_damage_value, self)
-								emit_signal("damage_dealt", damage_types, actual, stance_damage_value, other)
+								var actual = other.take_damage(damage_types, status_types, stance_damage_value, self, slow_amount)
+								emit_signal("damage_dealt", damage_types, actual, stance_damage_value, other, slow_amount)
 								invulnerability(damage_interval)
 								if hit_sound:
 									hit_sound.pitch_scale = randf_range(0.9,1.2)

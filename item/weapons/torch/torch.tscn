@@ -1,0 +1,270 @@
+[gd_scene format=3 uid="uid://bjs54af6e8ib1"]
+
+[ext_resource type="Script" uid="uid://br5vtfdsug6vl" path="res://item/weapons/torch/torch.gd" id="1_j5772"]
+[ext_resource type="ArrayMesh" uid="uid://cx8krbdibowew" path="res://item/weapons/torch/torch_new_mesh.tres" id="2_8yado"]
+[ext_resource type="Shader" uid="uid://cba8frjri8tvn" path="res://shaders/player_shaders/shaders/first_person_arms.gdshader" id="3_8yado"]
+[ext_resource type="Texture2D" uid="uid://q22kupkxmx3w" path="res://item/weapons/torch/torch2.png" id="4_37hdr"]
+[ext_resource type="Material" uid="uid://djkfuqngh8ec2" path="res://item/spells/flame_spray/flame_spray_transparent_flame.tres" id="5_7g3t6"]
+[ext_resource type="AudioStream" uid="uid://b1m60rkx5rn63" path="res://sfx/spells/fire/floraphonic-dragon-breathes-fire-3-191459.mp3" id="6_fx0yu"]
+[ext_resource type="Texture2D" uid="uid://bgpuc5rjm2yh5" path="res://scenes/misc/Textures/Fire_SubUV_new.png" id="7_8yado"]
+[ext_resource type="Texture2D" uid="uid://185sjxt7oawt" path="res://scenes/misc/Textures/T_Fire01_SubUV_normal.png" id="8_37hdr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y56or"]
+render_priority = 0
+shader = ExtResource("3_8yado")
+shader_parameter/albedo = Color(0.66245234, 0.66245234, 0.6624523, 1)
+shader_parameter/texture_albedo = ExtResource("4_37hdr")
+shader_parameter/albedo_texture_size = Vector2i(0, 0)
+shader_parameter/point_size = 0.0
+shader_parameter/roughness = 0.0
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
+shader_parameter/specular = 0.0
+shader_parameter/metallic = 0.0
+shader_parameter/normal_scale = 1.0
+shader_parameter/uv1_scale = Vector3(0, 0, 0)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(0, 0, 0)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/FOV = 75.0
+shader_parameter/progress = 0.0
+shader_parameter/noise_softness = 0.05
+
+[sub_resource type="Curve" id="Curve_tfl6a"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.48953974, 0.3820225), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_0eavj"]
+curve = SubResource("Curve_tfl6a")
+
+[sub_resource type="Gradient" id="Gradient_nd0mg"]
+colors = PackedColorArray(0.99999994, 0.86646223, 0.36267662, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mkrx0"]
+gradient = SubResource("Gradient_nd0mg")
+
+[sub_resource type="Curve" id="Curve_n1efj"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.20224726), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_rf353"]
+curve = SubResource("Curve_n1efj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kmm7d"]
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 0.05
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, 1, 0)
+gravity = Vector3(0, 4.8, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = -2.23517e-06
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_rf353")
+color_ramp = SubResource("GradientTexture1D_mkrx0")
+alpha_curve = SubResource("CurveTexture_0eavj")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+turbulence_noise_speed = Vector3(0, 1, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_281om"]
+material = ExtResource("5_7g3t6")
+size = Vector2(0.25, 0.25)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7g3t6"]
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 0.05
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, 1, 0)
+gravity = Vector3(0, 4.8, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = -2.23517e-06
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_rf353")
+color_ramp = SubResource("GradientTexture1D_mkrx0")
+alpha_curve = SubResource("CurveTexture_0eavj")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+turbulence_noise_speed = Vector3(0, 1, 0)
+
+[sub_resource type="Shader" id="Shader_ypiio"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.6.stable's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_burley, specular_schlick_ggx;
+
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color, filter_linear_mipmap, repeat_enable;
+uniform ivec2 albedo_texture_size;
+uniform float point_size : hint_range(0.1, 128.0, 0.1);
+
+uniform float roughness : hint_range(0.0, 1.0);
+uniform sampler2D texture_metallic : hint_default_white, filter_linear_mipmap, repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r, filter_linear_mipmap, repeat_enable;
+
+uniform float specular : hint_range(0.0, 1.0, 0.01);
+uniform float metallic : hint_range(0.0, 1.0, 0.01);
+
+uniform int particles_anim_h_frames : hint_range(1, 128);
+uniform int particles_anim_v_frames : hint_range(1, 128);
+uniform bool particles_anim_loop;
+
+uniform sampler2D texture_emission : source_color, hint_default_black, filter_linear_mipmap, repeat_enable;
+uniform vec4 emission : source_color;
+uniform float emission_energy : hint_range(0.0, 100.0, 0.01);
+
+uniform sampler2D texture_normal : hint_roughness_normal, filter_linear_mipmap, repeat_enable;
+uniform float normal_scale : hint_range(-16.0, 16.0);
+
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+void vertex() {
+	// Vertex Color is sRGB: Enabled
+	if (!OUTPUT_IS_SRGB) {
+		COLOR.rgb = mix(
+				pow((COLOR.rgb + vec3(0.055)) * (1.0 / (1.0 + 0.055)), vec3(2.4)),
+				COLOR.rgb * (1.0 / 12.92),
+				lessThan(COLOR.rgb, vec3(0.04045)));
+	}
+
+	UV = UV * uv1_scale.xy + uv1_offset.xy;
+
+	// Billboard Mode: Particles
+	mat4 mat_world = mat4(
+			normalize(INV_VIEW_MATRIX[0]),
+			normalize(INV_VIEW_MATRIX[1]),
+			normalize(INV_VIEW_MATRIX[2]),
+			MODEL_MATRIX[3]);
+	mat_world = mat_world * mat4(
+			vec4(cos(INSTANCE_CUSTOM.x), -sin(INSTANCE_CUSTOM.x), 0.0, 0.0),
+			vec4(sin(INSTANCE_CUSTOM.x), cos(INSTANCE_CUSTOM.x), 0.0, 0.0),
+			vec4(0.0, 0.0, 1.0, 0.0),
+			vec4(0.0, 0.0, 0.0, 1.0));
+	MODELVIEW_MATRIX = VIEW_MATRIX * mat_world;
+
+	// Billboard Keep Scale: Enabled
+	MODELVIEW_MATRIX = MODELVIEW_MATRIX * mat4(
+			vec4(length(MODEL_MATRIX[0].xyz), 0.0, 0.0, 0.0),
+			vec4(0.0, length(MODEL_MATRIX[1].xyz), 0.0, 0.0),
+			vec4(0.0, 0.0, length(MODEL_MATRIX[2].xyz), 0.0),
+			vec4(0.0, 0.0, 0.0, 1.0));
+
+	MODELVIEW_NORMAL_MATRIX = mat3(MODELVIEW_MATRIX);
+
+	float h_frames = float(particles_anim_h_frames);
+	float v_frames = float(particles_anim_v_frames);
+	float particle_total_frames = float(particles_anim_h_frames * particles_anim_v_frames);
+	float particle_frame = floor(INSTANCE_CUSTOM.z * float(particle_total_frames));
+	if (!particles_anim_loop) {
+		particle_frame = clamp(particle_frame, 0.0, particle_total_frames - 1.0);
+	} else {
+		particle_frame = mod(particle_frame, particle_total_frames);
+	}
+	UV /= vec2(h_frames, v_frames);
+	UV += vec2(mod(particle_frame, h_frames) / h_frames, floor((particle_frame + 0.5) / h_frames) / v_frames);
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+
+	vec4 albedo_tex = texture(texture_albedo, base_uv);
+
+	// Vertex Color Use as Albedo: Enabled
+	albedo_tex *= COLOR;
+
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+
+	float metallic_tex = dot(texture(texture_metallic, base_uv), metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	SPECULAR = specular;
+
+	vec4 roughness_texture_channel = vec4(1.0, 0.0, 0.0, 0.0);
+	float roughness_tex = dot(texture(texture_roughness, base_uv), roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+
+	// Normal Map: Enabled
+	NORMAL_MAP = texture(texture_normal, base_uv).rgb;
+	NORMAL_MAP_DEPTH = normal_scale;
+
+	// Emission: Enabled
+	vec3 emission_tex = texture(texture_emission, base_uv).rgb;
+	// Emission Operator: Add
+	EMISSION = (emission.rgb + emission_tex) * emission_energy;
+	ALPHA *= albedo.a * albedo_tex.a;
+	DEPTH = 1.0 - (1.0 - FRAGCOORD.z) * 0.6;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fx0yu"]
+render_priority = 0
+shader = SubResource("Shader_ypiio")
+shader_parameter/albedo = Color(0.14572594, 0.15511778, 0.13840595, 1)
+shader_parameter/texture_albedo = ExtResource("7_8yado")
+shader_parameter/albedo_texture_size = Vector2i(512, 512)
+shader_parameter/point_size = 0.0
+shader_parameter/roughness = 0.0
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/particles_anim_h_frames = 6
+shader_parameter/particles_anim_v_frames = 6
+shader_parameter/particles_anim_loop = true
+shader_parameter/emission = Color(0.11647535, 0.110223286, 0.10300217, 1)
+shader_parameter/emission_energy = 0.0
+shader_parameter/texture_normal = ExtResource("8_37hdr")
+shader_parameter/normal_scale = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_vqvll"]
+material = SubResource("ShaderMaterial_fx0yu")
+size = Vector2(0.25, 0.25)
+
+[node name="torch2" type="Node3D" unique_id=1499434917]
+transform = Transform3D(1.0000004, 0, 0, 0, 1.0000004, 0, 0, 0, 1.0000006, 0, 0, 0)
+script = ExtResource("1_j5772")
+
+[node name="torch" type="MeshInstance3D" parent="." unique_id=558480167]
+transform = Transform3D(0.15000002, 0, 0, 0, 0.15000005, 0, 0, 0, 0.15000002, 0.017662466, -0.0569582, -0.019008249)
+cast_shadow = 0
+mesh = ExtResource("2_8yado")
+surface_material_override/0 = SubResource("ShaderMaterial_y56or")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="torch" unique_id=322486797]
+transform = Transform3D(-0.062351882, 1.6576858, 6.456976, 2.2477472, 6.0843635, -1.5403192, -6.276, 2.162644, -0.6158135, 0.11984826, 2.6209245, 0.019013643)
+cast_shadow = 0
+amount = 16
+lifetime = 0.5
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_kmm7d")
+draw_pass_1 = SubResource("QuadMesh_281om")
+
+[node name="firesfx" type="AudioStreamPlayer3D" parent="torch/GPUParticles3D" unique_id=1790808893]
+stream = ExtResource("6_fx0yu")
+max_distance = 5.0
+bus = &"SFX"
+
+[node name="OmniLight3D" type="OmniLight3D" parent="torch/GPUParticles3D" unique_id=1600120640]
+transform = Transform3D(0.9999993, 8.940697e-08, 1.1175871e-07, -2.9802322e-08, 0.9999994, 3.5390258e-07, 4.4703484e-08, -4.0978193e-08, 1.0000005, -0.017653786, 0.061298758, 0.075301334)
+light_color = Color(1, 0.3882353, 0, 1)
+light_volumetric_fog_energy = 0.0
+shadow_enabled = true
+omni_range = 15.0
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="torch" unique_id=1823637282]
+transform = Transform3D(-0.062351882, 1.6576858, 6.456976, 2.2477472, 6.084364, -1.5403197, -6.276002, 2.162644, -0.6158135, 0.21131203, 2.9101725, 0.019013643)
+cast_shadow = 0
+amount = 16
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_7g3t6")
+draw_pass_1 = SubResource("QuadMesh_vqvll")

@@ -3,16 +3,31 @@ extends Area3D
 
 signal damage_taken(actual: float, source: DamageComponent, hit_dir: Vector3)
 signal apply_statuses(status_types: Global.STATUS_TYPE, application_amount: float)
+signal apply_slow(slow_amount: float)
 
 @onready var timer: Timer
 
 @export var is_blocking: bool = false
 
 ## Reduction on incoming damage. Zero takes full damage, one takes none. For more complex behavior, override [method reduce_damage]
-@export var damage_resistances: Dictionary[DamageTypes.DAMAGE_TYPES, float]: set = _update_damage_resistances
-@export var damage_weakness: Dictionary[DamageTypes.DAMAGE_TYPES, float]
-@export var status_resistances: Dictionary[Global.STATUS_TYPE, float]
-@export var status_weaknesses: Dictionary[Global.STATUS_TYPE, float]
+@export var damage_resistances: Dictionary[DamageTypes.DAMAGE_TYPES, float] = {
+	DamageTypes.DAMAGE_TYPES.STRIKE: 10,
+	DamageTypes.DAMAGE_TYPES.SLASH: 10,
+	DamageTypes.DAMAGE_TYPES.THRUST: 10,
+	DamageTypes.DAMAGE_TYPES.MAGIC: 10,
+	DamageTypes.DAMAGE_TYPES.HOLY: 10,
+	DamageTypes.DAMAGE_TYPES.MURK: 10,
+	DamageTypes.DAMAGE_TYPES.FIRE: 10
+}
+@export var status_resistances: Dictionary[Global.STATUS_TYPE, float] = {
+	Global.STATUS_TYPE.BURNING: 10,
+	Global.STATUS_TYPE.BLEEDING: 10,
+	Global.STATUS_TYPE.SLEEP: 10,
+	Global.STATUS_TYPE.POISONED: 10
+}
+
+@export var damage_resistance_curve: Curve = preload("res://components/resistances/resistance curve/damage_resistance_curve.tres")
+@export var status_resistance_curve: Curve = preload("res://components/resistances/resistance curve/status_resistance_curve.tres")
 
 ## Where to apply incoming damage
 @export var health_component: HealthComponent
@@ -35,6 +50,8 @@ func _ready():
 	
 ## start the invulnerability timer
 func invulnerability(duration: float):
+	if duration <= 0:
+		timer.start(0.25)
 	timer.start(duration)
 
 func _update_damage_resistances(resists: Dictionary[DamageTypes.DAMAGE_TYPES, float]):
@@ -42,25 +59,16 @@ func _update_damage_resistances(resists: Dictionary[DamageTypes.DAMAGE_TYPES, fl
 
 ## Override this to cusomize damage reduction (damage types, armor, etc)
 func modify_damage(damage_type: DamageTypes.DAMAGE_TYPES, amount: float, source: DamageComponent) -> float:
-	if damage_resistances.keys().has(damage_type):
-		return amount * (1 - damage_resistances[damage_type])
-	if damage_weakness.keys().has(damage_type):
-		return amount * (1 + damage_weakness[damage_type])
-	else:
-		return amount
+	return amount * (1 - damage_resistance_curve.sample(damage_resistances[damage_type]))
 
 func apply_status(status_types: Dictionary[Global.STATUS_TYPE, float]):
 	for i in status_types:
-		if status_resistances.keys().has(i):
-			emit_signal("apply_statuses", i,(1-status_resistances[i]))
-		if status_weaknesses.keys().has(i):
-			emit_signal("apply_statuses", i,(1*status_weaknesses[i]))
-		else:
-			emit_signal("apply_statuses", i,1)
+		emit_signal("apply_statuses", i, status_types[i] * (1 - status_resistance_curve.sample(status_resistances[i])))
 
-func take_damage(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float], status_types: Dictionary[Global.STATUS_TYPE, float], stance_damage: float, source: DamageComponent):
+func take_damage(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float], status_types: Dictionary[Global.STATUS_TYPE, float], stance_damage: float, source: DamageComponent, slow_amount):
 	var hit_dir = (global_position.direction_to(source.global_position)).normalized()
 	if timer.time_left > 0: return 0
+	apply_slow.emit(slow_amount)
 	# take damage
 	var sum := 0.0
 	for i in damage_types:
@@ -86,8 +94,6 @@ func take_damage(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float], stat
 		for i in status_types:
 			if status_resistances.keys().has(i):
 				status_component._on_status_increment(i,(1-status_resistances[i]))
-			if status_weaknesses.keys().has(i):
-				status_component._on_status_increment(i,(1*status_weaknesses[i]))
 	if hit_sound != null:
 		AudioManager.play_sound(hit_sound,self.global_position,-10.0)
 	if damage_particles:

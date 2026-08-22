@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="item" format=3 uid="uid://c8afm2d4w8gxb"]
+[gd_resource type="Resource" script_class="item" format=3 uid="uid://cxhjq8887wm37"]
 
 [ext_resource type="AnimationNodeStateMachine" uid="uid://cy3nqarb8txva" path="res://Player/hands/animations/hands/animation_state_machines/offhand_telekinesis_state_machine.tres" id="1_nt2pq"]
 [ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/scripts/item_stat.gd" id="2_nt2pq"]
@@ -19,12 +19,14 @@ item_name = "Telekinesis"
 item_description = "Manipulate objects with gravity magic"
 item_icon = ExtResource("2_w56sd")
 item_type = 1
+item_cost = 1
 item_stats = SubResource("Resource_cb3g8")
 item_required_stats = Dictionary[int, int]({
 2: 15
 })
 mana_cost = 10
 item_scene = ExtResource("2_vbd5e")
+item_dropped_scene_path = "res://item/spells/spell_item_world.tscn"
 animation_state_machine = ExtResource("1_nt2pq")
 can_be_dropped = false
 position = Vector3(0.05, 0.128, 0.04)

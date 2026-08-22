@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://c7ktlkec3d4im"]
+
+[ext_resource type="ArrayMesh" uid="uid://ddd7vl041uu0s" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Meshes/ceilingarc_fix.tres" id="1_faadj"]
+[ext_resource type="Material" uid="uid://bit3" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Structures/M_TW01_01_Part_02.tres" id="1_ltn6b"]
+[ext_resource type="Material" uid="uid://bigi" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Tiling/M_StoneWall_01_01.tres" id="2_faadj"]
+[ext_resource type="Material" uid="uid://bieg" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Trim/M_StructureTrim_01_01.tres" id="3_0eu4k"]
+[ext_resource type="Material" uid="uid://bi8e" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Trim/M_StructureTrim_02_01.tres" id="4_q65w7"]
+[ext_resource type="Material" uid="uid://bie3" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Structures/M_TW02_01_Part_02.tres" id="5_uypss"]
+[ext_resource type="Material" uid="uid://bijo" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Structures/M_TW02_01_Part_01.tres" id="6_kty8s"]
+[ext_resource type="Material" uid="uid://biy7" path="res://scenes/dungeons/MeshingunStudio/TheDungeons_MGS/HDRP(Default)/Art/Environments/Assets/Materials/MaterialInstances/Structures/M_TW01_01_Part_01.tres" id="7_1dola"]
+
+[node name="SM_tombwall_02_ceilingarc_06_split" type="Node3D" unique_id=1970586268]
+
+[node name="bottom_tomb" type="MeshInstance3D" parent="." unique_id=888859636]
+transform = Transform3D(100, 0, 0, 0, -4.3711384e-06, 99.99999, 0, -99.99999, -4.3711384e-06, 0, 0, 0)
+mesh = ExtResource("1_faadj")
+surface_material_override/0 = ExtResource("1_ltn6b")
+surface_material_override/1 = ExtResource("2_faadj")
+surface_material_override/2 = ExtResource("3_0eu4k")
+surface_material_override/3 = ExtResource("4_q65w7")
+surface_material_override/4 = ExtResource("5_uypss")
+surface_material_override/5 = ExtResource("6_kty8s")
+surface_material_override/6 = ExtResource("7_1dola")

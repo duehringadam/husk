@@ -3,6 +3,8 @@ extends Node3D
 signal unequip_item
 signal active(value: bool)
 
+signal consumable_offhand_stack_size_update(weapon: item, value: int)
+
 @export var weapon: item: set = _set_item
 @export var mainhand: Node3D
 @export var animation_state_machine :AnimationNodeStateMachine
@@ -36,7 +38,7 @@ func _set_item(new_item):
 		state_chart.send_event("idle")
 		var item_add = new_item.item_scene.instantiate()
 		item_add.position = weapon.position
-		item_add.rotation_degrees = weapon.rotation
+		item_add.rotation = weapon.rotation
 		animation_state_machine = weapon.animation_state_machine
 		animation_tree.tree_root = animation_state_machine
 		animation_tree.active = false
@@ -95,15 +97,13 @@ func telekinesis_fail():
 	animation_tree.set("parameters/conditions/hold", false)
 
 func consumable_offhand_reequip():
-	if is_instance_valid(bone_attachment.get_child(0)):
-		bone_attachment.get_child(0).play_equip()
+	if bone_attachment.get_child_count() > 0:
+		if is_instance_valid(bone_attachment.get_child(0)):
+			bone_attachment.get_child(0).play_equip()
 
 func consumable_offhand_stack_size_change(value: int):
 	if weapon.is_stackable:
-		weapon._update_stack_size(value)
-		if weapon.current_stack_size <= 0:
-			unequip()
-			disable()
+		consumable_offhand_stack_size_update.emit(weapon, value)
 
 func _on_ray_cast_3d_interaction_controller_pickable_grabbed(value: bool) -> void:
 	if value and !telekinesis_hold_bool:

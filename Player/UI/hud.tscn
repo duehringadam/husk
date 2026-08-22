@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://4ggo1b35btnu"]
 
 [ext_resource type="Script" uid="uid://cfrncsoneogy8" path="res://Player/UI/scripts/hud.gd" id="1_5bwha"]
-[ext_resource type="FontFile" uid="uid://ip8tcqh7uxmx" path="res://fonts/Alkhemikal.ttf" id="2_xivtj"]
 [ext_resource type="FontFile" uid="uid://bgwsxfa2fbvel" path="res://addons/madtalk/fonts/ShipporiMincho-Regular.ttf" id="3_xpwvb"]
 
 [sub_resource type="Gradient" id="Gradient_x2tju"]
@@ -12,42 +11,6 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.95625, 1, 1, 1, 0)
 gradient = SubResource("Gradient_x2tju")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
-
-[sub_resource type="Animation" id="Animation_ugbui"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_gx1jg"]
-resource_name = "showtuttext"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_fcs02"]
-_data = {
-&"RESET": SubResource("Animation_ugbui"),
-&"showtuttext": SubResource("Animation_gx1jg")
-}
 
 [node name="HUD" type="Control" unique_id=932650427]
 layout_mode = 3
@@ -75,34 +38,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = SubResource("GradientTexture2D_ugbui")
-
-[node name="subtitles" type="RichTextLabel" parent="." unique_id=1021178221]
-modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(0, 256)
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -341.0
-offset_bottom = -85.0
-grow_horizontal = 2
-grow_vertical = 0
-mouse_filter = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
-theme_override_fonts/normal_font = ExtResource("2_xivtj")
-theme_override_fonts/bold_font = ExtResource("2_xivtj")
-theme_override_fonts/bold_italics_font = ExtResource("2_xivtj")
-theme_override_fonts/italics_font = ExtResource("2_xivtj")
-theme_override_fonts/mono_font = ExtResource("2_xivtj")
-theme_override_font_sizes/normal_font_size = 32
-text = "this is test tutorial text"
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="subtitleanim" type="AnimationPlayer" parent="subtitles" unique_id=790975176]
-libraries/ = SubResource("AnimationLibrary_fcs02")
 
 [node name="InteractPrompt" type="RichTextLabel" parent="." unique_id=157683102]
 unique_name_in_owner = true

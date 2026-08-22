@@ -14,7 +14,7 @@ func activate():
 	if !is_active:
 		damage_component.source = Global.player
 		particles.local_coords = false
-		SignalBus.emit_signal("raidal_blur", true)
+		SignalBus.emit_signal("raidal_blur", true, 1)
 		is_active = true
 		damage_component.monitorable  = true
 		damage_component.monitoring = true

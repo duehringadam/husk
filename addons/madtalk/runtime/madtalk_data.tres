@@ -6,104 +6,6 @@
 [ext_resource type="Script" uid="uid://b2mrnotqjr75d" path="res://addons/madtalk/components/resources/DialogNodeData.gd" id="4_f2ijm"]
 [ext_resource type="Script" uid="uid://butd1fwy4a2hn" path="res://addons/madtalk/components/resources/DialogSheetData.gd" id="5_vkpn8"]
 
-[sub_resource type="Resource" id="1"]
-script = ExtResource("2_48vp3")
-message_speaker_id = "foo"
-message_text = "Ah, its you."
-condition_type = 0
-effect_type = 0
-
-[sub_resource type="Resource" id="4"]
-script = ExtResource("2_48vp3")
-message_text = "You were the corpse thrown down that well, yes?"
-message_hide_on_end = 1
-condition_type = 0
-effect_type = 0
-
-[sub_resource type="Resource" id="5"]
-script = ExtResource("3_dways")
-text = "Yes"
-connected_to_id = 8
-
-[sub_resource type="Resource" id="6"]
-script = ExtResource("3_dways")
-text = "No"
-connected_to_id = 11
-
-[sub_resource type="Resource" id="2"]
-script = ExtResource("4_f2ijm")
-position = Vector2(-20, 120)
-items = [SubResource("1"), SubResource("4")]
-options = [SubResource("5"), SubResource("6")]
-
-[sub_resource type="Resource" id="v4udn"]
-script = ExtResource("2_48vp3")
-item_type = 2
-effect_type = 1
-effect_values = ["my_var", 5.0]
-
-[sub_resource type="Resource" id="Resource_jrxya"]
-script = ExtResource("2_48vp3")
-message_text = "my_var was set to: <<my_var>>
-{{if my_var < 4: Since it's less than 4, you see this message.}}
-{{if my_var < 6: Since it's less than 6, you see this message.}}"
-
-[sub_resource type="Resource" id="Resource_ixt6j"]
-script = ExtResource("4_f2ijm")
-sequence_id = 6
-position = Vector2(920, 120)
-items = [SubResource("v4udn"), SubResource("Resource_jrxya")]
-continue_port_index = 0
-
-[sub_resource type="Resource" id="7"]
-script = ExtResource("2_48vp3")
-message_speaker_id = "bar"
-message_text = "Ohoho! Splendid."
-condition_type = 0
-effect_type = 0
-
-[sub_resource type="Resource" id="8"]
-script = ExtResource("2_48vp3")
-message_speaker_id = "bar"
-message_text = "The maiden walks with thee, I can see it!"
-condition_type = 0
-effect_type = 0
-
-[sub_resource type="Resource" id="9"]
-script = ExtResource("2_48vp3")
-message_text = "Truly you are among the blessed."
-condition_type = 0
-effect_type = 0
-
-[sub_resource type="Resource" id="Resource_j2kw6"]
-script = ExtResource("4_f2ijm")
-sequence_id = 8
-position = Vector2(460, 60)
-items = [SubResource("7"), SubResource("8"), SubResource("9")]
-continue_port_index = 0
-
-[sub_resource type="Resource" id="kur6e"]
-script = ExtResource("2_48vp3")
-message_text = "A different accursed corpse, then."
-
-[sub_resource type="Resource" id="gi4cx"]
-script = ExtResource("2_48vp3")
-message_text = "We have nothing left to speak of."
-
-[sub_resource type="Resource" id="Resource_6yf53"]
-script = ExtResource("4_f2ijm")
-sequence_id = 11
-position = Vector2(400, 460)
-items = [SubResource("kur6e"), SubResource("gi4cx")]
-continue_port_index = 0
-
-[sub_resource type="Resource" id="3"]
-script = ExtResource("5_vkpn8")
-sheet_id = "1_start_here"
-sheet_description = "Demonstration sheet. You can delete this in your game, or repurpose it."
-next_sequence_id = 12
-nodes = [SubResource("2"), SubResource("Resource_ixt6j"), SubResource("Resource_j2kw6"), SubResource("Resource_6yf53")]
-
 [sub_resource type="Resource" id="Resource_vx7w3"]
 script = ExtResource("2_48vp3")
 message_text = "This example demonstrates the bare minimum nodes you need for the dialog to work."
@@ -455,13 +357,107 @@ sheet_id = "new_sheet_1"
 next_sequence_id = 1
 nodes = [SubResource("Resource_wspnu")]
 
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2_48vp3")
+message_speaker_id = "foo"
+message_text = "Ah, another tenacious undead!"
+condition_type = 0
+effect_type = 0
+
+[sub_resource type="Resource" id="4"]
+script = ExtResource("2_48vp3")
+message_text = "And one with their wits about them... Ichor still thrums in your veins!"
+message_hide_on_end = 1
+condition_type = 0
+effect_type = 0
+
+[sub_resource type="Resource" id="5"]
+script = ExtResource("3_dways")
+text = "Ichor?"
+text_locales = {
+"": "Ichor?"
+}
+connected_to_id = 8
+
+[sub_resource type="Resource" id="2"]
+script = ExtResource("4_f2ijm")
+position = Vector2(-20, 120)
+items = [SubResource("1"), SubResource("4")]
+options = [SubResource("5")]
+
+[sub_resource type="Resource" id="7"]
+script = ExtResource("2_48vp3")
+message_speaker_id = "bar"
+message_text = "Ichor is what all living beings pull strength from."
+condition_type = 0
+effect_type = 0
+
+[sub_resource type="Resource" id="8"]
+script = ExtResource("2_48vp3")
+message_speaker_id = "bar"
+message_text = "Enough ichor can coagulate in ones being, manifesting as power."
+condition_type = 0
+effect_type = 0
+
+[sub_resource type="Resource" id="gi4cx"]
+script = ExtResource("2_48vp3")
+message_text = "Lose it all and you will become truly feral, and you wont even know why..."
+
+[sub_resource type="Resource" id="mjnvi"]
+script = ExtResource("2_48vp3")
+message_text = "You'll be feasting on anything to satiate the gnawing hunger... hahaha!"
+
+[sub_resource type="Resource" id="Resource_6yf53"]
+script = ExtResource("3_dways")
+text = "What do you have for sale?"
+text_locales = {
+"": "What do you have for sale?"
+}
+connected_to_id = 12
+
+[sub_resource type="Resource" id="Resource_0mplr"]
+script = ExtResource("3_dways")
+text = "Goodbye"
+text_locales = {
+"": "Goodbye"
+}
+
+[sub_resource type="Resource" id="Resource_j2kw6"]
+script = ExtResource("4_f2ijm")
+sequence_id = 8
+position = Vector2(440, 80)
+items = [SubResource("7"), SubResource("8"), SubResource("gi4cx"), SubResource("mjnvi")]
+options = [SubResource("Resource_6yf53"), SubResource("Resource_0mplr")]
+
+[sub_resource type="Resource" id="kur6e"]
+script = ExtResource("2_48vp3")
+item_type = 2
+effect_values = ["npc_open_shop", "vagrant_sheet"]
+
+[sub_resource type="Resource" id="v4udn"]
+script = ExtResource("2_48vp3")
+
+[sub_resource type="Resource" id="Resource_hkg3h"]
+script = ExtResource("4_f2ijm")
+sequence_id = 12
+position = Vector2(880, 400)
+items = [SubResource("kur6e"), SubResource("v4udn")]
+continue_port_index = 0
+
+[sub_resource type="Resource" id="3"]
+script = ExtResource("5_vkpn8")
+sheet_id = "vagrant_sheet"
+sheet_description = "Dialogue sheet for vagrant merchant"
+next_sequence_id = 13
+nodes = [SubResource("2"), SubResource("Resource_j2kw6"), SubResource("Resource_hkg3h")]
+
 [resource]
 script = ExtResource("1_giduu")
 sheets = {
-"1_start_here": SubResource("3"),
 "bare_minimum": SubResource("Resource_sxgqo"),
 "external_menu": SubResource("15"),
 "localized": SubResource("Resource_cvf4j"),
 "minimum_menu": SubResource("Resource_s3y14"),
-"new_sheet_1": SubResource("Resource_mjnvi")
+"new_sheet_1": SubResource("Resource_mjnvi"),
+"vagrant_sheet": SubResource("3")
 }

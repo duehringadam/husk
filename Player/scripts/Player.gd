@@ -94,6 +94,7 @@ Optional: %jump, %sprint, %crouch, %lean, %zoom, %switch_hands
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var stamina_component: StaminaComponent = %StaminaComponent
 @onready var mana_component: ManaComponent = $ManaComponent
+@onready var player_currency: MarginContainer = $hud/playerCurrency
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -129,7 +130,6 @@ const WALK_SPEED_MAXIMUM := 2.5
 const SPRINT_SPEED_MIN := 2.0
 const SPRINT_SPEED_MAX := 4.0
 
-var slowed :bool = false
 var slow_speed = 0
 var attack_dir
 var is_vaulting: bool = false
@@ -253,8 +253,7 @@ func handle_jump() -> void:
 		velocity.y = jump_power
 		footsteps.play()
 		camera_animation_player.play("jump")
-	if vault_ray_cast.is_colliding() && !is_on_floor() && !is_vaulting && !ceiling.is_colliding():
-		#camera_animation_player.play("vault")
+	if vault_ray_cast.is_colliding() && !is_on_floor() && !is_vaulting && !ceiling.is_colliding() &&  %jump.is_triggered():
 		if vault_ray_cast.get_collider() is Terrain3D or vault_ray_cast.get_collider().is_in_group("disable_collision_while_grabbed"):
 			return
 		_handle_vault(vault_ray_cast.get_collision_point())
@@ -332,18 +331,14 @@ func set_crouch(enable: bool) -> void:
 func set_movement_speed(delta: float) -> void:
 	if !can_move: speed = 0; return
 	
-	if slowed == true:
-		slow_speed = 2
-	else:
-		slow_speed = 0
-			
 	if player_body.is_kicking:
 		speed = 0
 		return
 	
 	if get_node_or_null("%sprint") != null and %sprint.is_triggered() and not disable_sprint and stamina_component.current_stamina > 0:
 		speed = clampf(sprint_speed - slow_speed, SPRINT_SPEED_MIN, SPRINT_SPEED_MAX)
-		stamina_component.modify_stamina(-(30*delta))
+		if input_dir.length() >0:
+			stamina_component.modify_stamina(-(30*delta))
 		player_body.sprint_activate(true)
 	else:
 		speed = clampf(walk_speed - slow_speed, WALK_SPEED_MINIMUM, WALK_SPEED_MAXIMUM)
@@ -352,7 +347,7 @@ func set_movement_speed(delta: float) -> void:
 	if crouching:
 		speed = clampf(crouch_speed - slow_speed, WALK_SPEED_MINIMUM, WALK_SPEED_MAXIMUM)
 	
-	if !is_vaulting:	
+	if !is_vaulting:
 		footsteps.volume_linear = speed / walk_speed
 
 
@@ -528,7 +523,6 @@ func weapon_sway(delta):
 
 func _on_hurtbox_component_damage_taken(actual: float, source: DamageComponent, hit_dir: Vector3) -> void:
 	camera_animation_player.play("swing_left",-1,1.5)
-	slowed = true
 	if source.can_knockback:
 		var knockback_source
 		knockback_source = source
@@ -538,8 +532,6 @@ func _on_hurtbox_component_damage_taken(actual: float, source: DamageComponent, 
 		var kb_amount = kb_dir * 50
 		kb_amount.y /= 5
 		self.velocity = -kb_amount
-	await get_tree().create_timer(1).timeout
-	slowed= false
 
 var active_segments: Array[RigidBody3D] = []
 var current_segment: RigidBody3D = null
@@ -759,7 +751,8 @@ func _on_rope_detection_body_exited(body: Node3D) -> void:
 				is_climbing = false
 
 
-func _on_hurtbox_component_blocked_attack() -> void:
-	slowed = true
+func _on_hurtbox_component_apply_slow(slow_amount: float) -> void:
+	slow_speed = slow_amount
 	await get_tree().create_timer(1).timeout
-	slowed= false
+	slow_speed = 0
+	

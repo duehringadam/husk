@@ -64,6 +64,7 @@ func _on_damage_component_damage_dealt(types: Dictionary, actual: float, stance_
 func _on_health_component_died() -> void:
 	fall()
 	state_chart.send_event("dead")
+	SignalBus.emit_signal("enemy_currency_dropped", currency_dropped)
 	
 func fall()-> void:
 	physical_bone_simulator.physical_bones_start_simulation()

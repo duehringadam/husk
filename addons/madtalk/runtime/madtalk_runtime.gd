@@ -607,7 +607,6 @@ func _anim_dialog_menu_visible(show: bool = true) -> void:
 			else:
 				if dialog_menu:
 					dialog_menu.hide()
-					Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 			
 			dialog_menu_active = false
 

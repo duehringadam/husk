@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://d10hamyjl5kpk"]
+
+[ext_resource type="PackedScene" uid="uid://x4xnc85khpl5" path="res://scenes/rope/path_3d_rope.tscn" id="1_oee5r"]
+
+[sub_resource type="Curve3D" id="Curve3D_q78gv"]
+resource_local_to_scene = true
+bake_interval = 512.0
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1.0999997, 0, 0, 0, 0, 0, 0, 0, 0.30070174, -1.9538616, 0.19141859, 0, 0, 0, 0, 0, 0, 0.48307192, -1.8446491, -0.31453526, 0, 0, 0, 0, 0, 0, 0.35148746, -1.4009182, -0.7532525, 0, 0, 0, 0, 0, 0, -0.24498737, -0.6219249, -0.8461704, 0, 0, 0, 0, 0, 0, -1.080222, -0.089447975, -0.11742872, 0, 0, 0, 0, 0, 0, -0.85987747, -0.88323283, 0.69526887, 0, 0, 0, 0, 0, 0, -0.5276848, -1.3368242, 0.7773958, 0, 0, 0, 0, 0, 0, 0.8851572, -1.7213905, -1.2492615, 0, 0, 0, 0, 0, 0, 0.7451444, -1.2825902, -1.6647753, 0, 0, 0, 0, 0, 0, -0.0038683414, -0.36554694, -1.68737, 0, 0, 0, 0, 0, 0, -0.74354637, 0.0633927, -0.976444),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 13
+
+[node name="chain" type="Node3D" unique_id=534024915]
+
+[node name="Path3DRope" parent="." unique_id=1810696511 instance=ExtResource("1_oee5r")]
+curve = SubResource("Curve3D_q78gv")

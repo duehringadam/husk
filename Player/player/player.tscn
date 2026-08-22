@@ -4,10 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://bj4hhphu33n38" path="res://Player/player/player_body.tscn" id="3_tio5b"]
 [ext_resource type="Script" uid="uid://csps0dnf2gf2n" path="res://components/player_hurtbox_component.gd" id="5_eon52"]
 [ext_resource type="Script" uid="uid://brvxqhk8jpiq2" path="res://Player/scripts/health_detect.gd" id="6_5fkmn"]
-[ext_resource type="Script" uid="uid://dql5v81gqvdat" path="res://components/status_effect_component.gd" id="6_eon52"]
 [ext_resource type="AudioStream" uid="uid://b4ajsd7gilmx" path="res://sfx/UI/huskdeathlongerlouder.wav" id="8_jaogv"]
 [ext_resource type="AudioStream" uid="uid://df2b8w21sb3xf" path="res://sfx/damage/hit-rock-03-266305.mp3" id="8_jux4o"]
-[ext_resource type="Shader" uid="uid://dgt3e85o3avu2" path="res://Player/shaders/damage.gdshader" id="9_4ng6s"]
+[ext_resource type="Shader" uid="uid://dgt3e85o3avu2" path="res://shaders/player_shaders/shaders/damage.gdshader" id="9_4ng6s"]
 [ext_resource type="Script" uid="uid://dmju02n5xp4s0" path="res://Player/scripts/step_detect.gd" id="9_863th"]
 [ext_resource type="PackedScene" uid="uid://b5corv5nqshay" path="res://Player/player/player_arm_right.tscn" id="9_hqsyx"]
 [ext_resource type="PackedScene" uid="uid://bplg0u3sd3j28" path="res://Player/player/player_arm_left.tscn" id="10_hqsyx"]
@@ -15,34 +14,43 @@
 [ext_resource type="PackedScene" uid="uid://c3edfhdllccxg" path="res://Player/player/player_arm_consumable.tscn" id="10_v5tlk"]
 [ext_resource type="AudioStream" uid="uid://br26jgupi66u0" path="res://Player/sfx/footsteps/stone/footstep_stone.tres" id="12_hqsyx"]
 [ext_resource type="Script" uid="uid://sj3mml8ulasu" path="res://Player/scripts/crosshair.gd" id="12_qk8yx"]
-[ext_resource type="Shader" uid="uid://b6aaasr8tdyr5" path="res://Player/shaders/distort.gdshader" id="12_vnn13"]
+[ext_resource type="Shader" uid="uid://b6aaasr8tdyr5" path="res://shaders/player_shaders/shaders/distort.gdshader" id="12_vnn13"]
 [ext_resource type="Script" uid="uid://b74g26tt85wqw" path="res://Player/scripts/launch.gd" id="13_tio5b"]
 [ext_resource type="Script" uid="uid://xc7bfscwsgbt" path="res://Player/scripts/ground_material_detector.gd" id="14_y1ty0"]
 [ext_resource type="AudioStream" uid="uid://d32grx7plyrmc" path="res://scenes/traps/rope_climbing.ogg" id="15_epd12"]
 [ext_resource type="Script" uid="uid://iiobepm77ak5" path="res://components/fall_damage_component.gd" id="15_paiqy"]
 [ext_resource type="AudioStream" uid="uid://du7ihf843sngd" path="res://sfx/damage/husk_Poise_break.wav" id="16_0ay5n"]
 [ext_resource type="AudioStream" uid="uid://dk0ftcdtucymv" path="res://sfx/damage/fall_damage.ogg" id="16_paiqy"]
+[ext_resource type="Script" uid="uid://dlxjuoak62wbv" path="res://Player/player/player_status_effect_component.gd" id="18_ubocy"]
 [ext_resource type="Script" uid="uid://bxoydk8unigg3" path="res://Player/scripts/player_hud.gd" id="21_ujn18"]
-[ext_resource type="Shader" uid="uid://dc66sjqqg3w1a" path="res://Player/shaders/circular_bar.gdshader" id="22_2m5xu"]
+[ext_resource type="Shader" uid="uid://dc66sjqqg3w1a" path="res://shaders/player_shaders/shaders/circular_bar.gdshader" id="22_2m5xu"]
 [ext_resource type="Script" uid="uid://83vqngoyog5j" path="res://Player/UI/scripts/hold_attack_bar.gd" id="23_5fkmn"]
-[ext_resource type="Shader" uid="uid://2i33d2n3yv47" path="res://Player/shaders/radial_blur.gdshader" id="25_k1tkb"]
+[ext_resource type="Shader" uid="uid://2i33d2n3yv47" path="res://shaders/player_shaders/shaders/radial_blur.gdshader" id="25_k1tkb"]
+[ext_resource type="Shader" uid="uid://bl7r0kant66md" path="res://shaders/player_shaders/shaders/screen_burn.gdshader" id="26_018ip"]
 [ext_resource type="Script" uid="uid://8jstcds4fmx8" path="res://Player/scripts/radial_blur.gd" id="26_hqsyx"]
+[ext_resource type="Script" uid="uid://1l23v6jds28n" path="res://Player/player/player_screen_burning.gd" id="27_018ip"]
 [ext_resource type="AudioStream" uid="uid://cc67f271a754i" path="res://sfx/UI/chargecomplete.wav" id="28_7vtq1"]
-[ext_resource type="Shader" uid="uid://dn324eo1sre1n" path="res://Player/shaders/death.gdshader" id="29_f81pb"]
+[ext_resource type="Shader" uid="uid://dn324eo1sre1n" path="res://shaders/player_shaders/shaders/death.gdshader" id="29_f81pb"]
 [ext_resource type="PackedScene" uid="uid://bb5rujo1j4mr6" path="res://Player/UI/progress bars/player_mana.tscn" id="29_v5tlk"]
 [ext_resource type="PackedScene" uid="uid://78q517wrknfe" path="res://Player/UI/progress bars/player_health.tscn" id="29_wbjo2"]
 [ext_resource type="Texture2D" uid="uid://bheudhnmjwpme" path="res://scenes/VFX/textures/T_VFX_Noise_14.PNG" id="30_ae3c0"]
 [ext_resource type="PackedScene" uid="uid://fiysa8sddku3" path="res://Player/UI/progress bars/player_stamina.tscn" id="31_ojoix"]
 [ext_resource type="Texture2D" uid="uid://biqgxpwwr01ye" path="res://scenes/VFX/textures/CloudNoise_Tiled.png" id="31_waixc"]
 [ext_resource type="Script" uid="uid://da13b6wjrk5g7" path="res://Player/scripts/death_overlay.gd" id="32_ae3c0"]
+[ext_resource type="PackedScene" uid="uid://18cnn4ekidb8" path="res://Player/UI/currency/player_currency.tscn" id="34_47e5g"]
 [ext_resource type="FontFile" uid="uid://bgwsxfa2fbvel" path="res://addons/madtalk/fonts/ShipporiMincho-Regular.ttf" id="35_t571y"]
 [ext_resource type="Script" uid="uid://dd8swdueuaqv5" path="res://components/player_health_component.gd" id="36_jaogv"]
 [ext_resource type="AudioStream" uid="uid://c6mukshc0b37u" path="res://Player/sfx/movement/huskVaultTest.wav" id="37_jaogv"]
+[ext_resource type="PackedScene" uid="uid://4ggo1b35btnu" path="res://Player/UI/hud.tscn" id="38_4ay6w"]
 [ext_resource type="PackedScene" uid="uid://l2q2on8dxrq5" path="res://Player/UI/inventory/inventory.tscn" id="38_6havu"]
+[ext_resource type="Script" uid="uid://d1e0ibnl3nxau" path="res://Player/player/player_status_list.gd" id="38_56h8e"]
+[ext_resource type="Texture2D" uid="uid://c8lw074r2lnd6" path="res://icon.svg" id="38_kmb8e"]
 [ext_resource type="Script" uid="uid://x336a4ypdit5" path="res://components/stamina_component.gd" id="38_v5tlk"]
 [ext_resource type="Script" uid="uid://cvtlc2d4aaybe" path="res://components/mana_component.gd" id="39_6havu"]
+[ext_resource type="Script" uid="uid://ch6mtuu0umfie" path="res://Player/player/player_status_list_bar.gd" id="40_56h8e"]
 [ext_resource type="PackedScene" uid="uid://bmphfd5h5ant7" path="res://Player/UI/quick select/selection_wheel.tscn" id="40_avbty"]
 [ext_resource type="Script" uid="uid://brwpqkgj3ix5i" path="res://Player/scripts/stable_ground_detector.gd" id="42_jng3h"]
+[ext_resource type="Material" uid="uid://cq6qjkpjhmbw8" path="res://status_effects/burning_particle_process_material.tres" id="45_jonee"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xc2g5"]
 
@@ -722,6 +730,83 @@ _data = {
 &"shockwave": SubResource("Animation_c1i0s")
 }
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_gi4cx"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kur6e"]
+width = 128
+height = 1024
+noise = SubResource("FastNoiseLite_gi4cx")
+seamless = true
+in_3d_space = true
+as_normal_map = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v4udn"]
+shader = ExtResource("26_018ip")
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_kur6e")
+shader_parameter/root_color = Color(1, 0.75, 0.3, 1)
+shader_parameter/tip_color = Color(1, 0.03, 0.001, 1)
+shader_parameter/poster_color = 0.0
+shader_parameter/fire_alpha = 1.0
+shader_parameter/fire_speed = Vector2(0.015, 0.5)
+shader_parameter/fire_aperture = 0.22
+shader_parameter/vignette_radius = 0.1250000059375
+shader_parameter/vignette_falloff = 0.0
+shader_parameter/noise_influence = 1.0
+
+[sub_resource type="Animation" id="Animation_56h8e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/vignette_falloff")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_mrkp7"]
+resource_name = "apply_burn"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/vignette_falloff")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.36666667),
+"transitions": PackedFloat32Array(1, 2.2191396),
+"update": 0,
+"values": [0.0, 0.25]
+}
+
+[sub_resource type="Animation" id="Animation_spsvl"]
+resource_name = "remove_burn"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/vignette_falloff")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.25, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_spsvl"]
+_data = {
+&"RESET": SubResource("Animation_56h8e"),
+&"apply_burn": SubResource("Animation_mrkp7"),
+&"remove_burn": SubResource("Animation_spsvl")
+}
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k1tkb"]
 shader = ExtResource("22_2m5xu")
 shader_parameter/progress = 0.0
@@ -779,9 +864,9 @@ player_stats = Dictionary[int, int]({
 4: 10,
 5: 10
 })
+mouse_sensitivity = 100.0
 player_body = NodePath("Head/Neck/Camera3D/playerBody")
 jump_power = 5.0
-climb_speed = 3.0
 camera_lean_position = Vector3(0, 0, 0)
 mainhand = NodePath("Head/Neck/Camera3D/RightHand")
 offhand = NodePath("Head/Neck/Camera3D/LeftHand")
@@ -881,8 +966,8 @@ separation_ray = NodePath("../../autostep")
 player = NodePath("../..")
 
 [node name="stepDetect" type="RayCast3D" parent="Head/stepDetect" unique_id=1607411453]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, -0.6)
-target_position = Vector3(0, -0.35, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, -0.70000005)
+target_position = Vector3(0, -0.4, 0)
 collision_mask = 2
 hit_back_faces = false
 
@@ -893,8 +978,8 @@ collision_mask = 2
 hit_back_faces = false
 
 [node name="frontWallRaycast" type="RayCast3D" parent="Head/stepDetect" unique_id=341471180]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -0.1)
-target_position = Vector3(0, 0, -0.6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.1)
+target_position = Vector3(0, 0, -0.7)
 collision_mask = 2
 hit_back_faces = false
 
@@ -910,7 +995,7 @@ bus = &"SFX"
 
 [node name="groundMaterialDetector" type="RayCast3D" parent="Head" unique_id=51581699 node_paths=PackedStringArray("footstep_sounds")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-collision_mask = 10
+collision_mask = 2
 collide_with_areas = true
 script = ExtResource("14_y1ty0")
 footstep_sounds = NodePath("../FootSteps")
@@ -977,18 +1062,8 @@ damage_resistances = Dictionary[int, float]({
 6: 0.1,
 7: 0.1
 })
-status_resistances = Dictionary[int, float]({
-0: 0.0,
-1: 0.0,
-2: 0.0,
-3: 0.0
-})
-status_weaknesses = Dictionary[int, float]({
-0: 10.0
-})
 health_component = NodePath("../HealthComponent")
 status_component = NodePath("../status_effect_component")
-invulnerability_duration = 0.25
 hit_sound = ExtResource("8_jux4o")
 source = NodePath("..")
 metadata/_custom_type_script = "uid://c2i6qdosp0h2"
@@ -1001,8 +1076,9 @@ shape = SubResource("CapsuleShape3D_wydro")
 stream = ExtResource("16_0ay5n")
 bus = &"SFX"
 
-[node name="status_effect_component" type="GPUParticles3D" parent="." unique_id=1465415421 node_paths=PackedStringArray("hurtbox", "mesh_to_affect", "health_component")]
-script = ExtResource("6_eon52")
+[node name="status_effect_component" type="GPUParticles3D" parent="." unique_id=1465415421 node_paths=PackedStringArray("hurtbox", "health_component")]
+process_material = ExtResource("45_jonee")
+script = ExtResource("18_ubocy")
 available_statuses = Dictionary[int, float]({
 0: 0.0,
 1: 0.0,
@@ -1010,7 +1086,6 @@ available_statuses = Dictionary[int, float]({
 3: 0.0
 })
 hurtbox = NodePath("../hurtbox_component")
-mesh_to_affect = NodePath("../MeshInstance3D")
 health_component = NodePath("../HealthComponent")
 metadata/_custom_type_script = "uid://dql5v81gqvdat"
 
@@ -1053,6 +1128,10 @@ mouse_filter = 2
 script = ExtResource("26_hqsyx")
 blur_amount = 0.01
 
+[node name="blurTimer" type="Timer" parent="hud/radial_blur" unique_id=357995974]
+unique_name_in_owner = true
+one_shot = true
+
 [node name="launch" type="ColorRect" parent="hud" unique_id=1681020044]
 material = SubResource("ShaderMaterial_cqqbj")
 layout_mode = 1
@@ -1067,43 +1146,19 @@ script = ExtResource("13_tio5b")
 [node name="shockwave" type="AnimationPlayer" parent="hud/launch" unique_id=1285983707]
 libraries/ = SubResource("AnimationLibrary_863th")
 
-[node name="crosshair" type="CenterContainer" parent="hud" unique_id=857848023 node_paths=PackedStringArray("RETICLE_LINES", "PLAYER_CONTROLLER")]
+[node name="burning" type="ColorRect" parent="hud" unique_id=1742329115]
+material = SubResource("ShaderMaterial_v4udn")
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -0.5
-offset_top = -0.5
-offset_right = 0.5
-offset_bottom = 0.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("12_qk8yx")
-RETICLE_LINES = [NodePath("top"), NodePath("right"), NodePath("bottom"), NodePath("left")]
-PLAYER_CONTROLLER = NodePath("../..")
+script = ExtResource("27_018ip")
 
-[node name="top" type="Line2D" parent="hud/crosshair" unique_id=610082759]
-points = PackedVector2Array(-5, -10, 0, -20, 5, -10)
-width = 2.0
-default_color = Color(0.41140202, 0.41140202, 0.41140202, 0.5)
-
-[node name="right" type="Line2D" parent="hud/crosshair" unique_id=701899964]
-points = PackedVector2Array(10, -5, 20, 0, 10, 5)
-width = 2.0
-default_color = Color(0.41140202, 0.41140202, 0.41140202, 0.5)
-
-[node name="bottom" type="Line2D" parent="hud/crosshair" unique_id=1399638602]
-points = PackedVector2Array(5, 10, 0, 20, -5, 10)
-width = 2.0
-default_color = Color(0.41140202, 0.41140202, 0.41140202, 0.5)
-
-[node name="left" type="Line2D" parent="hud/crosshair" unique_id=107856571]
-points = PackedVector2Array(-10, 5, -20, 0, -10, -5)
-width = 2.0
-default_color = Color(0.41140202, 0.41140202, 0.41140202, 0.5)
+[node name="AnimationPlayer" type="AnimationPlayer" parent="hud/burning" unique_id=858379140]
+libraries/ = SubResource("AnimationLibrary_spsvl")
 
 [node name="hold_attack_bar" type="ColorRect" parent="hud" unique_id=1612312757]
 material = SubResource("ShaderMaterial_k1tkb")
@@ -1186,6 +1241,134 @@ unique_name_in_owner = true
 layout_mode = 1
 selected_option = 1
 
+[node name="playerCurrency" parent="hud" unique_id=415251137 instance=ExtResource("34_47e5g")]
+z_index = 999
+layout_mode = 1
+offset_left = -330.0
+offset_top = -175.0
+
+[node name="interactionContainer" parent="hud" unique_id=932650427 instance=ExtResource("38_4ay6w")]
+layout_mode = 1
+
+[node name="statusList" type="VBoxContainer" parent="hud/interactionContainer" unique_id=680043038]
+custom_minimum_size = Vector2(200, 300)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -50.0
+offset_top = 571.0
+offset_right = 50.0
+offset_bottom = 671.0
+grow_horizontal = 2
+script = ExtResource("38_56h8e")
+
+[node name="bleedingContainer" type="HBoxContainer" parent="hud/interactionContainer/statusList" unique_id=621431180]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="hud/interactionContainer/statusList/bleedingContainer" unique_id=2020232849]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("38_kmb8e")
+expand_mode = 2
+
+[node name="bleeding" type="ProgressBar" parent="hud/interactionContainer/statusList/bleedingContainer" unique_id=1020985661]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+script = ExtResource("40_56h8e")
+
+[node name="burningContainer" type="HBoxContainer" parent="hud/interactionContainer/statusList" unique_id=968124826]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="hud/interactionContainer/statusList/burningContainer" unique_id=2132153453]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("38_kmb8e")
+expand_mode = 2
+
+[node name="burning" type="ProgressBar" parent="hud/interactionContainer/statusList/burningContainer" unique_id=1843075060]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+script = ExtResource("40_56h8e")
+
+[node name="poisonedContainer" type="HBoxContainer" parent="hud/interactionContainer/statusList" unique_id=958400144]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="hud/interactionContainer/statusList/poisonedContainer" unique_id=1534594668]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("38_kmb8e")
+expand_mode = 2
+
+[node name="poison" type="ProgressBar" parent="hud/interactionContainer/statusList/poisonedContainer" unique_id=672209197]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+script = ExtResource("40_56h8e")
+
+[node name="sleepContainer" type="HBoxContainer" parent="hud/interactionContainer/statusList" unique_id=2005078534]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="hud/interactionContainer/statusList/sleepContainer" unique_id=989652198]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("38_kmb8e")
+expand_mode = 2
+
+[node name="sleep" type="ProgressBar" parent="hud/interactionContainer/statusList/sleepContainer" unique_id=189833958]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+script = ExtResource("40_56h8e")
+
+[node name="crosshair" type="CenterContainer" parent="hud/interactionContainer" unique_id=857848023 node_paths=PackedStringArray("RETICLE_LINES", "PLAYER_CONTROLLER")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -0.5
+offset_right = 0.5
+offset_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("12_qk8yx")
+RETICLE_LINES = [NodePath("top"), NodePath("right"), NodePath("bottom"), NodePath("left")]
+PLAYER_CONTROLLER = NodePath("../../..")
+
+[node name="top" type="Line2D" parent="hud/interactionContainer/crosshair" unique_id=610082759]
+points = PackedVector2Array(-5, -10, 0, -20, 5, -10)
+width = 2.0
+default_color = Color(0.41140202, 0.41140202, 0.41140202, 0.5)
+
+[node name="right" type="Line2D" parent="hud/interactionContainer/crosshair" unique_id=701899964]
+points = PackedVector2Array(10, -5, 20, 0, 10, 5)
+width = 2.0
+default_color = Color(0.41140202, 0.41140202, 0.41140202, 0.5)
+
+[node name="bottom" type="Line2D" parent="hud/interactionContainer/crosshair" unique_id=1399638602]
+points = PackedVector2Array(5, 10, 0, 20, -5, 10)
+width = 2.0
+default_color = Color(0.41140202, 0.41140202, 0.41140202, 0.5)
+
+[node name="left" type="Line2D" parent="hud/interactionContainer/crosshair" unique_id=107856571]
+points = PackedVector2Array(-10, 5, -20, 0, -10, -5)
+width = 2.0
+default_color = Color(0.41140202, 0.41140202, 0.41140202, 0.5)
+
 [node name="death" type="ColorRect" parent="." unique_id=575191084]
 z_index = 1
 material = SubResource("ShaderMaterial_7vtq1")
@@ -1263,15 +1446,26 @@ disabled = true
 debug_color = Color(1, 0, 0, 1)
 
 [connection signal="unequip_item" from="Head/Neck/Camera3D/RightHand" to="hud/inventory" method="_on_right_hand_unequip_item"]
+[connection signal="consumable_offhand_stack_size_update" from="Head/Neck/Camera3D/LeftHand" to="hud/inventory" method="_on_left_hand_consumable_offhand_stack_size_update"]
 [connection signal="unequip_item" from="Head/Neck/Camera3D/LeftHand" to="hud/inventory" method="_on_left_hand_unequip_item"]
 [connection signal="body_entered" from="Head/rope_detection" to="." method="_on_rope_detection_body_entered"]
 [connection signal="body_exited" from="Head/rope_detection" to="." method="_on_rope_detection_body_exited"]
+[connection signal="apply_slow" from="hurtbox_component" to="." method="_on_hurtbox_component_apply_slow"]
 [connection signal="blocked_attack" from="hurtbox_component" to="." method="_on_hurtbox_component_blocked_attack"]
 [connection signal="blocked_attack" from="hurtbox_component" to="Head/Neck/Camera3D/RightHand" method="_on_hurtbox_component_blocked_attack"]
 [connection signal="blocked_attack" from="hurtbox_component" to="Head/Neck/Camera3D/LeftHand" method="_on_hurtbox_component_blocked_attack"]
 [connection signal="damage_taken" from="hurtbox_component" to="." method="_on_hurtbox_component_damage_taken"]
 [connection signal="damage_taken" from="hurtbox_component" to="hud/radial_blur" method="_on_hurtbox_component_damage_taken"]
-[connection signal="charging" from="hud/hold_attack_bar" to="hud/crosshair" method="_on_hold_attack_bar_charging"]
+[connection signal="status_activated" from="status_effect_component" to="hud/burning" method="_on_status_effect_component_status_activated"]
+[connection signal="status_removed" from="status_effect_component" to="hud/burning" method="_on_status_effect_component_status_removed"]
+[connection signal="status_removed" from="status_effect_component" to="hud/interactionContainer/statusList" method="_on_status_effect_component_status_removed"]
+[connection signal="statuses_increased" from="status_effect_component" to="hud/interactionContainer/statusList" method="_on_status_effect_component_statuses_increased"]
+[connection signal="timeout" from="hud/radial_blur/blurTimer" to="hud/radial_blur" method="_on_blur_timer_timeout"]
+[connection signal="charging" from="hud/hold_attack_bar" to="hud/interactionContainer/crosshair" method="_on_hold_attack_bar_charging"]
+[connection signal="value_changed" from="hud/interactionContainer/statusList/bleedingContainer/bleeding" to="hud/interactionContainer/statusList/bleedingContainer/bleeding" method="_on_value_changed"]
+[connection signal="value_changed" from="hud/interactionContainer/statusList/burningContainer/burning" to="hud/interactionContainer/statusList/burningContainer/burning" method="_on_value_changed"]
+[connection signal="value_changed" from="hud/interactionContainer/statusList/poisonedContainer/poison" to="hud/interactionContainer/statusList/poisonedContainer/poison" method="_on_value_changed"]
+[connection signal="value_changed" from="hud/interactionContainer/statusList/sleepContainer/sleep" to="hud/interactionContainer/statusList/sleepContainer/sleep" method="_on_value_changed"]
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="health_changed" from="HealthComponent" to="hud/playerHP/VBoxContainer/playerHealth" method="_on_health_changed"]
 [connection signal="max_health_changed" from="HealthComponent" to="hud/playerHP/VBoxContainer/playerHealth" method="_on_max_health_changed"]
