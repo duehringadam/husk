@@ -19,7 +19,7 @@ var amount: float
 @export var status_types: Dictionary[Global.STATUS_TYPE, float]
 @export_range(0.0,1.0) var stance_damage_value: float
 
-@export_range(0.1,1.0) var damage_interval: float
+@export_range(0.01,1.0) var damage_interval: float = 0.1
 @export var source: Node3D
 
 var hits: Array

@@ -1520,17 +1520,27 @@ unique_name_in_owner = true
 stream = ExtResource("18_hmctt")
 bus = &"SFX"
 
-[node name="dropAmountPopUp" type="MarginContainer" parent="." unique_id=1673186547]
+[node name="dropAmountPopUp" type="ColorRect" parent="." unique_id=1425928099]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
+color = Color(0, 0, 0, 0.827451)
+script = ExtResource("20_pbu8b")
+
+[node name="margin" type="MarginContainer" parent="dropAmountPopUp" unique_id=1673186547]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 40
 theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 40
-script = ExtResource("20_pbu8b")
 
-[node name="tweenBox" type="PanelContainer" parent="dropAmountPopUp" unique_id=2112055348]
+[node name="tweenBox" type="PanelContainer" parent="dropAmountPopUp/margin" unique_id=2112055348]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_h6vk2")
 custom_minimum_size = Vector2(500, 200)
@@ -1541,14 +1551,14 @@ size_flags_vertical = 4
 offset_transform_position = Vector2(0, 30)
 theme_override_styles/panel = SubResource("StyleBoxTexture_q3v0e")
 
-[node name="MarginContainer" type="MarginContainer" parent="dropAmountPopUp/tweenBox" unique_id=1159328329]
+[node name="MarginContainer" type="MarginContainer" parent="dropAmountPopUp/margin/tweenBox" unique_id=1159328329]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="NinePatchRect" type="NinePatchRect" parent="dropAmountPopUp/tweenBox/MarginContainer" unique_id=895478186]
+[node name="NinePatchRect" type="NinePatchRect" parent="dropAmountPopUp/margin/tweenBox/MarginContainer" unique_id=895478186]
 layout_mode = 2
 texture = ExtResource("9_by6k1")
 patch_margin_left = 24
@@ -1556,7 +1566,7 @@ patch_margin_top = 24
 patch_margin_right = 24
 patch_margin_bottom = 24
 
-[node name="MarginContainer" type="MarginContainer" parent="dropAmountPopUp/tweenBox/MarginContainer/NinePatchRect" unique_id=700247631]
+[node name="MarginContainer" type="MarginContainer" parent="dropAmountPopUp/margin/tweenBox/MarginContainer/NinePatchRect" unique_id=700247631]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1567,10 +1577,10 @@ theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 30
 
-[node name="VBoxContainer" type="VBoxContainer" parent="dropAmountPopUp/tweenBox/MarginContainer/NinePatchRect/MarginContainer" unique_id=318066995]
+[node name="VBoxContainer" type="VBoxContainer" parent="dropAmountPopUp/margin/tweenBox/MarginContainer/NinePatchRect/MarginContainer" unique_id=318066995]
 layout_mode = 2
 
-[node name="messageText" type="Label" parent="dropAmountPopUp/tweenBox/MarginContainer/NinePatchRect/MarginContainer/VBoxContainer" unique_id=1643677032]
+[node name="messageText" type="Label" parent="dropAmountPopUp/margin/tweenBox/MarginContainer/NinePatchRect/MarginContainer/VBoxContainer" unique_id=1643677032]
 layout_mode = 2
 size_flags_vertical = 10
 theme_override_fonts/font = ExtResource("10_sd12b")
@@ -1579,14 +1589,14 @@ text = "Select Amount to Drop"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="dropAmountSlider" type="HSlider" parent="dropAmountPopUp/tweenBox/MarginContainer/NinePatchRect/MarginContainer/VBoxContainer" unique_id=700048642]
+[node name="dropAmountSlider" type="HSlider" parent="dropAmountPopUp/margin/tweenBox/MarginContainer/NinePatchRect/MarginContainer/VBoxContainer" unique_id=700048642]
 unique_name_in_owner = true
 layout_mode = 2
 min_value = 1.0
 value = 1.0
 rounded = true
 
-[node name="sliderValue" type="Label" parent="dropAmountPopUp/tweenBox/MarginContainer/NinePatchRect/MarginContainer/VBoxContainer" unique_id=1556905930]
+[node name="sliderValue" type="Label" parent="dropAmountPopUp/margin/tweenBox/MarginContainer/NinePatchRect/MarginContainer/VBoxContainer" unique_id=1556905930]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 10
@@ -1595,18 +1605,18 @@ theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSeparator8" type="HSeparator" parent="dropAmountPopUp/tweenBox/MarginContainer/NinePatchRect/MarginContainer/VBoxContainer" unique_id=1442221191]
+[node name="HSeparator8" type="HSeparator" parent="dropAmountPopUp/margin/tweenBox/MarginContainer/NinePatchRect/MarginContainer/VBoxContainer" unique_id=1442221191]
 layout_mode = 2
 size_flags_vertical = 10
 theme_override_constants/separation = 24
 theme_override_styles/separator = SubResource("StyleBoxTexture_sd12b")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="dropAmountPopUp/tweenBox/MarginContainer/NinePatchRect/MarginContainer/VBoxContainer" unique_id=688769836]
+[node name="HBoxContainer" type="HBoxContainer" parent="dropAmountPopUp/margin/tweenBox/MarginContainer/NinePatchRect/MarginContainer/VBoxContainer" unique_id=688769836]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 50
 
-[node name="Confirm" type="Button" parent="dropAmountPopUp/tweenBox/MarginContainer/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1604102567]
+[node name="Confirm" type="Button" parent="dropAmountPopUp/margin/tweenBox/MarginContainer/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1604102567]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
@@ -1618,7 +1628,7 @@ theme_override_fonts/font = ExtResource("10_sd12b")
 theme_override_styles/normal = SubResource("StyleBoxFlat_2cesb")
 text = "OK"
 
-[node name="Cancel" type="Button" parent="dropAmountPopUp/tweenBox/MarginContainer/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer" unique_id=448458225]
+[node name="Cancel" type="Button" parent="dropAmountPopUp/margin/tweenBox/MarginContainer/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer" unique_id=448458225]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
@@ -1646,6 +1656,6 @@ text = "Cancel"
 [connection signal="pressed" from="MarginContainer/items/HBoxContainer/equipment/leg_button" to="." method="_on_leg_button_pressed"]
 [connection signal="pressed" from="MarginContainer/items/HBoxContainer/equipment/chest_button" to="." method="_on_chest_button_pressed"]
 [connection signal="tab_changed" from="MarginContainer/items/HBoxContainer/menuRight/inventoryTabs" to="." method="_on_tab_bar_tab_changed"]
-[connection signal="value_changed" from="dropAmountPopUp/tweenBox/MarginContainer/NinePatchRect/MarginContainer/VBoxContainer/dropAmountSlider" to="dropAmountPopUp" method="_on_drop_amount_slider_value_changed"]
-[connection signal="pressed" from="dropAmountPopUp/tweenBox/MarginContainer/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer/Confirm" to="dropAmountPopUp" method="_on_confirm_pressed"]
-[connection signal="pressed" from="dropAmountPopUp/tweenBox/MarginContainer/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer/Cancel" to="dropAmountPopUp" method="_on_cancel_pressed"]
+[connection signal="value_changed" from="dropAmountPopUp/margin/tweenBox/MarginContainer/NinePatchRect/MarginContainer/VBoxContainer/dropAmountSlider" to="dropAmountPopUp" method="_on_drop_amount_slider_value_changed"]
+[connection signal="pressed" from="dropAmountPopUp/margin/tweenBox/MarginContainer/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer/Confirm" to="dropAmountPopUp" method="_on_confirm_pressed"]
+[connection signal="pressed" from="dropAmountPopUp/margin/tweenBox/MarginContainer/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer/Cancel" to="dropAmountPopUp" method="_on_cancel_pressed"]

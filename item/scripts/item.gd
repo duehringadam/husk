@@ -29,7 +29,7 @@ signal set_stack_size(value: int)
 @export_category("Item Scenes")
 @export var item_scene: PackedScene
 @export var item_left_scene: PackedScene
-@export var item_dropped_scene_path: String
+@export_file("*.tscn") var item_dropped_scene_path: String
 
 @export_category("Misc")
 @export var two_handed: bool

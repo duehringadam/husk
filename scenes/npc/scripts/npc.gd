@@ -38,7 +38,6 @@ var head_attached := true : set = head_lost
 var direction = Vector3()
 var is_leader: bool = false
 
-
 func _ready() -> void:
 	pass
 

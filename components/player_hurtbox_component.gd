@@ -41,6 +41,8 @@ func take_damage(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float], stat
 	# take damage
 	var sum := 0.0
 	for i in damage_types:
+		if status_types.size() != 0:
+				apply_status(status_types)
 		var actual = modify_damage(i,damage_types[i],source)
 		emit_signal("damage_taken", actual, source, Vector3.ZERO)
 		sum += actual

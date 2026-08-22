@@ -14,7 +14,7 @@ func _ready() -> void:
 	add_child(timer)
 
 func _on_holding_state_entered() -> void:
-	SignalBus.emit_signal("raidal_blur", true)
+	SignalBus.emit_signal("raidal_blur", true, 1)
 	SignalBus.emit_signal("telekinesis_hold")
 	timer.start()
 	Global.player.camera.apply_shake()

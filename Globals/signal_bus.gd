@@ -24,7 +24,7 @@ signal dialogue_started
 signal end_madtalk_dialogue_external
 signal weapon_charge_value(value: float)
 signal weapon_charge_bool(value: bool)
-signal raidal_blur(value: bool)
+signal raidal_blur(value: bool, duration: float, blur_center: Vector2)
 signal player_ready
 signal player_stats_changed(stats: Dictionary[ItemEquippableType.ITEM_REQUIRED_STAT, int])
 signal player_resists_changed(resists: Dictionary[DamageTypes.DAMAGE_TYPES, float])

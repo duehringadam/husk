@@ -1,5 +1,3 @@
-@tool
-## Stuff here?
 class_name Player extends CharacterBody3D
 
 @export var spawn_at_checkpoint: bool = false

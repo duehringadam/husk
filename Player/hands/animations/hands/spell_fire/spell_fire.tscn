@@ -5,7 +5,10 @@
 [ext_resource type="AudioStream" uid="uid://b1m60rkx5rn63" path="res://sfx/spells/fire/floraphonic-dragon-breathes-fire-3-191459.mp3" id="6_3yxkx"]
 [ext_resource type="AudioStream" uid="uid://sppeegtsqrlm" path="res://sfx/spells/fire/crackling-fire-sound-307026.mp3" id="6_rf353"]
 [ext_resource type="PackedScene" uid="uid://ckj86tch1kfph" path="res://scenes/VFX/Scenes/VFX_Fire_Constant_A3.tscn" id="6_stlr1"]
+[ext_resource type="Texture2D" uid="uid://bgpuc5rjm2yh5" path="res://scenes/misc/Textures/Fire_SubUV_new.png" id="6_ym31k"]
+[ext_resource type="Texture2D" uid="uid://dgnarq1axwhae" path="res://scenes/MysticDungeon/Art/Textures/T_Fire01_Tiled_D_Yellow.png" id="7_po4ir"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="8_3yxkx"]
+[ext_resource type="Texture2D" uid="uid://185sjxt7oawt" path="res://scenes/misc/Textures/T_Fire01_SubUV_normal.png" id="8_8wvgu"]
 
 [sub_resource type="Curve" id="Curve_0eavj"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.80288464, 0.41573036), 0.0, 0.0, 0, 0]
@@ -53,6 +56,35 @@ size = Vector2(0.2, 0.2)
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eesq2"]
 radius = 2.2509766
 height = 11.75
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bk1j5"]
+resource_local_to_scene = true
+transparency = 1
+diffuse_mode = 3
+specular_mode = 1
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_color = Color(1, 0.51584375, 0, 1)
+albedo_texture = ExtResource("6_ym31k")
+emission_enabled = true
+emission = Color(1, 0.29748532, 0, 1)
+emission_texture = ExtResource("7_po4ir")
+normal_enabled = true
+normal_texture = ExtResource("8_8wvgu")
+backlight = Color(1, 1, 1, 1)
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 6
+particles_anim_loop = true
+grow_amount = -0.264
+proximity_fade_distance = 0.01
+distance_fade_max_distance = 1.0
+stencil_flags = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_17152"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_bk1j5")
 
 [node name="spell_fire" type="Node3D" unique_id=1881406381]
 script = ExtResource("1_0eavj")
@@ -102,8 +134,13 @@ shape = SubResource("CapsuleShape3D_eesq2")
 [node name="VFX_fire_Constant_A3" parent="." unique_id=1748177694 instance=ExtResource("6_stlr1")]
 top_level = false
 
+[node name="bloodflow" parent="VFX_fire_Constant_A3" index="1" unique_id=1975358930]
+draw_pass_1 = SubResource("QuadMesh_17152")
+
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1285625525]
 stream = ExtResource("6_rf353")
 volume_db = -20.0
 autoplay = true
 bus = &"SFX"
+
+[editable path="VFX_fire_Constant_A3"]

@@ -35,8 +35,6 @@ func take_damage(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float], stat
 		for i in status_types:
 			if status_resistances.keys().has(i):
 				status_component._on_status_increment(i,(1-status_resistances[i]))
-			if status_weaknesses.keys().has(i):
-				status_component._on_status_increment(i,(1*status_weaknesses[i]))
 	if hit_sound != null:
 		AudioManager.play_sound(hit_sound,self.global_position,-10.0)
 	if damage_particles:

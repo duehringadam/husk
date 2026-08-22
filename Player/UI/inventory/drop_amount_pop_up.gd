@@ -1,4 +1,4 @@
-extends MarginContainer
+extends ColorRect
 
 signal drop_amount(value: int)
 
@@ -7,6 +7,7 @@ signal drop_amount(value: int)
 
 func show_drop_popup():
 	self.show()
+	drop_amount_slider.grab_focus()
 
 func hide_drop_popup():
 	self.hide()
@@ -20,7 +21,6 @@ func _on_drop_amount_slider_value_changed(value: float) -> void:
 func _on_confirm_pressed() -> void:
 	drop_amount.emit(drop_amount_slider.value)
 	hide_drop_popup()
-
 
 func _on_cancel_pressed() -> void:
 	hide_drop_popup()

@@ -39,7 +39,8 @@ signal focused_item_changed(_item: item)
 @onready var item_list: NinePatchRect = %itemList
 @onready var item_info: NinePatchRect = %itemInfo
 @onready var player_stats: NinePatchRect = %playerStats
-@onready var drop_amount_pop_up: MarginContainer = $dropAmountPopUp
+@onready var drop_amount_pop_up: ColorRect = %dropAmountPopUp
+
 
 
 @onready var open: AudioStreamPlayer = %open
@@ -120,7 +121,15 @@ func _update_inventory(item_signal: item):
 						item_to_find.connect("stack_size_changed", save_inventory)
 					item_to_find.update_stack_size(item_signal.pick_up_stack_size)
 					inventory[item_index][item_signal] += item_signal.pick_up_stack_size
-			if !item_exists:
+			elif !item_exists:
+				offhand.add_child(item_add)
+				item_add.item_inventory = item_signal
+				item_add.item_stack_size = item_signal.pick_up_stack_size
+				var item_dict: Dictionary
+				item_dict[item_signal] = item_signal.pick_up_stack_size
+				inventory.append(item_dict)
+				save_inventory()
+			elif item_exists && !item_signal.is_stackable:
 				offhand.add_child(item_add)
 				item_add.item_inventory = item_signal
 				item_add.item_stack_size = item_signal.pick_up_stack_size
@@ -150,7 +159,15 @@ func _update_inventory(item_signal: item):
 						item_to_find.connect("stack_size_changed", save_inventory)
 					item_to_find.update_stack_size(item_signal.pick_up_stack_size)
 					inventory[item_index][item_signal] += item_signal.pick_up_stack_size
-			else:
+			elif !item_exists:
+				consumable.add_child(item_add)
+				item_add.item_inventory = item_signal
+				item_add.item_stack_size = item_signal.pick_up_stack_size
+				var item_dict: Dictionary
+				item_dict[item_signal] = item_signal.pick_up_stack_size
+				inventory.append(item_dict)
+				save_inventory()
+			elif item_exists && !item_signal.is_stackable:
 				consumable.add_child(item_add)
 				item_add.item_inventory = item_signal
 				item_add.item_stack_size = item_signal.pick_up_stack_size
