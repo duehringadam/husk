@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ikastsf77y3p" path="res://scenes/VFX/Scenes/blood_effect.gd" id="1_0bap4"]
 [ext_resource type="Texture2D" uid="uid://brjjwdwx65oij" path="res://scenes/VFX/textures/T_Blood_Mist_04x_alpha.png" id="1_g4d8m"]
-[ext_resource type="Material" uid="uid://hnygll7t2it1" path="res://status_effects/bleeding_material_override_2.tres" id="2_670xq"]
+[ext_resource type="Material" uid="uid://hnygll7t2it1" path="res://status_effects/bleeding/bleeding_material_override_2.tres" id="2_670xq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q8b7a"]
 transparency = 1
@@ -215,4 +215,4 @@ draw_pass_1 = SubResource("QuadMesh_7m77s")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=612423781]
 libraries/ = SubResource("AnimationLibrary_jd01k")
-autoplay = &"Init"
+autoplay = &"RESET"

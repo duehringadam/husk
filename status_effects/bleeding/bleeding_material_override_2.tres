@@ -1,0 +1,42 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://hnygll7t2it1"]
+
+[ext_resource type="Shader" uid="uid://bfwwv62cr7k2o" path="res://shaders/blood vfx shaders/ss_Disolver_subUV_small_Liquid_Treshold_p.gdshader" id="1_e37fq"]
+[ext_resource type="Texture2D" uid="uid://etftten2vtpl" path="res://scenes/VFX/textures/T_Blood_MultiUV_f3.png" id="2_r10td"]
+[ext_resource type="Texture2D" uid="uid://c3maw4p2qvh0" path="res://scenes/VFX/textures/T_Blood_MultiUV_f3_N.png" id="3_35ve0"]
+
+[sub_resource type="Gradient" id="Gradient_a3bcn"]
+interpolation_color_space = 1
+offsets = PackedFloat32Array(0.17050691, 0.83870965)
+colors = PackedColorArray(0.40390328, 8.4228816e-07, 9.62615e-08, 1, 0.82191056, 2.623126e-06, 7.70092e-07, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bjjfd"]
+gradient = SubResource("Gradient_a3bcn")
+
+[sub_resource type="Gradient" id="Gradient_70xfr"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.0768358, 0.0768358, 0.0768358, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8mnei"]
+gradient = SubResource("Gradient_70xfr")
+
+[sub_resource type="Gradient" id="Gradient_eufx1"]
+offsets = PackedFloat32Array(0.040723983, 0.7918552)
+colors = PackedColorArray(0.273873, 0.273873, 0.273873, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rrogk"]
+gradient = SubResource("Gradient_eufx1")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_e37fq")
+shader_parameter/Scale = Vector2(1, 1)
+shader_parameter/Speed_XY = Vector2(1, 1)
+shader_parameter/Disolver_Texture = ExtResource("2_r10td")
+shader_parameter/Color_1D_Gradient = SubResource("GradientTexture1D_bjjfd")
+shader_parameter/Metallic_Texture = SubResource("GradientTexture2D_8mnei")
+shader_parameter/Roughtness_1D_Gradient = SubResource("GradientTexture1D_rrogk")
+shader_parameter/Normal_Texture = ExtResource("3_35ve0")
+shader_parameter/Normal_Map_Depth = 2.0
+shader_parameter/Color_Intensity = 1.0
+shader_parameter/subuv_grid = Vector2i(2, 2)
+shader_parameter/use_subuv = true

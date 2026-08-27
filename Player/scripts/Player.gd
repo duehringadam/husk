@@ -88,7 +88,6 @@ Optional: %jump, %sprint, %crouch, %lean, %zoom, %switch_hands
 @onready var enemy_look_at: Node3D = $enemy_look_at
 @onready var hurtbox: Area3D = $hurtbox_component
 @onready var fall_damage_component: DamageComponent = $fallDamageComponent
-@onready var radial_blur: ColorRect = %radial_blur
 @onready var vault_ray_cast: RayCast3D = %vaultRayCast
 @onready var rope_detection: Area3D = %rope_detection
 @onready var health_component: HealthComponent = $HealthComponent
@@ -239,13 +238,11 @@ func handle_falling(delta: float) -> void:
 			await get_tree().create_timer(.1).timeout
 			fall_damage_component.monitorable = false
 			fall_damage_component.monitoring = false
-			radial_blur.blur = false
 	on_floor_last_frame = is_on_floor()
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 		previous_fall_velocity = velocity.y
-		radial_blur.blur = true
 
 
 func handle_jump() -> void:

@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://c64bx48b8sxhh"]
+
+[ext_resource type="Script" uid="uid://cmrc6hxb0a6wm" path="res://components/percent_hp_damage_component.gd" id="1_dsjjr"]
+[ext_resource type="Material" uid="uid://mw51twfhmxyx" path="res://status_effects/poisoned/poisoned_particle_processor.tres" id="2_opthx"]
+[ext_resource type="AudioStream" uid="uid://dov2x7a2awlu5" path="res://sfx/spells/poison/poison_ambient.ogg" id="3_hpusm"]
+[ext_resource type="QuadMesh" uid="uid://bspmls5qgxaur" path="res://status_effects/poisoned/poison_mesh.tres" id="3_opthx"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_m0aoy"]
+radius = 1.1031215
+
+[node name="DamageComponent" type="Area3D" unique_id=827477723]
+collision_layer = 4
+collision_mask = 13
+script = ExtResource("1_dsjjr")
+percent_hp_damage_types = Dictionary[int, float]({
+7: 0.01
+})
+status_types = Dictionary[int, float]({
+1: 0.33
+})
+damage_interval = 1.0
+metadata/_custom_type_script = "uid://dlsydctoxqbwy"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1376729450]
+shape = SubResource("SphereShape3D_m0aoy")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1207516952]
+lifetime = 2.0
+process_material = ExtResource("2_opthx")
+draw_pass_1 = ExtResource("3_opthx")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=382700008]
+stream = ExtResource("3_hpusm")
+autoplay = true
+max_distance = 10.0
+bus = &"SFX"

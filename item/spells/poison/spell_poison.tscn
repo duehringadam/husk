@@ -1,0 +1,147 @@
+[gd_scene format=3 uid="uid://dualwps5xwbr8"]
+
+[ext_resource type="Script" uid="uid://c20f84apprn1y" path="res://item/spells/poison/spell_poison.gd" id="1_44kq1"]
+[ext_resource type="Shader" uid="uid://b6yr6gpb6uvnl" path="res://shaders/player_shaders/shaders/first_person_particle.gdshader" id="3_5h8w5"]
+[ext_resource type="AudioStream" uid="uid://b1m60rkx5rn63" path="res://sfx/spells/fire/floraphonic-dragon-breathes-fire-3-191459.mp3" id="3_6ax1j"]
+[ext_resource type="Texture2D" uid="uid://byj5sgyu8cxwx" path="res://scenes/VFX/textures/T_smoke_K97.bak.png" id="4_5h8w5"]
+[ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="4_lgvgr"]
+[ext_resource type="AudioStream" uid="uid://dov2x7a2awlu5" path="res://sfx/spells/poison/poison_ambient.ogg" id="6_5h8w5"]
+[ext_resource type="PackedScene" uid="uid://2fpuas1xclcu" path="res://scenes/VFX/Scenes/VFX_PoisonLiquidFountain2.tscn" id="7_w2sqb"]
+
+[sub_resource type="Curve" id="Curve_4holy"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.80288464, 0.41573036), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_0eavj"]
+curve = SubResource("Curve_4holy")
+
+[sub_resource type="Gradient" id="Gradient_44kq1"]
+colors = PackedColorArray(0.99999994, 0.86646223, 0.36267662, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mkrx0"]
+gradient = SubResource("Gradient_44kq1")
+
+[sub_resource type="Curve" id="Curve_5h8w5"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.20224726), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_rf353"]
+curve = SubResource("Curve_5h8w5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w2sqb"]
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 0.05
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, 1, 0)
+gravity = Vector3(0, 0.25, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = -2.23517e-06
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_rf353")
+color_ramp = SubResource("GradientTexture1D_mkrx0")
+alpha_curve = SubResource("CurveTexture_0eavj")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+turbulence_noise_speed = Vector3(0, 1, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_44kq1"]
+render_priority = 0
+shader = ExtResource("3_5h8w5")
+shader_parameter/albedo = Color(0.36681426, 9.168908e-05, 0.36681154, 1)
+shader_parameter/texture_albedo = ExtResource("4_5h8w5")
+shader_parameter/albedo_texture_size = Vector2i(512, 512)
+shader_parameter/point_size = 0.0
+shader_parameter/roughness = 0.0
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.0
+shader_parameter/metallic = 0.0
+shader_parameter/particles_anim_h_frames = 8
+shader_parameter/particles_anim_v_frames = 8
+shader_parameter/particles_anim_loop = true
+shader_parameter/emission = Color(0.32208636, 7.017463e-05, 0.32208377, 1)
+shader_parameter/emission_energy = 1.999999955296
+shader_parameter/normal_scale = 1.000000807500001
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_erhph"]
+material = SubResource("ShaderMaterial_44kq1")
+size = Vector2(0.2, 0.2)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eesq2"]
+radius = 2.2509766
+height = 11.75
+
+[node name="spell_poison" type="Node3D" unique_id=1881406381]
+script = ExtResource("1_44kq1")
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="." unique_id=915606027]
+remote_path = NodePath("../GPUParticles3D")
+update_rotation = false
+update_scale = false
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=335949079]
+top_level = true
+cast_shadow = 0
+amount = 16
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_w2sqb")
+draw_pass_1 = SubResource("QuadMesh_erhph")
+
+[node name="poison_spray" type="AudioStreamPlayer3D" parent="GPUParticles3D" unique_id=459758527]
+stream = ExtResource("3_6ax1j")
+max_distance = 5.0
+bus = &"SFX"
+
+[node name="OmniLight3D" type="OmniLight3D" parent="GPUParticles3D" unique_id=808787651]
+light_color = Color(0.7323323, 0.00040949642, 0.732327, 1)
+light_energy = 0.15
+omni_range = 0.4
+
+[node name="DamageComponent" type="Area3D" parent="." unique_id=752380998]
+transform = Transform3D(-0.04999996, 0, 4.3711346e-09, 0, 0.04999999, 0, -4.3711355e-09, 0, -0.049999952, 0.24913344, 0.27076727, -0.19921649)
+collision_mask = 14
+monitoring = false
+monitorable = false
+script = ExtResource("4_lgvgr")
+damage_types = Dictionary[int, float]({
+3: 1.0
+})
+status_types = Dictionary[int, float]({
+2: 1.0
+})
+damage_interval = 0.15000000000000002
+metadata/_custom_type_script = "uid://dlsydctoxqbwy"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent" unique_id=1856923197]
+transform = Transform3D(9.989937, -0.32091048, 0.32074505, 0.32091787, -4.3711407e-07, -9.994848, 0.3207526, 9.994856, 0.010297909, -0.46490097, 0.2794652, 55.324833)
+shape = SubResource("CapsuleShape3D_eesq2")
+
+[node name="poison_ambient" type="AudioStreamPlayer3D" parent="." unique_id=1285625525]
+stream = ExtResource("6_5h8w5")
+volume_db = -10.0
+autoplay = true
+bus = &"SFX"
+
+[node name="VFX_PoisonLiquidFountain2" parent="." unique_id=1112056956 instance=ExtResource("7_w2sqb")]
+
+[node name="AnimationPlayer" parent="VFX_PoisonLiquidFountain2" index="2" unique_id=75784869]
+autoplay = &"RESET"
+
+[node name="poisonCloudCreationTimer" type="Timer" parent="." unique_id=2006448909]
+wait_time = 10.0
+
+[node name="poisonCloudRay" type="RayCast3D" parent="." unique_id=637484256]
+target_position = Vector3(0, 0, -5)
+collision_mask = 10
+hit_from_inside = true
+
+[node name="fallbackCloudPos" type="Node3D" parent="poisonCloudRay" unique_id=820542847]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+
+[editable path="VFX_PoisonLiquidFountain2"]

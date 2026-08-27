@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="status_effect" format=3 uid="uid://3d0sfyu4rkwt"]
+
+[ext_resource type="Material" uid="uid://ck0rsdtpcysy0" path="res://status_effects/leprosy/leprosy_buildup.tres" id="1_kckck"]
+[ext_resource type="Material" uid="uid://0srdithvq1dv" path="res://status_effects/leprosy/leprosy_particle_process_material.tres" id="3_kckck"]
+[ext_resource type="PackedScene" uid="uid://d8kclsvgl61q" path="res://status_effects/leprosy/leprosy_damage.tscn" id="3_l6d6j"]
+[ext_resource type="Script" uid="uid://ca8ha7ig6gshg" path="res://components/status_effect.gd" id="5_o6c2u"]
+[ext_resource type="QuadMesh" uid="uid://dox0y1a8cdl81" path="res://status_effects/leprosy/leprosy_effect_mesh.tres" id="6_a0x7h"]
+
+[resource]
+script = ExtResource("5_o6c2u")
+effect_type = 4
+damage_component_scene = ExtResource("3_l6d6j")
+particle_processor = ExtResource("3_kckck")
+duration = 30.0
+status_effect_mesh = ExtResource("6_a0x7h")
+affected_target_next_pass = ExtResource("1_kckck")
+gravity = -2.000000000000001
+metadata/_custom_type_script = "uid://ca8ha7ig6gshg"

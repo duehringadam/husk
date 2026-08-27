@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="status_effect" format=3 uid="uid://bn5eyf7hu3grj"]
+
+[ext_resource type="Script" uid="uid://ca8ha7ig6gshg" path="res://components/status_effect.gd" id="1_gq2ay"]
+[ext_resource type="Material" uid="uid://mw51twfhmxyx" path="res://status_effects/poisoned/poisoned_particle_processor.tres" id="1_vcael"]
+[ext_resource type="QuadMesh" uid="uid://cid208wovx6uw" path="res://status_effects/sleep/sleep_mesh.tres" id="3_n26y7"]
+
+[resource]
+script = ExtResource("1_gq2ay")
+effect_type = 2
+particle_processor = ExtResource("1_vcael")
+duration = 10.0
+status_effect_mesh = ExtResource("3_n26y7")
+gravity = 1.0
+turbulence = true
+shader_buildup_max = 0.6
+metadata/_custom_type_script = "uid://ca8ha7ig6gshg"

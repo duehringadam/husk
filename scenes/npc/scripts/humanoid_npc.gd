@@ -119,3 +119,6 @@ func activate_secondary_offhand_weapon(value: bool):
 		secondary_weapon_offhand_add.activate()
 	else:
 		secondary_weapon_offhand_add.deactivate()
+
+func sleep(duration: float):
+	pass

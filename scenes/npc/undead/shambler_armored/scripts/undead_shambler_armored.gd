@@ -11,6 +11,7 @@ func _ready() -> void:
 		infestation_enemy_add.collision_layer = 0
 		infestation_bone_attach.remote_transform.remote_path = infestation_enemy_add.get_path()
 
+
 func _update_blocking(value: bool):
 	if value && left_arm && has_shield:
 		is_blocking = value
@@ -106,8 +107,8 @@ func _on_hurtbox_component_damage_taken(actual: float, source: DamageComponent, 
 		walk_blend_tree_node.animation = "Hit_F_2_InPlace"
 		idle_blend_tree_node.animation = "Hit_F_2_InPlace"
 		run_hit_blend_tree_node.animation = "Hit_F_2_InPlace"
-		
-	target = source.source
+	if source.source != null:
+		target = source.source
 	var current_state = animation_tree.get("parameters/playback").get_current_node()
 
 	if current_state == "walkBlendTree":
@@ -157,3 +158,9 @@ func _on_hurtbox_component_damage_blocked() -> void:
 				animation_tree.set("parameters/walkBlendTree/shieldWalkHit/request",AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 			if current_state == "runBlendTree":
 				animation_tree.set("parameters/runBlendTree/shieldWalkHit/request",AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+
+func sleep(duration: float):
+	state_chart.set_expression_property("death_special", true)
+	state_chart.send_event("sleep")
+	%sleepTimer.wait_time = duration
+	%sleepTimer.start()

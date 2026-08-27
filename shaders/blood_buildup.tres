@@ -3,11 +3,17 @@
 [ext_resource type="Shader" uid="uid://m1ybqx5bqk5r" path="res://shaders/blood vfx shaders/blood_mix.gdshader" id="1_bfcgj"]
 [ext_resource type="Texture2D" uid="uid://tj2xrbtj0eqr" path="res://shaders/blood vfx shaders/blood_buildup_noise_2.tres" id="2_1auw1"]
 
+[sub_resource type="Gradient" id="Gradient_1auw1"]
+colors = PackedColorArray(0.21568628, 0, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1auw1"]
+gradient = SubResource("Gradient_1auw1")
+
 [resource]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1_bfcgj")
 shader_parameter/noise = ExtResource("2_1auw1")
 shader_parameter/noise_shading = 1.0
-shader_parameter/progress = 0.0
-shader_parameter/color = Color(0.67230505, 1.8169359e-06, 3.85046e-07, 1)
+shader_parameter/progress = 0.462000021945
+shader_parameter/blood_gradient = SubResource("GradientTexture1D_1auw1")

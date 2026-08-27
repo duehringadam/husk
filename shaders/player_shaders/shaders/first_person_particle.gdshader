@@ -1,7 +1,7 @@
 // NOTE: Shader automatically converted from Godot Engine 4.6.stable's StandardMaterial3D.
 
 shader_type spatial;
-render_mode blend_mix, cull_back, diffuse_burley, specular_schlick_ggx;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_burley, specular_schlick_ggx;
 
 uniform vec4 albedo : source_color;
 uniform sampler2D texture_albedo : source_color, filter_linear_mipmap, repeat_enable;
@@ -105,5 +105,5 @@ void fragment() {
 	// Emission Operator: Add
 	EMISSION = (emission.rgb + emission_tex) * emission_energy;
 	ALPHA *= albedo.a * albedo_tex.a;
-	DEPTH = 1.0 - (1.0 - FRAGCOORD.z) * 0.7;
+	DEPTH = 1.0 - (1.0 - FRAGCOORD.z) * 0.6;
 }

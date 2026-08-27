@@ -1,33 +1,33 @@
 [gd_scene format=3 uid="uid://5i8e6fsne4v5"]
 
-[ext_resource type="Script" uid="uid://gbfdqpek0no8" path="res://Player/hands/animations/hands/spell_fire/spell_fire.gd" id="1_0eavj"]
-[ext_resource type="Material" uid="uid://djkfuqngh8ec2" path="res://item/spells/flame_spray/flame_spray_transparent_flame.tres" id="2_rf353"]
-[ext_resource type="AudioStream" uid="uid://b1m60rkx5rn63" path="res://sfx/spells/fire/floraphonic-dragon-breathes-fire-3-191459.mp3" id="6_3yxkx"]
-[ext_resource type="AudioStream" uid="uid://sppeegtsqrlm" path="res://sfx/spells/fire/crackling-fire-sound-307026.mp3" id="6_rf353"]
-[ext_resource type="PackedScene" uid="uid://ckj86tch1kfph" path="res://scenes/VFX/Scenes/VFX_Fire_Constant_A3.tscn" id="6_stlr1"]
-[ext_resource type="Texture2D" uid="uid://bgpuc5rjm2yh5" path="res://scenes/misc/Textures/Fire_SubUV_new.png" id="6_ym31k"]
-[ext_resource type="Texture2D" uid="uid://dgnarq1axwhae" path="res://scenes/MysticDungeon/Art/Textures/T_Fire01_Tiled_D_Yellow.png" id="7_po4ir"]
-[ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="8_3yxkx"]
-[ext_resource type="Texture2D" uid="uid://185sjxt7oawt" path="res://scenes/misc/Textures/T_Fire01_SubUV_normal.png" id="8_8wvgu"]
+[ext_resource type="Script" uid="uid://gbfdqpek0no8" path="res://Player/hands/animations/hands/spell_fire/spell_fire.gd" id="1_13ijh"]
+[ext_resource type="Material" uid="uid://djkfuqngh8ec2" path="res://item/spells/flame_spray/flame_spray_transparent_flame.tres" id="2_0u356"]
+[ext_resource type="AudioStream" uid="uid://b1m60rkx5rn63" path="res://sfx/spells/fire/floraphonic-dragon-breathes-fire-3-191459.mp3" id="3_jidm4"]
+[ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="4_ts0cw"]
+[ext_resource type="PackedScene" uid="uid://ckj86tch1kfph" path="res://scenes/VFX/Scenes/VFX_Fire_Constant_A3.tscn" id="5_h70t2"]
+[ext_resource type="Texture2D" uid="uid://bgpuc5rjm2yh5" path="res://scenes/misc/Textures/Fire_SubUV_new.png" id="6_o4ryx"]
+[ext_resource type="Texture2D" uid="uid://dgnarq1axwhae" path="res://scenes/MysticDungeon/Art/Textures/T_Fire01_Tiled_D_Yellow.png" id="7_a3fal"]
+[ext_resource type="Texture2D" uid="uid://185sjxt7oawt" path="res://scenes/misc/Textures/T_Fire01_SubUV_normal.png" id="8_2qr1r"]
+[ext_resource type="AudioStream" uid="uid://sppeegtsqrlm" path="res://sfx/spells/fire/crackling-fire-sound-307026.mp3" id="9_6reqq"]
 
 [sub_resource type="Curve" id="Curve_0eavj"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.80288464, 0.41573036), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_0eavj"]
+[sub_resource type="CurveTexture" id="CurveTexture_ybtvu"]
 curve = SubResource("Curve_0eavj")
 
 [sub_resource type="Gradient" id="Gradient_gxvne"]
 colors = PackedColorArray(0.99999994, 0.86646223, 0.36267662, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_mkrx0"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_lvhqm"]
 gradient = SubResource("Gradient_gxvne")
 
 [sub_resource type="Curve" id="Curve_stlr1"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.20224726), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_rf353"]
+[sub_resource type="CurveTexture" id="CurveTexture_rk2r1"]
 curve = SubResource("Curve_stlr1")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0eavj"]
@@ -42,22 +42,22 @@ linear_accel_min = -2.23517e-06
 linear_accel_max = -2.23517e-06
 scale_min = 0.5
 scale_max = 1.5
-scale_curve = SubResource("CurveTexture_rf353")
-color_ramp = SubResource("GradientTexture1D_mkrx0")
-alpha_curve = SubResource("CurveTexture_0eavj")
+scale_curve = SubResource("CurveTexture_rk2r1")
+color_ramp = SubResource("GradientTexture1D_lvhqm")
+alpha_curve = SubResource("CurveTexture_ybtvu")
 anim_speed_min = 1.0
 anim_speed_max = 1.0
 turbulence_noise_speed = Vector3(0, 1, 0)
 
 [sub_resource type="QuadMesh" id="QuadMesh_hqfbu"]
-material = ExtResource("2_rf353")
+material = ExtResource("2_0u356")
 size = Vector2(0.2, 0.2)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eesq2"]
 radius = 2.2509766
 height = 11.75
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bk1j5"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ym31k"]
 resource_local_to_scene = true
 transparency = 1
 diffuse_mode = 3
@@ -65,12 +65,12 @@ specular_mode = 1
 vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
 albedo_color = Color(1, 0.51584375, 0, 1)
-albedo_texture = ExtResource("6_ym31k")
+albedo_texture = ExtResource("6_o4ryx")
 emission_enabled = true
 emission = Color(1, 0.29748532, 0, 1)
-emission_texture = ExtResource("7_po4ir")
+emission_texture = ExtResource("7_a3fal")
 normal_enabled = true
-normal_texture = ExtResource("8_8wvgu")
+normal_texture = ExtResource("8_2qr1r")
 backlight = Color(1, 1, 1, 1)
 billboard_mode = 3
 billboard_keep_scale = true
@@ -82,12 +82,12 @@ proximity_fade_distance = 0.01
 distance_fade_max_distance = 1.0
 stencil_flags = 2
 
-[sub_resource type="QuadMesh" id="QuadMesh_17152"]
+[sub_resource type="QuadMesh" id="QuadMesh_po4ir"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_bk1j5")
+material = SubResource("StandardMaterial3D_ym31k")
 
 [node name="spell_fire" type="Node3D" unique_id=1881406381]
-script = ExtResource("1_0eavj")
+script = ExtResource("1_13ijh")
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="." unique_id=915606027]
 remote_path = NodePath("../GPUParticles3D")
@@ -104,7 +104,7 @@ process_material = SubResource("ParticleProcessMaterial_0eavj")
 draw_pass_1 = SubResource("QuadMesh_hqfbu")
 
 [node name="firesfx" type="AudioStreamPlayer3D" parent="GPUParticles3D" unique_id=912230544]
-stream = ExtResource("6_3yxkx")
+stream = ExtResource("3_jidm4")
 max_distance = 5.0
 bus = &"SFX"
 
@@ -118,27 +118,28 @@ transform = Transform3D(-0.04999996, 0, 4.3711346e-09, 0, 0.04999999, 0, -4.3711
 collision_mask = 14
 monitoring = false
 monitorable = false
-script = ExtResource("8_3yxkx")
+script = ExtResource("4_ts0cw")
 damage_types = Dictionary[int, float]({
 6: 5.0
 })
 status_types = Dictionary[int, float]({
-0: 0.25
+0: 1.0
 })
+damage_interval = 0.15000000000000002
 metadata/_custom_type_script = "uid://dlsydctoxqbwy"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent" unique_id=1856923197]
 transform = Transform3D(9.989937, -0.32091048, 0.32074505, 0.32091787, -4.3711407e-07, -9.994848, 0.3207526, 9.994856, 0.010297909, -0.46490097, 0.2794652, 55.324833)
 shape = SubResource("CapsuleShape3D_eesq2")
 
-[node name="VFX_fire_Constant_A3" parent="." unique_id=1748177694 instance=ExtResource("6_stlr1")]
+[node name="VFX_fire_Constant_A3" parent="." unique_id=1748177694 instance=ExtResource("5_h70t2")]
 top_level = false
 
 [node name="bloodflow" parent="VFX_fire_Constant_A3" index="1" unique_id=1975358930]
-draw_pass_1 = SubResource("QuadMesh_17152")
+draw_pass_1 = SubResource("QuadMesh_po4ir")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1285625525]
-stream = ExtResource("6_rf353")
+stream = ExtResource("9_6reqq")
 volume_db = -20.0
 autoplay = true
 bus = &"SFX"

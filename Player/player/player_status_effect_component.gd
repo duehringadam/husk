@@ -69,16 +69,17 @@ func _apply_statuses(effects: Array[status_effect]):
 func check_status_type(status: Global.STATUS_TYPE) -> status_effect:
 	match status:
 		Global.STATUS_TYPE.BURNING:
-			get_tree().create_timer(10).timeout.connect(remove_status.bind(burning_preload))
+			get_tree().create_timer(burning_preload.duration).timeout.connect(remove_status.bind(burning_preload))
 			return burning_preload
 		Global.STATUS_TYPE.BLEEDING:
-			get_tree().create_timer(10).timeout.connect(remove_status.bind(bleeding_preload))
+			get_tree().create_timer(bleeding_preload.duration).timeout.connect(remove_status.bind(bleeding_preload))
+			reduce_resistances(.15, bleeding_preload.duration)
 			return bleeding_preload
 		Global.STATUS_TYPE.POISONED:
-			get_tree().create_timer(10).timeout.connect(remove_status.bind(poisoned_preload))
+			get_tree().create_timer(poisoned_preload.duration).timeout.connect(remove_status.bind(poisoned_preload))
 			return poisoned_preload
 		Global.STATUS_TYPE.SLEEP:
-			get_tree().create_timer(10).timeout.connect(remove_status.bind(sleep_preload))
+			get_tree().create_timer(sleep_preload.duration).timeout.connect(remove_status.bind(sleep_preload))
 			return sleep_preload
 		_:
 			return burning_preload
@@ -102,3 +103,11 @@ func _on_death():
 	pass
 	#for i in statuses.values():
 		#remove_status(i)
+		
+func reduce_resistances(amount: float, duration: float):
+	var stored_resists: Dictionary = hurtbox.damage_resistances.duplicate()
+	for i in hurtbox.damage_resistances:
+		hurtbox.damage_resistances[i] *= (1.0 - amount)
+	await get_tree().create_timer(duration).timeout
+	for i in stored_resists:
+		hurtbox.damage_resistances[i] = stored_resists[i]

@@ -1,7 +1,7 @@
-[gd_resource type="ShaderMaterial" format=3 uid="uid://hnygll7t2it1"]
+[gd_resource type="QuadMesh" format=3 uid="uid://dox0y1a8cdl81"]
 
-[ext_resource type="Texture2D" uid="uid://dv6fsjgo3oep8" path="res://scenes/VFX/textures/T_Blood_Leash_FE1.png" id="1_jqri1"]
-[ext_resource type="Texture2D" uid="uid://bbsoxdcavc1q6" path="res://scenes/VFX/textures/T_Blood_Leash_FE1_N.png" id="2_kxbah"]
+[ext_resource type="Texture2D" uid="uid://dynq355483yeq" path="res://scenes/VFX/textures/T_Blood_Splatter_Kj9.png" id="1_s5igh"]
+[ext_resource type="Texture2D" uid="uid://b3lg6h25y1j4u" path="res://scenes/VFX/textures/T_Blood_Splatter_Kj9_N.png" id="2_itemb"]
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_4oy1p"]
 expanded_output_ports = [0]
@@ -182,10 +182,10 @@ nodes/light/connections = PackedInt32Array(2, 0, 4, 0, 5, 0, 4, 1, 3, 0, 0, 0, 4
 
 [sub_resource type="Gradient" id="Gradient_a3bcn"]
 interpolation_color_space = 1
-offsets = PackedFloat32Array(0.137931, 0.521073)
-colors = PackedColorArray(0.366101, 0.031567, 0.0366713, 1, 0.42318475, 5.655363e-07, 9.62615e-08, 1)
+offsets = PackedFloat32Array(0.2616034, 0.54008436)
+colors = PackedColorArray(0.35686275, 0.2, 0.003921569, 1, 1, 0.5689266, 0.45604807, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_1mueb"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_s5igh"]
 gradient = SubResource("Gradient_a3bcn")
 
 [sub_resource type="Gradient" id="Gradient_70xfr"]
@@ -202,14 +202,18 @@ colors = PackedColorArray(0.273873, 0.273873, 0.273873, 1, 0, 0, 0, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_rrogk"]
 gradient = SubResource("Gradient_eufx1")
 
-[resource]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_itemb"]
 render_priority = 0
 shader = SubResource("VisualShader_41jeg")
 shader_parameter/Scale = Vector2(1, 1)
 shader_parameter/Speed_XY = Vector2(0, 0)
-shader_parameter/Disolver_Texture = ExtResource("1_jqri1")
-shader_parameter/Color_1D_Gradient = SubResource("GradientTexture1D_1mueb")
+shader_parameter/Disolver_Texture = ExtResource("1_s5igh")
+shader_parameter/Color_1D_Gradient = SubResource("GradientTexture1D_s5igh")
 shader_parameter/Metallic_Texture = SubResource("GradientTexture2D_8mnei")
 shader_parameter/Roughtness_1D_Gradient = SubResource("GradientTexture1D_rrogk")
-shader_parameter/Normal_Texture = ExtResource("2_kxbah")
-shader_parameter/Normal_Map_Depth = 2.0
+shader_parameter/Normal_Texture = ExtResource("2_itemb")
+shader_parameter/Normal_Map_Depth = 1.0
+
+[resource]
+material = SubResource("ShaderMaterial_itemb")
+size = Vector2(0.7, 1)

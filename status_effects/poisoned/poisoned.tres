@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="status_effect" format=3 uid="uid://ba5fmd8hrdeo4"]
+
+[ext_resource type="Script" uid="uid://ca8ha7ig6gshg" path="res://components/status_effect.gd" id="1_dwnkm"]
+[ext_resource type="PackedScene" uid="uid://c64bx48b8sxhh" path="res://status_effects/poisoned/poison_damage.tscn" id="1_mqju3"]
+[ext_resource type="Material" uid="uid://ba2sfpoqp2x3d" path="res://status_effects/poisoned/poison_buildup.tres" id="1_rgou3"]
+[ext_resource type="Material" uid="uid://mw51twfhmxyx" path="res://status_effects/poisoned/poisoned_particle_processor.tres" id="2_mqju3"]
+[ext_resource type="QuadMesh" uid="uid://bspmls5qgxaur" path="res://status_effects/poisoned/poison_mesh.tres" id="4_h7d5u"]
+
+[resource]
+script = ExtResource("1_dwnkm")
+effect_type = 1
+damage_component_scene = ExtResource("1_mqju3")
+particle_processor = ExtResource("2_mqju3")
+duration = 60.0
+status_effect_mesh = ExtResource("4_h7d5u")
+affected_target_next_pass = ExtResource("1_rgou3")
+gravity = 0.1999999999999993
+is_animated = true
+shader_buildup_max = 0.6
+metadata/_custom_type_script = "uid://ca8ha7ig6gshg"

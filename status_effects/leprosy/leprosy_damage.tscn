@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://d8kclsvgl61q"]
+
+[ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="1_fn27w"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_m0aoy"]
+radius = 0.1
+
+[node name="Node3D" type="Node3D" unique_id=1071602752]
+
+[node name="DamageComponent" type="Area3D" parent="." unique_id=965752293]
+collision_layer = 4
+collision_mask = 13
+script = ExtResource("1_fn27w")
+damage_types = Dictionary[int, float]({
+1: 2.0
+})
+damage_interval = 0.5
+metadata/_custom_type_script = "uid://dlsydctoxqbwy"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent" unique_id=79634179]
+shape = SubResource("SphereShape3D_m0aoy")

@@ -3,9 +3,9 @@ extends Resource
 
 @export_category("Damage")
 @export var effect_type: Global.STATUS_TYPE
-@export var damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float]
 @export var damage_component_scene: PackedScene
 @export var particle_processor: ParticleProcessMaterial
+@export var duration: float
 
 @export_category("Particle")
 @export var status_effect_mesh: Mesh

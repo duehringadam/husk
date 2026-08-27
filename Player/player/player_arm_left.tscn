@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://1xhujeketj0r" path="res://addons/godot_state_charts/atomic_state.gd" id="6_muycx"]
 [ext_resource type="Animation" uid="uid://n77wflivid5l" path="res://Player/hands/animations/hands/spell_fire/fire_nomana.tres" id="6_upic4"]
 [ext_resource type="Animation" uid="uid://dcn8w14uio0rx" path="res://Player/hands/animations/hands/spell_fire/fire_use.tres" id="7_b4dho"]
-[ext_resource type="Animation" uid="uid://ck3u6knsvh7jd" path="res://Player/hands/animations/hands/shield/shield_block_hit.tres" id="8_4it18"]
+[ext_resource type="Animation" uid="uid://dyxtqqmtlg1g6" path="res://Player/hands/animations/hands/shield/shield_block_hit.tres" id="8_4it18"]
 [ext_resource type="Script" uid="uid://8kg3tepcr415" path="res://addons/godot_state_charts/transition.gd" id="8_muycx"]
 [ext_resource type="Animation" uid="uid://de5mlpadwodgy" path="res://Player/hands/animations/hands/throwing_knife/throw_charge.tres" id="8_upic4"]
 [ext_resource type="Animation" uid="uid://dt3wud84y54vo" path="res://Player/hands/animations/hands/throwing_knife/throwing_TO.tres" id="9_b4dho"]
@@ -23009,7 +23009,7 @@ bones/26/rest = Transform3D(1, -1.493868e-07, 2.384187e-07, 1.493868e-07, 1, 2.3
 bones/26/enabled = true
 bones/26/position = Vector3(4.531385e-09, 0.47012398, 1.0887968e-08)
 bones/26/rotation = Quaternion(1.8625971e-09, -4.1909516e-09, 7.8418694e-08, 1)
-bones/26/scale = Vector3(1.058808, 1.0588082, 1.0588081)
+bones/26/scale = Vector3(1.0588081, 1.0588082, 1.0588081)
 bones/27/name = "segment3.L"
 bones/27/parent = 26
 bones/27/rest = Transform3D(1, 1.3577231e-07, -1.2370789e-07, -1.3922967e-07, 0.99959683, -0.028390123, 1.1980343e-07, 0.02839012, 0.9995969, -1.5249171e-09, 0.08228908, 1.4464391e-08)
@@ -23162,7 +23162,7 @@ bones/48/parent = 28
 bones/48/rest = Transform3D(1, -2.6857563e-07, 2.821299e-07, 2.8212992e-07, 0, -0.99999994, 2.6857566e-07, 0.99999994, 7.577322e-14, 0.027982088, 0.1375571, -0.062328465)
 bones/48/enabled = true
 bones/48/position = Vector3(-0.02852281, 0.13760358, -0.060139414)
-bones/48/rotation = Quaternion(0.6971476, 0.08052366, 0.0042272774, 0.7123786)
+bones/48/rotation = Quaternion(0.5740187, 0.17930724, 0.19668369, 0.7743817)
 bones/48/scale = Vector3(1, 0.99999994, 0.99999994)
 
 [node name="Hands" type="MeshInstance3D" parent="ghoul_arms2(1)/Armature/Skeleton3D" unique_id=239782853]
@@ -23173,7 +23173,7 @@ skeleton = NodePath("..")
 surface_material_override/0 = ExtResource("3_x3y7m")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="ghoul_arms2(1)/Armature/Skeleton3D" unique_id=618378062]
-transform = Transform3D(0.27855676, 1.0099247, 0.15340151, -0.9822512, 0.2211574, 0.327639, 0.28047064, -0.22850668, 0.9950849, -0.2076547, -1.205598, -0.3357591)
+transform = Transform3D(0.24681802, 0.87273186, 0.54634583, -1.0174242, 0.29300588, -0.008414097, -0.15812668, -0.52303004, 0.90692276, -0.2076547, -1.205598, -0.33575913)
 bone_name = "weapons.L"
 bone_idx = 48
 
@@ -23182,6 +23182,7 @@ libraries/ = SubResource("AnimationLibrary_yxebu")
 libraries/spell_anims = SubResource("AnimationLibrary_y37yn")
 
 [node name="AnimationTree" type="AnimationTree" parent="ghoul_arms2(1)" unique_id=932310949]
+active = false
 tree_root = ExtResource("13_um1lv")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/activate = false

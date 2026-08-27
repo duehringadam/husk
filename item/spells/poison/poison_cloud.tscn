@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://bnjhqhlvi5mge"]
+
+[ext_resource type="Script" uid="uid://cmrc6hxb0a6wm" path="res://components/percent_hp_damage_component.gd" id="1_psr23"]
+[ext_resource type="Script" uid="uid://cuosfhmbxv42t" path="res://item/spells/poison/poison_cloud.gd" id="1_rv6y2"]
+[ext_resource type="Texture2D" uid="uid://255onixnbg8w" path="res://scenes/MysticDungeon/Art/Textures/smoke_04.png" id="2_psr23"]
+[ext_resource type="AudioStream" uid="uid://dov2x7a2awlu5" path="res://sfx/spells/poison/poison_ambient.ogg" id="3_vkd27"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_m0aoy"]
+radius = 1.1031215
+
+[sub_resource type="Curve" id="Curve_qqar7"]
+_data = [Vector2(0, 0), 0.0, 4.3199806, 0, 0, Vector2(1, 0), -3.3859305, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_j1pv0"]
+curve = SubResource("Curve_qqar7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_obbha"]
+emission_shape = 1
+emission_sphere_radius = 1.5
+angle_min = -720.0
+angle_max = 720.0
+initial_velocity_min = 0.099999994
+initial_velocity_max = 0.099999994
+angular_velocity_min = -10.000016
+angular_velocity_max = 9.999984
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 2.0
+scale_over_velocity_max = 2.0
+alpha_curve = SubResource("CurveTexture_j1pv0")
+turbulence_noise_strength = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hpusm"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.29416674, 5.8069752e-05, 0.29416436, 1)
+albedo_texture = ExtResource("2_psr23")
+texture_filter = 4
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_cx4cq"]
+material = SubResource("StandardMaterial3D_hpusm")
+size = Vector2(3, 3)
+
+[node name="poison_cloud" type="Node3D" unique_id=557854952]
+script = ExtResource("1_rv6y2")
+
+[node name="DamageComponent" type="Area3D" parent="." unique_id=827477723]
+collision_layer = 4
+collision_mask = 13
+script = ExtResource("1_psr23")
+percent_hp_damage_types = Dictionary[int, float]({
+7: 0.005
+})
+status_types = Dictionary[int, float]({
+1: 0.33
+})
+damage_interval = 0.5
+metadata/_custom_type_script = "uid://dlsydctoxqbwy"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent" unique_id=1376729450]
+shape = SubResource("SphereShape3D_m0aoy")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="DamageComponent" unique_id=1207516952]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.109213114)
+amount = 16
+lifetime = 15.0
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_obbha")
+draw_pass_1 = SubResource("QuadMesh_cx4cq")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="DamageComponent" unique_id=382700008]
+stream = ExtResource("3_vkd27")
+autoplay = true
+max_distance = 10.0
+bus = &"SFX"
+
+[node name="Timer" type="Timer" parent="." unique_id=1237384533]
+wait_time = 15.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

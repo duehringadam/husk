@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://blbqtisskes0w" path="res://sfx/spells/telekinesis/deep-whoosh-bass-impact-effect-04-407108 (2).mp3" id="8_f701h"]
 [ext_resource type="Texture2D" uid="uid://cxsmx407d722t" path="res://scenes/VFX/textures/T_NP41.PNG" id="8_kfvg2"]
 [ext_resource type="AudioStream" uid="uid://bcbfxlgkj8wxf" path="res://sfx/spells/blood/ragecore29-htf-flesh-impact-1-480118.mp3" id="8_q3for"]
+[ext_resource type="Script" uid="uid://cmrc6hxb0a6wm" path="res://components/percent_hp_damage_component.gd" id="9_x6s2n"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="10_f701h"]
 [ext_resource type="ArrayMesh" uid="uid://bmi0bbugbvf62" path="res://scenes/VFX/objects/sm_muzzle_crossplanes.obj" id="11_d7ah0"]
 [ext_resource type="Shader" uid="uid://co7jgochvp3jd" path="res://shaders/blood vfx shaders/ss_decal2_treshold_p.gdshader" id="12_ji3dv"]
@@ -727,7 +728,7 @@ update_rotation = false
 update_scale = false
 
 [node name="TargetIKLeft" type="Node3D" parent="." unique_id=259210336]
-transform = Transform3D(0.11834004, 0.21582991, -0.9692322, 0.984416, 0.102365986, 0.14298873, 0.13007785, -0.9710494, -0.20035243, 0.24299365, 0.23477522, 0.22506684)
+transform = Transform3D(0.11834004, 0.21582988, -0.9692321, 0.984416, 0.10236598, 0.1429887, 0.13007785, -0.9710493, -0.2003524, 0.24299365, 0.23477522, 0.22506684)
 top_level = true
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="TargetIKLeft" unique_id=229238345]
@@ -770,8 +771,9 @@ damage_types = Dictionary[int, float]({
 5: 35.0
 })
 status_types = Dictionary[int, float]({
-3: 1.0
+3: 0.75
 })
+stance_damage_value = 0.5
 metadata/_custom_type_script = "uid://dlsydctoxqbwy"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TargetIKLeft/enemyDamage" unique_id=1656037409]
@@ -787,9 +789,12 @@ bus = &"SFX"
 transform = Transform3D(1.0000007, 0, 0, 0, 0.99999994, 0, 0, 0, 1.0000001, 0, 0, 0)
 monitoring = false
 monitorable = false
-script = ExtResource("10_f701h")
-damage_types = Dictionary[int, float]({
-5: 25.0
+script = ExtResource("9_x6s2n")
+percent_hp_damage_types = Dictionary[int, float]({
+5: 0.05
+})
+status_types = Dictionary[int, float]({
+3: 0.25
 })
 stance_damage_value = 0.5
 metadata/_custom_type_script = "uid://dlsydctoxqbwy"

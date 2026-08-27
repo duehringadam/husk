@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="1_1fffl"]
 [ext_resource type="AudioStream" uid="uid://sppeegtsqrlm" path="res://sfx/spells/fire/crackling-fire-sound-307026.mp3" id="3_0ifav"]
 [ext_resource type="AudioStream" uid="uid://1saram1j110e" path="res://sfx/damage/burn-flesh-01-266302.mp3" id="3_oyd4q"]
-[ext_resource type="QuadMesh" uid="uid://dive7lbkclbk3" path="res://status_effects/burning_mesh.tres" id="4_oyd4q"]
+[ext_resource type="QuadMesh" uid="uid://dive7lbkclbk3" path="res://status_effects/burning/burning_mesh.tres" id="4_oyd4q"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ohhyp"]
 radius = 0.75
@@ -72,7 +72,7 @@ collision_mask = 13
 script = ExtResource("1_1fffl")
 hit_sound = NodePath("damage")
 damage_types = Dictionary[int, float]({
-6: 10.0
+6: 1.0
 })
 status_types = Dictionary[int, float]({
 0: 0.33

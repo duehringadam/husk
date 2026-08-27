@@ -9,14 +9,17 @@ signal status_removed(effect: status_effect)
 @export var statuses: Dictionary[Global.STATUS_TYPE, status_effect]
 @export var mesh_to_affect: MeshInstance3D
 @export var health_component: HealthComponent
+@export var bone_health_component_array: Array[BoneHealthComponent]
 
 var resistance_timer = Timer.new()
 var times_applied: int = 1
 var status_size: int
-var burning_preload = preload("res://status_effects/burning.tres")
-var bleeding_preload = preload("res://status_effects/bleeding.tres")
-var poisoned_preload = preload("res://status_effects/poisoned.tres")
-var sleep_preload = preload("res://status_effects/sleep.tres")
+
+var burning_preload = preload("res://status_effects/burning/burning.tres")
+var bleeding_preload = preload("res://status_effects/bleeding/bleeding.tres")
+var poisoned_preload = preload("res://status_effects/poisoned/poisoned.tres")
+var sleep_preload = preload("res://status_effects/sleep/sleep.tres")
+var leprosy_preload = preload("res://status_effects/leprosy/leprosy.tres")
 
 var child_damage_component
 var status_buildup_progress_clamp: float
@@ -77,8 +80,7 @@ func _apply_statuses(effects: Array[status_effect]):
 			if i.damage_component_scene != null:
 				child_damage_component = i.damage_component_scene.instantiate()
 				add_child(child_damage_component)
-				if !health_component.is_connected("health_changed", increment_shader):
-					health_component.connect("health_changed", increment_shader)
+				child_damage_component.connect("increment_shader",increment_shader)
 			if i.shader_buildup_max > 0:
 				status_buildup_progress_clamp = i.shader_buildup_max
 
@@ -86,17 +88,23 @@ func _apply_statuses(effects: Array[status_effect]):
 func check_status_type(status: Global.STATUS_TYPE) -> status_effect:
 	match status:
 		Global.STATUS_TYPE.BURNING:
-			get_tree().create_timer(10).timeout.connect(remove_status.bind(burning_preload))
+			get_tree().create_timer(burning_preload.duration).timeout.connect(remove_status.bind(burning_preload))
 			return burning_preload
 		Global.STATUS_TYPE.BLEEDING:
-			get_tree().create_timer(10).timeout.connect(remove_status.bind(bleeding_preload))
+			reduce_resistances(.15, bleeding_preload.duration)
+			get_tree().create_timer(bleeding_preload.duration).timeout.connect(remove_status.bind(bleeding_preload))
 			return bleeding_preload
 		Global.STATUS_TYPE.POISONED:
-			get_tree().create_timer(10).timeout.connect(remove_status.bind(poisoned_preload))
+			get_tree().create_timer(poisoned_preload.duration).timeout.connect(remove_status.bind(poisoned_preload))
 			return poisoned_preload
 		Global.STATUS_TYPE.SLEEP:
-			get_tree().create_timer(10).timeout.connect(remove_status.bind(sleep_preload))
+			owner.sleep(sleep_preload.duration)
+			get_tree().create_timer(sleep_preload.duration).timeout.connect(remove_status.bind(sleep_preload))
 			return sleep_preload
+		Global.STATUS_TYPE.LEPROSY:
+			remove_limb(leprosy_preload.duration)
+			get_tree().create_timer(leprosy_preload.duration).timeout.connect(remove_status.bind(leprosy_preload))
+			return leprosy_preload
 		_:
 			return burning_preload
 
@@ -108,7 +116,7 @@ func remove_status(effect: status_effect):
 			child_damage_component.queue_free()
 		emitting = false
 		available_statuses[effect.effect_type] = 0
-		if mesh_to_affect:
+		if mesh_to_affect && effect.affected_target_next_pass != null:
 			var material = mesh_to_affect.get_surface_override_material(0).next_pass
 			var tween = get_tree().create_tween()
 			tween.tween_property(material, "shader_parameter/progress",0,1)
@@ -127,6 +135,21 @@ func increment_shader(_amount: float, new_value: float):
 				var material = mesh_to_affect.get_surface_override_material(0).next_pass
 				var tween = get_tree().create_tween()
 				tween.tween_property(material, "shader_parameter/progress",clampf(material["shader_parameter/progress"]+ratio,0,status_buildup_progress_clamp),.5)
+
+func reduce_resistances(amount: float, duration: float):
+	var stored_resists: Dictionary = hurtbox.damage_resistances.duplicate()
+	for i in hurtbox.damage_resistances:
+		hurtbox.damage_resistances[i] *= (1.0 - amount)
+	await get_tree().create_timer(duration).timeout
+	for i in stored_resists:
+		hurtbox.damage_resistances[i] = stored_resists[i]
+
+func remove_limb(duration:float):
+	var idx = randi_range(0, bone_health_component_array.size()-1)
+	var random_limb = bone_health_component_array[idx]
+	var random_time = randf_range(5, duration)
+	await get_tree().create_timer(random_time).timeout
+	random_limb.sever_bones()
 
 func _on_death():
 	pass

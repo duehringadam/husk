@@ -25,9 +25,7 @@
 [ext_resource type="Script" uid="uid://bxoydk8unigg3" path="res://Player/scripts/player_hud.gd" id="21_ujn18"]
 [ext_resource type="Shader" uid="uid://dc66sjqqg3w1a" path="res://shaders/player_shaders/shaders/circular_bar.gdshader" id="22_2m5xu"]
 [ext_resource type="Script" uid="uid://83vqngoyog5j" path="res://Player/UI/scripts/hold_attack_bar.gd" id="23_5fkmn"]
-[ext_resource type="Shader" uid="uid://2i33d2n3yv47" path="res://shaders/player_shaders/shaders/radial_blur.gdshader" id="25_k1tkb"]
 [ext_resource type="Shader" uid="uid://bl7r0kant66md" path="res://shaders/player_shaders/shaders/screen_burn.gdshader" id="26_018ip"]
-[ext_resource type="Script" uid="uid://8jstcds4fmx8" path="res://Player/scripts/radial_blur.gd" id="26_hqsyx"]
 [ext_resource type="Script" uid="uid://1l23v6jds28n" path="res://Player/player/player_screen_burning.gd" id="27_018ip"]
 [ext_resource type="AudioStream" uid="uid://cc67f271a754i" path="res://sfx/UI/chargecomplete.wav" id="28_7vtq1"]
 [ext_resource type="Shader" uid="uid://dn324eo1sre1n" path="res://shaders/player_shaders/shaders/death.gdshader" id="29_f81pb"]
@@ -50,7 +48,7 @@
 [ext_resource type="Script" uid="uid://ch6mtuu0umfie" path="res://Player/player/player_status_list_bar.gd" id="40_56h8e"]
 [ext_resource type="PackedScene" uid="uid://bmphfd5h5ant7" path="res://Player/UI/quick select/selection_wheel.tscn" id="40_avbty"]
 [ext_resource type="Script" uid="uid://brwpqkgj3ix5i" path="res://Player/scripts/stable_ground_detector.gd" id="42_jng3h"]
-[ext_resource type="Material" uid="uid://cq6qjkpjhmbw8" path="res://status_effects/burning_particle_process_material.tres" id="45_jonee"]
+[ext_resource type="Material" uid="uid://cq6qjkpjhmbw8" path="res://status_effects/burning/burning_particle_process_material.tres" id="45_jonee"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xc2g5"]
 
@@ -141,19 +139,19 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("../hud/radial_blur:blur")
+tracks/6/path = NodePath("Neck/Camera3D/RightHand:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Vector3(0, 0, 0)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Neck/Camera3D/RightHand:position")
+tracks/7/path = NodePath("Neck/Camera3D/RightHand:rotation")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -165,7 +163,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Neck/Camera3D/RightHand:rotation")
+tracks/8/path = NodePath("Neck/Camera3D/LeftHand:position")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -177,7 +175,7 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Neck/Camera3D/LeftHand:position")
+tracks/9/path = NodePath("Neck/Camera3D/LeftHand:rotation")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -189,58 +187,46 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Neck/Camera3D/LeftHand:rotation")
+tracks/10/path = NodePath("../death:material:shader_parameter/factor")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [0.0]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("../death:material:shader_parameter/factor")
+tracks/11/path = NodePath("../death/Label:modulate")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [Color(1, 1, 1, 0)]
 }
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("../death/Label:modulate")
+tracks/12/path = NodePath("../death/Label:visible")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
+"update": 1,
+"values": [false]
 }
 tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("../death/Label:visible")
+tracks/13/path = NodePath("../death:visible")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/14/type = "value"
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/path = NodePath("../death:visible")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/keys = {
 "times": PackedFloat32Array(0.0009999999),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -289,70 +275,58 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../hud/radial_blur:blur")
-tracks/3/interp = 1
+tracks/3/path = NodePath("../death:material:shader_parameter/factor")
+tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.03333334, 4.9666667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../death:material:shader_parameter/factor")
-tracks/4/interp = 2
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(1, 1.5666667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 0.999999977648]
 }
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("../death/Label:modulate")
-tracks/5/interp = 2
-tracks/5/loop_wrap = true
-tracks/5/keys = {
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../death/Label:modulate")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0, 2.2, 3.2625427),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("../death/Label:visible")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../death/Label:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(0.06666666, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
 }
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("../death:visible")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../death:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
 "times": PackedFloat32Array(0, 5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
 }
-tracks/8/type = "audio"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("../death/AudioStreamPlayer")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
+tracks/7/type = "audio"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../death/AudioStreamPlayer")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
 "clips": [{
 "end_offset": 0.5623965,
 "start_offset": 0.0,
@@ -360,14 +334,14 @@ tracks/8/keys = {
 }],
 "times": PackedFloat32Array(0)
 }
-tracks/8/use_blend = true
-tracks/9/type = "method"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("%Head/..")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
+tracks/7/use_blend = true
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("%Head/..")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
 "times": PackedFloat32Array(4.983333),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -678,12 +652,6 @@ _data = {
 &"damage": SubResource("Animation_4ng6s")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hqsyx"]
-shader = ExtResource("25_k1tkb")
-shader_parameter/blur_center = Vector2(0.5, 0.5)
-shader_parameter/blur_power = 0.01
-shader_parameter/sampling_count = 2
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cqqbj"]
 shader = ExtResource("12_vnn13")
 shader_parameter/strength = 0.08
@@ -738,18 +706,17 @@ height = 1024
 noise = SubResource("FastNoiseLite_gi4cx")
 seamless = true
 in_3d_space = true
-as_normal_map = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v4udn"]
 shader = ExtResource("26_018ip")
 shader_parameter/noise_tex = SubResource("NoiseTexture2D_kur6e")
-shader_parameter/root_color = Color(1, 0.75, 0.3, 1)
-shader_parameter/tip_color = Color(1, 0.03, 0.001, 1)
+shader_parameter/root_color = Color(0.20784314, 0, 0, 1)
+shader_parameter/tip_color = Color(1, 0, 0, 1)
 shader_parameter/poster_color = 0.0
 shader_parameter/fire_alpha = 1.0
 shader_parameter/fire_speed = Vector2(0.015, 0.5)
 shader_parameter/fire_aperture = 0.22
-shader_parameter/vignette_radius = 0.1250000059375
+shader_parameter/vignette_radius = 0.1910000090725
 shader_parameter/vignette_falloff = 0.0
 shader_parameter/noise_influence = 1.0
 
@@ -864,7 +831,6 @@ player_stats = Dictionary[int, int]({
 4: 10,
 5: 10
 })
-mouse_sensitivity = 100.0
 player_body = NodePath("Head/Neck/Camera3D/playerBody")
 jump_power = 5.0
 camera_lean_position = Vector3(0, 0, 0)
@@ -1052,16 +1018,6 @@ collision_mask = 13
 script = ExtResource("5_eon52")
 player_camera = NodePath("../Head/Neck/Camera3D")
 stamina_component = NodePath("../StaminaComponent")
-damage_resistances = Dictionary[int, float]({
-0: 0.1,
-1: 0.1,
-2: 0.1,
-3: 0.1,
-4: 0.1,
-5: 0.1,
-6: 0.1,
-7: 0.1
-})
 health_component = NodePath("../HealthComponent")
 status_component = NodePath("../status_effect_component")
 hit_sound = ExtResource("8_jux4o")
@@ -1077,6 +1033,7 @@ stream = ExtResource("16_0ay5n")
 bus = &"SFX"
 
 [node name="status_effect_component" type="GPUParticles3D" parent="." unique_id=1465415421 node_paths=PackedStringArray("hurtbox", "health_component")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
 process_material = ExtResource("45_jonee")
 script = ExtResource("18_ubocy")
 available_statuses = Dictionary[int, float]({
@@ -1114,24 +1071,6 @@ hurtbox = NodePath("../../hurtbox_component")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="hud/damage" unique_id=1537257084]
 libraries/ = SubResource("AnimationLibrary_qk8yx")
 
-[node name="radial_blur" type="ColorRect" parent="hud" unique_id=1404859838]
-unique_name_in_owner = true
-visible = false
-material = SubResource("ShaderMaterial_hqsyx")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-script = ExtResource("26_hqsyx")
-blur_amount = 0.01
-
-[node name="blurTimer" type="Timer" parent="hud/radial_blur" unique_id=357995974]
-unique_name_in_owner = true
-one_shot = true
-
 [node name="launch" type="ColorRect" parent="hud" unique_id=1681020044]
 material = SubResource("ShaderMaterial_cqqbj")
 layout_mode = 1
@@ -1146,7 +1085,8 @@ script = ExtResource("13_tio5b")
 [node name="shockwave" type="AnimationPlayer" parent="hud/launch" unique_id=1285983707]
 libraries/ = SubResource("AnimationLibrary_863th")
 
-[node name="burning" type="ColorRect" parent="hud" unique_id=1742329115]
+[node name="statusEffects" type="ColorRect" parent="hud" unique_id=1742329115]
+visible = false
 material = SubResource("ShaderMaterial_v4udn")
 layout_mode = 1
 anchors_preset = 15
@@ -1157,7 +1097,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("27_018ip")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="hud/burning" unique_id=858379140]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="hud/statusEffects" unique_id=858379140]
 libraries/ = SubResource("AnimationLibrary_spsvl")
 
 [node name="hold_attack_bar" type="ColorRect" parent="hud" unique_id=1612312757]
@@ -1239,7 +1179,6 @@ color = Color(0, 0, 0, 0.446)
 [node name="SelectionWheel" parent="hud/selectionWheelDarken" unique_id=1649874519 instance=ExtResource("40_avbty")]
 unique_name_in_owner = true
 layout_mode = 1
-selected_option = 1
 
 [node name="playerCurrency" parent="hud" unique_id=415251137 instance=ExtResource("34_47e5g")]
 z_index = 999
@@ -1455,12 +1394,10 @@ debug_color = Color(1, 0, 0, 1)
 [connection signal="blocked_attack" from="hurtbox_component" to="Head/Neck/Camera3D/RightHand" method="_on_hurtbox_component_blocked_attack"]
 [connection signal="blocked_attack" from="hurtbox_component" to="Head/Neck/Camera3D/LeftHand" method="_on_hurtbox_component_blocked_attack"]
 [connection signal="damage_taken" from="hurtbox_component" to="." method="_on_hurtbox_component_damage_taken"]
-[connection signal="damage_taken" from="hurtbox_component" to="hud/radial_blur" method="_on_hurtbox_component_damage_taken"]
-[connection signal="status_activated" from="status_effect_component" to="hud/burning" method="_on_status_effect_component_status_activated"]
-[connection signal="status_removed" from="status_effect_component" to="hud/burning" method="_on_status_effect_component_status_removed"]
+[connection signal="status_activated" from="status_effect_component" to="hud/statusEffects" method="_on_status_effect_component_status_activated"]
+[connection signal="status_removed" from="status_effect_component" to="hud/statusEffects" method="_on_status_effect_component_status_removed"]
 [connection signal="status_removed" from="status_effect_component" to="hud/interactionContainer/statusList" method="_on_status_effect_component_status_removed"]
 [connection signal="statuses_increased" from="status_effect_component" to="hud/interactionContainer/statusList" method="_on_status_effect_component_statuses_increased"]
-[connection signal="timeout" from="hud/radial_blur/blurTimer" to="hud/radial_blur" method="_on_blur_timer_timeout"]
 [connection signal="charging" from="hud/hold_attack_bar" to="hud/interactionContainer/crosshair" method="_on_hold_attack_bar_charging"]
 [connection signal="value_changed" from="hud/interactionContainer/statusList/bleedingContainer/bleeding" to="hud/interactionContainer/statusList/bleedingContainer/bleeding" method="_on_value_changed"]
 [connection signal="value_changed" from="hud/interactionContainer/statusList/burningContainer/burning" to="hud/interactionContainer/statusList/burningContainer/burning" method="_on_value_changed"]
