@@ -224,7 +224,7 @@ func _perform_area_check(origin: Vector3, direction: Vector3):
 	check_area.queue_free()
 	
 
-func _update_hits(types: Dictionary, actual: float, stance_damage: float, target: hurtbox_component, check_area: DamageComponent):
+func _update_hits(types: Dictionary, actual: float, stance_damage: float, target: hurtbox_component, check_area: DamageComponent, slow_amount: float):
 	hits.append(check_area.hits)
 	_on_damage_dealt(target)
 	

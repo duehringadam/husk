@@ -55,15 +55,17 @@ height = 1.0825348
 [node name="npcLongSword" type="Node3D" unique_id=1362721370 node_paths=PackedStringArray("damage_component")]
 transform = Transform3D(1.0000001, 0, 0, 0, 0.9999997, 0, 0, 0, 0.9999998, 0, 0, 0)
 script = ExtResource("1_w46j1")
-damage_component = NodePath("SM_Sword_1/DamageComponent")
+damage_component = NodePath("SM_Sword_1/longsword")
 
 [node name="SM_Sword_1" type="MeshInstance3D" parent="." unique_id=1895491838]
 transform = Transform3D(-1.25, -1.8874475e-07, 0, 1.8874475e-07, -1.25, 0, 0, 0, 1.25, 0, 0.5000001, 0)
 mesh = SubResource("ArrayMesh_4qnn7")
 surface_material_override/0 = SubResource("StandardMaterial3D_23tqj")
 
-[node name="DamageComponent" type="Area3D" parent="SM_Sword_1" unique_id=584609426]
+[node name="longsword" type="Area3D" parent="SM_Sword_1" unique_id=584609426]
 transform = Transform3D(1, 5.9604645e-08, -7.450581e-09, 2.9802322e-08, 1, 2.9802322e-08, 0, 2.9802322e-08, 1, 0, 0, 0)
+collision_layer = 4
+collision_mask = 9
 monitoring = false
 monitorable = false
 script = ExtResource("4_b01j7")
@@ -73,6 +75,6 @@ damage_types = Dictionary[int, float]({
 damage_interval = 0.33
 metadata/_custom_type_script = "uid://dlsydctoxqbwy"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SM_Sword_1/DamageComponent" unique_id=259679966]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SM_Sword_1/longsword" unique_id=259679966]
 transform = Transform3D(0.99993557, 0.0062364945, -0.010007694, -0.006203413, 0.999978, 0.0033685565, 0.01002857, -0.0033058373, 0.9999482, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_j1pv0")

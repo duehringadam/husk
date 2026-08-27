@@ -89,3 +89,9 @@ func _on_hurtbox_component_damage_taken(actual: float, source: DamageComponent, 
 
 func _on_approach_detector_rapid_approach_detected() -> void:
 	state_chart.send_event("chase")
+
+
+func sleep(duration: float):
+	state_chart.send_event("sleep")
+	%sleepTimer.wait_time = duration
+	%sleepTimer.start()

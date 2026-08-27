@@ -43,9 +43,10 @@ func take_damage(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float], stat
 
 func _on_area_shape_entered(area_rid: RID, area: Area3D, area_shape_index: int, _local_shape_index: int) -> void:
 	if area is DamageComponent && !just_damaged:
-		just_damaged = true
-		local_shape_idx = _local_shape_index
-		get_tree().create_timer(.25).timeout.connect(func(): just_damaged = false)
+		if area.monitoring == true:
+			just_damaged = true
+			local_shape_idx = _local_shape_index
+			get_tree().create_timer(.25).timeout.connect(func(): just_damaged = false)
 
 func is_facing(source: DamageComponent) -> bool:
 	if source.source:

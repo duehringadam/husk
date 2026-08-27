@@ -7,7 +7,7 @@ extends Control
 var inventory_open: bool = false
 var consumable_open: bool = false
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("inventory"):
 		inventory_menu()
 	if event.is_action_pressed("consumable"):
