@@ -6,6 +6,7 @@ extends Node
 @export var body_bone: PhysicalBone3D
 @export var physical_bone_simulator_3d: PhysicalBoneSimulator3D
 @export var sleep_timer: Timer
+@export var hurtbox: hurtbox_component
 
 const VELOCITY_THRESHOLD: float = 1.0
 
@@ -39,5 +40,10 @@ func _on_sleep_state_physics_processing(delta: float) -> void:
 		if dot_product >= 0.0:
 			state_chart.send_event("get_up")
 		#facing down
+		elif dot_product < 0.0:
+			state_chart.send_event("get_up")
+	if timer >= 3.0 && hurtbox.just_damaged == true:
+		if dot_product >= 0.0:
+			state_chart.send_event("get_up")
 		elif dot_product < 0.0:
 			state_chart.send_event("get_up")

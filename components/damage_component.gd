@@ -8,7 +8,7 @@ extends Area3D
 ## [param amount] is the initial damage dealt.
 ## [param actual] is the damage after resistances are applied.
 ## [param target] is the [HurtboxComponent] being hit.
-signal damage_dealt(types: Dictionary, actual: float, stance_damage: float, target: hurtbox_component)
+signal damage_dealt(types: Dictionary, actual: float, stance_damage: float, target: hurtbox_component, slow_amount: float)
 
 ## How much damage to deal for basic attacks. Extend [DamageComponent] and
 ## override [method DamageComponent.get_damage] if customization is needed.
