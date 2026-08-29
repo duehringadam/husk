@@ -464,7 +464,8 @@ func _y_rotate(to: float) -> float:
 func cutscene(target: Node3D, duration: float):
 	isLooking = true
 	look_target = target
-	smooth_lookat()
+	look_at_target(target)
+	DebugDraw3D.draw_sphere(target.global_position,.5,Color.RED,duration)
 	await get_tree().create_timer(duration).timeout
 	ResumeControl()
 
@@ -473,30 +474,23 @@ func ResumeControl():
 	camera.isLooking = false
 	camera.look_target = null
 
-func smooth_lookat():
-	if isLooking:
-		# look at logic
-		var target_global_pos := look_target.global_position
-		var camera_basis := Basis.looking_at(target_global_pos - camera.global_position)
-		var rotations = camera_basis.get_euler()
-		
-		## reset rotations except X
-		camera_basis = camera_basis.rotated(Vector3.UP, -rotations.y)
-		camera_basis = camera_basis.rotated(Vector3.BACK, -rotations.z)
-		
-		var dir = target_global_pos - global_position
-		var angle = atan2(dir.x, dir.z)
-		var new_rotation = Vector3(
-			rotation.x,
-			rotation.y +_y_rotate(angle),
-			rotation.z,
-		)
-
-		var tween = create_tween().set_parallel(true)
-		tween.set_trans(Tween.TRANS_QUART)
-		tween.set_ease(Tween.EASE_OUT)
-		tween.tween_property(camera, "basis", camera_basis, LOOK_AT_DURATION)
-		tween.tween_property(self, "rotation", new_rotation, LOOK_AT_DURATION)
+func look_at_target(target: Node3D) -> void:
+	var direction = target.global_position - neck.global_position
+	var rotation_to_direction = Transform3D.IDENTITY.looking_at(direction).basis.get_euler()
+	var pitch_delta = angle_difference(neck.global_rotation.x, rotation_to_direction.x) 
+	var yaw_delta = angle_difference(global_rotation.y, rotation_to_direction.y)
+ 
+	create_tween().tween_property(
+		neck, 
+		"rotation:x", 
+		clamp(neck.rotation.x + pitch_delta, deg_to_rad(-85), deg_to_rad(85)),
+		1.5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+ 
+	create_tween().tween_property(
+		head, 
+		"rotation:y", 
+		rotation.y + yaw_delta,
+		1.5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 		
 func weapon_tilt(input_x, delta):
 	if can_attack:

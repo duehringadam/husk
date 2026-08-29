@@ -20,4 +20,4 @@ func _on_talk_on_complete(controller: InteractionController) -> void:
 		animation_tree.set("parameters/conditions/stand_up", true)
 		head_look_at.target_node = Global.player.head.get_path()
 		SignalBus.emit_signal("npc_interacted", sheet_id)
-		
+		SignalBus.emit_signal("player_lookat_cutscene", head_look_at, 1.5)

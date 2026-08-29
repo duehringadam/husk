@@ -29,15 +29,21 @@
 [ext_resource type="Script" uid="uid://1l23v6jds28n" path="res://Player/player/player_screen_burning.gd" id="27_018ip"]
 [ext_resource type="AudioStream" uid="uid://cc67f271a754i" path="res://sfx/UI/chargecomplete.wav" id="28_7vtq1"]
 [ext_resource type="Shader" uid="uid://dn324eo1sre1n" path="res://shaders/player_shaders/shaders/death.gdshader" id="29_f81pb"]
+[ext_resource type="Script" uid="uid://dfk5ps1jbvd5a" path="res://Player/player/modular_healthbar.gd" id="29_rkxts"]
 [ext_resource type="PackedScene" uid="uid://bb5rujo1j4mr6" path="res://Player/UI/progress bars/player_mana.tscn" id="29_v5tlk"]
 [ext_resource type="PackedScene" uid="uid://78q517wrknfe" path="res://Player/UI/progress bars/player_health.tscn" id="29_wbjo2"]
 [ext_resource type="Texture2D" uid="uid://bheudhnmjwpme" path="res://scenes/VFX/textures/T_VFX_Noise_14.PNG" id="30_ae3c0"]
 [ext_resource type="PackedScene" uid="uid://fiysa8sddku3" path="res://Player/UI/progress bars/player_stamina.tscn" id="31_ojoix"]
+[ext_resource type="Texture2D" uid="uid://vw675jsveso3" path="res://Player/UI/progress bars/HuskPlayerStatusBar_-_No_Back_-_HEALTH2(1).png" id="31_rebnn"]
 [ext_resource type="Texture2D" uid="uid://biqgxpwwr01ye" path="res://scenes/VFX/textures/CloudNoise_Tiled.png" id="31_waixc"]
+[ext_resource type="Texture2D" uid="uid://ciofvyigiiobk" path="res://Player/UI/progress bars/Mask_-_Health2.png" id="31_yjj6r"]
 [ext_resource type="Script" uid="uid://da13b6wjrk5g7" path="res://Player/scripts/death_overlay.gd" id="32_ae3c0"]
+[ext_resource type="Texture2D" uid="uid://dkpaqimcdj3bd" path="res://Player/UI/progress bars/HuskPlayerStatusBar_-_No_Back_-_MANASTAMINA2.png" id="32_rkxts"]
 [ext_resource type="PackedScene" uid="uid://18cnn4ekidb8" path="res://Player/UI/currency/player_currency.tscn" id="34_47e5g"]
 [ext_resource type="FontFile" uid="uid://bgwsxfa2fbvel" path="res://addons/madtalk/fonts/ShipporiMincho-Regular.ttf" id="35_t571y"]
+[ext_resource type="Texture2D" uid="uid://d07hxmicuihjj" path="res://Player/UI/progress bars/Mask_-_Mana.png" id="35_yjj6r"]
 [ext_resource type="Script" uid="uid://dd8swdueuaqv5" path="res://components/player_health_component.gd" id="36_jaogv"]
+[ext_resource type="Texture2D" uid="uid://bhaks0uffksph" path="res://Player/UI/progress bars/Mask_-_Stamina.png" id="36_yjj6r"]
 [ext_resource type="AudioStream" uid="uid://c6mukshc0b37u" path="res://Player/sfx/movement/huskVaultTest.wav" id="37_jaogv"]
 [ext_resource type="PackedScene" uid="uid://4ggo1b35btnu" path="res://Player/UI/hud.tscn" id="38_4ay6w"]
 [ext_resource type="PackedScene" uid="uid://l2q2on8dxrq5" path="res://Player/UI/inventory/inventory.tscn" id="38_6havu"]
@@ -787,6 +793,45 @@ shader_parameter/gradient_strength = 1.0
 shader_parameter/use_gradient = false
 shader_parameter/rotation_offset = 3.14000014915
 
+[sub_resource type="Gradient" id="Gradient_rkxts"]
+colors = PackedColorArray(0.22352941, 0, 0, 1, 0.53986263, 1.0348111e-06, 2.8878452e-07, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kur6e"]
+gradient = SubResource("Gradient_rkxts")
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 0.5)
+repeat = 2
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ewpwe"]
+texture = SubResource("GradientTexture2D_kur6e")
+
+[sub_resource type="Gradient" id="Gradient_yjj6r"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 0.44705883, 0, 1, 1, 0.61960787, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ewpwe"]
+gradient = SubResource("Gradient_yjj6r")
+fill_from = Vector2(0.508547, 0.93162394)
+fill_to = Vector2(0.5, 0.517094)
+repeat = 2
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_42isk"]
+texture = SubResource("GradientTexture2D_ewpwe")
+
+[sub_resource type="Gradient" id="Gradient_g56d6"]
+interpolation_mode = 2
+colors = PackedColorArray(0, 0.23137255, 1, 1, 0.34618634, 0.54770494, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rkxts"]
+gradient = SubResource("Gradient_g56d6")
+fill = 1
+fill_from = Vector2(0.5, 0.52136755)
+fill_to = Vector2(0, 0)
+repeat = 2
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yjj6r"]
+texture = SubResource("GradientTexture2D_rkxts")
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jng3h"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7vtq1"]
@@ -824,7 +869,7 @@ collision_mask = 35
 script = ExtResource("1_cyojo")
 spawn_at_checkpoint = true
 player_stats = Dictionary[int, int]({
-0: 10,
+0: 99,
 1: 10,
 2: 10,
 3: 10,
@@ -1122,33 +1167,152 @@ script = ExtResource("23_5fkmn")
 stream = ExtResource("28_7vtq1")
 bus = &"SFX"
 
-[node name="playerHP" type="MarginContainer" parent="hud" unique_id=232751793]
-custom_minimum_size = Vector2(100, 100)
+[node name="healthbarBack" type="TextureRect" parent="hud" unique_id=1462863208]
+layout_mode = 1
+offset_right = 684.8988
+offset_bottom = 334.0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="hud/healthbarBack" unique_id=5637670 node_paths=PackedStringArray("health")]
+texture_filter = 6
+custom_minimum_size = Vector2(130, 73)
+custom_maximum_size = Vector2(960, 73)
 layout_mode = 0
-offset_right = 340.0
-offset_bottom = 118.0
-size_flags_horizontal = 4
-mouse_filter = 2
-theme_override_constants/margin_left = 40
-theme_override_constants/margin_top = 40
+offset_left = 100.0
+offset_top = 39.0
+offset_right = 1060.0
+offset_bottom = 112.0
+script = ExtResource("29_rkxts")
+health = NodePath("../../../HealthComponent")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="hud/playerHP" unique_id=1015130022]
+[node name="healthMask" type="TextureRect" parent="hud/healthbarBack/MarginContainer" unique_id=2023080246]
+clip_children = 1
+texture_filter = 6
 layout_mode = 2
-theme_override_constants/separation = 15
+texture = ExtResource("31_yjj6r")
+expand_mode = 2
 
-[node name="playerHealth" parent="hud/playerHP/VBoxContainer" unique_id=592960900 instance=ExtResource("29_wbjo2")]
-layout_mode = 2
+[node name="playerHealth" parent="hud/healthbarBack/MarginContainer/healthMask" unique_id=592960900 instance=ExtResource("29_wbjo2")]
+custom_minimum_size = Vector2(0, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 18.0
+offset_right = -17.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
+theme_override_styles/fill = SubResource("StyleBoxTexture_ewpwe")
 max_value = 1.0
 value = 0.5
 
-[node name="playerMana" parent="hud/playerHP/VBoxContainer" unique_id=1952581520 instance=ExtResource("29_v5tlk")]
-z_index = 0
-layout_mode = 2
+[node name="damageBar" parent="hud/healthbarBack/MarginContainer/healthMask/playerHealth" index="0" unique_id=578422830]
+custom_minimum_size = Vector2(0, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/fill = SubResource("StyleBoxTexture_42isk")
 
-[node name="playerStamina" parent="hud/playerHP/VBoxContainer" unique_id=2402498 instance=ExtResource("31_ojoix")]
-z_index = 0
+[node name="healthbarOutline" type="NinePatchRect" parent="hud/healthbarBack/MarginContainer" unique_id=1628829472]
+texture_filter = 5
 layout_mode = 2
+texture = ExtResource("31_rebnn")
+region_rect = Rect2(1, 0, 388, 73)
+patch_margin_left = 100
+patch_margin_top = 25
+patch_margin_right = 30
+patch_margin_bottom = 25
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="manaMask" type="TextureRect" parent="hud/healthbarBack" unique_id=386060782]
+clip_children = 2
+texture_filter = 6
+layout_mode = 0
+offset_left = 46.0
+offset_top = 63.0
+offset_right = 175.60925
+offset_bottom = 182.0
+texture = ExtResource("35_yjj6r")
+stretch_mode = 5
+
+[node name="playerMana" parent="hud/healthbarBack/manaMask" unique_id=1952581520 instance=ExtResource("29_v5tlk")]
+texture_filter = 6
+custom_minimum_size = Vector2(0, 0)
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 165.0
+offset_bottom = 162.0
+theme_override_styles/fill = SubResource("StyleBoxTexture_yjj6r")
+fill_mode = 3
+
+[node name="damageBar" parent="hud/healthbarBack/manaMask/playerMana" index="0" unique_id=578422830]
+custom_minimum_size = Vector2(0, 0)
+offset_right = 168.0
+offset_bottom = 161.0
+fill_mode = 3
+
+[node name="Mana" type="TextureRect" parent="hud/healthbarBack" unique_id=2001724841]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 3.0
+offset_right = 699.0
+offset_bottom = 240.0
+texture = ExtResource("32_rkxts")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="staminaMask" type="TextureRect" parent="hud/healthbarBack" unique_id=1375759877]
+clip_children = 2
+texture_filter = 6
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 60.0
+offset_top = 84.0
+offset_right = -488.26514
+offset_bottom = -175.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("36_yjj6r")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="playerStamina" parent="hud/healthbarBack/staminaMask" unique_id=2402498 instance=ExtResource("31_ojoix")]
+custom_minimum_size = Vector2(0, 0)
+layout_mode = 0
+offset_left = 30.0
+offset_top = -1.0
+offset_right = 104.0
+offset_bottom = 75.09434
+fill_mode = 3
+
+[node name="damageBar" parent="hud/healthbarBack/staminaMask/playerStamina" index="0" unique_id=578422830]
+custom_minimum_size = Vector2(0, 0)
+offset_right = 111.0
+offset_bottom = 106.0
+fill_mode = 3
+
+[node name="Stamina" type="TextureRect" parent="hud/healthbarBack" unique_id=1894781586]
+texture_filter = 6
+layout_mode = 0
+offset_left = -1.0
+offset_top = 3.0
+offset_right = 699.0
+offset_bottom = 239.0
+texture = ExtResource("32_rkxts")
+expand_mode = 3
+stretch_mode = 4
 
 [node name="inventory" parent="hud" unique_id=227349631 node_paths=PackedStringArray("equipped_items") instance=ExtResource("38_6havu")]
 unique_name_in_owner = true
@@ -1404,10 +1568,14 @@ debug_color = Color(1, 0, 0, 1)
 [connection signal="value_changed" from="hud/interactionContainer/statusList/poisonedContainer/poison" to="hud/interactionContainer/statusList/poisonedContainer/poison" method="_on_value_changed"]
 [connection signal="value_changed" from="hud/interactionContainer/statusList/sleepContainer/sleep" to="hud/interactionContainer/statusList/sleepContainer/sleep" method="_on_value_changed"]
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
-[connection signal="health_changed" from="HealthComponent" to="hud/playerHP/VBoxContainer/playerHealth" method="_on_health_changed"]
-[connection signal="max_health_changed" from="HealthComponent" to="hud/playerHP/VBoxContainer/playerHealth" method="_on_max_health_changed"]
-[connection signal="mana_changed" from="ManaComponent" to="hud/playerHP/VBoxContainer/playerMana" method="_on_health_changed"]
-[connection signal="max_mana_changed" from="ManaComponent" to="hud/playerHP/VBoxContainer/playerMana" method="_on_max_health_changed"]
-[connection signal="max_stamina_changed" from="StaminaComponent" to="hud/playerHP/VBoxContainer/playerStamina" method="_on_max_health_changed"]
-[connection signal="stamina_changed" from="StaminaComponent" to="hud/playerHP/VBoxContainer/playerStamina" method="_on_health_changed"]
+[connection signal="health_changed" from="HealthComponent" to="hud/healthbarBack/MarginContainer/healthMask/playerHealth" method="_on_health_changed"]
+[connection signal="max_health_changed" from="HealthComponent" to="hud/healthbarBack/MarginContainer/healthMask/playerHealth" method="_on_max_health_changed"]
+[connection signal="mana_changed" from="ManaComponent" to="hud/healthbarBack/manaMask/playerMana" method="_on_health_changed"]
+[connection signal="max_mana_changed" from="ManaComponent" to="hud/healthbarBack/manaMask/playerMana" method="_on_max_health_changed"]
+[connection signal="max_stamina_changed" from="StaminaComponent" to="hud/healthbarBack/staminaMask/playerStamina" method="_on_max_health_changed"]
+[connection signal="stamina_changed" from="StaminaComponent" to="hud/healthbarBack/staminaMask/playerStamina" method="_on_health_changed"]
 [connection signal="timeout" from="stableGroundDetector/savePositionTimer" to="stableGroundDetector" method="_on_save_position_timer_timeout"]
+
+[editable path="hud/healthbarBack/MarginContainer/healthMask/playerHealth"]
+[editable path="hud/healthbarBack/manaMask/playerMana"]
+[editable path="hud/healthbarBack/staminaMask/playerStamina"]

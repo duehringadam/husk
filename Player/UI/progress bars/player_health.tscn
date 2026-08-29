@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cg3rulqev0juy" path="res://Player/UI/inventory/textures/hp_bar_texture.png" id="2_26qjk"]
 [ext_resource type="Script" uid="uid://duqdbhlweipi" path="res://Player/scripts/player_health.gd" id="3_5llcl"]
 [ext_resource type="Shader" uid="uid://lxc8krhgumtv" path="res://shaders/health_bar_shake.gdshader" id="3_26qjk"]
+[ext_resource type="Texture2D" uid="uid://b41v6l74bv6n2" path="res://Player/UI/progress bars/HuskPlayerStatusBar_-_BackOnly.png" id="4_23l47"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_26qjk"]
 shader = ExtResource("3_26qjk")
@@ -12,10 +13,14 @@ shader_parameter/hit_effect = 0.0
 shader_parameter/shake_intensity = 10.0
 shader_parameter/flash_speed = 30.0
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v4udn"]
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6pogt"]
 texture = ExtResource("2_26qjk")
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wlq4h"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y3wse"]
+texture = ExtResource("4_23l47")
+region_rect = Rect2(227, 479, 1174, 165)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wlq4h"]
 texture = ExtResource("1_wlq4h")
@@ -61,19 +66,21 @@ _data = {
 material = SubResource("ShaderMaterial_26qjk")
 custom_minimum_size = Vector2(300, 40)
 size_flags_horizontal = 0
+theme_override_styles/background = SubResource("StyleBoxEmpty_v4udn")
 theme_override_styles/fill = SubResource("StyleBoxTexture_6pogt")
 value = 50.0
 show_percentage = false
 script = ExtResource("3_5llcl")
 
 [node name="damageBar" type="ProgressBar" parent="." unique_id=578422830]
-z_index = -1
+show_behind_parent = true
+z_as_relative = false
 use_parent_material = true
 custom_minimum_size = Vector2(300, 40)
 layout_mode = 0
 offset_right = 300.0
 offset_bottom = 40.0
-theme_override_styles/background = SubResource("StyleBoxEmpty_wlq4h")
+theme_override_styles/background = SubResource("StyleBoxTexture_y3wse")
 theme_override_styles/fill = SubResource("StyleBoxTexture_wlq4h")
 value = 100.0
 show_percentage = false

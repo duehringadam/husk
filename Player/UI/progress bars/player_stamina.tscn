@@ -1,9 +1,8 @@
 [gd_scene format=3 uid="uid://fiysa8sddku3"]
 
 [ext_resource type="Shader" uid="uid://lxc8krhgumtv" path="res://shaders/health_bar_shake.gdshader" id="1_j45vb"]
-[ext_resource type="Texture2D" uid="uid://bw4uilx3eagd7" path="res://Player/UI/inventory/textures/Stamina.png" id="2_j45vb"]
 [ext_resource type="Script" uid="uid://duqdbhlweipi" path="res://Player/scripts/player_health.gd" id="3_0ur5i"]
-[ext_resource type="Texture2D" uid="uid://bmku16s2g7qwq" path="res://Player/UI/inventory/textures/damage_bar_texture(1).png" id="4_qdinp"]
+[ext_resource type="Texture2D" uid="uid://b41v6l74bv6n2" path="res://Player/UI/progress bars/HuskPlayerStatusBar_-_BackOnly.png" id="4_fukjj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_26qjk"]
 shader = ExtResource("1_j45vb")
@@ -12,14 +11,36 @@ shader_parameter/hit_effect = 0.0
 shader_parameter/shake_intensity = 10.0
 shader_parameter/flash_speed = 30.0
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0ur5i"]
-texture = ExtResource("2_j45vb")
-region_rect = Rect2(39, 26, 159, 5)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v4udn"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wlq4h"]
+[sub_resource type="Gradient" id="Gradient_ab28t"]
+colors = PackedColorArray(0.097558655, 0.522859, 0, 1, 1.6364455e-06, 0.8081867, 1.540184e-06, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wlq4h"]
-texture = ExtResource("4_qdinp")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fukjj"]
+gradient = SubResource("Gradient_ab28t")
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 0.5)
+repeat = 2
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0ohmb"]
+texture = SubResource("GradientTexture2D_fukjj")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ljocn"]
+texture = ExtResource("4_fukjj")
+region_rect = Rect2(92, 229, 361, 337)
+
+[sub_resource type="Gradient" id="Gradient_yjj6r"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 0.44705883, 0, 1, 1, 0.61960787, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ewpwe"]
+gradient = SubResource("Gradient_yjj6r")
+fill_from = Vector2(0.508547, 0.93162394)
+fill_to = Vector2(0.5, 0.517094)
+repeat = 2
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ab28t"]
+texture = SubResource("GradientTexture2D_ewpwe")
 
 [sub_resource type="Animation" id="Animation_26qjk"]
 length = 0.001
@@ -59,26 +80,26 @@ _data = {
 }
 
 [node name="playerHealth" type="ProgressBar" unique_id=592960900]
-z_index = 1
 material = SubResource("ShaderMaterial_26qjk")
 custom_minimum_size = Vector2(200, 20)
 offset_right = 200.0
 offset_bottom = 20.0
 size_flags_horizontal = 0
-theme_override_styles/fill = SubResource("StyleBoxTexture_0ur5i")
+theme_override_styles/background = SubResource("StyleBoxEmpty_v4udn")
+theme_override_styles/fill = SubResource("StyleBoxTexture_0ohmb")
 value = 50.0
 show_percentage = false
 script = ExtResource("3_0ur5i")
 
 [node name="damageBar" type="ProgressBar" parent="." unique_id=578422830]
-z_index = -1
+show_behind_parent = true
 use_parent_material = true
 custom_minimum_size = Vector2(200, 20)
 layout_mode = 0
 offset_right = 200.0
 offset_bottom = 20.0
-theme_override_styles/background = SubResource("StyleBoxEmpty_wlq4h")
-theme_override_styles/fill = SubResource("StyleBoxTexture_wlq4h")
+theme_override_styles/background = SubResource("StyleBoxTexture_ljocn")
+theme_override_styles/fill = SubResource("StyleBoxTexture_ab28t")
 value = 100.0
 show_percentage = false
 
