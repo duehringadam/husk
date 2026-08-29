@@ -2,33 +2,18 @@
 
 [ext_resource type="FontFile" uid="uid://bgwsxfa2fbvel" path="res://addons/madtalk/fonts/ShipporiMincho-Regular.ttf" id="1_8y5bj"]
 [ext_resource type="Texture2D" uid="uid://dk2tidxm1p74q" path="res://assets/kenney_fantasy-ui-borders/PNG/Default/Divider Fade/divider-fade-002.png" id="2_6fbi5"]
+[ext_resource type="Texture2D" uid="uid://m1co4chjurpw" path="res://Player/UI/HuskFrames/SVG/Option 2.svg" id="2_g2l8u"]
 [ext_resource type="Texture2D" uid="uid://by0pnn4vskmeg" path="res://Player/UI/inventory/textures/AdobeStock_73802034.jpeg" id="3_vqoha"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v4udn"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v4udn"]
-draw_center = false
-border_width_left = 10
-border_width_top = 10
-border_width_right = 10
-border_width_bottom = 10
-border_color = Color(1, 0.827451, 0.47843137, 1)
-border_blend = true
-
-[sub_resource type="Gradient" id="Gradient_8y5bj"]
-interpolation_mode = 2
-colors = PackedColorArray(1, 0.827222, 0.4788676, 0.102000006, 0.012617188, 0.008213789, 0.0024603514, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_kur6e"]
-gradient = SubResource("Gradient_8y5bj")
-width = 1024
-height = 1024
-fill = 1
-fill_from = Vector2(0.51272726, 0.5090909)
-fill_to = Vector2(0.51282054, 0.0042735045)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v4udn"]
-texture = SubResource("GradientTexture2D_kur6e")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gi4cx"]
+texture = ExtResource("2_g2l8u")
+texture_margin_left = 24.0
+texture_margin_top = 24.0
+texture_margin_right = 24.0
+texture_margin_bottom = 24.0
+modulate_color = Color(0.67180586, 0.53256184, 0.2980477, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7qavm"]
 texture = ExtResource("2_6fbi5")
@@ -68,15 +53,15 @@ Button/fonts/font = ExtResource("1_8y5bj")
 Button/icons/icon = null
 Button/styles/disabled = SubResource("StyleBoxEmpty_v4udn")
 Button/styles/disabled_mirrored = SubResource("StyleBoxEmpty_v4udn")
-Button/styles/focus = SubResource("StyleBoxFlat_v4udn")
-Button/styles/hover = SubResource("StyleBoxTexture_v4udn")
-Button/styles/hover_mirrored = SubResource("StyleBoxEmpty_v4udn")
-Button/styles/hover_pressed = SubResource("StyleBoxEmpty_v4udn")
-Button/styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_v4udn")
-Button/styles/normal = SubResource("StyleBoxEmpty_v4udn")
-Button/styles/normal_mirrored = SubResource("StyleBoxEmpty_v4udn")
-Button/styles/pressed = SubResource("StyleBoxEmpty_v4udn")
-Button/styles/pressed_mirrored = SubResource("StyleBoxEmpty_v4udn")
+Button/styles/focus = SubResource("StyleBoxTexture_gi4cx")
+Button/styles/hover = SubResource("StyleBoxTexture_gi4cx")
+Button/styles/hover_mirrored = SubResource("StyleBoxTexture_gi4cx")
+Button/styles/hover_pressed = SubResource("StyleBoxTexture_gi4cx")
+Button/styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_gi4cx")
+Button/styles/normal = SubResource("StyleBoxTexture_gi4cx")
+Button/styles/normal_mirrored = SubResource("StyleBoxTexture_gi4cx")
+Button/styles/pressed = SubResource("StyleBoxTexture_gi4cx")
+Button/styles/pressed_mirrored = SubResource("StyleBoxTexture_gi4cx")
 HSeparator/constants/separation = 24
 HSeparator/styles/separator = SubResource("StyleBoxTexture_7qavm")
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_eekrg")

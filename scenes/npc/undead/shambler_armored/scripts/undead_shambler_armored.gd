@@ -1,5 +1,6 @@
 extends humanoid_npc
 
+@onready var vocalizations: AudioStreamPlayer3D = $vocalizations
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
 var infestation_enemy_add
 
@@ -88,6 +89,8 @@ func is_facing(source: DamageComponent) -> bool:
 
 
 func _on_hurtbox_component_damage_taken(actual: float, source: DamageComponent, hit_dir: Vector3) -> void:
+	if !vocalizations.playing:
+		vocalizations.play()
 	var animation_state_tree_root = animation_tree.get("tree_root")
 	
 	var walk_hit_node = animation_state_tree_root.get_node("walkBlendTree")
