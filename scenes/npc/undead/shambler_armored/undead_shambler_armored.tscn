@@ -12722,11 +12722,11 @@ unique_name_in_owner = true
 top_level = true
 
 [node name="Physical Bone Hips" type="PhysicalBone3D" parent="Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D" unique_id=1585393074]
-transform = Transform3D(0.9309838, -0.3387237, -0.13614522, -0.055031136, 0.23846042, -0.96959186, 0.36088896, 0.91016644, 0.20336244, 0.019614201, 1.1232415, -0.09426153)
+transform = Transform3D(0.9309838, -0.3387237, -0.13614522, -0.055031136, 0.23846039, -0.96959186, 0.36088896, 0.9101664, 0.20336242, 0.019614201, 1.1232415, -0.09426153)
 collision_mask = 15
 joint_type = 5
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0016081728, 9.813346e-06, 0.06291822)
-body_offset = Transform3D(0.9999991, 0.0013132095, 0.00030508637, 4.6960078e-05, 0.19223683, -0.9813486, -0.0013473332, 0.98134774, 0.19223659, 0.001588963, 0.0617429, -0.012106981)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0016081732, 9.812415e-06, 0.06291822)
+body_offset = Transform3D(0.9999991, 0.0013132393, 0.00030509382, 4.6960078e-05, 0.19223683, -0.9813486, -0.0013473332, 0.98134774, 0.1922366, 0.001588963, 0.0617429, -0.012106981)
 gravity_scale = 1.5
 linear_damp = 1.0
 angular_damp = 1.0
@@ -12812,53 +12812,53 @@ can_bleed = true
 metadata/_custom_type_script = "uid://dpip2f2xmdb3b"
 
 [node name="head" type="CollisionShape3D" parent="Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D/Physical Bone Hips/hurtbox_component" unique_id=110368269 node_paths=PackedStringArray("bone_health_component")]
-transform = Transform3D(0.92625254, -0.1624521, -0.34009576, 0.080926746, 0.96701866, -0.2415072, 0.3681123, 0.19617382, 0.9088503, -0.06805658, 1.7431583, 0.24714723)
+transform = Transform3D(0.92625254, -0.1624521, -0.34009576, 0.080926746, 0.96701866, -0.2415072, 0.3681123, 0.19617385, 0.9088503, -0.06805658, 1.7431583, 0.24714726)
 shape = SubResource("SphereShape3D_ai6cu")
 debug_color = Color(0.9906158, 0, 0.28187194, 0.41960785)
 script = ExtResource("11_6vuvf")
 bone_health_component = NodePath("../../../Physical Bone Head/BoneHealthComponent")
 
 [node name="hip" type="CollisionShape3D" parent="Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D/Physical Bone Hips/hurtbox_component" unique_id=1484904674]
-transform = Transform3D(0.73049414, -0.6790941, -0.07217593, -0.029915467, 0.073765665, -0.9968268, 0.6822634, 0.73033535, 0.03356999, 0.061264172, 1.1545436, 0.0033810772)
+transform = Transform3D(0.73049414, -0.6790941, -0.072175935, -0.029915463, 0.07376565, -0.9968269, 0.6822634, 0.7303354, 0.03356999, 0.061264172, 1.1545438, 0.0033810586)
 shape = SubResource("SphereShape3D_v386k")
 debug_color = Color(0.9923009, 0, 0.26025322, 0.41960785)
 script = ExtResource("11_6vuvf")
 
 [node name="chest" type="CollisionShape3D" parent="Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D/Physical Bone Hips/hurtbox_component" unique_id=685258081]
-transform = Transform3D(0.70649666, -0.7009658, 0.09751541, -0.09256494, -0.2281292, -0.9692207, 0.70163673, 0.6757247, -0.22605735, 0.052351296, 1.4343115, 0.032285303)
+transform = Transform3D(0.70649666, -0.7009658, 0.09751541, -0.09256494, -0.2281292, -0.9692207, 0.70163673, 0.6757247, -0.22605738, 0.052351296, 1.4343115, 0.032285303)
 shape = SubResource("SphereShape3D_tmhhx")
 debug_color = Color(0.9923009, 0, 0.26025322, 0.41960785)
 script = ExtResource("11_6vuvf")
 
 [node name="spine" type="CollisionShape3D" parent="Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D/Physical Bone Hips/hurtbox_component" unique_id=1138777267]
-transform = Transform3D(0.72071683, -0.69320005, -0.0063902196, -0.053016387, -0.045925155, -0.99753696, 0.6911993, 0.7192805, -0.06984996, 0.063771546, 1.2920868, 0.009434849)
+transform = Transform3D(0.72071683, -0.69320005, -0.0063902196, -0.053016387, -0.045925155, -0.99753696, 0.6911993, 0.7192805, -0.069849975, 0.063771546, 1.2920868, 0.009434849)
 shape = SubResource("SphereShape3D_qw8uh")
 debug_color = Color(0.9923009, 0, 0.26025322, 0.41960785)
 script = ExtResource("11_6vuvf")
 
 [node name="upperarm_L" type="CollisionShape3D" parent="Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D/Physical Bone Hips/hurtbox_component" unique_id=288917436 node_paths=PackedStringArray("bone_health_component")]
-transform = Transform3D(-0.690664, -0.45192042, -0.5645805, -0.28253123, 0.8872705, -0.36459193, 0.6657021, -0.09229894, -0.7404874, 0.236408, 1.4203154, 0.22062454)
+transform = Transform3D(-0.690664, -0.45192042, -0.5645805, -0.28253123, 0.8872705, -0.36459193, 0.6657021, -0.092298925, -0.7404874, 0.236408, 1.4203154, 0.22062454)
 shape = SubResource("CapsuleShape3D_32xxe")
 debug_color = Color(0.98617727, 0, 0.3310366, 0.41960785)
 script = ExtResource("11_6vuvf")
 bone_health_component = NodePath("../../../Physical Bone LeftUpperArm/BoneHealthComponent")
 
 [node name="forearm_L" type="CollisionShape3D" parent="Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D/Physical Bone Hips/hurtbox_component" unique_id=796533663 node_paths=PackedStringArray("bone_health_component")]
-transform = Transform3D(-0.6532297, -0.0996815, -0.7505694, 0.13605149, 0.9597086, -0.245864, 0.7448365, -0.26272178, -0.6133481, 0.32380664, 1.1049855, 0.2841254)
+transform = Transform3D(-0.6532297, -0.0996815, -0.7505694, 0.13605149, 0.9597086, -0.245864, 0.7448365, -0.26272175, -0.6133481, 0.32380664, 1.1049855, 0.28412545)
 shape = SubResource("CapsuleShape3D_jlp0r")
 debug_color = Color(0.9924596, 0, 0.25810924, 0.41960785)
 script = ExtResource("11_6vuvf")
 bone_health_component = NodePath("../../../Physical Bone LeftUpperArm/BoneHealthComponent")
 
 [node name="upperarm_R" type="CollisionShape3D" parent="Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D/Physical Bone Hips/hurtbox_component" unique_id=459767467 node_paths=PackedStringArray("bone_health_component")]
-transform = Transform3D(0.9270234, 0.02181673, 0.37436837, 0.23066165, 0.75394696, -0.6151091, -0.29567343, 0.65657294, 0.69389427, -0.078753784, 1.5016576, -0.17839235)
+transform = Transform3D(0.9270234, 0.021816656, 0.37436837, 0.23066168, 0.75394696, -0.6151091, -0.29567343, 0.65657294, 0.69389427, -0.078753784, 1.5016576, -0.17839235)
 shape = SubResource("CapsuleShape3D_lbatg")
 debug_color = Color(0.9924596, 0, 0.25810924, 0.41960785)
 script = ExtResource("11_6vuvf")
 bone_health_component = NodePath("../../../Physical Bone RightUpperArm/BoneHealthComponent")
 
 [node name="forearm_R" type="CollisionShape3D" parent="Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D/Physical Bone Hips/hurtbox_component" unique_id=209405188 node_paths=PackedStringArray("bone_health_component")]
-transform = Transform3D(0.57390654, 0.14026266, 0.8068193, 0.45371413, 0.76572824, -0.45585492, -0.68174374, 0.62768364, 0.37581718, -0.05738151, 1.2763302, -0.43211436)
+transform = Transform3D(0.57390654, 0.14026266, 0.8068193, 0.45371413, 0.76572824, -0.45585492, -0.68174374, 0.62768364, 0.37581718, -0.05738151, 1.2763302, -0.43211433)
 shape = SubResource("CapsuleShape3D_51ufe")
 debug_color = Color(0.9924596, 0, 0.25810924, 0.41960785)
 script = ExtResource("11_6vuvf")
@@ -12872,14 +12872,14 @@ script = ExtResource("11_6vuvf")
 bone_health_component = NodePath("../../../Physical Bone LeftUpperLeg/BoneHealthComponent")
 
 [node name="calf_L" type="CollisionShape3D" parent="Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D/Physical Bone Hips/hurtbox_component" unique_id=631861157 node_paths=PackedStringArray("bone_health_component")]
-transform = Transform3D(0.65842783, -0.37179065, 0.6544038, 0.21071108, 0.92576176, 0.31395212, -0.7225465, -0.06882477, 0.6878879, 0.2493282, 0.27068174, 0.19779763)
+transform = Transform3D(0.65842783, -0.37179065, 0.6544038, 0.21071108, 0.92576176, 0.31395212, -0.7225465, -0.06882475, 0.6878879, 0.2493282, 0.27068174, 0.19779763)
 shape = SubResource("CapsuleShape3D_ma1ph")
 debug_color = Color(0.9924596, 0, 0.25810924, 0.41960785)
 script = ExtResource("11_6vuvf")
 bone_health_component = NodePath("../../../Physical Bone LeftUpperLeg/BoneHealthComponent")
 
 [node name="thigh_R" type="CollisionShape3D" parent="Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D/Physical Bone Hips/hurtbox_component" unique_id=1788825931 node_paths=PackedStringArray("bone_health_component")]
-transform = Transform3D(-0.46592784, 0.04907713, 0.88346064, -0.1722354, -0.98439217, -0.036151163, 0.8678975, -0.16900699, 0.46710858, -0.021405488, 0.7327844, -0.11754971)
+transform = Transform3D(-0.46592784, 0.049077127, 0.88346064, -0.1722354, -0.98439217, -0.036151163, 0.8678975, -0.169007, 0.46710858, -0.021405488, 0.7327844, -0.117549725)
 shape = SubResource("CapsuleShape3D_pasl2")
 debug_color = Color(0.9924596, 0, 0.25810924, 0.41960785)
 script = ExtResource("11_6vuvf")
@@ -13653,11 +13653,11 @@ transform = Transform3D(0.99999905, 1.4901161e-07, -1.2516975e-06, -1.3709068e-0
 shape = SubResource("CapsuleShape3D_dwdwq")
 
 [node name="Physical Bone RightUpperArm" type="PhysicalBone3D" parent="Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D" unique_id=1990879369]
-transform = Transform3D(0.6492124, -0.75055534, 0.123247676, 0.44369498, 0.50532055, 0.74012566, -0.61778486, -0.42581436, 0.661078, -0.13939875, 1.4696031, -0.2678823)
+transform = Transform3D(0.6492124, -0.75055534, 0.12324763, 0.44369498, 0.5053205, 0.7401257, -0.61778486, -0.4258144, 0.661078, -0.13939875, 1.4696031, -0.2678823)
 collision_mask = 15
 joint_type = 5
 joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0036466722, 0.0037388355, 0.1612925)
-body_offset = Transform3D(-0.9980092, 0.03066969, 0.055110216, -0.011847824, 0.7670771, -0.64144564, -0.061946653, -0.6408215, -0.7651867, -0.00536412, 0.10063559, 0.1260407)
+body_offset = Transform3D(-0.9980092, 0.03066963, 0.055110216, -0.011847824, 0.7670771, -0.64144564, -0.061946653, -0.6408215, -0.7651867, -0.00536412, 0.10063559, 0.1260407)
 gravity_scale = 1.5
 linear_damp = 1.0
 angular_damp = 1.0
@@ -14001,11 +14001,11 @@ transform = Transform3D(0.5739563, 0.21654323, -0.7897362, -0.79670274, -0.07528
 remote_path = NodePath("../../Physical Bone Hips/hurtbox_component/calf_L")
 
 [node name="Physical Bone RightUpperLeg" type="PhysicalBone3D" parent="Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D" unique_id=1649595394]
-transform = Transform3D(-0.9088471, 0.37992844, 0.17219575, 0.1718939, -0.03500733, 0.9844933, 0.38006508, 0.92435324, -0.033491068, -0.14335892, 0.6984885, -0.10182854)
+transform = Transform3D(-0.9088471, 0.37992844, 0.17219575, 0.1718939, -0.03500733, 0.9844933, 0.38006508, 0.92435324, -0.03349107, -0.14335892, 0.6984885, -0.10182854)
 collision_mask = 15
 joint_type = 5
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0010906747, 0.0004182486, 0.31011164)
-body_offset = Transform3D(0.68037677, -0.73150563, -0.044573672, -0.0011262596, 0.059777617, -0.998211, 0.7328615, 0.6792099, 0.039847426, 0.013386697, 0.30953306, -0.013440542)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0010906775, 0.00041824672, 0.3101116)
+body_offset = Transform3D(0.68037677, -0.73150563, -0.044573687, -0.0011262596, 0.059777617, -0.9982111, 0.7328615, 0.6792099, 0.039847422, 0.013386697, 0.30953306, -0.013440542)
 gravity_scale = 1.5
 linear_damp = 1.0
 angular_damp = 1.0
@@ -14793,7 +14793,7 @@ stream = SubResource("AudioStreamRandomizer_v4udn")
 max_distance = 10.0
 bus = &"SFX"
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1868067772]
+[node name="dead" type="AudioStreamPlayer3D" parent="." unique_id=1868067772]
 stream = SubResource("AudioStreamRandomizer_j1pv0")
 bus = &"SFX"
 

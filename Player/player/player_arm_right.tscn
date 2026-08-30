@@ -36912,6 +36912,20 @@ tracks/69/path = NodePath("Armature/Skeleton3D:arrow")
 tracks/69/interp = 0
 tracks/69/loop_wrap = true
 tracks/69/keys = PackedFloat32Array(0, 1, -1.8626454e-09, 1.6149272e-09, 1.7534936e-07, 1)
+tracks/70/type = "method"
+tracks/70/imported = false
+tracks/70/enabled = true
+tracks/70/path = NodePath("StateChart/CompoundState/swing/swing")
+tracks/70/interp = 1
+tracks/70/loop_wrap = true
+tracks/70/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_check_input_buffer"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_6hq01"]
 resource_name = "demon_SL"
@@ -37406,6 +37420,20 @@ tracks/69/path = NodePath("Armature/Skeleton3D:arrow")
 tracks/69/interp = 0
 tracks/69/loop_wrap = true
 tracks/69/keys = PackedFloat32Array(0, 1, 6.9849184e-09, 3.4775747e-09, 1.7162407e-07, 1)
+tracks/70/type = "method"
+tracks/70/imported = false
+tracks/70/enabled = true
+tracks/70/path = NodePath("StateChart/CompoundState/swing/swing")
+tracks/70/interp = 1
+tracks/70/loop_wrap = true
+tracks/70/keys = {
+"times": PackedFloat32Array(0.46666667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_check_input_buffer"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_64s2f"]
 resource_name = "demon_SR"
@@ -37900,6 +37928,20 @@ tracks/69/path = NodePath("Armature/Skeleton3D:arrow")
 tracks/69/interp = 0
 tracks/69/loop_wrap = true
 tracks/69/keys = PackedFloat32Array(0, 1, 2.328305e-09, 6.737203e-09, 1.7814332e-07, 1)
+tracks/70/type = "method"
+tracks/70/imported = false
+tracks/70/enabled = true
+tracks/70/path = NodePath("StateChart/CompoundState/swing/swing")
+tracks/70/interp = 1
+tracks/70/loop_wrap = true
+tracks/70/keys = {
+"times": PackedFloat32Array(0.43333334),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_check_input_buffer"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_jd0by"]
 resource_name = "demon_SU"
@@ -38394,6 +38436,20 @@ tracks/69/path = NodePath("Armature/Skeleton3D:arrow")
 tracks/69/interp = 0
 tracks/69/loop_wrap = true
 tracks/69/keys = PackedFloat32Array(0, 1, -9.313232e-10, 3.4775733e-09, 1.7907465e-07, 1)
+tracks/70/type = "method"
+tracks/70/imported = false
+tracks/70/enabled = true
+tracks/70/path = NodePath("StateChart/CompoundState/swing/swing")
+tracks/70/interp = 1
+tracks/70/loop_wrap = true
+tracks/70/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_check_input_buffer"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_ukgp3"]
 resource_name = "demon_block"
@@ -61415,7 +61471,7 @@ bones/26/rest = Transform3D(1, -1.493868e-07, 2.384187e-07, 1.493868e-07, 1, 2.3
 bones/26/enabled = true
 bones/26/position = Vector3(4.531385e-09, 0.47012398, 1.0887968e-08)
 bones/26/rotation = Quaternion(5.5878226e-09, 1.11758766e-07, 5.513563e-08, 1)
-bones/26/scale = Vector3(1, 1, 1)
+bones/26/scale = Vector3(0.99999994, 1, 0.99999994)
 bones/27/name = "segment3.L"
 bones/27/parent = 26
 bones/27/rest = Transform3D(1, 1.3577231e-07, -1.2370789e-07, -1.3922967e-07, 0.99959683, -0.028390123, 1.1980343e-07, 0.02839012, 0.9995969, -1.5249171e-09, 0.08228908, 1.4464391e-08)
@@ -61584,7 +61640,7 @@ bone_name = "weapons.R"
 bone_idx = 24
 
 [node name="leftBoneAttach" type="BoneAttachment3D" parent="ghoul_arms2(1)/Armature/Skeleton3D" unique_id=175715778]
-transform = Transform3D(0.13352065, 0.98599356, -0.09993907, -0.18704821, 0.124101795, 0.97448015, 0.9732337, -0.11141963, 0.20099862, -0.49195868, -1.6087843, 0.10902671)
+transform = Transform3D(0.13352056, 0.98599344, -0.09993905, -0.18704821, 0.12410181, 0.97448015, 0.9732336, -0.1114196, 0.2009986, -0.49195868, -1.6087843, 0.10902671)
 bone_name = "weapons.L"
 bone_idx = 48
 
@@ -61593,7 +61649,6 @@ libraries/ = SubResource("AnimationLibrary_6pntq")
 libraries/ghoul_arms2(2) = SubResource("AnimationLibrary_0bwg4")
 
 [node name="AnimationTree" type="AnimationTree" parent="ghoul_arms2(1)" unique_id=1330822349]
-active = false
 tree_root = ExtResource("19_hefob")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/block = false
@@ -61786,8 +61841,37 @@ bone_attach = NodePath("../../../../Armature/Skeleton3D/rightBoneAttach")
 animation_tree = NodePath("../../../../AnimationTree")
 hand = NodePath("../../../../..")
 
+[node name="inputBufferTimer" type="Timer" parent="ghoul_arms2(1)/StateChart/CompoundState/swing" unique_id=2147047206]
+wait_time = 0.75
+one_shot = true
+
+[node name="toRight" type="Node" parent="ghoul_arms2(1)/StateChart/CompoundState/swing" unique_id=1594881989]
+script = ExtResource("13_5kuli")
+to = NodePath("../../right")
+event = &"hold_right"
+delay_in_seconds = "0.0"
+
+[node name="toLeft" type="Node" parent="ghoul_arms2(1)/StateChart/CompoundState/swing" unique_id=204444274]
+script = ExtResource("13_5kuli")
+to = NodePath("../../left")
+event = &"hold_left"
+delay_in_seconds = "0.0"
+
+[node name="toForward" type="Node" parent="ghoul_arms2(1)/StateChart/CompoundState/swing" unique_id=2073008233]
+script = ExtResource("13_5kuli")
+to = NodePath("../../forward")
+event = &"hold_forward"
+delay_in_seconds = "0.0"
+
+[node name="toBack" type="Node" parent="ghoul_arms2(1)/StateChart/CompoundState/swing" unique_id=949276862]
+script = ExtResource("13_5kuli")
+to = NodePath("../../back")
+event = &"hold_back"
+delay_in_seconds = "0.0"
+
 [node name="attackTimer" type="Timer" parent="ghoul_arms2(1)" unique_id=113674386]
 wait_time = 0.25
+one_shot = true
 
 [node name="stabDamage" type="Area3D" parent="." unique_id=599682226 node_paths=PackedStringArray("source")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
@@ -61839,6 +61923,9 @@ metadata/_custom_type_script = "uid://bi3exllfsv6q"
 [connection signal="state_entered" from="ghoul_arms2(1)/StateChart/CompoundState/swing" to="ghoul_arms2(1)/StateChart/CompoundState/swing/swing" method="_on_swing_left_state_entered"]
 [connection signal="state_exited" from="ghoul_arms2(1)/StateChart/CompoundState/swing" to="." method="_on_swing_state_exited"]
 [connection signal="state_exited" from="ghoul_arms2(1)/StateChart/CompoundState/swing" to="ghoul_arms2(1)/StateChart/CompoundState/swing/swing" method="_on_swing_left_state_exited"]
+[connection signal="state_input" from="ghoul_arms2(1)/StateChart/CompoundState/swing" to="ghoul_arms2(1)/StateChart/CompoundState/swing/swing" method="_on_swing_state_input"]
+[connection signal="state_physics_processing" from="ghoul_arms2(1)/StateChart/CompoundState/swing" to="ghoul_arms2(1)/StateChart/CompoundState/swing/swing" method="_on_swing_state_physics_processing"]
 [connection signal="state_processing" from="ghoul_arms2(1)/StateChart/CompoundState/swing" to="ghoul_arms2(1)/StateChart/CompoundState/swing/swing" method="_on_swing_left_state_processing"]
+[connection signal="timeout" from="ghoul_arms2(1)/StateChart/CompoundState/swing/inputBufferTimer" to="ghoul_arms2(1)/StateChart/CompoundState/swing/swing" method="_on_input_buffer_timer_timeout"]
 [connection signal="damage_dealt" from="stabDamage" to="." method="_on_stab_damage_damage_dealt"]
 [connection signal="damage_dealt" from="stabDamage" to="." method="_on_damage_dealt"]

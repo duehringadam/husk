@@ -89,7 +89,7 @@ func is_facing(source: DamageComponent) -> bool:
 
 
 func _on_hurtbox_component_damage_taken(actual: float, source: DamageComponent, hit_dir: Vector3) -> void:
-	if !vocalizations.playing:
+	if !vocalizations.playing && health_component.current_health > 0:
 		vocalizations.play()
 	var animation_state_tree_root = animation_tree.get("tree_root")
 	
