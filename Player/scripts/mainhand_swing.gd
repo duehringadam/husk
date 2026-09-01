@@ -23,7 +23,7 @@ func _on_swing_left_state_entered() -> void:
 			weapon = i
 	if weapon:
 		if weapon.swing_sound:
-			weapon.swing_sound.pitch_scale = randf_range(0.9,1)
+			weapon.swing_sound.pitch_scale = randf_range(0.9,1.1)
 			weapon.swing_sound.play()
 			weapon.trail.visible = true
 	SignalBus.emit_signal("primary_active", true)
@@ -39,6 +39,7 @@ func _on_swing_left_state_exited() -> void:
 	if weapon:
 		weapon.trail.visible = false
 	check_buffer = false
+	input_dict
 
 func _on_swing_state_input(event: InputEvent) -> void:
 	var direction_buffer = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
@@ -48,24 +49,32 @@ func _on_swing_state_input(event: InputEvent) -> void:
 		attack_pressed = true
 
 func _on_swing_state_physics_processing(delta: float) -> void:
-	if check_buffer:
-		var dir: Vector2 = input_dict["direction"]
-		var state_machine_playback: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
-		var current_node: StringName = state_machine_playback.get_current_node()
-		
-		if !attack_pressed: return
-		
-		if dir.y < -.5 && current_node != "swing_forward":
-			state_chart.send_event("hold_forward")
-			
-		elif dir.y > .5 && current_node != "swing_back":
-			state_chart.send_event("hold_back")
-			
-		elif dir.x < -0.5 && current_node != "swing_right":
-			state_chart.send_event("hold_right")
-			
-		elif dir.x > 0.5 && current_node != "swing_left":
-			state_chart.send_event("hold_left")
+	
+	var state_machine_playback: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
+	var current_node: StringName = state_machine_playback.get_current_node()
+	
+	var total_length: float = state_machine_playback.get_current_length()
+	var current_pos: float = state_machine_playback.get_current_play_position()
+	var time_left: float = total_length - current_pos
+	
+	if time_left <= (total_length/2.0):
+		check_buffer = true
+		weapon.trail.visible = false
+	
+	#if check_buffer:
+		#if !attack_pressed: return
+		#var dir: Vector2 = input_dict["direction"]
+		#if dir.y < -.5 && !current_node.contains("swing_forward"):
+			#state_chart.send_event("hold_forward")
+			#
+		#elif dir.y > .5 && !current_node.contains("swing_back"):
+			#state_chart.send_event("hold_back")
+			#
+		#elif dir.x < -0.5 && !current_node.contains("swing_left"):
+			#state_chart.send_event("hold_right")
+			#
+		#elif dir.x > 0.5 && !current_node.contains("swing_right"):
+			#state_chart.send_event("hold_left")
 	
 func _anim_finished(state: StringName):
 	if state == "swing_right":

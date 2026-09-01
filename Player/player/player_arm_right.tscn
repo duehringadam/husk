@@ -26,9 +26,9 @@
 [ext_resource type="Script" uid="uid://c3csf7xo741r7" path="res://Player/scripts/mainhand_left.gd" id="17_yjtgc"]
 [ext_resource type="Script" uid="uid://4edxvrrmei6h" path="res://Player/scripts/mainhand_right.gd" id="18_cm5a7"]
 [ext_resource type="Animation" uid="uid://b0t8qlshngr2i" path="res://Player/hands/animations/hands/demon_TO_test.tres" id="18_hefob"]
-[ext_resource type="AnimationNodeStateMachine" uid="uid://b68vfxqnkrh7u" path="res://Player/hands/animations/hands/animation_state_machines/demon_cleaver_animation_state_machine.tres" id="19_hefob"]
 [ext_resource type="Script" uid="uid://wvdotxijfutl" path="res://Player/scripts/mainhand_forward.gd" id="19_l0ppy"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://bowo8n728r7kn" path="res://Player/hands/animations/hands/animation_state_machines/fist_animation_state_machine.tres" id="19_r25yv"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://qdouj24v1xem" path="res://Player/hands/animations/hands/animation_state_machines/two_handed_sword_animation_state_machine.tres" id="20_aqnnl"]
 [ext_resource type="Script" uid="uid://dbijl0u5302qj" path="res://Player/scripts/mainhand_back.gd" id="20_r25yv"]
 [ext_resource type="Script" uid="uid://bwkkao308b3d2" path="res://Player/scripts/weapon_block.gd" id="21_uqleb"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="22_dwmnf"]
@@ -61471,7 +61471,7 @@ bones/26/rest = Transform3D(1, -1.493868e-07, 2.384187e-07, 1.493868e-07, 1, 2.3
 bones/26/enabled = true
 bones/26/position = Vector3(4.531385e-09, 0.47012398, 1.0887968e-08)
 bones/26/rotation = Quaternion(5.5878226e-09, 1.11758766e-07, 5.513563e-08, 1)
-bones/26/scale = Vector3(0.99999994, 1, 0.99999994)
+bones/26/scale = Vector3(1, 1, 1)
 bones/27/name = "segment3.L"
 bones/27/parent = 26
 bones/27/rest = Transform3D(1, 1.3577231e-07, -1.2370789e-07, -1.3922967e-07, 0.99959683, -0.028390123, 1.1980343e-07, 0.02839012, 0.9995969, -1.5249171e-09, 0.08228908, 1.4464391e-08)
@@ -61640,7 +61640,7 @@ bone_name = "weapons.R"
 bone_idx = 24
 
 [node name="leftBoneAttach" type="BoneAttachment3D" parent="ghoul_arms2(1)/Armature/Skeleton3D" unique_id=175715778]
-transform = Transform3D(0.13352056, 0.98599344, -0.09993905, -0.18704821, 0.12410181, 0.97448015, 0.9732336, -0.1114196, 0.2009986, -0.49195868, -1.6087843, 0.10902671)
+transform = Transform3D(0.13352065, 0.98599356, -0.09993907, -0.18704821, 0.124101795, 0.97448015, 0.9732337, -0.11141963, 0.20099862, -0.49195868, -1.6087843, 0.10902671)
 bone_name = "weapons.L"
 bone_idx = 48
 
@@ -61649,7 +61649,8 @@ libraries/ = SubResource("AnimationLibrary_6pntq")
 libraries/ghoul_arms2(2) = SubResource("AnimationLibrary_0bwg4")
 
 [node name="AnimationTree" type="AnimationTree" parent="ghoul_arms2(1)" unique_id=1330822349]
-tree_root = ExtResource("19_hefob")
+active = false
+tree_root = ExtResource("20_aqnnl")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/block = false
 parameters/conditions/end_block = false
@@ -61842,7 +61843,7 @@ animation_tree = NodePath("../../../../AnimationTree")
 hand = NodePath("../../../../..")
 
 [node name="inputBufferTimer" type="Timer" parent="ghoul_arms2(1)/StateChart/CompoundState/swing" unique_id=2147047206]
-wait_time = 0.75
+wait_time = 0.25
 one_shot = true
 
 [node name="toRight" type="Node" parent="ghoul_arms2(1)/StateChart/CompoundState/swing" unique_id=1594881989]

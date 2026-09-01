@@ -9,8 +9,8 @@
 [ext_resource type="Script" uid="uid://cp0p4yckxtvmw" path="res://addons/game_pieces/collision_sound/collision_sound_player.gd" id="6_frsy1"]
 [ext_resource type="AudioStream" uid="uid://dcr4in8lcdk51" path="res://sfx/UI/dark_souls_item.wav" id="7_dguxm"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="8_yp5h5"]
-[ext_resource type="ArrayMesh" uid="uid://doy8sxblf5nrh" path="res://item/weapons/one hand/longsword/SM_Sword_2/M_Sword_2_Mesh.tres" id="9_gy6y3"]
 [ext_resource type="PackedScene" uid="uid://dhws2ueoubwwx" path="res://components/bounding_box_component.tscn" id="9_k6q4i"]
+[ext_resource type="ArrayMesh" uid="uid://bu7ccrgnivpgv" path="res://item/weapons/one hand/longsword/SM_Sword_2/SM_Sword_2_lowpoly.tres" id="9_v6ve5"]
 [ext_resource type="PackedScene" uid="uid://bvb1ic1mm6bap" path="res://shaders/item glint/item_glint.tscn" id="10_hxpeq"]
 [ext_resource type="Material" uid="uid://c87o60d8xcp8o" path="res://item/weapons/one hand/longsword/SM_Sword_2/longsword_item_world_material.tres" id="10_v6ve5"]
 
@@ -114,7 +114,7 @@ metadata/_custom_type_script = "uid://cp0p4yckxtvmw"
 
 [node name="Longsword" type="MeshInstance3D" parent="." unique_id=1316351081]
 transform = Transform3D(-1.55, 1.355053e-07, 0, -1.355053e-07, -1.55, 0, 0, 0, 1.55, 0, 0.33761027, 0)
-mesh = ExtResource("9_gy6y3")
+mesh = ExtResource("9_v6ve5")
 surface_material_override/0 = ExtResource("10_v6ve5")
 
 [node name="OmniLight3D" parent="Longsword" unique_id=1151187837 instance=ExtResource("10_hxpeq")]
