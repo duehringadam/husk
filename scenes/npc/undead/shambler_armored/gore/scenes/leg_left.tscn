@@ -249,10 +249,11 @@ metadata/_custom_type_script = "uid://bxe74cq2uqemi"
 transform = Transform3D(1, -1.7753337e-09, 4.656613e-10, -1.36788e-09, 0.99999994, 7.450581e-09, 4.656613e-10, 0, 1, 0.06844438, -0.0152669065, -0.25047463)
 aabb = AABB(-0.17136048, -0.12114768, -0.47567305, 0.34272096, 0.24229535, 0.9513461)
 
-[node name="bounding_box_ragdoll_component" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone mixamorig_RightArm" unique_id=593655162 node_paths=PackedStringArray("physical_bone", "on_screen_identifier") instance=ExtResource("7_yc2p8")]
+[node name="bounding_box_ragdoll_component" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone mixamorig_RightArm" unique_id=593655162 node_paths=PackedStringArray("physical_bone", "on_screen_identifier", "interaction_container") instance=ExtResource("7_yc2p8")]
 offset_right = 78.0
 physical_bone = NodePath("..")
 on_screen_identifier = NodePath("../VisibleOnScreenNotifier3D")
+interaction_container = NodePath("../InteractionContainer")
 
 [node name="DamageComponent" type="Area3D" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone mixamorig_RightArm" unique_id=266088435]
 collision_layer = 4

@@ -2,7 +2,7 @@ class_name bounding_box_ragdoll_component
 extends PanelContainer
 
 @onready var label: Label = $Label
-@export var label_name: String
+@export var label_name_override: String
 @export var physical_bone: PhysicalBone3D
 @export var on_screen_identifier: VisibleOnScreenNotifier3D
 @export var interaction_container: InteractionContainer
@@ -10,8 +10,11 @@ extends PanelContainer
 var active: bool = false: set = _update_active
 
 func _ready() -> void:
-	self.visible = active
-	label.text = label_name
+	self.visible = active 
+	if interaction_container:
+		label.text = interaction_container.display_name 
+	if label_name_override:
+		label.text = label_name_override
 
 func _update_active(value: bool):
 	active = value
