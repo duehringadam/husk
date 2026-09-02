@@ -10,7 +10,7 @@ var weapon
 var input_dict: Dictionary[String, Vector2]
 var attack_pressed: bool = false
 var check_buffer: bool = false
-
+var block_pressed: bool = false
 func _ready() -> void:
 	animation_tree["parameters/playback"].connect("state_finished", _anim_finished)
 
@@ -47,6 +47,8 @@ func _on_swing_state_input(event: InputEvent) -> void:
 	
 	if Input.is_action_just_pressed("attack_primary"):
 		attack_pressed = true
+	if Input.is_action_just_pressed("attack_secondary"):
+		block_pressed = true
 
 func _on_swing_state_physics_processing(delta: float) -> void:
 	
@@ -61,20 +63,23 @@ func _on_swing_state_physics_processing(delta: float) -> void:
 		check_buffer = true
 		weapon.trail.visible = false
 	
-	#if check_buffer:
-		#if !attack_pressed: return
-		#var dir: Vector2 = input_dict["direction"]
-		#if dir.y < -.5 && !current_node.contains("swing_forward"):
-			#state_chart.send_event("hold_forward")
-			#
-		#elif dir.y > .5 && !current_node.contains("swing_back"):
-			#state_chart.send_event("hold_back")
-			#
-		#elif dir.x < -0.5 && !current_node.contains("swing_left"):
-			#state_chart.send_event("hold_right")
-			#
-		#elif dir.x > 0.5 && !current_node.contains("swing_right"):
-			#state_chart.send_event("hold_left")
+	if check_buffer:
+		if attack_pressed:
+			var dir: Vector2 = input_dict["direction"]
+			if dir.y < -.5 && !current_node.contains("swing_forward"):
+				state_chart.send_event("hold_forward")
+				
+			elif dir.y > .5 && !current_node.contains("swing_back"):
+				state_chart.send_event("hold_back")
+				
+			elif dir.x < -0.5 && !current_node.contains("swing_left"):
+				state_chart.send_event("hold_right")
+				
+			elif dir.x > 0.5 && !current_node.contains("swing_right"):
+				state_chart.send_event("hold_left")
+				
+		if block_pressed:
+			state_chart.send_event("block")
 	
 func _anim_finished(state: StringName):
 	if state == "swing_right":
@@ -93,3 +98,4 @@ func _check_input_buffer():
 
 func _on_input_buffer_timer_timeout() -> void:
 	attack_pressed = false
+	block_pressed = false

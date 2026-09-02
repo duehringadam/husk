@@ -21,6 +21,7 @@ func _process(delta: float) -> void:
 		var bounding_box = get_2d_bounding_box(mesh, get_viewport().get_camera_3d())
 		self.position = bounding_box.position
 		self.size = bounding_box.size
+		
 	if mesh.global_position.distance_to(Global.player.global_position) < 2:
 		if Global.player.camera.is_position_in_frustum(mesh.global_position):
 			active = true

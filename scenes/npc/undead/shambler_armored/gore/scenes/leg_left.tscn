@@ -251,7 +251,6 @@ aabb = AABB(-0.17136048, -0.12114768, -0.47567305, 0.34272096, 0.24229535, 0.951
 
 [node name="bounding_box_ragdoll_component" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone mixamorig_RightArm" unique_id=593655162 node_paths=PackedStringArray("physical_bone", "on_screen_identifier") instance=ExtResource("7_yc2p8")]
 offset_right = 78.0
-label_name = "Severed Arm"
 physical_bone = NodePath("..")
 on_screen_identifier = NodePath("../VisibleOnScreenNotifier3D")
 
@@ -409,12 +408,12 @@ metadata/_custom_type_script = "uid://bxe74cq2uqemi"
 [node name="PickupSound" type="AudioStreamPlayer" parent="Skeleton3D/PhysicalBoneSimulator3D/Physical Bone mixamorig_RightForeArm" unique_id=1793076911]
 
 [node name="Physical Bone mixamorig_RightHand" type="PhysicalBone3D" parent="Skeleton3D/PhysicalBoneSimulator3D" unique_id=2099460659 node_paths=PackedStringArray("throwable_mesh", "throwable", "damage_component")]
-transform = Transform3D(0.64073515, 0.66649526, 0.3811071, 0.7637503, -0.60399467, -0.22776291, 0.07838377, 0.43700632, -0.8960365, 0.13891593, 0.079282105, -0.014297955)
+transform = Transform3D(0.64073515, 0.66649526, 0.38110715, 0.7637503, -0.6039947, -0.22776294, 0.07838377, 0.4370064, -0.89603657, 0.13891593, 0.079282105, -0.014297955)
 collision_layer = 8
 collision_mask = 7
 joint_type = 5
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4804845e-05, 1.2052711e-05, 0.030342648)
-body_offset = Transform3D(-0.6857803, -0.549569, -0.4771582, 5.066395e-07, 0.6556088, -0.7551009, 0.72780895, -0.5178335, -0.44960332, 0.014467858, 0.02290386, 0.013666451)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4803914e-05, 1.2054108e-05, 0.030342653)
+body_offset = Transform3D(-0.6857803, -0.549569, -0.4771581, 5.066395e-07, 0.6556087, -0.75510085, 0.72780895, -0.5178334, -0.44960326, 0.014467858, 0.02290386, 0.013666451)
 bone_name = "mixamorig_LeftFoot"
 joint_constraints/x/linear_limit_enabled = true
 joint_constraints/x/linear_limit_upper = 0.0

@@ -5,7 +5,7 @@ extends PanelContainer
 @export var label_name: String
 @export var physical_bone: PhysicalBone3D
 @export var on_screen_identifier: VisibleOnScreenNotifier3D
-
+@export var interaction_container: InteractionContainer
 
 var active: bool = false: set = _update_active
 
