@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="item" format=3 uid="uid://rjdggj2h078e"]
 
 [ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/scripts/item.gd" id="1_hrhdy"]
-[ext_resource type="AnimationNodeStateMachine" uid="uid://cd70r3lq6edrg" path="res://Player/hands/animations/hands/animation_state_machines/throwing_knife_state_machine.tres" id="1_q7hke"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://brk74xo55152i" path="res://Player/hands/animations/hands/torch/torch_animation_state_machine.tres" id="1_q7hke"]
 [ext_resource type="Texture2D" uid="uid://b5esdvtqwvepd" path="res://item/icons/magic/explosion.svg/icons/ffffff/000000/1x1/lorc/burning-blobs.svg" id="2_rabns"]
 [ext_resource type="PackedScene" uid="uid://bjs54af6e8ib1" path="res://item/weapons/torch/torch.tscn" id="3_vbup0"]
 [ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/scripts/item_stat.gd" id="4_tdixe"]
@@ -19,4 +19,6 @@ item_type = 1
 item_stats = SubResource("Resource_uhtxs")
 item_scene = ExtResource("3_vbup0")
 animation_state_machine = ExtResource("1_q7hke")
+position = Vector3(-0.022877514, 0.1358062, 0.01798147)
+rotation = Vector3(-0.015175995, -0.018091528, 0.012206954)
 metadata/_custom_type_script = "uid://dcfd18dx8x1bm"

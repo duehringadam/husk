@@ -1,3 +1,4 @@
+class_name PhysicsProjectile
 extends RigidBody3D
 
 @export var rotation_speed: float = 5.0
@@ -7,10 +8,8 @@ extends RigidBody3D
 
 var target_basis
 
-
 func _on_damage_component_damage_dealt(types: Dictionary, actual: float, stance_damage: float, target: hurtbox_component) -> void:
 	self.queue_free()
-
 
 func _on_body_entered(body: Node) -> void:
 	if body is StaticBody3D:

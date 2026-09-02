@@ -15,7 +15,7 @@ func _physics_process(delta: float) -> void:
 						for i in damage:
 							if i > 0:
 								var actual = other.take_damage(damage_types, status_types, stance_damage_value, self)
-								emit_signal("damage_dealt", damage_types, actual, stance_damage_value, other)
+								emit_signal("damage_dealt", damage_types, actual, stance_damage_value, other, slow_amount)
 								if hit_sound:
 									hit_sound.pitch_scale = randf_range(0.9,1.2)
 									hit_sound.play()

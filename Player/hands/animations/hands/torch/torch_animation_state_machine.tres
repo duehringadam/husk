@@ -1,0 +1,38 @@
+[gd_resource type="AnimationNodeStateMachine" format=3 uid="uid://brk74xo55152i"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nbpdf"]
+animation = &"torch_attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fkuxv"]
+animation = &"torch_idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v8a6r"]
+animation = &"torch_take_out"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4jjno"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sriq4"]
+xfade_time = 0.1
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5824i"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"activate"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hgsq2"]
+xfade_time = 0.1
+switch_mode = 2
+advance_mode = 2
+
+[resource]
+states/torch_attack/node = SubResource("AnimationNodeAnimation_nbpdf")
+states/torch_attack/position = Vector2(734, 100)
+states/torch_idle/node = SubResource("AnimationNodeAnimation_fkuxv")
+states/torch_idle/position = Vector2(534, 100)
+states/torch_take_out/node = SubResource("AnimationNodeAnimation_v8a6r")
+states/torch_take_out/position = Vector2(341, 100)
+transitions = ["Start", "torch_take_out", SubResource("AnimationNodeStateMachineTransition_4jjno"), "torch_take_out", "torch_idle", SubResource("AnimationNodeStateMachineTransition_sriq4"), "torch_idle", "torch_attack", SubResource("AnimationNodeStateMachineTransition_5824i"), "torch_attack", "torch_idle", SubResource("AnimationNodeStateMachineTransition_hgsq2")]
+graph_offset = Vector2(0, 62.75)

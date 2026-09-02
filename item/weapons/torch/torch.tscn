@@ -8,6 +8,10 @@
 [ext_resource type="AudioStream" uid="uid://b1m60rkx5rn63" path="res://sfx/spells/fire/floraphonic-dragon-breathes-fire-3-191459.mp3" id="6_fx0yu"]
 [ext_resource type="Texture2D" uid="uid://bgpuc5rjm2yh5" path="res://scenes/misc/Textures/Fire_SubUV_new.png" id="7_8yado"]
 [ext_resource type="Texture2D" uid="uid://185sjxt7oawt" path="res://scenes/misc/Textures/T_Fire01_SubUV_normal.png" id="8_37hdr"]
+[ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="9_37hdr"]
+[ext_resource type="AudioStream" uid="uid://b61abobdp5fx6" path="res://sfx/weapons/one handed/torch/Intense Torch Swoosh B.wav" id="10_vqvll"]
+[ext_resource type="AudioStream" uid="uid://cow2akq51ubg4" path="res://sfx/weapons/one handed/torch/Very Gentle Torch Loop.wav" id="11_ltult"]
+[ext_resource type="AudioStream" uid="uid://bu2dp2npx52xl" path="res://sfx/weapons/one handed/torch/Torch Light C.wav" id="12_rk44x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y56or"]
 render_priority = 0
@@ -230,6 +234,10 @@ shader_parameter/uv2_offset = Vector3(0, 0, 0)
 material = SubResource("ShaderMaterial_fx0yu")
 size = Vector2(0.25, 0.25)
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j1pv0"]
+radius = 0.29785156
+height = 1.6591797
+
 [node name="torch2" type="Node3D" unique_id=1499434917]
 transform = Transform3D(1.0000004, 0, 0, 0, 1.0000004, 0, 0, 0, 1.0000006, 0, 0, 0)
 script = ExtResource("1_j5772")
@@ -265,6 +273,38 @@ omni_range = 15.0
 transform = Transform3D(-0.062351882, 1.6576858, 6.456976, 2.2477472, 6.084364, -1.5403197, -6.276002, 2.162644, -0.6158135, 0.21131203, 2.9101725, 0.019013643)
 cast_shadow = 0
 amount = 16
-local_coords = true
 process_material = SubResource("ParticleProcessMaterial_7g3t6")
 draw_pass_1 = SubResource("QuadMesh_vqvll")
+
+[node name="DamageComponent" type="Area3D" parent="." unique_id=130713800]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.74975884, 0)
+collision_mask = 12
+monitoring = false
+monitorable = false
+script = ExtResource("9_37hdr")
+damage_types = Dictionary[int, float]({
+6: 10.0
+})
+status_types = Dictionary[int, float]({
+0: 0.15
+})
+damage_interval = 0.25
+metadata/_custom_type_script = "uid://dlsydctoxqbwy"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent" unique_id=1508706373]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.17041016, 0)
+shape = SubResource("CapsuleShape3D_j1pv0")
+
+[node name="swing" type="AudioStreamPlayer3D" parent="." unique_id=974776040]
+stream = ExtResource("10_vqvll")
+bus = &"SFX"
+
+[node name="ambience" type="AudioStreamPlayer3D" parent="." unique_id=1732628400]
+stream = ExtResource("11_ltult")
+autoplay = true
+bus = &"SFX"
+
+[node name="equip" type="AudioStreamPlayer3D" parent="." unique_id=970285059]
+stream = ExtResource("12_rk44x")
+volume_db = -10.0
+bus = &"SFX"
