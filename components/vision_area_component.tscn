@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://dbf65f4tfhbib"]
+
+[ext_resource type="Script" uid="uid://vxrbcfcv6g1i" path="res://scenes/npc/Ghoul Animated/vision_area.gd" id="1_jpvfu"]
+[ext_resource type="Script" uid="uid://dvqrit635k8bv" path="res://addons/convex_cone_shape3d_plugin/src/convex_cone_shape_3d.gd" id="2_b0i7t"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_51ufe"]
+points = PackedVector3Array(0, 1, 0, 0.442728, -1, 0.23236158, 0.28403237, -1, 0.41149193, 0.06026834, -1, 0.49635443, -0.17730245, -1, 0.4675081, -0.3742554, -1, 0.33156133, -0.48547092, -1, 0.11965783, -0.48547092, -1, -0.11965783, -0.3742554, -1, -0.33156133, -0.17730245, -1, -0.4675081, 0.06026834, -1, -0.49635443, 0.28403237, -1, -0.41149193, 0.442728, -1, -0.23236158, 0.5, -1, -1.2246064e-16)
+script = ExtResource("2_b0i7t")
+segments = 13
+metadata/_custom_type_script = "uid://dvqrit635k8bv"
+
+[node name="visionArea" type="Area3D" unique_id=2142283091]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+script = ExtResource("1_jpvfu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=23064377]
+transform = Transform3D(35.715412, 0, 0, 0, 4.8695464, 0, 0, 0, 7.785, 0, -4.393338, -2.3841858e-07)
+shape = SubResource("ConvexPolygonShape3D_51ufe")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="raycasts" type="Node3D" parent="." unique_id=440936434]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+
+[node name="RayCast3D" type="RayCast3D" parent="raycasts" unique_id=1641597372]
+target_position = Vector3(0, 0, -15)
+collision_mask = 11
+hit_from_inside = true
+
+[node name="RayCast3D2" type="RayCast3D" parent="raycasts" unique_id=1862335013]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15454978, 0, 0)
+target_position = Vector3(0, 0, -15)
+collision_mask = 11
+
+[node name="RayCast3D3" type="RayCast3D" parent="raycasts" unique_id=1530223509]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11869794, 0, 0)
+target_position = Vector3(0, 0, -15)
+collision_mask = 11
+
+[node name="RayCast3D4" type="RayCast3D" parent="raycasts" unique_id=2119944772]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2611382, 0, 0)
+target_position = Vector3(0, 0, -15)
+collision_mask = 11
+
+[node name="RayCast3D5" type="RayCast3D" parent="raycasts" unique_id=1151185679]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15309632, 0)
+target_position = Vector3(0, 0, -15)
+collision_mask = 11
+
+[node name="RayCast3D6" type="RayCast3D" parent="raycasts" unique_id=1621455908]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11722934, 0.14634287, 0)
+target_position = Vector3(0, 0, -15)
+collision_mask = 11
+
+[node name="RayCast3D7" type="RayCast3D" parent="raycasts" unique_id=19135025]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.26584446, 0.15938115, 0)
+target_position = Vector3(0, 0, -15)
+collision_mask = 11
+
+[node name="RayCast3D8" type="RayCast3D" parent="raycasts" unique_id=1506638375]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1730581, 0.1471399, 0)
+target_position = Vector3(0, 0, -15)
+collision_mask = 11
+
+[node name="raycast_look" type="Marker3D" parent="raycasts" unique_id=448558020]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.940195)
+
+[node name="timer" type="Timer" parent="." unique_id=92382362]
+wait_time = 0.25
+autostart = true
+
+[node name="aggrotimer" type="Timer" parent="." unique_id=1779764506]
+wait_time = 10.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="aggrotimer" to="." method="_on_aggrotimer_timeout"]

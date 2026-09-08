@@ -3,8 +3,8 @@ extends hurtbox_component
 
 signal damage_blocked
 signal damage_types_taken(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float])
+signal projectile_damage_taken(stance_damage: float)
 
-var local_shape_idx: int
 var just_damaged:bool = false
 var limb_collider
 
@@ -27,6 +27,8 @@ func take_damage(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float], stat
 				health_component.damage_source = source.source
 			limb_collider = get_child(local_shape_idx)
 			limb_collider.bone_take_damage(damage_types, actual)
+			if source.owner is PhysicsProjectile:
+				projectile_damage_taken.emit(stance_damage)
 			sum += actual
 	damage_types_taken.emit(damage_types)
 	if stance_component != null:

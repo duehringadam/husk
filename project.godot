@@ -333,12 +333,19 @@ disable_update_check=false
 disable_install_wizard=true
 copy_path="res://scenes/ui/"
 
+[network]
+
+limits/debugger/max_queued_messages=32768
+
 [physics]
 
 3d/run_on_separate_thread=true
 3d/physics_engine="Jolt Physics"
+jolt_physics_3d/simulation/velocity_steps=16
+jolt_physics_3d/simulation/baumgarte_stabilization_factor=0.7
 jolt_physics_3d/collisions/collision_margin_fraction=0.02432
 3d/default_gravity=12.0
+3d/solver/solver_iterations=24
 
 [rendering]
 

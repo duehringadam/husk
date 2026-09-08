@@ -7,16 +7,19 @@ extends Node3D
 
 var blood_decal = preload("res://scenes/VFX/Scenes/Blood_Pool_Decal.tscn")
 
-func _ready() -> void:
-	animation_player.play("Init")
 
 func take_damage() -> void:
 	if blood_pos.is_colliding():
 		var blood_decal_add = blood_decal.instantiate()
 		get_tree().current_scene.add_child(blood_decal_add)
-		blood_decal_add.global_position = blood_pos.get_collision_point()
-		#blood_decal_add.emitting = true
 		
+		var hit_position = blood_pos.get_collision_point()
+		var hit_normal = blood_pos.get_collision_normal()
+		var up_vector = Vector3.UP if abs(hit_normal.dot(Vector3.UP)) < 0.99 else Vector3.FORWARD
+	
+		blood_decal_add.global_position = hit_position + Vector3(-randf_range(0.1,0.3), 0.0, randf_range(0.1,0.3))
+		blood_decal_add.look_at(hit_position + hit_normal, up_vector)
+		blood_decal_add.rotate_object_local(Vector3.RIGHT, PI/2.0)
 		
 func _on_timer_timeout() -> void:
 	animation_player.play("End")

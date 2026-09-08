@@ -24,6 +24,7 @@ func _on_knocked_down_state_entered() -> void:
 	animation_state_tree_root = animation_tree.get("tree_root")
 	on_ground_node = animation_state_tree_root.get_node("on_ground")
 	get_up_node = animation_state_tree_root.get_node("get_up")
+	
 
 func _on_knocked_down_state_exited() -> void:
 	timer = 0.0

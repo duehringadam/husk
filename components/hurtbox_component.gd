@@ -43,6 +43,7 @@ signal apply_slow(slow_amount: float)
 @export var source: Node3D
 
 var damage_particles_add
+var local_shape_idx: int = 0
 ## add the invulnerability timer
 func _ready():
 	timer = Timer.new()

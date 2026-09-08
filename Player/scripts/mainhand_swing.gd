@@ -11,6 +11,7 @@ var input_dict: Dictionary[String, Vector2]
 var attack_pressed: bool = false
 var check_buffer: bool = false
 var block_pressed: bool = false
+
 func _ready() -> void:
 	animation_tree["parameters/playback"].connect("state_finished", _anim_finished)
 
@@ -39,7 +40,6 @@ func _on_swing_left_state_exited() -> void:
 	if weapon:
 		weapon.trail.visible = false
 	check_buffer = false
-	input_dict
 
 func _on_swing_state_input(event: InputEvent) -> void:
 	var direction_buffer = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
@@ -51,7 +51,6 @@ func _on_swing_state_input(event: InputEvent) -> void:
 		block_pressed = true
 
 func _on_swing_state_physics_processing(delta: float) -> void:
-	
 	var state_machine_playback: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
 	var current_node: StringName = state_machine_playback.get_current_node()
 	
@@ -61,11 +60,13 @@ func _on_swing_state_physics_processing(delta: float) -> void:
 	
 	if time_left <= (total_length/2.0):
 		check_buffer = true
-		weapon.trail.visible = false
+		#if weapon.trail:
+			#weapon.trail.visible = false
 	
 	if check_buffer:
 		if attack_pressed:
 			var dir: Vector2 = input_dict["direction"]
+			
 			if dir.y < -.5 && !current_node.contains("swing_forward"):
 				state_chart.send_event("hold_forward")
 				
@@ -99,3 +100,4 @@ func _check_input_buffer():
 func _on_input_buffer_timer_timeout() -> void:
 	attack_pressed = false
 	block_pressed = false
+	input_dict["direction"] = Vector2.ZERO

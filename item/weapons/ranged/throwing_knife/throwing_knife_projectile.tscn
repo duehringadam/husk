@@ -10,11 +10,11 @@
 [ext_resource type="Script" uid="uid://dwsn7gxfshtf8" path="res://addons/GPUTrail-main/GPUTrail3D.gd" id="8_p2ac1"]
 [ext_resource type="AudioStream" uid="uid://dl87y5jms6tmp" path="res://item/consumables/throwing knife/sfx/Knife_Stab_Terrain.wav" id="9_aqcxk"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_l54j7"]
+size = Vector3(0.028320313, 0.12011719, 0.020507813)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nkawy"]
 albedo_texture = ExtResource("3_crhos")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_n88tk"]
-size = Vector3(0.078712836, 0.14794922, 0.04869339)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nasbm"]
 shader = ExtResource("6_f05pk")
@@ -54,10 +54,7 @@ shader_parameter/flags = 42
 [sub_resource type="QuadMesh" id="QuadMesh_7vtg1"]
 material = SubResource("ShaderMaterial_qbim7")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_l54j7"]
-size = Vector3(0.028320313, 0.12011719, 0.020507813)
-
-[node name="projectile" type="RigidBody3D" unique_id=1104421313]
+[node name="projectile" type="RigidBody3D" unique_id=1104421313 node_paths=PackedStringArray("ray", "terrain", "damage_component", "projectile_mesh")]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
 collision_mask = 14
 axis_lock_angular_z = true
@@ -65,14 +62,12 @@ continuous_cd = true
 contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("1_7xchk")
+ray = NodePath("RayCast3D")
+terrain = NodePath("terrain")
+damage_component = NodePath("DamageComponent")
+projectile_mesh = NodePath("MeshInstance3D")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1623547994]
-transform = Transform3D(3, 0, 0, 0, -1.3113416e-07, -3, 0, 3, -1.3113416e-07, 0, 0, 0.036728993)
-mesh = ExtResource("2_iwqu6")
-surface_material_override/0 = SubResource("StandardMaterial3D_nkawy")
-
-[node name="DamageComponent" type="Area3D" parent="MeshInstance3D" unique_id=285468105]
-transform = Transform3D(-0.0499742, 0, -0.00160455, 0, 0.05, 0, 0.00160455, 0, -0.0499742, 0, 0, 0)
+[node name="DamageComponent" type="Area3D" parent="." unique_id=285468105]
 collision_layer = 0
 collision_mask = 14
 script = ExtResource("4_hj62b")
@@ -81,16 +76,21 @@ damage_types = Dictionary[int, float]({
 })
 metadata/_custom_type_script = "uid://dlsydctoxqbwy"
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="MeshInstance3D/DamageComponent" unique_id=1244396085]
-transform = Transform3D(-19.98972, 0, 0.64182127, 0, 20.000002, 0, -0.64182127, 0, -19.98972, 0.019429613, -0.66009486, 0.12461214)
-shape = SubResource("BoxShape3D_n88tk")
-
-[node name="damage" type="AudioStreamPlayer3D" parent="MeshInstance3D/DamageComponent" unique_id=1062580463]
+[node name="damage" type="AudioStreamPlayer3D" parent="DamageComponent" unique_id=1062580463]
 stream = ExtResource("5_lv6ak")
 volume_db = 6.0
 max_db = 6.0
 max_distance = 10.0
 bus = &"SFX"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent" unique_id=1913525091]
+transform = Transform3D(3, 0, 0, 0, -1.3113416e-07, -3, 0, 3, -1.3113416e-07, 0, 4.553087e-09, -0.0674335)
+shape = SubResource("BoxShape3D_l54j7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1623547994]
+transform = Transform3D(3, 0, 0, 0, -1.3113416e-07, -3, 0, 3, -1.3113416e-07, 0, 0, 0.036728993)
+mesh = ExtResource("2_iwqu6")
+surface_material_override/0 = SubResource("StandardMaterial3D_nkawy")
 
 [node name="GPUTrail3D" type="GPUParticles3D" parent="MeshInstance3D" unique_id=1431409287]
 transform = Transform3D(0.010367138, 0.0077833254, 4.3250633e-08, 4.4189598e-08, -3.4023792e-10, 1.0000002, 0.9999473, -8.069504e-05, -4.464032e-08, 0.0040647867, 0.01679179, -0.00047113415)
@@ -129,6 +129,6 @@ max_distance = 10.0
 bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="area_entered" from="MeshInstance3D/DamageComponent" to="." method="_on_damage_component_area_entered"]
-[connection signal="body_entered" from="MeshInstance3D/DamageComponent" to="." method="_on_damage_component_body_entered"]
-[connection signal="damage_dealt" from="MeshInstance3D/DamageComponent" to="." method="_on_damage_component_damage_dealt"]
+[connection signal="area_entered" from="DamageComponent" to="." method="_on_damage_component_area_entered"]
+[connection signal="body_entered" from="DamageComponent" to="." method="_on_damage_component_body_entered"]
+[connection signal="damage_dealt" from="DamageComponent" to="." method="_on_damage_component_damage_dealt"]

@@ -13,5 +13,5 @@ func _on_damage_component_body_entered(body: Node3D) -> void:
 		body.linear_velocity = Vector3.ZERO
 
 
-func _on_damage_component_damage_dealt(types: Dictionary, actual: float, stance_damage: float, target: hurtbox_component) -> void:
+func _on_damage_component_damage_dealt(types: Dictionary, actual: float, stance_damage: float, target: hurtbox_component, slow_amount: float) -> void:
 	metal.play()

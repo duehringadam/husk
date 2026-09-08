@@ -383,3 +383,14 @@ func _on_left_hand_consumable_offhand_stack_size_update(weapon: item, value: int
 	var item_to_find = offhand.find_child(weapon.item_name, false, false)
 	if item_to_find:
 		item_to_find.update_stack_size(value)
+		
+func unequip(type) -> void:
+	match type:
+		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.WEAPON:
+			mainhand_button.icon = null
+		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.OFFHAND:
+			offhand_button.icon = null
+		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.ARMOR:
+			chest_button.icon = null
+		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.JEWELRY:
+			jewelry_button.icon = null
