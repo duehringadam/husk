@@ -3,7 +3,7 @@ extends Node
 @export var animation_tree: AnimationTree
 @export var state_chart: StateChart
 @export var distance: float
-
+@export var pin_check_ray: RayCast3D
 @onready var ledge_check: ShapeCast3D = %ledgeCheck
 @onready var ledge_check_parent: Node3D = %ledgeCheckParent
 

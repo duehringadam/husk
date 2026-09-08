@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://rdwmmgv6psk1"]
 
 [ext_resource type="Texture2D" uid="uid://00btsgwaneit" path="res://scenes/VFX/textures/T_Blood_Mist_04a_alpha.png" id="1_of0h4"]
+[ext_resource type="Script" uid="uid://bjnui28tj0kv5" path="res://scenes/npc/Ghoul Animated/gore/pickable/bleeding_limb.gd" id="1_t8rwt"]
 [ext_resource type="Shader" uid="uid://bfwwv62cr7k2o" path="res://shaders/blood vfx shaders/ss_Disolver_subUV_small_Liquid_Treshold_p.gdshader" id="3_polod"]
 [ext_resource type="Texture2D" uid="uid://etftten2vtpl" path="res://scenes/VFX/textures/T_Blood_MultiUV_f3.png" id="4_t5n26"]
 [ext_resource type="Texture2D" uid="uid://dbq4afiw01u8h" path="res://scenes/VFX/textures/T_Gib_Red_C.PNG" id="5_riedl"]
@@ -52,10 +53,12 @@ alpha_curve = SubResource("CurveTexture_htgsn")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qjhcb"]
 transparency = 2
-alpha_scissor_threshold = 0.61
-alpha_antialiasing_mode = 0
+alpha_scissor_threshold = 0.63
+alpha_antialiasing_mode = 1
+alpha_antialiasing_edge = 0.3
 vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
+albedo_color = Color(0.68307734, 0.6830774, 0.68307734, 1)
 albedo_texture = ExtResource("1_of0h4")
 albedo_texture_msdf = true
 billboard_mode = 3
@@ -131,7 +134,7 @@ initial_velocity_min = 0.5
 initial_velocity_max = 1.0
 angular_velocity_min = -1.60933e-05
 angular_velocity_max = -1.60933e-05
-gravity = Vector3(0, -2, 0)
+gravity = Vector3(0, -4, 0)
 scale_min = 0.5
 scale_max = 0.5
 scale_curve = SubResource("CurveTexture_xbg4x")
@@ -203,11 +206,13 @@ _data = {
 }
 
 [node name="VFX_Blood_Constant_A2" type="Node3D" unique_id=803311836]
+script = ExtResource("1_t8rwt")
 
 [node name="mist" type="GPUParticles3D" parent="." unique_id=1694674904]
 transform = Transform3D(0.999999, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.0182112)
 layers = 4
 cast_shadow = 0
+emitting = false
 amount = 5
 lifetime = 0.5
 fixed_fps = 60
@@ -217,6 +222,7 @@ draw_pass_1 = SubResource("QuadMesh_k8uit")
 [node name="blooddrops" type="GPUParticles3D" parent="." unique_id=1417295949]
 layers = 4
 material_override = SubResource("ShaderMaterial_5128h")
+emitting = false
 amount = 10
 lifetime = 0.7
 randomness = 1.0
@@ -227,4 +233,26 @@ draw_pass_1 = SubResource("QuadMesh_ivqap")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=299923708]
 libraries/ = SubResource("AnimationLibrary_mrvyy")
-autoplay = &"Init"
+autoplay = &"End"
+
+[node name="blood_pos" type="RayCast3D" parent="." unique_id=697375155]
+transform = Transform3D(1, -9.3132246e-10, 1.4156102e-07, 2.0372684e-09, 1, 6.519258e-08, 4.656614e-10, -7.450581e-09, 1, -0.06498198, 0, -0.44663638)
+top_level = true
+target_position = Vector3(0, -2, 0)
+collision_mask = 2
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="." unique_id=729076193]
+transform = Transform3D(1, 2.3283064e-10, 7.450581e-09, 8.731149e-10, 1, -9.313226e-10, -7.450581e-09, 9.313226e-10, 1, -0.06498198, 0, -0.44663638)
+remote_path = NodePath("../blood_pos")
+update_rotation = false
+
+[node name="end_blood_timer" type="Timer" parent="." unique_id=805367821]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="bleed_timer" type="Timer" parent="." unique_id=491076785]
+autostart = true
+
+[connection signal="timeout" from="end_blood_timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="bleed_timer" to="." method="take_damage"]

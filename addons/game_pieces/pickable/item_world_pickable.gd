@@ -95,7 +95,6 @@ func _while_grabbed(controller: InteractionController) -> void:
 	_initial_position = reference_node.to_local(global_position)
 	InteractionContainer.from(self).enable(interaction_context_when_grabbed)
 	set_transparency(self, 0.35)
-	AudioManager.play_sound(load("res://sfx/metal-clank.ogg"),self.global_position,10)
 	#$PickupSound.play()
 	# Bring it closer to reference node but with a delay to avoid player flying off
 	_delay_timer = create_tween()

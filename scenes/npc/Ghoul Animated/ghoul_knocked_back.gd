@@ -58,10 +58,8 @@ func _on_knocked_back_state_entered() -> void:
 		source_npc.velocity = -kb_amount
 		knockback_source = kb_source
 
-
 func _on_knocked_back_state_exited() -> void:
 	pass
-
 
 func _on_knocked_back_state_physics_processing(delta: float) -> void:
 	if knockback_source:

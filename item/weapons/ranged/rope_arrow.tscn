@@ -1,20 +1,65 @@
-[gd_scene format=3 uid="uid://cognqrp5ye22k"]
+[gd_scene format=4 uid="uid://cognqrp5ye22k"]
 
 [ext_resource type="Script" uid="uid://1js27vkofl40" path="res://item/weapons/ranged/rope_arrow.gd" id="1_f01kd"]
 [ext_resource type="PackedScene" uid="uid://cvlrs5xd5rjqj" path="res://item/weapons/ranged/rope_arrow_creation.tscn" id="2_anwt6"]
-[ext_resource type="ArrayMesh" uid="uid://cbsr7dl2ftq1r" path="res://item/weapons/ranged/Arrows/arrow_new.tres" id="3_anwt6"]
-[ext_resource type="Texture2D" uid="uid://7406rkdcg7h1" path="res://item/weapons/ranged/Arrows/arrowtexture.png" id="4_6k4go"]
+[ext_resource type="Texture2D" uid="uid://dje3hlfj85tvd" path="res://item/weapons/ranged/Arrows/Arrow_texture.png" id="3_kp4an"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="4_lylhm"]
 [ext_resource type="Shader" uid="uid://bd6eynp1qsy0g" path="res://addons/GPUTrail-main/shaders/trail.gdshader" id="5_oc65y"]
 [ext_resource type="AudioStream" uid="uid://cx36285plpdod" path="res://item/weapons/ranged/rope_bow/arrow_hit.ogg" id="6_f01kd"]
 [ext_resource type="Shader" uid="uid://bnbfs08hp70x0" path="res://addons/GPUTrail-main/shaders/trail_draw_pass.gdshader" id="6_hauki"]
 [ext_resource type="Script" uid="uid://dwsn7gxfshtf8" path="res://addons/GPUTrail-main/GPUTrail3D.gd" id="7_j2237"]
-[ext_resource type="Script" uid="uid://dca3pj424qjk6" path="res://components/pin_area.gd" id="10_gf6if"]
 [ext_resource type="AudioStream" uid="uid://hm6q5bh3fe04" path="res://scenes/traps/rope2.ogg" id="11_2ouqr"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v4udn"]
-albedo_texture = ExtResource("4_6k4go")
-texture_filter = 4
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iaysk"]
+resource_name = "Material"
+vertex_color_use_as_albedo = true
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_f0pan"]
+_surfaces = [{
+"aabb": AABB(-0.106733665, -0.003657392, -0.0063347556, 0.17990461, 0.010972136, 0.012669528),
+"format": 34359742465,
+"index_count": 174,
+"index_data": PackedByteArray("AAABAAIAAgAcAAAAAQAAAB0AHgAcAAIAHwAAABwAAAAfACAAIAAdAAAAHgAdACAAAgAEAB4AHQAeAAQAHAAeACEAIAAhAB4AHAAiAB8AIQAiABwAIAAfACMAIwAfACIAJAAhACAAIgAhACQAIwAlACAAIAAlACQAJAAlACMAIgAmACMAJAAjACYAJAAmACIABAADAB0AHQADAAEAJwADAAQAAQADACcABAAoACcAJwApAAEAKgAoAAQABAACACoAKgACAAEAAQApACoAKQAnAAgACAAnACgACAAGACkABQAqACkAKAAqAAUAKQAGAAUAKAAHAAgABQAHACgACQAGAAgACQAFAAYACQAIAAcACQAHAAUACgALAAwADAANAAoADgALAAoACgAPAA4AEAARABIAEgATABAAFAARABAAEAAVABQAFgAXABgAGAAZABYAGgAXABYAFgAbABoA"),
+"lods": [0.023418648, PackedByteArray("AAABAAIAAAADAAEAAgAEAAAABAADAAAABQACAAEABAACAAUAAQAGAAUABQAHAAQAAQADAAgACAADAAQACAAGAAEABAAHAAgACQAFAAYACQAHAAUACQAGAAgACQAIAAcACgALAAwADAANAAoADgALAAoACgAPAA4AEAARABIAEgATABAAFAARABAAEAAVABQAFgAXABgAGAAZABYAGgAXABYAFgAbABoA")],
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 43,
+"vertex_data": PackedByteArray("TFogvSO3SLpKYMuxNki2vSS3SLoKBWeyNki2vYgTGrEWtkg6Nki2vUAyH7Hjt0i6Nki2vde2SDpuK2iypEa+vcPw3zJyuNY6pEa+vUlAZrsDFG6ypEa+vShBZjsNPXaypEa+vc3H2zJluda6Lpfavdee5zLkRIuyJq4lPaykM7sxk5s7ptqVPduwb7vsk887S3uRPbTBybmTSKA5ijkRPa3BybneR6A5S3uRPZXAl7g83f45ijkRPZ7Al7iD3P45JK4lPYWkM7shk5u7pNqVPa2wb7vIk8+7SnuRPRW8l7gA2/65ijkRPTG8l7i02/65SnuRPZLAyblYRqC5ijkRPY/AybkRR6C5JK4lPVqkszuuaUQyo9qVPYWw7zveZ5UySHuRPfqs7zl9LT05iTkRPfqs7zn8Kz05SHuRPfis7zkhJT25iTkRPfis7zmNJj25TFogvYUTGrGWtkg6TFogvT0yH7Fgt0i6TFogvde2SDoSrc2xIbO0PCO3SLqPWWQxIbO0PD0yH7HBtki6IbO0PNe2SDoAwF8xIbO0PIUTGrE0t0g6PQSSPSS3SLpm0TgyPQSSPde2SDoDqzcyc4uUPTsyH7FAtki6c4uUPYMTGrG4t0g6QLy6vZwrnjL/xVu6Pby6vYbX0zpP5HOyPby6vUXW07rf8mqyPby6vY1ooTIhxFs6")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_v2dmv"]
+resource_name = "Plane"
+_surfaces = [{
+"aabb": AABB(-0.106733665, -0.003657392, -0.0063347556, 0.17990461, 0.010972136, 0.012669528),
+"attribute_data": PackedByteArray("GiY6PgEAgD8hJjo+9OQ9PsFDTD705D0+YWFePvTkPT4Af3A+9OQ9PkxOgT4BAIA/UE6BPvTkPT6u668+rxhoPyMyyD7opWQ/ITLIPkG5ej9Wlrw+IVp8PyUyyD4YbTE/IzLIPuilZD+u668+rxhoPyUyyD4YbTE/Ko4CP7Y6aj+ZeOA+rxhoPyUyyD4YbTE/mXjgPq8YaD8jMsg+6KVkPyUyyD4YbTE/ruuvPq8YaD/xR4s+tTpqP7vl3z4g5k494yBxP0Botjwbs2g/+CADPl53uD7wIAM+janOPixVej4Azr0+OAEOPgQVYD/A7So+M8xzPyRVej4ZfPE+YGIIPxHseT89JwE/S35xPzg8HD/ADco+ODwcP5Gu3z5Drzs/BNPOPkiaID+Il2g/aNUnP7FOfD9Arzs/HtD0Ptba0T4Plns/lGTDPksocz+Kjvk+xmHNPoyO+T4ffuI+nDi8PpCi0T6mDoY+Sf9pP+iElD54tn0/mji8PiEyyD5BuXo/IzLIPuilZD+ZeOA+rxhoP+zN0z4hWnw/mXjgPq8YaD8qjgI/tjpqP3cC3z6EWn4/7M3TPiFafD/KYbE+g1p+P/FHiz61Omo/ruuvPq8YaD9Wlrw+IVp8P7pDTD4BAIA/WWFePgEAgD/5fnA+AQCAP03PtD7qfHA/IzLIPgU7bj8jMsg+BTtuP/mU2z7nfHA/+ZTbPud8cD/v2O4+6cdzP03PtD7qfHA/VYuhPujHcz8mexc+MByHPaHILz7IuqA9JnsXPlhZuj1UW/49wLqgPU5OAT5sOEg+UE4BPgAAgD9gYd49//9/P/BrEz7//38/XWHePVSRMz4eJro9ZDhIPiEmuj0AAIA/7msTPlyRMz6OiSU+cDhIPo6JJT4AAIA/TimjMwAAgD/KGQQwAAAAAPvskDwAAAAAI+2QPAAAgD8P7RA9AACAP/vsED0AAAAAjmNZPQAAgD97Y1k9AAAAAPzskD0AAAAABu2QPQAAgD8="),
+"format": 34359742487,
+"index_count": 174,
+"index_data": PackedByteArray("AAABAAIAAgA7AAAAPAA7AAIAAgADADwAPQA8AAMAAwAEAD0APQAEAAYABgAFAD0APgA/AAkACQAKAD4APwA+AAcABwAIAD8ACwAMAA0ADgAPABAAEQASABMAFAAVABYAFwAYABkAGQAaABcAGwAcAB0AHQAeABsAHwAgACEAIQAiAB8AIwAkACUAJQAmACMAJwAoACkAKQAqACcAKwAsAC0ALQAuACsALwBAAEEAQQAyAC8AMQBBAEAAQAAwADEAQgBDADUANQA2AEIAQwBCADMAMwA0AEMAOQBEAEUARQA4ADkANwBFAEQARAA6ADcARgBHAEgARgBIAEkASgBLAEwATQBLAEoATABOAEoATwBOAEwATABQAE8ASgBRAE0ATQBRAFIAUgBTAE0AVABVAFYAVgBXAFQAWABXAFYAVgBZAFgAWgBYAFkAWQBbAFoAWgBbAFwAXABdAFoA"),
+"lods": [0.023418648, PackedByteArray("AAABAAIAAgADAAAAAwAEAAUABQAEAAYABwAIAAkACQAKAAcACwAMAA0ADgAPABAAEQASABMAFAAVABYAFwAYABkAGQAaABcAGwAcAB0AHQAeABsAHwAgACEAIQAiAB8AIwAkACUAJQAmACMAJwAoACkAKQAqACcAKwAsAC0ALQAuACsALwAwADEAMQAyAC8AMwA0ADUANQA2ADMANwA4ADkAOQA6ADcA")],
+"material": SubResource("StandardMaterial3D_iaysk"),
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 94,
+"vertex_data": PackedByteArray("TFogvSO3SLpKYMuxNki2vSS3SLoKBWeyNki2vYgTGrEWtkg6Nki2vde2SDpuK2iyNki2vUAyH7Hjt0i6TFogvSO3SLpKYMuxNki2vSS3SLoKBWeypEa+vcPw3zJyuNY6pEa+vShBZjsNPXayNki2vde2SDpuK2iyNki2vYgTGrEWtkg6Lpfavdee5zLkRIuypEa+vShBZjsNPXaypEa+vcPw3zJyuNY6Lpfavdee5zLkRIuypEa+vUlAZrsDFG6ypEa+vc3H2zJluda6Lpfavdee5zLkRIuypEa+vc3H2zJluda6pEa+vShBZjsNPXayLpfavdee5zLkRIuypEa+vcPw3zJyuNY6pEa+vUlAZrsDFG6yJq4lPaykM7sxk5s7ptqVPduwb7vsk887S3uRPbTBybmTSKA5ijkRPa3BybneR6A5S3uRPZXAl7g83f45ptqVPduwb7vsk887Jq4lPaykM7sxk5s7ijkRPZ7Al7iD3P45JK4lPYWkM7shk5u7pNqVPa2wb7vIk8+7SnuRPRW8l7gA2/65ijkRPTG8l7i02/65SnuRPZLAyblYRqC5pNqVPa2wb7vIk8+7JK4lPYWkM7shk5u7ijkRPY/AybkRR6C5JK4lPVqkszuuaUQyo9qVPYWw7zveZ5UySHuRPfqs7zl9LT05iTkRPfqs7zn8Kz05SHuRPfis7zkhJT25o9qVPYWw7zveZ5UyJK4lPVqkszuuaUQyiTkRPfis7zmNJj25Nki2vde2SDpuK2iypEa+vShBZjsNPXaypEa+vc3H2zJluda6Nki2vUAyH7Hjt0i6pEa+vc3H2zJluda6pEa+vUlAZrsDFG6yNki2vSS3SLoKBWeyNki2vUAyH7Hjt0i6Nki2vSS3SLoKBWeypEa+vUlAZrsDFG6ypEa+vcPw3zJyuNY6Nki2vYgTGrEWtkg6TFogvYUTGrGWtkg6TFogvde2SDoSrc2xTFogvT0yH7Fgt0i6Pby6vY1ooTIhxFs6Pby6vYbX0zpP5HOyPby6vYbX0zpP5HOyQLy6vZwrnjL/xVu6QLy6vZwrnjL/xVu6Pby6vUXW07rf8mqyPby6vY1ooTIhxFs6Pby6vUXW07rf8mqyPQSSPde2SDoDqzcyc4uUPTsyH7FAtki6PQSSPSS3SLpm0Tgyc4uUPYMTGrG4t0g6PQSSPde2SDoDqzcyIbO0PNe2SDoAwF8xIbO0PD0yH7HBtki6IbO0PIUTGrE0t0g6c4uUPTsyH7FAtki6PQSSPSS3SLpm0TgyIbO0PCO3SLqPWWQxc4uUPYMTGrG4t0g6PQSSPSS3SLpm0TgyIbO0PCO3SLqPWWQxTFogvSO3SLpKYMuxIbO0PCO3SLqPWWQxIbO0PD0yH7HBtki6TFogvT0yH7Fgt0i6TFogvde2SDoSrc2xIbO0PNe2SDoAwF8xTFogvYUTGrGWtkg6IbO0PIUTGrE0t0g6IbO0PCO3SLqPWWQxTFogvSO3SLpKYMux/38AAP9//7//fwAA/3//v/9//3//f////3///wAAAID+/wAA/38AgP9/AAD/f/+//38AAP9//78XoDmfO7tL9xegOZ8juVX4bYpPr5bBvfVtik+vA8Oy9G12qKUJtJH2bXaopQm0kfZtdqilCbSR9qglkQkAdOyYqCWRCQB07JioJZEJAHTsmKglbfb1S2yJqCVt9vVLbImoJW329UtsiW12Vlr+ixHnbXZWWv6LEedtdlZa/osR5ztTFADn/+y/O1MUAOf/7L87UxQA5//svztTFADn/+y/63//zhcA7L/rf//OFwDsv+t//84XAOy/63//zhcA7L8AT+v/5/8RwABP6//n/xHAAE/r/+f/EcAAT+v/5/8RwOt/xCwXABHA63/ELBcAEcDrf8QsFwARwOt/xCwXABHA5X/Tg+P//7/lf9OD4///v+V/04Pj//+/5X/Tg+P//7/UA+T/GwD+v9QD5P8bAP6/1APk/xsA/r/UA+T/GwD+v67QkfVoPkGKxeDm39tGqYfF4Obfw0SyiK7QkfX7PEuLxeAYIJJsIpjF4BggRHdRlq7QbQodZxWgrtBtCuRn4p9siq9Q4Zjp3xegxWC6iKzpF6DFYGyT2+dsiq9QGpgb4P9//3//f////3///wAAAID//wAA/38AgGGWb6a9vnj23ZiXpPe7yfdn2yDnB0Q1iI/ZnOlBQYaJj9liFtdjQp1n294YB2y9mmGWj1knnLvi3ZhnW/eTQeX+//9//v////+w/3/+/3/Y/v//f/7////////OAAB/2P9/////f/+//3////9//7/+/wAA/3/+//9//3//fwCA/v8AAP9//v//fwAA///+//9/AAAAAP7//3//f/9/AID/fwAA//////9/AAD///7//38AAP//////fwAA//////7/AAD/f/////8AAP9/////f////3//v/9/////f/+//3//f/9/AID/f/9//38AgP9/AAD//////38AAP////8=")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_f0pan")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mtkvr"]
+albedo_texture = ExtResource("3_kp4an")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_kp4an"]
+points = PackedVector3Array(0.07315335, -0.003657392, -0.0063347556, 0.07315335, 0.0073136697, 8.381903e-09, 0.073170945, -0.003657392, 0.0063335327, -0.092909746, -0.003513474, -1.2316741e-06, -0.092909746, -3.7113205e-07, -0.0016382495, -0.092909746, 0.0035127315, -1.2316741e-06, -0.092909746, -3.7113205e-07, 0.0016370267, -0.106733665, -3.7113205e-07, -1.2316741e-06)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_md0um"]
+radius = 0.07861328
+height = 1.185498
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1swpe"]
 shader = ExtResource("5_oc65y")
@@ -54,66 +99,39 @@ shader_parameter/flags = 42
 [sub_resource type="QuadMesh" id="QuadMesh_fmpjr"]
 material = SubResource("ShaderMaterial_qbim7")
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_md0um"]
-radius = 0.08154297
-height = 1.1948242
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f01kd"]
-radius = 0.24121094
-height = 1.5498047
-
-[node name="bolt" type="Node3D" unique_id=506285793 node_paths=PackedStringArray("damage_component", "ray_cast_3d", "gpu_trail")]
+[node name="bolt" type="RigidBody3D" unique_id=1302249802 node_paths=PackedStringArray("terrain", "damage_component", "projectile_mesh")]
 top_level = true
+collision_mask = 14
+continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("1_f01kd")
 rope_to_create = ExtResource("2_anwt6")
-speed = 60
+terrain = NodePath("AudioStreamPlayer3D")
 damage_component = NodePath("DamageComponent")
-ray_cast_3d = NodePath("RayCast3D")
-gpu_trail = NodePath("MeshInstance3D/GPUTrail3D")
-lifetime = 15.0
+projectile_mesh = NodePath("Plane")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1570379003]
-transform = Transform3D(0.0026436269, 0, 0.2549863, 0, 0.255, 0, -0.2549863, 0, 0.0026436269, 0, 0, 0)
-mesh = ExtResource("3_anwt6")
-surface_material_override/0 = SubResource("StandardMaterial3D_v4udn")
+[node name="Plane" type="MeshInstance3D" parent="." unique_id=1344595604]
+transform = Transform3D(9.735356e-07, -3.1690752e-07, -9.75, 1.5529404e-21, 7.25, -4.2618598e-07, 4.999999, 6.1704175e-14, 1.898395e-06, 0, 0, 0)
+mesh = SubResource("ArrayMesh_v2dmv")
+surface_material_override/0 = SubResource("StandardMaterial3D_mtkvr")
 
-[node name="GPUTrail3D" type="GPUParticles3D" parent="MeshInstance3D" unique_id=713023065]
-transform = Transform3D(0.99999946, 0, -1.8626451e-09, 0, 0.30827284, 0, 1.8626451e-09, 0, 0.99999946, 0.009209707, -0.09437563, -9.548401e-05)
-amount = 24
-lifetime = 24.0
-explosiveness = 1.0
-fixed_fps = 164
-process_material = SubResource("ShaderMaterial_1swpe")
-draw_pass_1 = SubResource("QuadMesh_fmpjr")
-script = ExtResource("7_j2237")
-length = 24
-length_seconds = 0.14634146341463414
-texture = SubResource("NoiseTexture2D_l3ccd")
-color_ramp = SubResource("GradientTexture1D_l3ccd")
-curve = SubResource("CurveTexture_v100t")
-use_red_as_alpha = true
-_defaults_have_been_set = true
-metadata/_custom_type_script = "uid://dwsn7gxfshtf8"
-
-[node name="RayCast3D" type="RayCast3D" parent="." unique_id=659835651]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.13605879)
-target_position = Vector3(0, 0, -1.205)
-collision_mask = 14
-collide_with_areas = true
-debug_shape_custom_color = Color(1, 0, 0, 1)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2092961016]
+transform = Transform3D(9.735356e-07, -3.1690752e-07, -9.75, 1.5529404e-21, 7.25, -4.2618598e-07, 4.999999, 6.1704175e-14, 1.898395e-06, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_kp4an")
 
 [node name="ropeRaycast" type="RayCast3D" parent="." unique_id=1277450890]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.3)
 top_level = true
 target_position = Vector3(0, -20, 0)
 collision_mask = 2
 debug_shape_custom_color = Color(1, 0, 0, 1)
 
 [node name="rope_point" type="Marker3D" parent="." unique_id=46329415]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.3)
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="." unique_id=2104289176]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.3)
 remote_path = NodePath("../ropeRaycast")
 update_rotation = false
 
@@ -132,20 +150,12 @@ damage_types = Dictionary[int, float]({
 2: 20.0
 })
 stance_damage_value = 0.1
+damage_interval = 0.5
 metadata/_custom_type_script = "uid://dlsydctoxqbwy"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent" unique_id=344335226]
-transform = Transform3D(-0.006841788, -0.999979, 2.7753413e-07, 0.9999766, -0.006841769, 2.2536606e-10, 1.6880222e-09, 2.7753413e-07, 1.0000049, 0.0020980637, 1.4375662e-05, -9.192845e-07)
+transform = Transform3D(-0.0068419026, -0.9999937, 2.7753413e-07, 0.9999766, -0.006841769, 2.2536606e-10, 1.877197e-09, 2.7753413e-07, 1.0000342, -0.17614657, -0.0012051497, -8.6869113e-07)
 shape = SubResource("CapsuleShape3D_md0um")
-
-[node name="pinArea" type="Area3D" parent="." unique_id=672001805]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
-collision_mask = 15
-script = ExtResource("10_gf6if")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="pinArea" unique_id=687957162]
-transform = Transform3D(-0.006841769, -0.9999766, 2.775329e-07, 0.9999766, -0.006841769, 2.2536606e-10, 1.6734552e-09, 2.7752793e-07, 1, 0.0020980632, 1.4375662e-05, -9.1928086e-07)
-shape = SubResource("CapsuleShape3D_f01kd")
 
 [node name="rope_sound" type="AudioStreamPlayer3D" parent="." unique_id=403774311]
 stream = ExtResource("11_2ouqr")
@@ -153,7 +163,27 @@ max_db = 6.0
 max_distance = 20.0
 bus = &"SFX"
 
-[connection signal="area_entered" from="DamageComponent" to="." method="_on_damage_component_area_entered"]
-[connection signal="body_entered" from="DamageComponent" to="." method="_on_damage_component_body_entered"]
+[node name="RayCast3D" type="RayCast3D" parent="." unique_id=133908608]
+target_position = Vector3(0, 0, -1.25)
+collision_mask = 12
+
+[node name="GPUTrail3D" type="GPUParticles3D" parent="." unique_id=713023065]
+transform = Transform3D(0.0026436253, 0, 0.25498605, 0, 0.07860957, 0, -0.25498605, 0, 0.0026436253, -0.004835842, 0.0011880118, 0.26973712)
+amount = 24
+lifetime = 24.0
+explosiveness = 1.0
+fixed_fps = 164
+process_material = SubResource("ShaderMaterial_1swpe")
+draw_pass_1 = SubResource("QuadMesh_fmpjr")
+script = ExtResource("7_j2237")
+length = 24
+length_seconds = 0.14634146341463414
+texture = SubResource("NoiseTexture2D_l3ccd")
+color_ramp = SubResource("GradientTexture1D_l3ccd")
+curve = SubResource("CurveTexture_v100t")
+use_red_as_alpha = true
+_defaults_have_been_set = true
+metadata/_custom_type_script = "uid://dwsn7gxfshtf8"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="damage_dealt" from="DamageComponent" to="." method="_on_damage_component_damage_dealt"]
-[connection signal="body_entered" from="pinArea" to="." method="_on_pin_area_body_entered"]

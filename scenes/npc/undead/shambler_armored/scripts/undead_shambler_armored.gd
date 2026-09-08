@@ -37,7 +37,6 @@ func enable_infested_enemy():
 		infestation_enemy_add.collision_layer = 4
 		infestation_enemy_add.reparent(get_tree().current_scene)
 		infestation_bone_attach.remote_transform.remote_path = ""
-		#DebugDraw3D.draw_sphere(infestation_enemy_add.global_position,.5, Color.RED,5)
 		infestation_enemy_add.state_chart.send_event("idle")
 		infestation_enemy_add.animation_tree.active = true
 		infestation_enemy_add.visible = true
@@ -91,6 +90,7 @@ func is_facing(source: DamageComponent) -> bool:
 func _on_hurtbox_component_damage_taken(actual: float, source: DamageComponent, hit_dir: Vector3) -> void:
 	if !vocalizations.playing && health_component.current_health > 0:
 		vocalizations.play()
+		
 	var animation_state_tree_root = animation_tree.get("tree_root")
 	
 	var walk_hit_node = animation_state_tree_root.get_node("walkBlendTree")
@@ -102,7 +102,7 @@ func _on_hurtbox_component_damage_taken(actual: float, source: DamageComponent, 
 	var run_hit_node = animation_state_tree_root.get_node("runBlendTree")
 	var run_hit_blend_tree_node = run_hit_node.get_node("flinch")
 	
-	if is_facing(source):
+	if !is_facing(source):
 		walk_blend_tree_node.animation = "Hit_B_3_InPlace"
 		idle_blend_tree_node.animation = "Hit_B_3_InPlace"
 		run_hit_blend_tree_node.animation = "Hit_B_3_InPlace"

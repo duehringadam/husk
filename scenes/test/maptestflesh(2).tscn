@@ -29,7 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://chaku7dvtclv4" path="res://item/spells/spell_item_world.tscn" id="26_iql7a"]
 [ext_resource type="Resource" uid="uid://b2anxjkr7f46w" path="res://item/spells/blood/blood_spell.tres" id="27_fqkk3"]
 [ext_resource type="Resource" uid="uid://dhgsftnl3tw13" path="res://item/spells/flame_spray/flame.tres" id="28_idyej"]
-[ext_resource type="Resource" uid="uid://c8afm2d4w8gxb" path="res://item/spells/telekinesis/telekinesis.tres" id="29_j2i1c"]
+[ext_resource type="Resource" uid="uid://cxhjq8887wm37" path="res://item/spells/telekinesis/telekinesis.tres" id="29_j2i1c"]
 [ext_resource type="PackedScene" uid="uid://rjlf8cn6x2yh" path="res://item/weapons/ranged/rope_bow/rope_bow_item_world.tscn" id="32_0jyqm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_12ayy"]
@@ -1320,6 +1320,9 @@ _surfaces = [{
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5ucoc"]
 points = PackedVector3Array(2.5, 2.5, 0.699863, 2.5, 2.5, -0.7, -2.5, 2.5, 0.699863, 2.5, -2.5, 0.699863, 2.5, -2.5, -0.7, -2.5, 2.5, -0.7, -2.5, -2.5, 0.699863, -2.5, -2.5, -0.7)
 
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_eu1cp"]
+data = PackedVector3Array(-1.09375, -1.5493469, 0.5, -1.09375, -1.5493469, -0.5, -1.09375, 1.5493469, -0.5, 1.09375, -1.5493469, -0.5, -1.09375, -1.5493469, -0.5, -1.09375, -1.5493469, 0.5, -1.09375, 1.5493469, -0.5, -1.09375, -1.5493469, -0.5, 1.09375, -1.5493469, -0.5, -1.09375, 1.5493469, -0.5, -1.09375, 1.5493469, 0.5, -1.09375, -1.5493469, 0.5, -1.09375, -1.5493469, 0.5, -1.09375, 1.5493469, 0.5, 1.09375, 1.5493469, 0.5, 1.09375, 1.5493469, 0.5, -1.09375, 1.5493469, 0.5, -1.09375, 1.5493469, -0.5, -1.09375, -1.5493469, 0.5, 1.09375, -1.5493469, 0.5, 1.09375, -1.5493469, -0.5, 1.09375, 1.5493469, 0.5, 1.09375, -1.5493469, 0.5, -1.09375, -1.5493469, 0.5, 1.09375, -1.5493469, -0.5, 1.09375, -1.5493469, 0.5, 1.09375, 1.5493469, 0.5, 1.09375, -1.5493469, -0.5, 1.09375, 1.5493469, -0.5, -1.09375, 1.5493469, -0.5, -1.09375, 1.5493469, -0.5, 1.09375, 1.5493469, -0.5, 1.09375, 1.5493469, 0.5, 1.09375, 1.5493469, 0.5, 1.09375, 1.5493469, -0.5, 1.09375, -1.5493469, -0.5)
+
 [sub_resource type="ArrayMesh" id="ArrayMesh_idyej"]
 _surfaces = [{
 "aabb": AABB(-1.4, -2.3, -3.57, 11.2, 4.3, 3.57),
@@ -1870,6 +1873,16 @@ metadata/ground_type = "stone"
 
 [node name="Node3D" type="Node3D" parent="NavigationRegion3D/friendly_npc_spawn_test7" unique_id=113831700]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.5214056, -1.7796655)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="NavigationRegion3D" unique_id=1366824148]
+transform = Transform3D(-2, 0, 3.019916e-07, 0, 2, 0, -3.019916e-07, 0, -2, 14.987684, 3.3594325, -4.0772533)
+size = Vector3(2.1875, 3.0986938, 1)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/CSGBox3D3" unique_id=1591691948]
+collision_layer = 2
+
+[node name="CSGBakedCollisionShape3D2" type="CollisionShape3D" parent="NavigationRegion3D/CSGBox3D3/StaticBody3D" unique_id=1818476048]
+shape = SubResource("ConcavePolygonShape3D_eu1cp")
 
 [node name="friendly_npc_spawn_test3" parent="NavigationRegion3D" unique_id=846008759 node_paths=PackedStringArray("spawn_location_node") instance=ExtResource("7_03gnc")]
 transform = Transform3D(-2, 0, 3.019916e-07, 0, 2, 0, -3.019916e-07, 0, -2, 8.083295, 1.674679, -11.473207)
