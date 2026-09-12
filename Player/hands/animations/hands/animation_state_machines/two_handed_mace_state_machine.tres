@@ -30,11 +30,11 @@ animation = &"mace_SD"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qniyt"]
 animation = &"mace_SU"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kifjd"]
-animation = &"mace_SR"
-
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_er56e"]
 animation = &"mace_SL"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kifjd"]
+animation = &"mace_SR"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sfya3"]
 advance_mode = 2
@@ -122,6 +122,86 @@ xfade_time = 0.25
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x0k3b"]
+xfade_time = 0.25
+advance_mode = 2
+advance_condition = &"hold_right"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gcnix"]
+xfade_time = 0.25
+advance_mode = 2
+advance_condition = &"hold_left"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ae0xq"]
+xfade_time = 0.25
+advance_mode = 2
+advance_condition = &"hold_forward"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gakr1"]
+xfade_time = 0.25
+advance_mode = 2
+advance_condition = &"block"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ykwus"]
+xfade_time = 0.25
+advance_mode = 2
+advance_condition = &"hold_left"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fl63k"]
+xfade_time = 0.25
+advance_mode = 2
+advance_condition = &"block"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ely81"]
+xfade_time = 0.25
+advance_mode = 2
+advance_condition = &"hold_forward"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6xhi0"]
+xfade_time = 0.25
+advance_mode = 2
+advance_condition = &"hold_back"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_smvgh"]
+xfade_time = 0.25
+advance_mode = 2
+advance_condition = &"hold_forward"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w7kfi"]
+xfade_time = 0.25
+advance_mode = 2
+advance_condition = &"hold_back"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tedb4"]
+xfade_time = 0.25
+advance_mode = 2
+advance_condition = &"hold_right"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4tdkw"]
+xfade_time = 0.25
+advance_mode = 2
+advance_condition = &"hold_right"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gv38j"]
+xfade_time = 0.25
+advance_mode = 2
+advance_condition = &"hold_left"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e2khw"]
+xfade_time = 0.25
+advance_mode = 2
+advance_condition = &"hold_back"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_htbi4"]
+xfade_time = 0.25
+advance_mode = 2
+advance_condition = &"block"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hibab"]
+xfade_time = 0.25
+advance_mode = 2
+advance_condition = &"block"
+
 [resource]
 states/End/position = Vector2(1079, 35)
 states/Start/position = Vector2(-73, 169)
@@ -136,18 +216,18 @@ states/hold_forward/position = Vector2(331, 12)
 states/hold_left/node = SubResource("AnimationNodeAnimation_oopu1")
 states/hold_left/position = Vector2(58, 48)
 states/hold_right/node = SubResource("AnimationNodeAnimation_ljm4p")
-states/hold_right/position = Vector2(386, 169)
+states/hold_right/position = Vector2(356, 169)
 states/idle/node = SubResource("AnimationNodeAnimation_uv5j5")
 states/idle/position = Vector2(162, 169)
 states/mace_block/node = SubResource("AnimationNodeAnimation_e6hmn")
 states/mace_block/position = Vector2(574.2055, 41.214653)
 states/swing_back/node = SubResource("AnimationNodeAnimation_g1qd6")
-states/swing_back/position = Vector2(162, 354.4816)
+states/swing_back/position = Vector2(99, 358.4816)
 states/swing_forward/node = SubResource("AnimationNodeAnimation_qniyt")
 states/swing_forward/position = Vector2(373, -57.51841)
-states/swing_left/node = SubResource("AnimationNodeAnimation_kifjd")
-states/swing_left/position = Vector2(58, -70.600006)
-states/swing_right/node = SubResource("AnimationNodeAnimation_er56e")
-states/swing_right/position = Vector2(622, 169)
-transitions = ["Start", "equip", SubResource("AnimationNodeStateMachineTransition_sfya3"), "hold_left", "swing_left", SubResource("AnimationNodeStateMachineTransition_uv5j5"), "equip", "idle", SubResource("AnimationNodeStateMachineTransition_x02gr"), "idle", "hold_left", SubResource("AnimationNodeStateMachineTransition_mvuec"), "swing_left", "idle", SubResource("AnimationNodeStateMachineTransition_er56e"), "idle", "hold_right", SubResource("AnimationNodeStateMachineTransition_g1qd6"), "hold_right", "swing_right", SubResource("AnimationNodeStateMachineTransition_qniyt"), "swing_right", "idle", SubResource("AnimationNodeStateMachineTransition_h8l3j"), "idle", "hold_forward", SubResource("AnimationNodeStateMachineTransition_xfbl3"), "hold_forward", "swing_forward", SubResource("AnimationNodeStateMachineTransition_oopu1"), "swing_forward", "idle", SubResource("AnimationNodeStateMachineTransition_kifjd"), "idle", "hold_back", SubResource("AnimationNodeStateMachineTransition_ljm4p"), "hold_back", "swing_back", SubResource("AnimationNodeStateMachineTransition_frrgv"), "swing_back", "idle", SubResource("AnimationNodeStateMachineTransition_8hunc"), "idle", "mace_block", SubResource("AnimationNodeStateMachineTransition_dg8lx"), "mace_block", "idle", SubResource("AnimationNodeStateMachineTransition_dbvxd"), "mace_block", "block_hit", SubResource("AnimationNodeStateMachineTransition_e6hmn"), "block_hit", "mace_block", SubResource("AnimationNodeStateMachineTransition_0ffgv")]
-graph_offset = Vector2(-241.7945, 9.570281)
+states/swing_left/node = SubResource("AnimationNodeAnimation_er56e")
+states/swing_left/position = Vector2(508, 224)
+states/swing_right/node = SubResource("AnimationNodeAnimation_kifjd")
+states/swing_right/position = Vector2(58, -66.600006)
+transitions = ["Start", "equip", SubResource("AnimationNodeStateMachineTransition_sfya3"), "hold_left", "swing_right", SubResource("AnimationNodeStateMachineTransition_uv5j5"), "equip", "idle", SubResource("AnimationNodeStateMachineTransition_x02gr"), "idle", "hold_left", SubResource("AnimationNodeStateMachineTransition_mvuec"), "swing_right", "idle", SubResource("AnimationNodeStateMachineTransition_er56e"), "idle", "hold_right", SubResource("AnimationNodeStateMachineTransition_g1qd6"), "hold_right", "swing_left", SubResource("AnimationNodeStateMachineTransition_qniyt"), "swing_left", "idle", SubResource("AnimationNodeStateMachineTransition_h8l3j"), "idle", "hold_forward", SubResource("AnimationNodeStateMachineTransition_xfbl3"), "hold_forward", "swing_forward", SubResource("AnimationNodeStateMachineTransition_oopu1"), "swing_forward", "idle", SubResource("AnimationNodeStateMachineTransition_kifjd"), "idle", "hold_back", SubResource("AnimationNodeStateMachineTransition_ljm4p"), "hold_back", "swing_back", SubResource("AnimationNodeStateMachineTransition_frrgv"), "swing_back", "idle", SubResource("AnimationNodeStateMachineTransition_8hunc"), "idle", "mace_block", SubResource("AnimationNodeStateMachineTransition_dg8lx"), "mace_block", "idle", SubResource("AnimationNodeStateMachineTransition_dbvxd"), "mace_block", "block_hit", SubResource("AnimationNodeStateMachineTransition_e6hmn"), "block_hit", "mace_block", SubResource("AnimationNodeStateMachineTransition_0ffgv"), "swing_back", "hold_right", SubResource("AnimationNodeStateMachineTransition_x0k3b"), "swing_back", "hold_left", SubResource("AnimationNodeStateMachineTransition_gcnix"), "swing_back", "hold_forward", SubResource("AnimationNodeStateMachineTransition_ae0xq"), "swing_back", "mace_block", SubResource("AnimationNodeStateMachineTransition_gakr1"), "swing_left", "hold_left", SubResource("AnimationNodeStateMachineTransition_ykwus"), "swing_left", "mace_block", SubResource("AnimationNodeStateMachineTransition_fl63k"), "swing_left", "hold_forward", SubResource("AnimationNodeStateMachineTransition_ely81"), "swing_left", "hold_back", SubResource("AnimationNodeStateMachineTransition_6xhi0"), "swing_right", "hold_forward", SubResource("AnimationNodeStateMachineTransition_smvgh"), "swing_right", "hold_back", SubResource("AnimationNodeStateMachineTransition_w7kfi"), "swing_right", "hold_right", SubResource("AnimationNodeStateMachineTransition_tedb4"), "swing_forward", "hold_right", SubResource("AnimationNodeStateMachineTransition_4tdkw"), "swing_forward", "hold_left", SubResource("AnimationNodeStateMachineTransition_gv38j"), "swing_forward", "hold_back", SubResource("AnimationNodeStateMachineTransition_e2khw"), "swing_forward", "mace_block", SubResource("AnimationNodeStateMachineTransition_htbi4"), "swing_right", "mace_block", SubResource("AnimationNodeStateMachineTransition_hibab")]
+graph_offset = Vector2(-241.7945, -88.45173)

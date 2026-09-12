@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bj4hhphu33n38" path="res://Player/player/player_body.tscn" id="3_tio5b"]
 [ext_resource type="Script" uid="uid://csps0dnf2gf2n" path="res://components/player_hurtbox_component.gd" id="5_eon52"]
 [ext_resource type="Script" uid="uid://brvxqhk8jpiq2" path="res://Player/scripts/health_detect.gd" id="6_5fkmn"]
+[ext_resource type="PackedScene" uid="uid://bkk0g5jmn4jpj" path="res://Player/player/player_arms_non_directional.tscn" id="7_yjj6r"]
 [ext_resource type="AudioStream" uid="uid://b4ajsd7gilmx" path="res://sfx/UI/huskdeathlongerlouder.wav" id="8_jaogv"]
 [ext_resource type="AudioStream" uid="uid://df2b8w21sb3xf" path="res://sfx/damage/hit-rock-03-266305.mp3" id="8_jux4o"]
 [ext_resource type="Shader" uid="uid://dgt3e85o3avu2" path="res://shaders/player_shaders/shaders/damage.gdshader" id="9_4ng6s"]
@@ -879,7 +880,7 @@ player_stats = Dictionary[int, int]({
 player_body = NodePath("Head/Neck/Camera3D/playerBody")
 jump_power = 5.0
 camera_lean_position = Vector3(0, 0, 0)
-mainhand = NodePath("Head/Neck/Camera3D/RightHand")
+mainhand = NodePath("Head/Neck/Camera3D/playerHands")
 offhand = NodePath("Head/Neck/Camera3D/LeftHand")
 consumable = NodePath("Head/Neck/Camera3D/ConsumableHand")
 weapon_rotation_amount = 0.25
@@ -948,10 +949,12 @@ transform = Transform3D(-1.2, 0, 1.04907336e-07, 0, 1.2, 0, -1.04907336e-07, 0, 
 
 [node name="RightHand" parent="Head/Neck/Camera3D" unique_id=1178015951 node_paths=PackedStringArray("offhand") instance=ExtResource("9_hqsyx")]
 unique_name_in_owner = true
+process_mode = 4
 offhand = NodePath("../LeftHand")
 
 [node name="LeftHand" parent="Head/Neck/Camera3D" unique_id=412198594 node_paths=PackedStringArray("mainhand") instance=ExtResource("10_hqsyx")]
 unique_name_in_owner = true
+process_mode = 4
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
 visible = false
 mainhand = NodePath("../RightHand")
@@ -960,6 +963,8 @@ mainhand = NodePath("../RightHand")
 unique_name_in_owner = true
 mainhand = NodePath("../RightHand")
 offhand = NodePath("../LeftHand")
+
+[node name="playerHands" parent="Head/Neck/Camera3D" unique_id=133188442 instance=ExtResource("7_yjj6r")]
 
 [node name="CameraAnimationPlayer" type="AnimationPlayer" parent="Head" unique_id=2090545160]
 unique_name_in_owner = true
@@ -1343,6 +1348,7 @@ color = Color(0, 0, 0, 0.446)
 [node name="SelectionWheel" parent="hud/selectionWheelDarken" unique_id=1649874519 instance=ExtResource("40_avbty")]
 unique_name_in_owner = true
 layout_mode = 1
+selected_option = 1
 
 [node name="playerCurrency" parent="hud" unique_id=415251137 instance=ExtResource("34_47e5g")]
 z_index = 999

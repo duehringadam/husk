@@ -12,9 +12,6 @@ var attack_pressed: bool = false
 var check_buffer: bool = false
 var block_pressed: bool = false
 
-func _ready() -> void:
-	animation_tree["parameters/playback"].connect("state_finished", _anim_finished)
-
 func _on_swing_left_state_entered() -> void:
 	input_buffer_timer.start()
 	Global.player.stamina_component.modify_stamina(-hand.weapon.stamina_cost)
@@ -40,6 +37,8 @@ func _on_swing_left_state_exited() -> void:
 	if weapon:
 		weapon.trail.visible = false
 	check_buffer = false
+	attack_pressed = false
+	input_dict["direction"] = Vector2.ZERO
 
 func _on_swing_state_input(event: InputEvent) -> void:
 	var direction_buffer = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
@@ -60,10 +59,13 @@ func _on_swing_state_physics_processing(delta: float) -> void:
 	
 	if time_left <= (total_length/2.0):
 		check_buffer = true
-		#if weapon.trail:
-			#weapon.trail.visible = false
+		if weapon != null && weapon.trail:
+			weapon.trail.visible = false
 	
-	if check_buffer:
+	if current_node.contains("swing") && !attack_pressed && !block_pressed && time_left <= .1:
+		state_chart.send_event("idle")
+	
+	if check_buffer && time_left > .1:
 		if attack_pressed:
 			var dir: Vector2 = input_dict["direction"]
 			
@@ -79,18 +81,8 @@ func _on_swing_state_physics_processing(delta: float) -> void:
 			elif dir.x > 0.5 && !current_node.contains("swing_right"):
 				state_chart.send_event("hold_left")
 				
-		if block_pressed:
+		if block_pressed && hand.offhand.weapon == null:
 			state_chart.send_event("block")
-	
-func _anim_finished(state: StringName):
-	if state == "swing_right":
-		state_chart.send_event("idle")
-	if state == "swing_left":
-		state_chart.send_event("idle")
-	if state == "swing_forward":
-		state_chart.send_event("idle")
-	if state == "swing_back":
-		state_chart.send_event("idle")
 	
 
 func _check_input_buffer():
