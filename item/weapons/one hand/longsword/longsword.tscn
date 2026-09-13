@@ -143,6 +143,8 @@ metadata/_custom_type_script = "uid://dwsn7gxfshtf8"
 [node name="DamageComponent" type="Area3D" parent="Cube2" unique_id=1106125401 node_paths=PackedStringArray("hit_sound")]
 transform = Transform3D(0.64300597, -0.0067149154, -0.007660693, 0.0067118765, 0.6430517, -0.00029380567, 0.007663345, 0.00021380368, 0.64304113, -1.2704271e-08, -0.1453202, 6.515909e-23)
 collision_mask = 14
+monitoring = false
+monitorable = false
 script = ExtResource("10_dpe55")
 hit_sound = NodePath("../../hit")
 damage_types = Dictionary[int, float]({

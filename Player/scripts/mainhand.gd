@@ -252,6 +252,9 @@ func activate_left():
 func activate_right():
 	bone_attachment.get_child(0).activate()
 
+func activate_mainhand_test(value: bool):
+	bone_attachment.get_child(0).activate(value)
+
 func shoot_left():
 	left_bone_attachment.get_child(0).shoot()
 

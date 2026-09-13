@@ -1788,6 +1788,23 @@ tracks/63/path = NodePath("Armature/Skeleton3D:weapons.R")
 tracks/63/interp = 0
 tracks/63/loop_wrap = true
 tracks/63/keys = PackedFloat32Array(0, 1, 0.6874067, 0.014797038, 0.007567484, 0.72608256)
+tracks/64/type = "method"
+tracks/64/imported = false
+tracks/64/enabled = true
+tracks/64/path = NodePath("..")
+tracks/64/interp = 1
+tracks/64/loop_wrap = true
+tracks/64/keys = {
+"times": PackedFloat32Array(0.23333333, 0.3674574),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [true],
+"method": &"activate_mainhand_test"
+}, {
+"args": [false],
+"method": &"activate_mainhand_test"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_fjvcj"]
 resource_name = "brokensword_swing2"
@@ -2239,6 +2256,23 @@ tracks/63/path = NodePath("Armature/Skeleton3D:weapons.R")
 tracks/63/interp = 1
 tracks/63/loop_wrap = true
 tracks/63/keys = PackedFloat32Array(0, 1, 0.6874067, 0.014797032, 0.007567506, 0.72608256)
+tracks/64/type = "method"
+tracks/64/imported = false
+tracks/64/enabled = true
+tracks/64/path = NodePath("..")
+tracks/64/interp = 1
+tracks/64/loop_wrap = true
+tracks/64/keys = {
+"times": PackedFloat32Array(0.16666667, 0.36160097),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [true],
+"method": &"activate_mainhand_test"
+}, {
+"args": [true],
+"method": &"activate_mainhand_test"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_baoko"]
 resource_name = "brokensword_swing3_2"
@@ -2936,6 +2970,23 @@ tracks/98/path = NodePath("Armature/Skeleton3D:pinkie.002.L")
 tracks/98/interp = 1
 tracks/98/loop_wrap = true
 tracks/98/keys = PackedFloat32Array(0.36666667, 1, -1.8626451e-08, 0.03872891, -1.4901161e-08, 0.53333336, 1, -1.8626451e-08, 0.03872891, -1.4901161e-08)
+tracks/99/type = "method"
+tracks/99/imported = false
+tracks/99/enabled = true
+tracks/99/path = NodePath("..")
+tracks/99/interp = 1
+tracks/99/loop_wrap = true
+tracks/99/keys = {
+"times": PackedFloat32Array(0.26666668, 0.42904568),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [true],
+"method": &"activate_mainhand_test"
+}, {
+"args": [false],
+"method": &"activate_mainhand_test"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_h5h3g"]
 resource_name = "mainhand_sword_idle"
@@ -9088,7 +9139,7 @@ animation_player = NodePath("../../../../AnimationPlayer")
 hand = NodePath("../../../../..")
 
 [node name="inputBuffer" type="Timer" parent="ghoul_arms2(1)/StateChart/CompoundState/swing" unique_id=2147047206]
-wait_time = 0.75
+wait_time = 0.55
 one_shot = true
 
 [node name="endTimer" type="Timer" parent="ghoul_arms2(1)/StateChart/CompoundState/swing" unique_id=247157592]
@@ -9106,7 +9157,7 @@ animation_player = NodePath("../../../../AnimationPlayer")
 hand = NodePath("../../../../..")
 
 [node name="inputBuffer" type="Timer" parent="ghoul_arms2(1)/StateChart/CompoundState/swing2" unique_id=1655561971]
-wait_time = 0.75
+wait_time = 0.55
 one_shot = true
 
 [node name="endTimer" type="Timer" parent="ghoul_arms2(1)/StateChart/CompoundState/swing2" unique_id=1475818036]

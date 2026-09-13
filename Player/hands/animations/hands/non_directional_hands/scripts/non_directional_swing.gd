@@ -49,7 +49,7 @@ func _on_swing_state_physics_processing(delta: float) -> void:
 	var animation_state_tree_root: AnimationNodeStateMachine = animation_tree.get("tree_root")
 	
 	var attack_node: AnimationNodeBlendTree = animation_state_tree_root.get_node("attack")
-	
+
 	
 	if check_buffer && end_timer.time_left > 0:
 		if attack_pressed:
