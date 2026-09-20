@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cvlrs5xd5rjqj"]
 
 [ext_resource type="Script" uid="uid://c8m575j3d3br8" path="res://scenes/rope/rope.gd" id="1_3b2n0"]
-[ext_resource type="Texture2D" uid="uid://c3htrq1ulst2g" path="res://scenes/MysticDungeon/Art/Textures/T_Rope_BC.png" id="2_663sq"]
+[ext_resource type="Material" uid="uid://cqh6pmco3bj4f" path="res://scenes/HDRP/Art/Prefabs/MysticDungeon/Art/Materials/M_Rope.material" id="2_3b2n0"]
 
 [sub_resource type="Curve3D" id="Curve3D_0k8wi"]
 resource_local_to_scene = true
@@ -12,21 +12,12 @@ _data = {
 }
 point_count = 59
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q1c8k"]
-transparency = 2
-alpha_scissor_threshold = 0.5
-alpha_antialiasing_mode = 0
-cull_mode = 2
-albedo_texture = ExtResource("2_663sq")
-uv1_world_triplanar = true
-texture_filter = 2
-
 [node name="Path3DRope" type="Path3D" unique_id=801087550 groups=["rope"]]
 curve = SubResource("Curve3D_0k8wi")
 script = ExtResource("1_3b2n0")
-cable_thickness = 0.015
+cable_thickness = 0.02
 fixed_end_point = false
-material = SubResource("StandardMaterial3D_q1c8k")
+material = ExtResource("2_3b2n0")
 
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="." unique_id=1035080510]
 calculate_tangents = false

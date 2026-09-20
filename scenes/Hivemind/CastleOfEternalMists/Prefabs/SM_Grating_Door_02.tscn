@@ -23,9 +23,29 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_j1pv0"]
+size = Vector3(0.3, 3.8, 0.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n35er"]
+size = Vector3(0.3, 1.7, 1.2)
+
 [node name="SM_Grating_Door_02" type="Node3D" unique_id=279660788]
 
 [node name="SM_Grating_Door_02_LOD0" type="MeshInstance3D" parent="." unique_id=881909103]
 lod_bias = 0.05
 mesh = SubResource("ArrayMesh_n35er")
 surface_material_override/0 = ExtResource("2_biya")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SM_Grating_Door_02_LOD0" unique_id=1453743389]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SM_Grating_Door_02_LOD0/StaticBody3D" unique_id=465729358]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9, 0.90000004)
+shape = SubResource("BoxShape3D_j1pv0")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="SM_Grating_Door_02_LOD0/StaticBody3D" unique_id=272031209]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9, -0.90000004)
+shape = SubResource("BoxShape3D_j1pv0")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="SM_Grating_Door_02_LOD0/StaticBody3D" unique_id=865471607]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9499998, 0)
+shape = SubResource("BoxShape3D_n35er")

@@ -67,6 +67,9 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_gaa3y"]
+data = PackedVector3Array(-0.2, 0, 0, -0.2, 0, -4, 2, 1.3000001, -4, -0.2, 0, -4, -0.2, 0, 0, 2, 0, 0, 2, 0, 0, 2, 0, -4, -0.2, 0, -4, -0.2, 0, -4, 2, 0, -4, 2, 1.3000001, -4, 2, 1.3000001, 0, 2, 0, 0, -0.2, 0, 0, 2, 0, -4, 2, 0, 0, 2, 1.3000001, 0, 2, 1.3000001, 0, 2, 1.3000001, -4, 2, 0, -4, 2, 1.3000001, -4, 2, 1.3000001, 0, -0.2, 0, 0)
+
 [node name="SM_Stairs_4x2_A" type="Node3D" unique_id=1784160845]
 
 [node name="SM_Stairs_4x2_A_LOD0" type="MeshInstance3D" parent="." unique_id=383268337]
@@ -76,3 +79,11 @@ surface_material_override/0 = ExtResource("2_big3")
 surface_material_override/1 = ExtResource("2_gaa3y")
 surface_material_override/2 = ExtResource("3_caftj")
 surface_material_override/3 = ExtResource("2_gaa3y")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SM_Stairs_4x2_A_LOD0" unique_id=289907844]
+collision_layer = 2
+metadata/ground_type = "stone"
+
+[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="SM_Stairs_4x2_A_LOD0/StaticBody3D" unique_id=315832743]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+shape = SubResource("ConcavePolygonShape3D_gaa3y")

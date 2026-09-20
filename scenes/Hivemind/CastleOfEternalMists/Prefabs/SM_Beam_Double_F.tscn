@@ -23,9 +23,19 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ksqu5"]
+points = PackedVector3Array(0.14331678, 0.20244336, 5.966541, 0.06603463, -1.0722129, 3.2636204, -0.0111719, -0.1066134, 0.020356178, -0.0111719, 0.20244336, 6.1216116, 0.14331678, 0.08653146, -0.01811099, -0.049812973, -0.5312077, 3.3405547, -0.049812973, 0.12508559, 1.3330487, 0.1046757, -1.0722129, 3.3405547, 0.14331678, -0.1066134, -0.01811099, 0.02745027, -1.0722129, 3.3405547, 0.14331678, 0.047852576, 6.1216116, 0.14331678, -0.5312077, 3.1476178, -0.0111719, 0.047852576, 6.1216116, 0.14331678, 0.16376448, 1.3721169, -0.049812973, 0.12508559, 3.803964, -0.049812973, -0.33843714, 1.8355262, -0.0111719, 0.047852576, -0.01811099, -0.049812973, -0.14529228, 1.3330487, -0.049812973, -0.22252525, 3.7270296, -0.0111719, 0.20244336, 5.928074, 0.14331678, 0.20244336, 6.1216116, 0.06603463, -0.1066134, -0.01811099, 0.14331678, 0.009298474, 6.005609, -0.049812973, -0.37699124, 2.0284634, -0.049812973, -0.4539747, 3.5340927, -0.049812973, -0.1066134, 3.803964, -0.0111719, 0.009298474, 6.005609)
+
 [node name="SM_Beam_Double_F" type="Node3D" unique_id=44454160]
 
 [node name="SM_Beam_Double_F_LOD0" type="MeshInstance3D" parent="." unique_id=1919169719]
 lod_bias = 0.05
 mesh = SubResource("ArrayMesh_ksqu5")
 surface_material_override/0 = ExtResource("2_bibe")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SM_Beam_Double_F_LOD0" unique_id=202965847]
+collision_layer = 2
+metadata/ground_type = "wood"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SM_Beam_Double_F_LOD0/StaticBody3D" unique_id=348156450]
+shape = SubResource("ConvexPolygonShape3D_ksqu5")

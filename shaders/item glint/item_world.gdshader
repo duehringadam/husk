@@ -96,5 +96,13 @@ void vertex() {
 
 
 void fragment() {
-	ALBEDO = texture(display_texture, UV).rgb * v_visible_count;
+	// 1. Fetch the texture color
+	vec4 tex_color = texture(display_texture, UV);
+	
+	// 2. Multiply BOTH the texture's RGB color and its Alpha by your visibility mask
+	// For blend_add, making the RGB values vec3(0.0) turns it completely invisible.
+	ALBEDO = tex_color.rgb * tex_color.a * v_visible_count;
+	
+	// 3. Explicitly pass the alpha to ensure Godot drops rendering the quad face entirely when obscured
+	ALPHA = tex_color.a * v_visible_count;
 }

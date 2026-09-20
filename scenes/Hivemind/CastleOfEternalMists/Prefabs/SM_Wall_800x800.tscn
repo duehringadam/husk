@@ -24,9 +24,18 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hvn4a"]
+points = PackedVector3Array(0.24995118, 8, 8, 0.24995118, 8, -2.5666099e-08, -0.25000024, 8, 8, 0.24995118, -3.041991e-09, 8, -0.25000024, 8, -2.5666099e-08, 0.24995118, -3.041991e-09, -2.5666099e-08, -0.25000024, -3.041991e-09, 8, -0.25000024, -3.041991e-09, -2.5666099e-08)
+
 [node name="SM_Wall_800x800" type="Node3D" unique_id=448540268]
 
 [node name="SM_Wall_800x800_LOD0" type="MeshInstance3D" parent="." unique_id=1538880837]
 lod_bias = 0.05
 mesh = SubResource("ArrayMesh_hvn4a")
 surface_material_override/0 = ExtResource("2_bi8k")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SM_Wall_800x800_LOD0" unique_id=1149667898]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SM_Wall_800x800_LOD0/StaticBody3D" unique_id=1075245342]
+shape = SubResource("ConvexPolygonShape3D_hvn4a")

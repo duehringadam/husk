@@ -256,19 +256,19 @@ func handle_jump() -> void:
 		_handle_vault(vault_ray_cast.get_collision_point())
 
 func _handle_vault(ledge_point: Vector3):
-	
+	var capsule_shape = CapsuleShape3D.new()
+	capsule_shape.radius = 0.45
+	capsule_shape.height = 2.0
 	var space_state = get_world_3d().direct_space_state
-	var query = PhysicsRayQueryParameters3D.create(
-		ledge_point,
-		ledge_point + Vector3(0.0,2.0,0.0),
-		collision_mask
-	)
+	var query: PhysicsShapeQueryParameters3D = PhysicsShapeQueryParameters3D.new()
+	query.shape = capsule_shape
 	query.exclude = [self]
 	query.collide_with_bodies = true
 	query.collide_with_areas = false
 	query.collision_mask = collision_mask
-	
-	var result = space_state.intersect_ray(query)
+	query.transform = Transform3D(Basis(),ledge_point+ Vector3(0,2,0))
+	#DebugDraw3D.draw_cylinder_ab(ledge_point, ledge_point + Vector3(0,2,0),.45,Color.RED,5)
+	var result = space_state.intersect_shape(query)
 	
 	if result: return
 	

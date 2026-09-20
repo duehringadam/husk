@@ -9,9 +9,10 @@ func lock_door(controller: InteractionController) -> void:
 
 
 func unlock_door(controller: InteractionController) -> void:
-	var interaction_container: InteractionContainer = InteractionContainer.from(self)
-	interaction_container.enable(0)
-	controller.refresh_prompts(interaction_container)
+	pass
+	#var interaction_container: InteractionContainer = InteractionContainer.from(self)
+	#interaction_container.enable(0)
+	#controller.refresh_prompts(interaction_container)
 
 
 func interact(controller: InteractionController) -> void:
@@ -28,3 +29,9 @@ func _on_tween_finished() -> void:
 	else:
 		interaction_container.enable(1)
 		_interacting_controller.refresh_prompts(interaction_container)
+
+
+func _on_padlock_interactable_lock_broken() -> void:
+	locked = false
+	var interaction_container: InteractionContainer = InteractionContainer.from(self)
+	interaction_container.enable(0)

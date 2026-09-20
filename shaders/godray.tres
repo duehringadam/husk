@@ -1,0 +1,26 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://imfm8h7ypat7"]
+
+[ext_resource type="Shader" uid="uid://d2wp65uguqls7" path="res://shaders/fakegodray.gdshader" id="1_vcy34"]
+
+[sub_resource type="Gradient" id="Gradient_m6u3a"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_v4udn"]
+gradient = SubResource("Gradient_m6u3a")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_j7e5u"]
+frequency = 0.015
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qqar7"]
+noise = SubResource("FastNoiseLite_j7e5u")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_vcy34")
+shader_parameter/alpha = 0.4790000227525
+shader_parameter/rim_power = 5.0
+shader_parameter/texture_emission = SubResource("NoiseTexture2D_qqar7")
+shader_parameter/gradient = SubResource("GradientTexture1D_v4udn")
+shader_parameter/emission = Color(0, 0, 0, 1)
+shader_parameter/emission_energy = 1.0
+shader_parameter/uv1_scale = Vector3(5, 0, 0)
+shader_parameter/uv1_offset = Vector3(0, 1, 0)

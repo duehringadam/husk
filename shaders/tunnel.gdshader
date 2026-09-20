@@ -1,25 +1,20 @@
 shader_type spatial;
-render_mode unshaded, blend_mix;
+render_mode unshaded;
 
 uniform sampler2D depth_texture : hint_depth_texture;
+
+uniform vec3 color : source_color;
 uniform float hole_depth : hint_range(0.1, 10.0, 0.1) = 1.0;
 
 void fragment() {
-	
+	// sample our depth buffer
 	float depth = texture(depth_texture, SCREEN_UV).r;
-	
 	
 	float linear_depth = 1.0 / (depth * INV_PROJECTION_MATRIX[2].w + INV_PROJECTION_MATRIX[3].w);
 	
-	
 	linear_depth = linear_depth + VERTEX.z;
 	
+	ALBEDO = color;
 	
-	float fade = clamp(linear_depth / hole_depth, 0.0, 1.0);
-	
-	
-	ALBEDO = vec3(1.0);
-	
-	
-	ALPHA = fade;
+	ALPHA = 1.-clamp(1.-(linear_depth / hole_depth), 0., 1.);
 }
