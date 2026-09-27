@@ -11,8 +11,8 @@
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="8_yp5h5"]
 [ext_resource type="PackedScene" uid="uid://dhws2ueoubwwx" path="res://components/bounding_box_component.tscn" id="9_k6q4i"]
 [ext_resource type="ArrayMesh" uid="uid://bu7ccrgnivpgv" path="res://item/weapons/one hand/longsword/SM_Sword_2/SM_Sword_2_lowpoly.tres" id="9_v6ve5"]
-[ext_resource type="PackedScene" uid="uid://bvb1ic1mm6bap" path="res://shaders/item glint/item_glint.tscn" id="10_hxpeq"]
 [ext_resource type="Material" uid="uid://c87o60d8xcp8o" path="res://item/weapons/one hand/longsword/SM_Sword_2/longsword_item_world_material.tres" id="10_v6ve5"]
+[ext_resource type="PackedScene" uid="uid://doj4jomx3h34p" path="res://scenes/VFX/GodotLootVFX/assets/BinbunVFX/loot_effects/effects/ground/ground_loot_vfx_common.tscn" id="11_v6ve5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xbs6s"]
 size = Vector3(0.18457031, 1.3070923, 0.05834961)
@@ -117,8 +117,15 @@ transform = Transform3D(-1.55, 1.355053e-07, 0, -1.355053e-07, -1.55, 0, 0, 0, 1
 mesh = ExtResource("9_v6ve5")
 surface_material_override/0 = ExtResource("10_v6ve5")
 
-[node name="OmniLight3D" parent="Longsword" unique_id=1151187837 instance=ExtResource("10_hxpeq")]
-transform = Transform3D(1, 5.5067065e-15, 0, -5.5067065e-15, 1, 0, 0, 0, 1, 2.3339801e-08, 0.2669762, 0.00028728836)
+[node name="GroundLootVFX_Common" parent="Longsword" unique_id=2071615077 instance=ExtResource("11_v6ve5")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.0061275526, -0.09928957, 0)
+top_level = true
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Longsword" unique_id=600937317]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0.0039532846, 0.28187087, 0)
+remote_path = NodePath("../GroundLootVFX_Common")
+update_rotation = false
+update_scale = false
 
 [node name="DamageComponent" type="Area3D" parent="." unique_id=1429514769 node_paths=PackedStringArray("source")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.20540297, 0)

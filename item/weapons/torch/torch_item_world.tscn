@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://dcr4in8lcdk51" path="res://sfx/UI/dark_souls_item.wav" id="7_p22rk"]
 [ext_resource type="Script" uid="uid://cp0p4yckxtvmw" path="res://addons/game_pieces/collision_sound/collision_sound_player.gd" id="8_pgn4x"]
 [ext_resource type="ArrayMesh" uid="uid://cx8krbdibowew" path="res://item/weapons/torch/torch_new_mesh.tres" id="9_xn62a"]
-[ext_resource type="PackedScene" uid="uid://bvb1ic1mm6bap" path="res://shaders/item glint/item_glint.tscn" id="11_ncc71"]
+[ext_resource type="PackedScene" uid="uid://doj4jomx3h34p" path="res://scenes/VFX/GodotLootVFX/assets/BinbunVFX/loot_effects/effects/ground/ground_loot_vfx_common.tscn" id="11_xn62a"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="15_2e8u2"]
 [ext_resource type="PackedScene" uid="uid://dhws2ueoubwwx" path="res://components/bounding_box_component.tscn" id="16_cgn4m"]
 
@@ -22,7 +22,7 @@ data = PackedVector3Array(-0.1818, 2.2098, -0.106, -0.26549998, 2.1982, -0.0028,
 
 [node name="Pickable" type="RigidBody3D" unique_id=2119350781 node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component") groups=["disable_collision_while_grabbed", "throwable"]]
 collision_layer = 8
-collision_mask = 14
+collision_mask = 15
 contact_monitor = true
 max_contacts_reported = 1
 angular_damp = 5.0
@@ -118,9 +118,6 @@ metadata/_custom_type_script = "uid://cp0p4yckxtvmw"
 transform = Transform3D(0.14996272, -0.0033048168, 0.0005162321, 0.0033061076, 0.14996317, -0.00036534527, -0.0005080458, 0.00037664687, 0.14999868, 0.017662466, -0.0569582, -0.019008249)
 mesh = ExtResource("9_xn62a")
 
-[node name="OmniLight3D" parent="torch" unique_id=1151187837 instance=ExtResource("11_ncc71")]
-transform = Transform3D(6.6650076, -0.022580259, -0.14693697, -0.14688173, 0.016738925, -6.6650248, 0.022943212, 6.6666064, 0.016237918, 0.3801828, 2.4378152, -0.1992225)
-
 [node name="DamageComponent" type="Area3D" parent="torch" unique_id=1429514769 node_paths=PackedStringArray("source")]
 transform = Transform3D(6.6650076, -0.022580259, -0.14693697, -0.14688173, 0.016738925, -6.6650248, 0.022943212, 6.6666064, 0.016237918, -0.1087167, 0.3787416, -0.20793277)
 collision_mask = 12
@@ -134,6 +131,16 @@ metadata/_custom_type_script = "uid://dlsydctoxqbwy"
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="torch/DamageComponent" unique_id=300373050]
 transform = Transform3D(3, -1.893568e-09, 1.8935689e-09, 1.893568e-09, -1.3113414e-07, -3, 1.893568e-09, 3, -1.3113416e-07, 6.311893e-11, 0.03355871, -0.099999994)
 shape = SubResource("CapsuleShape3D_mkyf6")
+
+[node name="GroundLootVFX_Common" parent="torch" unique_id=2071615077 instance=ExtResource("11_xn62a")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.019474315, -0.08839302, -0.019091051)
+top_level = true
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="torch" unique_id=1935623219]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.007458918, -0.20978135, 0)
+remote_path = NodePath("../GroundLootVFX_Common")
+update_rotation = false
+update_scale = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1066997631]
 transform = Transform3D(0.14996272, -0.0033048168, 0.0005162321, 0.0033061076, 0.14996317, -0.00036534527, -0.0005080458, 0.00037664687, 0.14999868, 0.017662466, -0.0569582, -0.019008249)

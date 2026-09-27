@@ -1,14 +1,14 @@
 [gd_scene format=4 uid="uid://dsi6sn7rr532k"]
 
 [ext_resource type="Script" uid="uid://dixki0innbjf2" path="res://addons/game_pieces/pickable/item_world_pickable.gd" id="1_akty8"]
-[ext_resource type="Resource" uid="uid://dkb1m33kr2wtk" path="res://item/consumables/potion/health_potion.tres" id="2_qlud8"]
+[ext_resource type="Resource" uid="uid://bbkgrl7w1oy51" path="res://item/consumables/potion/health_potion.tres" id="2_qlud8"]
 [ext_resource type="Script" uid="uid://ck3cei0hvspym" path="res://addons/interaction_system/interaction_container.gd" id="2_u1typ"]
 [ext_resource type="Script" uid="uid://5tinbhq6p45k" path="res://addons/interaction_system/interaction.gd" id="3_qlud8"]
 [ext_resource type="Script" uid="uid://bxe74cq2uqemi" path="res://addons/game_controls/vanilla/input_map_game_control.gd" id="4_b0br3"]
 [ext_resource type="Script" uid="uid://doc0okecalxnp" path="res://addons/interaction_system/interaction_context.gd" id="5_tx71q"]
 [ext_resource type="AudioStream" uid="uid://dcr4in8lcdk51" path="res://sfx/UI/dark_souls_item.wav" id="6_a58ot"]
 [ext_resource type="Script" uid="uid://cp0p4yckxtvmw" path="res://addons/game_pieces/collision_sound/collision_sound_player.gd" id="7_lr0n3"]
-[ext_resource type="PackedScene" uid="uid://bvb1ic1mm6bap" path="res://shaders/item glint/item_glint.tscn" id="9_s12ms"]
+[ext_resource type="PackedScene" uid="uid://doj4jomx3h34p" path="res://scenes/VFX/GodotLootVFX/assets/BinbunVFX/loot_effects/effects/ground/ground_loot_vfx_common.tscn" id="9_bykc4"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="10_g0ts7"]
 [ext_resource type="PackedScene" uid="uid://dhws2ueoubwwx" path="res://components/bounding_box_component.tscn" id="11_60y8i"]
 
@@ -290,6 +290,16 @@ sounds_per_velocity = Dictionary[int, AudioStream]({
 })
 metadata/_custom_type_script = "uid://cp0p4yckxtvmw"
 
+[node name="GroundLootVFX_Common" parent="." unique_id=2071615077 instance=ExtResource("9_bykc4")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.002624318, 0.5488013, 0)
+top_level = true
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="." unique_id=736657174]
+transform = Transform3D(-8.742278e-08, 2, 0, -2, -8.742278e-08, 0, 0, 0, 2, 0.002624318, 0.5488013, 0)
+remote_path = NodePath("../GroundLootVFX_Common")
+update_rotation = false
+update_scale = false
+
 [node name="Health Potion" type="MeshInstance3D" parent="." unique_id=920327243]
 transform = Transform3D(-8.742278e-08, 2, 0, -2, -8.742278e-08, 0, 0, 0, 2, 0.33160657, 1.0213912, 2.4399111)
 mesh = SubResource("ArrayMesh_lcewi")
@@ -312,12 +322,8 @@ metadata/_custom_type_script = "uid://dlsydctoxqbwy"
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.16677499, 0.50663763, 1.2215474)
 shape = SubResource("ConvexPolygonShape3D_akty8")
 
-[node name="bounding_box_component" parent="." unique_id=326409759 node_paths=PackedStringArray("mesh", "AABB_Override") instance=ExtResource("11_60y8i")]
+[node name="bounding_box_component" parent="." unique_id=326409759 node_paths=PackedStringArray("mesh") instance=ExtResource("11_60y8i")]
 mesh = NodePath("../Health Potion")
-AABB_Override = NodePath("")
-
-[node name="OmniLight3D" parent="." unique_id=1151187837 instance=ExtResource("9_s12ms")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004191965, 0.32281402, 0.05300823)
 
 [connection signal="on_complete" from="InteractionContainer/Take" to="." method="_released"]
 [connection signal="on_trigger" from="InteractionContainer/Take" to="." method="_while_grabbed"]

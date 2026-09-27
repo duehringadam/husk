@@ -5,7 +5,9 @@
 [ext_resource type="Script" uid="uid://ck3cei0hvspym" path="res://addons/interaction_system/interaction_container.gd" id="2_wplm6"]
 [ext_resource type="Script" uid="uid://5tinbhq6p45k" path="res://addons/interaction_system/interaction.gd" id="4_8ai80"]
 [ext_resource type="Script" uid="uid://bxe74cq2uqemi" path="res://addons/game_controls/vanilla/input_map_game_control.gd" id="5_1160b"]
+[ext_resource type="AudioStream" uid="uid://dgfggbh5td6dh" path="res://sfx/environment/doors/metal_gate_open.ogg" id="7_p6i7x"]
 [ext_resource type="PackedScene" uid="uid://dhws2ueoubwwx" path="res://components/bounding_box_component.tscn" id="7_wplm6"]
+[ext_resource type="AudioStream" uid="uid://do4j6li4h0pqd" path="res://sfx/environment/doors/metal_gate_close.ogg" id="8_8ai80"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_04boe"]
 points = PackedVector3Array(5.5983663e-05, 2.0303187, 1.196224, 0.0155651495, 1.6514796, 0.00073962286, 5.5983663e-05, 2.0609157, 1.1945624, -0.069200024, 2.0303187, 1.196224, 5.5983663e-05, 0.035072334, 1.196224, 0.0109099075, 1.6498692, -0.010772537, 5.5983663e-05, 2.0607145, 0.0089286845, 0.0155651495, 0.45739144, 0.00073962286, -0.069200024, 2.0609157, 1.1945624, -0.069200024, 0.035072334, 1.196224, 5.5983663e-05, 0.004475336, 1.1945624, -0.00040870905, 1.6486615, -0.016231911, 5.5983663e-05, 2.0303187, 0.006555043, 0.0109099075, 0.45578107, -0.010772537, -0.069200024, 2.0607145, 0.0089286845, 0.015083857, 0.31789327, 2.7529895e-05, -0.069200024, 0.004475336, 1.1945624, 5.5983663e-05, 0.004475336, 0.0089286845, -0.069200024, 2.0303187, 0.006555043, -0.00040870905, 0.45457327, -0.016231911, 0.010030307, 0.31749067, -0.010416491, -0.069200024, 0.004475336, 0.0089286845, 5.5983663e-05, 0.035072334, 0.006555043, -0.069200024, 0.035072334, 0.006555043, 0.00015556067, 0.31809455, -0.015045091)
@@ -31,9 +33,11 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[node name="InteractableDoor" type="StaticBody3D" unique_id=1591460386]
+[node name="InteractableDoor" type="StaticBody3D" unique_id=1591460386 node_paths=PackedStringArray("open_sfx", "close_sfx")]
 collision_layer = 8
 script = ExtResource("1_p6i7x")
+open_sfx = NodePath("open")
+close_sfx = NodePath("close")
 metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("2_wplm6"),"default_context_id":0,"display_name":"Door","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("4_8ai80")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("4_8ai80"),"hide_while_grabbed":false,"override_display_name":false,"display_name":"","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("5_1160b"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
 ,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
 ]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
@@ -64,5 +68,18 @@ surface_material_override/0 = ExtResource("2_biya")
 [node name="bounding_box_component" parent="." unique_id=326409759 node_paths=PackedStringArray("mesh") instance=ExtResource("7_wplm6")]
 offset_right = 112.0
 mesh = NodePath("../Door")
+
+[node name="open" type="AudioStreamPlayer3D" parent="." unique_id=213002894]
+stream = ExtResource("7_p6i7x")
+volume_db = 6.0
+max_db = 6.0
+max_distance = 10.0
+bus = &"SFX"
+
+[node name="close" type="AudioStreamPlayer3D" parent="." unique_id=120316207]
+stream = ExtResource("8_8ai80")
+volume_db = 6.0
+max_db = 6.0
+bus = &"SFX"
 
 [connection signal="on_complete" from="InteractionContainer/Open" to="." method="interact"]

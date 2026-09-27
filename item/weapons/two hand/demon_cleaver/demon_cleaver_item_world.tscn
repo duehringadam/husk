@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://dcr4in8lcdk51" path="res://sfx/UI/dark_souls_item.wav" id="7_2k88r"]
 [ext_resource type="Script" uid="uid://cp0p4yckxtvmw" path="res://addons/game_pieces/collision_sound/collision_sound_player.gd" id="8_d4kbv"]
 [ext_resource type="Material" uid="uid://d266b4aqi87o3" path="res://item/weapons/two hand/demon_cleaver/demon_cleaver_item_world_material.tres" id="9_tvtkl"]
-[ext_resource type="PackedScene" uid="uid://bvb1ic1mm6bap" path="res://shaders/item glint/item_glint.tscn" id="11_du08k"]
+[ext_resource type="PackedScene" uid="uid://doj4jomx3h34p" path="res://scenes/VFX/GodotLootVFX/assets/BinbunVFX/loot_effects/effects/ground/ground_loot_vfx_common.tscn" id="10_tvtkl"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="12_j1hti"]
 [ext_resource type="PackedScene" uid="uid://dhws2ueoubwwx" path="res://components/bounding_box_component.tscn" id="13_pdlij"]
 
@@ -156,8 +156,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.33761027, 0)
 mesh = SubResource("ArrayMesh_onye7")
 surface_material_override/0 = ExtResource("9_tvtkl")
 
-[node name="OmniLight3D" parent="SM_Demon_Greatsword" unique_id=1151187837 instance=ExtResource("11_du08k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3339798e-08, 0.2669762, -0.029356902)
+[node name="GroundLootVFX_Common" parent="SM_Demon_Greatsword" unique_id=2071615077 instance=ExtResource("10_tvtkl")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.012970902, 0.47663632, 0)
+top_level = true
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="SM_Demon_Greatsword" unique_id=852865460]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.012970902, 0.13902605, 0)
+remote_path = NodePath("../GroundLootVFX_Common")
+update_rotation = false
+update_scale = false
 
 [node name="DamageComponent" type="Area3D" parent="." unique_id=1429514769 node_paths=PackedStringArray("source")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.20540297, 0)

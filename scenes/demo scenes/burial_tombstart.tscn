@@ -1,6 +1,5 @@
 [gd_scene format=4 uid="uid://dkem8e800mmus"]
 
-[ext_resource type="ArrayOccluder3D" uid="uid://cdorldu7tahbv" path="res://scenes/demo scenes/burial_tomb_start.occ" id="1_ctq45"]
 [ext_resource type="PackedScene" uid="uid://d4n4ub6iqn2ou" path="res://scenes/Hivemind/CastleOfEternalMists/Prefabs/SM_Wall_400M_StoneFloor_Tile_B.tscn" id="2_sogam"]
 [ext_resource type="PackedScene" uid="uid://d4n4ub6iqqb81" path="res://scenes/Hivemind/CastleOfEternalMists/Prefabs/SM_Stairs_4x2_A.tscn" id="3_poa7x"]
 [ext_resource type="PackedScene" uid="uid://d4n4ub6iqq3xs" path="res://scenes/Hivemind/CastleOfEternalMists/Prefabs/SM_ArchWall_Inside_400_B.tscn" id="4_1lwkf"]
@@ -24,7 +23,10 @@
 [ext_resource type="Texture2D" uid="uid://bgpuc5rjm2yh5" path="res://scenes/misc/Textures/Fire_SubUV_new.png" id="22_qsh3a"]
 [ext_resource type="Texture2D" uid="uid://dgnarq1axwhae" path="res://scenes/misc/Textures/T_Fire01_Tiled_D_Yellow.png" id="23_lu8k7"]
 [ext_resource type="Texture2D" uid="uid://185sjxt7oawt" path="res://scenes/misc/Textures/T_Fire01_SubUV_normal.png" id="24_7u6xm"]
+[ext_resource type="CompressedTexture3D" uid="uid://dcacb5lllfe1i" path="res://shaders/color correct.png" id="25_poa7x"]
 [ext_resource type="LightmapGIData" uid="uid://bpyiscqc6edmg" path="res://scenes/demo scenes/catacomb_tutorial.lmbake" id="25_yey4u"]
+[ext_resource type="Shader" uid="uid://d27b2172ftpib" path="res://shaders/skyshader.gdshader" id="26_1lwkf"]
+[ext_resource type="Texture2D" uid="uid://blhq2glq5ooa8" path="res://AllSkyFree/skybox_plain_emx_4.png" id="27_2xfms"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xvmij"]
 render_priority = 0
@@ -174,10 +176,49 @@ resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_wadq5")
 size = Vector2(0.2, 0.2)
 
-[node name="burialTombstart" type="Node3D" unique_id=356425179]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_au875"]
+shader = ExtResource("26_1lwkf")
+shader_parameter/source_panorama = ExtResource("27_2xfms")
+shader_parameter/add_clouds = true
+shader_parameter/clouds_below = false
+shader_parameter/cloud_scale = 0.25
+shader_parameter/speed = 0.002
+shader_parameter/cloud_dark = 0.5
+shader_parameter/cloud_light = 0.3
+shader_parameter/cloud_cover = 0.2
+shader_parameter/cloud_alpha = 8.0
+shader_parameter/sky_tint = 0.5
+shader_parameter/height_offset = 0.2
+shader_parameter/sky_contribution = 0.5
 
-[node name="OccluderInstance3D" type="OccluderInstance3D" parent="." unique_id=534096266]
-occluder = ExtResource("1_ctq45")
+[sub_resource type="Sky" id="Sky_6vl3a"]
+sky_material = SubResource("ShaderMaterial_au875")
+
+[sub_resource type="Environment" id="Environment_el4qd"]
+background_mode = 2
+sky = SubResource("Sky_6vl3a")
+ambient_light_source = 3
+reflected_light_source = 2
+tonemap_mode = 4
+ssao_intensity = 1.0
+glow_enabled = true
+glow_bloom = 0.3
+fog_light_color = Color(0.6088792, 0.79947746, 0.77259415, 1)
+fog_light_energy = 0.15
+fog_aerial_perspective = 0.308
+fog_sky_affect = 0.448
+fog_height = -2.0
+fog_height_density = 1.3427
+volumetric_fog_albedo = Color(0.858134, 0.9059796, 1, 1)
+volumetric_fog_emission = Color(0.76784736, 0.8456733, 1, 1)
+volumetric_fog_emission_energy = 0.05
+volumetric_fog_length = 13.87
+volumetric_fog_sky_affect = 0.69
+adjustment_enabled = true
+adjustment_contrast = 1.085
+adjustment_color_correction = ExtResource("25_poa7x")
+
+[node name="burialTombstart" type="Node3D" unique_id=356425179]
 
 [node name="SM_Wall_400M_StoneFloor_Tile_B2" parent="." unique_id=1736041552 instance=ExtResource("2_sogam")]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 5.9, -0.8000001, 0)
@@ -322,7 +363,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.400001, -0.566085, 2)
 
 [node name="SM_Door_01" parent="SM_Grating_Door_02" unique_id=1591460386 instance=ExtResource("9_v4qsa")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.042128563, 0.01856637, 0.6183723)
-metadata/interaction_container = null
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Door","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":false,"override_display_name":false,"display_name":"","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
 
 [node name="SM_Grating_Door_03" parent="." unique_id=771013350 instance=ExtResource("8_qm1ko")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.4, 0.23391503, 2)
@@ -331,7 +375,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.4, 0.23391503, 2)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02811268, -0.6)
 locked = true
 swing_angle = -90.0
-metadata/interaction_container = null
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Lockable Door","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":false,"override_display_name":false,"display_name":"","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+, Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":false,"override_display_name":false,"display_name":"","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"use","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
 
 [node name="SM_ArchWall_Dome_1200_A_Ruined_A" parent="." unique_id=2144006781 instance=ExtResource("11_j66p2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.24999993, 1.9)
@@ -470,5 +519,8 @@ transform = Transform3D(-1, 0, 1.13649605e-07, 0, 1, 0, -8.742278e-08, 0, -1.3, 
 
 [node name="SM_Wall_800x802" parent="." unique_id=983857763 instance=ExtResource("14_tdm7a")]
 transform = Transform3D(-1, 0, 1.13649605e-07, 0, 0.9, 0, -8.742278e-08, 0, -1.3, -9.2, 4.2, 6.5000005)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=799217521]
+environment = SubResource("Environment_el4qd")
 
 [connection signal="tree_exiting" from="SM_Torch_A_LOD0/DamageComponent" to="SM_Torch_A_LOD0/DamageComponent" method="_on_tree_exiting"]

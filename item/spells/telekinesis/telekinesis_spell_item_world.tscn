@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://byox11koh31sr"]
 
 [ext_resource type="Script" uid="uid://dixki0innbjf2" path="res://addons/game_pieces/pickable/item_world_pickable.gd" id="1_v4ra2"]
-[ext_resource type="Resource" uid="uid://c8afm2d4w8gxb" path="res://item/spells/telekinesis/telekinesis.tres" id="2_dlgbk"]
+[ext_resource type="Resource" uid="uid://cxhjq8887wm37" path="res://item/spells/telekinesis/telekinesis.tres" id="2_dlgbk"]
 [ext_resource type="Script" uid="uid://ck3cei0hvspym" path="res://addons/interaction_system/interaction_container.gd" id="2_tq83o"]
 [ext_resource type="Script" uid="uid://5tinbhq6p45k" path="res://addons/interaction_system/interaction.gd" id="3_dlgbk"]
 [ext_resource type="Script" uid="uid://bxe74cq2uqemi" path="res://addons/game_controls/vanilla/input_map_game_control.gd" id="4_bg4xs"]
@@ -9,8 +9,8 @@
 [ext_resource type="AudioStream" uid="uid://dcr4in8lcdk51" path="res://sfx/UI/dark_souls_item.wav" id="6_yhqe3"]
 [ext_resource type="Script" uid="uid://cp0p4yckxtvmw" path="res://addons/game_pieces/collision_sound/collision_sound_player.gd" id="7_6q81o"]
 [ext_resource type="ArrayMesh" uid="uid://dr1p8110ymw0p" path="res://item/spells/scroll/scroll.tres" id="8_bsum2"]
-[ext_resource type="PackedScene" uid="uid://bvb1ic1mm6bap" path="res://shaders/item glint/item_glint.tscn" id="9_7m7or"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="10_3l71t"]
+[ext_resource type="PackedScene" uid="uid://doj4jomx3h34p" path="res://scenes/VFX/GodotLootVFX/assets/BinbunVFX/loot_effects/effects/ground/ground_loot_vfx_common.tscn" id="10_frql5"]
 [ext_resource type="PackedScene" uid="uid://dhws2ueoubwwx" path="res://components/bounding_box_component.tscn" id="11_q7is7"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_pkfse"]
@@ -114,8 +114,15 @@ metadata/_custom_type_script = "uid://cp0p4yckxtvmw"
 transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
 mesh = ExtResource("8_bsum2")
 
-[node name="OmniLight3D" parent="Telekinesis" unique_id=1151187837 instance=ExtResource("9_7m7or")]
-transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 3.200838)
+[node name="GroundLootVFX_Common" parent="Telekinesis" unique_id=2071615077 instance=ExtResource("10_frql5")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 7.4589174e-05, -0.0020978134, 0)
+top_level = true
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Telekinesis" unique_id=137992170]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.007458918, -0.20978135, 0)
+remote_path = NodePath("../GroundLootVFX_Common")
+update_rotation = false
+update_scale = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1456827359]
 transform = Transform3D(0.012023031, 0, 0, 0, 0.019113693, 0, 0, 0, 0.01748093, -0.0021306835, 0, -0.016956449)

@@ -10,12 +10,12 @@
 [ext_resource type="Script" uid="uid://cp0p4yckxtvmw" path="res://addons/game_pieces/collision_sound/collision_sound_player.gd" id="7_cm5xk"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="8_vogrg"]
 [ext_resource type="PackedScene" uid="uid://dhws2ueoubwwx" path="res://components/bounding_box_component.tscn" id="9_direq"]
-[ext_resource type="PackedScene" uid="uid://bvb1ic1mm6bap" path="res://shaders/item glint/item_glint.tscn" id="11_4u6gi"]
 [ext_resource type="ArrayMesh" uid="uid://crh7bn2axadao" path="res://item/weapons/ranged/rope_bow/rope_bow_string_fix.tres" id="11_7w7sf"]
 [ext_resource type="Texture2D" uid="uid://cmgt3cowyjr4i" path="res://item/weapons/ranged/rope_bow/bow(1)_Bow_texture.png" id="12_5pd7m"]
+[ext_resource type="PackedScene" uid="uid://doj4jomx3h34p" path="res://scenes/VFX/GodotLootVFX/assets/BinbunVFX/loot_effects/effects/ground/ground_loot_vfx_common.tscn" id="13_5pd7m"]
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2cedq"]
-points = PackedVector3Array(-0.56852585, -2.38752, -2.1107495e-05, -0.47358423, -2.4662857, -0.07425526, -0.42195538, -2.6125648, -2.1107495e-05, -0.47358423, -2.4662857, 0.07423417, -0.56852585, 2.3870084, -2.1107495e-05, 0.26873922, -0.22095299, -0.10790779, 0.5391266, -0.8132299, -0.086867034, -0.47358423, 2.4657743, -0.07425526, 0.42766827, -1.0612905, -0.06033371, 0.46312708, -1.0986274, -2.1107495e-05, 0.42766827, -1.0612905, 0.06031263, 0.5391266, -0.8132299, 0.08684595, 0.26873922, -0.22095299, 0.10790782, -0.47358423, 2.4657743, 0.07423417, -0.42195538, 2.6125648, -2.1107495e-05, 0.26873922, 0.22044158, -0.10790779, 0.61143, -0.8132299, -2.1107495e-05, 0.5391266, 0.8127184, -0.086867034, 0.5391266, 0.8127184, 0.08684595, 0.26873922, 0.22044158, 0.10790782, 0.46312708, 1.0981159, -2.1107495e-05, 0.42766827, 1.0607791, -0.06033371, 0.42766827, 1.0607791, 0.06031263, 0.61143, 0.8127184, -2.1107495e-05)
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5pd7m"]
+points = PackedVector3Array(-0.9667023, -0.008970218, 0.21073344, 0.60166985, -0.047882915, 0.016288009, -0.65553015, 0.08177531, 0.13296264, 0.42025363, 0.06880441, -0.13929042, 0.74434084, -0.034899324, 0.21073344, -0.74633914, -0.047882915, 0.016288009, 0.73142576, 0.06880441, 0.21073344, 0.35527477, -0.034899324, -0.1522829, 1.0296829, 0.029904403, 0.15887398, -0.9927342, 0.042875305, 0.19777778, -0.42225197, 0.06880441, -0.13929042, 0.61458486, 0.08177531, 0.029243676, -0.65553015, -0.047882915, 0.13296264, -0.7334241, 0.06880441, 0.21073344, -1.031883, 0.029904403, 0.15887398, -0.74633914, -0.034899324, 0.21073344, 0.9907359, 0.0040006805, 0.13296264, -0.6165832, 0.08177531, 0.029243676, -0.42225197, -0.034899324, -0.13929042, 0.65353185, -0.047882915, 0.13296264, 1.0034492, -0.008970218, 0.19777778, 0.65353185, 0.08177531, 0.13296264, 0.42025363, -0.034899324, -0.13929042, 0.35527477, 0.06880441, -0.1522829, 0.9907359, 0.042875305, 0.19777778, -0.9927342, 0.0040006805, 0.13296264, -1.0056493, -0.008970218, 0.19777778, 0.97761905, -0.008970218, 0.21073344, 0.9907359, 0.042875305, 0.15887398, -0.9927342, 0.042875305, 0.15887398, 0.9907359, -0.008970218, 0.15887398, 0.5239777, -0.034899324, -0.08743095)
 
 [sub_resource type="Skin" id="Skin_8idt6"]
 resource_name = "Skin"
@@ -135,9 +135,9 @@ damage_types = Dictionary[int, float]({
 source = NodePath("..")
 metadata/_custom_type_script = "uid://dlsydctoxqbwy"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent" unique_id=505847502]
-transform = Transform3D(0.345, 0, 0, 0, -1.508043e-08, 0.345, 0, -0.345, -1.508043e-08, 0, 0, 0)
-shape = SubResource("ConvexPolygonShape3D_2cedq")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageComponent" unique_id=1213421990]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_5pd7m")
 
 [node name="bounding_box_component" parent="." unique_id=326409759 node_paths=PackedStringArray("mesh") instance=ExtResource("9_direq")]
 mesh = NodePath("../Rope Bow")
@@ -149,12 +149,19 @@ skin = SubResource("Skin_8idt6")
 skeleton = NodePath("..")
 surface_material_override/0 = SubResource("StandardMaterial3D_qcn67")
 
-[node name="OmniLight3D" parent="Rope Bow" unique_id=1151187837 instance=ExtResource("11_4u6gi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010144924, 0, -0.09999999)
+[node name="GroundLootVFX_Common" parent="Rope Bow" unique_id=2071615077 instance=ExtResource("13_5pd7m")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -3.2603964e-10, -0.009781346, 0.007458918)
+top_level = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=129962691]
-transform = Transform3D(0.345, 0, 0, 0, -1.508043e-08, 0.345, 0, -0.345, -1.508043e-08, 0, 0, 0)
-shape = SubResource("ConvexPolygonShape3D_2cedq")
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Rope Bow" unique_id=1084639423]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.007458918, -0.009781346, 0)
+remote_path = NodePath("../GroundLootVFX_Common")
+update_rotation = false
+update_scale = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=60113633]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_5pd7m")
 
 [connection signal="on_complete" from="InteractionContainer/Take" to="." method="_released"]
 [connection signal="on_trigger" from="InteractionContainer/Take" to="." method="_while_grabbed"]

@@ -8,13 +8,13 @@
 [ext_resource type="Script" uid="uid://doc0okecalxnp" path="res://addons/interaction_system/interaction_context.gd" id="5_83ph5"]
 [ext_resource type="AudioStream" uid="uid://dcr4in8lcdk51" path="res://sfx/UI/dark_souls_item.wav" id="6_lxr3h"]
 [ext_resource type="Script" uid="uid://cp0p4yckxtvmw" path="res://addons/game_pieces/collision_sound/collision_sound_player.gd" id="7_n5m01"]
-[ext_resource type="PackedScene" uid="uid://bvb1ic1mm6bap" path="res://shaders/item glint/item_glint.tscn" id="9_h48lg"]
 [ext_resource type="ArrayMesh" uid="uid://cxijj5wff5qg1" path="res://item/weapons/ranged/SM_ThrowingKnife/M_ThrowingKnife_Mesh.tres" id="9_mkyf6"]
 [ext_resource type="Texture2D" uid="uid://hqi3" path="res://item/weapons/ranged/SM_ThrowingKnife/Throwingknife_C.png" id="10_h5ds3"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="10_w5e0d"]
 [ext_resource type="PackedScene" uid="uid://dhws2ueoubwwx" path="res://components/bounding_box_component.tscn" id="11_ra23y"]
 [ext_resource type="Shader" uid="uid://bd6eynp1qsy0g" path="res://addons/GPUTrail-main/shaders/trail.gdshader" id="13_qwy8w"]
 [ext_resource type="Shader" uid="uid://bnbfs08hp70x0" path="res://addons/GPUTrail-main/shaders/trail_draw_pass.gdshader" id="14_h5ds3"]
+[ext_resource type="PackedScene" uid="uid://doj4jomx3h34p" path="res://scenes/VFX/GodotLootVFX/assets/BinbunVFX/loot_effects/effects/ground/ground_loot_vfx_common.tscn" id="15_h5ds3"]
 [ext_resource type="Script" uid="uid://dwsn7gxfshtf8" path="res://addons/GPUTrail-main/GPUTrail3D.gd" id="15_vmvb5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vmvb5"]
@@ -164,9 +164,6 @@ transform = Transform3D(3, 0, 0, 0, -1.3113416e-07, -3, 0, 3, -1.3113416e-07, 0,
 mesh = ExtResource("9_mkyf6")
 surface_material_override/0 = SubResource("StandardMaterial3D_vmvb5")
 
-[node name="OmniLight3D" parent="Throwing Knife" unique_id=1151187837 instance=ExtResource("9_h48lg")]
-transform = Transform3D(0.33333334, 0, 0, 0, 0.33333334, 0, 0, 0, 0.33333334, 0, 0, 0)
-
 [node name="GPUTrail3D" type="GPUParticles3D" parent="Throwing Knife" unique_id=209628584]
 transform = Transform3D(0.75, 0, 0, 0, 0.0059999996, 0, 0, 0, 0.75, 0, 0, 0)
 amount = 41
@@ -198,6 +195,15 @@ metadata/_custom_type_script = "uid://dlsydctoxqbwy"
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Throwing Knife/DamageComponent" unique_id=300373050]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_mkyf6")
+
+[node name="GroundLootVFX_Common" parent="Throwing Knife" unique_id=2071615077 instance=ExtResource("15_h5ds3")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.00044437125, 0.05)
+top_level = true
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Throwing Knife" unique_id=1419774779]
+remote_path = NodePath("../GroundLootVFX_Common")
+update_rotation = false
+update_scale = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=420131199]
 transform = Transform3D(3, 0, 0, 0, -1.3113416e-07, -3, 0, 3, -1.3113416e-07, 0, -0.0004443638, -0.05)
