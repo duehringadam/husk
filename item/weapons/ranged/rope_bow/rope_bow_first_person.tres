@@ -1,0 +1,24 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dfafcr8mxj8u8"]
+
+[ext_resource type="Shader" uid="uid://cba8frjri8tvn" path="res://shaders/player_shaders/shaders/first_person_arms.gdshader" id="1_vppah"]
+[ext_resource type="Texture2D" uid="uid://cmgt3cowyjr4i" path="res://item/weapons/ranged/rope_bow/bow(1)_Bow_texture.png" id="2_xh08w"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_vppah")
+shader_parameter/albedo = Color(1.353256, 1.353256, 1.353256, 1)
+shader_parameter/texture_albedo = ExtResource("2_xh08w")
+shader_parameter/albedo_texture_size = Vector2i(0, 0)
+shader_parameter/point_size = 0.10000000149012
+shader_parameter/roughness = 0.0
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
+shader_parameter/specular = 0.0
+shader_parameter/metallic = 0.0
+shader_parameter/normal_scale = 1.0
+shader_parameter/uv1_scale = Vector3(0, 0, 0)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(0, 0, 0)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/FOV = 75.0
+shader_parameter/progress = 0.0
+shader_parameter/noise_softness = 0.05

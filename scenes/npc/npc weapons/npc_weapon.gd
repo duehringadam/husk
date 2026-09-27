@@ -5,6 +5,7 @@ extends Resource
 @export var main_weapon_scene: PackedScene
 @export var main_weapon_offhand_scene: PackedScene
 @export var main_weapon_animation_state_machine: AnimationNodeStateMachine
+@export var main_weapon_range: float
 
 @export_category("Main Transform")
 @export var main_weapon_position: Vector3
@@ -21,6 +22,7 @@ extends Resource
 @export var secondary_weapon_scene: PackedScene
 @export var secondary_weapon_offhand_scene: PackedScene
 @export var secondary_weapon_animation_state_machine: AnimationNodeStateMachine
+@export var secondary_weapon_range: float
 
 @export_category("Secondary Transform")
 @export var secondary_weapon_position: Vector3

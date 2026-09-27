@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="npc_weapon" format=3 uid="uid://c0xp1qkuilbgl"]
+
+[ext_resource type="Script" uid="uid://cg4n65427hxm2" path="res://scenes/npc/npc weapons/npc_weapon.gd" id="1_e521o"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://duhjahtqd08yo" path="res://scenes/npc/humanoid_animation_state_machines/humanoid_two_handed_up.tres" id="1_l07qk"]
+[ext_resource type="PackedScene" uid="uid://bpvgra6ou1vq5" path="res://scenes/npc/undead/shambler_armored/npc_royal_greatsword.tscn" id="1_v5sdc"]
+
+[resource]
+script = ExtResource("1_e521o")
+main_weapon_scene = ExtResource("1_v5sdc")
+main_weapon_animation_state_machine = ExtResource("1_l07qk")
+main_weapon_range = 3.0
+main_weapon_position = Vector3(0.008092165, 0.020970106, 0.15610388)
+main_weapon_rotation = Vector3(0.45333278, -0.30158734, -2.4151056)
+metadata/_custom_type_script = "uid://cg4n65427hxm2"

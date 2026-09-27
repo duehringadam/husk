@@ -182,7 +182,7 @@ monitoring = false
 monitorable = false
 script = ExtResource("7_h5od2")
 damage_types = Dictionary[int, float]({
-0: 5.0
+0: 25.0
 })
 stance_damage_value = 1.0
 source = NodePath("../..")
@@ -234,4 +234,3 @@ mesh = NodePath("../Crate")
 [connection signal="on_trigger" from="InteractionContainer/WhileGrabbed/Rotate" to="." method="_while_rotating"]
 [connection signal="on_complete" from="InteractionContainer/WhileGrabbed/Throw" to="." method="_on_throw"]
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
-[connection signal="damage_dealt" from="Crate/DamageComponent" to="." method="_on_damage_component_damage_dealt"]

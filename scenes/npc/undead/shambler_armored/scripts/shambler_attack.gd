@@ -3,6 +3,7 @@ extends Node
 @export var source_npc: npc
 @export var animation_tree: AnimationTree
 @export var state_chart: StateChart
+@export var attack_range: float = 2.5
 
 var attack_tracking: bool = false
 var attack_counter: int = 1
@@ -20,6 +21,7 @@ func _on_attack_state_entered() -> void:
 	animation_tree.set("parameters/conditions/idle", false)
 	animation_tree.set("parameters/conditions/walk", false)
 	source_npc.SPEED = 4
+	attack_range = source_npc.main_weapon.main_weapon_range
 	
 	if randf() > 0.4:
 		animation_tree.set("parameters/conditions/attack", true)
@@ -49,17 +51,20 @@ func check_distance_for_next_attack():
 	attack_counter += 1
 	var animation_tree_playback: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
 	var tree_root: AnimationNodeStateMachine = animation_tree.tree_root
-	if tree_root.has_node("attack" + str(attack_counter)):
-		if source_npc.global_position.distance_to(Global.player.global_position) < 3:
-			animation_tree_playback.travel("attack" + str(attack_counter))
+	if source_npc.global_position.distance_to(Global.player.global_position) < attack_range:
+		if tree_root.has_node("attack" + str(attack_counter)):
+			if source_npc.global_position.distance_to(Global.player.global_position) < attack_range:
+				animation_tree_playback.travel("attack" + str(attack_counter))
+			else:
+				animation_tree.set("parameters/conditions/combo_attack", false)
+				animation_tree.set("parameters/conditions/attack", false)
+				state_chart.send_event("back_away")
 		else:
-			animation_tree.set("parameters/conditions/combo_attack", false)
-			animation_tree.set("parameters/conditions/attack", false)
-			state_chart.send_event("back_away")
+			return
 	else:
 		animation_tree.set("parameters/conditions/combo_attack", false)
 		animation_tree.set("parameters/conditions/attack", false)
-		state_chart.send_event("back_away")
+		state_chart.send_event("idle")
 
 func set_attack_value(value: bool):
 	animation_tree.set("parameters/conditions/attack", value)

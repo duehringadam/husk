@@ -5,6 +5,7 @@
 [ext_resource type="Material" uid="uid://biya" path="res://scenes/Hivemind/CastleOfEternalMists/URP/Art/Materials/Instances/M_IronTrim.tres" id="3_hlceh"]
 [ext_resource type="PackedScene" uid="uid://dhws2ueoubwwx" path="res://components/bounding_box_component.tscn" id="4_8ltsd"]
 [ext_resource type="PackedScene" uid="uid://c4se43hdw8wn4" path="res://scenes/pieces/padlock_interactable.tscn" id="5_e5c68"]
+[ext_resource type="AudioStream" uid="uid://bfyu1vvskywf5" path="res://sfx/environment/doors/door_open.ogg" id="6_hlceh"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_04boe"]
 points = PackedVector3Array(5.5983663e-05, 2.0303187, 1.196224, 0.0155651495, 1.6514796, 0.00073962286, 5.5983663e-05, 2.0609157, 1.1945624, -0.069200024, 2.0303187, 1.196224, 5.5983663e-05, 0.035072334, 1.196224, 0.0109099075, 1.6498692, -0.010772537, 5.5983663e-05, 2.0607145, 0.0089286845, 0.0155651495, 0.45739144, 0.00073962286, -0.069200024, 2.0609157, 1.1945624, -0.069200024, 0.035072334, 1.196224, 5.5983663e-05, 0.004475336, 1.1945624, -0.00040870905, 1.6486615, -0.016231911, 5.5983663e-05, 2.0303187, 0.006555043, 0.0109099075, 0.45578107, -0.010772537, -0.069200024, 2.0607145, 0.0089286845, 0.015083857, 0.31789327, 2.7529895e-05, -0.069200024, 0.004475336, 1.1945624, 5.5983663e-05, 0.004475336, 0.0089286845, -0.069200024, 2.0303187, 0.006555043, -0.00040870905, 0.45457327, -0.016231911, 0.010030307, 0.31749067, -0.010416491, -0.069200024, 0.004475336, 0.0089286845, 5.5983663e-05, 0.035072334, 0.006555043, -0.069200024, 0.035072334, 0.006555043, 0.00015556067, 0.31809455, -0.015045091)
@@ -76,5 +77,11 @@ metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"proce
 ,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
 ]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
 
+
+[node name="open" type="AudioStreamPlayer3D" parent="." index="5" unique_id=1548597963]
+stream = ExtResource("6_hlceh")
+bus = &"SFX"
+
+[node name="close" type="AudioStreamPlayer3D" parent="." index="6" unique_id=660845490]
 
 [connection signal="lock_broken" from="PadlockInteractable" to="." method="_on_padlock_interactable_lock_broken"]

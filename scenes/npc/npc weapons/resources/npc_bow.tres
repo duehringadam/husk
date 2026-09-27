@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="npc_weapon" format=3 uid="uid://bwrk0yij28g58"]
+
+[ext_resource type="Script" uid="uid://cg4n65427hxm2" path="res://scenes/npc/npc weapons/npc_weapon.gd" id="1_12nge"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://bwfjjq0co0hhw" path="res://scenes/npc/humanoid_animation_state_machines/humanoid_bow.tres" id="1_arx0t"]
+[ext_resource type="PackedScene" uid="uid://o40vkkxro0pn" path="res://scenes/npc/npc weapons/scenes/bow/npc_bow.tscn" id="1_iwx7i"]
+[ext_resource type="PackedScene" uid="uid://3y5umvmaioti" path="res://item/weapons/ranged/Arrows/npc_arrow.tscn" id="3_bfagm"]
+
+[resource]
+script = ExtResource("1_12nge")
+main_weapon_scene = ExtResource("3_bfagm")
+main_weapon_offhand_scene = ExtResource("1_iwx7i")
+main_weapon_animation_state_machine = ExtResource("1_arx0t")
+main_weapon_range = 10.0
+main_weapon_position = Vector3(0.15306264, 0.08085883, 0.4152971)
+main_weapon_rotation = Vector3(0.07655214, -1.1303579, 0.17215528)
+main_weapon_scale = Vector3(0.2, 0.2, 0.2)
+main_weapon_offhand_position = Vector3(-0.095706105, -0.09077293, 0.07768488)
+main_weapon_offhand_rotation = Vector3(0.77217704, 1.8098404, 1.6187968)
+metadata/_custom_type_script = "uid://cg4n65427hxm2"

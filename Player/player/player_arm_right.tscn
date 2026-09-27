@@ -33,7 +33,6 @@
 [ext_resource type="Script" uid="uid://bwkkao308b3d2" path="res://Player/scripts/weapon_block.gd" id="21_uqleb"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="22_dwmnf"]
 [ext_resource type="Script" uid="uid://x2oyy53b422h" path="res://Player/scripts/mainhand_swing.gd" id="22_gk53t"]
-[ext_resource type="Script" uid="uid://bi3exllfsv6q" path="res://components/damage_scaling_component.gd" id="24_brly5"]
 [ext_resource type="Script" uid="uid://c84grgquh4u03" path="res://Player/scripts/block_hit.gd" id="33_5c7h4"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_wgaes"]
@@ -61891,13 +61890,6 @@ metadata/_custom_type_script = "uid://dlsydctoxqbwy"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="stabDamage" unique_id=1182093802]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_sfya3")
-
-[node name="damage_scaling_component" type="Node" parent="." unique_id=1760252252 node_paths=PackedStringArray("weapon_states", "end_swing")]
-script = ExtResource("24_brly5")
-weapon_states = [NodePath("../ghoul_arms2(1)/StateChart/CompoundState/left"), NodePath("../ghoul_arms2(1)/StateChart/CompoundState/right"), NodePath("../ghoul_arms2(1)/StateChart/CompoundState/forward"), NodePath("../ghoul_arms2(1)/StateChart/CompoundState/back")]
-end_swing = NodePath("../ghoul_arms2(1)/StateChart/CompoundState/swing")
-attack_charge_time = 1.25
-metadata/_custom_type_script = "uid://bi3exllfsv6q"
 
 [connection signal="state_entered" from="ghoul_arms2(1)/StateChart/CompoundState/idle" to="ghoul_arms2(1)/StateChart/CompoundState/idle/idle" method="_on_idle_state_entered"]
 [connection signal="state_exited" from="ghoul_arms2(1)/StateChart/CompoundState/idle" to="ghoul_arms2(1)/StateChart/CompoundState/idle/idle" method="_on_idle_state_exited"]

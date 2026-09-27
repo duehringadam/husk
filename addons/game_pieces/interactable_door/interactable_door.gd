@@ -6,6 +6,9 @@ signal door_activated(value: bool)
 @export var locked: bool = false
 @export var swing_angle : float = 90.0
 
+@export var open_sfx: AudioStreamPlayer3D
+@export var close_sfx: AudioStreamPlayer3D
+
 var starting_rot : float
 var target_rot : float
 var open_time : float = 2.0
@@ -46,8 +49,8 @@ func open(interact_pos: Vector3 = Vector3.BACK) -> void:
 
 
 func close() -> void:
-	#if is_instance_valid(doorclose):
-		#doorclose.play()
+	if is_instance_valid(close_sfx):
+		close_sfx.play()
 	target_rot = starting_rot
 	disable_collision_shapes = false
 	_swing()

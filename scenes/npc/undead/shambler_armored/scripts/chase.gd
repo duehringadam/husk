@@ -24,6 +24,7 @@ func _on_chase_state_entered() -> void:
 	animation_tree.set("parameters/conditions/idle", false)
 	animation_tree.set("parameters/conditions/walk", true)
 	source_npc.SPEED = walk_chase_speed
+	attack_range = source_npc.main_weapon.main_weapon_range
 
 
 func _on_chase_state_exited() -> void:

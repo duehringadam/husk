@@ -31,8 +31,8 @@ var holding_input = false
 var shattered_mesh_add
 var is_thrown: bool = false
 
-const MAX_DAMAGE_SCALE_VELOCITY: float = 9.0
-const MIN_DAMAGE_SCALE_VELOCITY: float = 1.1
+const MAX_DAMAGE_SCALE_VELOCITY: float = 30
+const MIN_DAMAGE_SCALE_VELOCITY: float = 10
 
 func _ready() -> void:
 	if shattered_mesh:
@@ -193,10 +193,6 @@ func set_transparency(object: Node, value: float) -> void:
 			continue
 		var mesh: MeshInstance3D = child
 		mesh.transparency = value
-
-func _on_damage_component_damage_dealt(types: Dictionary[DamageTypes.DAMAGE_TYPES, float], actual: float, stance_damage: float, target: hurtbox_component) -> void:
-		pass
-		#health_component.modify_health(-(throwable.linear_velocity.length()))
 
 
 func _on_rigidbody_entered(body: Node) -> void:

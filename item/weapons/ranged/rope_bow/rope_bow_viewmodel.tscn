@@ -1,10 +1,9 @@
 [gd_scene format=3 uid="uid://b3wxg7nmabvak"]
 
 [ext_resource type="Script" uid="uid://dbhctgtyey8n7" path="res://item/weapons/ranged/rope_bow/rope_bow_viewmodel.gd" id="1_jo1or"]
-[ext_resource type="PackedScene" uid="uid://cpc5vshyat44w" path="res://item/weapons/ranged/heavy_arrow.tscn" id="2_b2rc1"]
-[ext_resource type="Texture2D" uid="uid://cmgt3cowyjr4i" path="res://item/weapons/ranged/rope_bow/bow(1)_Bow_texture.png" id="3_b2rc1"]
+[ext_resource type="PackedScene" uid="uid://cognqrp5ye22k" path="res://item/weapons/ranged/rope_arrow.tscn" id="2_b2rc1"]
 [ext_resource type="ArrayMesh" uid="uid://crh7bn2axadao" path="res://item/weapons/ranged/rope_bow/rope_bow_string_fix.tres" id="3_uoce6"]
-[ext_resource type="Shader" uid="uid://cba8frjri8tvn" path="res://shaders/player_shaders/shaders/first_person_arms.gdshader" id="4_8b4hk"]
+[ext_resource type="Material" uid="uid://dfafcr8mxj8u8" path="res://item/weapons/ranged/rope_bow/rope_bow_first_person.tres" id="4_b2rc1"]
 [ext_resource type="AudioStream" uid="uid://cofkxkh27wbkq" path="res://item/weapons/ranged/rope_bow/oxidvideos-rope-amp-leather-tension-2-449631.mp3" id="5_jo1or"]
 [ext_resource type="AudioStream" uid="uid://dp0xv2pmowmm7" path="res://item/weapons/ranged/rope_bow/floraphonic-rope-pull-and-stretch-loop-3-202954.mp3" id="6_611tq"]
 [ext_resource type="AudioStream" uid="uid://vgafbwf28s38" path="res://item/weapons/ranged/rope_bow/bow_shoot.ogg" id="6_yttj6"]
@@ -43,26 +42,6 @@ bind/8/pose = Transform3D(1.3927304e-30, 0.017452307, -0.9998477, -1, -5.235615e
 bind/9/name = &"String"
 bind/9/bone = -1
 bind/9/pose = Transform3D(0.9998477, 0.017452398, 4.3636115e-07, 4.3626898e-07, 9.088937e-09, -1, -0.017452398, 0.9998477, 1.4736132e-09, 2.4461613e-08, 0.14916743, -0.014616733)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_uoce6"]
-render_priority = 0
-shader = ExtResource("4_8b4hk")
-shader_parameter/albedo = Color(2.1168277, 2.1168277, 2.1168277, 1)
-shader_parameter/texture_albedo = ExtResource("3_b2rc1")
-shader_parameter/albedo_texture_size = Vector2i(0, 0)
-shader_parameter/point_size = 0.10000000149012
-shader_parameter/roughness = 0.0
-shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
-shader_parameter/specular = 0.0
-shader_parameter/metallic = 0.0
-shader_parameter/normal_scale = 1.0
-shader_parameter/uv1_scale = Vector3(0, 0, 0)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(0, 0, 0)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/FOV = 75.0
-shader_parameter/progress = 0.0
-shader_parameter/noise_softness = 0.05
 
 [sub_resource type="Animation" id="Animation_wrwlr"]
 length = 0.001
@@ -186,10 +165,11 @@ bones/9/rotation = Quaternion(1.4613543e-09, -1.30385125e-08, 1.7784335e-07, 1)
 bones/9/scale = Vector3(1, 1, 1)
 
 [node name="Bow" type="MeshInstance3D" parent="bow(1)/Armature/Skeleton3D" unique_id=937950029]
+cast_shadow = 0
 mesh = ExtResource("3_uoce6")
 skin = SubResource("Skin_bick0")
 skeleton = NodePath("..")
-surface_material_override/0 = SubResource("ShaderMaterial_uoce6")
+surface_material_override/0 = ExtResource("4_b2rc1")
 
 [node name="SpringBoneSimulator3D" type="SpringBoneSimulator3D" parent="bow(1)/Armature/Skeleton3D" unique_id=1762111268]
 influence = 0.65

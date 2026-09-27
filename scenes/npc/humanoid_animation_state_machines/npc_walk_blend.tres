@@ -1,0 +1,111 @@
+[gd_resource type="AnimationNodeBlendTree" format=3 uid="uid://yr548m2mafsa"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_88ibd"]
+animation = &"1Hand_Base_Shield_Block_Hit_1/1Hand_Base_Shield_Block_Hit_1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_iri6k"]
+animation = &"1Hand_Base_Shield_Block_Idle_1/1Hand_Base_Shield_Block_Idle_1"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_fcmu4"]
+filter_enabled = true
+filters = ["%GeneralSkeleton:LeftHand", "%GeneralSkeleton:LeftIndexDistal", "%GeneralSkeleton:LeftIndexIntermediate", "%GeneralSkeleton:LeftIndexProximal", "%GeneralSkeleton:LeftLittleDistal", "%GeneralSkeleton:LeftLittleIntermediate", "%GeneralSkeleton:LeftLittleProximal", "%GeneralSkeleton:LeftLowerArm", "%GeneralSkeleton:LeftMiddleDistal", "%GeneralSkeleton:LeftMiddleIntermediate", "%GeneralSkeleton:LeftMiddleProximal", "%GeneralSkeleton:LeftRingDistal", "%GeneralSkeleton:LeftRingIntermediate", "%GeneralSkeleton:LeftRingProximal", "%GeneralSkeleton:LeftShoulder", "%GeneralSkeleton:LeftThumbDistal", "%GeneralSkeleton:LeftThumbMetacarpal", "%GeneralSkeleton:LeftThumbProximal", "%GeneralSkeleton:LeftUpperArm"]
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_eh6sv"]
+sync = true
+xfade_time = 0.25
+input_0/name = "walk"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "walk with shield"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d0hyq"]
+animation = &"Hit_F_2_InPlace"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_laxcr"]
+animation = &"1Hand_Base_Walk_Slow_A_F_InPlace"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r2tna"]
+animation = &"1Hand_Base_Walk_Slow_A_B_InPlace"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_eh6sv"]
+animation = &"1Hand_Base_Walk_Slow_A_F_L90_A_InPlace/1Hand_Base_Walk_Slow_A_F_L90_A_InPlace"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w3du5"]
+animation = &"1Hand_Base_Walk_Slow_A_F_R90_A_InPlace/1Hand_Base_Walk_Slow_A_F_R90_A_InPlace"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_iy442"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_laxcr")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_0/name = &"1Hand_Base_Walk_Slow_A_F_InPlace"
+blend_point_1/node = SubResource("AnimationNodeAnimation_r2tna")
+blend_point_1/pos = Vector2(0, -1)
+blend_point_1/name = &"1Hand_Base_Walk_Slow_A_B_InPlace"
+blend_point_2/node = SubResource("AnimationNodeAnimation_eh6sv")
+blend_point_2/pos = Vector2(-1, 0)
+blend_point_2/name = &"1Hand_Base_Walk_Slow_A_F_L90_A_InPlace_1Hand_Base_Walk_Slow_A_F_L90_A_InPlace"
+blend_point_3/node = SubResource("AnimationNodeAnimation_w3du5")
+blend_point_3/pos = Vector2(1, 0)
+blend_point_3/name = &"1Hand_Base_Walk_Slow_A_F_R90_A_InPlace_1Hand_Base_Walk_Slow_A_F_R90_A_InPlace"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_2fumf"]
+filter_enabled = true
+filters = ["%GeneralSkeleton:Head", "%GeneralSkeleton:LeftHand", "%GeneralSkeleton:LeftIndexDistal", "%GeneralSkeleton:LeftIndexIntermediate", "%GeneralSkeleton:LeftIndexProximal", "%GeneralSkeleton:LeftLittleDistal", "%GeneralSkeleton:LeftLittleIntermediate", "%GeneralSkeleton:LeftLittleProximal", "%GeneralSkeleton:LeftLowerArm", "%GeneralSkeleton:LeftMiddleDistal", "%GeneralSkeleton:LeftMiddleIntermediate", "%GeneralSkeleton:LeftMiddleProximal", "%GeneralSkeleton:LeftRingDistal", "%GeneralSkeleton:LeftRingIntermediate", "%GeneralSkeleton:LeftRingProximal", "%GeneralSkeleton:LeftShoulder", "%GeneralSkeleton:LeftThumbDistal", "%GeneralSkeleton:LeftThumbMetacarpal", "%GeneralSkeleton:LeftThumbProximal", "%GeneralSkeleton:LeftUpperArm", "%GeneralSkeleton:Neck", "%GeneralSkeleton:RightHand", "%GeneralSkeleton:RightIndexDistal", "%GeneralSkeleton:RightIndexIntermediate", "%GeneralSkeleton:RightIndexProximal", "%GeneralSkeleton:RightLittleDistal", "%GeneralSkeleton:RightLittleIntermediate", "%GeneralSkeleton:RightLittleProximal", "%GeneralSkeleton:RightLowerArm", "%GeneralSkeleton:RightMiddleDistal", "%GeneralSkeleton:RightMiddleIntermediate", "%GeneralSkeleton:RightMiddleProximal", "%GeneralSkeleton:RightRingDistal", "%GeneralSkeleton:RightRingIntermediate", "%GeneralSkeleton:RightRingProximal", "%GeneralSkeleton:RightShoulder", "%GeneralSkeleton:RightThumbDistal", "%GeneralSkeleton:RightThumbMetacarpal", "%GeneralSkeleton:RightThumbProximal", "%GeneralSkeleton:RightUpperArm", "%GeneralSkeleton:UpperChest"]
+fadein_time = 0.2
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5u6rs"]
+animation = &"1Hand_Base_Walk_Slow_A_F_InPlace"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gh66u"]
+animation = &"1Hand_Base_Walk_Slow_A_B_InPlace"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uo67k"]
+animation = &"1Hand_Base_Walk_Slow_A_F_L90_A_InPlace/1Hand_Base_Walk_Slow_A_F_L90_A_InPlace"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dl7om"]
+animation = &"1Hand_Base_Walk_Slow_A_F_R90_A_InPlace/1Hand_Base_Walk_Slow_A_F_R90_A_InPlace"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_2pclx"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_5u6rs")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_0/name = &"1Hand_Base_Walk_Slow_A_F_InPlace"
+blend_point_1/node = SubResource("AnimationNodeAnimation_gh66u")
+blend_point_1/pos = Vector2(0, -1)
+blend_point_1/name = &"1Hand_Base_Walk_Slow_A_B_InPlace"
+blend_point_2/node = SubResource("AnimationNodeAnimation_uo67k")
+blend_point_2/pos = Vector2(-1, 0)
+blend_point_2/name = &"1Hand_Base_Walk_Slow_A_F_L90_A_InPlace_1Hand_Base_Walk_Slow_A_F_L90_A_InPlace"
+blend_point_3/node = SubResource("AnimationNodeAnimation_dl7om")
+blend_point_3/pos = Vector2(1, 0)
+blend_point_3/name = &"1Hand_Base_Walk_Slow_A_F_R90_A_InPlace_1Hand_Base_Walk_Slow_A_F_R90_A_InPlace"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_laxcr"]
+filter_enabled = true
+filters = ["%GeneralSkeleton:Chest", "%GeneralSkeleton:Head", "%GeneralSkeleton:LeftShoulder", "%GeneralSkeleton:Neck", "%GeneralSkeleton:RightShoulder", "%GeneralSkeleton:UpperChest"]
+fadein_time = 0.1
+fadeout_time = 0.25
+
+[resource]
+graph_offset = Vector2(-702.36865, 121.65889)
+nodes/Transition/node = SubResource("AnimationNodeTransition_eh6sv")
+nodes/Transition/position = Vector2(60, 100)
+nodes/walkHit/node = SubResource("AnimationNodeOneShot_laxcr")
+nodes/walkHit/position = Vector2(-320, 60)
+nodes/flinch/node = SubResource("AnimationNodeAnimation_d0hyq")
+nodes/flinch/position = Vector2(-600, 240)
+nodes/walkBlend/node = SubResource("AnimationNodeBlendSpace2D_2pclx")
+nodes/walkBlend/position = Vector2(-600, 0)
+nodes/Blend2/node = SubResource("AnimationNodeBlend2_fcmu4")
+nodes/Blend2/position = Vector2(-300, 420)
+nodes/shieldWalkBlend/node = SubResource("AnimationNodeBlendSpace2D_iy442")
+nodes/shieldWalkBlend/position = Vector2(-600, 460)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_iri6k")
+nodes/Animation/position = Vector2(-860, 700)
+nodes/shieldWalkHit/node = SubResource("AnimationNodeOneShot_2fumf")
+nodes/shieldWalkHit/position = Vector2(-100, 380)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_88ibd")
+"nodes/Animation 2/position" = Vector2(-280, 700)
+node_connections = [&"output", 0, &"Transition", &"Transition", 0, &"walkHit", &"Transition", 1, &"shieldWalkHit", &"walkHit", 0, &"walkBlend", &"walkHit", 1, &"flinch", &"Blend2", 0, &"shieldWalkBlend", &"Blend2", 1, &"Animation", &"shieldWalkHit", 0, &"Blend2", &"shieldWalkHit", 1, &"Animation 2"]

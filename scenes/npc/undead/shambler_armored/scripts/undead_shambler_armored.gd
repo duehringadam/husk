@@ -12,6 +12,15 @@ func _ready() -> void:
 		infestation_enemy_add.collision_layer = 0
 		infestation_bone_attach.remote_transform.remote_path = infestation_enemy_add.get_path()
 
+func _physics_process(delta: float) -> void:
+	direction = navigation_agent.get_next_path_position() - global_transform.origin
+	direction = direction.normalized()
+	velocity = velocity.lerp(direction * SPEED, delta * 10)
+	
+	if !is_on_floor():
+		velocity.y -= ProjectSettings.get_setting("physics/3d/default_gravity")*delta
+	_push_rigid_bodies()
+	move_and_slide()
 
 func _update_blocking(value: bool):
 	if value && left_arm && has_shield:

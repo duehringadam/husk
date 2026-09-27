@@ -520,7 +520,7 @@ func _on_hurtbox_component_damage_taken(actual: float, source: DamageComponent, 
 		var kb :Vector3 = source.global_position - head.global_position
 		var kb_dir = kb.normalized()
 		
-		var kb_amount = kb_dir * 50
+		var kb_amount = kb_dir * source.knockback_amount
 		kb_amount.y /= 5
 		self.velocity = -kb_amount
 

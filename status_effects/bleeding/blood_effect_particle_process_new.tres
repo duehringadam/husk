@@ -1,10 +1,10 @@
 [gd_resource type="ParticleProcessMaterial" format=3 uid="uid://crt6qdotfpqtl"]
 
 [sub_resource type="Curve" id="Curve_4jope"]
-_data = [Vector2(0, 0.043956), 0.0, -0.0668502, 0, 0, Vector2(1, 1), 2.63579, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.5080472, 0, 0, Vector2(1, 0.32584274), -0.15492655, -0.15492655, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_6s5ox"]
+[sub_resource type="CurveTexture" id="CurveTexture_yigmq"]
 texture_mode = 1
 curve = SubResource("Curve_4jope")
 
@@ -21,7 +21,7 @@ data = {
 image = SubResource("Image_yigmq")
 
 [sub_resource type="Curve" id="Curve_kwvjp"]
-_data = [Vector2(0, 0.153846), 0.0, 0.528277, 0, 0, Vector2(1, 1), -0.052317, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.528277, 0, 0, Vector2(1, 1), -0.052317, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_youg1"]
@@ -43,4 +43,6 @@ angular_velocity_min = -1.60933e-05
 angular_velocity_max = -1.60933e-05
 scale_min = 0.5
 scale_curve = SubResource("CurveTexture_youg1")
-alpha_curve = SubResource("CurveTexture_6s5ox")
+alpha_curve = SubResource("CurveTexture_yigmq")
+anim_speed_min = 1.0
+anim_speed_max = 1.0

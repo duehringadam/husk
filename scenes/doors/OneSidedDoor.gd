@@ -3,6 +3,8 @@ extends StaticBody3D
 
 @export var door: InteractableDoor
 
+@export_multiline var context_pop_up_message: String
+
 var active: bool = true
 
 func _ready() -> void:
@@ -10,6 +12,7 @@ func _ready() -> void:
 
 func _interact(controller: InteractionController) -> void:
 	if active:
+		ContextPopUp.set_popup_text(context_pop_up_message)
 		ContextPopUp.activate()
 
 

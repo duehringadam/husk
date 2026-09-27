@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://d4n4ub6iqo03i"]
 
 [ext_resource type="Material" uid="uid://bi1a" path="res://scenes/Hivemind/CastleOfEternalMists/URP/Art/Materials/Instances/M_ArchStone_A.tres" id="2_bi1a"]
+[ext_resource type="Material" uid="uid://bi0e" path="res://scenes/Hivemind/CastleOfEternalMists/URP/Art/Materials/Instances/M_BrickStoneWall_Damage_Scalex2.tres" id="2_dbofi"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wm1aj"]
 resource_name = "M_ArchStone_A"
@@ -60,3 +61,5 @@ blend_shape_mode = 0
 lod_bias = 0.05
 mesh = SubResource("ArrayMesh_yjaq5")
 surface_material_override/0 = ExtResource("2_bi1a")
+surface_material_override/1 = ExtResource("2_dbofi")
+surface_material_override/2 = ExtResource("2_dbofi")

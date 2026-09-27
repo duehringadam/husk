@@ -1,0 +1,506 @@
+[gd_scene format=3 uid="uid://o40vkkxro0pn"]
+
+[ext_resource type="Script" uid="uid://den7b7gyst4lk" path="res://scenes/npc/npc weapons/scenes/bow/npc_bow.gd" id="1_58qch"]
+[ext_resource type="ArrayMesh" uid="uid://crh7bn2axadao" path="res://item/weapons/ranged/rope_bow/rope_bow_string_fix.tres" id="1_xagt4"]
+[ext_resource type="Texture2D" uid="uid://bi0rfvptw17si" path="res://item/weapons/ranged/rope_bow/bow_Bow_texture.png" id="2_58qch"]
+[ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="4_838bh"]
+[ext_resource type="AudioStream" uid="uid://cofkxkh27wbkq" path="res://item/weapons/ranged/rope_bow/oxidvideos-rope-amp-leather-tension-2-449631.mp3" id="5_idfa0"]
+[ext_resource type="AudioStream" uid="uid://vgafbwf28s38" path="res://item/weapons/ranged/rope_bow/bow_shoot.ogg" id="6_k8c2n"]
+
+[sub_resource type="Skin" id="Skin_1fwvp"]
+resource_name = "Skin"
+bind_count = 10
+bind/0/name = &"Bow_2"
+bind/0/bone = -1
+bind/0/pose = Transform3D(0.9998477, 0.017452372, 7.9204784e-07, 7.919525e-07, 1.2374258e-08, -1, -0.017452372, 0.9998477, -1.4490764e-09, 1.4834178e-08, -0.055767898, -0.014616734)
+bind/1/name = &"rope1"
+bind/1/bone = -1
+bind/1/pose = Transform3D(2.3308713e-08, 0.017452307, -0.99984777, -1.0000001, 7.11641e-08, -1.2808586e-07, 6.8521516e-08, 0.9998477, 0.017452309, 0.033221286, 0.58855027, 0.028199628)
+bind/2/name = &"rope2"
+bind/2/bone = -1
+bind/2/pose = Transform3D(-6.3403093e-15, 0.017452305, -0.99984777, -1.0000001, 2.2462392e-09, -1.0597656e-07, -6.9958408e-15, 0.9998477, 0.017452307, 0.0332213, 0.5498381, 0.028199667)
+bind/3/name = &"rope3"
+bind/3/bone = -1
+bind/3/pose = Transform3D(3.5883748e-22, 0.017452307, -0.99984777, -1.0000002, 2.2462465e-09, -1.05976575e-07, 8.4089866e-22, 0.9998477, 0.017452309, 0.033221297, 0.51110685, 0.028199667)
+bind/4/name = &"rope4"
+bind/4/bone = -1
+bind/4/pose = Transform3D(-4.7509213e-29, 0.017452309, -0.99984777, -1.0000002, 2.2462467e-09, -1.05976575e-07, -1.0016033e-28, 0.9998477, 0.01745231, 0.0332213, 0.4731061, 0.028199667)
+bind/5/name = &"rope1.001"
+bind/5/bone = -1
+bind/5/pose = Transform3D(-1.06044766e-07, 0.017452307, -0.9998477, -1, 6.886551e-08, 1.10328926e-07, 7.077938e-08, 0.9998477, 0.017452307, 0.033221226, -0.6003253, 0.028199716)
+bind/6/name = &"rope2.001"
+bind/6/bone = -1
+bind/6/pose = Transform3D(-1.0120493e-15, 0.017452307, -0.9998477, -1, -5.2363256e-11, 3.0650475e-09, -7.0888446e-15, 0.9998477, 0.017452307, 0.033221293, -0.63346785, 0.02819967)
+bind/7/name = &"rope3.001"
+bind/7/bone = -1
+bind/7/pose = Transform3D(-1.16830694e-23, 0.017452307, -0.9998477, -1, -5.235615e-11, 3.0650467e-09, 8.47366e-22, 0.9998477, 0.017452307, 0.033221293, -0.67035246, 0.02819967)
+bind/8/name = &"rope4.001"
+bind/8/bone = -1
+bind/8/pose = Transform3D(1.3927304e-30, 0.017452307, -0.9998477, -1, -5.235615e-11, 3.0650467e-09, -1.010139e-28, 0.9998477, 0.017452307, 0.033221293, -0.7072369, 0.02819967)
+bind/9/name = &"String"
+bind/9/bone = -1
+bind/9/pose = Transform3D(0.9998477, 0.017452398, 4.3636115e-07, 4.3626898e-07, 9.088937e-09, -1, -0.017452398, 0.9998477, 1.4736132e-09, 2.4461613e-08, 0.14916743, -0.014616733)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j1pv0"]
+albedo_color = Color(1.353256, 1.353256, 1.353256, 1)
+albedo_texture = ExtResource("2_58qch")
+emission = Color(0.033853278, 0.033853278, 0.033853274, 1)
+texture_filter = 4
+
+[sub_resource type="Animation" id="Animation_bros3"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton3D:Bow_2")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -0.00025506737, 0.0146145085, -0.055767894)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton3D:Bow_2")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -0.7070798, -0.0061708638, 0.0061703026, 0.7070798)
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Skeleton3D:rope1")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.5879584, -0.08849152, -0.05365911)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Skeleton3D:rope1")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, -0.011419099, 4.49511e-08, -0.6542087, 0.75622785)
+tracks/4/type = "position_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Skeleton3D:rope2")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, -3.540336e-09, 0.038712196, -1.7308537e-09)
+tracks/5/type = "rotation_3d"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Skeleton3D:rope2")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, -3.4260758e-08, 1.3969821e-09, 1.1654356e-08, 1)
+tracks/6/type = "position_3d"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Skeleton3D:rope3")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, -1.3969871e-09, 0.038731333, -3.4924955e-10)
+tracks/7/type = "rotation_3d"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Skeleton3D:rope3")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, 3.553073e-15, -1.3969839e-09, -3.0066832e-15, 1)
+tracks/8/type = "position_3d"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Skeleton3D:rope4")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = PackedFloat32Array(0, 1, -5.180482e-09, 0.03800076, -2.910383e-10)
+tracks/9/type = "rotation_3d"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Skeleton3D:rope4")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = PackedFloat32Array(0, 1, 3.4694258e-17, -4.656613e-10, -1.3903808e-15, 1)
+tracks/10/type = "position_3d"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Skeleton3D:rope1.001")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = PackedFloat32Array(0, 1, -0.59880126, -0.08849247, 0.07793104)
+tracks/11/type = "rotation_3d"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Skeleton3D:rope1.001")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = PackedFloat32Array(0, 1, -0.012315181, 4.2060538e-08, -0.70554537, 0.7085578)
+tracks/12/type = "position_3d"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Skeleton3D:rope2.001")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = PackedFloat32Array(0, 1, 2.3326194e-09, 0.033142567, -5.404317e-10)
+tracks/13/type = "rotation_3d"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Skeleton3D:rope2.001")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = PackedFloat32Array(0, 1, -3.538969e-08, 5.464379e-17, -5.3022383e-08, 1)
+tracks/14/type = "position_3d"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Skeleton3D:rope3.001")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = PackedFloat32Array(0, 1, -1.5133985e-09, 0.036884546, -4.0744888e-10)
+tracks/15/type = "rotation_3d"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Skeleton3D:rope3.001")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = PackedFloat32Array(0, 1, 3.5444212e-15, 0, -5.670786e-16, 1)
+tracks/16/type = "position_3d"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("Skeleton3D:rope4.001")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = PackedFloat32Array(0, 1, -1.5133992e-09, 0.036884427, -4.0745363e-10)
+tracks/17/type = "rotation_3d"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("Skeleton3D:rope4.001")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = PackedFloat32Array(0, 1, 1.8952354e-19, 0, -6.104058e-17, 1)
+tracks/18/type = "position_3d"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("Skeleton3D:String")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = PackedFloat32Array(0, 1, -0.032700345, -0.21925479, 0.05490598)
+tracks/19/type = "rotation_3d"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("Skeleton3D:String")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = PackedFloat32Array(0, 1, 3.1532343e-09, 1.6763812e-08, 1.8440187e-07, 1)
+
+[sub_resource type="Animation" id="Animation_lmhfq"]
+resource_name = "draw"
+length = 2.3000000000000003
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("Skeleton3D:Bow_2")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -0.00025506737, 0.0146145085, -0.055767894)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("Skeleton3D:Bow_2")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -0.7070798, -0.0061708638, 0.0061703026, 0.7070798)
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/path = NodePath("Skeleton3D:rope1")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.5879584, -0.08849152, -0.05365911)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = false
+tracks/3/path = NodePath("Skeleton3D:rope1")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, -0.011419099, 4.49511e-08, -0.6542087, 0.75622785)
+tracks/4/type = "position_3d"
+tracks/4/imported = false
+tracks/4/enabled = false
+tracks/4/path = NodePath("Skeleton3D:rope2")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, -3.540336e-09, 0.038712196, -1.7308537e-09)
+tracks/5/type = "rotation_3d"
+tracks/5/imported = false
+tracks/5/enabled = false
+tracks/5/path = NodePath("Skeleton3D:rope2")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, -3.4260758e-08, 1.3969821e-09, 1.1654356e-08, 1)
+tracks/6/type = "position_3d"
+tracks/6/imported = false
+tracks/6/enabled = false
+tracks/6/path = NodePath("Skeleton3D:rope3")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, -1.3969871e-09, 0.038731333, -3.4924955e-10)
+tracks/7/type = "rotation_3d"
+tracks/7/imported = false
+tracks/7/enabled = false
+tracks/7/path = NodePath("Skeleton3D:rope3")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, 3.553073e-15, -1.3969839e-09, -3.0066832e-15, 1)
+tracks/8/type = "position_3d"
+tracks/8/imported = false
+tracks/8/enabled = false
+tracks/8/path = NodePath("Skeleton3D:rope4")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = PackedFloat32Array(0, 1, -5.180482e-09, 0.03800076, -2.910383e-10)
+tracks/9/type = "rotation_3d"
+tracks/9/imported = false
+tracks/9/enabled = false
+tracks/9/path = NodePath("Skeleton3D:rope4")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = PackedFloat32Array(0, 1, 3.4694258e-17, -4.656613e-10, -1.3903808e-15, 1)
+tracks/10/type = "position_3d"
+tracks/10/imported = false
+tracks/10/enabled = false
+tracks/10/path = NodePath("Skeleton3D:rope1.001")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = PackedFloat32Array(0, 1, -0.59880126, -0.08849247, 0.07793104)
+tracks/11/type = "rotation_3d"
+tracks/11/imported = false
+tracks/11/enabled = false
+tracks/11/path = NodePath("Skeleton3D:rope1.001")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = PackedFloat32Array(0, 1, -0.012315181, 4.2060538e-08, -0.70554537, 0.7085578)
+tracks/12/type = "position_3d"
+tracks/12/imported = false
+tracks/12/enabled = false
+tracks/12/path = NodePath("Skeleton3D:rope2.001")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = PackedFloat32Array(0, 1, 2.3326194e-09, 0.033142567, -5.404317e-10)
+tracks/13/type = "rotation_3d"
+tracks/13/imported = false
+tracks/13/enabled = false
+tracks/13/path = NodePath("Skeleton3D:rope2.001")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = PackedFloat32Array(0, 1, -3.538969e-08, 5.464379e-17, -5.3022383e-08, 1)
+tracks/14/type = "position_3d"
+tracks/14/imported = false
+tracks/14/enabled = false
+tracks/14/path = NodePath("Skeleton3D:rope3.001")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = PackedFloat32Array(0, 1, -1.5133985e-09, 0.036884546, -4.0744888e-10)
+tracks/15/type = "rotation_3d"
+tracks/15/imported = false
+tracks/15/enabled = false
+tracks/15/path = NodePath("Skeleton3D:rope3.001")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = PackedFloat32Array(0, 1, 3.5444212e-15, 0, -5.670786e-16, 1)
+tracks/16/type = "position_3d"
+tracks/16/imported = false
+tracks/16/enabled = false
+tracks/16/path = NodePath("Skeleton3D:rope4.001")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = PackedFloat32Array(0, 1, -1.5133992e-09, 0.036884427, -4.0745363e-10)
+tracks/17/type = "rotation_3d"
+tracks/17/imported = false
+tracks/17/enabled = false
+tracks/17/path = NodePath("Skeleton3D:rope4.001")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = PackedFloat32Array(0, 1, 1.8952354e-19, 0, -6.104058e-17, 1)
+tracks/18/type = "position_3d"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("Skeleton3D:String")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = PackedFloat32Array(0, 1, 0, -0.219, 0, 0.51, 1, 0, -0.219, 0, 1.11, 1, 0.055432703, -0.62332493, -0.091081195, 1.1666666, 1, -0.035759434, -0.20479703, 0.061309535)
+tracks/19/type = "rotation_3d"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("Skeleton3D:String")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = PackedFloat32Array(0, 1, 3.1532343e-09, 1.6763812e-08, 1.8440187e-07, 1)
+tracks/20/type = "audio"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("../draw")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"clips": [{
+"end_offset": 0.82999986,
+"start_offset": 0.0,
+"stream": ExtResource("5_idfa0")
+}],
+"times": PackedFloat32Array(0.5)
+}
+tracks/20/use_blend = true
+tracks/21/type = "audio"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("../fire")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_k8c2n")
+}],
+"times": PackedFloat32Array(1.0333333)
+}
+tracks/21/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e0te5"]
+_data = {
+&"RESET": SubResource("Animation_bros3"),
+&"draw": SubResource("Animation_lmhfq")
+}
+
+[node name="bow(1)" type="Node3D" unique_id=849295115 node_paths=PackedStringArray("damage_component")]
+transform = Transform3D(0.9999996, 0, 0, 0, 0.9999993, 0, 0, 0, 0.9999998, 0, 0, 0)
+script = ExtResource("1_58qch")
+damage_component = NodePath("DamageComponent")
+
+[node name="Armature" type="Node3D" parent="." unique_id=443299830]
+transform = Transform3D(1.0000007, 0, 0, 0, 1.0000004, 0, 0, 0, 1.0000004, -0.000616312, 0.019153312, 0.027513802)
+
+[node name="Skeleton3D" type="Skeleton3D" parent="Armature" unique_id=452595016]
+bones/0/name = "Bow_2"
+bones/0/parent = -1
+bones/0/rest = Transform3D(0.9998477, 7.916242e-07, -0.017452374, 0.017452374, 0, 0.99984765, 7.916242e-07, -1, 0, -0.00025506737, 0.0146145085, -0.055767894)
+bones/0/enabled = true
+bones/0/position = Vector3(-0.00025506737, 0.0146145085, -0.055767894)
+bones/0/rotation = Quaternion(-0.7070798, -0.006170864, 0.006170303, 0.7070798)
+bones/0/scale = Vector3(1, 1, 0.9999998)
+bones/1/name = "rope1"
+bones/1/parent = 0
+bones/1/rest = Transform3D(0.00030386445, -0.99984765, 0.0174498, 0.99984765, -7.209883e-07, -0.017452298, 0.017449649, 0.017452443, 0.9996954, 0.5879584, -0.08849152, -0.05365911)
+bones/1/enabled = true
+bones/1/position = Vector3(0.5879584, -0.08849152, -0.05365911)
+bones/1/rotation = Quaternion(-0.011419098, 4.5634813e-08, -0.6542087, 0.75622797)
+bones/1/scale = Vector3(0.99999994, 0.9999999, 1)
+bones/2/name = "rope2"
+bones/2/parent = 1
+bones/2/rest = Transform3D(1, -2.3308711e-08, 2.7939633e-09, 2.3308711e-08, 1, 6.8521516e-08, -2.793965e-09, -6.8521516e-08, 1, -3.540336e-09, 0.038712196, -1.7308537e-09)
+bones/2/enabled = true
+bones/2/position = Vector3(-3.540336e-09, 0.038712196, -1.7308537e-09)
+bones/2/rotation = Quaternion(-3.4260758e-08, 1.3969821e-09, 1.1654356e-08, 1)
+bones/2/scale = Vector3(1, 1, 1)
+bones/3/name = "rope3"
+bones/3/parent = 2
+bones/3/rest = Transform3D(1, 6.013366e-15, -2.7939677e-09, -6.0133664e-15, 0.99999994, -7.106146e-15, 2.7939677e-09, 7.106145e-15, 1, -1.3969871e-09, 0.038731333, -3.4924955e-10)
+bones/3/enabled = true
+bones/3/position = Vector3(-1.3969871e-09, 0.038731333, -3.4924955e-10)
+bones/3/rotation = Quaternion(3.553073e-15, -1.3969839e-09, -3.0066832e-15, 1)
+bones/3/scale = Vector3(1, 0.99999994, 1)
+bones/4/name = "rope4"
+bones/4/parent = 3
+bones/4/rest = Transform3D(1, 2.7807615e-15, -9.313226e-10, -2.7807615e-15, 1, -6.9388516e-17, 9.313226e-10, 6.9388516e-17, 1, -5.180482e-09, 0.03800076, -2.910383e-10)
+bones/4/enabled = true
+bones/4/position = Vector3(-5.180482e-09, 0.03800076, -2.910383e-10)
+bones/4/rotation = Quaternion(3.4694258e-17, -4.656613e-10, -1.3903808e-15, 1)
+bones/4/scale = Vector3(1, 1, 1)
+bones/5/name = "rope1.001"
+bones/5/parent = 0
+bones/5/rest = Transform3D(0.00030362606, -0.9998477, 0.0174498, 0.9998477, -9.536743e-07, -0.017452292, 0.01744965, 0.017452441, 0.9996954, -0.600736, -0.08849245, -0.032910418)
+bones/5/enabled = true
+bones/5/position = Vector3(-0.59880126, -0.08849247, 0.07793103)
+bones/5/rotation = Quaternion(-0.012315181, 4.1909516e-08, -0.70554537, 0.7085578)
+bones/5/scale = Vector3(1, 0.9999998, 1)
+bones/6/name = "rope2.001"
+bones/6/parent = 5
+bones/6/rest = Transform3D(1, 1.06044766e-07, 3.862179e-15, -1.06044766e-07, 1, 7.077938e-08, 3.6436037e-15, -7.077938e-08, 1, 2.3326194e-09, 0.033142567, -5.404317e-10)
+bones/6/enabled = true
+bones/6/position = Vector3(2.3326194e-09, 0.033142567, -5.404317e-10)
+bones/6/rotation = Quaternion(-3.538969e-08, 5.464379e-17, -5.3022383e-08, 1)
+bones/6/scale = Vector3(1, 1, 1)
+bones/7/name = "rope3.001"
+bones/7/parent = 6
+bones/7/rest = Transform3D(1, 1.1341572e-15, -4.0199308e-30, -1.1341572e-15, 1, -7.0888425e-15, -4.0199308e-30, 7.0888425e-15, 1, -1.5133985e-09, 0.036884546, -4.0744888e-10)
+bones/7/enabled = true
+bones/7/position = Vector3(-1.5133985e-09, 0.036884546, -4.0744888e-10)
+bones/7/rotation = Quaternion(3.5444212e-15, 0, -5.670786e-16, 1)
+bones/7/scale = Vector3(1, 1, 1)
+bones/8/name = "rope4.001"
+bones/8/parent = 7
+bones/8/rest = Transform3D(1, 1.2208116e-16, -2.3137254e-35, -1.2208116e-16, 1, -3.790471e-19, -2.3137254e-35, 3.790471e-19, 1, -1.5133992e-09, 0.036884427, -4.0745363e-10)
+bones/8/enabled = true
+bones/8/position = Vector3(-1.5133992e-09, 0.036884427, -4.0745363e-10)
+bones/8/rotation = Quaternion(1.8952354e-19, 0, -6.104058e-17, 1)
+bones/8/scale = Vector3(1, 1, 1)
+bones/9/name = "String"
+bones/9/parent = 0
+bones/9/rest = Transform3D(1, -3.556867e-07, -2.6077032e-08, 3.556867e-07, 1, -2.9227105e-09, 2.6077032e-08, 2.9227012e-09, 1, 4.3088953e-08, -0.20493531, -1.1211022e-09)
+bones/9/enabled = true
+bones/9/position = Vector3(-0.032700345, -0.21925479, 0.05490598)
+bones/9/rotation = Quaternion(3.1532346e-09, 1.6763813e-08, 1.8440187e-07, 1)
+bones/9/scale = Vector3(1.0000001, 1.0000002, 1.0000002)
+
+[node name="Bow" type="MeshInstance3D" parent="Armature/Skeleton3D" unique_id=2084546700]
+cast_shadow = 0
+mesh = ExtResource("1_xagt4")
+skin = SubResource("Skin_1fwvp")
+skeleton = NodePath("..")
+surface_material_override/0 = SubResource("StandardMaterial3D_j1pv0")
+
+[node name="SpringBoneSimulator3D" type="SpringBoneSimulator3D" parent="Armature/Skeleton3D" unique_id=1049499460]
+influence = 0.65
+setting_count = 1
+settings/0/root_bone_name = "rope2.001"
+settings/0/root_bone = 6
+settings/0/end_bone_name = "rope4.001"
+settings/0/end_bone = 8
+settings/0/extend_end_bone = true
+settings/0/end_bone/direction = 6
+settings/0/end_bone/length = 0.048
+settings/0/center_from = 0
+settings/0/individual_config = false
+settings/0/rotation_axis = 3
+settings/0/radius/value = 0.02
+settings/0/radius/damping_curve = null
+settings/0/stiffness/value = 0.34
+settings/0/stiffness/damping_curve = null
+settings/0/drag/value = 1.0
+settings/0/drag/damping_curve = null
+settings/0/gravity/value = 0.75
+settings/0/gravity/damping_curve = null
+settings/0/gravity/direction = Vector3(0, -1, 0)
+settings/0/joints/0/bone_name = "rope2.001"
+settings/0/joints/0/bone = 6
+settings/0/joints/1/bone_name = "rope3.001"
+settings/0/joints/1/bone = 7
+settings/0/joints/2/bone_name = "rope4.001"
+settings/0/joints/2/bone = 8
+settings/0/enable_all_child_collisions = true
+settings/0/exclude_collision_count = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Armature" unique_id=7983597]
+libraries/ = SubResource("AnimationLibrary_e0te5")
+
+[node name="DamageComponent" type="Area3D" parent="." unique_id=1228173393]
+script = ExtResource("4_838bh")
+metadata/_custom_type_script = "uid://dlsydctoxqbwy"
+
+[node name="draw" type="AudioStreamPlayer3D" parent="." unique_id=1871065185]
+volume_db = 6.0
+max_distance = 10.0
+bus = &"SFX"
+
+[node name="fire" type="AudioStreamPlayer3D" parent="." unique_id=1678435434]
+volume_db = 6.0
+max_distance = 10.0
+bus = &"SFX"

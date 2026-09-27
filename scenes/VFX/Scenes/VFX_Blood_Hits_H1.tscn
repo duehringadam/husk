@@ -13,21 +13,21 @@ interpolation_mode = 2
 offsets = PackedFloat32Array(0.191589, 0.523364)
 colors = PackedColorArray(1, 1, 1, 1, 0.366595, 0.366595, 0.366595, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_scfw4"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_l67j6"]
 gradient = SubResource("Gradient_37c5c")
 
 [sub_resource type="Gradient" id="Gradient_qf0bv"]
 offsets = PackedFloat32Array(0, 0.560748)
 colors = PackedColorArray(0.42, 0.042, 0.0482999, 1, 0.91, 0.2002, 0.22386, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_ec0l5"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4x747"]
 gradient = SubResource("Gradient_qf0bv")
 
 [sub_resource type="Gradient" id="Gradient_buev4"]
 offsets = PackedFloat32Array(0.205607, 0.509346, 0.752336, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0.215902, 0.215902, 0.215902, 1, 1, 1, 1, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_6l3mh"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wrvim"]
 gradient = SubResource("Gradient_buev4")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tm5be"]
@@ -36,14 +36,14 @@ shader = ExtResource("1_u3a0t")
 shader_parameter/Scale = Vector2(1, 1)
 shader_parameter/Speed_XY = Vector2(0, 0)
 shader_parameter/Disolver_Texture = ExtResource("2_yxhjl")
-shader_parameter/Color_1D_Gradient = SubResource("GradientTexture1D_ec0l5")
+shader_parameter/Color_1D_Gradient = SubResource("GradientTexture1D_4x747")
 shader_parameter/Metallic_Texture = ExtResource("3_asygr")
 shader_parameter/Texture_Roughtness = ExtResource("5_5a0n4")
-shader_parameter/Roughtness_1D_Gradient = SubResource("GradientTexture1D_6l3mh")
+shader_parameter/Roughtness_1D_Gradient = SubResource("GradientTexture1D_wrvim")
 shader_parameter/Normal_Texture = ExtResource("4_hb2oe")
 shader_parameter/Normal_Map_Depth = 1.0
 shader_parameter/Color_Intensity = 1.0
-shader_parameter/ColorTime_1D_Gradient = SubResource("GradientTexture1D_scfw4")
+shader_parameter/ColorTime_1D_Gradient = SubResource("GradientTexture1D_l67j6")
 shader_parameter/subuv_grid = Vector2i(2, 2)
 shader_parameter/use_subuv = true
 

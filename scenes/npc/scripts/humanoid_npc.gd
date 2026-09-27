@@ -34,12 +34,14 @@ func _update_main_weapon(weapon: npc_weapon):
 	await ready
 	main_weapon = weapon
 	animation_tree.tree_root = weapon.main_weapon_animation_state_machine
+	
 	if weapon.main_weapon_scene != null:
 		main_weapon_add = weapon.main_weapon_scene.instantiate()
 		main_weapon_add.position = weapon.main_weapon_position
 		main_weapon_add.rotation = weapon.main_weapon_rotation
 		main_weapon_add.scale = weapon.main_weapon_scale
-		main_weapon_add.damage_component.source = self
+		if main_weapon_add.damage_component != null:
+			main_weapon_add.damage_component.source = self
 		mainhand.add_child(main_weapon_add)
 		main_weapon_add.owner = self
 		
@@ -98,15 +100,18 @@ func _update_secondary_weapon_visibility(value: bool):
 
 func activate_mainhand_weapon(value: bool):
 	if value:
-		main_weapon_add.activate()
+		if main_weapon_add.has_method("activate"):
+			main_weapon_add.activate()
 	else:
-		main_weapon_add.deactivate()
+		if main_weapon_add.has_method("deactivate"):
+			main_weapon_add.deactivate()
 	
 func activate_main_offhand_weapon(value: bool):
-	if value:
-		main_weapon_offhand_add.activate()
-	else:
-		main_weapon_offhand_add.deactivate()
+	if offhand.get_child_count() > 0:
+		if value:
+			main_weapon_offhand_add.activate()
+		else:
+			main_weapon_offhand_add.deactivate()
 
 func activate_secondary_weapon(value: bool):
 	if value:

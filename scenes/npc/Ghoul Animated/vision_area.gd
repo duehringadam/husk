@@ -26,11 +26,11 @@ func _on_timer_timeout() -> void:
 							if ray.get_collider() is Player:
 								aggro_amount = clampf(aggro_amount+.04,0,1.0)
 								if aggro_amount != 1.0:
-									emit_signal("aggro_changed", aggro_amount, ray.get_collider())
+									emit_signal("aggro_changed", aggro_amount, Global.player.head)
 									aggrotimer.start()
 								elif aggro_amount >= 1.0 && !is_aggro:
 									is_aggro = true
-									max_aggro.emit(aggro_amount, ray.get_collider())
+									max_aggro.emit(aggro_amount, Global.player.head)
 								
 
 func _process(delta: float) -> void:

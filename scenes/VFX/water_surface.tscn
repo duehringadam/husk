@@ -1,0 +1,104 @@
+[gd_scene format=3 uid="uid://cldl4pahe5qmb"]
+
+[ext_resource type="Shader" uid="uid://bfwwv62cr7k2o" path="res://shaders/blood vfx shaders/ss_Disolver_subUV_small_Liquid_Treshold_p.gdshader" id="1_ulwnc"]
+[ext_resource type="Texture2D" uid="uid://ckybfixq3eww6" path="res://scenes/VFX/textures/water/waves_concent_tex1.png" id="2_lfl8q"]
+[ext_resource type="Script" uid="uid://cvjsvlvdffjpk" path="res://scenes/VFX/water_splash.gd" id="3_lfl8q"]
+
+[sub_resource type="Curve" id="Curve_4jope"]
+_data = [Vector2(0, 0.25842702), 0.0, 0.5080472, 0, 0, Vector2(0.502092, 0.17977536), -0.15492655, -0.15492655, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_iaxe7"]
+texture_mode = 1
+curve = SubResource("Curve_4jope")
+
+[sub_resource type="Curve" id="Curve_kwvjp"]
+_data = [Vector2(0, 0), 0.0, 0.528277, 0, 0, Vector2(1, 1), -0.052317, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_youg1"]
+curve = SubResource("Curve_kwvjp")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_417x0"]
+angle_min = -720.0
+angle_max = 720.0
+spread = 0.5
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_youg1")
+alpha_curve = SubResource("CurveTexture_iaxe7")
+
+[sub_resource type="Gradient" id="Gradient_70xfr"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.0768358, 0.0768358, 0.0768358, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8mnei"]
+gradient = SubResource("Gradient_70xfr")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ljsnh"]
+render_priority = 0
+shader = ExtResource("1_ulwnc")
+shader_parameter/Scale = Vector2(1, 1)
+shader_parameter/Speed_XY = Vector2(0, 0)
+shader_parameter/Disolver_Texture = ExtResource("2_lfl8q")
+shader_parameter/Metallic_Texture = SubResource("GradientTexture2D_8mnei")
+shader_parameter/Normal_Map_Depth = 1.0
+shader_parameter/Color_Intensity = 2.0
+shader_parameter/subuv_grid = Vector2i(1, 1)
+shader_parameter/use_subuv = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_i4bq8"]
+material = SubResource("ShaderMaterial_ljsnh")
+size = Vector2(4, 4)
+
+[sub_resource type="Animation" id="Animation_ulwnc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_lfl8q"]
+resource_name = "init"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nldnt"]
+_data = {
+&"RESET": SubResource("Animation_ulwnc"),
+&"init": SubResource("Animation_lfl8q")
+}
+
+[node name="waterSurface" type="GPUParticles3D" unique_id=1363698580]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+emitting = false
+amount = 1
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_417x0")
+draw_pass_1 = SubResource("QuadMesh_i4bq8")
+script = ExtResource("3_lfl8q")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=137491189]
+libraries/ = SubResource("AnimationLibrary_nldnt")
+autoplay = &"RESET"

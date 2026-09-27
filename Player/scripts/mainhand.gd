@@ -21,7 +21,7 @@ signal equip_item(_weapon: item)
 @export_range(0,360) var stab_spread_angle: float = 30 # Spread 30 degrees
 
 @onready var attack_timer: Timer = $"ghoul_arms2(1)/attackTimer"
-@onready var damage_scaling: damage_scaling_component = $damage_scaling_component
+
 @onready var arms_base: Node3D = $"ghoul_arms2(1)"
 
 var space_state
@@ -71,10 +71,6 @@ func _set_item(new_item: item):
 		damage_component = bone_attachment.get_child(0).damage_component
 		bone_attachment.get_child(0).damage_component.damage_types = new_item.item_stats.final_damage
 		ray_length = new_item.item_stats.range
-		damage_scaling.damage_component = damage_component
-		damage_scaling.stored_damage_values = new_item.item_stats.final_damage.values()
-		damage_scaling.stored_stance_damage = new_item.item_stats.stance_damage
-		damage_scaling.attack_charge_time = new_item.charge_time
 		
 		if new_item.item_left_scene:
 			var item_left_add = new_item.item_left_scene.instantiate()

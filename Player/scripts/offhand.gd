@@ -38,7 +38,7 @@ func _set_item(new_item):
 		state_chart.send_event("idle")
 		var item_add = new_item.item_scene.instantiate()
 		item_add.position = weapon.position
-		item_add.rotation = weapon.rotation
+		item_add.rotation_degrees = weapon.rotation
 		animation_state_machine = weapon.animation_state_machine
 		animation_tree.tree_root = animation_state_machine
 		animation_tree.active = false
@@ -95,6 +95,7 @@ func telekinesis_fail():
 	state_chart.send_event("cant_use")
 	animation_tree.set("parameters/conditions/throw", false)
 	animation_tree.set("parameters/conditions/hold", false)
+	animation_tree.set("parameters/conditions/fail", true)
 
 func consumable_offhand_reequip():
 	if bone_attachment.get_child_count() > 0:

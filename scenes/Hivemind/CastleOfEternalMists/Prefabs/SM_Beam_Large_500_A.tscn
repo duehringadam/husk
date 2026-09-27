@@ -23,9 +23,20 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_84t33"]
+size = Vector3(0.28103423, 0.27412084, 5.022529)
+
 [node name="SM_Beam_Large_500_A" type="Node3D" unique_id=1933596904]
 
 [node name="SM_Beam_Large_500_A_LOD0" type="MeshInstance3D" parent="." unique_id=407433]
 lod_bias = 0.05
 mesh = SubResource("ArrayMesh_84t33")
 surface_material_override/0 = ExtResource("2_bibe")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SM_Beam_Large_500_A_LOD0" unique_id=1142819199]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003777638, -0.0006977916, 2.4984517)
+collision_layer = 2
+metadata/ground_type = "wood"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SM_Beam_Large_500_A_LOD0/StaticBody3D" unique_id=1474409655]
+shape = SubResource("BoxShape3D_84t33")

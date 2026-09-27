@@ -10,8 +10,9 @@
 [ext_resource type="Script" uid="uid://cp0p4yckxtvmw" path="res://addons/game_pieces/collision_sound/collision_sound_player.gd" id="7_cm5xk"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="8_vogrg"]
 [ext_resource type="PackedScene" uid="uid://dhws2ueoubwwx" path="res://components/bounding_box_component.tscn" id="9_direq"]
-[ext_resource type="ArrayMesh" uid="uid://g3fofj117owu" path="res://item/weapons/ranged/Bow3/bow3.tres" id="10_7tdsh"]
 [ext_resource type="PackedScene" uid="uid://bvb1ic1mm6bap" path="res://shaders/item glint/item_glint.tscn" id="11_4u6gi"]
+[ext_resource type="ArrayMesh" uid="uid://crh7bn2axadao" path="res://item/weapons/ranged/rope_bow/rope_bow_string_fix.tres" id="11_7w7sf"]
+[ext_resource type="Texture2D" uid="uid://cmgt3cowyjr4i" path="res://item/weapons/ranged/rope_bow/bow(1)_Bow_texture.png" id="12_5pd7m"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2cedq"]
 points = PackedVector3Array(-0.56852585, -2.38752, -2.1107495e-05, -0.47358423, -2.4662857, -0.07425526, -0.42195538, -2.6125648, -2.1107495e-05, -0.47358423, -2.4662857, 0.07423417, -0.56852585, 2.3870084, -2.1107495e-05, 0.26873922, -0.22095299, -0.10790779, 0.5391266, -0.8132299, -0.086867034, -0.47358423, 2.4657743, -0.07425526, 0.42766827, -1.0612905, -0.06033371, 0.46312708, -1.0986274, -2.1107495e-05, 0.42766827, -1.0612905, 0.06031263, 0.5391266, -0.8132299, 0.08684595, 0.26873922, -0.22095299, 0.10790782, -0.47358423, 2.4657743, 0.07423417, -0.42195538, 2.6125648, -2.1107495e-05, 0.26873922, 0.22044158, -0.10790779, 0.61143, -0.8132299, -2.1107495e-05, 0.5391266, 0.8127184, -0.086867034, 0.5391266, 0.8127184, 0.08684595, 0.26873922, 0.22044158, 0.10790782, 0.46312708, 1.0981159, -2.1107495e-05, 0.42766827, 1.0607791, -0.06033371, 0.42766827, 1.0607791, 0.06031263, 0.61143, 0.8127184, -2.1107495e-05)
@@ -25,6 +26,11 @@ bind/0/pose = Transform3D(7.54979e-08, -1, 0, 1, 7.54979e-08, 0, 0, 0, 1, -2.810
 bind/1/name = &"String"
 bind/1/bone = -1
 bind/1/pose = Transform3D(7.54979e-08, -1, 0, 1, 7.54979e-08, 0, 0, 0, 1, 7.659349e-08, 1.0145116, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qcn67"]
+albedo_color = Color(2.1168277, 2.1168277, 2.1168277, 1)
+albedo_texture = ExtResource("12_5pd7m")
+texture_filter = 4
 
 [node name="Pickable" type="RigidBody3D" unique_id=2119350781 node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component")]
 collision_layer = 8
@@ -137,13 +143,14 @@ shape = SubResource("ConvexPolygonShape3D_2cedq")
 mesh = NodePath("../Rope Bow")
 
 [node name="Rope Bow" type="MeshInstance3D" parent="." unique_id=1975496816]
-transform = Transform3D(0.345, 0, 0, 0, -1.508043e-08, 0.345, 0, -0.345, -1.508043e-08, 0, 0, 0)
-mesh = ExtResource("10_7tdsh")
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+mesh = ExtResource("11_7w7sf")
 skin = SubResource("Skin_8idt6")
 skeleton = NodePath("..")
+surface_material_override/0 = SubResource("StandardMaterial3D_qcn67")
 
 [node name="OmniLight3D" parent="Rope Bow" unique_id=1151187837 instance=ExtResource("11_4u6gi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2898551, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010144924, 0, -0.09999999)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=129962691]
 transform = Transform3D(0.345, 0, 0, 0, -1.508043e-08, 0.345, 0, -0.345, -1.508043e-08, 0, 0, 0)

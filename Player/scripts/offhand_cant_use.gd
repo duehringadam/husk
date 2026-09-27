@@ -14,7 +14,7 @@ func _on_cant_use_state_entered() -> void:
 
 func _on_cant_use_state_exited() -> void:
 	animation_tree.set("parameters/conditions/cant_use", false)
-
+	animation_tree.set("parameters/conditions/fail", false)
 
 func _on_cant_use_state_input(event: InputEvent) -> void:
 	pass # Replace with function body.
