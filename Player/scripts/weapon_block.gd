@@ -15,6 +15,8 @@ func _on_block_state_entered() -> void:
 
 
 func _on_block_state_exited() -> void:
+	animation_tree.set("parameters/conditions/end_block", true)
+	animation_tree.set("parameters/conditions/block", false)
 	GamePiecesEventBus.slow_player_requested(-2)
 	SignalBus.emit_signal("block_amount", 0)
 	SignalBus.emit_signal("is_blocking", false)
