@@ -21,4 +21,4 @@ func _physics_process(delta: float) -> void:
 				var check_dist = get_collider(i).global_position.distance_to(Global.player.global_position)
 				if check_dist < base_object.global_position.distance_to(Global.player.global_position) && Global.player.camera.is_position_in_frustum(get_collider(i).global_position):
 					base_object = get_collider(i)
-				target = base_object
+				target = get_collider(i)

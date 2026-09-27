@@ -9,8 +9,6 @@
 [ext_resource type="Script" uid="uid://bhg2f71yxm1lc" path="res://components/current_level_area_component.gd" id="13_07jwy"]
 [ext_resource type="PackedScene" uid="uid://dde8d0d27fgyo" path="res://scenes/npc/undead/feral husk/shambler.tscn" id="13_jvck6"]
 [ext_resource type="PackedScene" uid="uid://bych3ad16mxen" path="res://scenes/checkpoint/checkpoint.tscn" id="14_urhrq"]
-[ext_resource type="PackedScene" uid="uid://d0c1n7fh0rjts" path="res://item/weapons/two hand/demon_cleaver/demon_cleaver_item_world.tscn" id="15_kfu6g"]
-[ext_resource type="PackedScene" uid="uid://diny3i7t5j7tk" path="res://scenes/npc/howler/howler.tscn" id="15_rof45"]
 [ext_resource type="PackedScene" uid="uid://csc3ojr7benhn" path="res://scenes/test/maptestflesh(2).tscn" id="15_urhrq"]
 [ext_resource type="PackedScene" uid="uid://54gj5htolv56" path="res://status_effects/burning/fire_damage.tscn" id="17_5utua"]
 [ext_resource type="Texture2D" uid="uid://bpyuecyduy6u2" path="res://scenes/npc/howler/howler textures/howler_Base_color.png" id="17_blr6d"]
@@ -175,7 +173,7 @@ transform = Transform3D(-1.75, 0, 2.6424266e-07, 0, 1.75, 0, -2.6424266e-07, 0, 
 transform = Transform3D(0.1572791, 0.5648554, -0.8100627, 0.9875542, -0.08995958, 0.12901159, 0, -0.8202717, -0.5719741, -7.1202326, 10.099055, 28.94535)
 
 [node name="spell_merchant" parent="." unique_id=630712817 instance=ExtResource("12_ivea3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2262726, -0.045648456, 7.9631424)
+transform = Transform3D(0.009892851, 0, -0.99995106, 0, 1, 0, 0.99995106, 0, 0.009892851, 11.420704, -0.04564798, 5.777733)
 collision_mask = 2
 
 [node name="CurrentLevelArea" type="Area3D" parent="." unique_id=609912352 node_paths=PackedStringArray("default_spawn_node")]
@@ -196,20 +194,6 @@ metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"proce
 ,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
 ]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
 
-
-[node name="Pickable" parent="." unique_id=2119350781 instance=ExtResource("15_kfu6g")]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 5.0005116, 1.1636249, -2.556117)
-metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Longsword","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
-,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
-, Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
-,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
-]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
-
-
-[node name="howler" parent="." unique_id=1182836544 instance=ExtResource("15_rof45")]
-transform = Transform3D(-1.1490033, 0, 0.04786855, 0, 1.15, 0, -0.04786855, 0, -1.1490033, -9.31512, 0.015070459, 2.249641)
-collision_layer = 4
-collision_mask = 15
 
 [node name="DamageComponent" parent="." unique_id=1308059359 instance=ExtResource("17_5utua")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.443005, 0.015034199, -6.6445456)
