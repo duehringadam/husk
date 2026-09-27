@@ -12,16 +12,10 @@ func _on_right_state_exited() -> void:
 	pass
 
 
-func _on_right_state_input(event: InputEvent) -> void:
-	if event.is_action_released("attack_primary"):
-		animation_tree.set("parameters/conditions/hold_right", false)
-		state_chart.send_event("swing")
-
-
 func _on_right_state_physics_processing(delta: float) -> void:
 	if Global.player.stamina_component.current_stamina <=0: state_chart.send_event("swing")
 	Global.player.stamina_component.modify_stamina(-right_hand.weapon.constant_stamina_drain*delta)
-	if not (Input.is_action_pressed("attack_primary")):
+	if not (Input.is_action_pressed("attack_primary")) or Input.is_action_just_released("attack_primary"):
 		animation_tree.set("parameters/conditions/hold_right", false)
 		state_chart.send_event("swing")
 	if !animation_tree["parameters/playback"].is_playing:

@@ -22,13 +22,15 @@ func _ready() -> void:
 	damage_component.source = Global.player
 	equip_sound.play()
 
+func activate(value: bool):
+	damage_component.monitorable = value
+	damage_component.monitoring = value
 
 func _on_bloodtimer_timeout() -> void:
 	blood_drip.emitting = false
 	remove_blood()
 
-func _on_damage_component_damage_dealt(types: Dictionary[DamageTypes.DAMAGE_TYPES, float], actual: float, stance_damage:float, target: hurtbox_component) -> void:
-	Global.player.camera.apply_shake(0.04)
+func _on_damage_component_damage_dealt(types: Dictionary[DamageTypes.DAMAGE_TYPES, float], actual: float, stance_damage:float, target: hurtbox_component, slow_amount: float) -> void:
 	if !target.can_bleed:
 		return
 		

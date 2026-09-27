@@ -5,6 +5,7 @@ extends Node
 @export var animation_tree: AnimationTree
 @export var bone_attach: BoneAttachment3D
 
+var current_node: StringName
 func _on_idle_state_entered() -> void:
 	if bone_attach.get_child_count() > 0:
 		SignalBus.emit_signal("primary_active", false)
@@ -20,11 +21,14 @@ func _on_idle_state_exited() -> void:
 
 
 func _on_idle_state_processing(delta: float) -> void:
-	pass
-		
-
-
+	var state_machine_playback: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
+	current_node = state_machine_playback.get_current_node()
+	
 func _on_idle_state_unhandled_input(event: InputEvent) -> void:
+	
+	if !current_node.contains("idle"): 
+		return
+	
 	if weapon.bone_attachment.get_child_count() > 0:
 			if Global.player.stamina_component.current_stamina < weapon.weapon.stamina_cost:
 				return
