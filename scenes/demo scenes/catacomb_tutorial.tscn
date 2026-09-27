@@ -940,12 +940,12 @@ shader_parameter/sky_tint = 0.5
 shader_parameter/height_offset = 0.2
 shader_parameter/sky_contribution = 0.5
 
-[sub_resource type="Sky" id="Sky_6vl3a"]
+[sub_resource type="Sky" id="Sky_4uwi5"]
 sky_material = SubResource("ShaderMaterial_a7s25")
 
 [sub_resource type="Environment" id="Environment_caewn"]
 background_mode = 2
-sky = SubResource("Sky_6vl3a")
+sky = SubResource("Sky_4uwi5")
 ambient_light_source = 3
 reflected_light_source = 2
 tonemap_mode = 4
@@ -968,7 +968,7 @@ adjustment_enabled = true
 adjustment_contrast = 1.085
 adjustment_color_correction = ExtResource("1_memb0")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_4uwi5"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_242vr"]
 resource_local_to_scene = true
 resource_name = "SM_Torch_A_SM_Torch_A_LOD0"
 lightmap_size_hint = Vector2i(50, 46)
@@ -986,7 +986,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_242vr"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4yi6q"]
 resource_local_to_scene = true
 transparency = 1
 diffuse_mode = 3
@@ -1011,15 +1011,15 @@ proximity_fade_distance = 0.01
 distance_fade_max_distance = 1.0
 stencil_flags = 2
 
-[sub_resource type="QuadMesh" id="QuadMesh_4yi6q"]
+[sub_resource type="QuadMesh" id="QuadMesh_lyhl5"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_242vr")
+material = SubResource("StandardMaterial3D_4yi6q")
 size = Vector2(0.2, 0.2)
 
 [node name="catacomb_tutorial" type="Node3D" unique_id=2096206466]
 
 [node name="Player" parent="." unique_id=926426044 instance=ExtResource("1_tvio0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.8381205, 25.721275, 26.989788)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.861961, 0.2083422, 1.5510416)
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="Player" unique_id=827669302]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0999999, -0.100000024)
@@ -5368,11 +5368,11 @@ metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"proce
 transform = Transform3D(-1, 0, -8.7422784e-08, 0, 1, 0, 8.7422784e-08, 0, -1, 0.11368179, 0.27662468, 0.6927414)
 
 [node name="SM_Torch_A_LOD0" parent="lever/SM_Torch_A29" index="0" unique_id=1448704296]
-mesh = SubResource("ArrayMesh_4uwi5")
+mesh = SubResource("ArrayMesh_242vr")
 surface_material_override/0 = null
 
 [node name="GPUParticles3D" parent="lever/SM_Torch_A29/SM_Torch_A_LOD0" index="1" unique_id=897028893]
-draw_pass_1 = SubResource("QuadMesh_4yi6q")
+draw_pass_1 = SubResource("QuadMesh_lyhl5")
 
 [node name="OmniLight3D" parent="lever/SM_Torch_A29/SM_Torch_A_LOD0/GPUParticles3D" index="0" unique_id=274809955]
 light_bake_mode = 2
