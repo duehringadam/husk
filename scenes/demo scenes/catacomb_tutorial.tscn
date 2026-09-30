@@ -19,7 +19,6 @@
 [ext_resource type="PackedScene" uid="uid://dgnb24p8cgvog" path="res://scenes/Hivemind/CastleOfEternalMists/Prefabs/SM_Door_WithPadlock.tscn" id="13_2vmo8"]
 [ext_resource type="PackedScene" uid="uid://bjcgmp6dlq7dq" path="res://scenes/pieces/skull_pickable.tscn" id="13_05xh0"]
 [ext_resource type="PackedScene" uid="uid://d4n4ub6iquyag" path="res://scenes/Hivemind/CastleOfEternalMists/Prefabs/SM_TowerRound_Stairs_A.tscn" id="13_fcx27"]
-[ext_resource type="PackedScene" uid="uid://1kwgtl2v7yst" path="res://scenes/pieces/urn_pickable.tscn" id="14_d80s8"]
 [ext_resource type="PackedScene" uid="uid://d4n4ub6iqrgmo" path="res://scenes/Hivemind/CastleOfEternalMists/Prefabs/SM_Door_01.tscn" id="14_fcx27"]
 [ext_resource type="PackedScene" uid="uid://d4n4ub6iqx07i" path="res://scenes/Hivemind/CastleOfEternalMists/Prefabs/SM_ArchWall_Dome_1200_A_Ruined_A.tscn" id="16_533ee"]
 [ext_resource type="Shader" uid="uid://c0m61bqusqbkm" path="res://shaders/tunnel.gdshader" id="17_25gyw"]
@@ -209,15 +208,15 @@ size = Vector3(15, 0.4, 20)
 render_priority = 0
 shader = ExtResource("69_xukj7")
 shader_parameter/decal_texture = ExtResource("69_cfo3m")
-shader_parameter/decal_radius = 3.35
-shader_parameter/intersection_thickness = 7.71
-shader_parameter/decal_scale = 1.59
-shader_parameter/time_scale = 0.075
-shader_parameter/decal_color = Color(0.53524035, 0.68628323, 1, 0.023529412)
+shader_parameter/decal_radius = 7.935
+shader_parameter/intersection_thickness = 6.165
+shader_parameter/decal_scale = 5.465
+shader_parameter/time_scale = 0.05
+shader_parameter/decal_color = Color(0.37189904, 0.4679363, 0.66267854, 0.011764706)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ts5yn"]
 material = SubResource("ShaderMaterial_pmaif")
-size = Vector3(18.9, 2.7, 25)
+size = Vector3(18.9, 3.815, 25)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_d4sli"]
 size = Vector2(11.89, 2)
@@ -249,33 +248,19 @@ shader_parameter/roughness = 0.13999999687072
 shader_parameter/normal = 0.4
 shader_parameter/water_normal_noise_1 = SubResource("NoiseTexture2D_v4udn")
 shader_parameter/water_normal_noise_2 = SubResource("NoiseTexture2D_b0i5c")
-shader_parameter/sun_highlights = ExtResource("69_cfo3m")
-shader_parameter/sun_highlights_2 = ExtResource("69_cfo3m")
 shader_parameter/foam_texture = ExtResource("72_xa2l7")
 shader_parameter/time_scale = 1.0
 shader_parameter/normal_scroll_speed_1 = Vector2(0.1, 0)
 shader_parameter/normal_scroll_speed_2 = Vector2(0, 0)
-shader_parameter/highlights_time_scale = 0.0
 shader_parameter/uv_scale = 1.0
 shader_parameter/normal_blend = 0.5
-shader_parameter/highlights_blend = 0.5
 shader_parameter/depth_distance = 0.5
 shader_parameter/foam_intensity = 0.5
 shader_parameter/foam_width = 0.1
 shader_parameter/shore_fade_distance = 0.0
-shader_parameter/abberation_r = Vector2(0, 0)
-shader_parameter/abberation_g = Vector2(0, 0)
-shader_parameter/abberation_b = Vector2(0, 0)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_3ojas"]
 size = Vector2(11.57, 30)
-
-[sub_resource type="Gradient" id="Gradient_cr70s"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0, 0, 0, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_mjnvi"]
-gradient = SubResource("Gradient_cr70s")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_j0q20"]
 
@@ -303,23 +288,16 @@ shader_parameter/roughness = 0.33999999240032
 shader_parameter/normal = 0.4
 shader_parameter/water_normal_noise_1 = SubResource("NoiseTexture2D_87ki6")
 shader_parameter/water_normal_noise_2 = SubResource("NoiseTexture2D_njoew")
-shader_parameter/sun_highlights = SubResource("GradientTexture1D_mjnvi")
-shader_parameter/sun_highlights_2 = SubResource("GradientTexture1D_mjnvi")
 shader_parameter/foam_texture = ExtResource("72_xa2l7")
 shader_parameter/time_scale = 1.0
 shader_parameter/normal_scroll_speed_1 = Vector2(0.2, 0)
 shader_parameter/normal_scroll_speed_2 = Vector2(0, 0)
-shader_parameter/highlights_time_scale = 0.0
 shader_parameter/uv_scale = 3.0000000447036
 shader_parameter/normal_blend = 0.499999988824
-shader_parameter/highlights_blend = 0.5
 shader_parameter/depth_distance = 0.5
 shader_parameter/foam_intensity = 0.5
 shader_parameter/foam_width = 0.1499999966472
 shader_parameter/shore_fade_distance = 0.0
-shader_parameter/abberation_r = Vector2(0, 0)
-shader_parameter/abberation_g = Vector2(0, 0)
-shader_parameter/abberation_b = Vector2(0, 0)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ckd4q"]
 size = Vector2(30, 30)
@@ -546,7 +524,7 @@ size = Vector2(0.2, 0.2)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0acx8"]
 resource_name = "M_BrickStoneWall_Disp"
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_87ki6"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_j0q20"]
 resource_local_to_scene = true
 resource_name = "SM_Wall_400x600_Up_SM_Wall_400x600_Up_LOD0"
 lightmap_size_hint = Vector2i(170, 174)
@@ -688,7 +666,7 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_2y27b")
 size = Vector2(0.05, 0.05)
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_xe7ar"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_87ki6"]
 resource_local_to_scene = true
 resource_name = "SM_Torch_A_SM_Torch_A_LOD0"
 lightmap_size_hint = Vector2i(50, 46)
@@ -706,7 +684,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ckd4q"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xe7ar"]
 resource_local_to_scene = true
 transparency = 1
 diffuse_mode = 3
@@ -731,12 +709,12 @@ proximity_fade_distance = 0.01
 distance_fade_max_distance = 1.0
 stencil_flags = 2
 
-[sub_resource type="QuadMesh" id="QuadMesh_1vlhe"]
+[sub_resource type="QuadMesh" id="QuadMesh_ckd4q"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_ckd4q")
+material = SubResource("StandardMaterial3D_xe7ar")
 size = Vector2(0.2, 0.2)
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_36tlc"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_1vlhe"]
 resource_local_to_scene = true
 resource_name = "SM_Door_01_SM_Door_01_LOD0"
 lightmap_size_hint = Vector2i(114, 114)
@@ -860,7 +838,7 @@ size = Vector3(0.6, 1, 0.2)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bigd6"]
 resource_name = "M_Stone_Floor_Tile_Disp"
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_eb1aw"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_36tlc"]
 resource_local_to_scene = true
 resource_name = "SM_Bridge_Ceiling_A_SM_Bridge_Ceiling_A_LOD0"
 lightmap_size_hint = Vector2i(570, 126)
@@ -968,7 +946,7 @@ adjustment_enabled = true
 adjustment_contrast = 1.085
 adjustment_color_correction = ExtResource("1_memb0")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_4uwi5"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_eb1aw"]
 resource_local_to_scene = true
 resource_name = "SM_Torch_A_SM_Torch_A_LOD0"
 lightmap_size_hint = Vector2i(50, 46)
@@ -986,7 +964,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_242vr"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4uwi5"]
 resource_local_to_scene = true
 transparency = 1
 diffuse_mode = 3
@@ -1011,15 +989,19 @@ proximity_fade_distance = 0.01
 distance_fade_max_distance = 1.0
 stencil_flags = 2
 
-[sub_resource type="QuadMesh" id="QuadMesh_4yi6q"]
+[sub_resource type="QuadMesh" id="QuadMesh_242vr"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_242vr")
+material = SubResource("StandardMaterial3D_4uwi5")
 size = Vector2(0.2, 0.2)
 
 [node name="catacomb_tutorial" type="Node3D" unique_id=2096206466]
 
-[node name="Player" parent="." unique_id=926426044 instance=ExtResource("1_tvio0")]
+[node name="Player" parent="." unique_id=926426044 node_paths=PackedStringArray("mainhand") instance=ExtResource("1_tvio0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.4865103, 26.10519, 20.951836)
+mouse_sensitivity_multiplier = 200.0
+mainhand = NodePath("Head/Neck/Camera3D/RightHand")
+weapon_sway_amount = 5.0
+weapon_rotation_amount = 0.25
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="Player" unique_id=827669302]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0999999, -0.100000024)
@@ -1045,13 +1027,6 @@ metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"proce
 [node name="Pickable3" parent="dynamicObjects" unique_id=1063914679 instance=ExtResource("13_05xh0")]
 transform = Transform3D(0.75, 0.5, 0.4330127, -0.4330127, 0.8660254, -0.25, -0.5, 0, 0.8660254, 17, 0, 4.2000003)
 metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Skull","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
-,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
-]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
-
-
-[node name="Pickable4" parent="dynamicObjects" unique_id=364878149 instance=ExtResource("14_d80s8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.6, 0, -0.6)
-metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Urn","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
 ,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
 ]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
 
@@ -1223,7 +1198,7 @@ transform = Transform3D(1, 9.663381e-13, 0, -9.663381e-13, 1, 0, 0, 0, 1, 0, -0.
 shape = SubResource("BoxShape3D_qqar7")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="dynamicObjects/waterArea" unique_id=1836231717]
-transform = Transform3D(1, 8.940704e-08, -3.908105e-15, 8.940704e-08, -1, 8.742278e-08, 3.908107e-15, -8.742278e-08, -1, -0.54999924, 6.1499844, -1.9000053)
+transform = Transform3D(1, 8.940704e-08, -3.908105e-15, 8.940704e-08, -1, 8.742278e-08, 3.908107e-15, -8.742278e-08, -1, -0.54999924, 6.1499863, -1.9000053)
 mesh = SubResource("BoxMesh_ts5yn")
 
 [node name="Area3D" type="Area3D" parent="dynamicObjects" unique_id=1092351147 groups=["water"]]
@@ -2011,7 +1986,7 @@ transform = Transform3D(-4.371139e-08, 0, -1.1, 0, 0.31499997, 0, 1, 0, -4.80825
 
 [node name="SM_Wall_400x600_Up_LOD0" parent="world/climbTutorial/SM_Wall_400x600_Up36" index="0" unique_id=735782530]
 transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 0, 0, 0.9324135, 0, 0, 0)
-mesh = SubResource("ArrayMesh_87ki6")
+mesh = SubResource("ArrayMesh_j0q20")
 surface_material_override/0 = SubResource("StandardMaterial3D_h5317")
 
 [node name="SM_Wall_400x600_Up18" parent="world/climbTutorial" unique_id=1185983362 instance=ExtResource("30_lhe06")]
@@ -3588,11 +3563,11 @@ transform = Transform3D(1, 0, 7.1054274e-15, 0, 1, 0, -7.1054274e-15, 0, 1, 21.3
 transform = Transform3D(-1, 0, -8.7422784e-08, 0, 1, 0, 8.7422784e-08, 0, -1, 18.990421, 45.6, 20.13718)
 
 [node name="SM_Torch_A_LOD0" parent="world/NavigationRegion3D/walls/SM_Torch_A29" index="0" unique_id=1448704296]
-mesh = SubResource("ArrayMesh_xe7ar")
+mesh = SubResource("ArrayMesh_87ki6")
 surface_material_override/0 = null
 
 [node name="GPUParticles3D" parent="world/NavigationRegion3D/walls/SM_Torch_A29/SM_Torch_A_LOD0" index="1" unique_id=897028893]
-draw_pass_1 = SubResource("QuadMesh_1vlhe")
+draw_pass_1 = SubResource("QuadMesh_ckd4q")
 
 [node name="OmniLight3D" parent="world/NavigationRegion3D/walls/SM_Torch_A29/SM_Torch_A_LOD0/GPUParticles3D" index="0" unique_id=274809955]
 light_bake_mode = 2
@@ -4412,7 +4387,7 @@ metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"proce
 
 
 [node name="Door" parent="world/NavigationRegion3D/walls/SM_Grating_Door_05/doubleGate/LockableInteractableDoor" index="4" unique_id=629523064]
-mesh = SubResource("ArrayMesh_36tlc")
+mesh = SubResource("ArrayMesh_1vlhe")
 surface_material_override/0 = null
 
 [node name="DoesNotOpenFromThisSide" parent="world/NavigationRegion3D/walls/SM_Grating_Door_05/doubleGate" index="1" unique_id=1953274271]
@@ -4871,7 +4846,7 @@ transform = Transform3D(0.226269, 0, -0.97406477, 0, 1, 0, 0.97406477, 0, 0.2262
 transform = Transform3D(0.55, 0, 0, 0, 1, 0, 0, 0, 4, -32.05, 31.821, 10.675)
 
 [node name="SM_Bridge_Ceiling_A_LOD0" parent="world/NavigationRegion3D/walls/SM_Bridge_Ceiling_A" index="0" unique_id=1812935038]
-mesh = SubResource("ArrayMesh_eb1aw")
+mesh = SubResource("ArrayMesh_36tlc")
 surface_material_override/0 = SubResource("StandardMaterial3D_tndv7")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="world/NavigationRegion3D/walls/SM_Bridge_Ceiling_A/SM_Bridge_Ceiling_A_LOD0" index="0" unique_id=259296859]
@@ -5372,11 +5347,11 @@ metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"proce
 transform = Transform3D(-1, 0, -8.7422784e-08, 0, 1, 0, 8.7422784e-08, 0, -1, 0.11368179, 0.27662468, 0.6927414)
 
 [node name="SM_Torch_A_LOD0" parent="lever/SM_Torch_A29" index="0" unique_id=1448704296]
-mesh = SubResource("ArrayMesh_4uwi5")
+mesh = SubResource("ArrayMesh_eb1aw")
 surface_material_override/0 = null
 
 [node name="GPUParticles3D" parent="lever/SM_Torch_A29/SM_Torch_A_LOD0" index="1" unique_id=897028893]
-draw_pass_1 = SubResource("QuadMesh_4yi6q")
+draw_pass_1 = SubResource("QuadMesh_242vr")
 
 [node name="OmniLight3D" parent="lever/SM_Torch_A29/SM_Torch_A_LOD0/GPUParticles3D" index="0" unique_id=274809955]
 light_bake_mode = 2

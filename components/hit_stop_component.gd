@@ -4,6 +4,7 @@ extends Node
 const HIT_STOP_TIME_SCALE: float = 0.05
 
 @export var hurtbox_component: hurtbox_component
+@export var damage_component: DamageComponent
 @export var health_component: HealthComponent
 @export var hit_stop_duration: float = .15
 @export var priority: int = 1
@@ -26,3 +27,7 @@ func _on_health_changed(amount: float, new_value: float):
 		if is_instance_valid(health_component):
 			if health_component.damage_source is Player:
 				HitStop.hit_stop(HIT_STOP_TIME_SCALE, hit_stop_duration, priority)
+
+
+func _on_damage_component_damage_dealt(types: Dictionary[DamageTypes.DAMAGE_TYPES, float], actual: float, stance_damage: float, target: hurtbox_component, slow_amount: float) -> void:
+	HitStop.hit_stop(HIT_STOP_TIME_SCALE, hit_stop_duration, priority)

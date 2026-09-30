@@ -38,4 +38,5 @@ signal player_full_restore
 signal player_lookat_cutscene(target: Node3D, duration: float)
 signal enemy_currency_dropped(amount: int)
 signal custom_effect(custom_id: Variant, custom_data: Variant)
+signal traditional_combat_toggle(value: bool)
 @warning_ignore_restore("unused_signal")

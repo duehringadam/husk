@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bj4hhphu33n38" path="res://Player/player/player_body.tscn" id="3_tio5b"]
 [ext_resource type="Script" uid="uid://csps0dnf2gf2n" path="res://components/player_hurtbox_component.gd" id="5_eon52"]
 [ext_resource type="Script" uid="uid://brvxqhk8jpiq2" path="res://Player/scripts/health_detect.gd" id="6_5fkmn"]
+[ext_resource type="PackedScene" uid="uid://bkk0g5jmn4jpj" path="res://Player/player/player_arms_non_directional.tscn" id="7_yjj6r"]
 [ext_resource type="AudioStream" uid="uid://b4ajsd7gilmx" path="res://sfx/UI/huskdeathlongerlouder.wav" id="8_jaogv"]
 [ext_resource type="AudioStream" uid="uid://df2b8w21sb3xf" path="res://sfx/damage/hit-rock-03-266305.mp3" id="8_jux4o"]
 [ext_resource type="Shader" uid="uid://dgt3e85o3avu2" path="res://shaders/player_shaders/shaders/damage.gdshader" id="9_4ng6s"]
@@ -23,11 +24,8 @@
 [ext_resource type="AudioStream" uid="uid://dk0ftcdtucymv" path="res://sfx/damage/fall_damage.ogg" id="16_paiqy"]
 [ext_resource type="Script" uid="uid://dlxjuoak62wbv" path="res://Player/player/player_status_effect_component.gd" id="18_ubocy"]
 [ext_resource type="Script" uid="uid://bxoydk8unigg3" path="res://Player/scripts/player_hud.gd" id="21_ujn18"]
-[ext_resource type="Shader" uid="uid://dc66sjqqg3w1a" path="res://shaders/player_shaders/shaders/circular_bar.gdshader" id="22_2m5xu"]
-[ext_resource type="Script" uid="uid://83vqngoyog5j" path="res://Player/UI/scripts/hold_attack_bar.gd" id="23_5fkmn"]
 [ext_resource type="Shader" uid="uid://bl7r0kant66md" path="res://shaders/player_shaders/shaders/screen_burn.gdshader" id="26_018ip"]
 [ext_resource type="Script" uid="uid://1l23v6jds28n" path="res://Player/player/player_screen_burning.gd" id="27_018ip"]
-[ext_resource type="AudioStream" uid="uid://cc67f271a754i" path="res://sfx/UI/chargecomplete.wav" id="28_7vtq1"]
 [ext_resource type="Shader" uid="uid://dn324eo1sre1n" path="res://shaders/player_shaders/shaders/death.gdshader" id="29_f81pb"]
 [ext_resource type="Script" uid="uid://dfk5ps1jbvd5a" path="res://Player/player/modular_healthbar.gd" id="29_rkxts"]
 [ext_resource type="PackedScene" uid="uid://bb5rujo1j4mr6" path="res://Player/UI/progress bars/player_mana.tscn" id="29_v5tlk"]
@@ -780,19 +778,6 @@ _data = {
 &"remove_burn": SubResource("Animation_spsvl")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_k1tkb"]
-shader = ExtResource("22_2m5xu")
-shader_parameter/progress = 0.0
-shader_parameter/ring_thickness = 0.04500000143898
-shader_parameter/ring_radius = 0.42500001692762
-shader_parameter/progress_color = Color(0.41140202, 0.41140202, 0.41140202, 0.5)
-shader_parameter/background_color = Color(0.2, 0.2, 0.2, 0)
-shader_parameter/gradient_color = Color(1, 1, 1, 1)
-shader_parameter/smoothness = 0.0010000000475
-shader_parameter/gradient_strength = 1.0
-shader_parameter/use_gradient = false
-shader_parameter/rotation_offset = 3.14000014915
-
 [sub_resource type="Gradient" id="Gradient_rkxts"]
 colors = PackedColorArray(0.22352941, 0, 0, 1, 0.53986263, 1.0348111e-06, 2.8878452e-07, 1)
 
@@ -876,13 +861,15 @@ player_stats = Dictionary[int, int]({
 4: 10,
 5: 10
 })
+mouse_sensitivity_multiplier = 100.0
 player_body = NodePath("Head/Neck/Camera3D/playerBody")
 jump_power = 5.0
 camera_lean_position = Vector3(0, 0, 0)
 mainhand = NodePath("Head/Neck/Camera3D/RightHand")
 offhand = NodePath("Head/Neck/Camera3D/LeftHand")
 consumable = NodePath("Head/Neck/Camera3D/ConsumableHand")
-weapon_rotation_amount = 0.25
+weapon_sway_amount = 8.0
+weapon_rotation_amount = 0.5
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1092821169]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -953,13 +940,17 @@ offhand = NodePath("../LeftHand")
 [node name="LeftHand" parent="Head/Neck/Camera3D" unique_id=412198594 node_paths=PackedStringArray("mainhand") instance=ExtResource("10_hqsyx")]
 unique_name_in_owner = true
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
-visible = false
 mainhand = NodePath("../RightHand")
 
 [node name="ConsumableHand" parent="Head/Neck/Camera3D" unique_id=405842846 node_paths=PackedStringArray("mainhand", "offhand") instance=ExtResource("10_v5tlk")]
 unique_name_in_owner = true
+visible = false
 mainhand = NodePath("../RightHand")
 offhand = NodePath("../LeftHand")
+
+[node name="playerHands" parent="Head/Neck/Camera3D" unique_id=119819015 instance=ExtResource("7_yjj6r")]
+process_mode = 4
+visible = false
 
 [node name="CameraAnimationPlayer" type="AnimationPlayer" parent="Head" unique_id=2090545160]
 unique_name_in_owner = true
@@ -1092,6 +1083,7 @@ health_component = NodePath("../HealthComponent")
 metadata/_custom_type_script = "uid://dql5v81gqvdat"
 
 [node name="hud" type="Control" parent="." unique_id=89617392]
+z_index = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -1100,6 +1092,128 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("21_ujn18")
+
+[node name="interactionContainer" parent="hud" unique_id=932650427 instance=ExtResource("38_4ay6w")]
+layout_mode = 1
+
+[node name="statusList" type="VBoxContainer" parent="hud/interactionContainer" unique_id=680043038]
+custom_minimum_size = Vector2(200, 300)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -50.0
+offset_top = 571.0
+offset_right = 50.0
+offset_bottom = 671.0
+grow_horizontal = 2
+script = ExtResource("38_56h8e")
+
+[node name="bleedingContainer" type="HBoxContainer" parent="hud/interactionContainer/statusList" unique_id=621431180]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="hud/interactionContainer/statusList/bleedingContainer" unique_id=2020232849]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("38_kmb8e")
+expand_mode = 2
+
+[node name="bleeding" type="ProgressBar" parent="hud/interactionContainer/statusList/bleedingContainer" unique_id=1020985661]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+script = ExtResource("40_56h8e")
+
+[node name="burningContainer" type="HBoxContainer" parent="hud/interactionContainer/statusList" unique_id=968124826]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="hud/interactionContainer/statusList/burningContainer" unique_id=2132153453]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("38_kmb8e")
+expand_mode = 2
+
+[node name="burning" type="ProgressBar" parent="hud/interactionContainer/statusList/burningContainer" unique_id=1843075060]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+script = ExtResource("40_56h8e")
+
+[node name="poisonedContainer" type="HBoxContainer" parent="hud/interactionContainer/statusList" unique_id=958400144]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="hud/interactionContainer/statusList/poisonedContainer" unique_id=1534594668]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("38_kmb8e")
+expand_mode = 2
+
+[node name="poison" type="ProgressBar" parent="hud/interactionContainer/statusList/poisonedContainer" unique_id=672209197]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+script = ExtResource("40_56h8e")
+
+[node name="sleepContainer" type="HBoxContainer" parent="hud/interactionContainer/statusList" unique_id=2005078534]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="hud/interactionContainer/statusList/sleepContainer" unique_id=989652198]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("38_kmb8e")
+expand_mode = 2
+
+[node name="sleep" type="ProgressBar" parent="hud/interactionContainer/statusList/sleepContainer" unique_id=189833958]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+script = ExtResource("40_56h8e")
+
+[node name="crosshair" type="CenterContainer" parent="hud/interactionContainer" unique_id=857848023 node_paths=PackedStringArray("RETICLE_LINES", "PLAYER_CONTROLLER")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -0.5
+offset_right = 0.5
+offset_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("12_qk8yx")
+RETICLE_LINES = [NodePath("top"), NodePath("right"), NodePath("bottom"), NodePath("left")]
+PLAYER_CONTROLLER = NodePath("../../..")
+
+[node name="top" type="Line2D" parent="hud/interactionContainer/crosshair" unique_id=610082759]
+points = PackedVector2Array(-5, -10, 0, -20, 5, -10)
+width = 2.0
+default_color = Color(0.41140202, 0.41140202, 0.41140202, 0.5)
+
+[node name="right" type="Line2D" parent="hud/interactionContainer/crosshair" unique_id=701899964]
+points = PackedVector2Array(10, -5, 20, 0, 10, 5)
+width = 2.0
+default_color = Color(0.41140202, 0.41140202, 0.41140202, 0.5)
+
+[node name="bottom" type="Line2D" parent="hud/interactionContainer/crosshair" unique_id=1399638602]
+points = PackedVector2Array(5, 10, 0, 20, -5, 10)
+width = 2.0
+default_color = Color(0.41140202, 0.41140202, 0.41140202, 0.5)
+
+[node name="left" type="Line2D" parent="hud/interactionContainer/crosshair" unique_id=107856571]
+points = PackedVector2Array(-10, 5, -20, 0, -10, -5)
+width = 2.0
+default_color = Color(0.41140202, 0.41140202, 0.41140202, 0.5)
 
 [node name="damage" type="ColorRect" parent="hud" unique_id=634867585 node_paths=PackedStringArray("hurtbox")]
 material = SubResource("ShaderMaterial_vhccx")
@@ -1144,28 +1258,6 @@ script = ExtResource("27_018ip")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="hud/statusEffects" unique_id=858379140]
 libraries/ = SubResource("AnimationLibrary_spsvl")
-
-[node name="hold_attack_bar" type="ColorRect" parent="hud" unique_id=1612312757]
-material = SubResource("ShaderMaterial_k1tkb")
-custom_minimum_size = Vector2(90, 90)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -45.0
-offset_top = -45.0
-offset_right = 45.0
-offset_bottom = 45.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-script = ExtResource("23_5fkmn")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="hud/hold_attack_bar" unique_id=462786893]
-stream = ExtResource("28_7vtq1")
-bus = &"SFX"
 
 [node name="healthbarBack" type="TextureRect" parent="hud" unique_id=1462863208]
 layout_mode = 1
@@ -1314,21 +1406,6 @@ texture = ExtResource("32_rkxts")
 expand_mode = 3
 stretch_mode = 4
 
-[node name="inventory" parent="hud" unique_id=227349631 node_paths=PackedStringArray("equipped_items") instance=ExtResource("38_6havu")]
-unique_name_in_owner = true
-visible = false
-layout_mode = 1
-offset_top = 0.0
-offset_bottom = 0.0
-theme_override_styles/panel = SubResource("StyleBoxEmpty_jng3h")
-equipped_items = {
-"armor_equipped": null,
-"jewelry_equipped": null,
-"leg_equipped": null,
-"mainhand_equipped": null,
-"offhand_equipped": null
-}
-
 [node name="selectionWheelDarken" type="ColorRect" parent="hud" unique_id=1482172172]
 visible = false
 layout_mode = 1
@@ -1343,7 +1420,6 @@ color = Color(0, 0, 0, 0.446)
 [node name="SelectionWheel" parent="hud/selectionWheelDarken" unique_id=1649874519 instance=ExtResource("40_avbty")]
 unique_name_in_owner = true
 layout_mode = 1
-selected_option = 1
 
 [node name="playerCurrency" parent="hud" unique_id=415251137 instance=ExtResource("34_47e5g")]
 z_index = 999
@@ -1351,127 +1427,20 @@ layout_mode = 1
 offset_left = -330.0
 offset_top = -175.0
 
-[node name="interactionContainer" parent="hud" unique_id=932650427 instance=ExtResource("38_4ay6w")]
+[node name="inventory" parent="hud" unique_id=227349631 node_paths=PackedStringArray("equipped_items") instance=ExtResource("38_6havu")]
+unique_name_in_owner = true
+visible = false
 layout_mode = 1
-
-[node name="statusList" type="VBoxContainer" parent="hud/interactionContainer" unique_id=680043038]
-custom_minimum_size = Vector2(200, 300)
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -50.0
-offset_top = 571.0
-offset_right = 50.0
-offset_bottom = 671.0
-grow_horizontal = 2
-script = ExtResource("38_56h8e")
-
-[node name="bleedingContainer" type="HBoxContainer" parent="hud/interactionContainer/statusList" unique_id=621431180]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="hud/interactionContainer/statusList/bleedingContainer" unique_id=2020232849]
-layout_mode = 2
-size_flags_horizontal = 0
-texture = ExtResource("38_kmb8e")
-expand_mode = 2
-
-[node name="bleeding" type="ProgressBar" parent="hud/interactionContainer/statusList/bleedingContainer" unique_id=1020985661]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-max_value = 1.0
-script = ExtResource("40_56h8e")
-
-[node name="burningContainer" type="HBoxContainer" parent="hud/interactionContainer/statusList" unique_id=968124826]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="hud/interactionContainer/statusList/burningContainer" unique_id=2132153453]
-layout_mode = 2
-size_flags_horizontal = 0
-texture = ExtResource("38_kmb8e")
-expand_mode = 2
-
-[node name="burning" type="ProgressBar" parent="hud/interactionContainer/statusList/burningContainer" unique_id=1843075060]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-max_value = 1.0
-script = ExtResource("40_56h8e")
-
-[node name="poisonedContainer" type="HBoxContainer" parent="hud/interactionContainer/statusList" unique_id=958400144]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="hud/interactionContainer/statusList/poisonedContainer" unique_id=1534594668]
-layout_mode = 2
-size_flags_horizontal = 0
-texture = ExtResource("38_kmb8e")
-expand_mode = 2
-
-[node name="poison" type="ProgressBar" parent="hud/interactionContainer/statusList/poisonedContainer" unique_id=672209197]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-max_value = 1.0
-script = ExtResource("40_56h8e")
-
-[node name="sleepContainer" type="HBoxContainer" parent="hud/interactionContainer/statusList" unique_id=2005078534]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="hud/interactionContainer/statusList/sleepContainer" unique_id=989652198]
-layout_mode = 2
-size_flags_horizontal = 0
-texture = ExtResource("38_kmb8e")
-expand_mode = 2
-
-[node name="sleep" type="ProgressBar" parent="hud/interactionContainer/statusList/sleepContainer" unique_id=189833958]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-max_value = 1.0
-script = ExtResource("40_56h8e")
-
-[node name="crosshair" type="CenterContainer" parent="hud/interactionContainer" unique_id=857848023 node_paths=PackedStringArray("RETICLE_LINES", "PLAYER_CONTROLLER")]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -0.5
-offset_top = -0.5
-offset_right = 0.5
-offset_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-script = ExtResource("12_qk8yx")
-RETICLE_LINES = [NodePath("top"), NodePath("right"), NodePath("bottom"), NodePath("left")]
-PLAYER_CONTROLLER = NodePath("../../..")
-
-[node name="top" type="Line2D" parent="hud/interactionContainer/crosshair" unique_id=610082759]
-points = PackedVector2Array(-5, -10, 0, -20, 5, -10)
-width = 2.0
-default_color = Color(0.41140202, 0.41140202, 0.41140202, 0.5)
-
-[node name="right" type="Line2D" parent="hud/interactionContainer/crosshair" unique_id=701899964]
-points = PackedVector2Array(10, -5, 20, 0, 10, 5)
-width = 2.0
-default_color = Color(0.41140202, 0.41140202, 0.41140202, 0.5)
-
-[node name="bottom" type="Line2D" parent="hud/interactionContainer/crosshair" unique_id=1399638602]
-points = PackedVector2Array(5, 10, 0, 20, -5, 10)
-width = 2.0
-default_color = Color(0.41140202, 0.41140202, 0.41140202, 0.5)
-
-[node name="left" type="Line2D" parent="hud/interactionContainer/crosshair" unique_id=107856571]
-points = PackedVector2Array(-10, 5, -20, 0, -10, -5)
-width = 2.0
-default_color = Color(0.41140202, 0.41140202, 0.41140202, 0.5)
+offset_top = 0.0
+offset_bottom = 0.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_jng3h")
+equipped_items = {
+"armor_equipped": null,
+"jewelry_equipped": null,
+"leg_equipped": null,
+"mainhand_equipped": null,
+"offhand_equipped": null
+}
 
 [node name="death" type="ColorRect" parent="." unique_id=575191084]
 z_index = 1
@@ -1560,10 +1529,9 @@ debug_color = Color(1, 0, 0, 1)
 [connection signal="blocked_attack" from="hurtbox_component" to="Head/Neck/Camera3D/LeftHand" method="_on_hurtbox_component_blocked_attack"]
 [connection signal="damage_taken" from="hurtbox_component" to="." method="_on_hurtbox_component_damage_taken"]
 [connection signal="status_activated" from="status_effect_component" to="hud/statusEffects" method="_on_status_effect_component_status_activated"]
-[connection signal="status_removed" from="status_effect_component" to="hud/statusEffects" method="_on_status_effect_component_status_removed"]
 [connection signal="status_removed" from="status_effect_component" to="hud/interactionContainer/statusList" method="_on_status_effect_component_status_removed"]
+[connection signal="status_removed" from="status_effect_component" to="hud/statusEffects" method="_on_status_effect_component_status_removed"]
 [connection signal="statuses_increased" from="status_effect_component" to="hud/interactionContainer/statusList" method="_on_status_effect_component_statuses_increased"]
-[connection signal="charging" from="hud/hold_attack_bar" to="hud/interactionContainer/crosshair" method="_on_hold_attack_bar_charging"]
 [connection signal="value_changed" from="hud/interactionContainer/statusList/bleedingContainer/bleeding" to="hud/interactionContainer/statusList/bleedingContainer/bleeding" method="_on_value_changed"]
 [connection signal="value_changed" from="hud/interactionContainer/statusList/burningContainer/burning" to="hud/interactionContainer/statusList/burningContainer/burning" method="_on_value_changed"]
 [connection signal="value_changed" from="hud/interactionContainer/statusList/poisonedContainer/poison" to="hud/interactionContainer/statusList/poisonedContainer/poison" method="_on_value_changed"]

@@ -36,6 +36,7 @@ func _on_swing_state_entered() -> void:
 
 
 func _on_swing_state_exited() -> void:
+	hand.activate_mainhand_test(false)
 	check_buffer = false
 	block_pressed = false
 	attack_pressed = false
@@ -50,7 +51,6 @@ func _on_swing_state_physics_processing(delta: float) -> void:
 	
 	var attack_node: AnimationNodeBlendTree = animation_state_tree_root.get_node("attack")
 
-	
 	if check_buffer && end_timer.time_left > 0:
 		if attack_pressed:
 			if current_node == "attack":

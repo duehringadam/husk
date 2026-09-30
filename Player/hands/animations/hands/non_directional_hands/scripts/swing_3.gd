@@ -25,7 +25,7 @@ func _on_swing_3_state_entered() -> void:
 
 
 func _on_swing_3_state_exited() -> void:
-	pass # Replace with function body.
+	hand.activate_mainhand_test(false)
 
 
 func _on_swing_3_state_input(event: InputEvent) -> void:

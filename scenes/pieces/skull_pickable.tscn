@@ -1,7 +1,6 @@
 [gd_scene format=4 uid="uid://bjcgmp6dlq7dq"]
 
 [ext_resource type="Script" uid="uid://bkjjobtn3b4bj" path="res://addons/game_pieces/pickable/pickable.gd" id="1_d82q7"]
-[ext_resource type="PackedScene" uid="uid://dxv26u4k3vle" path="res://scenes/pieces/crate_broken.tscn" id="2_k4i4e"]
 [ext_resource type="AudioStream" uid="uid://bcpfkufcfjdcq" path="res://scenes/pieces/wood_pickable_break.ogg" id="3_dir4h"]
 [ext_resource type="Script" uid="uid://ck3cei0hvspym" path="res://addons/interaction_system/interaction_container.gd" id="4_rccj2"]
 [ext_resource type="Script" uid="uid://5tinbhq6p45k" path="res://addons/interaction_system/interaction.gd" id="5_664if"]
@@ -69,7 +68,7 @@ stream_0/stream = ExtResource("14_jjf0t")
 stream_1/stream = ExtResource("15_d82q7")
 stream_2/stream = ExtResource("15_k4i4e")
 
-[node name="Pickable" type="RigidBody3D" unique_id=398447372 node_paths=PackedStringArray("change_distance_interaction", "throwable_mesh", "throwable", "damage_component", "health_component") groups=["disable_collision_while_grabbed", "throwable"]]
+[node name="Pickable" type="RigidBody3D" unique_id=398447372 node_paths=PackedStringArray("change_distance_interaction", "throwable", "damage_component", "health_component") groups=["disable_collision_while_grabbed", "throwable"]]
 collision_layer = 8
 collision_mask = 14
 contact_monitor = true
@@ -77,10 +76,8 @@ max_contacts_reported = 1
 angular_damp = 5.0
 script = ExtResource("1_d82q7")
 change_distance_interaction = NodePath("InteractionContainer/WhileGrabbed/Change Distance")
-throwable_mesh = NodePath("")
 throwable = NodePath(".")
 damage_component = NodePath("DamageComponent")
-shattered_mesh = ExtResource("2_k4i4e")
 break_sound = ExtResource("3_dir4h")
 health_component = NodePath("HealthComponent")
 metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("4_rccj2"),"default_context_id":0,"display_name":"Skull","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("5_664if")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("5_664if"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("6_gapxg"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
@@ -143,10 +140,10 @@ metadata/_custom_type_script = "uid://bxe74cq2uqemi"
 [node name="HealthComponent" type="Node3D" parent="." unique_id=1423222075]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 script = ExtResource("8_ye0j0")
-max_health = 40.0
+max_health = 9999.0
 metadata/_custom_type_script = "uid://dgjqgiw3yw42e"
 
-[node name="hurtbox_component" type="Area3D" parent="." unique_id=2078444068 node_paths=PackedStringArray("health_component", "status_component")]
+[node name="hurtbox_component" type="Area3D" parent="." unique_id=2078444068 node_paths=PackedStringArray("health_component")]
 transform = Transform3D(1, 0, 0, 0, 1, 7.549791e-08, 0, -7.549791e-08, 1, 0, 0.116808474, 0)
 collision_layer = 8
 collision_mask = 13
@@ -168,7 +165,6 @@ status_resistances = Dictionary[int, float]({
 3: 999.0
 })
 health_component = NodePath("../HealthComponent")
-status_component = NodePath("")
 invulnerability_duration = 0.5
 hit_sound = ExtResource("10_2gbw4")
 metadata/_custom_type_script = "uid://c2i6qdosp0h2"

@@ -61277,7 +61277,7 @@ ray_count = 32
 spread_angle = 90.0
 
 [node name="ghoul_arms2(1)" type="Node3D" parent="." unique_id=264221670]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0.35)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.105, -0.27, 0.385)
 
 [node name="Armature" type="Node3D" parent="ghoul_arms2(1)" unique_id=1078713948]
 
@@ -61648,6 +61648,7 @@ libraries/ = SubResource("AnimationLibrary_6pntq")
 libraries/ghoul_arms2(2) = SubResource("AnimationLibrary_0bwg4")
 
 [node name="AnimationTree" type="AnimationTree" parent="ghoul_arms2(1)" unique_id=1330822349]
+active = false
 tree_root = ExtResource("20_hefob")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/block = false

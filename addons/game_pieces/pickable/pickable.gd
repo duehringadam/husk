@@ -14,6 +14,7 @@ extends RigidBody3D
 @export var shattered_mesh: PackedScene
 @export var break_sound: AudioStream
 @export var health_component: HealthComponent
+@export var hurtbox: hurtbox_component
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D
 
 var _interaction_controller: InteractionController = null
@@ -37,6 +38,9 @@ const MIN_DAMAGE_SCALE_VELOCITY: float = 10
 func _ready() -> void:
 	if shattered_mesh:
 		shattered_mesh_add = shattered_mesh.instantiate()
+	if hurtbox:
+		if !hurtbox.is_connected("damage_taken", _on_hurtbox_component_damage_taken):
+			hurtbox.connect("damage_taken", _on_hurtbox_component_damage_taken)
 
 func _physics_process(_delta: float) -> void:
 	if Engine.is_editor_hint(): return
@@ -211,3 +215,7 @@ func break_object():
 
 func _on_health_component_died() -> void:
 	break_object()
+
+
+func _on_hurtbox_component_damage_taken(actual: float, source: DamageComponent, hit_dir: Vector3) -> void:
+	apply_central_impulse((self.global_position- source.global_position) * mass * 5)

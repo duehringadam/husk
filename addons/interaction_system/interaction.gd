@@ -23,6 +23,7 @@ var _triggered_last_frame: bool = false
 
 func process_interaction(controller: InteractionController) -> bool:
 	if Engine.is_editor_hint(): return false
+	if !is_instance_valid(control): return false
 	if control.is_triggered():
 		perform(controller)
 		_triggered_last_frame = true

@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dolh7osohdf1j" path="res://item/weapons/one hand/longsword/longsword.tscn" id="5_h5h3g"]
 [ext_resource type="Animation" uid="uid://wbk0m8ydfhon" path="res://Player/hands/animations/hands/non_directional_hands/stab.res" id="6_baoko"]
 [ext_resource type="PackedScene" uid="uid://bky3rbcy6gkpt" path="res://item/weapons/shield/wooden_kite_shield/kite_shield.tscn" id="6_xn5xd"]
-[ext_resource type="Animation" uid="uid://q0ygvpk5ay14" path="res://Player/hands/animations/hands/non_directional_hands/stab_last.res" id="7_sgwt8"]
+[ext_resource type="Animation" uid="uid://c0f4p15m70v57" path="res://Player/hands/animations/hands/non_directional_hands/stab_last.res" id="7_sgwt8"]
 [ext_resource type="Animation" uid="uid://u7ydcfn7ltsy" path="res://Player/hands/animations/hands/shield/shield_TO.res" id="7_ugr0r"]
 [ext_resource type="Script" uid="uid://w6uoc7pcgodf" path="res://Player/hands/animations/hands/non_directional_hands/scripts/non_directional_idle.gd" id="9_hjgte"]
 [ext_resource type="Script" uid="uid://brxjwws5iswec" path="res://Player/hands/animations/hands/non_directional_hands/scripts/non_directional_offhand.gd" id="10_e5esg"]
@@ -2977,7 +2977,7 @@ tracks/99/path = NodePath("..")
 tracks/99/interp = 1
 tracks/99/loop_wrap = true
 tracks/99/keys = {
-"times": PackedFloat32Array(0.26666668, 0.42904568),
+"times": PackedFloat32Array(0.26666668, 0.53333336),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [true],
@@ -8521,14 +8521,14 @@ node_connections = [&"output", 0, &"Blend2", &"Blend2", 0, &"attack", &"Blend2",
 animation = &"ghoul_arms2/offhand_shield_lower"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_baoko"]
-animation = &"stab_last"
+animation = &"ghoul_arms2/brokensword_swing3_2"
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_ugr0r"]
 filter_enabled = true
 filters = ["Armature/Skeleton3D:hand.L", "Armature/Skeleton3D:middle.001.L", "Armature/Skeleton3D:middle.002.L", "Armature/Skeleton3D:middle.L", "Armature/Skeleton3D:middle.L.001", "Armature/Skeleton3D:pinkie.001.L", "Armature/Skeleton3D:pinkie.002.L", "Armature/Skeleton3D:pinkie.L", "Armature/Skeleton3D:pinkie.L.001", "Armature/Skeleton3D:pointy.002.L", "Armature/Skeleton3D:pointy.003.L", "Armature/Skeleton3D:pointy.L", "Armature/Skeleton3D:pointy.L.001", "Armature/Skeleton3D:ring.001.L", "Armature/Skeleton3D:ring.002.L", "Armature/Skeleton3D:ring.L", "Armature/Skeleton3D:ring.L.001", "Armature/Skeleton3D:segment.L", "Armature/Skeleton3D:segment2.L", "Armature/Skeleton3D:segment3.L", "Armature/Skeleton3D:thumb.001.L", "Armature/Skeleton3D:thumb.L", "Armature/Skeleton3D:thumb.L.001", "Armature/Skeleton3D:weapons.L"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_sgwt8"]
-graph_offset = Vector2(-451.32883, -26.858624)
+graph_offset = Vector2(-600.7182, -81.09053)
 nodes/Blend2/node = SubResource("AnimationNodeBlend2_ugr0r")
 nodes/Blend2/position = Vector2(60, 100)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_baoko")
@@ -8548,7 +8548,7 @@ filter_enabled = true
 filters = ["Armature/Skeleton3D:hand.R", "Armature/Skeleton3D:middle.001.R", "Armature/Skeleton3D:middle.002.R", "Armature/Skeleton3D:middle.R", "Armature/Skeleton3D:middle.R.001", "Armature/Skeleton3D:pinkie.001.R", "Armature/Skeleton3D:pinkie.002.R", "Armature/Skeleton3D:pinkie.R", "Armature/Skeleton3D:pinkie.R.001", "Armature/Skeleton3D:pointy.002.R", "Armature/Skeleton3D:pointy.003.R", "Armature/Skeleton3D:pointy.R", "Armature/Skeleton3D:pointy.R.001", "Armature/Skeleton3D:ring.001.R", "Armature/Skeleton3D:ring.002.R", "Armature/Skeleton3D:ring.R", "Armature/Skeleton3D:ring.R.001", "Armature/Skeleton3D:segment.R", "Armature/Skeleton3D:segment2.R", "Armature/Skeleton3D:segment3.R", "Armature/Skeleton3D:thumb.001.R", "Armature/Skeleton3D:thumb.R", "Armature/Skeleton3D:thumb.R.001", "Armature/Skeleton3D:weapons.R"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ugr0r"]
-graph_offset = Vector2(-367.4559, -23.656755)
+graph_offset = Vector2(-294.05164, 11.695343)
 nodes/output/position = Vector2(660, 160)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_qixk0")
 nodes/Animation/position = Vector2(60, 80)
@@ -8556,6 +8556,26 @@ nodes/Blend2/node = SubResource("AnimationNodeBlend2_wo10k")
 nodes/Blend2/position = Vector2(360, 100)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_fjvcj")
 "nodes/Animation 2/position" = Vector2(-20, 280)
+node_connections = [&"output", 0, &"Blend2", &"Blend2", 0, &"Animation", &"Blend2", 1, &"Animation 2"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ugr0r"]
+animation = &"ghoul_arms2/mainhand_sword_lower"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sgwt8"]
+animation = &"ghoul_arms2/shield_blockHIT"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_h5h3g"]
+filter_enabled = true
+filters = ["Armature/Skeleton3D:hand.R", "Armature/Skeleton3D:middle.001.R", "Armature/Skeleton3D:middle.002.R", "Armature/Skeleton3D:middle.R", "Armature/Skeleton3D:middle.R.001", "Armature/Skeleton3D:pinkie.001.R", "Armature/Skeleton3D:pinkie.002.R", "Armature/Skeleton3D:pinkie.R", "Armature/Skeleton3D:pinkie.R.001", "Armature/Skeleton3D:pointy.002.R", "Armature/Skeleton3D:pointy.003.R", "Armature/Skeleton3D:pointy.R", "Armature/Skeleton3D:pointy.R.001", "Armature/Skeleton3D:ring.001.R", "Armature/Skeleton3D:ring.002.R", "Armature/Skeleton3D:ring.R", "Armature/Skeleton3D:ring.R.001", "Armature/Skeleton3D:segment.R", "Armature/Skeleton3D:segment2.R", "Armature/Skeleton3D:segment3.R", "Armature/Skeleton3D:thumb.001.R", "Armature/Skeleton3D:thumb.R", "Armature/Skeleton3D:thumb.R.001", "Armature/Skeleton3D:weapons.R"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_xn5xd"]
+graph_offset = Vector2(-354.17166, 0)
+nodes/Blend2/node = SubResource("AnimationNodeBlend2_h5h3g")
+nodes/Blend2/position = Vector2(-23.676931, 128.84082)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_sgwt8")
+nodes/Animation/position = Vector2(-380, 100)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_ugr0r")
+"nodes/Animation 2/position" = Vector2(-380, 300)
 node_connections = [&"output", 0, &"Blend2", &"Blend2", 0, &"Animation", &"Blend2", 1, &"Animation 2"]
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_qixk0"]
@@ -8660,6 +8680,14 @@ switch_mode = 2
 advance_mode = 2
 advance_condition = &"idle"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qixk0"]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_srh5u"]
+xfade_time = 0.1
+switch_mode = 2
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ofbms"]
 states/End/position = Vector2(966, 113)
 states/Start/position = Vector2(95, 113)
@@ -8671,12 +8699,14 @@ states/attack_3/node = SubResource("AnimationNodeBlendTree_sgwt8")
 states/attack_3/position = Vector2(569, -235.03906)
 states/block/node = SubResource("AnimationNodeBlendTree_ugr0r")
 states/block/position = Vector2(744, 113)
+states/block_hit/node = SubResource("AnimationNodeBlendTree_xn5xd")
+states/block_hit/position = Vector2(869, 190.42386)
 states/equip/node = SubResource("AnimationNodeBlendTree_fghts")
 states/equip/position = Vector2(261, 113)
 states/idle/node = SubResource("AnimationNodeBlendTree_e6cnr")
 states/idle/position = Vector2(516, 113)
-transitions = ["equip", "idle", SubResource("AnimationNodeStateMachineTransition_aqvbn"), "Start", "equip", SubResource("AnimationNodeStateMachineTransition_qy4af"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_fjvcj"), "idle", "block", SubResource("AnimationNodeStateMachineTransition_ugr0r"), "block", "idle", SubResource("AnimationNodeStateMachineTransition_wo10k"), "block", "attack", SubResource("AnimationNodeStateMachineTransition_fghts"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_00qp1"), "attack_2", "idle", SubResource("AnimationNodeStateMachineTransition_sgwt8"), "attack", "attack_2", SubResource("AnimationNodeStateMachineTransition_h5h3g"), "attack", "block", SubResource("AnimationNodeStateMachineTransition_2wc7x"), "attack_2", "block", SubResource("AnimationNodeStateMachineTransition_uiu8h"), "attack_2", "attack_3", SubResource("AnimationNodeStateMachineTransition_xn5xd"), "attack_3", "idle", SubResource("AnimationNodeStateMachineTransition_1vdwj")]
-graph_offset = Vector2(0, -102.688515)
+transitions = ["equip", "idle", SubResource("AnimationNodeStateMachineTransition_aqvbn"), "Start", "equip", SubResource("AnimationNodeStateMachineTransition_qy4af"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_fjvcj"), "idle", "block", SubResource("AnimationNodeStateMachineTransition_ugr0r"), "block", "idle", SubResource("AnimationNodeStateMachineTransition_wo10k"), "block", "attack", SubResource("AnimationNodeStateMachineTransition_fghts"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_00qp1"), "attack_2", "idle", SubResource("AnimationNodeStateMachineTransition_sgwt8"), "attack", "attack_2", SubResource("AnimationNodeStateMachineTransition_h5h3g"), "attack", "block", SubResource("AnimationNodeStateMachineTransition_2wc7x"), "attack_2", "block", SubResource("AnimationNodeStateMachineTransition_uiu8h"), "attack_2", "attack_3", SubResource("AnimationNodeStateMachineTransition_xn5xd"), "attack_3", "idle", SubResource("AnimationNodeStateMachineTransition_1vdwj"), "block", "block_hit", SubResource("AnimationNodeStateMachineTransition_qixk0"), "block_hit", "block", SubResource("AnimationNodeStateMachineTransition_srh5u")]
+graph_offset = Vector2(0, -54.57615)
 
 [node name="playerHands" type="Marker3D" unique_id=1178015951 node_paths=PackedStringArray("bone_attachment", "left_bone_attachment", "animation_tree", "skeleton", "hands", "state_chart")]
 script = ExtResource("1_e6cnr")
@@ -8688,7 +8718,7 @@ hands = NodePath("ghoul_arms2(1)/Armature/Skeleton3D/Hands")
 state_chart = NodePath("ghoul_arms2(1)/StateChart")
 
 [node name="ghoul_arms2(1)" type="Node3D" parent="." unique_id=264221670]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0.35)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, -0.29, 0.56)
 
 [node name="Armature" type="Node3D" parent="ghoul_arms2(1)" unique_id=1078713948]
 
@@ -8881,7 +8911,7 @@ bones/26/rest = Transform3D(1, -1.493868e-07, 2.384187e-07, 1.493868e-07, 1, 2.3
 bones/26/enabled = true
 bones/26/position = Vector3(4.531385e-09, 0.47012398, 1.0887968e-08)
 bones/26/rotation = Quaternion(0.1880713, 0.02481649, -0.010614165, 0.98178446)
-bones/26/scale = Vector3(1, 1, 1)
+bones/26/scale = Vector3(1.0588081, 1.0588082, 1.058808)
 bones/27/name = "segment3.L"
 bones/27/parent = 26
 bones/27/rest = Transform3D(1, 1.3577231e-07, -1.2370789e-07, -1.3922967e-07, 0.99959683, -0.028390123, 1.1980343e-07, 0.02839012, 0.9995969, -1.5249171e-09, 0.08228908, 1.4464391e-08)
@@ -9053,7 +9083,7 @@ bone_idx = 24
 transform = Transform3D(-5.9604645e-08, 1.3038516e-08, -1.25, -7.450581e-09, 1.25, 7.450581e-09, 1.2500001, -7.450581e-09, -7.4505806e-08, 0.02024877, 0.10823786, 0.003311336)
 
 [node name="leftBoneAttach" type="BoneAttachment3D" parent="ghoul_arms2(1)/Armature/Skeleton3D" unique_id=175715778]
-transform = Transform3D(0.2878041, 0.010991115, -0.9576258, -0.069592424, 0.99752945, -0.00946616, 0.9551567, 0.06936801, 0.28785777, -0.54599077, -0.306155, -0.9879281)
+transform = Transform3D(0.30472937, 0.011637505, -1.0139419, -0.073685035, 1.0561923, -0.010022838, 1.0113277, 0.07344742, 0.30478603, -0.5360451, -0.30723047, -1.0217301)
 bone_name = "weapons.L"
 bone_idx = 48
 
@@ -9074,6 +9104,7 @@ parameters/attack/Blend2/blend_amount = 1.0
 parameters/attack_2/Blend2/blend_amount = 1.0
 parameters/attack_3/Blend2/blend_amount = 1.0
 parameters/block/Blend2/blend_amount = 1.0
+parameters/block_hit/Blend2/blend_amount = 1.0
 parameters/equip/Blend2/blend_amount = 1.0
 parameters/idle/Blend2/blend_amount = 1.0
 

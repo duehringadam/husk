@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://d0t8s304kbxoj"]
 
 [ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_menus_template/base/scripts/capture_focus.gd" id="1_1v5x4"]
+[ext_resource type="Script" uid="uid://bj77gyunvyxse" path="res://scenes/menus/options_menu/input/input_extras_menu.gd" id="1_b5ikx"]
 [ext_resource type="PackedScene" uid="uid://cl416gdb1fgwr" path="res://addons/maaacks_menus_template/base/scenes/menus/options_menu/option_control/slider_option_control.tscn" id="2_goqr1"]
 [ext_resource type="PackedScene" uid="uid://b6bl3n5mp3m1e" path="res://addons/maaacks_menus_template/base/scenes/menus/options_menu/option_control/list_option_control.tscn" id="2_mc4mw"]
 [ext_resource type="PackedScene" uid="uid://bsxh6v7j0257h" path="res://addons/maaacks_menus_template/base/scenes/menus/options_menu/option_control/toggle_option_control.tscn" id="3_mc4mw"]
@@ -13,6 +14,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource("1_b5ikx")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1349208383]
 layout_mode = 2
@@ -32,6 +34,20 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 8
 alignment = 1
+
+[node name="experimental" parent="VBoxContainer/MarginContainer/VBoxContainer" unique_id=1542359513 instance=ExtResource("3_mc4mw")]
+layout_mode = 2
+lock_config_names = true
+option_name = "Experimental Combat"
+option_section = 4
+key = "ExperimentalCombat"
+section = "GameSettings"
+
+[node name="OptionLabel" parent="VBoxContainer/MarginContainer/VBoxContainer/experimental" index="0" unique_id=1777046824]
+text = "Experimental Combat :"
+
+[node name="CheckButton" parent="VBoxContainer/MarginContainer/VBoxContainer/experimental" index="1" unique_id=1939121227]
+button_pressed = true
 
 [node name="HSeparator2" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer" unique_id=822420755]
 layout_mode = 2
@@ -60,7 +76,7 @@ popup/item_0/id = 0
 popup/item_1/text = "Mouse"
 popup/item_1/id = 1
 
-[node name="headBob" parent="VBoxContainer/MarginContainer/VBoxContainer" unique_id=1542359513 instance=ExtResource("3_mc4mw")]
+[node name="headBob" parent="VBoxContainer/MarginContainer/VBoxContainer" unique_id=942264734 instance=ExtResource("3_mc4mw")]
 layout_mode = 2
 lock_config_names = true
 option_name = "Headbob"
@@ -84,6 +100,9 @@ section = "GameSettings"
 
 [node name="OptionLabel" parent="VBoxContainer/MarginContainer/VBoxContainer/cameraShake" index="0" unique_id=1777046824]
 text = "Camera Shake :"
+
+[node name="CheckButton" parent="VBoxContainer/MarginContainer/VBoxContainer/cameraShake" index="1" unique_id=1939121227]
+button_pressed = true
 
 [node name="Screen Blur" parent="VBoxContainer/MarginContainer/VBoxContainer" unique_id=1919424591 instance=ExtResource("3_mc4mw")]
 layout_mode = 2
@@ -115,7 +134,7 @@ text = "Mouse Sensitivity :"
 [node name="HSlider" parent="VBoxContainer/MarginContainer/VBoxContainer/MouseSensitivityControl" index="1" unique_id=864094681]
 min_value = 1.0
 max_value = 10.0
-value = 2.25
+value = 2.0
 tick_count = 8
 
 [node name="JoypadSensitivityControl" parent="VBoxContainer/MarginContainer/VBoxContainer" unique_id=2141070036 instance=ExtResource("2_goqr1")]
@@ -131,9 +150,29 @@ text = "Joypad Sensitivity :"
 [node name="HSlider" parent="VBoxContainer/MarginContainer/VBoxContainer/JoypadSensitivityControl" index="1" unique_id=864094681]
 min_value = 1.0
 max_value = 10.0
-value = 3.55
 tick_count = 8
 
+[node name="ColorRect" type="ColorRect" parent="." unique_id=310412615]
+visible = false
+layout_mode = 2
+color = Color(0, 0, 0, 0.7921569)
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="ColorRect" unique_id=1119542233]
+oversampling_override = 1.0
+initial_position = 2
+size = Vector2i(400, 300)
+dialog_text = "Traditional-style combat is only compatible with the sword and shield for now!
+
+This is an experimental style of combat while we test out what is best and most fun for players.
+
+This is non-directional based!"
+dialog_autowrap = true
+
+[connection signal="setting_changed" from="VBoxContainer/MarginContainer/VBoxContainer/experimental" to="." method="_on_experimental_setting_changed"]
+[connection signal="canceled" from="ColorRect/ConfirmationDialog" to="." method="_on_confirmation_dialog_canceled"]
+[connection signal="confirmed" from="ColorRect/ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]
+
+[editable path="VBoxContainer/MarginContainer/VBoxContainer/experimental"]
 [editable path="VBoxContainer/MarginContainer/VBoxContainer/directionalCombat"]
 [editable path="VBoxContainer/MarginContainer/VBoxContainer/headBob"]
 [editable path="VBoxContainer/MarginContainer/VBoxContainer/cameraShake"]

@@ -95,6 +95,7 @@ Optional: %jump, %sprint, %crouch, %lean, %zoom, %switch_hands
 @onready var mana_component: ManaComponent = $ManaComponent
 @onready var player_currency: MarginContainer = $hud/playerCurrency
 
+@onready var non_directional_hands: Marker3D = $Head/Neck/Camera3D/playerHands
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = 9.8
@@ -142,11 +143,36 @@ func _ready() -> void:
 	SignalBus.connect("secondary_active", _set_weapon_active)
 	SignalBus.connect("kick_active", _animate_camera_swing)
 	SignalBus.connect("player_lookat_cutscene", cutscene)
+	SignalBus.connect("traditional_combat_toggle", _update_traditional_combat)
 	Global.camera_fov = base_fov
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	footsteps.stream = footsteps_sound
 	SignalBus.emit_signal("player_ready")
-	
+
+func _update_traditional_combat(value: bool):
+	if value:
+		mainhand.visible = false
+		offhand.visible = false
+		
+		mainhand.process_mode = Node.PROCESS_MODE_DISABLED
+		offhand.process_mode = Node.PROCESS_MODE_DISABLED
+		
+		mainhand = non_directional_hands
+		
+		non_directional_hands.process_mode = Node.PROCESS_MODE_INHERIT
+		non_directional_hands.visible = true
+	else:
+		mainhand = %RightHand
+		mainhand.visible = true
+		offhand.visible = true
+		
+		mainhand.process_mode = Node.PROCESS_MODE_INHERIT
+		offhand.process_mode = Node.PROCESS_MODE_INHERIT
+		
+		non_directional_hands.process_mode = Node.PROCESS_MODE_DISABLED
+		non_directional_hands.visible = false
+
+
 func _animate_camera_swing(value: bool):
 	if value:
 		camera_animation_player.play("swing_left")
@@ -194,7 +220,6 @@ func _physics_process(delta) -> void:
 				attack_dir.y = input_dir.z
 			1:
 				attack_dir = (Input.get_last_mouse_velocity() + joy_look).normalized()
-				print(attack_dir)
 	if is_climbing:
 		_handle_rope_climbing(delta)
 	_handle_ladder_physics(delta)
@@ -401,9 +426,10 @@ func handle_head_bob(delta: float) -> void:
 		var pos: Vector3 = Vector3.ZERO
 		pos.y = sin(bob_time * BOB_FREQ) * head_bob_strength
 		pos.x = cos(bob_time * BOB_FREQ / 2) * head_bob_strength
+		pos.z = cos(bob_time * BOB_FREQ/2) * head_bob_strength
 		neck.transform.origin =  pos
-		%RightHand.transform.origin = right_hand_pos - pos / 2
-		%LeftHand.transform.origin = left_hand_pos - pos / 2
+		mainhand.transform.origin = right_hand_pos - pos / 2
+		offhand.transform.origin = left_hand_pos - pos / 2
 
 
 func handle_fov_change(delta: float) -> void:
@@ -453,13 +479,6 @@ func _get_configuration_warnings() -> PackedStringArray:
 	if %move == null:
 		warnings.append("Add a unique named 'move' PlayerControl child to the player")
 	return warnings
-	
-func _y_rotate(to: float) -> float:
-	# find shortest distance to loop so it doesn't go full circle
-	# in situtations like 350 deg to 10 deg.
-	#var difference = fmod(to - rotation.y, PI * 2)
-	#return fmod(2 * difference, PI * 2) - difference
-	return wrapf(to - rotation.y, -PI, PI)
 
 func cutscene(target: Node3D, duration: float):
 	isLooking = true

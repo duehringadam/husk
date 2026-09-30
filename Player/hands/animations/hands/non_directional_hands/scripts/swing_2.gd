@@ -35,6 +35,7 @@ func _on_swing_2_state_entered() -> void:
 
 
 func _on_swing_2_state_exited() -> void:
+	hand.activate_mainhand_test(false)
 	check_buffer = false
 	attack_pressed = false
 	block_pressed = false

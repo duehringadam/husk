@@ -1,7 +1,6 @@
 [gd_scene format=4 uid="uid://1kwgtl2v7yst"]
 
 [ext_resource type="Script" uid="uid://bkjjobtn3b4bj" path="res://addons/game_pieces/pickable/pickable.gd" id="1_6pfdd"]
-[ext_resource type="PackedScene" uid="uid://dxv26u4k3vle" path="res://scenes/pieces/crate_broken.tscn" id="2_mjc23"]
 [ext_resource type="AudioStream" uid="uid://bcpfkufcfjdcq" path="res://scenes/pieces/wood_pickable_break.ogg" id="3_ol8jj"]
 [ext_resource type="Script" uid="uid://ck3cei0hvspym" path="res://addons/interaction_system/interaction_container.gd" id="4_u10xh"]
 [ext_resource type="Script" uid="uid://5tinbhq6p45k" path="res://addons/interaction_system/interaction.gd" id="5_k5kcm"]
@@ -75,7 +74,6 @@ script = ExtResource("1_6pfdd")
 change_distance_interaction = NodePath("InteractionContainer/WhileGrabbed/Change Distance")
 throwable = NodePath(".")
 damage_component = NodePath("DamageComponent")
-shattered_mesh = ExtResource("2_mjc23")
 break_sound = ExtResource("3_ol8jj")
 health_component = NodePath("HealthComponent")
 metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("4_u10xh"),"default_context_id":0,"display_name":"Urn","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("5_k5kcm")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("5_k5kcm"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("6_brgk1"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")

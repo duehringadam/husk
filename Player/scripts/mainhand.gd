@@ -220,7 +220,7 @@ func _perform_area_check(origin: Vector3, direction: Vector3):
 	check_area.queue_free()
 	
 
-func _update_hits(types: Dictionary, actual: float, stance_damage: float, target: hurtbox_component, check_area: DamageComponent, slow_amount: float):
+func _update_hits(types: Dictionary, actual: float, stance_damage: float, target: hurtbox_component,slow_amount: float, check_area: DamageComponent):
 	hits.append(check_area.hits)
 	_on_damage_dealt(target)
 	
@@ -267,8 +267,13 @@ func _on_hurtbox_component_blocked_attack() -> void:
 	if offhand.weapon: return
 	
 	var _weapon = bone_attachment.get_child(0)
+	var _offhand_weapon = left_bone_attachment.get_child(0)
 	animation_tree["parameters/playback"].travel("block_hit")
 	if _weapon:
 		if _weapon.block_sound:
 			_weapon.block_sound.pitch_scale = randf_range(0.9,1.1)
 			_weapon.block_sound.play()
+	if _offhand_weapon:
+		if _offhand_weapon.block:
+			_offhand_weapon.block.pitch_scale = randf_range(0.9,1.1)
+			_offhand_weapon.block.play()
