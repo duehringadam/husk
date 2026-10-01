@@ -13,9 +13,10 @@ extends npc
 @export var current_animation_state_machine: AnimationNodeStateMachine
 
 @export_category("Infestation")
-@export var is_infested: bool = false
-@export var infestation_bone_attach: infestation_attach
-@export var infestation_enemy_scene: PackedScene
+@export var is_infested: bool = false: set = _update_is_infested
+@export var infestation_bone_attach: PackedScene
+@export var bone_to_affect: PhysicalBone3D
+@export var skeleton: Skeleton3D
 
 var secondary_weapon_active: bool = false: set = _update_secondary_weapon_active
 
@@ -83,8 +84,16 @@ func _update_secondary_weapon(weapon: npc_weapon):
 		offhand.add_child(secondary_weapon_offhand_add)
 
 func _update_is_infested(value: bool):
-	pass
-	
+	is_infested = value
+	if value:
+		var infestation_attachment: BoneAttachment3D = infestation_bone_attach.instantiate()
+		skeleton.add_child(infestation_attachment)
+		infestation_attachment.bone_idx = bone_to_affect.get_bone_id()
+		infestation_attachment.bone_name = bone_to_affect["bone_name"]
+		infestation_attachment.global_position = bone_to_affect.global_position
+		infestation_attachment.health_component = health_component
+		infestation_attachment.target_bone = bone_to_affect
+
 func _update_secondary_weapon_active(value: bool):
 	secondary_weapon_active = value
 	_update_main_weapon_visibility(!value)

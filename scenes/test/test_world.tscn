@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://csc3ojr7benhn" path="res://scenes/test/maptestflesh(2).tscn" id="15_urhrq"]
 [ext_resource type="PackedScene" uid="uid://54gj5htolv56" path="res://status_effects/burning/fire_damage.tscn" id="17_5utua"]
 [ext_resource type="Texture2D" uid="uid://bpyuecyduy6u2" path="res://scenes/npc/howler/howler textures/howler_Base_color.png" id="17_blr6d"]
+[ext_resource type="PackedScene" uid="uid://bgo71k4srphvm" path="res://scenes/npc/Corpse Crawler/corpse_crawler.tscn" id="18_8jv6k"]
 [ext_resource type="Texture2D" uid="uid://dyg67rjl2h6j0" path="res://scenes/npc/howler/howler textures/howler_normal.jpg" id="18_f2a6c"]
 [ext_resource type="PackedScene" uid="uid://c64bx48b8sxhh" path="res://status_effects/poisoned/poison_damage.tscn" id="18_yna3y"]
 [ext_resource type="PackedScene" uid="uid://pbxnpurmc3r4" path="res://item/spells/poison/poison_spray_spell_item_world.tscn" id="19_8jv6k"]
@@ -212,5 +213,14 @@ metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"proce
 
 [node name="DamageComponent3" parent="." unique_id=965752293 instance=ExtResource("20_78y6d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.392914, 0.7060472, -10.444471)
+
+[node name="CorpseCrawler" parent="." unique_id=658094616 instance=ExtResource("18_8jv6k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 6)
+
+[node name="CorpseCrawler2" parent="." unique_id=868907641 instance=ExtResource("18_8jv6k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 9)
+
+[node name="CorpseCrawler3" parent="." unique_id=1046144855 instance=ExtResource("18_8jv6k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 9)
 
 [connection signal="body_entered" from="CurrentLevelArea" to="CurrentLevelArea" method="_on_body_entered"]

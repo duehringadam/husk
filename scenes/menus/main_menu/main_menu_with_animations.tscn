@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://dm216huy7h8di" path="res://scenes/menus/options_menu/master_options_menu_with_tabs.tscn" id="3_gci14"]
 [ext_resource type="PackedScene" uid="uid://drlt2laf5svis" path="res://scenes/menus/credits/scrollable_credits.tscn" id="4_j64yt"]
 [ext_resource type="AudioStream" uid="uid://cvbcul6u08tp5" path="res://sfx/UI/huskitemhover.ogg" id="5_8dhfv"]
-[ext_resource type="AudioStream" uid="uid://k1arix2k4m16" path="res://sfx/music/huskmenuig.wav" id="5_x5bcm"]
 [ext_resource type="AudioStream" uid="uid://d3lrfxnc4pe02" path="res://sfx/UI/huskCLICK.wav" id="6_8dhfv"]
+[ext_resource type="AudioStream" uid="uid://cly8rb4upa23p" path="res://sfx/music/Husk_Track.ogg" id="7_50s1w"]
 [ext_resource type="PackedScene" uid="uid://d4n4ub6iqn2ou" path="res://scenes/Hivemind/CastleOfEternalMists/Prefabs/SM_Wall_400M_StoneFloor_Tile_B.tscn" id="8_psq7h"]
 [ext_resource type="PackedScene" uid="uid://d4n4ub6iqqb81" path="res://scenes/Hivemind/CastleOfEternalMists/Prefabs/SM_Stairs_4x2_A.tscn" id="9_og5q8"]
 [ext_resource type="PackedScene" uid="uid://d4n4ub6iqq3xs" path="res://scenes/Hivemind/CastleOfEternalMists/Prefabs/SM_ArchWall_Inside_400_B.tscn" id="10_4ytiy"]
@@ -376,7 +376,7 @@ states/Start/position = Vector2(82, 123)
 transitions = ["Intro", "OpenMainMenu", SubResource("11"), "OpenMainMenu", "OpenSubMenu", SubResource("14"), "Start", "Intro", SubResource("AnimationNodeStateMachineTransition_j0orr"), "OpenSubMenu", "OpenMainMenu", SubResource("AnimationNodeStateMachineTransition_63dxc")]
 graph_offset = Vector2(-180.277, 49)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_1dvqu"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_50s1w"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v4udn"]
@@ -482,7 +482,7 @@ sky_material = SubResource("ShaderMaterial_au875")
 
 [sub_resource type="Environment" id="Environment_el4qd"]
 background_mode = 2
-background_energy_multiplier = 0.53
+background_energy_multiplier = 0.25
 sky = SubResource("Sky_6vl3a")
 ambient_light_source = 3
 reflected_light_source = 2
@@ -492,11 +492,7 @@ glow_enabled = true
 glow_bloom = 0.3
 fog_enabled = true
 fog_light_color = Color(0.6088792, 0.79947746, 0.77259415, 1)
-fog_light_energy = 0.15
-fog_aerial_perspective = 0.308
-fog_sky_affect = 0.448
-fog_height = -2.0
-fog_height_density = 1.3427
+fog_light_energy = 0.1
 volumetric_fog_albedo = Color(0.858134, 0.9059796, 1, 1)
 volumetric_fog_emission = Color(0.76784736, 0.8456733, 1, 1)
 volumetric_fog_emission_energy = 0.05
@@ -526,27 +522,16 @@ anim_player = NodePath("../MenuAnimationPlayer")
 parameters/conditions/intro_done = false
 
 [node name="BackgroundMusicPlayer" parent="." index="3" unique_id=1625802646]
-stream = ExtResource("5_x5bcm")
+stream = ExtResource("7_50s1w")
 
 [node name="BackgroundTextureRect" parent="." index="4" unique_id=986426166]
-texture = SubResource("ViewportTexture_1dvqu")
+texture = SubResource("ViewportTexture_50s1w")
 
 [node name="VersionContainer" parent="VersionMargin" parent_id_path=PackedInt32Array(932050008) index="0" unique_id=1257931728]
 modulate = Color(1, 1, 1, 0)
 
 [node name="TitleContainer" parent="MenuContainer/TitleMargin" parent_id_path=PackedInt32Array(130640138) index="0" unique_id=1630448193]
 modulate = Color(1, 1, 1, 0)
-
-[node name="TextureRect" parent="MenuContainer/TitleMargin/TitleContainer" index="1" unique_id=367421559]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -300.0
-offset_top = 0.0
-offset_right = 300.0
-offset_bottom = 500.0
-grow_horizontal = 2
 
 [node name="SubTitleContainer" parent="MenuContainer/SubTitleMargin" parent_id_path=PackedInt32Array(957023689) index="0" unique_id=1636485108]
 modulate = Color(1, 1, 1, 0)
@@ -555,17 +540,8 @@ modulate = Color(1, 1, 1, 0)
 modulate = Color(1, 1, 1, 0)
 
 [node name="MenuButtonsBoxContainer" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer" index="0" unique_id=1566437110]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -130.0
 offset_top = -583.0
-offset_right = 130.0
 offset_bottom = -239.0
-grow_horizontal = 2
-grow_vertical = 0
 lock = true
 
 [node name="NewGameButton" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" index="0" unique_id=1080793885]
@@ -594,7 +570,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_v4udn")
 size = Vector2i(1920, 1080)
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport" index="0" unique_id=1633104701]
-transform = Transform3D(-4.371139e-08, 0.34202012, 0.9396926, 0, 0.9396926, -0.34202012, -1, -1.4950174e-08, -4.1075268e-08, 0.71, 1.555, 2.208)
+transform = Transform3D(-4.371139e-08, 0.34202012, 0.9396926, 0, 0.9396926, -0.34202012, -1, -1.4950174e-08, -4.1075268e-08, 0.71, 1.555, 2.143)
 fov = 60.6
 
 [node name="burialTombstart" type="Node3D" parent="SubViewport" index="1" unique_id=356425179]
@@ -682,10 +658,8 @@ locked = true
 swing_angle = -90.0
 open_sfx = NodePath("open")
 close_sfx = NodePath("close")
-metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Lockable Door","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":false,"override_display_name":false,"display_name":"","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
-,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
-, Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":false,"override_display_name":false,"display_name":"","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"use","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
-,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Lockable Door","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":false,"override_display_name":false,"display_name":"","control":null,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+, Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":false,"override_display_name":false,"display_name":"","control":null,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
 ]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
 
 

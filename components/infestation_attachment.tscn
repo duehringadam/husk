@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bbp6oxjtmv0di" path="res://scenes/VFX/Scenes/VFX_Blood_Explosion_A2.tscn" id="2_6w3r4"]
 [ext_resource type="PackedScene" uid="uid://cxifv6kp1kyoc" path="res://scenes/VFX/Scenes/VFX_BloodConstant_A1.tscn" id="2_obfr3"]
 [ext_resource type="PackedScene" uid="uid://betqhcel05i5m" path="res://scenes/VFX/Scenes/Blood_Pool_Decal.tscn" id="2_yphe8"]
+[ext_resource type="PackedScene" uid="uid://bgo71k4srphvm" path="res://scenes/npc/Corpse Crawler/corpse_crawler.tscn" id="3_d8nxi"]
 [ext_resource type="AudioStream" uid="uid://byqsrrosv3kdp" path="res://scenes/npc/Corpse Crawler/sfx/parasite_chestburst.ogg" id="4_6w3r4"]
 [ext_resource type="AudioStream" uid="uid://dosloheeqnykv" path="res://scenes/npc/Corpse Crawler/sfx/parasite_chestburst_warning.ogg" id="4_xv0r1"]
 [ext_resource type="AudioStream" uid="uid://h5omreb4n7j6" path="res://scenes/npc/Corpse Crawler/sfx/husk_infected_activate(1).wav" id="7_yphe8"]
@@ -158,6 +159,7 @@ bone_name = "Chest"
 bone_idx = 2
 script = ExtResource("1_yel2f")
 blood_decal = ExtResource("2_yphe8")
+enemy_scene = ExtResource("3_d8nxi")
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="." unique_id=1360439850]
 transform = Transform3D(1, -5.820766e-11, 0, -5.820766e-10, 1.0000001, 1.4901161e-08, -4.656613e-10, 0, 1.0000001, 0, 0, 0)

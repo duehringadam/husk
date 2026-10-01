@@ -1,6 +1,7 @@
 class_name npc
 extends CharacterBody3D
 
+signal target_changed(target: Node3D)
 
 @export_category("Name")
 @export var npc_name: String
@@ -84,6 +85,9 @@ func _on_stance_component_stance_broken() -> void:
 	
 func _update_target(value: Node3D):
 	target = value
+	if target is Player:
+		target_changed.emit(target.head)
+	
 
 func _npc_shop_open(custom_id: Variant, custom_data: Variant):
 	if npc_shop == null: return

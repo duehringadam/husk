@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" uid="uid://ikastsf77y3p" path="res://scenes/VFX/Scenes/blood_effect.gd" id="1_0bap4"]
 [ext_resource type="Texture2D" uid="uid://brjjwdwx65oij" path="res://scenes/VFX/textures/T_Blood_Mist_04x_alpha.png" id="1_g4d8m"]
-[ext_resource type="Material" uid="uid://hnygll7t2it1" path="res://status_effects/bleeding/bleeding_material_override_2.tres" id="2_670xq"]
 [ext_resource type="Texture2D" uid="uid://dbnf0aulan0lb" path="res://scenes/VFX/textures/T_Blood_Mist_04a_alpha_normal(1).png" id="3_msbt8"]
+[ext_resource type="Shader" uid="uid://bfwwv62cr7k2o" path="res://shaders/blood vfx shaders/ss_Disolver_subUV_small_Liquid_Treshold_p.gdshader" id="4_yttoo"]
+[ext_resource type="Texture2D" uid="uid://dynq355483yeq" path="res://scenes/VFX/textures/T_Blood_Splatter_Kj9.png" id="5_yttoo"]
+[ext_resource type="Texture2D" uid="uid://b3lg6h25y1j4u" path="res://scenes/VFX/textures/T_Blood_Splatter_Kj9_N.png" id="6_jswxs"]
 
 [sub_resource type="Gradient" id="Gradient_msbt8"]
 colors = PackedColorArray(0, 0, 0, 1, 0.09239707, 0.09239706, 0.09239706, 1)
@@ -72,6 +74,40 @@ color = Color(0.93297625, 0, 0.21960723, 1)
 alpha_curve = SubResource("CurveTexture_2wb3e")
 
 [sub_resource type="QuadMesh" id="QuadMesh_k8uit"]
+
+[sub_resource type="Gradient" id="Gradient_n1vag"]
+colors = PackedColorArray(0.36078432, 0, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_pfxsf"]
+gradient = SubResource("Gradient_n1vag")
+
+[sub_resource type="Gradient" id="Gradient_70xfr"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.0768358, 0.0768358, 0.0768358, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8mnei"]
+gradient = SubResource("Gradient_70xfr")
+
+[sub_resource type="Gradient" id="Gradient_tfigh"]
+colors = PackedColorArray(0.103743516, 0.10374353, 0.103743516, 1, 0.14044744, 0.14044744, 0.14044744, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_n1vag"]
+gradient = SubResource("Gradient_tfigh")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_swq08"]
+render_priority = 0
+shader = ExtResource("4_yttoo")
+shader_parameter/Scale = Vector2(1, 1)
+shader_parameter/Speed_XY = Vector2(0, 0)
+shader_parameter/Disolver_Texture = ExtResource("5_yttoo")
+shader_parameter/Color_1D_Gradient = SubResource("GradientTexture1D_pfxsf")
+shader_parameter/Metallic_Texture = SubResource("GradientTexture2D_8mnei")
+shader_parameter/Roughtness_1D_Gradient = SubResource("GradientTexture1D_n1vag")
+shader_parameter/Normal_Texture = ExtResource("6_jswxs")
+shader_parameter/Normal_Map_Depth = 1.0
+shader_parameter/Color_Intensity = 2.0
+shader_parameter/subuv_grid = Vector2i(1, 1)
+shader_parameter/use_subuv = false
 
 [sub_resource type="Curve" id="Curve_ly2vg"]
 _data = [Vector2(0, 0.0206795), 0.0, -0.0668502, 0, 0, Vector2(1, 1), 2.56455, 0.0, 0, 0]
@@ -214,7 +250,7 @@ draw_pass_1 = SubResource("QuadMesh_k8uit")
 
 [node name="BloodConstant" type="GPUParticles3D" parent="." unique_id=526134306]
 layers = 4
-material_override = ExtResource("2_670xq")
+material_override = SubResource("ShaderMaterial_swq08")
 emitting = false
 amount = 20
 randomness = 1.0

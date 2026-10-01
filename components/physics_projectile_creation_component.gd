@@ -27,6 +27,5 @@ func create_projectile():
 	projectile.apply_torque(Vector3(0, 0, 1.0))
 
 
-
-func _on_vision_area_max_aggro(_aggro_amount: float, aggro_node: Node3D) -> void:
-	target_node = aggro_node
+func _on_undead_shambler_armored_target_changed(target: Node3D) -> void:
+	target_node = target

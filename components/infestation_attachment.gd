@@ -7,6 +7,7 @@ signal spawn_enemy
 @export var target_bone: PhysicalBone3D
 @export var health_component: HealthComponent
 @export var blood_decal:PackedScene
+@export var enemy_scene: PackedScene
 
 @onready var blood_pos: RayCast3D = $blood_pos
 @onready var infestation_animation: AnimationPlayer = $infestationAnimation
@@ -15,11 +16,22 @@ signal spawn_enemy
 var noise: FastNoiseLite = FastNoiseLite.new()
 var has_activated: bool = false
 var times_activated: int = 1
+var enemy: Node3D
 
 func _ready() -> void:
 	if health_component:
 		if !health_component.is_connected("died", start_infestation):
 			health_component.connect("died", start_infestation)
+
+	if enemy_scene:
+		var enemy_scene_add = enemy_scene.instantiate()
+		add_child(enemy_scene_add)
+		enemy_scene_add.visible = false
+		enemy_scene_add.global_position = self.global_position
+		enemy_scene_add.is_embedded = true
+		enemy_scene_add.collision_layer = 0
+		remote_transform.remote_path = enemy_scene_add.get_path()
+		enemy = enemy_scene_add
 
 	noise.noise_type = FastNoiseLite.TYPE_SIMPLEX
 	noise.frequency = 0.8 
@@ -30,7 +42,12 @@ func start_infestation():
 		infestation_animation.play("enemy_spawn_warning")
 
 func _spawn_enemy():
-	spawn_enemy.emit()
+	enemy.collision_layer = 4
+	enemy.reparent(get_tree().current_scene)
+	remote_transform.remote_path = ""
+	enemy.state_chart.send_event("idle")
+	enemy.animation_tree.active = true
+	enemy.visible = true
 	
 func trigger_twitch() -> void:
 	if not target_bone:

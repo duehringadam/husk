@@ -125,3 +125,12 @@ class_name VFXLoot
 			_set_shader_param("use_texture", true)
 		else:
 			_set_shader_param("use_texture", false)
+
+
+
+func _on_grab_on_trigger(controller: InteractionController) -> void:
+	visible = false
+
+
+func _on_grab_on_complete(controller: InteractionController) -> void:
+	visible = true

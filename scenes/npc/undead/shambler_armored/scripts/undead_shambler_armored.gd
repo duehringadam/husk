@@ -2,15 +2,7 @@ extends humanoid_npc
 
 @onready var vocalizations: AudioStreamPlayer3D = $vocalizations
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
-var infestation_enemy_add
 
-func _ready() -> void:
-	if is_infested:
-		infestation_enemy_add = infestation_enemy_scene.instantiate()
-		infestation_enemy_add.is_embedded = true
-		infestation_bone_attach.add_child(infestation_enemy_add)
-		infestation_enemy_add.collision_layer = 0
-		infestation_bone_attach.remote_transform.remote_path = infestation_enemy_add.get_path()
 
 func _physics_process(delta: float) -> void:
 	direction = navigation_agent.get_next_path_position() - global_transform.origin
@@ -41,16 +33,6 @@ func _on_health_component_died() -> void:
 	state_chart.send_event("dead")
 	collision_layer = 0
 	
-func enable_infested_enemy():
-	if is_infested:
-		infestation_enemy_add.collision_layer = 4
-		infestation_enemy_add.reparent(get_tree().current_scene)
-		infestation_bone_attach.remote_transform.remote_path = ""
-		infestation_enemy_add.state_chart.send_event("idle")
-		infestation_enemy_add.animation_tree.active = true
-		infestation_enemy_add.visible = true
-		infestation_enemy_add.target = target
-		is_infested = false
 	
 func head_lost(value: bool)-> void:
 	if !is_infested:

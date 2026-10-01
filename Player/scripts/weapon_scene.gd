@@ -46,4 +46,4 @@ func remove_blood():
 	blood_drip.emitting = false
 	var weapon_mesh_shader = weapon_mesh.get_active_material(0)
 	tween = get_tree().create_tween()
-	tween.tween_property(weapon_mesh_shader.next_pass,"shader_parameter/progress",0,60)
+	tween.tween_property(weapon_mesh_shader,"shader_parameter/progress",0,60)
