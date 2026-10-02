@@ -5,6 +5,7 @@ extends Node
 @export var state_chart: StateChart
 @export var death_sound: AudioStreamPlayer3D
 @export var damage_components_to_disable: Array[DamageComponent]
+
 func _on_dead_state_entered() -> void:
 	source_npc.fall()
 	animation_tree.active = false

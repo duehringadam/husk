@@ -30,6 +30,7 @@ func _ready() -> void:
 		enemy_scene_add.global_position = self.global_position
 		enemy_scene_add.is_embedded = true
 		enemy_scene_add.collision_layer = 0
+		
 		remote_transform.remote_path = enemy_scene_add.get_path()
 		enemy = enemy_scene_add
 

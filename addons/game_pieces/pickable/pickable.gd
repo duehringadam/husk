@@ -49,16 +49,16 @@ func _physics_process(_delta: float) -> void:
 		var distance_to_player: float = ray_cast.global_position.distance_to(global_position)
 		if distance_to_player > release_distance * _position_offset:
 			_released(_interaction_controller)
-	if linear_velocity.length() > 8 && !is_thrown:
+	if linear_velocity.length() > 3 && !is_thrown:
 		damage_component.monitorable = true
 		damage_component.monitoring = true
 		for i in damage_component.damage_types:
 			damage_component.damage_types[i] = clampf(linear_velocity.length()/MAX_DAMAGE_SCALE_VELOCITY, MIN_DAMAGE_SCALE_VELOCITY, MAX_DAMAGE_SCALE_VELOCITY)
 			damage_component.stance_damage_value = clampf(linear_velocity.length()/MAX_DAMAGE_SCALE_VELOCITY, 0.0, 1.0)
-	if linear_velocity.length() < 8:
+	if linear_velocity.length() < 3 && !is_thrown:
 		damage_component.monitorable = false
 		damage_component.monitoring = false
-
+		
 func _integrate_forces(_state: PhysicsDirectBodyState3D) -> void:
 	if not _is_grabbed: return
 	
@@ -100,8 +100,10 @@ func _input(event: InputEvent) -> void:
 
 
 func _while_grabbed(controller: InteractionController) -> void:
+	
 	if _interaction_controller != null: return
 	# Again cool down to avoid player flying off
+	damage_component.collision_mask = 12
 	if _delay_timer != null and _delay_timer.is_running(): return
 	_interaction_controller = controller
 	_interaction_controller.grab_object(self)
@@ -124,6 +126,7 @@ func telekinesis_grab(controller: InteractionController):
 	if _interaction_controller != null: return
 	# Again cool down to avoid player flying off
 	if _delay_timer != null and _delay_timer.is_running(): return
+	damage_component.collision_mask = 12
 	_interaction_controller = controller
 	_interaction_controller.grab_object(self)
 	apply_central_force(Vector3.ONE)
@@ -146,6 +149,7 @@ func _released(_c: InteractionController) -> void:
 	if _interaction_controller == null: return
 	if _delay_timer != null: 
 		_delay_timer.kill()
+	damage_component.collision_mask = 13
 	$PickupSound.stop()
 	_delay_timer = create_tween()
 	_delay_timer.tween_interval(0.3)

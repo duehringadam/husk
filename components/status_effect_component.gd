@@ -152,6 +152,5 @@ func remove_limb(duration:float):
 	random_limb.sever_bones()
 
 func _on_death():
-	pass
-	#for i in statuses.values():
-		#remove_status(i)
+	for i in statuses.values():
+		remove_status(i)

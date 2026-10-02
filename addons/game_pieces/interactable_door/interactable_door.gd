@@ -40,7 +40,7 @@ func interact(controller: InteractionController) -> void:
 func open(interact_pos: Vector3 = Vector3.BACK) -> void:
 	if !locked:
 		disable_collision_shapes = true
-		#dooropen.play()
+		open_sfx.play()
 		var swing_dir: float = sign(self.global_transform.origin.direction_to(interact_pos).dot(Vector3.BACK.rotated(Vector3.UP, global_rotation.y)))
 		target_rot = starting_rot + (deg_to_rad(swing_angle) * swing_dir)
 		_swing()

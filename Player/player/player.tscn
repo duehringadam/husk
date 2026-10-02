@@ -52,7 +52,9 @@
 [ext_resource type="Script" uid="uid://ch6mtuu0umfie" path="res://Player/player/player_status_list_bar.gd" id="40_56h8e"]
 [ext_resource type="PackedScene" uid="uid://bmphfd5h5ant7" path="res://Player/UI/quick select/selection_wheel.tscn" id="40_avbty"]
 [ext_resource type="Script" uid="uid://brwpqkgj3ix5i" path="res://Player/scripts/stable_ground_detector.gd" id="42_jng3h"]
+[ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_menus_template/base/scripts/pause_menu_controller.gd" id="44_rkxts"]
 [ext_resource type="Material" uid="uid://cq6qjkpjhmbw8" path="res://status_effects/burning/burning_particle_process_material.tres" id="45_jonee"]
+[ext_resource type="PackedScene" uid="uid://cndau4qyl56kx" path="res://scenes/menus/overlaid_menus/pause_menu.tscn" id="45_yjj6r"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xc2g5"]
 
@@ -851,6 +853,7 @@ slide_on_slope = true
 
 [node name="Player" type="CharacterBody3D" unique_id=1383979839 node_paths=PackedStringArray("player_body", "mainhand", "offhand", "consumable") groups=["player"]]
 collision_mask = 99
+floor_max_angle = 1.0471976
 script = ExtResource("1_cyojo")
 spawn_at_checkpoint = true
 player_stats = Dictionary[int, int]({
@@ -1442,6 +1445,10 @@ equipped_items = {
 "offhand_equipped": null
 }
 
+[node name="PauseMenuController" type="Node" parent="hud" unique_id=359383702]
+script = ExtResource("44_rkxts")
+pause_menu_packed = ExtResource("45_yjj6r")
+
 [node name="death" type="ColorRect" parent="." unique_id=575191084]
 z_index = 1
 material = SubResource("ShaderMaterial_7vtq1")
@@ -1537,6 +1544,7 @@ debug_color = Color(1, 0, 0, 1)
 [connection signal="value_changed" from="hud/interactionContainer/statusList/poisonedContainer/poison" to="hud/interactionContainer/statusList/poisonedContainer/poison" method="_on_value_changed"]
 [connection signal="value_changed" from="hud/interactionContainer/statusList/sleepContainer/sleep" to="hud/interactionContainer/statusList/sleepContainer/sleep" method="_on_value_changed"]
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
+[connection signal="died" from="HealthComponent" to="status_effect_component" method="_on_health_component_died"]
 [connection signal="health_changed" from="HealthComponent" to="hud/healthbarBack/MarginContainer/healthMask/playerHealth" method="_on_health_changed"]
 [connection signal="max_health_changed" from="HealthComponent" to="hud/healthbarBack/MarginContainer/healthMask/playerHealth" method="_on_max_health_changed"]
 [connection signal="mana_changed" from="ManaComponent" to="hud/healthbarBack/manaMask/playerMana" method="_on_health_changed"]

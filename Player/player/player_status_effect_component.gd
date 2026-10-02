@@ -100,9 +100,8 @@ func increment_shader(_amount: float, new_value: float):
 				tween.tween_property(material, "shader_parameter/progress",clampf(material["shader_parameter/progress"]+ratio,0,status_buildup_progress_clamp),.5)
 
 func _on_death():
-	pass
-	#for i in statuses.values():
-		#remove_status(i)
+	for i in statuses.values():
+		remove_status(i)
 		
 func reduce_resistances(amount: float, duration: float):
 	var stored_resists: Dictionary = hurtbox.damage_resistances.duplicate()
@@ -111,3 +110,7 @@ func reduce_resistances(amount: float, duration: float):
 	await get_tree().create_timer(duration).timeout
 	for i in stored_resists:
 		hurtbox.damage_resistances[i] = stored_resists[i]
+
+
+func _on_health_component_died() -> void:
+	pass # Replace with function body.
