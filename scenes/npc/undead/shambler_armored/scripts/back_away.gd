@@ -13,7 +13,7 @@ extends Node
 var target
 
 func _on_back_away_state_entered() -> void:
-	if source_npc.has_shield:
+	if source_npc.has_shield && randf() > .5:
 		animation_tree["parameters/walkBlendTree/shieldWalkBlend/blend_position"] = Vector2(0.0,-1.0)
 		source_npc.is_blocking = true
 		
@@ -33,6 +33,8 @@ func _on_back_away_state_physics_processing(delta: float) -> void:
 	if not target:
 		state_chart.send_event("idle")
 	
+		
+	
 	if target:
 		var to_target = (target.global_position - source_npc.global_position).normalized()
 		var retreat_dir = -to_target
@@ -47,6 +49,9 @@ func _on_back_away_state_physics_processing(delta: float) -> void:
 	
 		if source_npc.global_position.distance_to(target.global_position) >= desired_distance:
 			state_chart.send_event("circle_around")
+			
+		if back_away_timer.time_left <= 0:
+			state_chart.send_event("chase")
 
 
 func face_target(delta: float):

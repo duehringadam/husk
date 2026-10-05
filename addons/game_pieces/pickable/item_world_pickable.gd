@@ -94,7 +94,7 @@ func _while_grabbed(controller: InteractionController) -> void:
 	_initial_basis = reference_node.global_transform.basis.inverse() * global_transform.basis
 	_initial_position = reference_node.to_local(global_position)
 	InteractionContainer.from(self).enable(interaction_context_when_grabbed)
-	set_transparency(self, 0.35)
+	#set_transparency(self, 0.35)
 	#$PickupSound.play()
 	# Bring it closer to reference node but with a delay to avoid player flying off
 	_delay_timer = create_tween()
@@ -118,7 +118,7 @@ func _released(_c: InteractionController) -> void:
 		_interaction_controller = null
 		InteractionContainer.from(self).enable()
 		GamePiecesEventBus.request_camera_lock(false)
-		set_transparency(self, 0.0)
+		#set_transparency(self, 0.0)
 
 
 func _on_change_distance(controller: InteractionController) -> void:

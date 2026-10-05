@@ -46,7 +46,7 @@ func fall():
 	
 func _on_stance_component_stance_changed(amount: float, new_value: float, source: DamageComponent) -> void:
 	if stance_component:
-		if abs(amount) >= stance_component.max_stance/2:
+		if new_value <= 0:
 			if !is_facing(source):
 				if has_shield:
 					is_blocking = false
@@ -59,13 +59,21 @@ func _on_stance_component_stance_changed(amount: float, new_value: float, source
 				var animation_state_tree_root = animation_tree.get("tree_root")
 				var knocked_back_node = animation_state_tree_root.get_node("KnockedBack")
 				knocked_back_node.animation = "Hit_F_1_InPlace"
-			state_chart.set_expression_property("knockback_source", source)
-			state_chart.send_event("knocked_back")
+			if source.source is Player:
+				state_chart.set_expression_property("knockback_source", source.source)
+				state_chart.send_event("knocked_back")
+			else:
+				state_chart.set_expression_property("knockback_source", source)
+				state_chart.send_event("knocked_back")
 		if abs(amount) >= stance_component.max_stance:
 			if has_shield:
 				is_blocking = false
-			state_chart.set_expression_property("knockback_source", source)
-			state_chart.send_event("knocked_down")
+			if source.source is Player:
+				state_chart.set_expression_property("knockback_source", source.source)
+				state_chart.send_event("knocked_back")
+			else:
+				state_chart.set_expression_property("knockback_source", source)
+				state_chart.send_event("knocked_back")
 
 
 func is_facing(source: DamageComponent) -> bool:

@@ -4,6 +4,8 @@ extends Node
 @export var animation_tree: AnimationTree
 @export var state_chart: StateChart
 @export var attack_range: float = 2.5
+@export var attack_cooldown_time: float = 5.0
+@onready var attack_cooldown: Timer = %attackCooldown
 
 var attack_tracking: bool = false
 var attack_counter: int = 1
@@ -12,8 +14,11 @@ func _ready() -> void:
 	animation_tree["parameters/playback"].connect("state_finished", _anim_finished)
 
 func _on_attack_state_entered() -> void:
-	var animation_tree_playback: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
-	var tree_root: AnimationNodeStateMachine = animation_tree.tree_root
+	if attack_cooldown.time_left > 0:
+		state_chart.send_event("back_away")
+		
+	attack_cooldown.wait_time = attack_cooldown_time
+	attack_cooldown.start()
 	
 	if source_npc.has_shield:
 		source_npc.is_blocking = false

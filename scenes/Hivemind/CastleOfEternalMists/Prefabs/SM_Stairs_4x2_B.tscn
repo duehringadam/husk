@@ -2,7 +2,7 @@
 
 [ext_resource type="Material" uid="uid://big3" path="res://scenes/Hivemind/CastleOfEternalMists/URP/Art/Materials/Instances/M_Stairs.tres" id="2_big3"]
 [ext_resource type="Material" uid="uid://bis1" path="res://scenes/Hivemind/CastleOfEternalMists/URP/Art/Materials/Instances/M_BrickStoneWall_Damage.tres" id="2_rmp7d"]
-[ext_resource type="Material" uid="uid://biea" path="res://scenes/Hivemind/CastleOfEternalMists/URP/Art/Materials/Instances/M_Bricks_A_Debris.tres" id="3_apil6"]
+[ext_resource type="Material" uid="uid://biao" path="res://scenes/Hivemind/CastleOfEternalMists/URP/Art/Materials/Instances/M_Bricks_B.tres" id="3_rmp7d"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6g0r1"]
 resource_name = "M_Stairs"
@@ -63,7 +63,7 @@ lod_bias = 0.05
 mesh = SubResource("ArrayMesh_rmp7d")
 surface_material_override/0 = ExtResource("2_big3")
 surface_material_override/1 = ExtResource("2_rmp7d")
-surface_material_override/2 = ExtResource("3_apil6")
+surface_material_override/2 = ExtResource("3_rmp7d")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SM_Stairs_4x2_B_LOD0" unique_id=510340484]
 collision_layer = 2

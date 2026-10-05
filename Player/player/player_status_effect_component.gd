@@ -102,6 +102,8 @@ func increment_shader(_amount: float, new_value: float):
 func _on_death():
 	for i in statuses.values():
 		remove_status(i)
+	for i in get_children():
+		i.queue_free()
 		
 func reduce_resistances(amount: float, duration: float):
 	var stored_resists: Dictionary = hurtbox.damage_resistances.duplicate()

@@ -49,13 +49,16 @@ func _physics_process(_delta: float) -> void:
 		var distance_to_player: float = ray_cast.global_position.distance_to(global_position)
 		if distance_to_player > release_distance * _position_offset:
 			_released(_interaction_controller)
-	if linear_velocity.length() > 3 && !is_thrown:
+	if linear_velocity.length() >= 5 && !is_thrown:
 		damage_component.monitorable = true
 		damage_component.monitoring = true
 		for i in damage_component.damage_types:
 			damage_component.damage_types[i] = clampf(linear_velocity.length()/MAX_DAMAGE_SCALE_VELOCITY, MIN_DAMAGE_SCALE_VELOCITY, MAX_DAMAGE_SCALE_VELOCITY)
 			damage_component.stance_damage_value = clampf(linear_velocity.length()/MAX_DAMAGE_SCALE_VELOCITY, 0.0, 1.0)
-	if linear_velocity.length() < 3 && !is_thrown:
+	if linear_velocity.length() < 5 && !is_thrown:
+		damage_component.monitorable = false
+		damage_component.monitoring = false
+	if linear_velocity.length() < 3 && is_thrown:
 		damage_component.monitorable = false
 		damage_component.monitoring = false
 		
@@ -113,7 +116,7 @@ func _while_grabbed(controller: InteractionController) -> void:
 	_initial_basis = reference_node.global_transform.basis.inverse() * global_transform.basis
 	_initial_position = reference_node.to_local(global_position)
 	InteractionContainer.from(self).enable(interaction_context_when_grabbed)
-	set_transparency(self, 0.35)
+	#set_transparency(self, 0.35)
 	
 	$PickupSound.play()
 	# Bring it closer to reference node but with a delay to avoid player flying off
@@ -135,7 +138,7 @@ func telekinesis_grab(controller: InteractionController):
 	_initial_basis = reference_node.global_transform.basis.inverse() * global_transform.basis
 	_initial_position = reference_node.to_local(global_position)
 	InteractionContainer.from(self).enable(interaction_context_when_grabbed)
-	set_transparency(self, 0.35)
+	#set_transparency(self, 0.35)
 	
 	$PickupSound.play()
 	# Bring it closer to reference node but with a delay to avoid player flying off
@@ -157,7 +160,7 @@ func _released(_c: InteractionController) -> void:
 	_interaction_controller = null
 	InteractionContainer.from(self).enable()
 	GamePiecesEventBus.request_camera_lock(false)
-	set_transparency(self, 0.0)
+	#set_transparency(self, 0.0)
 
 
 func _on_change_distance(controller: InteractionController) -> void:
@@ -195,12 +198,13 @@ func _on_throw(controller: InteractionController) -> void:
 
 
 func set_transparency(object: Node, value: float) -> void:
-	for child in object.get_children(true):
-		if child is not MeshInstance3D: 
-			set_transparency(child, value)
-			continue
-		var mesh: MeshInstance3D = child
-		mesh.transparency = value
+	pass
+	#for child in object.get_children(true):
+		#if child is not MeshInstance3D: 
+			#set_transparency(child, value)
+			#continue
+		#var mesh: MeshInstance3D = child
+		#mesh.transparency = value
 
 
 func _on_rigidbody_entered(body: Node) -> void:

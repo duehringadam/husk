@@ -254,7 +254,6 @@ func activate_mainhand_test(value: bool):
 func shoot_left():
 	left_bone_attachment.get_child(0).shoot()
 
-
 func _on_ray_cast_3d_interaction_controller_pickable_grabbed(value: bool) -> void:
 	if value:
 		disable()
@@ -267,13 +266,10 @@ func _on_hurtbox_component_blocked_attack() -> void:
 	if offhand.weapon: return
 	
 	var _weapon = bone_attachment.get_child(0)
-	var _offhand_weapon = left_bone_attachment.get_child(0)
+	if left_bone_attachment.get_child_count() > 0:
+		_weapon = left_bone_attachment.get_child(0)
 	animation_tree["parameters/playback"].travel("block_hit")
 	if _weapon:
 		if _weapon.block_sound:
 			_weapon.block_sound.pitch_scale = randf_range(0.9,1.1)
 			_weapon.block_sound.play()
-	if _offhand_weapon:
-		if _offhand_weapon.block:
-			_offhand_weapon.block.pitch_scale = randf_range(0.9,1.1)
-			_offhand_weapon.block.play()

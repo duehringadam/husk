@@ -55,7 +55,7 @@ var item_save_file_path: String = "res://item/save_file_resources/"
 func _ready() -> void:
 	SignalBus.item_interact.connect(_update_inventory)
 	SignalBus.remove_item.connect(_remove_item)
-	
+
 
 func open_inventory():
 	%inventoryTabs.focus_mode = FOCUS_ALL

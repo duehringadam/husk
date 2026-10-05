@@ -1096,6 +1096,10 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("21_ujn18")
 
+[node name="PauseMenuController" type="Node" parent="hud" unique_id=359383702]
+script = ExtResource("44_rkxts")
+pause_menu_packed = ExtResource("45_yjj6r")
+
 [node name="interactionContainer" parent="hud" unique_id=932650427 instance=ExtResource("38_4ay6w")]
 layout_mode = 1
 
@@ -1444,10 +1448,6 @@ equipped_items = {
 "mainhand_equipped": null,
 "offhand_equipped": null
 }
-
-[node name="PauseMenuController" type="Node" parent="hud" unique_id=359383702]
-script = ExtResource("44_rkxts")
-pause_menu_packed = ExtResource("45_yjj6r")
 
 [node name="death" type="ColorRect" parent="." unique_id=575191084]
 z_index = 1

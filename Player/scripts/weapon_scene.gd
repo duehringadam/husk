@@ -25,6 +25,7 @@ func _ready() -> void:
 func activate(value: bool):
 	damage_component.monitorable = value
 	damage_component.monitoring = value
+	trail.visible = value
 
 func _on_bloodtimer_timeout() -> void:
 	blood_drip.emitting = false

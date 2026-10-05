@@ -21867,7 +21867,7 @@ transform = Transform3D(0.46467146, 0.87546974, -0.13278958, -0.017884104, 0.159
 transform = Transform3D(0.035707187, -0.003662018, 0.06585277, 0.065547064, 0.010281255, -0.034969684, -0.007319857, 0.07420165, 0.00809532, 0, 0, 0)
 
 [node name="varsoi_male" type="Node3D" parent="Root/Standing Melee Attack Kick Ver_ 1" unique_id=85423772]
-transform = Transform3D(14.289505, 0.27168205, 0.4757552, -0.43046853, -2.1137493, 14.136366, 0.33889684, -14.140308, -2.1040194, 0.12347473, -0.8484094, 5.0997753)
+transform = Transform3D(14.289506, 0.27168205, 0.4757552, -0.43046856, -2.1137493, 14.136366, 0.33889687, -14.140308, -2.1040194, 0.12347473, -0.8484094, 5.0997753)
 
 [node name="Skeleton3D" type="Skeleton3D" parent="Root/Standing Melee Attack Kick Ver_ 1/varsoi_male" unique_id=1167163448]
 bones/0/name = "root"
@@ -22714,7 +22714,6 @@ autoplay = &"RESET"
 
 [node name="kick_timer" type="Timer" parent="." unique_id=1033206226]
 unique_name_in_owner = true
-wait_time = 1.5
 one_shot = true
 
 [connection signal="damage_dealt" from="Root/Standing Melee Attack Kick Ver_ 1/varsoi_male/Skeleton3D/BoneAttachment3D/kick_damage_component" to="." method="_on_kick_damage_component_damage_dealt"]
