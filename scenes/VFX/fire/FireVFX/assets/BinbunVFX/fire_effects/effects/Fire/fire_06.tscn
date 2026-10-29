@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://ci3jeyidg7axc"]
+
+[ext_resource type="Script" uid="uid://boxi7d4dogpjl" path="res://scenes/VFX/fire/FireVFX/assets/BinbunVFX/fire_effects/src/script/vfx_fire_controller.gd" id="1_ei3y4"]
+[ext_resource type="PackedScene" uid="uid://cfi2ejoe46dll" path="res://scenes/VFX/fire/FireVFX/assets/BinbunVFX/fire_effects/src/prefs/fire/sparks.tscn" id="1_ki6wn"]
+[ext_resource type="Material" uid="uid://bthth630o7bjd" path="res://scenes/VFX/fire/FireVFX/assets/BinbunVFX/fire_effects/src/materials/smoke/smoke_01.tres" id="2_ei3y4"]
+[ext_resource type="Shader" uid="uid://iiwfrop7ptg1" path="res://scenes/VFX/fire/FireVFX/assets/BinbunVFX/fire_effects/src/shader/fire/flame_core.gdshader" id="3_vo0yp"]
+[ext_resource type="Texture2D" uid="uid://cb6uibjeyk6lq" path="res://scenes/VFX/fire/FireVFX/assets/BinbunVFX/fire_effects/src/texture/flame/flame_01.tres" id="4_uxtt8"]
+[ext_resource type="Material" uid="uid://cq6qjkpjhmbw8" path="res://status_effects/burning/burning_particle_process_material.tres" id="6_jq8u8"]
+[ext_resource type="QuadMesh" uid="uid://dive7lbkclbk3" path="res://status_effects/burning/burning_mesh.tres" id="6_m1t8e"]
+
+[sub_resource type="Curve" id="Curve_6uf0i"]
+_data = [Vector2(0, 0), 0.0, 4.43392, 0, 0, Vector2(0.505119, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.9739, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uhky4"]
+emission_enabled = true
+emission = Color(1, 0.32549, 0, 1)
+emission_energy_multiplier = 2.0
+use_particle_trails = true
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_wl5ni"]
+material = SubResource("StandardMaterial3D_uhky4")
+radius = 0.01
+radial_steps = 3
+sections = 4
+cap_top = false
+cap_bottom = false
+curve = SubResource("Curve_6uf0i")
+
+[sub_resource type="Curve" id="Curve_6meem"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.61603, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_7g4ll"]
+curve = SubResource("Curve_6meem")
+
+[sub_resource type="Gradient" id="Gradient_773ng"]
+colors = PackedColorArray(1, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wm8ji"]
+gradient = SubResource("Gradient_773ng")
+
+[sub_resource type="Curve" id="Curve_6m0bv"]
+_data = [Vector2(0, 0), 0.0, -0.108083, 0, 0, Vector2(0.731801, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.435691), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ttxjl"]
+curve = SubResource("Curve_6m0bv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i3pxm"]
+direction = Vector3(1, 1, 0)
+gravity = Vector3(0, 2, 0)
+scale_curve = SubResource("CurveTexture_ttxjl")
+color_initial_ramp = SubResource("GradientTexture1D_wm8ji")
+alpha_curve = SubResource("CurveTexture_7g4ll")
+
+[sub_resource type="QuadMesh" id="QuadMesh_el3j3"]
+material = ExtResource("2_ei3y4")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_88u4e"]
+noise_type = 5
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cwi6c"]
+width = 128
+height = 128
+noise = SubResource("FastNoiseLite_88u4e")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ruun4"]
+render_priority = 0
+shader = ExtResource("3_vo0yp")
+shader_parameter/noise_texture_1 = ExtResource("4_uxtt8")
+shader_parameter/noise_texture_2 = SubResource("NoiseTexture2D_cwi6c")
+shader_parameter/edge_softness = 0.1
+shader_parameter/main_color = Color(0, 0, 0, 1)
+shader_parameter/mask_from = Vector2(0.5, 0.5)
+shader_parameter/mask_scale = 0.5
+
+[sub_resource type="QuadMesh" id="QuadMesh_wqw32"]
+material = SubResource("ShaderMaterial_ruun4")
+size = Vector2(0.8, 0.8)
+
+[node name="Fire_06" type="Node3D" unique_id=1932802239]
+script = ExtResource("1_ei3y4")
+
+[node name="sparks" parent="." unique_id=448111321 instance=ExtResource("1_ki6wn")]
+draw_pass_2 = SubResource("TubeTrailMesh_wl5ni")
+
+[node name="Smoke" type="GPUParticles3D" parent="." unique_id=1606200369]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00697325, -4.16321e-07, -0.0148209)
+sorting_offset = -0.1
+emitting = false
+amount = 24
+lifetime = 1.5
+process_material = SubResource("ParticleProcessMaterial_i3pxm")
+draw_pass_1 = SubResource("QuadMesh_el3j3")
+
+[node name="Flame_Core" type="MeshInstance3D" parent="." unique_id=700415490 groups=["effect_mesh"]]
+cast_shadow = 0
+mesh = SubResource("QuadMesh_wqw32")
+
+[node name="Flame" type="GPUParticles3D" parent="." unique_id=470300696]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000316582, -0.00331225, 0.00392483)
+sorting_offset = 0.01
+sorting_use_aabb_center = false
+amount = 20
+sub_emitter = NodePath("../Smoke")
+draw_order = 3
+process_material = ExtResource("6_jq8u8")
+draw_pass_1 = ExtResource("6_m1t8e")

@@ -15,13 +15,12 @@ var check_buffer: bool = false
 var block_pressed: bool = false
 
 func _on_swing_2_state_entered() -> void:
+	animation_tree["parameters/attackBlendTree/Transition/transition_request"] = "attack_2"
 	check_buffer = false
 	attack_pressed = false
 	input_buffer.start()
 	end_timer.start()
 	Global.player.stamina_component.modify_stamina(-40)
-	var state_machine_playback: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
-	state_machine_playback.travel("attack_2")
 	for i in bone_attach.get_children():
 		if i is Weapon:
 			weapon = i
@@ -35,22 +34,14 @@ func _on_swing_2_state_entered() -> void:
 
 
 func _on_swing_2_state_exited() -> void:
-	hand.activate_mainhand_test(false)
 	check_buffer = false
 	attack_pressed = false
 	block_pressed = false
 
 
 func _on_swing_2_state_physics_processing(delta: float) -> void:
-	var state_machine_playback: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
-	var current_node: StringName = state_machine_playback.get_current_node()
-	var animation_state_tree_root: AnimationNodeStateMachine = animation_tree.get("tree_root")
-	
-	var attack_2_node: AnimationNodeBlendTree = animation_state_tree_root.get_node("attack_2")
-	
 	if check_buffer && end_timer.time_left > 0:
 		if attack_pressed:
-			if current_node == "attack_2":
 				state_chart.send_event("swing_3")
 		if block_pressed:
 			state_chart.send_event("offhand")

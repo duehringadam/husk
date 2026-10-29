@@ -19,7 +19,8 @@ signal apply_slow(slow_amount: float)
 	DamageTypes.DAMAGE_TYPES.MURK: 10,
 	DamageTypes.DAMAGE_TYPES.FIRE: 10,
 	DamageTypes.DAMAGE_TYPES.POISON: 10
-}
+}: set = _update_damage_resistances
+
 @export var status_resistances: Dictionary[Global.STATUS_TYPE, float] = {
 	Global.STATUS_TYPE.BURNING: 10,
 	Global.STATUS_TYPE.BLEEDING: 10,

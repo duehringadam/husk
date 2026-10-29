@@ -10,7 +10,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	time_passed += delta
 	
-	
 	var sample = noise.noise.get_noise_1d(time_passed)
 	sample = abs(sample)
 	

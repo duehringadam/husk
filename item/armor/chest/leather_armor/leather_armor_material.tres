@@ -1,0 +1,28 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://smjara8sx7lu"]
+
+[ext_resource type="Shader" uid="uid://cba8frjri8tvn" path="res://shaders/player_shaders/shaders/first_person_arms.gdshader" id="1_prwgg"]
+[ext_resource type="Texture2D" uid="uid://tj2xrbtj0eqr" path="res://shaders/blood vfx shaders/blood_buildup_noise_2.tres" id="2_dpdk0"]
+[ext_resource type="Texture2D" uid="uid://bruaf5tniitgx" path="res://Player/hands/leather_armor/Leather_armor_color.png" id="3_ds860"]
+[ext_resource type="Texture2D" uid="uid://cghp2b6alsa6b" path="res://Player/hands/leather_armor/Leather_armor_normal.png" id="4_espq7"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_prwgg")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("3_ds860")
+shader_parameter/albedo_texture_size = Vector2i(0, 0)
+shader_parameter/point_size = 0.0
+shader_parameter/roughness = 0.0
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
+shader_parameter/specular = 0.0
+shader_parameter/metallic = 0.0
+shader_parameter/texture_normal = ExtResource("4_espq7")
+shader_parameter/normal_scale = 1.0
+shader_parameter/uv1_scale = Vector3(0, 0, 0)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(0, 0, 0)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/FOV = 75.0
+shader_parameter/noise_texture = ExtResource("2_dpdk0")
+shader_parameter/progress = 0.0
+shader_parameter/noise_softness = 0.05

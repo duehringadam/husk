@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://ckj86tch1kfph"]
 
 [ext_resource type="Script" uid="uid://byfbyjeofmrkn" path="res://scenes/VFX/Scenes/vfx_fire_constant_a_3.gd" id="1_8gvjg"]
-[ext_resource type="QuadMesh" uid="uid://dive7lbkclbk3" path="res://status_effects/burning/burning_mesh.tres" id="2_8gvjg"]
+[ext_resource type="Texture2D" uid="uid://bgpuc5rjm2yh5" path="res://scenes/misc/Textures/Fire_SubUV_new.png" id="2_u7vcs"]
+[ext_resource type="Texture2D" uid="uid://185sjxt7oawt" path="res://scenes/misc/Textures/T_Fire01_SubUV_normal.png" id="3_2lr1v"]
+[ext_resource type="Texture2D" uid="uid://dgnarq1axwhae" path="res://scenes/misc/Textures/T_Fire01_Tiled_D_Yellow.png" id="3_i8050"]
 [ext_resource type="Shader" uid="uid://co7jgochvp3jd" path="res://shaders/blood vfx shaders/ss_decal2_treshold_p.gdshader" id="6_jivda"]
+[ext_resource type="Texture2D" uid="uid://byj5sgyu8cxwx" path="res://scenes/VFX/textures/T_smoke_K97.bak.png" id="6_mvqyv"]
 [ext_resource type="Texture2D" uid="uid://d1487hs54xk4g" path="res://scenes/VFX/textures/T_Blood_bulb_UJ1.png" id="7_e68f6"]
 [ext_resource type="Texture2D" uid="uid://bs5888n022i54" path="res://scenes/VFX/textures/T_Blood_bulb_UJ1_N.png" id="8_1o403"]
-[ext_resource type="Texture2D" uid="uid://brnp67jnwwro6" path="res://scenes/VFX/textures/T_smoke_K97.png" id="9_k10ug"]
 
 [sub_resource type="Curve" id="Curve_2gb0j"]
 _data = [Vector2(0, 1), 0.0, -0.0668502, 0, 0, Vector2(1, 0), -0.08110953, 0.0, 0, 0]
@@ -50,6 +52,26 @@ alpha_curve = SubResource("CurveTexture_mq0ny")
 emission_curve = SubResource("CurveTexture_mq0ny")
 anim_speed_min = 1.0
 anim_speed_max = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i8050"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.98274976, 6.08854e-06, 1.540184e-06, 1)
+albedo_texture = ExtResource("2_u7vcs")
+emission_enabled = true
+emission = Color(1, 0.5058824, 0, 1)
+emission_texture = ExtResource("3_i8050")
+normal_enabled = true
+normal_texture = ExtResource("3_2lr1v")
+texture_filter = 4
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 6
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_oaqtk"]
+material = SubResource("StandardMaterial3D_i8050")
 
 [sub_resource type="Curve" id="Curve_h652k"]
 _data = [Vector2(0.450237, 0.021978), 0.0, 0.100812, 0, 0, Vector2(1, 0.978022), 5.35081, 0.0, 0, 0]
@@ -132,6 +154,13 @@ colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_y2dvw"]
 gradient = SubResource("Gradient_58414")
 
+[sub_resource type="Curve" id="Curve_mvqyv"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_v4udn"]
+curve = SubResource("Curve_mvqyv")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qaom6"]
 lifetime_randomness = 0.1
 particle_flag_rotate_y = true
@@ -143,8 +172,9 @@ initial_velocity_min = 1.0
 initial_velocity_max = 3.0
 gravity = Vector3(0, 0, -5)
 attractor_interaction_enabled = false
-scale_min = 0.4
+scale_min = 2.0
 scale_max = 2.0
+scale_curve = SubResource("CurveTexture_v4udn")
 color = Color(0.8422873, 0.87612945, 0, 1)
 color_ramp = SubResource("GradientTexture1D_y2dvw")
 hue_variation_min = -2.23517e-08
@@ -158,8 +188,9 @@ transparency = 1
 vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
 albedo_color = Color(0.33660764, 0.33660764, 0.33660755, 1)
-albedo_texture = ExtResource("9_k10ug")
+albedo_texture = ExtResource("6_mvqyv")
 emission = Color(1, 0.34409294, 0, 1)
+texture_filter = 4
 billboard_mode = 3
 billboard_keep_scale = true
 particles_anim_h_frames = 8
@@ -168,7 +199,7 @@ particles_anim_loop = true
 
 [sub_resource type="QuadMesh" id="QuadMesh_ipfrt"]
 material = SubResource("StandardMaterial3D_emcqu")
-size = Vector2(0.5, 0.5)
+size = Vector2(0.3, 0.3)
 
 [sub_resource type="Animation" id="Animation_kjwym"]
 resource_name = "End"
@@ -181,7 +212,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [false]
 }
 tracks/1/type = "value"
@@ -193,7 +224,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [false]
 }
 tracks/2/type = "value"
@@ -205,7 +236,7 @@ tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [false]
 }
 tracks/3/type = "value"
@@ -220,6 +251,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [5.0, 0.0]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HeatDistortion2:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_in0rs"]
 resource_name = "Init"
@@ -232,7 +275,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [true]
 }
 tracks/1/type = "value"
@@ -244,7 +287,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0.166667),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [true]
 }
 tracks/2/type = "value"
@@ -256,7 +299,7 @@ tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0.133333),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [true]
 }
 tracks/3/type = "value"
@@ -271,6 +314,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [0.0, 5.0]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HeatDistortion2:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.26),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_8gvjg"]
 length = 0.001
@@ -283,7 +338,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [false]
 }
 tracks/1/type = "value"
@@ -295,7 +350,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [false]
 }
 tracks/2/type = "value"
@@ -307,7 +362,7 @@ tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [false]
 }
 tracks/3/type = "value"
@@ -321,6 +376,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HeatDistortion2:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_e0ujj"]
@@ -335,7 +402,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [false]
 }
 tracks/1/type = "value"
@@ -347,7 +414,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [false]
 }
 tracks/2/type = "value"
@@ -359,7 +426,7 @@ tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [false]
 }
 tracks/3/type = "value"
@@ -374,6 +441,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HeatDistortion2:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7ueqs"]
 _data = {
@@ -382,6 +461,83 @@ _data = {
 &"RESET": SubResource("Animation_8gvjg"),
 &"idle": SubResource("Animation_e0ujj")
 }
+
+[sub_resource type="Gradient" id="Gradient_mvqyv"]
+offsets = PackedFloat32Array(0, 0.2, 0.8, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5flai"]
+gradient = SubResource("Gradient_mvqyv")
+
+[sub_resource type="Curve" id="Curve_u7vcs"]
+_data = [Vector2(0, 0.1), 0.0, 0.0, 0, 0, Vector2(0.4, 0.8), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_umdxf"]
+curve = SubResource("Curve_u7vcs")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2lr1v"]
+emission_shape = 1
+emission_sphere_radius = 0.12
+direction = Vector3(0, 0, -1)
+spread = 12.0
+initial_velocity_min = 4.0
+initial_velocity_max = 6.0
+gravity = Vector3(0, 1.2, 0)
+scale_min = 1.5
+scale_max = 2.5
+scale_curve = SubResource("CurveTexture_umdxf")
+color_ramp = SubResource("GradientTexture1D_5flai")
+
+[sub_resource type="Shader" id="Shader_i8050"]
+code = "shader_type spatial;
+render_mode unshaded, cull_disabled, depth_draw_never;
+
+uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_linear_mipmap;
+
+uniform sampler2D noise_texture : repeat_enable;
+uniform vec2 noise_speed = vec2(0.0, 1.5);
+uniform float noise_scale = 1.0;
+uniform float distortion_strength = 0.03;
+uniform float noise_blend = 0.6;
+
+void fragment() {
+	vec2 noise_uv = (UV * noise_scale) + (TIME * noise_speed);
+	vec2 noise_val = texture(noise_texture, noise_uv).rg * 2.0 - 1.0; // map from [0.0, 1.0] to [-1.0, 1.0]
+
+	vec2 center_uv = UV * 2.0 - 1.0;
+	float dist = length(center_uv);
+	float noisy_dist = dist + (noise_val.x * 0.3); 
+	float edge_mask = clamp(1.0 - smoothstep(0.0, 1.0, noisy_dist), 0.0, 1.0);
+	float time_offset_x = sin(TIME * 25.0 + UV.y * 8.0);
+	float time_offset_y = cos(TIME * 20.0 + UV.x * 8.0);
+	vec2 sine_wobble = vec2(time_offset_x, time_offset_y);
+	vec2 wobble = mix(sine_wobble, noise_val, noise_blend);
+	vec2 offset = wobble * distortion_strength * edge_mask * COLOR.a;
+
+	ALBEDO = texture(screen_texture, SCREEN_UV + offset).rgb;
+	ALPHA = edge_mask * COLOR.a;
+}"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_frbx5"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_oaqtk"]
+width = 64
+height = 64
+noise = SubResource("FastNoiseLite_frbx5")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_umjme"]
+render_priority = -1
+shader = SubResource("Shader_i8050")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_oaqtk")
+shader_parameter/noise_speed = Vector2(0, 1.5)
+shader_parameter/noise_scale = 1.0
+shader_parameter/distortion_strength = 0.03
+shader_parameter/noise_blend = 0.6
+
+[sub_resource type="QuadMesh" id="QuadMesh_24fyj"]
+material = SubResource("ShaderMaterial_umjme")
+size = Vector2(0.7, 0.7)
 
 [node name="VFX_fire_Constant_A3" type="Node3D" unique_id=1748177694]
 top_level = true
@@ -400,7 +556,7 @@ amount = 32
 randomness = 1.0
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_ts6dq")
-draw_pass_1 = ExtResource("2_8gvjg")
+draw_pass_1 = SubResource("QuadMesh_oaqtk")
 
 [node name="dynamicmarks" type="GPUParticles3D" parent="." unique_id=391404956]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0023867488, -1.21137, -2.7858431)
@@ -424,6 +580,17 @@ draw_pass_1 = SubResource("QuadMesh_ipfrt")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1410580801]
 libraries/ = SubResource("AnimationLibrary_7ueqs")
 autoplay = &"idle"
+
+[node name="HeatDistortion2" type="GPUParticles3D" parent="." unique_id=1423927856]
+transform = Transform3D(0.9998028, 0, 0.019860508, 0, 1, 0, -0.019860508, 0, 0.9998028, 0, 0, 0)
+emitting = false
+amount = 80
+lifetime = 1.2
+randomness = 0.3
+visibility_aabb = AABB(-1.2, -0.88, -6.8, 2.2, 2.2, 6.8)
+transform_align = 3
+process_material = SubResource("ParticleProcessMaterial_2lr1v")
+draw_pass_1 = SubResource("QuadMesh_24fyj")
 
 [node name="RayCast3D" type="RayCast3D" parent="." unique_id=899345598]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.779054)

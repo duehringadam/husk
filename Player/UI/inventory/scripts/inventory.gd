@@ -11,7 +11,7 @@ signal focused_item_changed(_item: item)
 @onready var mainhand: GridContainer = %mainhand
 @onready var offhand: GridContainer = %offhand
 @onready var jewelry: GridContainer = %jewelry
-@onready var armor: GridContainer = %Armor
+@onready var armor_grid: GridContainer = %Armor
 @onready var key: GridContainer = %key
 @onready var consumable: GridContainer = %consumable
 @onready var inventory_tabs: TabBar = %inventoryTabs
@@ -138,7 +138,7 @@ func _update_inventory(item_signal: item):
 				inventory.append(item_dict)
 				save_inventory()
 		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.ARMOR:
-			armor.add_child(item_add)
+			armor_grid.add_child(item_add)
 			item_add.item_inventory = item_signal
 			var item_dict: Dictionary
 			item_dict[item_signal] = item_signal.pick_up_stack_size
@@ -206,7 +206,7 @@ func _update_equipped_items(item_inv_interact: item_inventory_interact):
 			if equipped_items["armor_equipped"] != null:
 				equipped_items["armor_equipped"].is_equipped = false
 			equipped_items["armor_equipped"] = item_inv_interact
-			
+			chest_button.icon = item_inv_interact.item_inventory.item_icon
 			item_inv_interact.is_equipped = true
 		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.JEWELRY:
 			if equipped_items["jewelry_equipped"] != null:
@@ -300,13 +300,46 @@ func _on_jewelry_button_pressed() -> void:
 
 func _on_leg_button_pressed() -> void:
 	inventory_tabs.current_tab = 1
-	pass # Replace with function body.
+	transition_from_equip_screen = true
+	var item_list_count = item_list_tabs.get_tab_count()-1
+	for i in item_list_count:
+		if item_list_tabs.get_tab_title(i) == "Armor":
+			item_list_tabs.current_tab = i
+	sort_armor(1)
 
 
 func _on_chest_button_pressed() -> void:
-	pass # Replace with function body.
+	inventory_tabs.current_tab = 1
+	transition_from_equip_screen = true
+	var item_list_count = item_list_tabs.get_tab_count()-1
+	for i in item_list_count:
+		if item_list_tabs.get_tab_title(i) == "Armor":
+			item_list_tabs.current_tab = i
+	sort_armor(0)
 
+##
+## pass in 0 for chest 1 for legs
+##
+func sort_armor(type: int):
+	var items: Array[Node] = armor_grid.get_children()
+	
+	items.sort_custom(func(a: Node, b: Node):
+		
+		if not (a is item_inventory_interact and b is item_inventory_interact):
+			return false
+		if not (a.item_inventory and b.item_inventory):
+			return false
+			
+		if type == 0:
+			return a.item_inventory.item_category < b.item_inventory.item_category
+		else:
+			return a.item_inventory.item_category > b.item_inventory.item_category
+	)
+	
+	for i in range(items.size()):
+		armor_grid.move_child(items[i], i)
 
+	
 func _on_ammo_button_pressed() -> void:
 	transition_from_equip_screen = true
 	var item_list_count = item_list_tabs.get_tab_count()-1
@@ -354,7 +387,7 @@ func _set_inventory_from_save_file(item_signal: item, stack_size: int):
 			item_add.item_inventory = item_signal
 			item_add.item_stack_size = stack_size
 		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.ARMOR:
-			armor.add_child(item_add)
+			armor_grid.add_child(item_add)
 			item_add.item_inventory = item_signal
 			item_add.item_stack_size = stack_size
 		ItemEquippableType.ITEM_EQUIPPABLE_TYPES.JEWELRY:

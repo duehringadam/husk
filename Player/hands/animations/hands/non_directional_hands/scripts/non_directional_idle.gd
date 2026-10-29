@@ -6,11 +6,9 @@ extends Node
 @export var main_bone_attach: BoneAttachment3D
 @export var off_bone_attach: BoneAttachment3D
 
-@onready var end_timer: Timer = $"../../swing3/endTimer"
-@onready var sword_viewmodel: Weapon = $"../../../../Armature/Skeleton3D/rightBoneAttach/sword_viewmodel"
+@onready var end_timer: Timer = $"../../swing/endTimer"
 
 func _on_idle_state_entered() -> void:
-	sword_viewmodel.damage_component.source = Global.player
 	end_timer.start()
 	animation_tree.set("parameters/conditions/attack", false)
 	animation_tree.set("parameters/conditions/idle", true)
@@ -29,12 +27,15 @@ func _on_idle_state_exited() -> void:
 
 
 func _on_idle_state_physics_processing(delta: float) -> void:
-	pass # Replace with function body.
+	await get_tree().physics_frame
 
 
 func _on_idle_state_input(event: InputEvent) -> void:
-	if event.is_action_pressed("attack_primary") && weapon.can_attack && Global.player.can_attack:
-		state_chart.send_event("swing")
-		
-	if event.is_action_pressed("attack_secondary") && Global.player.can_attack && weapon.can_attack:
-			state_chart.send_event("offhand")
+	if weapon.mainhand_weapon:
+		if event.is_action_pressed("attack_primary") && weapon.can_attack && Global.player.can_attack:
+			state_chart.send_event("swing")
+
+	if event.is_action_pressed("attack_secondary") && weapon.offhand_weapon && weapon.can_attack:
+		state_chart.send_event("offhand")
+	elif event.is_action_pressed("attack_secondary") && !weapon.offhand_weapon && weapon.can_attack:
+		state_chart.send_event("block")

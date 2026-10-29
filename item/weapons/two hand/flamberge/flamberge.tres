@@ -1,6 +1,5 @@
 [gd_resource type="Resource" script_class="item" format=3 uid="uid://c8ah63xefaug"]
 
-[ext_resource type="AnimationNodeStateMachine" uid="uid://qdouj24v1xem" path="res://Player/hands/animations/hands/animation_state_machines/two_handed_sword_animation_state_machine.tres" id="1_n67mn"]
 [ext_resource type="Texture2D" uid="uid://vm0bvxu73rfj" path="res://item/icons/blade/blade.svg/icons/ffffff/000000/1x1/lorc/pointy-sword.svg" id="2_aluro"]
 [ext_resource type="PackedScene" uid="uid://blyqrh07cvkyy" path="res://item/weapons/two hand/flamberge/sm_flamberge.tscn" id="3_2d41y"]
 [ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/scripts/item_stat.gd" id="4_2qen6"]
@@ -25,7 +24,6 @@ item_stats = SubResource("Resource_2e86q")
 charge_time = 0.75
 item_scene = ExtResource("3_2d41y")
 two_handed = true
-animation_state_machine = ExtResource("1_n67mn")
 position = Vector3(0.001, 0.231, -0.004)
 rotation = Vector3(4.4, 89.5, 175.2)
 metadata/_custom_type_script = "uid://dcfd18dx8x1bm"

@@ -1,16 +1,8 @@
 [gd_scene format=3 uid="uid://4ggo1b35btnu"]
 
 [ext_resource type="Script" uid="uid://cfrncsoneogy8" path="res://Player/UI/scripts/hud.gd" id="1_5bwha"]
+[ext_resource type="Texture2D" uid="uid://bygonw84y7ls8" path="res://Player/player/crosshair_gradient.tres" id="2_f2qnc"]
 [ext_resource type="FontFile" uid="uid://bgwsxfa2fbvel" path="res://addons/madtalk/fonts/ShipporiMincho-Regular.ttf" id="3_xpwvb"]
-
-[sub_resource type="Gradient" id="Gradient_x2tju"]
-offsets = PackedFloat32Array(0, 0.125, 0.14375)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.95625, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ugbui"]
-gradient = SubResource("Gradient_x2tju")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
 
 [node name="HUD" type="Control" unique_id=932650427]
 layout_mode = 3
@@ -37,7 +29,7 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = SubResource("GradientTexture2D_ugbui")
+texture = ExtResource("2_f2qnc")
 
 [node name="InteractPrompt" type="RichTextLabel" parent="." unique_id=157683102]
 unique_name_in_owner = true

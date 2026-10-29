@@ -27,7 +27,7 @@ uniform vec3 uv2_offset;
 uniform float FOV : hint_range(20, 120) = 75;
 
 // --- New Uniforms for Customizable Noise Overlay ---
-uniform sampler2D noise_texture : filter_linear_mipmap, repeat_enable;
+uniform sampler2D noise_texture : filter_nearest_mipmap_anisotropic, repeat_enable;
 uniform float progress : hint_range(0.0, 1.0) = 0.0;
 uniform float noise_softness : hint_range(0.01, 1.0) = 0.05;
 

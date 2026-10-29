@@ -1,10 +1,34 @@
 [gd_resource type="Resource" script_class="item" format=3 uid="uid://dhgsftnl3tw13"]
 
-[ext_resource type="AnimationNodeStateMachine" uid="uid://btqetk34l0eah" path="res://Player/hands/animations/hands/animation_state_machines/offhand_fire_spell_animation_state.tres" id="1_tx6k7"]
+[ext_resource type="Script" uid="uid://vqsnjxr1425q" path="res://item/scripts/item_animations.gd" id="1_4ksnd"]
 [ext_resource type="Texture2D" uid="uid://b5esdvtqwvepd" path="res://item/icons/magic/explosion.svg/icons/ffffff/000000/1x1/lorc/burning-blobs.svg" id="2_2o21i"]
 [ext_resource type="PackedScene" uid="uid://5i8e6fsne4v5" path="res://item/spells/flame_spray/spell_fire.tscn" id="2_kbpfs"]
+[ext_resource type="AnimationLibrary" uid="uid://brptxm7won7ul" path="res://Player/hands/animations/hands/non_directional_hands/non_directional_hands.res" id="2_rfmio"]
 [ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/scripts/item_stat.gd" id="3_dgh5r"]
 [ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/scripts/item.gd" id="4_yj7e3"]
+
+[sub_resource type="Resource" id="Resource_iny7a"]
+script = ExtResource("1_4ksnd")
+target_libraries = Array[AnimationLibrary]([ExtResource("2_rfmio")])
+idle = ""
+equip = ""
+mainhand_lower = ""
+attack_1 = ""
+attack_2 = ""
+attack_3 = ""
+heavy_attack = ""
+block_start = ""
+block_hit = ""
+block_stun = ""
+activate = "fire_use"
+deactivate = "fire_idle"
+offhand_idle = "fire_idle"
+offhand_equip = "fire_equip"
+offhand_block_hit = "offhand_empty"
+offhand_block_stun = "offhand_empty"
+offhand_cant_use = "fire_nomana"
+offhand_lower = "spell_lower"
+metadata/_custom_type_script = "uid://vqsnjxr1425q"
 
 [sub_resource type="Resource" id="Resource_76boi"]
 script = ExtResource("3_dgh5r")
@@ -19,6 +43,7 @@ item_name = "Flame Spray"
 item_description = "Spew flames on foes to light them ablaze."
 item_icon = ExtResource("2_2o21i")
 item_type = 1
+item_category = 5
 item_stats = SubResource("Resource_76boi")
 item_required_stats = Dictionary[int, int]({
 3: 15
@@ -27,8 +52,8 @@ mana_cost = 5
 constant_mana_drain = true
 constant_mana_drain_cost = 10
 item_scene = ExtResource("2_kbpfs")
-animation_state_machine = ExtResource("1_tx6k7")
 can_be_dropped = false
+animations = SubResource("Resource_iny7a")
 position = Vector3(0.104, 0.081, -0.004)
 rotation = Vector3(-8, -64.8, 3.2)
 metadata/_custom_type_script = "uid://dcfd18dx8x1bm"

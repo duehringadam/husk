@@ -1,6 +1,5 @@
 [gd_resource type="Resource" script_class="item" format=3 uid="uid://dmv7he43amthj"]
 
-[ext_resource type="AnimationNodeStateMachine" uid="uid://bnag3oppwh7b3" path="res://Player/hands/animations/hands/animation_state_machines/two_handed_mace_state_machine.tres" id="1_pmu86"]
 [ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/scripts/item_stat.gd" id="2_8o8e1"]
 [ext_resource type="Texture2D" uid="uid://wxc1pjls0xw1" path="res://item/weapons/two hand/mace_2_hand/mace.svg" id="2_kugdb"]
 [ext_resource type="PackedScene" uid="uid://b3g3uwvhyvey7" path="res://item/weapons/two hand/mace_2_hand/heavy_mace_redo.tscn" id="2_yff1m"]
@@ -26,6 +25,5 @@ item_stats = SubResource("Resource_pmu86")
 charge_time = 1.25
 item_scene = ExtResource("2_yff1m")
 two_handed = true
-animation_state_machine = ExtResource("1_pmu86")
 position = Vector3(0.009, -0.395, -0.003)
 metadata/_custom_type_script = "uid://dcfd18dx8x1bm"

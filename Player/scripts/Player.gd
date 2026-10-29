@@ -56,8 +56,7 @@ Optional: %jump, %sprint, %crouch, %lean, %zoom, %switch_hands
 "
 
 @export_category("Weapon")
-@export var mainhand: Node3D
-@export var offhand: Node3D
+@export var player_hands: Node3D
 @export var consumable: Marker3D
 @export var weapon_sway_amount : float = 5
 @export var weapon_rotation_amount : float = 1
@@ -78,16 +77,15 @@ Optional: %jump, %sprint, %crouch, %lean, %zoom, %switch_hands
 
 @onready var head: Node3D = %Head
 @onready var neck: Node3D = %Neck
+@onready var hands_pos: Vector3 = %playerHands.transform.origin
 @onready var camera: Camera3D = %Camera3D
 @onready var footsteps: AudioStreamPlayer3D = %FootSteps
 @onready var foot_steps_animation_player: AnimationPlayer = %FootStepsAnimationPlayer
 @onready var camera_animation_player: AnimationPlayer = %CameraAnimationPlayer
 @onready var ceiling: ShapeCast3D = $Ceiling
-@onready var right_hand_pos: Vector3 = %RightHand.transform.origin
-@onready var left_hand_pos: Vector3 = %LeftHand.transform.origin
 @onready var enemy_look_at: Node3D = $enemy_look_at
 @onready var hurtbox: Area3D = $hurtbox_component
-@onready var fall_damage_component: DamageComponent = $fallDamageComponent
+@onready var fall_damage_component: DamageComponent = %fallDamageComponent
 @onready var vault_ray_cast: RayCast3D = %vaultRayCast
 @onready var rope_detection: Area3D = %rope_detection
 @onready var health_component: HealthComponent = $HealthComponent
@@ -95,7 +93,6 @@ Optional: %jump, %sprint, %crouch, %lean, %zoom, %switch_hands
 @onready var mana_component: ManaComponent = $ManaComponent
 @onready var player_currency: MarginContainer = $hud/playerCurrency
 
-@onready var non_directional_hands: Marker3D = $Head/Neck/Camera3D/playerHands
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = 9.8
@@ -143,35 +140,12 @@ func _ready() -> void:
 	SignalBus.connect("secondary_active", _set_weapon_active)
 	SignalBus.connect("kick_active", _animate_camera_swing)
 	SignalBus.connect("player_lookat_cutscene", cutscene)
-	SignalBus.connect("traditional_combat_toggle", _update_traditional_combat)
 	Global.camera_fov = base_fov
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	footsteps.stream = footsteps_sound
 	SignalBus.emit_signal("player_ready")
-
-func _update_traditional_combat(value: bool):
-	if value:
-		mainhand.visible = false
-		offhand.visible = false
-		
-		mainhand.process_mode = Node.PROCESS_MODE_DISABLED
-		offhand.process_mode = Node.PROCESS_MODE_DISABLED
-		
-		mainhand = non_directional_hands
-		
-		non_directional_hands.process_mode = Node.PROCESS_MODE_INHERIT
-		non_directional_hands.visible = true
-	else:
-		mainhand = %RightHand
-		mainhand.visible = true
-		offhand.visible = true
-		
-		mainhand.process_mode = Node.PROCESS_MODE_INHERIT
-		offhand.process_mode = Node.PROCESS_MODE_INHERIT
-		
-		non_directional_hands.process_mode = Node.PROCESS_MODE_DISABLED
-		non_directional_hands.visible = false
-
+	SignalBus.emit_signal("player_resists_changed", hurtbox.damage_resistances)
+	SignalBus.emit_signal("player_status_resists_changed", hurtbox.status_resistances)
 
 func _animate_camera_swing(value: bool):
 	if value:
@@ -189,11 +163,9 @@ func _set_sprint_speed(value:float):
 func _set_can_attack(value: bool):
 	can_attack = value
 	if value:
-		mainhand.enable()
-		offhand.enable()
+		player_hands.enable()
 	else:
-		mainhand.disable()
-		offhand.disable()
+		player_hands.disable()
 
 func _update_player_stats(stats: Dictionary[ItemEquippableType.ITEM_REQUIRED_STAT, int]):
 	player_stats = stats
@@ -210,7 +182,6 @@ func _physics_process(delta) -> void:
 		handle_movement(delta)
 		handle_head_bob(delta)
 		handle_zoom(delta)
-		handle_switch_hands()
 		move_and_slide()
 		weapon_sway(delta)
 		handle_kick()
@@ -258,8 +229,8 @@ func handle_falling(delta: float) -> void:
 			camera_animation_player.play("land_damage")
 			fall_damage_component.monitorable = true
 			fall_damage_component.monitoring = true
-			for i in fall_damage_component.damage_types:
-				fall_damage_component.damage_types[i] = abs(previous_fall_velocity)
+			for i in fall_damage_component.percent_hp_damage_types:
+				fall_damage_component.percent_hp_damage_types[i] = abs(previous_fall_velocity/100)
 			await get_tree().create_timer(.1).timeout
 			fall_damage_component.monitorable = false
 			fall_damage_component.monitoring = false
@@ -301,8 +272,7 @@ func _handle_vault(ledge_point: Vector3):
 	is_vaulting = true
 	lock_camera = true
 	velocity = Vector3.ZERO
-	mainhand.disable()
-	offhand.disable()
+	player_hands.disable()
 	var forward = -camera.global_transform.basis.z
 	var destination = ledge_point + forward * 0.1
 	
@@ -313,7 +283,7 @@ func _handle_vault(ledge_point: Vector3):
 	tween.set_ease(Tween.EASE_IN)
 	tween.set_trans(Tween.TRANS_SINE)
 	tween.tween_method(bezier_move.bind(start, mid, destination + Vector3(0.0,0.2,0.0)), 0.0, 1.0, vault_duration)
-	tween.tween_callback(func(): is_vaulting = false;lock_camera = false; mainhand.enable(); offhand.enable())
+	tween.tween_callback(func(): is_vaulting = false;lock_camera = false; player_hands.enable())
 	
 func bezier_move(t: float, start: Vector3, mid: Vector3, end:Vector3) -> void:
 	var a = start.lerp(mid, t)
@@ -428,8 +398,8 @@ func handle_head_bob(delta: float) -> void:
 		pos.x = cos(bob_time * BOB_FREQ / 2) * head_bob_strength
 		pos.z = cos(bob_time * BOB_FREQ/2) * head_bob_strength
 		neck.transform.origin =  pos
-		mainhand.transform.origin = right_hand_pos - pos / 2
-		offhand.transform.origin = left_hand_pos - pos / 2
+		player_hands.transform.origin = hands_pos - pos / 2
+
 
 
 func handle_fov_change(delta: float) -> void:
@@ -443,33 +413,6 @@ func handle_zoom(delta: float) -> void:
 	var target_fov: float = camera.fov * .33 if %zoom.is_triggered() else camera.fov
 	camera.fov = lerp(camera.fov, target_fov, delta * 8.0)
 
-
-func handle_switch_hands() -> void:
-	if get_node_or_null("%switch_hands") == null: return
-	if not %switch_hands.is_triggered(): 
-		_switched = false
-		return
-	if _switched: return
-	_switched = true
-	var right_items: Array = %RightHand.get_children()
-	var left_items: Array = %LeftHand.get_children()
-	for item: Node in right_items:
-		item.reparent(%LeftHand, false)
-	for item: Node in left_items:
-		item.reparent(%RightHand, false)
-
-
-func handle_lean(delta: float) -> void:
-	if get_node_or_null("%lean") == null: return
-	var lean_control: GameControl = %lean
-	var lean_value = lean_control.value()
-	
-	var lean_target_position = Vector3(
-		lean_value * camera_lean_position.x,
-		camera_base_position.y if lean_value == 0 else camera_lean_position.y,
-		camera_base_position.z
-	)
-	camera.position = lerp(camera.position, lean_target_position, LEAN_SPEED)
 
 
 func _get_configuration_warnings() -> PackedStringArray:
@@ -513,23 +456,17 @@ func look_at_target(target: Node3D) -> void:
 		
 func weapon_tilt(input_x, delta):
 	if can_attack:
-		if mainhand:
-			mainhand.rotation.z = lerpf(mainhand.rotation.z, clampf(-input_x * weapon_sway_amount * 10,-.05,.05), 5 * delta)
-		if offhand:
-			offhand.rotation.z = lerpf(offhand.rotation.z, clampf(-input_x * weapon_sway_amount * 10,-.05,.05), 5 * delta)
-		
+		if player_hands:
+			player_hands.rotation.z = lerpf(player_hands.rotation.z, clampf(-input_x * weapon_sway_amount * 10,-.05,.05), 5 * delta)
+	
 func weapon_sway(delta):
 	if can_attack:
 		mouse_movement = lerp(mouse_movement,Vector2.ZERO,10*delta)
-		if mainhand:
-			mainhand.rotation.x = lerpf(mainhand.rotation.x, clampf(mouse_movement.y * weapon_rotation_amount * (-1 if invert_weapon_sway else 1),-.2,.2), delta)
-			mainhand.rotation.y = lerpf(mainhand.rotation.y, clampf(mouse_movement.y * weapon_rotation_amount * (-1 if invert_weapon_sway else 1),-.02,.02), delta)
-			mainhand.rotation.x = lerpf(mainhand.rotation.x, clampf(mouse_movement.y * weapon_rotation_amount * (-1 if invert_weapon_sway else 1),-.2,.2), delta)
-			mainhand.rotation.y = lerpf(mainhand.rotation.y, clampf(mouse_movement.y * weapon_rotation_amount * (-1 if invert_weapon_sway else 1),-.02,.02), delta)
-		if offhand:
-			offhand.rotation.x = lerpf(offhand.rotation.x, clampf(mouse_movement.y * weapon_rotation_amount * (-1 if invert_weapon_sway else 1),-.2,.2), delta)
-			offhand.rotation.y = lerpf(offhand.rotation.y, clampf(mouse_movement.y * weapon_rotation_amount * (-1 if invert_weapon_sway else 1),-.02,.02), delta)
-
+		if player_hands:
+			player_hands.rotation.x = lerpf(player_hands.rotation.x, clampf(mouse_movement.y * weapon_rotation_amount * (-1 if invert_weapon_sway else 1),-.2,.2), delta)
+			player_hands.rotation.y = lerpf(player_hands.rotation.y, clampf(mouse_movement.y * weapon_rotation_amount * (-1 if invert_weapon_sway else 1),-.02,.02), delta)
+			player_hands.rotation.x = lerpf(player_hands.rotation.x, clampf(mouse_movement.y * weapon_rotation_amount * (-1 if invert_weapon_sway else 1),-.2,.2), delta)
+			player_hands.rotation.y = lerpf(player_hands.rotation.y, clampf(mouse_movement.y * weapon_rotation_amount * (-1 if invert_weapon_sway else 1),-.02,.02), delta)
 
 func _on_hurtbox_component_damage_taken(actual: float, source: DamageComponent, hit_dir: Vector3) -> void:
 	camera_animation_player.play("swing_left",-1,1.5)
@@ -565,8 +502,7 @@ func _handle_rope_climbing(delta: float):
 		is_climbing = false
 		return
 	
-	mainhand.disable()
-	offhand.disable()
+	player_hands.disable()
 	
 	# 1. Vertical Climbing
 	var input_dir = Input.get_axis("move_back", "move_forward") 
@@ -701,18 +637,15 @@ func _handle_ladder_physics(delta: float) -> bool:
 
 func enable_hands(body: Variant):
 	if body == self:
-		mainhand.enable()
-		offhand.enable()
+		player_hands.enable()
 	
 func disable_hands(body: Variant):
 	if body == self:
-		mainhand.disable()
-		offhand.disable()
+		player_hands.disable()
 
 func _on_health_component_died() -> void:
 	camera_animation_player.stop()
-	mainhand.disable()
-	offhand.disable()
+	player_hands.disable()
 	hurtbox.monitoring = false
 	hurtbox.monitorable = false
 	can_move = false
@@ -734,8 +667,7 @@ func respawn():
 			global_position = current_area_default_spawn
 	%deathAnimation.play("RESET")
 	SignalBus.emit_signal("player_full_restore")
-	mainhand.enable()
-	offhand.enable()
+	player_hands.enable()
 	hurtbox.monitoring = true
 	hurtbox.monitorable = true
 	can_move = true
@@ -756,8 +688,7 @@ func _on_rope_detection_body_exited(body: Node3D) -> void:
 			if not active_segments.is_empty():
 				current_segment = get_closest_segment()
 			else:
-				mainhand.enable()
-				offhand.enable()
+				player_hands.enable()
 				is_climbing = false
 
 

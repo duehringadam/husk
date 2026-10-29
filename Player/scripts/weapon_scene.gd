@@ -14,6 +14,8 @@ signal damage_dealt
 
 @export var trail: GPUTrail3D
 
+@export var blood_decals: Array[Decal]
+
 var can_attack: bool = true
 var secondary_active_bool: bool = false
 var tween: Tween
@@ -23,8 +25,6 @@ func _ready() -> void:
 	equip_sound.play()
 
 func activate(value: bool):
-	damage_component.monitorable = value
-	damage_component.monitoring = value
 	trail.visible = value
 
 func _on_bloodtimer_timeout() -> void:
@@ -35,16 +35,13 @@ func _on_damage_component_damage_dealt(types: Dictionary[DamageTypes.DAMAGE_TYPE
 	if !target.can_bleed:
 		return
 		
-	var weapon_mesh_shader = weapon_mesh.get_surface_override_material(0)
-	weapon_mesh_shader["shader_parameter/progress"] = clampf(weapon_mesh_shader["shader_parameter/progress"]+.05,0,.5)
-	if weapon_mesh_shader["shader_parameter/progress"] >= .2 && blood_drip != null:
-		blood_drip.emitting = true
-		bloodtimer.start()
-	else:
-		blood_drip.emitting = false
-
+	if blood_decals.size() <= 0: return
+	
+	var random_decal_idx = randi_range(0, blood_decals.size()-1)
+	
+	var decal: Decal = blood_decals[random_decal_idx]
+	
+	decal.modulate.a += 0.05
+	
 func remove_blood():
 	blood_drip.emitting = false
-	var weapon_mesh_shader = weapon_mesh.get_active_material(0)
-	tween = get_tree().create_tween()
-	tween.tween_property(weapon_mesh_shader,"shader_parameter/progress",0,60)

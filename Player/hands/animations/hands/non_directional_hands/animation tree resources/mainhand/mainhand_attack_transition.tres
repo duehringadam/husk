@@ -1,0 +1,22 @@
+[gd_resource type="AnimationNodeTransition" format=3 uid="uid://bounte4whjier"]
+
+[sub_resource type="Curve" id="Curve_v4udn"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[resource]
+sync = true
+xfade_time = 0.1
+xfade_curve = SubResource("Curve_v4udn")
+input_0/name = "attack_1"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "attack_2"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+input_2/name = "attack_3"
+input_2/auto_advance = false
+input_2/break_loop_at_end = false
+input_2/reset = true

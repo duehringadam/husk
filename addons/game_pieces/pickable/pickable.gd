@@ -226,4 +226,12 @@ func _on_health_component_died() -> void:
 
 
 func _on_hurtbox_component_damage_taken(actual: float, source: DamageComponent, hit_dir: Vector3) -> void:
-	apply_central_impulse((self.global_position- source.global_position) * mass * 5)
+	pass
+	#apply_central_impulse((self.global_position- source.global_position) * mass * 5)
+
+
+func _on_status_effect_component_status_activated(effects: Array[status_effect]) -> void:
+	for i in effects:
+		if i.effect_type == Global.STATUS_TYPE.BURNING:
+			await get_tree().create_timer(5).timeout
+			_on_health_component_died()

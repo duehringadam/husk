@@ -3,8 +3,8 @@ render_mode world_vertex_coords, blend_mix, cull_back, diffuse_toon, specular_sc
 
 uniform vec2 Scale = vec2(1.000000, 1.000000);
 uniform sampler2D Color_1D_gradient : source_color, repeat_disable;
-uniform sampler2D Albedo : source_color, repeat_disable;
-uniform sampler2D Normal : source_color, hint_normal, repeat_disable;
+uniform sampler2D Albedo : source_color, repeat_disable, filter_nearest_mipmap_anisotropic;
+uniform sampler2D Normal : source_color, hint_normal, repeat_disable,filter_nearest_mipmap_anisotropic;
 uniform sampler2D Roughtness : source_color, hint_default_white, repeat_disable;
 
 uniform sampler2D DEPTH_TEXTURE: hint_depth_texture;

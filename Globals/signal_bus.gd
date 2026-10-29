@@ -28,6 +28,7 @@ signal raidal_blur(value: bool, duration: float, blur_center: Vector2)
 signal player_ready
 signal player_stats_changed(stats: Dictionary[ItemEquippableType.ITEM_REQUIRED_STAT, int])
 signal player_resists_changed(resists: Dictionary[DamageTypes.DAMAGE_TYPES, float])
+signal player_status_resists_changed(resists: Dictionary[Global.STATUS_TYPE, float])
 signal player_max_health_changed(value: float)
 signal player_current_health_changed(value: float)
 signal player_max_stamina_changed(value: float)
@@ -39,4 +40,8 @@ signal player_lookat_cutscene(target: Node3D, duration: float)
 signal enemy_currency_dropped(amount: int)
 signal custom_effect(custom_id: Variant, custom_data: Variant)
 signal traditional_combat_toggle(value: bool)
+signal equip_item(item_to_equip: item)
+signal unequip_mainhand
+signal unequip_offhand
+signal unequip_armor
 @warning_ignore_restore("unused_signal")

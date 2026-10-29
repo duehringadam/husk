@@ -1,117 +1,286 @@
 [gd_scene format=3 uid="uid://5i8e6fsne4v5"]
 
 [ext_resource type="Script" uid="uid://gbfdqpek0no8" path="res://Player/hands/animations/hands/spell_fire/spell_fire.gd" id="1_13ijh"]
-[ext_resource type="Material" uid="uid://djkfuqngh8ec2" path="res://item/spells/flame_spray/flame_spray_transparent_flame.tres" id="2_0u356"]
+[ext_resource type="Script" uid="uid://boxi7d4dogpjl" path="res://scenes/VFX/fire/FireVFX/assets/BinbunVFX/fire_effects/src/script/vfx_fire_controller.gd" id="2_jidm4"]
 [ext_resource type="AudioStream" uid="uid://b1m60rkx5rn63" path="res://sfx/spells/fire/floraphonic-dragon-breathes-fire-3-191459.mp3" id="3_jidm4"]
+[ext_resource type="PackedScene" uid="uid://cfi2ejoe46dll" path="res://scenes/VFX/fire/FireVFX/assets/BinbunVFX/fire_effects/src/prefs/fire/sparks.tscn" id="3_ts0cw"]
 [ext_resource type="Script" uid="uid://dlsydctoxqbwy" path="res://components/damage_component.gd" id="4_ts0cw"]
 [ext_resource type="PackedScene" uid="uid://ckj86tch1kfph" path="res://scenes/VFX/Scenes/VFX_Fire_Constant_A3.tscn" id="5_h70t2"]
-[ext_resource type="Texture2D" uid="uid://bgpuc5rjm2yh5" path="res://scenes/misc/Textures/Fire_SubUV_new.png" id="6_o4ryx"]
-[ext_resource type="Texture2D" uid="uid://dgnarq1axwhae" path="res://scenes/HDRP/Art/Prefabs/MysticDungeon/Art/Textures/T_Fire01_Tiled_D_Yellow.png" id="7_a3fal"]
-[ext_resource type="Texture2D" uid="uid://185sjxt7oawt" path="res://scenes/misc/Textures/T_Fire01_SubUV_normal.png" id="8_2qr1r"]
+[ext_resource type="Texture2D" uid="uid://cb6uibjeyk6lq" path="res://scenes/VFX/fire/FireVFX/assets/BinbunVFX/fire_effects/src/texture/flame/flame_01.tres" id="6_a3fal"]
+[ext_resource type="Texture2D" uid="uid://tj2xrbtj0eqr" path="res://shaders/blood vfx shaders/blood_buildup_noise_2.tres" id="8_ts0cw"]
 [ext_resource type="AudioStream" uid="uid://sppeegtsqrlm" path="res://sfx/spells/fire/crackling-fire-sound-307026.mp3" id="9_6reqq"]
+[ext_resource type="Script" uid="uid://tpesy3ixn6lc" path="res://scenes/3DForge/Prefabs/flickering_light.gd" id="9_h70t2"]
 
-[sub_resource type="Curve" id="Curve_0eavj"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.80288464, 0.41573036), 0.0, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_0777l"]
+_data = [Vector2(0, 0), 0.0, 4.43392, 0, 0, Vector2(0.505119, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.9739, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0777l"]
+emission_enabled = true
+emission = Color(1, 0.32549, 0, 1)
+emission_energy_multiplier = 2.0
+use_particle_trails = true
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_jidm4"]
+material = SubResource("StandardMaterial3D_0777l")
+radius = 0.001
+radial_steps = 3
+sections = 2
+cap_top = false
+cap_bottom = false
+curve = SubResource("Curve_0777l")
+
+[sub_resource type="Shader" id="Shader_0u356"]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_always;
+
+uniform sampler2D noise_texture_1;
+uniform sampler2D noise_texture_2;
+uniform float edge_softness = 1.0;
+
+uniform vec4 main_color : source_color;
+
+uniform vec2 mask_from = vec2(0.5);
+uniform float mask_scale = 0.4;
+
+void vertex() {
+	mat4 modified_model_view = VIEW_MATRIX * mat4(
+		INV_VIEW_MATRIX[0],
+		INV_VIEW_MATRIX[1],
+		INV_VIEW_MATRIX[2],
+		MODEL_MATRIX[3]
+	);
+	MODELVIEW_MATRIX = modified_model_view;
+
+	MODELVIEW_MATRIX = MODELVIEW_MATRIX * mat4(
+		vec4(length(MODEL_MATRIX[0].xyz), 0.0, 0.0, 0.0),
+		vec4(0.0, length(MODEL_MATRIX[1].xyz), 0.0, 0.0),
+		vec4(0.0, 0.0, length(MODEL_MATRIX[2].xyz), 0.0),
+		vec4(0.0, 0.0, 0.0, 1.0));
+	MODELVIEW_NORMAL_MATRIX = mat3(MODELVIEW_MATRIX);
+}
+
+void fragment() {
+	float warp_noise = 1.0-(texture(noise_texture_2,(UV + vec2(-TIME * 0.5, 0.0))).r * .0003);
+
+	vec2 uv_offset = vec2(COLOR.r * 2.0);
+	uv_offset = uv_offset + (vec2(sin(TIME*1.0)*.1,0.0)*warp_noise);
+	float noise = texture(noise_texture_1,(UV*.4 + vec2(0.0,TIME * 0.2)) + uv_offset).r;
+
+	float mask = smoothstep(1.0-mask_scale,1.0,1.0-distance(mask_from, UV));
+
+	float masked_noise = mask * noise;
+
+	ALBEDO = vec3(1.0, pow(masked_noise,0.8), 0.0);
+	EMISSION = ALBEDO * 1.0;
+
+	ALPHA = smoothstep(0.05, edge_softness, masked_noise);
+	DEPTH = 1.0 - (1.0 - FRAGCOORD.z) * 0.6;
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the material.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_wm8ji"]
+noise_type = 5
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ur0g4"]
+width = 128
+height = 128
+noise = SubResource("FastNoiseLite_wm8ji")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ttxjl"]
+render_priority = 0
+shader = SubResource("Shader_0u356")
+shader_parameter/noise_texture_1 = ExtResource("6_a3fal")
+shader_parameter/noise_texture_2 = SubResource("NoiseTexture2D_ur0g4")
+shader_parameter/edge_softness = 0.1
+shader_parameter/main_color = Color(0, 0, 0, 1)
+shader_parameter/mask_from = Vector2(0.5, 0.5)
+shader_parameter/mask_scale = 0.18
+
+[sub_resource type="QuadMesh" id="QuadMesh_2of2h"]
+material = SubResource("ShaderMaterial_ttxjl")
+size = Vector2(0.25, 0.25)
+
+[sub_resource type="Curve" id="Curve_7n2g4"]
+_data = [Vector2(0, 1), 0.0, 0.199573, 0, 0, Vector2(1, 0), -2.55738, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_ybtvu"]
-curve = SubResource("Curve_0eavj")
+[sub_resource type="CurveTexture" id="CurveTexture_88u4e"]
+curve = SubResource("Curve_7n2g4")
 
-[sub_resource type="Gradient" id="Gradient_gxvne"]
-colors = PackedColorArray(0.99999994, 0.86646223, 0.36267662, 1, 0, 0, 0, 1)
+[sub_resource type="Gradient" id="Gradient_db5ld"]
+offsets = PackedFloat32Array(0.00212766, 1)
+colors = PackedColorArray(1, 0, 0, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_lvhqm"]
-gradient = SubResource("Gradient_gxvne")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ruun4"]
+gradient = SubResource("Gradient_db5ld")
 
-[sub_resource type="Curve" id="Curve_stlr1"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.20224726), 0.0, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_ib7qa"]
+_data = [Vector2(0, 0.575228), 0.0, 4.85321, 0, 0, Vector2(0.252874, 1), 0.0, -2.77534, 0, 0, Vector2(1, 0), -0.0879188, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_hj8i6"]
+curve = SubResource("Curve_ib7qa")
+
+[sub_resource type="Curve" id="Curve_u3twu"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 2.33237, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_rk2r1"]
-curve = SubResource("Curve_stlr1")
+[sub_resource type="CurveTexture" id="CurveTexture_1wing"]
+curve = SubResource("Curve_u3twu")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0eavj"]
-lifetime_randomness = 1.0
-emission_shape = 1
-emission_sphere_radius = 0.05
-angle_min = -720.0
-angle_max = 720.0
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2of2h"]
 direction = Vector3(0, 1, 0)
-gravity = Vector3(0, 4.8, 0)
-linear_accel_min = -2.23517e-06
-linear_accel_max = -2.23517e-06
-scale_min = 0.5
-scale_max = 1.5
-scale_curve = SubResource("CurveTexture_rk2r1")
-color_ramp = SubResource("GradientTexture1D_lvhqm")
-alpha_curve = SubResource("CurveTexture_ybtvu")
-anim_speed_min = 1.0
-anim_speed_max = 1.0
-turbulence_noise_speed = Vector3(0, 1, 0)
+spread = 5.0
+gravity = Vector3(0, 1, 0)
+scale_curve = SubResource("CurveTexture_hj8i6")
+color_initial_ramp = SubResource("GradientTexture1D_ruun4")
+alpha_curve = SubResource("CurveTexture_88u4e")
+turbulence_noise_speed = Vector3(0, 12.49, 0)
+turbulence_noise_speed_random = 0.0
+turbulence_influence_max = 1.0
+turbulence_influence_over_life = SubResource("CurveTexture_1wing")
+sub_emitter_mode = 4
+sub_emitter_amount_at_start = 1
+sub_emitter_keep_velocity = true
 
-[sub_resource type="QuadMesh" id="QuadMesh_hqfbu"]
-material = ExtResource("2_0u356")
-size = Vector2(0.2, 0.2)
+[sub_resource type="Shader" id="Shader_jidm4"]
+code = "shader_type spatial;
+render_mode blend_add;
+uniform sampler2D noise_texture_1: filter_nearest_mipmap_anisotropic;
+uniform sampler2D noise_texture_2: filter_nearest_mipmap_anisotropic;
+uniform sampler2D texture_mask: filter_nearest_mipmap_anisotropic;
+uniform float edge_softness = 1.0;
+uniform vec2 texture_scale = vec2(1.0,1.0);
+uniform vec4 smoke_color : source_color;
+uniform float lightness = 0.0;
+uniform vec2 mask_from = vec2(0.5);
+uniform float mask_scale = 0.4;
+void vertex() {
+mat4 modified_model_view = VIEW_MATRIX * mat4(
+INV_VIEW_MATRIX[0],
+INV_VIEW_MATRIX[1],
+INV_VIEW_MATRIX[2],
+MODEL_MATRIX[3]
+);
+MODELVIEW_MATRIX = modified_model_view;
+MODELVIEW_MATRIX = MODELVIEW_MATRIX * mat4(
+vec4(length(MODEL_MATRIX[0].xyz), 0.0, 0.0, 0.0),
+vec4(0.0, length(MODEL_MATRIX[1].xyz), 0.0, 0.0),
+vec4(0.0, 0.0, length(MODEL_MATRIX[2].xyz), 0.0),
+vec4(0.0, 0.0, 0.0, 1.0));
+MODELVIEW_NORMAL_MATRIX = mat3(MODELVIEW_MATRIX);
+}
+void fragment() {
+	float lifetime = 0.5 + COLOR.a * 0.5;
+	float warp_noise = 1.0-(texture(noise_texture_2,(UV + vec2(-TIME * 0.5, 0.0))).r * .0003);
+	vec2 uv_offset = vec2(COLOR.r * 2.0);
+	uv_offset = uv_offset + (vec2(sin(TIME*1.0)*.1,COLOR.a*.1)*warp_noise);
+	float noise = texture(noise_texture_1,(UV*.3*texture_scale) + uv_offset).r;
+	float mask = smoothstep(1.0-mask_scale,1.0,1.0-distance(mask_from, UV));
+	float masked_noise = mask * noise;
+	vec3 main_color = vec3(1.0, lightness+(pow(COLOR.a, 8.0)*.1), (pow(COLOR.a, 16.0)*lightness));
+	main_color = mix(smoke_color.rgb, main_color, pow(COLOR.a, 8.0));
+	ALBEDO = main_color;
+	EMISSION = ALBEDO * 3.0 * pow(COLOR.a, 16.0);
+	ALPHA = smoothstep(0.3, edge_softness, masked_noise) * pow(COLOR.a, 2.0);
+	DEPTH = 1.0 - (1.0 - FRAGCOORD.z) * 0.6;
+}"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_vkxb0"]
+noise_type = 5
+frequency = 0.005
+fractal_octaves = 3
+domain_warp_frequency = 0.013
+domain_warp_fractal_octaves = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gpxmu"]
+noise = SubResource("FastNoiseLite_vkxb0")
+seamless = true
+
+[sub_resource type="Gradient" id="Gradient_h2yge"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1bvp3"]
+gradient = SubResource("Gradient_h2yge")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1x0cp"]
+render_priority = 0
+shader = SubResource("Shader_jidm4")
+shader_parameter/noise_texture_1 = ExtResource("6_a3fal")
+shader_parameter/noise_texture_2 = SubResource("NoiseTexture2D_gpxmu")
+shader_parameter/texture_mask = SubResource("GradientTexture2D_1bvp3")
+shader_parameter/edge_softness = 0.5
+shader_parameter/texture_scale = Vector2(1, 1)
+shader_parameter/smoke_color = Color(0.3, 0.21, 0.21, 1)
+shader_parameter/lightness = 0.0
+shader_parameter/mask_from = Vector2(0.5, 0.5)
+shader_parameter/mask_scale = 0.6
+
+[sub_resource type="QuadMesh" id="QuadMesh_1x0cp"]
+material = SubResource("ShaderMaterial_1x0cp")
+size = Vector2(0.25, 0.25)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_gi4cx"]
+frequency = 1.0
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_kur6e"]
+noise = SubResource("FastNoiseLite_gi4cx")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eesq2"]
 radius = 2.2509766
 height = 11.75
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ym31k"]
-resource_local_to_scene = true
-transparency = 1
-diffuse_mode = 3
-specular_mode = 1
-vertex_color_use_as_albedo = true
-vertex_color_is_srgb = true
-albedo_color = Color(1, 0.51584375, 0, 1)
-albedo_texture = ExtResource("6_o4ryx")
-emission_enabled = true
-emission = Color(1, 0.29748532, 0, 1)
-emission_texture = ExtResource("7_a3fal")
-normal_enabled = true
-normal_texture = ExtResource("8_2qr1r")
-backlight = Color(1, 1, 1, 1)
-billboard_mode = 3
-billboard_keep_scale = true
-particles_anim_h_frames = 6
-particles_anim_v_frames = 6
-particles_anim_loop = true
-grow_amount = -0.264
-proximity_fade_distance = 0.01
-distance_fade_max_distance = 1.0
-stencil_flags = 2
-
-[sub_resource type="QuadMesh" id="QuadMesh_po4ir"]
-resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_ym31k")
-
 [node name="spell_fire" type="Node3D" unique_id=1881406381]
 script = ExtResource("1_13ijh")
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="." unique_id=915606027]
-remote_path = NodePath("../GPUParticles3D")
 update_rotation = false
 update_scale = false
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1342072422]
-top_level = true
-cast_shadow = 0
-amount = 16
-lifetime = 0.3
-local_coords = true
-process_material = SubResource("ParticleProcessMaterial_0eavj")
-draw_pass_1 = SubResource("QuadMesh_hqfbu")
+[node name="Fire_03" type="Node3D" parent="." unique_id=949361386]
+script = ExtResource("2_jidm4")
 
-[node name="firesfx" type="AudioStreamPlayer3D" parent="GPUParticles3D" unique_id=912230544]
+[node name="sparks" parent="Fire_03" unique_id=1581460957 instance=ExtResource("3_ts0cw")]
+amount = 6
+draw_pass_2 = SubResource("TubeTrailMesh_jidm4")
+
+[node name="Flame_Core" type="MeshInstance3D" parent="Fire_03" unique_id=569875409 groups=["effect_mesh"]]
+cast_shadow = 0
+mesh = SubResource("QuadMesh_2of2h")
+
+[node name="Flame" type="GPUParticles3D" parent="Fire_03" unique_id=1612801286]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000316582, -0.00331225, 0.00392483)
+sorting_offset = 0.01
+sorting_use_aabb_center = false
+amount = 40
+lifetime = 0.5
+local_coords = true
+draw_order = 3
+process_material = SubResource("ParticleProcessMaterial_2of2h")
+draw_pass_1 = SubResource("QuadMesh_1x0cp")
+
+[node name="firesfx" type="AudioStreamPlayer3D" parent="Fire_03" unique_id=912230544]
 stream = ExtResource("3_jidm4")
 max_distance = 5.0
 bus = &"SFX"
 
-[node name="OmniLight3D" type="OmniLight3D" parent="GPUParticles3D" unique_id=1138468221]
+[node name="OmniLight3D" type="OmniLight3D" parent="Fire_03" unique_id=1138468221 node_paths=PackedStringArray("light")]
 light_color = Color(1, 0.3882353, 0, 1)
-light_energy = 0.15
+light_projector = ExtResource("8_ts0cw")
 omni_range = 0.4
+script = ExtResource("9_h70t2")
+noise = SubResource("NoiseTexture3D_kur6e")
+light = NodePath(".")
 
 [node name="DamageComponent" type="Area3D" parent="." unique_id=752380998]
 transform = Transform3D(-0.04999996, 0, 4.3711346e-09, 0, 0.04999999, 0, -4.3711355e-09, 0, -0.049999952, 0.24913344, 0.27076727, -0.19921649)
@@ -135,13 +304,8 @@ shape = SubResource("CapsuleShape3D_eesq2")
 [node name="VFX_fire_Constant_A3" parent="." unique_id=1748177694 instance=ExtResource("5_h70t2")]
 top_level = false
 
-[node name="bloodflow" parent="VFX_fire_Constant_A3" index="1" unique_id=1975358930]
-draw_pass_1 = SubResource("QuadMesh_po4ir")
-
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1285625525]
 stream = ExtResource("9_6reqq")
 volume_db = -20.0
 autoplay = true
 bus = &"SFX"
-
-[editable path="VFX_fire_Constant_A3"]

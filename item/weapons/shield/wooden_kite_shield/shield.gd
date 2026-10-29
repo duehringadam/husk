@@ -1,20 +1,16 @@
 extends Offhand
 
 var primary_active_bool: bool = false
-@onready var raise: AudioStreamPlayer3D = $raise
-@onready var equip: AudioStreamPlayer3D = $equip
-@onready var block: AudioStreamPlayer3D = $block
-
 
 func _ready() -> void:
-	equip.play()
+	equip_sound.play()
 
 func activate():
 	SignalBus.emit_signal("is_blocking", true)
-	raise.pitch_scale = randf_range(.9,1.2)
-	raise.play()
+	activate_sound.pitch_scale = randf_range(.9,1.2)
+	activate_sound.play()
 
 func deactivate():
 	SignalBus.emit_signal("is_blocking", false)
-	raise.pitch_scale = randf_range(.9,1.2)
-	raise.play()
+	activate_sound.pitch_scale = randf_range(.9,1.2)
+	activate_sound.play()

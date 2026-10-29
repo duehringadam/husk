@@ -136,6 +136,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 7.549791e-08, 0, -7.549791e-08, 1, 0, 0, 
 collision_layer = 8
 collision_mask = 13
 script = ExtResource("9_c2vfv")
+damage_resistances = Dictionary[int, float]({
+0: 10.0,
+1: 10.0,
+2: 10.0,
+3: 10.0,
+4: 10.0,
+5: 10.0,
+6: 0.0,
+7: 10.0
+})
+status_resistances = Dictionary[int, float]({
+0: 0.0,
+1: 10.0,
+2: 10.0,
+3: 10.0,
+4: 10.0
+})
 health_component = NodePath("../HealthComponent")
 status_component = NodePath("../status_effect_component2")
 invulnerability_duration = 0.5
@@ -215,3 +232,4 @@ mesh = NodePath("../Explosive Barrel")
 [connection signal="on_complete" from="InteractionContainer/WhileGrabbed/Throw" to="." method="_on_throw"]
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="damage_dealt" from="Explosive Barrel/DamageComponent" to="." method="_on_damage_component_damage_dealt"]
+[connection signal="status_activated" from="status_effect_component2" to="." method="_on_status_effect_component_status_activated"]

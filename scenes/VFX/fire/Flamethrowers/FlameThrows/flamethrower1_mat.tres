@@ -1,0 +1,22 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://d3luuk25y7vc7"]
+
+[sub_resource type="Shader" id="Shader_umdxf"]
+code = "shader_type spatial;
+	render_mode blend_mix, depth_draw_opaque, cull_disabled;
+
+	void fragment() {
+		vec2 center_uv = UV * 2.0 - 1.0;
+		float dist = length(center_uv);
+		float mask = 1.0 - smoothstep(0.1, 1.0, dist);
+
+		ALBEDO = COLOR.rgb;
+		ALPHA = COLOR.a * mask;
+
+		float brightness = max(max(COLOR.r, COLOR.g), COLOR.b);
+		float glow_mask = smoothstep(0.2, 0.5, brightness);
+		EMISSION = COLOR.rgb * glow_mask * 4.0;
+	}"
+
+[resource]
+render_priority = 1
+shader = SubResource("Shader_umdxf")

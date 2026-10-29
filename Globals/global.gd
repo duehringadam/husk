@@ -3,7 +3,7 @@ extends Node
 var debug
 var player
 
-enum STATUS_TYPE {BURNING,POISONED,SLEEP,BLEEDING,LEPROSY}
+enum STATUS_TYPE {BURNING,POISONED,SLEEP,BLEEDING,LEPROSY, PARALYZED}
 
 var camera_fov: int = 70
 

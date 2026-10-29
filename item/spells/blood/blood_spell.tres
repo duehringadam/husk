@@ -1,6 +1,5 @@
 [gd_resource type="Resource" script_class="item" format=3 uid="uid://b2anxjkr7f46w"]
 
-[ext_resource type="AnimationNodeStateMachine" uid="uid://c5baskkuqckvs" path="res://Player/hands/animations/hands/animation_state_machines/offhand_accursed_blood_spell_animation_state_machine.tres" id="1_jb7se"]
 [ext_resource type="PackedScene" uid="uid://ctfq2toui1ut" path="res://item/spells/blood/spell_blood.tscn" id="2_f7vag"]
 [ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/scripts/item_stat.gd" id="2_jb7se"]
 [ext_resource type="Texture2D" uid="uid://luj8w7njrmqe" path="res://item/icons/magic/explosion.svg/icons/ffffff/000000/1x1/lorc/gooey-molecule.svg" id="2_wec87"]
@@ -24,7 +23,6 @@ item_required_stats = Dictionary[int, int]({
 1: 20
 })
 item_scene = ExtResource("2_f7vag")
-animation_state_machine = ExtResource("1_jb7se")
 can_be_dropped = false
 position = Vector3(0.155, 0.086, 0.064)
 rotation = Vector3(-53.5, -142.9, -163.8)

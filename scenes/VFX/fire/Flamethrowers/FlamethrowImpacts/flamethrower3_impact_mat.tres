@@ -1,0 +1,90 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bp7i8funxfuc8"]
+
+[sub_resource type="Shader" id="Shader_0miaj"]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_never;
+
+uniform sampler2D noise_texture : repeat_enable, filter_linear_mipmap;
+uniform sampler2D color_noise_texture : repeat_enable, filter_linear_mipmap; // color irregularity
+
+uniform vec2 noise_scale = vec2(1.0, 1.0);
+uniform vec2 scroll_speed = vec2(0.0, 1.5);
+uniform float shape_wobble_strength : hint_range(0.0, 1.0) = 0.5;
+
+uniform float emission_energy : hint_range(1.0, 10.0) = 2.5;
+uniform float edge_softness : hint_range(0.01, 1.0) = 0.5;
+uniform float color_wobble_strength : hint_range(0.0, 1.0) = 0.35; // how much the colors bleed/mix irregularly
+
+uniform vec3 color_blue : source_color = vec3(0.1, 0.5, 1.0);
+uniform vec3 color_yellow : source_color = vec3(1.0, 0.9, 0.1);
+uniform vec3 color_red : source_color = vec3(1.0, 0.2, 0.0);
+uniform vec3 color_smoke : source_color = vec3(0.05, 0.05, 0.05);
+
+
+uniform float core_radius : hint_range(0.0, 1.0) = 0.3;
+
+varying float particle_age;
+
+void vertex() {
+    // normalized lifetime (0.0 to 1.0)
+    particle_age = INSTANCE_CUSTOM.y;
+}
+
+void fragment() {
+    vec2 scrolled_uv = (UV * noise_scale) + (TIME * scroll_speed);
+    float base_noise = texture(noise_texture, scrolled_uv).r;
+    vec2 center_uv = UV * 2.0 - 1.0;
+    float dist = length(center_uv);
+	
+    float distorted_dist = dist + (base_noise - 0.5) * shape_wobble_strength; 
+    float circle_mask = 1.0 - smoothstep(0.4, 1.0, distorted_dist);
+    float core_mask = 1.0 - smoothstep(core_radius, core_radius + 0.25, dist);
+
+    float fire_shape = mix(base_noise, 1.0, core_mask) * circle_mask;
+    float erosion_threshold = 1.0 - COLOR.a;
+    float fire_alpha = smoothstep(erosion_threshold, erosion_threshold + edge_softness, fire_shape);
+    float color_noise = texture(color_noise_texture, UV + TIME * vec2(0.0, 0.8)).r;
+    
+    float distorted_age = particle_age + (color_noise - 0.5) * color_wobble_strength;
+    distorted_age = clamp(distorted_age, 0.0, 1.0);
+    vec3 current_color = mix(color_blue, color_yellow, smoothstep(0.0, 0.15, distorted_age));
+    current_color = mix(current_color, color_red, smoothstep(0.15, 0.5, distorted_age));
+    current_color = mix(current_color, color_smoke, smoothstep(0.5, 0.9, distorted_age));
+    float current_emission = mix(emission_energy, 0.0, smoothstep(0.4, 0.8, distorted_age));
+
+    ALBEDO = current_color;
+    EMISSION = current_color * current_emission;
+    ALPHA = fire_alpha; 
+}"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_wppxa"]
+frequency = 0.002
+fractal_octaves = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3xrpy"]
+noise = SubResource("FastNoiseLite_wppxa")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6kxbp"]
+frequency = 0.0079
+fractal_octaves = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kdopp"]
+noise = SubResource("FastNoiseLite_6kxbp")
+seamless = true
+
+[resource]
+render_priority = 1
+shader = SubResource("Shader_0miaj")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_kdopp")
+shader_parameter/color_noise_texture = SubResource("NoiseTexture2D_3xrpy")
+shader_parameter/noise_scale = Vector2(1, 1)
+shader_parameter/scroll_speed = Vector2(0, 1.5)
+shader_parameter/shape_wobble_strength = 0.5
+shader_parameter/emission_energy = 2.5
+shader_parameter/edge_softness = 0.5
+shader_parameter/color_wobble_strength = 0.1950000092625
+shader_parameter/color_blue = Color(0.8, 1, 0.8, 1)
+shader_parameter/color_yellow = Color(0.4, 1, 0.2, 1)
+shader_parameter/color_red = Color(0, 0.5, 0.1, 1)
+shader_parameter/color_smoke = Color(0.1, 0.2, 0.1, 1)
+shader_parameter/core_radius = 0.3

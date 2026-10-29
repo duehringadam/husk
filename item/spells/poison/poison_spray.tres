@@ -1,6 +1,5 @@
 [gd_resource type="Resource" script_class="item" format=3 uid="uid://cbfqt8ks45tjk"]
 
-[ext_resource type="AnimationNodeStateMachine" uid="uid://btqetk34l0eah" path="res://Player/hands/animations/hands/animation_state_machines/offhand_fire_spell_animation_state.tres" id="1_l7e8y"]
 [ext_resource type="Texture2D" uid="uid://drdj7vtksvyr1" path="res://item/icons/potions/chemical.svg/icons/ffffff/000000/1x1/lorc/chemical-bolt.svg" id="2_0r0nl"]
 [ext_resource type="PackedScene" uid="uid://dualwps5xwbr8" path="res://item/spells/poison/spell_poison.tscn" id="3_0r0nl"]
 [ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/scripts/item_stat.gd" id="4_xrdji"]
@@ -27,7 +26,6 @@ mana_cost = 5
 constant_mana_drain = true
 constant_mana_drain_cost = 10
 item_scene = ExtResource("3_0r0nl")
-animation_state_machine = ExtResource("1_l7e8y")
 can_be_dropped = false
 position = Vector3(0.104, 0.081, -0.004)
 rotation = Vector3(-8, -64.8, 3.2)

@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="armor" format=3 uid="uid://b1t47o8nffytd"]
+
+[ext_resource type="AudioStream" uid="uid://cxaiegc58ql2r" path="res://sfx/UI/Fantasy_Game_Item_Pickup_Leather_Armor.wav" id="1_lpq11"]
+[ext_resource type="Texture2D" uid="uid://dsg2q5wpwoiih" path="res://item/icons/armor/leg-armor.svg" id="2_lpq11"]
+[ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/scripts/item_stat.gd" id="3_2jeu1"]
+[ext_resource type="Material" uid="uid://smjara8sx7lu" path="res://item/armor/chest/leather_armor/leather_armor_material.tres" id="4_p8x8t"]
+[ext_resource type="ArrayMesh" uid="uid://b0fdtdylqkpr0" path="res://item/armor/chest/leather_armor/leather_armor_mesh.tres" id="5_26kyu"]
+[ext_resource type="Script" uid="uid://bkvqv8sq461rg" path="res://item/scripts/armor.gd" id="6_o08ee"]
+[ext_resource type="Skin" uid="uid://rch4qlj81u4m" path="res://item/armor/chest/leather_armor/leather_armor_skin.tres" id="7_blqt6"]
+
+[sub_resource type="Resource" id="Resource_v4udn"]
+script = ExtResource("3_2jeu1")
+metadata/_custom_type_script = "uid://bbtfrupllo3w6"
+
+[resource]
+script = ExtResource("6_o08ee")
+mesh = ExtResource("5_26kyu")
+skin = ExtResource("7_blqt6")
+material = ExtResource("4_p8x8t")
+equip_sfx = ExtResource("1_lpq11")
+damage_resistances = Dictionary[int, float]({
+0: 10.0,
+1: 10.0,
+2: 5.0,
+3: 0.0,
+4: 0.0,
+5: 0.0,
+6: 5.0,
+7: 10.0
+})
+status_resistances = Dictionary[int, float]({
+0: 5.0,
+1: 0.0,
+2: 0.0,
+3: 10.0,
+4: 5.0
+})
+item_name = "Leather Armor Legs"
+item_description = "Leather Armor"
+item_icon = ExtResource("2_lpq11")
+item_type = 2
+item_category = 9
+item_stats = SubResource("Resource_v4udn")
+metadata/_custom_type_script = "uid://bkvqv8sq461rg"

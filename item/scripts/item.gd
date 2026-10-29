@@ -9,6 +9,7 @@ signal set_stack_size(value: int)
 @export_multiline var item_description: String
 @export var item_icon: Texture2D
 @export var item_type: ItemEquippableType.ITEM_EQUIPPABLE_TYPES
+@export var item_category: ItemEquippableType.ITEM_WEAPON_CATEGORY
 @export var item_cost: int
 
 @export_category("Item Stack")
@@ -33,16 +34,18 @@ signal set_stack_size(value: int)
 
 @export_category("Misc")
 @export var two_handed: bool
-@export var animation_state_machine: AnimationNodeStateMachine
 @export var can_be_dropped: bool = true
+
+@export_category("Animations")
+@export var animations: ItemAnimations
 
 @export_category("Weapon_Position")
 @export var position: Vector3
-@export var rotation: Vector3
+@export_custom(PROPERTY_HINT_RANGE, "-360,360,0.1,or_greater,or_less,degrees") var rotation: Vector3
 
 @export_category("Left Hand Weapon Position")
 @export var left_position: Vector3
-@export var left_rotation: Vector3
+@export_custom(PROPERTY_HINT_RANGE, "-360,360,0.1,or_greater,or_less,degrees") var left_rotation: Vector3
 
 var unique_id: String = ""
 

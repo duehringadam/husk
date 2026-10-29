@@ -1,6 +1,5 @@
 [gd_resource type="Resource" script_class="item" format=3 uid="uid://cxhjq8887wm37"]
 
-[ext_resource type="AnimationNodeStateMachine" uid="uid://cy3nqarb8txva" path="res://Player/hands/animations/hands/animation_state_machines/offhand_telekinesis_state_machine.tres" id="1_nt2pq"]
 [ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/scripts/item_stat.gd" id="2_nt2pq"]
 [ext_resource type="PackedScene" uid="uid://b2u7yd1ub8g3l" path="res://item/spells/telekinesis/spell_telekinesis.tscn" id="2_vbd5e"]
 [ext_resource type="Texture2D" uid="uid://dc28qjl1ksva2" path="res://item/icons/magic/explosion.svg/icons/ffffff/000000/1x1/lorc/egg-defense.svg" id="2_w56sd"]
@@ -27,7 +26,6 @@ item_required_stats = Dictionary[int, int]({
 mana_cost = 10
 item_scene = ExtResource("2_vbd5e")
 item_dropped_scene_path = "res://item/spells/spell_item_world.tscn"
-animation_state_machine = ExtResource("1_nt2pq")
 can_be_dropped = false
 position = Vector3(0.095020354, 0.08039755, -0.018346734)
 rotation = Vector3(-2.6, -82.2, 8.7)

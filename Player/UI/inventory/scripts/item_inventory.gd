@@ -62,24 +62,22 @@ func _item_menu_selected(value: int):
 				self.is_equipped = true
 				equipped_signal.emit(self)
 				if item_inventory.item_type == ItemEquippableType.ITEM_EQUIPPABLE_TYPES.WEAPON:
-					Global.player.mainhand.weapon = item_inventory
+					SignalBus.emit_signal("equip_item", item_inventory)
 				elif item_inventory.item_type == ItemEquippableType.ITEM_EQUIPPABLE_TYPES.OFFHAND:
-					Global.player.offhand.weapon = item_inventory
+					SignalBus.emit_signal("equip_item", item_inventory)
 				elif item_inventory.item_type == ItemEquippableType.ITEM_EQUIPPABLE_TYPES.ARMOR:
-					pass
+					SignalBus.emit_signal("equip_item", item_inventory)
 				elif item_inventory.item_type == ItemEquippableType.ITEM_EQUIPPABLE_TYPES.JEWELRY:
-					pass
+					SignalBus.emit_signal("equip_item", item_inventory)
 		2:
 			if self.is_equipped:
 				self.is_equipped = false
 				if item_inventory.item_type == ItemEquippableType.ITEM_EQUIPPABLE_TYPES.WEAPON:
-					Global.player.mainhand.unequip()
-					Global.player.mainhand.disable()
+					SignalBus.emit_signal("unequip_mainhand")
 				elif item_inventory.item_type == ItemEquippableType.ITEM_EQUIPPABLE_TYPES.OFFHAND:
-					Global.player.offhand.unequip()
-					Global.player.offhand.disable()
+					SignalBus.emit_signal("unequip_offhand")
 				elif item_inventory.item_type == ItemEquippableType.ITEM_EQUIPPABLE_TYPES.ARMOR:
-					pass
+					SignalBus.emit_signal("unequip_armor")
 				elif item_inventory.item_type == ItemEquippableType.ITEM_EQUIPPABLE_TYPES.JEWELRY:
 					pass
 				Global.player.inventory.unequip(item_inventory.item_type)
@@ -87,11 +85,9 @@ func _item_menu_selected(value: int):
 			if self.is_equipped:
 				self.is_equipped = false
 				if item_inventory.item_type == ItemEquippableType.ITEM_EQUIPPABLE_TYPES.WEAPON:
-					Global.player.mainhand.unequip()
-					Global.player.mainhand.disable()
+					SignalBus.emit_signal("unequip_mainhand")
 				if item_inventory.item_type == ItemEquippableType.ITEM_EQUIPPABLE_TYPES.OFFHAND:
-					Global.player.offhand.unequip()
-					Global.player.offhand.disable()
+					SignalBus.emit_signal("unequip_offhand")
 			
 			if item_inventory.is_stackable:
 				item_drop.emit(item_inventory)
@@ -112,13 +108,11 @@ func _set_stack_size(amount: int):
 		if item_stack_size <= 0 && is_equipped:
 			self.disabled = true
 			self.is_equipped = false
-			Global.player.offhand.unequip()
-			Global.player.offhand.disable()
+			SignalBus.emit_signal("unequip_offhand")
 		stack_size.show()
 		stack_size.text = str(item_stack_size)
 	if item_stack_size <= 0 && is_equipped:
-		Global.player.offhand.unequip()
-		Global.player.offhand.disable()
+		SignalBus.emit_signal("unequip_offhand")
 	stack_size_changed.emit()
 
 func update_stack_size(amount: int):
@@ -131,13 +125,11 @@ func update_stack_size(amount: int):
 		if item_stack_size <= 0 && is_equipped:
 			self.disabled = true
 			self.is_equipped = false
-			Global.player.offhand.unequip()
-			Global.player.offhand.disable()
+			SignalBus.emit_signal("unequip_offhand")
 		stack_size.show()
 		stack_size.text = str(item_stack_size)
 	if item_stack_size <= 0 && is_equipped:
-		Global.player.offhand.unequip()
-		Global.player.offhand.disable()
+		SignalBus.emit_signal("unequip_offhand")
 	stack_size_changed.emit()
 
 func _on_mouse_entered() -> void:

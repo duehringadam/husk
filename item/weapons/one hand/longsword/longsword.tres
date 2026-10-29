@@ -1,10 +1,34 @@
 [gd_resource type="Resource" script_class="item" format=3 uid="uid://j2kounr4gxnk"]
 
-[ext_resource type="AnimationNodeStateMachine" uid="uid://bjj1ust2y45ae" path="res://Player/hands/animations/hands/animation_state_machines/one_handed_sword_animation_state_machine.tres" id="1_m6o6b"]
+[ext_resource type="Script" uid="uid://vqsnjxr1425q" path="res://item/scripts/item_animations.gd" id="1_qu4w2"]
 [ext_resource type="PackedScene" uid="uid://dolh7osohdf1j" path="res://item/weapons/one hand/longsword/longsword.tscn" id="2_1kayq"]
+[ext_resource type="AnimationLibrary" uid="uid://brptxm7won7ul" path="res://Player/hands/animations/hands/non_directional_hands/non_directional_hands.res" id="2_5x0fo"]
 [ext_resource type="Texture2D" uid="uid://bfhvavykmnic7" path="res://item/icons/blade/blade.svg/icons/ffffff/000000/1x1/lorc/broadsword.svg" id="2_dopyo"]
 [ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/scripts/item_stat.gd" id="3_ooyp7"]
 [ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/scripts/item.gd" id="4_xatil"]
+
+[sub_resource type="Resource" id="Resource_gi4cx"]
+script = ExtResource("1_qu4w2")
+target_libraries = Array[AnimationLibrary]([ExtResource("2_5x0fo")])
+idle = "one_handed_sword_idle"
+equip = "brokenS_TO"
+mainhand_lower = "one_handed_sword_lower"
+attack_1 = "brokensword_swing1"
+attack_2 = "brokensword_swing2"
+attack_3 = "one_handed_sword_attack3"
+heavy_attack = ""
+block_start = "one_handed_sword_block"
+block_hit = "one_handed_sword_block_hit"
+block_stun = "brokenS_blockSTUN"
+activate = ""
+deactivate = ""
+offhand_idle = ""
+offhand_equip = ""
+offhand_block_hit = ""
+offhand_block_stun = ""
+offhand_cant_use = ""
+offhand_lower = ""
+metadata/_custom_type_script = "uid://vqsnjxr1425q"
 
 [sub_resource type="Resource" id="Resource_rh6kp"]
 script = ExtResource("3_ooyp7")
@@ -26,7 +50,7 @@ item_required_stats = Dictionary[int, int]({
 0: 10
 })
 item_scene = ExtResource("2_1kayq")
-animation_state_machine = ExtResource("1_m6o6b")
+animations = SubResource("Resource_gi4cx")
 position = Vector3(-0.004, 0.118, 0.002)
 rotation = Vector3(0, -90, 0)
 metadata/_custom_type_script = "uid://dcfd18dx8x1bm"

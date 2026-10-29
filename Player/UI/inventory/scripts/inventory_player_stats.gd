@@ -20,6 +20,14 @@ extends NinePatchRect
 @onready var fire_resistance: Label = %fireResistance
 @onready var poison_resistance: Label = %poisonResistance
 
+@onready var poison_status_resistance: Label = %poisonStatusResistance
+@onready var paralyze_resistance: Label = %paralyzeResistance
+@onready var burn_resistance: Label = %burnResistance
+@onready var leprosy_resistance: Label = %leprosyResistance
+@onready var sleep_resistance: Label = %sleepResistance
+@onready var bleed_resistance: Label = %bleedResistance
+
+
 var current_hp: float
 var max_hp: float
 
@@ -33,6 +41,7 @@ func _ready() -> void:
 	SignalBus.connect("player_max_health_changed", _update_player_max_hp)
 	SignalBus.connect("player_max_stamina_changed", _update_player_max_stamina)
 	SignalBus.connect("player_current_stamina_changed", _update_player_current_stamina)
+	SignalBus.connect("player_status_resists_changed", _update_player_status_resists)
 
 func _update_player_stats(stats: Dictionary[ItemEquippableType.ITEM_REQUIRED_STAT, int]):
 	for i in stats.keys():
@@ -55,21 +64,35 @@ func _update_player_resists(resists: Dictionary[DamageTypes.DAMAGE_TYPES, float]
 	for i in resists.keys():
 		match DamageTypes.DAMAGE_TYPES.keys()[i]:
 			"STRIKE":
-				strike_resistance.text = str(int(resists[i] * 100))
+				strike_resistance.text = str(int(resists[i]))
 			"SLASH":
-				slash_resistance.text = str(int(resists[i] * 100))
+				slash_resistance.text = str(int(resists[i]))
 			"THRUST":
-				thrust_resistance.text = str(int(resists[i] * 100))
+				thrust_resistance.text = str(int(resists[i]))
 			"MAGIC":
-				magic_resistance.text = str(int(resists[i] * 100))
+				magic_resistance.text = str(int(resists[i]))
 			"HOLY":
-				holy_resistance.text = str(int(resists[i] * 100))
+				holy_resistance.text = str(int(resists[i]))
 			"MURK":
-				murk_resistance.text = str(int(resists[i] * 100))
+				murk_resistance.text = str(int(resists[i]))
 			"FIRE":
-				fire_resistance.text = str(int(resists[i] * 100))
+				fire_resistance.text = str(int(resists[i]))
 			"POISON":
-				poison_resistance.text = str(int(resists[i] * 100))
+				poison_resistance.text = str(int(resists[i]))
+
+func _update_player_status_resists(resists: Dictionary[Global.STATUS_TYPE, float]):
+	for i in resists:
+		match Global.STATUS_TYPE.keys()[i]:
+			"BURNING":
+				burn_resistance.text = str(int(resists[i]))
+			"POISONED":
+				poison_status_resistance.text = str(int(resists[i]))
+			"SLEEP":
+				sleep_resistance.text = str(int(resists[i]))
+			"BLEEDING":
+				bleed_resistance.text = str(int(resists[i]))
+			"LEPROSY":
+				leprosy_resistance.text = str(int(resists[i]))
 
 func _update_player_current_hp(value: float):
 	current_hp = value

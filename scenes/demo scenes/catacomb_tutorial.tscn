@@ -32,7 +32,6 @@
 [ext_resource type="Script" uid="uid://cmrc6hxb0a6wm" path="res://components/percent_hp_damage_component.gd" id="23_7urbf"]
 [ext_resource type="PackedScene" uid="uid://6r1xwqf3uh2r" path="res://scenes/doors/double_gate.tscn" id="23_eytoc"]
 [ext_resource type="PackedScene" uid="uid://d4n4ub6iqxj15" path="res://scenes/Hivemind/CastleOfEternalMists/Prefabs/SM_Wall_200x800_LT.tscn" id="23_mbuqw"]
-[ext_resource type="Resource" uid="uid://bln5oji1guby0" path="res://scenes/npc/npc weapons/resources/npc_sword_one_handed.tres" id="24_ee0tj"]
 [ext_resource type="Texture2D" uid="uid://bgpuc5rjm2yh5" path="res://scenes/misc/Textures/Fire_SubUV_new.png" id="24_ngd82"]
 [ext_resource type="PackedScene" uid="uid://tg1w" path="res://scenes/3DForge/Prefabs/fi_vil_combs_props_bone_coffin.tscn" id="24_qqyy8"]
 [ext_resource type="Texture2D" uid="uid://bag" path="res://scenes/Hivemind/CastleOfEternalMists/URP/Art/Textures/T_StoneWall_A_basecolor.PNG" id="24_t45ly"]
@@ -537,7 +536,7 @@ size = Vector2(0.2, 0.2)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0acx8"]
 resource_name = "M_BrickStoneWall_Disp"
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_6ddvf"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_xxm0o"]
 resource_local_to_scene = true
 resource_name = "SM_Wall_400x600_Up_SM_Wall_400x600_Up_LOD0"
 lightmap_size_hint = Vector2i(170, 174)
@@ -679,7 +678,7 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_2y27b")
 size = Vector2(0.05, 0.05)
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_2t7kn"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_ey6ag"]
 resource_local_to_scene = true
 resource_name = "SM_Torch_A_SM_Torch_A_LOD0"
 lightmap_size_hint = Vector2i(50, 46)
@@ -697,7 +696,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uh4h5"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dkn85"]
 resource_local_to_scene = true
 transparency = 1
 diffuse_mode = 3
@@ -722,9 +721,9 @@ proximity_fade_distance = 0.01
 distance_fade_max_distance = 1.0
 stencil_flags = 2
 
-[sub_resource type="QuadMesh" id="QuadMesh_otscg"]
+[sub_resource type="QuadMesh" id="QuadMesh_8frdp"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_uh4h5")
+material = SubResource("StandardMaterial3D_dkn85")
 size = Vector2(0.2, 0.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ckd4q"]
@@ -830,7 +829,7 @@ bind/21/name = &"toe.R"
 bind/21/bone = -1
 bind/21/pose = Transform3D(-1, -8.1311495e-15, -1.5099569e-07, 1.8225497e-12, -1.0000061, -1.3411127e-06, -1.5099586e-07, -5.960499e-08, 1.0000001, -0.116422564, -0.07573655, -0.005328964)
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_x7vn8"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_waj8r"]
 resource_local_to_scene = true
 resource_name = "SM_Door_01_SM_Door_01_LOD0"
 lightmap_size_hint = Vector2i(114, 114)
@@ -860,7 +859,7 @@ size = Vector3(0.6, 1, 0.2)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bigd6"]
 resource_name = "M_Stone_Floor_Tile_Disp"
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_cfm4o"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_6ddvf"]
 resource_local_to_scene = true
 resource_name = "SM_Bridge_Ceiling_A_SM_Bridge_Ceiling_A_LOD0"
 lightmap_size_hint = Vector2i(570, 126)
@@ -971,7 +970,7 @@ adjustment_enabled = true
 adjustment_contrast = 1.085
 adjustment_color_correction = ExtResource("1_memb0")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_r5bk8"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_2t7kn"]
 resource_local_to_scene = true
 resource_name = "SM_Torch_A_SM_Torch_A_LOD0"
 lightmap_size_hint = Vector2i(50, 46)
@@ -989,7 +988,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_237je"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uh4h5"]
 resource_local_to_scene = true
 transparency = 1
 diffuse_mode = 3
@@ -1014,9 +1013,9 @@ proximity_fade_distance = 0.01
 distance_fade_max_distance = 1.0
 stencil_flags = 2
 
-[sub_resource type="QuadMesh" id="QuadMesh_br6q0"]
+[sub_resource type="QuadMesh" id="QuadMesh_otscg"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_237je")
+material = SubResource("StandardMaterial3D_uh4h5")
 size = Vector2(0.2, 0.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uh4h5"]
@@ -1629,165 +1628,165 @@ main_weapon = ExtResource("20_fk2uh")
 is_infested = true
 
 [node name="GeneralSkeleton" parent="dynamicObjects/UndeadShambler_Armored/Standing Idle" parent_id_path=PackedInt32Array(593733262, 54348934) index="0" unique_id=489880614]
-bones/0/position = Vector3(0.0099899415, 1.1101207, 0.011160402)
-bones/0/rotation = Quaternion(-0.06870923, -0.0036022342, -0.0011303723, 0.9976296)
-bones/1/rotation = Quaternion(0.030915728, 0.004884927, -0.0014334741, 0.99950904)
-bones/2/rotation = Quaternion(0.06424765, 0.0017873489, -0.0027196142, 0.99792874)
-bones/3/rotation = Quaternion(0.111879446, -0.0056468677, 3.6284782e-05, 0.99370575)
-bones/4/rotation = Quaternion(-0.06744615, -0.0048284177, 0.0029794814, 0.9977069)
-bones/5/rotation = Quaternion(0.004629955, 0.0015099705, 0.0037148606, 0.9999813)
-bones/7/rotation = Quaternion(0.48289725, 0.49783856, 0.51835585, -0.5002743)
-bones/8/rotation = Quaternion(-0.019859336, 0.9764448, -0.18475309, 0.10967012)
-bones/9/rotation = Quaternion(-0.035653837, -0.6721595, -0.02332335, 0.73917955)
-bones/10/rotation = Quaternion(0.034217943, 0.5994097, -0.16654156, 0.78217727)
-bones/31/rotation = Quaternion(0.4956947, -0.49259168, -0.50719255, -0.5043768)
-bones/32/rotation = Quaternion(0.06202853, 0.9757702, -0.18313712, -0.10240013)
-bones/33/rotation = Quaternion(-0.04371487, 0.66385704, 0.028598458, 0.7460329)
-bones/34/rotation = Quaternion(0.10903843, -0.6035209, 0.21484421, 0.76007575)
-bones/55/rotation = Quaternion(0.032476287, 0.0072299186, 0.9984821, -0.04389379)
-bones/56/rotation = Quaternion(-0.00017014661, 0.9926498, -0.12094682, 0.004291074)
-bones/57/rotation = Quaternion(-0.05237975, 0.67346066, -0.7364984, -0.035740476)
-bones/60/rotation = Quaternion(-0.046452917, 0.013414566, 0.99861985, 0.020511089)
-bones/61/rotation = Quaternion(0.00019773882, 0.990006, -0.14093684, -0.005000229)
-bones/62/rotation = Quaternion(0.034731254, 0.66409475, -0.7450201, 0.0521268)
+bones/0/position = Vector3(0.009954525, 1.1020308, 0.012938275)
+bones/0/rotation = Quaternion(-0.06990111, -0.0040528034, 0.000560072, 0.9975456)
+bones/1/rotation = Quaternion(0.053279273, 0.0048009427, -0.0014781675, 0.9985671)
+bones/2/rotation = Quaternion(0.09553612, 0.0017088756, -0.0027564492, 0.9954207)
+bones/3/rotation = Quaternion(0.11309392, -0.005723202, -0.00089168694, 0.99356747)
+bones/4/rotation = Quaternion(-0.1002478, -0.0048256204, 0.0037138227, 0.99494386)
+bones/5/rotation = Quaternion(-0.006080923, 0.0017892137, 0.002644191, 0.99997646)
+bones/7/rotation = Quaternion(0.49179673, 0.50871813, 0.5078377, -0.49136835)
+bones/8/rotation = Quaternion(-0.033679385, 0.9804265, -0.17274742, 0.08824994)
+bones/9/rotation = Quaternion(0.011887107, -0.7181193, 0.007777054, 0.695775)
+bones/10/rotation = Quaternion(0.04137818, 0.5798507, -0.17756103, 0.7940611)
+bones/31/rotation = Quaternion(0.49476463, -0.49368304, -0.50619024, -0.5052293)
+bones/32/rotation = Quaternion(0.06348715, 0.97900915, -0.1747276, -0.08355187)
+bones/33/rotation = Quaternion(0.005244154, 0.7120047, -0.0034307234, 0.7021468)
+bones/34/rotation = Quaternion(0.080039695, -0.5859597, 0.23011225, 0.77284753)
+bones/55/rotation = Quaternion(0.030886343, 0.027906677, 0.99819374, -0.043318845)
+bones/56/rotation = Quaternion(-0.00023413292, 0.9859899, -0.16670026, 0.005913979)
+bones/57/rotation = Quaternion(-0.05222978, 0.6554787, -0.75249547, -0.03701766)
+bones/60/rotation = Quaternion(-0.042798057, 0.034167133, 0.99822557, 0.023380207)
+bones/61/rotation = Quaternion(0.00026095903, 0.9824793, -0.18625475, -0.0066074817)
+bones/62/rotation = Quaternion(0.03341059, 0.646126, -0.7607324, 0.051877853)
 
 [node name="mainhand" parent="dynamicObjects/UndeadShambler_Armored/Standing Idle/GeneralSkeleton" index="2" unique_id=454599645]
-transform = Transform3D(-0.4529056, -0.6304134, 0.63044065, -0.13701452, -0.64950657, -0.74790907, 0.8809672, -0.42511183, 0.20778927, -0.48258513, 1.0250587, -0.12235694)
+transform = Transform3D(-0.45791626, -0.654593, 0.60151535, -0.10729498, -0.63098276, -0.7683414, 0.8824967, -0.41637552, 0.2187025, -0.48852473, 1.0334257, -0.103376254)
 
 [node name="offhand" parent="dynamicObjects/UndeadShambler_Armored/Standing Idle/GeneralSkeleton" index="3" unique_id=398080404]
-transform = Transform3D(-0.3647532, 0.7502184, -0.5514778, 0.08111596, -0.5644282, -0.82148707, -0.9275645, -0.34437364, 0.14502218, 0.4811688, 1.0047376, -0.060424633)
+transform = Transform3D(-0.35004738, 0.75077933, -0.56017584, 0.004807368, -0.5965631, -0.80255175, -0.9367198, -0.283624, 0.20521593, 0.48705924, 1.0123949, -0.031593665)
 
 [node name="Physical Bone Hips" parent="dynamicObjects/UndeadShambler_Armored/Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D" parent_id_path=PackedInt32Array(593733262, 1928681134) index="0" unique_id=1585393074]
-transform = Transform3D(0.9999807, -0.0049141883, -0.0038141834, -0.0019574938, 0.3334164, -0.9427777, 0.005904698, 0.9427669, 0.33340034, 0.014808655, 1.1687965, -0.010943115)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004571197, 0.0012986576, 0.06270584)
-body_offset = Transform3D(0.999999, 0.0014214935, 0.0002936325, 1.8966384e-06, 0.20101511, -0.9795882, -0.0014515021, 0.97958714, 0.2010149, 0.004550934, 0.061164856, -0.013883591)
+transform = Transform3D(0.99997735, -0.0066865673, -0.00080794946, 0.001483437, 0.33566916, -0.9419788, 0.0065698083, 0.9419562, 0.3356715, 0.014720917, 1.1607952, -0.009325445)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0047047203, 0.0012778314, 0.06283214)
+body_offset = Transform3D(0.9999991, 0.0014215512, 0.00029365928, 1.8990831e-06, 0.20102376, -0.9795865, -0.0014515645, 0.9795854, 0.20102353, 0.0046844482, 0.06129265, -0.013889313)
 
 [node name="head" parent="dynamicObjects/UndeadShambler_Armored/Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D/Physical Bone Hips/hurtbox_component" parent_id_path=PackedInt32Array(593733262, 360539258) index="0" unique_id=110368269]
-transform = Transform3D(0.7344047, -0.17858909, -0.65479404, -0.026958404, 0.95632356, -0.2910645, 0.67817587, 0.23141138, 0.69751394, -0.09221077, 1.7519264, 0.18718529)
+transform = Transform3D(0.73549396, -0.19068462, -0.6501445, -0.030355478, 0.949341, -0.31277815, 0.6768507, 0.2497819, 0.6924463, -0.12092209, 1.7360382, 0.21866798)
 
 [node name="hip" parent="dynamicObjects/UndeadShambler_Armored/Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D/Physical Bone Hips/hurtbox_component" parent_id_path=PackedInt32Array(593733262, 360539258) index="1" unique_id=1484904674]
-transform = Transform3D(0.73049414, -0.6790941, -0.07217592, -0.029915445, 0.073765665, -0.99682677, 0.68226326, 0.7303353, 0.03356996, 0.061264038, 1.1545448, 0.0033836365)
+transform = Transform3D(0.7304942, -0.67909414, -0.07217592, -0.029915458, 0.073765665, -0.9968267, 0.6822633, 0.7303353, 0.033569947, 0.061264038, 1.154541, 0.0033798218)
 
 [node name="chest" parent="dynamicObjects/UndeadShambler_Armored/Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D/Physical Bone Hips/hurtbox_component" parent_id_path=PackedInt32Array(593733262, 360539258) index="2" unique_id=685258081]
-transform = Transform3D(0.73956573, -0.6695803, 0.0685902, -0.035758916, -0.14084677, -0.98938537, 0.6721337, 0.7292627, -0.1281089, 0.06610298, 1.4442673, 0.03328514)
+transform = Transform3D(0.73962396, -0.658228, 0.1403293, -0.035380244, -0.24624547, -0.9685615, 0.6720897, 0.7114064, -0.20541728, 0.05464363, 1.4416695, 0.0453434)
 
 [node name="spine" parent="dynamicObjects/UndeadShambler_Armored/Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D/Physical Bone Hips/hurtbox_component" parent_id_path=PackedInt32Array(593733262, 360539258) index="3" unique_id=1138777267]
-transform = Transform3D(0.73633355, -0.6764746, -0.013954595, -0.031401094, -0.013563365, -0.9994149, 0.67588955, 0.7363408, -0.031229213, 0.051280975, 1.2975178, -0.0018730164)
+transform = Transform3D(0.73625356, -0.6765066, 0.016421467, -0.031293754, -0.058278322, -0.99780965, 0.67598176, 0.73412704, -0.06407802, 0.048379898, 1.297369, 0.0008239746)
 
 [node name="upperarm_L" parent="dynamicObjects/UndeadShambler_Armored/Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D/Physical Bone Hips/hurtbox_component" parent_id_path=PackedInt32Array(593733262, 360539258) index="4" unique_id=288917436]
-transform = Transform3D(-0.55254424, -0.49472758, -0.67077506, -0.28063613, 0.8682235, -0.40918365, 0.7848171, -0.0378484, -0.6185703, 0.26129532, 1.440548, 0.16735649)
+transform = Transform3D(-0.518866, -0.58144206, -0.62666047, -0.38695318, 0.81340736, -0.43432218, 0.7622634, 0.017133221, -0.6470401, 0.25261497, 1.4424877, 0.18356705)
 
 [node name="forearm_L" parent="dynamicObjects/UndeadShambler_Armored/Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D/Physical Bone Hips/hurtbox_component" parent_id_path=PackedInt32Array(593733262, 360539258) index="5" unique_id=796533663]
-transform = Transform3D(-0.4623019, -0.37101167, -0.8053737, -0.06838146, 0.920471, -0.38478118, 0.88408196, -0.12281245, -0.4509058, 0.4146824, 1.1336708, 0.19385338)
+transform = Transform3D(-0.50097513, -0.33352515, -0.79861414, -0.02935198, 0.92877764, -0.36947262, 0.86496395, -0.16165562, -0.47508395, 0.40621758, 1.1400318, 0.21388245)
 
 [node name="upperarm_R" parent="dynamicObjects/UndeadShambler_Armored/Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D/Physical Bone Hips/hurtbox_component" parent_id_path=PackedInt32Array(593733262, 360539258) index="6" unique_id=459767467]
-transform = Transform3D(0.8637089, 0.18303278, 0.46958035, 0.066666886, 0.8820449, -0.46642488, -0.4995618, 0.4341608, 0.74962795, -0.11389923, 1.4617329, -0.17451286)
+transform = Transform3D(0.8472751, 0.110030726, 0.519633, 0.20321105, 0.8367298, -0.5085159, -0.49074474, 0.5364478, 0.68658084, -0.12541199, 1.4673538, -0.16649246)
 
 [node name="forearm_R" parent="dynamicObjects/UndeadShambler_Armored/Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D/Physical Bone Hips/hurtbox_component" parent_id_path=PackedInt32Array(593733262, 360539258) index="7" unique_id=209405188]
-transform = Transform3D(0.46019223, 0.28557852, 0.8406353, 0.23184603, 0.87534314, -0.42428973, -0.8570123, 0.39015287, 0.33661574, -0.15019035, 1.1735992, -0.36595917)
+transform = Transform3D(0.39729726, 0.31301442, 0.86265683, 0.21773492, 0.8810358, -0.41996118, -0.8914854, 0.35467988, 0.28187877, -0.16374397, 1.1878223, -0.36027718)
 
 [node name="thigh_L" parent="dynamicObjects/UndeadShambler_Armored/Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D/Physical Bone Hips/hurtbox_component" parent_id_path=PackedInt32Array(593733262, 360539258) index="8" unique_id=2111595839]
-transform = Transform3D(0.44356608, -0.18212783, 0.87754095, 0.2389083, 0.9677339, 0.080086984, -0.86381215, 0.17412797, 0.47276592, 0.1858139, 0.70212746, 0.058425903)
+transform = Transform3D(0.45304018, -0.15496613, 0.8779181, 0.20021981, 0.9773049, 0.06918822, -0.8687154, 0.14443152, 0.47378564, 0.17638206, 0.70036125, 0.06807709)
 
 [node name="calf_L" parent="dynamicObjects/UndeadShambler_Armored/Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D/Physical Bone Hips/hurtbox_component" parent_id_path=PackedInt32Array(593733262, 360539258) index="9" unique_id=631861157]
-transform = Transform3D(0.7225143, -0.31038165, 0.61776704, 0.24082634, 0.9505847, 0.1959373, -0.6480552, 0.007207053, 0.7615591, 0.3187809, 0.23502922, -0.015554428)
+transform = Transform3D(0.71080834, -0.3395973, 0.6159752, 0.28908497, 0.9393929, 0.18431152, -0.6412344, 0.047059, 0.7659006, 0.3127365, 0.2384224, -0.012119293)
 
 [node name="thigh_R" parent="dynamicObjects/UndeadShambler_Armored/Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D/Physical Bone Hips/hurtbox_component" parent_id_path=PackedInt32Array(593733262, 360539258) index="10" unique_id=1788825931]
-transform = Transform3D(-0.4907351, 0.10794592, 0.86459625, -0.23579897, -0.9717212, -0.012516215, 0.8387953, -0.210013, 0.50231135, -0.0022563934, 0.7155285, -0.13224983)
+transform = Transform3D(-0.48923588, 0.07398276, 0.86900795, -0.19850758, -0.9796891, -0.028350573, 0.84926033, -0.1863747, 0.49398512, -0.013395309, 0.7134247, -0.1245842)
 
 [node name="calf_R" parent="dynamicObjects/UndeadShambler_Armored/Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D/Physical Bone Hips/hurtbox_component" parent_id_path=PackedInt32Array(593733262, 360539258) index="11" unique_id=389508033]
-transform = Transform3D(-0.77153707, 0.10929482, 0.62672555, -0.23619689, -0.9639308, -0.12267257, 0.5907124, -0.24267702, 0.7695235, 0.05426979, 0.23873329, -0.2559433)
+transform = Transform3D(-0.7628425, 0.14280525, 0.6306172, -0.2841534, -0.9501184, -0.12857623, 0.58079964, -0.27727544, 0.76536924, 0.046718597, 0.24237442, -0.25359917)
 
 [node name="Physical Bone Spine" parent="dynamicObjects/UndeadShambler_Armored/Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D" parent_id_path=PackedInt32Array(593733262, 1928681134) index="1" unique_id=1841144054]
-transform = Transform3D(0.9999819, 0.0033957274, -0.0049741887, -0.0056652706, 0.25003853, -0.9682194, -0.0020440703, 0.96822995, 0.25005326, 0.00012588501, 1.3071747, -0.045648932)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.010762997, -0.0007810788, 0.08782911)
-body_offset = Transform3D(1, -1.8161023e-05, -1.9926287e-05, -1.641619e-05, 0.17614293, -0.9843647, 2.1388754e-05, 0.98436457, 0.17614296, -0.010761261, 0.08659363, -0.014701843)
+transform = Transform3D(0.99999696, 0.0016926569, -0.0017935986, -0.00210752, 0.20881991, -0.9779518, -0.0012807978, 0.9779527, 0.20882283, -0.0007095337, 1.2999401, -0.040526092)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.010923215, -0.00080633815, 0.08798353)
+body_offset = Transform3D(1, -1.8152408e-05, -1.9910833e-05, -1.6402137e-05, 0.17614621, -0.98436403, 2.1376065e-05, 0.9843641, 0.17614618, -0.010921478, 0.08675003, -0.014704466)
 
 [node name="Physical Bone Chest" parent="dynamicObjects/UndeadShambler_Armored/Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D" parent_id_path=PackedInt32Array(593733262, 1928681134) index="2" unique_id=707295356]
-transform = Transform3D(0.9999215, 0.007023997, -0.010380291, -0.011175325, 0.124689564, -0.9921329, -0.0056744246, 0.992171, 0.124758266, 0.030979156, 1.4537392, -0.06928313)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018806824, -0.0011998434, 0.10000298)
-body_offset = Transform3D(0.99999994, 0.00010020938, -3.3307122e-05, -5.052291e-05, 0.1770424, -0.9842032, -9.2728995e-05, 0.9842031, 0.17704245, 0.018810272, 0.09863472, -0.016525626)
+transform = Transform3D(0.99995923, 0.0053036134, -0.0073120343, -0.00741621, 0.019896211, -0.9997746, -0.005156936, 0.999788, 0.019934732, 0.029777527, 1.4475555, -0.051614046)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018741965, -0.0012064297, 0.09998633)
+body_offset = Transform3D(1, 0.000100182835, -3.3369986e-05, -5.0579838e-05, 0.177045, -0.9842027, -9.269174e-05, 0.9842027, 0.17704502, 0.018745422, 0.09861946, -0.016516447)
 
 [node name="Physical Bone UpperChest" parent="dynamicObjects/UndeadShambler_Armored/Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D" parent_id_path=PackedInt32Array(593733262, 1928681134) index="3" unique_id=540403933]
-transform = Transform3D(0.999887, -0.0076568713, -0.012941387, -0.013836564, -0.13156122, -0.9912115, 0.0058869943, 0.99127847, -0.1316523, 0.033733368, 1.635992, -0.061503947)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.019316165, 0.0020539314, 0.12722342)
-body_offset = Transform3D(0.9999995, -0.00043274555, -0.0008741185, -0.00080236804, 0.14458556, -0.9894921, 0.00055458676, 0.9894923, 0.14458518, 0.019428253, 0.12557411, -0.02041626)
+transform = Transform3D(0.99989766, -0.008655379, -0.011389947, -0.013118639, -0.23726174, -0.97135717, 0.0057050656, 0.97140723, -0.237351, 0.032676697, 1.628006, -0.024412632)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.019770043, 0.002039941, 0.12733923)
+body_offset = Transform3D(0.99999964, -0.00043286802, -0.000873922, -0.0008021537, 0.14457978, -0.98949283, 0.0005546729, 0.9894931, 0.14457937, 0.019882202, 0.12569046, -0.020418167)
 
 [node name="Physical Bone Neck" parent="dynamicObjects/UndeadShambler_Armored/Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D" parent_id_path=PackedInt32Array(593733262, 1928681134) index="4" unique_id=945643701]
-transform = Transform3D(0.9999998, 0.00030948818, -0.0006086659, -0.0003119777, 0.9999916, -0.004094262, 0.0006073937, 0.004094451, 0.9999914, 0.014911652, 1.6848316, -0.057706356)
-body_offset = Transform3D(0.999839, -0.008716927, 0.015686404, 0.0064775445, 0.99047613, 0.13753335, -0.016735869, -0.13740967, 0.990373, 0, 0, 0)
+transform = Transform3D(0.9999974, -0.0017533946, -0.0014896368, 0.0016832979, 0.9989483, -0.045821164, 0.0015684125, 0.045818537, 0.9989486, 0.013328552, 1.6760292, -0.0154621005)
+body_offset = Transform3D(0.99983895, -0.008716848, 0.015686132, 0.0064775394, 0.99047625, 0.13753125, -0.01673558, -0.1374075, 0.99037325, 0, 0, 0)
 
 [node name="Physical Bone Head" parent="dynamicObjects/UndeadShambler_Armored/Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D" parent_id_path=PackedInt32Array(593733262, 1928681134) index="5" unique_id=1680760005]
-transform = Transform3D(0.9999998, -0.00068638276, -6.550669e-05, 0.00068769976, 0.999739, 0.022838475, 4.981365e-05, -0.022838516, 0.99973917, 0.014778137, 1.715414, -0.032502294)
-body_offset = Transform3D(0.99989563, -0.0023158381, 0.014257306, -0.00018819656, 0.984891, 0.17317598, -0.014442934, -0.17316067, 0.98478776, 0, 0, 0)
+transform = Transform3D(1, -0.00037451196, 1.0665766e-05, 0.00037448434, 0.99999684, 0.0024836701, -1.1595897e-05, -0.0024836657, 0.99999696, 0.0131111145, 1.7055321, 0.010995984)
+body_offset = Transform3D(0.99989575, -0.002315859, 0.014257397, -0.00018817016, 0.9848911, 0.17317452, -0.014443032, -0.17315914, 0.984788, 0, 0, 0)
 
 [node name="BoneHealthComponent" parent="dynamicObjects/UndeadShambler_Armored/Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D/Physical Bone Head" index="2" unique_id=1812217329]
 max_health = 175.0
 
 [node name="Physical Bone LeftShoulder" parent="dynamicObjects/UndeadShambler_Armored/Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D" parent_id_path=PackedInt32Array(593733262, 1928681134) index="6" unique_id=2259833]
-transform = Transform3D(-0.042729598, 0.3784581, -0.92463166, -0.32320502, 0.870476, 0.37122792, 0.94536376, 0.31470802, 0.08512448, 0.16128922, 1.6208897, -0.0707109)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0029885285, 0.004426431, 0.08834727)
-body_offset = Transform3D(0.99988973, 0.013889998, 0.0052935034, -0.00017778203, 0.3672577, -0.93011934, -0.01486361, 0.9300156, 0.36721972, 0.0024590492, 0.08054733, -0.036603928)
+transform = Transform3D(-0.043326136, 0.37448838, -0.92621887, -0.38713136, 0.8483645, 0.3611193, 0.9210061, 0.3742143, 0.108219825, 0.1598053, 1.6137505, -0.03358406)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.002997534, 0.0045777764, 0.088296264)
+body_offset = Transform3D(0.99988955, 0.013890564, 0.0052936897, -0.000177823, 0.3672567, -0.9301197, -0.014863998, 0.9300159, 0.36721867, 0.0024662018, 0.080444336, -0.036725998)
 
 [node name="Physical Bone LeftUpperArm" parent="dynamicObjects/UndeadShambler_Armored/Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D" parent_id_path=PackedInt32Array(593733262, 1928681134) index="7" unique_id=901175359]
-transform = Transform3D(0.016277116, 0.95028085, -0.31096846, -0.18268913, 0.30860075, 0.9334829, 0.983036, 0.04161615, 0.17862912, 0.26502228, 1.4471855, -0.10521135)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0011435831, 0.0022737905, 0.16766676)
-body_offset = Transform3D(-0.9967716, -0.04697857, -0.065108165, 0.0064682364, 0.7613144, -0.64835066, 0.080026545, -0.64667857, -0.75855285, 0.009883404, 0.106983185, 0.12874603)
+transform = Transform3D(0.033582333, 0.94032526, -0.33861598, -0.29431137, 0.3330882, 0.8957863, 0.95511943, 0.06957593, 0.28793427, 0.2685585, 1.4468193, -0.08746511)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0011566943, 0.0021509975, 0.16781516)
+body_offset = Transform3D(-0.9967716, -0.04697995, -0.06511168, 0.006469995, 0.7613098, -0.64835626, 0.08002998, -0.6466842, -0.7585478, 0.009874821, 0.10717392, 0.12877941)
 
 [node name="Physical Bone LeftLowerArm" parent="dynamicObjects/UndeadShambler_Armored/Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D" parent_id_path=PackedInt32Array(593733262, 1928681134) index="8" unique_id=1835952148]
-transform = Transform3D(0.29348794, 0.83191884, -0.470931, 0.3204123, 0.37852496, 0.8683633, 0.9006669, -0.40574622, -0.15546452, 0.4127159, 1.1376286, -0.086316526)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0012831762, -0.0066325814, 0.24152051)
-body_offset = Transform3D(-0.5614916, -0.5781825, -0.59197277, 0.020548731, 0.70542693, -0.70848465, 0.8272269, -0.40997264, -0.38421053, 0.1398592, 0.17576599, 0.08901405)
+transform = Transform3D(0.25076514, 0.8466467, -0.46936774, 0.3614699, 0.36789694, 0.85673296, 0.89802915, -0.38450107, -0.21378157, 0.41910553, 1.1433697, -0.06624782)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0012720078, -0.006745845, 0.24166523)
+body_offset = Transform3D(-0.5614989, -0.57817864, -0.59197026, 0.020554006, 0.7054253, -0.7084865, 0.8272223, -0.4099818, -0.38421148, 0.13987255, 0.1759491, 0.08903265)
 
 [node name="Physical Bone RightShoulder" parent="dynamicObjects/UndeadShambler_Armored/Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D" parent_id_path=PackedInt32Array(593733262, 1928681134) index="9" unique_id=385642969]
-transform = Transform3D(0.011488305, -0.37618402, 0.9264738, 0.31315094, 0.88128054, 0.35395074, -0.9496339, 0.28605986, 0.1279268, -0.14897156, 1.6271782, -0.071715474)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0053478996, -0.0054716095, 0.102208816)
-body_offset = Transform3D(0.999832, -0.016068786, -0.008816801, -0.0020405315, 0.38046035, -0.92479503, 0.018214881, 0.9246576, 0.38036367, -0.0045337677, 0.09661484, -0.033914566)
+transform = Transform3D(0.01212849, -0.37416768, 0.9272818, 0.41304708, 0.84640855, 0.33613202, -0.91062886, 0.37893426, 0.16481453, -0.15076447, 1.6203365, -0.035688102)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0053004716, -0.0055144615, 0.10238516)
+body_offset = Transform3D(0.999832, -0.016077638, -0.008820713, -0.0020407327, 0.38046092, -0.9247948, 0.018224418, 0.9246572, 0.38036418, -0.0044851303, 0.09679413, -0.03394127)
 
 [node name="Physical Bone RightUpperArm" parent="dynamicObjects/UndeadShambler_Armored/Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D" parent_id_path=PackedInt32Array(593733262, 1928681134) index="10" unique_id=1990879369]
-transform = Transform3D(0.1589393, -0.9305342, 0.32991594, 0.18223266, 0.35607243, 0.91651714, -0.97032446, -0.085549146, 0.22616762, -0.23829651, 1.4569206, -0.114500046)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0045455256, 0.004005946, 0.16503735)
-body_offset = Transform3D(-0.997803, 0.0298011, 0.05917178, -0.015439391, 0.7639418, -0.6451006, -0.06442861, -0.64459676, -0.76180327, -0.0053493977, 0.10347557, 0.12860107)
+transform = Transform3D(0.15547411, -0.92540556, 0.34561905, 0.31965733, 0.3781796, 0.86879194, -0.9346909, -0.024595005, 0.35460976, -0.24256134, 1.4586353, -0.10170609)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004547748, 0.0039435327, 0.16493559)
+body_offset = Transform3D(-0.99780285, 0.029799633, 0.059178114, -0.015444905, 0.76393795, -0.645105, -0.06443235, -0.6446014, -0.7617991, -0.0053403378, 0.103458405, 0.12848282)
 
 [node name="Physical Bone RightLowerArm" parent="dynamicObjects/UndeadShambler_Armored/Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D" parent_id_path=PackedInt32Array(593733262, 1928681134) index="11" unique_id=50490751]
-transform = Transform3D(0.38212925, -0.7424676, 0.5501992, -0.3044715, 0.4609845, 0.8335409, -0.87251043, -0.48604026, -0.049904548, -0.39926147, 1.1504707, -0.12660429)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0035740212, 0.0067222193, 0.2415142)
-body_offset = Transform3D(-0.5616225, 0.59584534, 0.5740635, -0.007903576, 0.6899262, -0.72383666, -0.8273561, -0.41106024, -0.3827688, -0.14465714, 0.17015076, 0.09225035)
+transform = Transform3D(0.31750286, -0.77284116, 0.5494621, -0.32100943, 0.45763218, 0.8291717, -0.89226955, -0.43964684, -0.102789775, -0.40495682, 1.1580639, -0.11563134)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0036720112, 0.0068922564, 0.24158236)
+body_offset = Transform3D(-0.5616293, 0.5958425, 0.57405955, -0.007902592, 0.6899259, -0.723837, -0.8273514, -0.4110647, -0.3827739, -0.14485168, 0.17008209, 0.09226656)
 
 [node name="Physical Bone LeftUpperLeg" parent="dynamicObjects/UndeadShambler_Armored/Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D" parent_id_path=PackedInt32Array(593733262, 1928681134) index="12" unique_id=599779246]
-transform = Transform3D(-0.6136455, -0.77730477, -0.13869584, -0.17437994, -0.037902914, 0.98394877, -0.770085, 0.6279814, -0.11228741, 0.15559387, 0.7242832, 0.06454909)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00232175, -0.0024419874, 0.32799074)
-body_offset = Transform3D(0.5700504, 0.81971717, 0.055736765, 0.0049695373, 0.064397246, -0.9979122, -0.82159483, 0.56913704, 0.032636017, -0.01760292, 0.3274517, -0.00740695)
+transform = Transform3D(-0.6086186, -0.7806687, -0.14191478, -0.2103256, -0.013730002, 0.97753495, -0.7650794, 0.62479436, -0.15583827, 0.15663528, 0.71881866, 0.08080512)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.002216428, -0.0025684834, 0.327965)
+body_offset = Transform3D(0.5700713, 0.81970215, 0.05573996, 0.0049720407, 0.0644004, -0.99791175, -0.82158023, 0.56915796, 0.03263721, -0.017438889, 0.32743454, -0.0074210167)
 
 [node name="Physical Bone LeftLowerLeg" parent="dynamicObjects/UndeadShambler_Armored/Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D" parent_id_path=PackedInt32Array(593733262, 1928681134) index="13" unique_id=709326484]
-transform = Transform3D(-0.7674894, -0.62718, -0.13268507, 0.00044056022, -0.20749304, 0.97823644, -0.6410615, 0.75072765, 0.15952502, 0.21499634, 0.23881721, 0.033276558)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0037070792, 0.0015120134, 0.3101946)
-body_offset = Transform3D(-0.71284676, -0.6977857, -0.07032052, 0.0063906796, 0.09380166, -0.9955706, 0.70129085, -0.7101382, -0.06240675, 0.020225525, 0.30870247, 0.023031712)
+transform = Transform3D(-0.770452, -0.6242748, -0.12916918, 0.033274412, -0.24172264, 0.9697747, -0.6366289, 0.74286693, 0.20700808, 0.21578598, 0.2373085, 0.042891264)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.003622016, 0.0015512547, 0.31024855)
+body_offset = Transform3D(-0.7128368, -0.6977956, -0.07031952, 0.006391406, 0.093798265, -0.9955709, 0.70130074, -0.7101289, -0.062402993, 0.020317078, 0.30875206, 0.023002148)
 
 [node name="Physical Bone RightUpperLeg" parent="dynamicObjects/UndeadShambler_Armored/Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D" parent_id_path=PackedInt32Array(593733262, 1928681134) index="14" unique_id=1649595394]
-transform = Transform3D(-0.7487721, 0.65732396, 0.08523873, 0.14196256, 0.03342381, 0.98930764, 0.6474466, 0.7528666, -0.1183422, -0.1134758, 0.7199402, 0.06359154)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004767148, -0.0032449644, 0.33038417)
-body_offset = Transform3D(0.6802261, -0.7316633, -0.044285085, -0.0017560422, 0.058789216, -0.9982689, 0.73300016, 0.67912626, 0.038705125, 0.00901413, 0.33001137, -0.01407814)
+transform = Transform3D(-0.7438489, 0.662262, 0.089988366, 0.17425977, 0.06219343, 0.9827337, 0.6452305, 0.7466868, -0.16166814, -0.11497879, 0.7136078, 0.0797838)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0046865037, -0.0031981133, 0.33043668)
+body_offset = Transform3D(0.6802273, -0.7316624, -0.044285376, -0.0017573833, 0.058788463, -0.99826914, 0.7329993, 0.67912763, 0.03870368, 0.009105682, 0.33006096, -0.014052391)
 
 [node name="Physical Bone RightLowerLeg" parent="dynamicObjects/UndeadShambler_Armored/Standing Idle/GeneralSkeleton/PhysicalBoneSimulator3D" parent_id_path=PackedInt32Array(593733262, 1928681134) index="15" unique_id=1741960362]
-transform = Transform3D(-0.770336, 0.6327396, 0.0788861, -0.06006755, -0.19517654, 0.978927, 0.6348026, 0.7493642, 0.18835865, -0.14084625, 0.23954582, 0.026296556)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014000569, -0.010602364, 0.30537882)
-body_offset = Transform3D(-0.6900991, 0.72010803, 0.072167076, -0.0045338273, 0.095413886, -0.9954274, -0.7237009, -0.68727064, -0.062580235, -0.0047416687, 0.30505753, 0.021956205)
+transform = Transform3D(-0.7697862, 0.6338973, 0.07485665, -0.09360325, -0.22811255, 0.969125, 0.6314014, 0.7390121, 0.23493274, -0.14188004, 0.23760796, 0.036116064)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013999617, -0.010610401, 0.30534917)
+body_offset = Transform3D(-0.690089, 0.7201176, 0.07216576, -0.0045346245, 0.09541008, -0.9954278, -0.7237104, -0.68726104, -0.062575996, -0.0047340393, 0.30502892, 0.021947086)
 
 [node name="head" parent="dynamicObjects/UndeadShambler_Armored/Standing Idle/GeneralSkeleton" index="5" unique_id=273031506]
-transform = Transform3D(0.99989617, -0.00087555184, -0.01438859, -0.0013019876, 0.9885887, -0.15063424, 0.014356282, 0.15063739, 0.9884848, 0.01477863, 1.7154149, -0.032502275)
+transform = Transform3D(0.99989665, -0.0005551748, -0.014367676, -0.0019059941, 0.9853182, -0.17071812, 0.014251511, 0.17072786, 0.9852152, 0.01311219, 1.7055324, 0.010995969)
 
 [node name="armL" parent="dynamicObjects/UndeadShambler_Armored/Standing Idle/GeneralSkeleton" index="6" unique_id=1824792691]
-transform = Transform3D(-0.042362485, 0.9990169, 0.01306416, -0.30911312, -0.025539722, 0.95068216, 0.9500812, 0.036235116, 0.30989128, 0.081403084, 1.6585057, -0.06462258)
+transform = Transform3D(-0.043022443, 0.99903524, 0.008799408, -0.3733927, -0.024247836, 0.9273564, 0.9266752, 0.036611695, 0.37407574, 0.07986719, 1.6506814, -0.02507634)
 
 [node name="armR" parent="dynamicObjects/UndeadShambler_Armored/Standing Idle/GeneralSkeleton" index="7" unique_id=1826878886]
-transform = Transform3D(0.009362669, -0.9999448, 0.004764794, 0.2958164, 0.007321489, 0.95521665, -0.9551989, -0.0075338576, 0.2958687, -0.052159652, 1.6602069, -0.06528394)
+transform = Transform3D(0.009962944, -0.9999262, 0.0069489097, 0.39640447, 0.01032938, 0.91801786, -0.91802186, -0.0063915197, 0.39647818, -0.053696908, 1.6522741, -0.025729893)
 
 [node name="LegL" parent="dynamicObjects/UndeadShambler_Armored/Standing Idle/GeneralSkeleton" index="8" unique_id=1972475220]
-transform = Transform3D(-0.99470913, 0.08530041, 0.057248496, -0.07563286, -0.9852015, 0.1538099, 0.06952137, 0.14866623, 0.9864407, 0.11057658, 1.0466969, 0.024398359)
+transform = Transform3D(-0.99478227, 0.088317, 0.051073477, -0.07666735, -0.97742367, 0.19688885, 0.06730905, 0.19194587, 0.9790946, 0.11074893, 1.038984, 0.026395097)
 
 [node name="LegR" parent="dynamicObjects/UndeadShambler_Armored/Standing Idle/GeneralSkeleton" index="9" unique_id=1700980490]
-transform = Transform3D(-0.99404895, -0.045132745, -0.09914493, 0.028300092, -0.9858793, 0.16504887, -0.10519403, 0.16126084, 0.9812896, -0.09101867, 1.0473588, 0.025136583)
+transform = Transform3D(-0.9945236, -0.049591992, -0.09199746, 0.02951091, -0.9776824, 0.20800495, -0.10025969, 0.20415089, 0.9737918, -0.090847835, 1.0389569, 0.026998576)
 
 [node name="HealthComponent" parent="dynamicObjects/UndeadShambler_Armored" index="1" unique_id=521049330]
 max_health = 450.0
@@ -1883,7 +1882,6 @@ main_weapon = ExtResource("21_mwjia")
 
 [node name="UndeadShambler_Armored4" parent="." unique_id=1499628211 instance=ExtResource("94_b0i5c")]
 transform = Transform3D(1, 1.3362995e-21, 0, 1.3362995e-21, 1, 0, 0, 0, 1, 41, 32.7, 34.999996)
-main_weapon = ExtResource("24_ee0tj")
 
 [node name="world" type="Node3D" parent="." unique_id=122775736]
 
@@ -2336,7 +2334,7 @@ transform = Transform3D(-4.371139e-08, 0, -1.1, 0, 0.31499997, 0, 1, 0, -4.80825
 
 [node name="SM_Wall_400x600_Up_LOD0" parent="world/climbTutorial/SM_Wall_400x600_Up36" index="0" unique_id=735782530]
 transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 0, 0, 0.9324135, 0, 0, 0)
-mesh = SubResource("ArrayMesh_6ddvf")
+mesh = SubResource("ArrayMesh_xxm0o")
 surface_material_override/0 = SubResource("StandardMaterial3D_h5317")
 
 [node name="SM_Wall_400x600_Up18" parent="world/climbTutorial" unique_id=1185983362 instance=ExtResource("30_lhe06")]
@@ -3934,11 +3932,11 @@ transform = Transform3D(1, 0, 7.1054274e-15, 0, 1, 0, -7.1054274e-15, 0, 1, 21.3
 transform = Transform3D(-1, 0, -8.7422784e-08, 0, 1, 0, 8.7422784e-08, 0, -1, 18.990421, 45.6, 20.13718)
 
 [node name="SM_Torch_A_LOD0" parent="world/NavigationRegion3D/walls/SM_Torch_A29" index="0" unique_id=1448704296]
-mesh = SubResource("ArrayMesh_2t7kn")
+mesh = SubResource("ArrayMesh_ey6ag")
 surface_material_override/0 = null
 
 [node name="GPUParticles3D" parent="world/NavigationRegion3D/walls/SM_Torch_A29/SM_Torch_A_LOD0" index="1" unique_id=897028893]
-draw_pass_1 = SubResource("QuadMesh_otscg")
+draw_pass_1 = SubResource("QuadMesh_8frdp")
 
 [node name="OmniLight3D" parent="world/NavigationRegion3D/walls/SM_Torch_A29/SM_Torch_A_LOD0/GPUParticles3D" index="0" unique_id=274809955]
 light_bake_mode = 2
@@ -4968,7 +4966,7 @@ metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"proce
 
 
 [node name="Door" parent="world/NavigationRegion3D/walls/SM_Grating_Door_05/doubleGate/LockableInteractableDoor" index="4" unique_id=629523064]
-mesh = SubResource("ArrayMesh_x7vn8")
+mesh = SubResource("ArrayMesh_waj8r")
 surface_material_override/0 = null
 
 [node name="DoesNotOpenFromThisSide" parent="world/NavigationRegion3D/walls/SM_Grating_Door_05/doubleGate" index="1" unique_id=1953274271]
@@ -5435,7 +5433,7 @@ transform = Transform3D(0.226269, 0, -0.97406477, 0, 1, 0, 0.97406477, 0, 0.2262
 transform = Transform3D(0.55, 0, 0, 0, 1, 0, 0, 0, 4, -32.05, 31.821, 10.675)
 
 [node name="SM_Bridge_Ceiling_A_LOD0" parent="world/NavigationRegion3D/walls/SM_Bridge_Ceiling_A" index="0" unique_id=1812935038]
-mesh = SubResource("ArrayMesh_cfm4o")
+mesh = SubResource("ArrayMesh_6ddvf")
 surface_material_override/0 = SubResource("StandardMaterial3D_tndv7")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="world/NavigationRegion3D/walls/SM_Bridge_Ceiling_A/SM_Bridge_Ceiling_A_LOD0" index="0" unique_id=259296859]
@@ -6018,11 +6016,11 @@ metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"proce
 transform = Transform3D(-1, 0, -8.7422784e-08, 0, 1, 0, 8.7422784e-08, 0, -1, 0.11368179, 0.27662468, 0.6927414)
 
 [node name="SM_Torch_A_LOD0" parent="lever/SM_Torch_A29" index="0" unique_id=1448704296]
-mesh = SubResource("ArrayMesh_r5bk8")
+mesh = SubResource("ArrayMesh_2t7kn")
 surface_material_override/0 = null
 
 [node name="GPUParticles3D" parent="lever/SM_Torch_A29/SM_Torch_A_LOD0" index="1" unique_id=897028893]
-draw_pass_1 = SubResource("QuadMesh_br6q0")
+draw_pass_1 = SubResource("QuadMesh_otscg")
 
 [node name="OmniLight3D" parent="lever/SM_Torch_A29/SM_Torch_A_LOD0/GPUParticles3D" index="0" unique_id=274809955]
 light_bake_mode = 2

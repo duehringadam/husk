@@ -1,10 +1,34 @@
 [gd_resource type="Resource" script_class="item" format=3 uid="uid://crf08k5nswvsi"]
 
-[ext_resource type="AnimationNodeStateMachine" uid="uid://csvndnaewcyo4" path="res://Player/hands/animations/hands/animation_state_machines/shield_state_machine.tres" id="1_uky14"]
+[ext_resource type="Script" uid="uid://vqsnjxr1425q" path="res://item/scripts/item_animations.gd" id="1_cadg3"]
+[ext_resource type="AnimationLibrary" uid="uid://brptxm7won7ul" path="res://Player/hands/animations/hands/non_directional_hands/non_directional_hands.res" id="2_qqeoi"]
 [ext_resource type="Texture2D" uid="uid://du7vvfxipxeoe" path="res://item/icons/shields/shield.svg/icons/ffffff/000000/1x1/lorc/checked-shield.svg" id="2_w0br7"]
 [ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/scripts/item_stat.gd" id="3_cadg3"]
 [ext_resource type="PackedScene" uid="uid://bky3rbcy6gkpt" path="res://item/weapons/shield/wooden_kite_shield/kite_shield.tscn" id="3_w0br7"]
 [ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/scripts/item.gd" id="4_qqeoi"]
+
+[sub_resource type="Resource" id="Resource_v4udn"]
+script = ExtResource("1_cadg3")
+target_libraries = Array[AnimationLibrary]([ExtResource("2_qqeoi")])
+idle = ""
+equip = ""
+mainhand_lower = ""
+attack_1 = ""
+attack_2 = ""
+attack_3 = ""
+heavy_attack = ""
+block_start = ""
+block_hit = ""
+block_stun = ""
+activate = "shield_block"
+deactivate = "shield_idle"
+offhand_idle = "shield_idle"
+offhand_equip = "shield_TO"
+offhand_block_hit = "shield_blockHIT"
+offhand_block_stun = ""
+offhand_cant_use = ""
+offhand_lower = "offhand_empty"
+metadata/_custom_type_script = "uid://vqsnjxr1425q"
 
 [sub_resource type="Resource" id="Resource_1qk6h"]
 script = ExtResource("3_cadg3")
@@ -19,13 +43,14 @@ item_name = "Kite Shield"
 item_description = "a shield for blocking"
 item_icon = ExtResource("2_w0br7")
 item_type = 1
+item_category = 7
 item_stats = SubResource("Resource_1qk6h")
 item_required_stats = Dictionary[int, int]({
 0: 10
 })
 stamina_cost = 0
 item_scene = ExtResource("3_w0br7")
-animation_state_machine = ExtResource("1_uky14")
-position = Vector3(0.014124155, -0.3379346, 0.1492702)
-rotation = Vector3(83.5, 78.5, 102.1)
+animations = SubResource("Resource_v4udn")
+position = Vector3(0.04842636, -0.3751247, 0.13833705)
+rotation = Vector3(84.2, 89.4, 87.3)
 metadata/_custom_type_script = "uid://dcfd18dx8x1bm"
