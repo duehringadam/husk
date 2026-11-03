@@ -251,12 +251,12 @@ _data = {
 [sub_resource type="Gradient" id="Gradient_imd17"]
 colors = PackedColorArray(0.51, 0, 0.00849987, 1, 1, 0.23, 0.255667, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_n61tj"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gdp0n"]
 gradient = SubResource("Gradient_imd17")
 
 [sub_resource type="Gradient" id="Gradient_xgpi8"]
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_7te3y"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qqib3"]
 gradient = SubResource("Gradient_xgpi8")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nswt1"]
@@ -265,10 +265,10 @@ shader = ExtResource("10_g7umr")
 shader_parameter/Scale = Vector2(1, 1)
 shader_parameter/Speed_XY = Vector2(0, 0)
 shader_parameter/Disolver_Texture = ExtResource("11_7juu5")
-shader_parameter/Color_1D_Gradient = SubResource("GradientTexture1D_n61tj")
+shader_parameter/Color_1D_Gradient = SubResource("GradientTexture1D_gdp0n")
 shader_parameter/Metallic_Texture = ExtResource("3_jy5ly")
 shader_parameter/Texture_Roughtness = ExtResource("5_4xh8g")
-shader_parameter/Roughtness_1D_Gradient = SubResource("GradientTexture1D_7te3y")
+shader_parameter/Roughtness_1D_Gradient = SubResource("GradientTexture1D_qqib3")
 shader_parameter/Specular = 0.5
 shader_parameter/Normal_Texture = ExtResource("12_sdm4c")
 shader_parameter/Normal_Map_Depth = 2.0
@@ -277,7 +277,7 @@ shader_parameter/Normal_Map_Depth = 2.0
 _data = [Vector2(0, 0.076923), 0.0, 0.141167, 0, 0, Vector2(0.868263, 1), 0.0424073, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_8rmbq"]
+[sub_resource type="CurveTexture" id="CurveTexture_p73k0"]
 texture_mode = 1
 curve = SubResource("Curve_yh6wa")
 
@@ -285,7 +285,7 @@ curve = SubResource("Curve_yh6wa")
 _data = [Vector2(0, 0.120879), 0.0, 1.84437, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_3dqcn"]
+[sub_resource type="CurveTexture" id="CurveTexture_tl2q7"]
 curve = SubResource("Curve_n8juj")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_e2ri5"]
@@ -295,8 +295,8 @@ angle_max = 180.0
 gravity = Vector3(0, 0, 0)
 scale_min = 0.6
 scale_max = 0.9
-scale_curve = SubResource("CurveTexture_3dqcn")
-alpha_curve = SubResource("CurveTexture_8rmbq")
+scale_curve = SubResource("CurveTexture_tl2q7")
+alpha_curve = SubResource("CurveTexture_p73k0")
 
 [node name="VFX_Blood_Hit_B3" type="Node3D" unique_id=538948195]
 

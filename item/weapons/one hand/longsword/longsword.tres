@@ -15,8 +15,8 @@ equip = "brokenS_TO"
 mainhand_lower = "one_handed_sword_lower"
 attack_1 = "brokensword_swing1"
 attack_2 = "brokensword_swing2"
-attack_3 = "one_handed_sword_attack3"
-heavy_attack = ""
+attack_3 = "one_handed_sword_swing3_overhead"
+heavy_attack = "one_handed_sword_heavy_attack"
 block_start = "one_handed_sword_block"
 block_hit = "one_handed_sword_block_hit"
 block_stun = "brokenS_blockSTUN"
@@ -25,6 +25,7 @@ deactivate = ""
 offhand_idle = ""
 offhand_equip = ""
 offhand_block_hit = ""
+offhand_block_idle = ""
 offhand_block_stun = ""
 offhand_cant_use = ""
 offhand_lower = ""
@@ -35,6 +36,7 @@ script = ExtResource("3_ooyp7")
 damage_types = Dictionary[int, float]({
 1: 25.0
 })
+stance_damage = 0.33
 strength_scale = 0.25
 dex_scale = 0.25
 range = 2.0
@@ -49,6 +51,7 @@ item_stats = SubResource("Resource_rh6kp")
 item_required_stats = Dictionary[int, int]({
 0: 10
 })
+charge_time = 0.55
 item_scene = ExtResource("2_1kayq")
 animations = SubResource("Resource_gi4cx")
 position = Vector3(-0.004, 0.118, 0.002)

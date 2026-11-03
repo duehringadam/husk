@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://2fpuas1xclcu"]
 
-[ext_resource type="Texture2D" uid="uid://255onixnbg8w" path="res://scenes/HDRP/Art/Prefabs/MysticDungeon/Art/Textures/smoke_04.png" id="1_veogr"]
+[ext_resource type="Texture2D" uid="uid://byj5sgyu8cxwx" path="res://scenes/VFX/textures/T_smoke_K97.bak.png" id="1_veogr"]
 [ext_resource type="Shader" uid="uid://ch4qcgd8kp1ja" path="res://scenes/VFX/shaders/s_simple_pfc_2.tres" id="4_0p3bf"]
 [ext_resource type="Texture2D" uid="uid://bvm6o1xqqfmav" path="res://scenes/VFX/textures/T_Blood_Mist_04k_alpha.png" id="5_42ayh"]
 
@@ -13,10 +13,11 @@ metallic = 0.1
 emission = Color(0.42306498, 0.00012369602, 0.42306188, 1)
 normal_enabled = true
 rim_tint = 0.48
+texture_filter = 4
 billboard_mode = 3
 billboard_keep_scale = true
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
+particles_anim_h_frames = 8
+particles_anim_v_frames = 8
 particles_anim_loop = false
 
 [sub_resource type="Curve" id="Curve_15vff"]
@@ -61,6 +62,8 @@ scale_curve = SubResource("CurveTexture_2otc2")
 color = Color(1.0077509, 0.0008449514, 1.0077444, 1)
 color_ramp = SubResource("GradientTexture1D_mv5pt")
 alpha_curve = SubResource("CurveTexture_5et7u")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
 collision_mode = 1
 collision_friction = 1.0
 collision_bounce = 0.0

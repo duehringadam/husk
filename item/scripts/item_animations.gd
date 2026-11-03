@@ -26,6 +26,7 @@ var offhand_idle: String = ""
 var offhand_equip: String = ""
 var offhand_lower: String = ""
 var offhand_block_hit: String = ""
+var offhand_block_idle: String = ""
 var offhand_block_stun: String = ""
 var offhand_cant_use: String = ""
 
@@ -80,6 +81,7 @@ func _get_property_list() -> Array[Dictionary]:
 	properties.append({ "name": "Offhand Blocking", "type": TYPE_NIL, "usage": PROPERTY_USAGE_SUBGROUP, "hint_string": "Offhand Animations_" })
 	properties.append({ "name": "offhand_equip", "type": TYPE_STRING, "hint": PROPERTY_HINT_ENUM, "hint_string": anim_hint_string })
 	properties.append({ "name": "offhand_block_hit", "type": TYPE_STRING, "hint": PROPERTY_HINT_ENUM, "hint_string": anim_hint_string })
+	properties.append({ "name": "offhand_block_idle", "type": TYPE_STRING, "hint": PROPERTY_HINT_ENUM, "hint_string": anim_hint_string })
 	properties.append({ "name": "offhand_block_stun", "type": TYPE_STRING, "hint": PROPERTY_HINT_ENUM, "hint_string": anim_hint_string })
 	properties.append({ "name": "offhand_cant_use", "type": TYPE_STRING, "hint": PROPERTY_HINT_ENUM, "hint_string": anim_hint_string })
 	properties.append({ "name": "offhand_lower", "type": TYPE_STRING, "hint": PROPERTY_HINT_ENUM, "hint_string": anim_hint_string })

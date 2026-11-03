@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dk2tidxm1p74q" path="res://assets/kenney_fantasy-ui-borders/PNG/Default/Divider Fade/divider-fade-002.png" id="2_6fbi5"]
 [ext_resource type="Texture2D" uid="uid://m1co4chjurpw" path="res://Player/UI/HuskFrames/SVG/Option 2.svg" id="2_g2l8u"]
 [ext_resource type="Texture2D" uid="uid://by0pnn4vskmeg" path="res://Player/UI/inventory/textures/AdobeStock_73802034.jpeg" id="3_vqoha"]
+[ext_resource type="Texture2D" uid="uid://noitn23wqr58" path="res://Player/UI/inventory/textures/AdobeStock_1863314883.jpeg" id="5_dcw1v"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v4udn"]
 
@@ -13,7 +14,7 @@ texture_margin_left = 24.0
 texture_margin_top = 24.0
 texture_margin_right = 24.0
 texture_margin_bottom = 24.0
-modulate_color = Color(0.67180586, 0.53256184, 0.2980477, 1)
+modulate_color = Color(0.67058825, 0.53333336, 0.29803923, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7qavm"]
 texture = ExtResource("2_6fbi5")
@@ -28,6 +29,20 @@ expand_margin_left = 50.0
 expand_margin_top = 50.0
 expand_margin_right = 50.0
 expand_margin_bottom = 50.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kur6e"]
+texture = ExtResource("5_dcw1v")
+modulate_color = Color(0.21950102, 0.21950102, 0.21950102, 1)
+
+[sub_resource type="Gradient" id="Gradient_n68w8"]
+colors = PackedColorArray(0.48962224, 0.48962224, 0.48962218, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6yf53"]
+gradient = SubResource("Gradient_n68w8")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mjnvi"]
+texture = SubResource("GradientTexture1D_6yf53")
+modulate_color = Color(0.67058825, 0.53333336, 0.29803923, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kur6e"]
 bg_color = Color(0.6354538, 0.50142616, 0.27660787, 1)
@@ -80,6 +95,10 @@ Button/styles/pressed_mirrored = SubResource("StyleBoxTexture_gi4cx")
 HSeparator/constants/separation = 24
 HSeparator/styles/separator = SubResource("StyleBoxTexture_7qavm")
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_eekrg")
+ProgressBar/font_sizes/font_size = 16
+ProgressBar/fonts/font = null
+ProgressBar/styles/background = SubResource("StyleBoxTexture_kur6e")
+ProgressBar/styles/fill = SubResource("StyleBoxTexture_mjnvi")
 VScrollBar/styles/grabber = SubResource("StyleBoxFlat_kur6e")
 VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_kur6e")
 VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_kur6e")

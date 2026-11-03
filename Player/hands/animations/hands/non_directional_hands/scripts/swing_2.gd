@@ -15,19 +15,15 @@ var check_buffer: bool = false
 var block_pressed: bool = false
 
 func _on_swing_2_state_entered() -> void:
+	input_buffer.wait_time = hand.mainhand_weapon.charge_time
+	var anim_length = animation_tree.get("parameters/attackBlendTree/output/current_length")
+	end_timer.wait_time = clampf(anim_length, 1.0,3.0)
 	animation_tree["parameters/attackBlendTree/Transition/transition_request"] = "attack_2"
 	check_buffer = false
 	attack_pressed = false
 	input_buffer.start()
 	end_timer.start()
 	Global.player.stamina_component.modify_stamina(-40)
-	for i in bone_attach.get_children():
-		if i is Weapon:
-			weapon = i
-	if weapon:
-		if weapon.swing_sound:
-			weapon.swing_sound.pitch_scale = randf_range(0.9,1.1)
-			weapon.swing_sound.play()
 	SignalBus.emit_signal("primary_active", true)
 	var tween = get_tree().create_tween()
 	tween.tween_property(Global.player.camera,"fov", Global.camera_fov,.25)
@@ -43,8 +39,10 @@ func _on_swing_2_state_physics_processing(delta: float) -> void:
 	if check_buffer && end_timer.time_left > 0:
 		if attack_pressed:
 				state_chart.send_event("swing_3")
-		if block_pressed:
+		if block_pressed && hand.offhand_weapon:
 			state_chart.send_event("offhand")
+		elif block_pressed && !hand.offhand_weapon:
+			state_chart.send_event("block")
 
 
 func _on_input_buffer_timeout() -> void:

@@ -9,15 +9,21 @@ uniform vec3 char_color : source_color = vec3(0.12, 0.08, 0.05);
 uniform float progress : hint_range(0.0, 1.0) = 0.65;
 
 uniform float wave_density : hint_range(1.0, 50.0) = 15.0;
-uniform float wave_speed : hint_range(0.1, 10.0) = 3.0;
+uniform float wave_speed : hint_range(0.0, 10.0) = 3.0;
 uniform float wave_amplitude : hint_range(0.0, 1.0) = 0.35;
 
-uniform float ember_brightness : hint_range(0.5, 30.0) = 18.0;
+uniform float ember_brightness : hint_range(0.0, 30.0) = 18.0;
 uniform float noise_scale : hint_range(0.01, 12.0) = 0.2;
 uniform float edge_sharpness : hint_range(0.01, 1.0) = 0.22;
 uniform float char_opacity : hint_range(0.0, 1.0) = 0.85;
 uniform float turbulence : hint_range(0.0, 2.0) = 1.1;
-uniform float flicker_speed : hint_range(1.0, 15.0) = 8.5;
+uniform float flicker_speed : hint_range(0.0, 15.0) = 8.5;
+
+// --- NEW TIME CONTROL UNIFORMS ---
+uniform float time_scale_noise_slow : hint_range(0.0, 5.0) = 1.0;
+uniform float time_scale_noise_fast : hint_range(0.0, 5.0) = 1.0;
+uniform float time_scale_turbulence : hint_range(0.0, 5.0) = 1.0;
+uniform float time_scale_flicker    : hint_range(0.0, 5.0) = 1.0;
 
 uniform sampler3D noise_texture : repeat_enable, filter_nearest_mipmap_anisotropic;
 
@@ -28,19 +34,26 @@ float get_noise(sampler3D tex, vec3 pos) {
 void fragment() {
     vec3 pos = vec3(UV * noise_scale, 0.0);
     
+    // Controlled by separate noise time scales
+    float t_slow = TIME * time_scale_noise_slow;
+    float t_fast = TIME * time_scale_noise_fast;
+    
     float n1 = get_noise(noise_texture, pos * 1.1);
-    float n2 = get_noise(noise_texture, pos * 2.4 + vec3(TIME * 0.4, TIME * 0.35, 0.0));
-    float n3 = get_noise(noise_texture, pos * 4.7 + vec3(TIME * 0.7, TIME * 0.6, TIME * 0.3));
+    float n2 = get_noise(noise_texture, pos * 2.4 + vec3(t_slow * 0.4, t_slow * 0.35, 0.0));
+    float n3 = get_noise(noise_texture, pos * 4.7 + vec3(t_fast * 0.7, t_fast * 0.6, t_fast * 0.3));
     
     float combined = n1 * 0.5 + n2 * 0.35 + n3 * 0.15;
     
-    float turb = get_noise(noise_texture, pos * 7.8 + vec3(TIME * 1.1, TIME * 0.9, TIME * 1.3)) * turbulence * 0.18;
+    // Controlled by turbulence time scale
+    float t_turb = TIME * time_scale_turbulence;
+    float turb = get_noise(noise_texture, pos * 7.8 + vec3(t_turb * 1.1, t_turb * 0.9, t_turb * 1.3)) * turbulence * 0.18;
     combined += turb;
     
     combined = (combined + 1.0) * 0.5;
     
     vec2 wave_uv = UV + (combined * 0.15);
     
+    // Wave speed already has its own existing uniform multiplier (wave_speed)
     float w1 = sin((wave_uv.x + wave_uv.y) * wave_density - TIME * wave_speed);
     float w2 = sin((wave_uv.x - wave_uv.y) * wave_density + TIME * (wave_speed * 0.8));
     
@@ -60,7 +73,9 @@ void fragment() {
     
     EMISSION = fire_color * burn_front * ember_brightness;
     
-    float flicker_noise = get_noise(noise_texture, vec3(UV * noise_scale * 5.2, TIME * flicker_speed * 0.08));
+    // Controlled by flicker time scale (modifies the final flicker rate)
+    float t_flicker = TIME * time_scale_flicker;
+    float flicker_noise = get_noise(noise_texture, vec3(UV * noise_scale * 5.2, t_flicker * flicker_speed * 0.08));
     float edge_flicker = smoothstep(0.0, 0.8, burn_front) * (0.6 + 0.4 * flicker_noise);
     
     float alpha = mix(char_opacity, 0.96, edge_flicker);

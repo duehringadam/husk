@@ -3,7 +3,8 @@ extends Node3D
 
 signal damage_dealt
 
-@export var hit_particles_add: PackedScene
+@export var hit_particles_add: GPUParticles3D
+@export var damage_sound: AudioStreamPlayer3D
 @export var swing_sound: AudioStreamPlayer3D
 @export var block_sound: AudioStreamPlayer3D
 @export var equip_sound: AudioStreamPlayer3D
@@ -14,7 +15,6 @@ signal damage_dealt
 
 @export var trail: GPUTrail3D
 
-@export var blood_decals: Array[Decal]
 
 var can_attack: bool = true
 var secondary_active_bool: bool = false
@@ -26,22 +26,14 @@ func _ready() -> void:
 
 func activate(value: bool):
 	trail.visible = value
+	
+	if value:
+		swing_sound.pitch_scale = randf_range(0.9,1.1)
+		swing_sound.play()
 
 func _on_bloodtimer_timeout() -> void:
 	blood_drip.emitting = false
 	remove_blood()
 
-func _on_damage_component_damage_dealt(types: Dictionary[DamageTypes.DAMAGE_TYPES, float], actual: float, stance_damage:float, target: hurtbox_component, slow_amount: float) -> void:
-	if !target.can_bleed:
-		return
-		
-	if blood_decals.size() <= 0: return
-	
-	var random_decal_idx = randi_range(0, blood_decals.size()-1)
-	
-	var decal: Decal = blood_decals[random_decal_idx]
-	
-	decal.modulate.a += 0.05
-	
 func remove_blood():
 	blood_drip.emitting = false

@@ -10,12 +10,12 @@
 [sub_resource type="Resource" id="Resource_xl1hn"]
 script = ExtResource("1_ut775")
 target_libraries = Array[AnimationLibrary]([ExtResource("2_mqr4h")])
-idle = "mainhand_sword_idle"
+idle = "one_handed_sword_idle"
 equip = "brokenS_TO"
-mainhand_lower = "mainhand_sword_lower"
+mainhand_lower = "one_handed_sword_lower"
 attack_1 = "brokensword_swing1"
 attack_2 = "brokensword_swing2"
-attack_3 = "brokensword_swing3_2"
+attack_3 = "one_handed_sword_attack3"
 heavy_attack = "brokenS_TO"
 block_start = "one_handed_sword_block"
 block_hit = "one_handed_sword_block_hit"
@@ -25,6 +25,7 @@ deactivate = ""
 offhand_idle = ""
 offhand_equip = ""
 offhand_block_hit = ""
+offhand_block_idle = ""
 offhand_block_stun = ""
 offhand_cant_use = ""
 offhand_lower = ""

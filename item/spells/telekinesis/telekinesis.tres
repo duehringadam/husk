@@ -1,9 +1,35 @@
 [gd_resource type="Resource" script_class="item" format=3 uid="uid://cxhjq8887wm37"]
 
+[ext_resource type="Script" uid="uid://vqsnjxr1425q" path="res://item/scripts/item_animations.gd" id="1_n83p4"]
+[ext_resource type="AnimationLibrary" uid="uid://brptxm7won7ul" path="res://Player/hands/animations/hands/non_directional_hands/non_directional_hands.res" id="2_16t28"]
 [ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/scripts/item_stat.gd" id="2_nt2pq"]
 [ext_resource type="PackedScene" uid="uid://b2u7yd1ub8g3l" path="res://item/spells/telekinesis/spell_telekinesis.tscn" id="2_vbd5e"]
 [ext_resource type="Texture2D" uid="uid://dc28qjl1ksva2" path="res://item/icons/magic/explosion.svg/icons/ffffff/000000/1x1/lorc/egg-defense.svg" id="2_w56sd"]
 [ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/scripts/item.gd" id="3_vbd5e"]
+
+[sub_resource type="Resource" id="Resource_v4udn"]
+script = ExtResource("1_n83p4")
+target_libraries = Array[AnimationLibrary]([ExtResource("2_16t28")])
+idle = ""
+equip = ""
+mainhand_lower = ""
+attack_1 = ""
+attack_2 = ""
+attack_3 = ""
+heavy_attack = ""
+block_start = ""
+block_hit = ""
+block_stun = ""
+activate = "telekinesis_pull"
+deactivate = "telekinesis_throw"
+offhand_idle = "telekinesis_idle"
+offhand_equip = "telekinesis_TO"
+offhand_block_hit = "offhand_empty"
+offhand_block_idle = "telekinesis_hold"
+offhand_block_stun = "telekinesis_nopull"
+offhand_cant_use = "telekinesis_nomana"
+offhand_lower = "spell_lower"
+metadata/_custom_type_script = "uid://vqsnjxr1425q"
 
 [sub_resource type="Resource" id="Resource_cb3g8"]
 script = ExtResource("2_nt2pq")
@@ -27,6 +53,7 @@ mana_cost = 10
 item_scene = ExtResource("2_vbd5e")
 item_dropped_scene_path = "res://item/spells/spell_item_world.tscn"
 can_be_dropped = false
+animations = SubResource("Resource_v4udn")
 position = Vector3(0.095020354, 0.08039755, -0.018346734)
 rotation = Vector3(-2.6, -82.2, 8.7)
 metadata/_custom_type_script = "uid://dcfd18dx8x1bm"

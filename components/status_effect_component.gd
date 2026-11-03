@@ -1,5 +1,5 @@
 class_name status_effect_component
-extends GPUParticles3D
+extends Node3D
 
 signal status_activated(effects: Array[status_effect])
 signal status_removed(effect: status_effect)
@@ -12,6 +12,7 @@ signal status_removed(effect: status_effect)
 @export var bone_health_component_array: Array[BoneHealthComponent]
 
 var resistance_timer = Timer.new()
+var decay_timer = Timer.new()
 var times_applied: int = 1
 var status_size: int
 
@@ -20,9 +21,11 @@ var bleeding_preload = preload("res://status_effects/bleeding/bleeding.tres")
 var poisoned_preload = preload("res://status_effects/poisoned/poisoned.tres")
 var sleep_preload = preload("res://status_effects/sleep/sleep.tres")
 var leprosy_preload = preload("res://status_effects/leprosy/leprosy.tres")
+var paralyze_preload
 
 var child_damage_component
 var status_buildup_progress_clamp: float
+var decay_tween: Tween
 
 func _ready() -> void:
 	if hurtbox != null:
@@ -46,44 +49,40 @@ func _on_status_increment(status_type: Global.STATUS_TYPE, application_amount: f
 			resistance_timer.start()
 			if available_statuses[status_type] >= 1.0:
 				if !statuses.keys().has(status_type):
-					emitting = true
 					statuses[status_type] = check_status_type(status_type)
 					_apply_statuses(statuses.values())
 					times_applied += 1
 
 func _apply_statuses(effects: Array[status_effect]):
-	#mesh_to_affect.get_surface_override_material(0).next_pass = null
 	if effects.size() == 0:
 		return
 	status_activated.emit(effects)
-	if effects.size() > 1:
-		for i in effects:
-			var additional_particles = GPUParticles3D.new()
-			add_child(additional_particles)
-			additional_particles.emitting = true
-			additional_particles.draw_pass_1 = i.status_effect_mesh
-			additional_particles.process_material = i.particle_processor
+	if effects.size() > 0:
+		for i: status_effect in effects:
 			if i.damage_component_scene != null:
 				child_damage_component = i.damage_component_scene.instantiate()
 				add_child(child_damage_component)
-				child_damage_component.connect("increment_shader",increment_shader)
-			if i.shader_buildup_max > 0:
-				status_buildup_progress_clamp = i.shader_buildup_max
-	else:
-		for i in effects:
-			self.draw_pass_1 = i.status_effect_mesh
-			self.process_material = i.particle_processor.duplicate()
-			if mesh_to_affect != null:
-				if i.affected_target_next_pass != null:
-					if mesh_to_affect.material_overlay == null:
-						mesh_to_affect.material_overlay = i.affected_target_next_pass.duplicate(true)
-			if i.damage_component_scene != null:
-				child_damage_component = i.damage_component_scene.instantiate()
-				add_child(child_damage_component)
-			if i.shader_buildup_max > 0:
-				status_buildup_progress_clamp = i.shader_buildup_max
-
-
+				child_damage_component.owner = self.owner
+			var material_overlay = mesh_to_affect.material_overlay
+			material_overlay["shader_parameter/ember_core"] = i.ember_core
+			material_overlay["shader_parameter/ember_mid"] = i.ember_mid
+			material_overlay["shader_parameter/ember_edge"] = i.ember_edge
+			material_overlay["shader_parameter/char_color"] = i.char_color
+			material_overlay["shader_parameter/progress"] = i.progress
+			material_overlay["shader_parameter/wave_density"] = i.wave_density
+			material_overlay["shader_parameter/wave_speed"] = i.wave_speed
+			material_overlay["shader_parameter/wave_amplitude"] = i.wave_amplitude
+			material_overlay["shader_parameter/ember_brightness"] = i.ember_brightness
+			material_overlay["shader_parameter/noise_scale"] = i.noise_scale
+			material_overlay["shader_parameter/edge_sharpness"] = i.edge_sharpness
+			material_overlay["shader_parameter/char_opacity"] = i.char_opacity
+			material_overlay["shader_parameter/turbulence"] = i.turbulence
+			material_overlay["shader_parameter/flicker_speed"] = i.flicker_speed
+			material_overlay["shader_parameter/time_scale_noise_slow"] = i.time_scale_noise_slow
+			material_overlay["shader_parameter/time_scale_noise_fast"] = i.time_scale_noise_fast
+			material_overlay["shader_parameter/time_scale_turbulence"] = i.time_scale_turbulence
+			material_overlay["shader_parameter/time_scale_flicker"] = i.time_scale_flicker
+			
 func check_status_type(status: Global.STATUS_TYPE) -> status_effect:
 	match status:
 		Global.STATUS_TYPE.BURNING:
@@ -113,27 +112,29 @@ func remove_status(effect: status_effect):
 		statuses.erase(effect.effect_type)
 		if is_instance_valid(child_damage_component):
 			child_damage_component.queue_free()
-		emitting = false
 		available_statuses[effect.effect_type] = 0
-		if mesh_to_affect && effect.affected_target_next_pass != null:
+		if mesh_to_affect:
 			var material = mesh_to_affect.material_overlay
 			var tween = get_tree().create_tween()
-			tween.tween_property(material, "shader_parameter/progress",0,1)
+			tween.set_parallel()
+			tween.tween_property(material, "shader_parameter/progress", 0, 1)
+			tween.tween_property(material, "shader_parameter/wave_amplitude", 0, 1)
+			tween.tween_property(material, "shader_parameter/char_opacity", 0, 1)
 	
-
-func increment_shader(_amount: float, new_value: float):
-	if not mesh_to_affect: return
-	if mesh_to_affect.get_surface_override_material(0).next_pass:
-		if health_component != null:
-			if new_value <= 0:
-				var material = mesh_to_affect.material_overlay
-				var tween = get_tree().create_tween()
-				tween.tween_property(material, "shader_parameter/progress",clampf(material["shader_parameter/progress"]+1,0,status_buildup_progress_clamp),.5)
-			else:
-				var ratio = 1-(health_component.current_health/health_component.max_health)
-				var material = mesh_to_affect.get_surface_override_material(0).next_pass
-				var tween = get_tree().create_tween()
-				tween.tween_property(material, "shader_parameter/progress",clampf(material["shader_parameter/progress"]+ratio,0,status_buildup_progress_clamp),.5)
+func status_decay():
+	if decay_tween:
+		decay_tween.kill()
+	
+	decay_tween = create_tween()
+	
+	decay_tween.tween_method(
+		func(v: float)->void:
+			for i in available_statuses:
+				available_statuses[i] = lerp(available_statuses[i] as float, 0.0, v),
+		0.0,
+		1.0,
+		2.0
+	)
 
 func reduce_resistances(amount: float, duration: float):
 	var stored_resists: Dictionary = hurtbox.damage_resistances.duplicate()

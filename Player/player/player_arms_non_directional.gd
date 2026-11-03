@@ -19,7 +19,6 @@ signal equip_item(_weapon: item)
 @export var animation_tree: AnimationTree
 @export var anim_player: AnimationPlayer
 @export var skeleton: Skeleton3D
-
 @export var state_chart: StateChart
 
 @export_subgroup("Combat")
@@ -42,7 +41,7 @@ var tween: Tween
 var result
 var query
 var damage_component: DamageComponent
-
+var telekinesis_hold_bool: bool = false
 @export_group("Animation Resources")
 
 @export_subgroup("mainhand")
@@ -83,6 +82,9 @@ func _ready() -> void:
 	SignalBus.connect("unequip_mainhand", unequip_mainhand)
 	SignalBus.connect("unequip_offhand", unequip_offhand)
 	SignalBus.connect("unequip_armor", unequip_armor)
+	SignalBus.connect("telekinesis_hold", telekinesis_hold)
+	SignalBus.connect("telekinesis_throw", telekinesis_throw)
+	SignalBus.connect("telekinesis_fail", telekinesis_fail)
 	set_mainhand_animations()
 	set_offhand_animations()
 
@@ -136,7 +138,7 @@ func equip_mainhand(new_item: item):
 		
 	if new_item.two_handed:
 		unequip_offhand()
-	elif bone_attachment.get_child_count() > 0:
+	if bone_attachment.get_child_count() > 0:
 		unequip_mainhand(new_item)
 	
 	var item_add = new_item.item_scene.instantiate()
@@ -148,8 +150,11 @@ func equip_mainhand(new_item: item):
 
 	await get_tree().create_timer(.1).timeout
 	bone_attachment.add_child(item_add)
-	damage_component = bone_attachment.get_child(0).damage_component
-	bone_attachment.get_child(0).damage_component.damage_types = new_item.item_stats.final_damage
+	damage_component = DamageComponent.new()
+	damage_component.damage_types = new_item.item_stats.damage_types
+	damage_component.status_types = new_item.item_stats.status_types
+	damage_component.stance_damage_value = new_item.item_stats.stance_damage
+	damage_component.damage_types = new_item.item_stats.final_damage
 	ray_length = new_item.item_stats.range
 	
 	if new_item.item_left_scene:
@@ -170,13 +175,18 @@ func set_mainhand_animations():
 		block_hit.animation = mainhand_animation_resources.block_hit
 		block_stun.animation = mainhand_animation_resources.block_stun
 		mainhand_lower.animation = mainhand_animation_resources.mainhand_lower
+		heavy_attack.animation = mainhand_animation_resources.heavy_attack
 		
 		if mainhand_weapon.two_handed:
 			twohand_equip.animation = mainhand_animation_resources.equip
 			animation_tree.set("parameters/attackBlendTree/offhandBlend/blend_amount", 0.0)
+			animation_tree.set("parameters/heavyAttackBlendTree/offhandBlend/blend_amount", 0.0)
+			animation_tree.set("parameters/mainhandBlockBlendTree/Blend2/blend_amount", 0.0)
 		else:
 			animation_tree.set("parameters/attackBlendTree/offhandBlend/blend_amount", 1.0)
-		
+			animation_tree.set("parameters/heavyAttackBlendTree/offhandBlend/blend_amount", 1.0)
+			animation_tree.set("parameters/mainhandBlockBlendTree/Blend2/blend_amount", 1.0)
+			
 	if mainhand_weapon == null:
 		idle.animation = &"mainhand_empty"
 		equip.animation = &"mainhand_empty"
@@ -196,9 +206,9 @@ func set_offhand_animations():
 		offhand_lower.animation = offhand_animation_resources.offhand_lower
 		activate.animation = offhand_animation_resources.activate
 		deactivate.animation = offhand_animation_resources.deactivate
-		#offhand_block_idle.animation = offhand_animation_resources.offhand_block_idle
-		#offhand_block_stun.animation = offhand_animation_resources.offhand_block_stun
-		#offhand_cant_use.animation = offhand_animation_resources.offhand_cant_use
+		offhand_block_idle.animation = offhand_animation_resources.offhand_block_idle
+		offhand_block_stun.animation = offhand_animation_resources.offhand_block_stun
+		offhand_cant_use.animation = offhand_animation_resources.offhand_cant_use
 	if offhand_weapon == null:
 		offhand_equip.animation = &"offhand_empty"
 		offhand_idle.animation = &"offhand_empty"
@@ -241,14 +251,14 @@ func unequip_mainhand(replacement_item: item = null):
 	for i in bone_attachment.get_children():
 		i.queue_free()
 	mainhand_weapon = replacement_item
-	unequip_item.emit()
+	unequip_item.emit(null)
 	set_mainhand_animations()
 
 func unequip_offhand(replacement_item: item = null):
 	for i in left_bone_attachment.get_children():
 		i.queue_free()
 	offhand_weapon = replacement_item
-	unequip_item.emit()
+	unequip_item.emit(offhand_weapon)
 	set_offhand_animations()
 
 func _on_bloodtimer_timeout() -> void:
@@ -259,16 +269,18 @@ func _on_damage_dealt(target: hurtbox_component) -> void:
 	Global.player.camera.apply_shake(0.04)
 	if !target.can_bleed:
 		return
-		
-	if bone_attachment.get_child(0).blood_decals.size() <= 0: return
+	var material = bone_attachment.get_child(0).weapon_mesh.material_override
+	if material["shader_parameter/invert_blend_direction"]:
+		material["shader_parameter/blend_offset"] += 0.075
+	else:
+		material["shader_parameter/blend_offset"] -= 0.075
 	
-	for i in bone_attachment.get_child(0).blood_decals:
-		if i.modulate.a < 1.0:
-			i.modulate.a += 0.5
-			return
+	var hands_material = hands.material_override
+	hands_material["shader_parameter/blend_offset"] += 0.075
 	
-	bone_attachment.get_child(0).blood_drip.emitting = true
-	bone_attachment.get_child(0).bloodtimer.start()
+	if material["shader_parameter/blend_offset"] > 0:
+		bone_attachment.get_child(0).blood_drip.emitting = true
+		bone_attachment.get_child(0).bloodtimer.start()
 
 func remove_blood():
 	bone_attachment.get_child(0).blood_drip.emitting = false
@@ -284,7 +296,7 @@ func _physics_process(delta: float) -> void:
 	cam_pos = camera.global_position
 	cam_basis = camera.global_transform.basis
 
-func stab():
+func stab(multiplier: float = 1.0):
 	var anim_length = animation_tree.get("parameters/playback").get_current_length()
 	attack_timer.wait_time = (anim_length / 4) / ray_count
 
@@ -300,20 +312,23 @@ func stab():
 				
 				var area_direction = forward.rotated(up_axis, deg_to_rad(-current_angle))
 				
-				_perform_area_check(cam_pos, area_direction)
+				_perform_area_check(cam_pos, area_direction, multiplier)
 				
 				await attack_timer.timeout
 
-func shoot_arc(direction: Vector2i, attack_shape_curve: Curve):
+func shoot_arc(direction: Vector2i, attack_shape_curve: Curve, multiplier: float = 1.0):
 	
 	if not camera:
 		return
 		
 	var viewport_size = get_viewport().get_visible_rect().size
 	var anim_length = animation_tree.get("parameters/attackBlendTree/output/current_length")
-
-	attack_timer.wait_time = (anim_length/ 4) / ray_count
-
+	var anim_current_pos = animation_tree.get("parameters/attackBlendTree/output/current_position")
+	
+	var time_left = anim_length - anim_current_pos
+	
+	attack_timer.wait_time = 0.005
+	
 	var degrees_per_pixel_y = camera.fov / viewport_size.y
 	var aspect_ratio = viewport_size.x / viewport_size.y
 	var degrees_per_pixel_x = (camera.fov * aspect_ratio) / viewport_size.x
@@ -346,7 +361,7 @@ func shoot_arc(direction: Vector2i, attack_shape_curve: Curve):
 			var screen_point = Vector2(screen_x, screen_y)
 			var area_direction: Vector3 = camera.project_ray_normal(screen_point)
 			
-			_perform_area_check(cam_pos, area_direction)
+			_perform_area_check(cam_pos, area_direction, multiplier)
 			
 			await attack_timer.timeout
 
@@ -376,20 +391,19 @@ func shoot_arc(direction: Vector2i, attack_shape_curve: Curve):
 			
 			await attack_timer.timeout
 
-func _perform_area_check(origin: Vector3, direction: Vector3):
+func _perform_area_check(origin: Vector3, direction: Vector3, multiplier: float = 1.0):
 	var check_area = DamageComponent.new()
 	check_area.collision_mask = 14
-	check_area.damage_types = damage_component.damage_types
-	check_area.status_types = damage_component.status_types
+	check_area.damage_types = damage_component.damage_types.duplicate()
+	check_area.status_types = damage_component.status_types.duplicate()
 	check_area.stance_damage_value = damage_component.stance_damage_value
-	check_area.damage_interval = .25
+	check_area.damage_interval = .5
 	check_area.source = Global.player
 	if damage_component.hit_sound:
 		check_area.hit_sound = damage_component.hit_sound
 	check_area.damage_dealt.connect(_update_hits.bind(check_area))
 	check_area.hits = hits
 	get_tree().root.add_child(check_area)
-	
 	var capsule = CapsuleShape3D.new()
 	capsule.radius = 0.05
 	capsule.height = ray_length 
@@ -399,20 +413,25 @@ func _perform_area_check(origin: Vector3, direction: Vector3):
 	collision_node.debug_color = Color.RED
 	collision_node.rotation.x = deg_to_rad(90) # Orient capsule forward along the Z axis
 	check_area.add_child(collision_node)
-	
+	for i in check_area.damage_types:
+		check_area.damage_types[i] *= multiplier
+	check_area.stance_damage_value *= multiplier
 	#DebugDraw3D.draw_ray(origin,direction,mainhand_weapon.item_stats.range,Color.RED,1)
 	
 	var spawn_pos = origin + (direction * (ray_length / 2.0))
 	check_area.global_position = spawn_pos
 	check_area.global_transform.basis = Basis.looking_at(-direction, cam_basis.y)
-	
 	await get_tree().create_timer(.25).timeout
-	
 	check_area.queue_free()
 
 func _update_hits(types: Dictionary, actual: float, stance_damage: float, target: hurtbox_component,slow_amount: float, check_area: DamageComponent):
+	animation_tree.process_mode = Node.PROCESS_MODE_DISABLED
+	bone_attachment.get_child(0).damage_sound.pitch_scale = randf_range(0.8,1.1)
+	bone_attachment.get_child(0).damage_sound.play()
 	hits.append(check_area.hits)
 	_on_damage_dealt(target)
+	await get_tree().create_timer(.1).timeout
+	animation_tree.process_mode = Node.PROCESS_MODE_INHERIT
 
 func _on_swing_state_exited() -> void:
 	hits.clear()
@@ -442,11 +461,11 @@ func shoot_left():
 	left_bone_attachment.get_child(0).shoot()
 
 func _on_ray_cast_3d_interaction_controller_pickable_grabbed(value: bool) -> void:
-	if value:
+	if value && !telekinesis_hold_bool:
 		disable()
 	else:
 		enable()
-		state_chart.send_event("idle")
+		#state_chart.send_event("idle")
 
 func _on_hurtbox_component_blocked_attack() -> void:
 	var _weapon
@@ -466,3 +485,15 @@ func _on_hurtbox_component_blocked_attack() -> void:
 
 func _on_hurtbox_component_stance_broken() -> void:
 	state_chart.send_event("stun")
+	
+	
+func telekinesis_hold():
+	telekinesis_hold_bool = true
+	animation_tree.set("parameters/offhandActivateBlendTree/Transition/transition_request", "idle")
+
+func telekinesis_throw():
+	telekinesis_hold_bool = false
+	
+func telekinesis_fail():
+	telekinesis_hold_bool = false
+	animation_tree.set("parameters/offhandActivateBlendTree/Transition/transition_request", "stun")

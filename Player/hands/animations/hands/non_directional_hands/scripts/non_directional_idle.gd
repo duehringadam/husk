@@ -1,5 +1,6 @@
 extends Node
 
+@export var hold_duration: float = 0.5
 @export var weapon: Node3D
 @export var state_chart: StateChart
 @export var animation_tree: AnimationTree
@@ -8,7 +9,10 @@ extends Node
 
 @onready var end_timer: Timer = $"../../swing/endTimer"
 
+var current_held_duration: float = 0.0
+
 func _on_idle_state_entered() -> void:
+	current_held_duration = 0
 	end_timer.start()
 	animation_tree.set("parameters/conditions/attack", false)
 	animation_tree.set("parameters/conditions/idle", true)
@@ -18,24 +22,25 @@ func _on_idle_state_entered() -> void:
 
 
 func _on_idle_state_exited() -> void:
+	current_held_duration = 0
 	animation_tree.set("parameters/conditions/idle", false)
-	if main_bone_attach.get_child_count() > 0:
-		SignalBus.emit_signal("primary_active", true)
 	weapon.can_attack = false
-	var tween = get_tree().create_tween()
-	tween.tween_property(Global.player.camera,"fov",Global.camera_fov+10,.25)
-
-
-func _on_idle_state_physics_processing(delta: float) -> void:
-	await get_tree().physics_frame
-
 
 func _on_idle_state_input(event: InputEvent) -> void:
-	if weapon.mainhand_weapon:
-		if event.is_action_pressed("attack_primary") && weapon.can_attack && Global.player.can_attack:
-			state_chart.send_event("swing")
-
 	if event.is_action_pressed("attack_secondary") && weapon.offhand_weapon && weapon.can_attack:
 		state_chart.send_event("offhand")
 	elif event.is_action_pressed("attack_secondary") && !weapon.offhand_weapon && weapon.can_attack:
 		state_chart.send_event("block")
+
+
+func _on_idle_state_processing(delta: float) -> void:
+	if weapon.mainhand_weapon && weapon.can_attack && Global.player.can_attack:
+		if Input.is_action_pressed("attack_primary"):
+			current_held_duration += delta
+			SignalBus.emit_signal("primary_active", true)
+			animation_tree.set("parameters/conditions/attack",true)
+		if Input.is_action_just_released("attack_primary") && current_held_duration < hold_duration:
+			animation_tree.set("parameters/conditions/attack",true)
+			state_chart.send_event("swing")
+		if current_held_duration >= hold_duration:
+			state_chart.send_event("heavy")

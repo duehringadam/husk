@@ -24,7 +24,7 @@ uniform vec3 uv1_offset;
 uniform vec3 uv2_scale;
 uniform vec3 uv2_offset;
 
-uniform float FOV : hint_range(20, 120) = 75;
+global uniform float FOV : hint_range(20, 120) = 75;
 
 // --- New Uniforms for Customizable Noise Overlay ---
 uniform vec4 overlay_color : source_color = vec4(1.0, 0.0, 0.0, 1.0); // Now you can pick any color in the Inspector

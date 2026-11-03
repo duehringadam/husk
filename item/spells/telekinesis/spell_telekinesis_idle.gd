@@ -27,7 +27,6 @@ func _on_idle_state_exited() -> void:
 
 func _on_idle_state_physics_processing(delta: float) -> void:
 	if spell.is_active && spell.grabbed_object == null:
-		#AudioManager.play_sound(load("res://sfx/telekeroppomimipickup2.wav"),spell.global_position,-20)
 		if spell_shapecast.is_colliding():
 			var colliders =  spell_shapecast.get_collision_count()
 			var base_object := spell_shapecast.get_collider(0)
@@ -40,4 +39,7 @@ func _on_idle_state_physics_processing(delta: float) -> void:
 						spell.grabbed_object = base_object
 						state_chart.send_event("pull")
 						AudioManager.play_sound(load("res://sfx/spells/fire/fire-magic-5-378639.mp3"), spell.global_position, -20)
-		
+
+func _on_idle_state_input(event: InputEvent) -> void:
+	if event.is_action_released("attack_secondary"):
+		state_chart.send_event("fail")

@@ -7,6 +7,7 @@ extends Node
 
 func _on_block_state_entered() -> void:
 	GamePiecesEventBus.slow_player_requested(2)
+	animation_tree.set("parameters/conditions/attack", false)
 	animation_tree.set("parameters/conditions/block", true)
 	SignalBus.emit_signal("block_amount", 0)
 	SignalBus.emit_signal("is_blocking", true)

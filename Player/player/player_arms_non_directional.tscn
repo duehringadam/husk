@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cty5qubxawb5h" path="res://Player/player/player_arms_non_directional.gd" id="1_uiu8h"]
 [ext_resource type="Material" uid="uid://d0p82r0xbudbp" path="res://Player/hands/first_person_arms.tres" id="4_4lk0e"]
+[ext_resource type="AnimationNodeAnimation" uid="uid://bsw4thsvqvu07" path="res://Player/hands/animations/hands/non_directional_hands/animation tree resources/mainhand/mainhand_heavy_attack.tres" id="7_qs5di"]
 [ext_resource type="AnimationLibrary" uid="uid://brptxm7won7ul" path="res://Player/hands/animations/hands/non_directional_hands/non_directional_hands.res" id="8_uiu8h"]
 [ext_resource type="AnimationNodeAnimation" uid="uid://ck2srdby325bt" path="res://Player/hands/animations/hands/non_directional_hands/animation tree resources/offhand/offhand_idle.tres" id="9_baoko"]
 [ext_resource type="AnimationNodeAnimation" uid="uid://2vp0yl0hlash" path="res://Player/hands/animations/hands/non_directional_hands/animation tree resources/offhand/offhand_lower.tres" id="9_fghts"]
@@ -22,9 +23,6 @@
 [ext_resource type="AnimationNodeTransition" uid="uid://c341uu74xjac8" path="res://Player/hands/animations/hands/non_directional_hands/animation tree resources/mainhand/mainhand_block_transition.tres" id="17_aqvbn"]
 [ext_resource type="ArrayMesh" uid="uid://xggh3s1kfecd" path="res://item/armor/chest/unarmored/unarmored_mesh.tres" id="18_qu502"]
 [ext_resource type="Skin" uid="uid://cur7r5ei333hx" path="res://item/armor/chest/unarmored/unarmored_skin.tres" id="19_jgsyv"]
-[ext_resource type="Material" uid="uid://smjara8sx7lu" path="res://item/armor/chest/leather_armor/leather_armor_material.tres" id="20_4lk0e"]
-[ext_resource type="ArrayMesh" uid="uid://b0fdtdylqkpr0" path="res://item/armor/chest/leather_armor/leather_armor_mesh.tres" id="20_qu502"]
-[ext_resource type="Skin" uid="uid://rch4qlj81u4m" path="res://item/armor/chest/leather_armor/leather_armor_skin.tres" id="21_f0bjg"]
 [ext_resource type="Script" uid="uid://bb3ghyy64k2bd" path="res://addons/godot_state_charts/state_chart.gd" id="21_xh7d3"]
 [ext_resource type="Script" uid="uid://clt3bkcujiepo" path="res://addons/godot_state_charts/compound_state.gd" id="22_olqhh"]
 [ext_resource type="AnimationNodeTransition" uid="uid://ditikxkdy00jd" path="res://Player/hands/animations/hands/non_directional_hands/animation tree resources/offhand/offhand_activate_transition.tres" id="22_rtjjs"]
@@ -39,13 +37,17 @@
 [ext_resource type="AnimationNodeAnimation" uid="uid://b8yvrsiv82srv" path="res://Player/hands/animations/hands/non_directional_hands/animation tree resources/mainhand/mainhand_twohand_new_equip_animation.tres" id="27_00qp1"]
 [ext_resource type="Script" uid="uid://dp4dgh1f6i2ur" path="res://Player/hands/animations/hands/non_directional_hands/scripts/swing_2.gd" id="28_nnvtb"]
 [ext_resource type="Script" uid="uid://ctc1vi4gypp4x" path="res://Player/hands/animations/hands/non_directional_hands/scripts/swing_3.gd" id="29_uaqwn"]
+[ext_resource type="AnimationNodeAnimation" uid="uid://bi5u5pk5be6c2" path="res://Player/hands/animations/hands/non_directional_hands/animation tree resources/offhand/offhand_activate_idle.tres" id="30_1q6dl"]
+[ext_resource type="AnimationNodeAnimation" uid="uid://b76b5u78eh7ts" path="res://Player/hands/animations/hands/non_directional_hands/animation tree resources/offhand/offhand_cant_use.tres" id="30_qs5di"]
 [ext_resource type="Script" uid="uid://bwkkao308b3d2" path="res://Player/scripts/weapon_block.gd" id="30_uaqwn"]
+[ext_resource type="AnimationNodeAnimation" uid="uid://c5qpx1kypunh7" path="res://Player/hands/animations/hands/non_directional_hands/animation tree resources/offhand/offhand_stun.tres" id="31_7k3g1"]
 [ext_resource type="Script" uid="uid://dxoqe73rfoqbm" path="res://Player/player/stun.gd" id="39_adxgc"]
 [ext_resource type="AudioStream" uid="uid://du7ihf843sngd" path="res://sfx/damage/husk_Poise_break.wav" id="40_qu502"]
+[ext_resource type="Script" uid="uid://7f7s2nbr0o0m" path="res://Player/hands/animations/hands/non_directional_hands/scripts/heavy.gd" id="42_wegtq"]
 [ext_resource type="AudioStream" uid="uid://cxaiegc58ql2r" path="res://sfx/UI/Fantasy_Game_Item_Pickup_Leather_Armor.wav" id="43_qe8i1"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_yp3qj"]
-graph_offset = Vector2(-604.27545, 102.95681)
+graph_offset = Vector2(-203.47998, 54.927208)
 nodes/output/position = Vector2(380, 160)
 nodes/Transition/node = ExtResource("10_630c4")
 nodes/Transition/position = Vector2(20, 140)
@@ -60,6 +62,17 @@ nodes/offhandBlend/position = Vector2(200, 160)
 nodes/Animation/node = ExtResource("9_fghts")
 nodes/Animation/position = Vector2(20, 440)
 node_connections = [&"output", 0, &"offhandBlend", &"Transition", 0, &"attack_1", &"Transition", 1, &"attack_2", &"Transition", 2, &"attack_3", &"offhandBlend", 0, &"Transition", &"offhandBlend", 1, &"Animation"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ms0s2"]
+graph_offset = Vector2(-329.0994, 0)
+nodes/output/position = Vector2(380, 160)
+nodes/AnimationNodeAnimation/node = ExtResource("9_fghts")
+nodes/AnimationNodeAnimation/position = Vector2(-160, 300)
+nodes/Animation/node = ExtResource("7_qs5di")
+nodes/Animation/position = Vector2(-220, 120)
+nodes/offhandBlend/node = ExtResource("14_2bxjj")
+nodes/offhandBlend/position = Vector2(160, 120)
+node_connections = [&"output", 0, &"offhandBlend", &"offhandBlend", 0, &"Animation", &"offhandBlend", 1, &"AnimationNodeAnimation"]
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_uaqwn"]
 filter_enabled = true
@@ -77,7 +90,7 @@ nodes/offhandIdle/position = Vector2(-240, 260)
 node_connections = [&"output", 0, &"Blend2", &"Blend2", 0, &"mainhandIdle", &"Blend2", 1, &"offhandIdle"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ugr0r"]
-graph_offset = Vector2(-199.34824, 161.20386)
+graph_offset = Vector2(-455.43362, 139.26071)
 nodes/output/position = Vector2(1020, 340)
 nodes/activate/node = ExtResource("11_fjvcj")
 nodes/activate/position = Vector2(-120, 560)
@@ -111,27 +124,28 @@ nodes/offhandIdle/node = ExtResource("9_baoko")
 nodes/offhandIdle/position = Vector2(-180, 140)
 node_connections = [&"output", 0, &"Blend2", &"Blend2", 0, &"offhandIdle", &"Blend2", 1, &"mainhandEquip"]
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4lk0e"]
-animation = &"shield_LOWER"
-
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_uiu8h"]
-graph_offset = Vector2(-352.09048, 32.602142)
+graph_offset = Vector2(-408.50327, -65.90183)
 nodes/output/position = Vector2(600, 160)
 nodes/Transition/node = ExtResource("22_rtjjs")
-nodes/Transition/position = Vector2(80, 120)
+nodes/Transition/position = Vector2(60, 80)
 nodes/mainhand/node = ExtResource("26_qu502")
 nodes/mainhand/position = Vector2(0, 460)
 nodes/activate/node = ExtResource("23_00qp1")
-nodes/activate/position = Vector2(-320, 120)
+nodes/activate/position = Vector2(-320, -100)
 nodes/deactivate/node = ExtResource("25_adxgc")
-nodes/deactivate/position = Vector2(-360, 300)
+nodes/deactivate/position = Vector2(-360, 80)
 nodes/mainhandLowerBlend/node = ExtResource("23_qy4af")
 nodes/mainhandLowerBlend/position = Vector2(300, 160)
 nodes/blockHit/node = ExtResource("24_4lk0e")
-nodes/blockHit/position = Vector2(-360, 480)
-nodes/Animation/node = SubResource("AnimationNodeAnimation_4lk0e")
-nodes/Animation/position = Vector2(-380, 700)
-node_connections = [&"output", 0, &"mainhandLowerBlend", &"Transition", 0, &"activate", &"Transition", 1, &"deactivate", &"Transition", 2, &"blockHit", &"Transition", 3, &"Animation", &"mainhandLowerBlend", 0, &"Transition", &"mainhandLowerBlend", 1, &"mainhand"]
+nodes/blockHit/position = Vector2(-360, 640)
+nodes/Animation/node = ExtResource("31_7k3g1")
+nodes/Animation/position = Vector2(-360, 820)
+nodes/idle/node = ExtResource("30_1q6dl")
+nodes/idle/position = Vector2(-360, 260)
+"nodes/Animation 2/node" = ExtResource("30_qs5di")
+"nodes/Animation 2/position" = Vector2(-340, 440)
+node_connections = [&"output", 0, &"mainhandLowerBlend", &"Transition", 0, &"activate", &"Transition", 1, &"deactivate", &"Transition", 2, &"idle", &"Transition", 3, &"Animation 2", &"Transition", 4, &"blockHit", &"Transition", 5, &"Animation", &"mainhandLowerBlend", 0, &"mainhand", &"mainhandLowerBlend", 1, &"Transition"]
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_sgwt8"]
 filter_enabled = true
@@ -153,7 +167,7 @@ filter_enabled = true
 filters = ["Armature/Skeleton3D:hand.L", "Armature/Skeleton3D:middle.001.L", "Armature/Skeleton3D:middle.002.L", "Armature/Skeleton3D:middle.L", "Armature/Skeleton3D:middle.L.001", "Armature/Skeleton3D:pinkie.001.L", "Armature/Skeleton3D:pinkie.002.L", "Armature/Skeleton3D:pinkie.L", "Armature/Skeleton3D:pinkie.L.001", "Armature/Skeleton3D:pointy.002.L", "Armature/Skeleton3D:pointy.003.L", "Armature/Skeleton3D:pointy.L", "Armature/Skeleton3D:pointy.L.001", "Armature/Skeleton3D:ring.001.L", "Armature/Skeleton3D:ring.002.L", "Armature/Skeleton3D:ring.L", "Armature/Skeleton3D:ring.L.001", "Armature/Skeleton3D:segment.L", "Armature/Skeleton3D:segment2.L", "Armature/Skeleton3D:segment3.L", "Armature/Skeleton3D:thumb.001.L", "Armature/Skeleton3D:thumb.L", "Armature/Skeleton3D:thumb.L.001", "Armature/Skeleton3D:weapons.L"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_fghts"]
-graph_offset = Vector2(-481.90076, 8.041685)
+graph_offset = Vector2(-679.48755, 39.720215)
 nodes/Blend2/node = SubResource("AnimationNodeBlend2_qixk0")
 nodes/Blend2/position = Vector2(120, 200)
 nodes/AnimationNodeAnimation/node = ExtResource("11_sgwt8")
@@ -203,14 +217,6 @@ point_count = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_630c4"]
 xfade_time = 0.25
 xfade_curve = SubResource("Curve_00qp1")
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h5h3g"]
-xfade_time = 0.1
-advance_mode = 2
-advance_condition = &"attack"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xn5xd"]
-xfade_time = 0.25
 switch_mode = 2
 advance_mode = 2
 advance_condition = &"idle"
@@ -219,11 +225,6 @@ advance_condition = &"idle"
 xfade_time = 0.1
 advance_mode = 2
 advance_condition = &"block"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fjvcj"]
-xfade_time = 0.1
-advance_mode = 2
-advance_condition = &"attack"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uiu8h"]
 xfade_time = 0.1
@@ -253,27 +254,53 @@ xfade_time = 0.25
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cah3s"]
+xfade_time = 0.25
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wegtq"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ms0s2"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"attack"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ovbmv"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"light_attack"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fjvcj"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"attack"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ofbms"]
 states/End/position = Vector2(966, 113)
 states/Start/position = Vector2(95, 113)
 states/attackBlendTree/node = SubResource("AnimationNodeBlendTree_yp3qj")
-states/attackBlendTree/position = Vector2(516, -45.34813)
+states/attackBlendTree/position = Vector2(477, -138.11978)
+states/heavyAttackBlendTree/node = SubResource("AnimationNodeBlendTree_ms0s2")
+states/heavyAttackBlendTree/position = Vector2(526, 0.6518707)
 states/idle/node = SubResource("AnimationNodeBlendTree_e6cnr")
-states/idle/position = Vector2(521, 113)
+states/idle/position = Vector2(526, 113)
 states/mainhandBlockBlendTree/node = SubResource("AnimationNodeBlendTree_ugr0r")
 states/mainhandBlockBlendTree/position = Vector2(744, 113)
 states/mainhandNewEquip/node = SubResource("AnimationNodeBlendTree_baoko")
 states/mainhandNewEquip/position = Vector2(207, 30.30838)
 states/offhandActivateBlendTree/node = SubResource("AnimationNodeBlendTree_uiu8h")
-states/offhandActivateBlendTree/position = Vector2(516, 208.84749)
+states/offhandActivateBlendTree/position = Vector2(526, 208.84749)
 states/offhandNewEquip/node = SubResource("AnimationNodeBlendTree_sgwt8")
 states/offhandNewEquip/position = Vector2(300, -45.34813)
 states/startEquip/node = SubResource("AnimationNodeBlendTree_fghts")
 states/startEquip/position = Vector2(262, 113)
 states/twoHandNewEquip/node = SubResource("AnimationNodeBlendTree_00qp1")
 states/twoHandNewEquip/position = Vector2(39.79895, -69.11978)
-transitions = ["startEquip", "idle", SubResource("AnimationNodeStateMachineTransition_aqvbn"), "Start", "startEquip", SubResource("AnimationNodeStateMachineTransition_qy4af"), "idle", "mainhandBlockBlendTree", SubResource("AnimationNodeStateMachineTransition_ugr0r"), "mainhandBlockBlendTree", "idle", SubResource("AnimationNodeStateMachineTransition_wo10k"), "idle", "offhandActivateBlendTree", SubResource("AnimationNodeStateMachineTransition_baoko"), "offhandActivateBlendTree", "idle", SubResource("AnimationNodeStateMachineTransition_630c4"), "idle", "attackBlendTree", SubResource("AnimationNodeStateMachineTransition_h5h3g"), "attackBlendTree", "idle", SubResource("AnimationNodeStateMachineTransition_xn5xd"), "attackBlendTree", "mainhandBlockBlendTree", SubResource("AnimationNodeStateMachineTransition_1vdwj"), "mainhandBlockBlendTree", "attackBlendTree", SubResource("AnimationNodeStateMachineTransition_fjvcj"), "idle", "offhandNewEquip", SubResource("AnimationNodeStateMachineTransition_uiu8h"), "idle", "mainhandNewEquip", SubResource("AnimationNodeStateMachineTransition_srh5u"), "offhandNewEquip", "idle", SubResource("AnimationNodeStateMachineTransition_fghts"), "mainhandNewEquip", "idle", SubResource("AnimationNodeStateMachineTransition_2bxjj"), "idle", "twoHandNewEquip", SubResource("AnimationNodeStateMachineTransition_4lk0e"), "twoHandNewEquip", "idle", SubResource("AnimationNodeStateMachineTransition_adxgc")]
-graph_offset = Vector2(-257.87946, -37.015484)
+transitions = ["startEquip", "idle", SubResource("AnimationNodeStateMachineTransition_aqvbn"), "Start", "startEquip", SubResource("AnimationNodeStateMachineTransition_qy4af"), "idle", "mainhandBlockBlendTree", SubResource("AnimationNodeStateMachineTransition_ugr0r"), "mainhandBlockBlendTree", "idle", SubResource("AnimationNodeStateMachineTransition_wo10k"), "idle", "offhandActivateBlendTree", SubResource("AnimationNodeStateMachineTransition_baoko"), "offhandActivateBlendTree", "idle", SubResource("AnimationNodeStateMachineTransition_630c4"), "attackBlendTree", "mainhandBlockBlendTree", SubResource("AnimationNodeStateMachineTransition_1vdwj"), "idle", "offhandNewEquip", SubResource("AnimationNodeStateMachineTransition_uiu8h"), "idle", "mainhandNewEquip", SubResource("AnimationNodeStateMachineTransition_srh5u"), "offhandNewEquip", "idle", SubResource("AnimationNodeStateMachineTransition_fghts"), "mainhandNewEquip", "idle", SubResource("AnimationNodeStateMachineTransition_2bxjj"), "idle", "twoHandNewEquip", SubResource("AnimationNodeStateMachineTransition_4lk0e"), "twoHandNewEquip", "idle", SubResource("AnimationNodeStateMachineTransition_adxgc"), "attackBlendTree", "idle", SubResource("AnimationNodeStateMachineTransition_cah3s"), "heavyAttackBlendTree", "idle", SubResource("AnimationNodeStateMachineTransition_wegtq"), "idle", "heavyAttackBlendTree", SubResource("AnimationNodeStateMachineTransition_ms0s2"), "heavyAttackBlendTree", "attackBlendTree", SubResource("AnimationNodeStateMachineTransition_ovbmv"), "mainhandBlockBlendTree", "heavyAttackBlendTree", SubResource("AnimationNodeStateMachineTransition_fjvcj")]
+graph_offset = Vector2(-257.87946, -164.94037)
 
 [node name="playerHands" type="Marker3D" unique_id=1178015951 node_paths=PackedStringArray("hands", "bone_attachment", "left_bone_attachment", "animation_tree", "anim_player", "skeleton", "state_chart")]
 script = ExtResource("1_uiu8h")
@@ -291,6 +318,7 @@ equip = ExtResource("11_sgwt8")
 attack_1 = ExtResource("9_srh5u")
 attack_2 = ExtResource("10_fghts")
 attack_3 = ExtResource("11_630c4")
+heavy_attack = ExtResource("7_qs5di")
 mainhand_lower = ExtResource("26_qu502")
 twohand_equip = ExtResource("27_00qp1")
 block_start = ExtResource("11_fjvcj")
@@ -302,7 +330,10 @@ offhand_idle = ExtResource("9_baoko")
 offhand_lower = ExtResource("9_fghts")
 activate = ExtResource("23_00qp1")
 deactivate = ExtResource("25_adxgc")
+offhand_block_idle = ExtResource("30_1q6dl")
 offhand_block_hit = ExtResource("24_4lk0e")
+offhand_block_stun = ExtResource("31_7k3g1")
+offhand_cant_use = ExtResource("30_qs5di")
 
 [node name="ghoul_arms2(1)" type="Node3D" parent="." unique_id=264221670]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.085, -0.225, 0.48371398)
@@ -317,14 +348,14 @@ bones/0/rest = Transform3D(0, 0, 1, -1, 0, 0, 0, -0.99999994, 0, 4.7683727e-08, 
 bones/0/enabled = true
 bones/0/position = Vector3(4.7683727e-08, -0.13797593, 0.2074032)
 bones/0/rotation = Quaternion(0.7071068, 0, 0.7071068, 0)
-bones/0/scale = Vector3(0.99999964, 0.9999999, 0.9999999)
+bones/0/scale = Vector3(0.9999996, 0.9999997, 0.99999976)
 bones/1/name = "segment.R"
 bones/1/parent = 0
 bones/1/rest = Transform3D(-1, -3.1696228e-08, 1.3430886e-06, -3.1696235e-08, 0.99999976, 4.2570853e-14, -1.3430886e-06, 5.0821965e-21, -1, 0.0020240531, 0.2949165, 0.37519693)
 bones/1/enabled = true
 bones/1/position = Vector3(0.0020240515, 0.2949165, 0.37519693)
 bones/1/rotation = Quaternion(-1.5848117e-08, 1, 6.864228e-15, 4.3312573e-07)
-bones/1/scale = Vector3(0.99999636, 0.99999684, 0.99999976)
+bones/1/scale = Vector3(0.999996, 0.9999968, 0.9999993)
 bones/2/name = "segment2.R"
 bones/2/parent = 1
 bones/2/rest = Transform3D(1, 1.4938675e-07, -2.9405498e-07, -1.4938675e-07, 1, 2.366522e-13, 2.9405498e-07, -1.9272428e-13, 1, 1.4420714e-09, 0.47012395, 3.0988854e-09)
@@ -492,7 +523,7 @@ bones/25/rest = Transform3D(1, -3.169624e-08, 1.3113022e-06, 3.169624e-08, 1, 4.
 bones/25/enabled = true
 bones/25/position = Vector3(0.0020240902, 0.2949165, -0.37519705)
 bones/25/rotation = Quaternion(-0.17544723, -0.12387856, -0.22810616, 0.94965255)
-bones/25/scale = Vector3(0.9999983, 1.0000001, 0.9999992)
+bones/25/scale = Vector3(0.9999984, 1.0000002, 0.9999994)
 bones/26/name = "segment2.L"
 bones/26/parent = 25
 bones/26/rest = Transform3D(1, -1.493868e-07, 2.384187e-07, 1.493868e-07, 1, 2.394232e-13, -2.384187e-07, -2.038066e-13, 1, 4.531385e-09, 0.47012398, 1.0887968e-08)
@@ -656,54 +687,52 @@ bones/48/rotation = Quaternion(0.7071067, 4.792154e-09, 1.9470386e-07, 0.7071068
 bones/48/scale = Vector3(0.9999996, 0.9999995, 0.9999999)
 
 [node name="Hands" type="MeshInstance3D" parent="ghoul_arms2(1)/Armature/Skeleton3D" unique_id=239782853]
+material_override = ExtResource("4_4lk0e")
 cast_shadow = 0
 mesh = ExtResource("18_qu502")
 skin = ExtResource("19_jgsyv")
 skeleton = NodePath("..")
-surface_material_override/0 = ExtResource("4_4lk0e")
-
-[node name="Leather" type="MeshInstance3D" parent="ghoul_arms2(1)/Armature/Skeleton3D" unique_id=438749800]
-visible = false
-cast_shadow = 0
-mesh = ExtResource("20_qu502")
-skin = ExtResource("21_f0bjg")
-skeleton = NodePath("..")
-surface_material_override/0 = ExtResource("20_4lk0e")
 
 [node name="rightBoneAttach" type="BoneAttachment3D" parent="ghoul_arms2(1)/Armature/Skeleton3D" unique_id=1069817460]
-transform = Transform3D(-5.6023936e-08, -0.9999919, 0.004389602, 2.821859e-07, 0.0043895906, 0.99998724, -0.99999744, 5.7268153e-08, 2.8193742e-07, 0.42589107, -1.5634493, 0.23740922)
+transform = Transform3D(-5.6023964e-08, -0.9999913, 0.004389599, 2.8218582e-07, 0.004389589, 0.999987, -0.999997, 5.7267926e-08, 2.819373e-07, 0.425891, -1.5634489, 0.23740922)
 bone_name = "weapons.R"
 bone_idx = 24
 
 [node name="leftBoneAttach" type="BoneAttachment3D" parent="ghoul_arms2(1)/Armature/Skeleton3D" unique_id=175715778]
-transform = Transform3D(0.5863443, 0.80181974, 0.115250625, 0.00064180855, -0.1427335, 0.9897601, 0.8100591, -0.58026654, -0.08420696, -0.6113829, -1.454851, 0.6157309)
+transform = Transform3D(0.5863443, 0.8018198, 0.11525056, 0.0006418309, -0.1427335, 0.98976004, 0.8100591, -0.5802666, -0.084206976, -0.61138284, -1.4548509, 0.6157309)
 bone_name = "weapons.L"
 bone_idx = 48
+
+[node name="Camera" type="Camera3D" parent="ghoul_arms2(1)" unique_id=1652838043]
+transform = Transform3D(1, 0, 0, 0, 1, -1.6858739e-07, 0, 1.6858739e-07, 1, -0.085, 0.385, -0.48371398)
+near = 0.1
+far = 1000.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ghoul_arms2(1)" unique_id=1453482114]
 libraries/ = ExtResource("8_uiu8h")
 
 [node name="AnimationTree" type="AnimationTree" parent="ghoul_arms2(1)" unique_id=1330822349]
-active = false
 tree_root = SubResource("AnimationNodeStateMachine_ofbms")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/attack = false
 parameters/conditions/block = false
 parameters/conditions/idle = false
+parameters/conditions/light_attack = false
 parameters/conditions/offhand = false
-parameters/attackBlendTree/Transition/current_state = "attack_3"
+parameters/attackBlendTree/Transition/current_state = "attack_2"
 parameters/attackBlendTree/Transition/transition_request = ""
-parameters/attackBlendTree/Transition/current_index = 2
+parameters/attackBlendTree/Transition/current_index = 1
 parameters/attackBlendTree/offhandBlend/blend_amount = 1.0
+parameters/heavyAttackBlendTree/offhandBlend/blend_amount = 1.0
 parameters/idle/Blend2/blend_amount = 1.0
 parameters/mainhandBlockBlendTree/Transition/current_state = "idle"
 parameters/mainhandBlockBlendTree/Transition/transition_request = ""
 parameters/mainhandBlockBlendTree/Transition/current_index = 1
 parameters/mainhandBlockBlendTree/Blend2/blend_amount = 1.0
 parameters/mainhandNewEquip/Blend2/blend_amount = 1.0
-parameters/offhandActivateBlendTree/Transition/current_state = "stun"
+parameters/offhandActivateBlendTree/Transition/current_state = "deactivate"
 parameters/offhandActivateBlendTree/Transition/transition_request = ""
-parameters/offhandActivateBlendTree/Transition/current_index = 3
+parameters/offhandActivateBlendTree/Transition/current_index = 1
 parameters/offhandActivateBlendTree/mainhandLowerBlend/blend_amount = 1.0
 parameters/offhandNewEquip/Blend2/blend_amount = 1.0
 parameters/startEquip/Blend2/blend_amount = 1.0
@@ -757,6 +786,12 @@ delay_in_seconds = "0.0"
 script = ExtResource("24_1db53")
 to = NodePath("../stun")
 event = &"stun"
+delay_in_seconds = "0.0"
+
+[node name="toHeavySwing" type="Node" parent="ghoul_arms2(1)/StateChart/CompoundState" unique_id=742799397]
+script = ExtResource("24_1db53")
+to = NodePath("../heavySwing")
+event = &"heavy"
 delay_in_seconds = "0.0"
 
 [node name="idle" type="Node" parent="ghoul_arms2(1)/StateChart/CompoundState" unique_id=1594839687]
@@ -824,6 +859,21 @@ one_shot = true
 [node name="endTimer" type="Timer" parent="ghoul_arms2(1)/StateChart/CompoundState/swing3" unique_id=231312916]
 one_shot = true
 
+[node name="heavySwing" type="Node" parent="ghoul_arms2(1)/StateChart/CompoundState" unique_id=1080501014]
+script = ExtResource("23_bkuyj")
+
+[node name="heavy" type="Node" parent="ghoul_arms2(1)/StateChart/CompoundState/heavySwing" unique_id=123759548 node_paths=PackedStringArray("state_chart", "bone_attach", "animation_tree", "animation_player", "hand")]
+script = ExtResource("42_wegtq")
+state_chart = NodePath("../../..")
+bone_attach = NodePath("../../../../Armature/Skeleton3D/rightBoneAttach")
+animation_tree = NodePath("../../../../AnimationTree")
+animation_player = NodePath("../../../../AnimationPlayer")
+hand = NodePath("../../../../..")
+
+[node name="endTimer" type="Timer" parent="ghoul_arms2(1)/StateChart/CompoundState/heavySwing" unique_id=1422576384]
+wait_time = 1.5
+one_shot = true
+
 [node name="mainhandBlock" type="Node" parent="ghoul_arms2(1)/StateChart/CompoundState" unique_id=925659455]
 script = ExtResource("23_bkuyj")
 
@@ -868,7 +918,7 @@ bus = &"SFX"
 [connection signal="state_entered" from="ghoul_arms2(1)/StateChart/CompoundState/idle" to="ghoul_arms2(1)/StateChart/CompoundState/idle/idle" method="_on_idle_state_entered"]
 [connection signal="state_exited" from="ghoul_arms2(1)/StateChart/CompoundState/idle" to="ghoul_arms2(1)/StateChart/CompoundState/idle/idle" method="_on_idle_state_exited"]
 [connection signal="state_input" from="ghoul_arms2(1)/StateChart/CompoundState/idle" to="ghoul_arms2(1)/StateChart/CompoundState/idle/idle" method="_on_idle_state_input"]
-[connection signal="state_physics_processing" from="ghoul_arms2(1)/StateChart/CompoundState/idle" to="ghoul_arms2(1)/StateChart/CompoundState/idle/idle" method="_on_idle_state_physics_processing"]
+[connection signal="state_processing" from="ghoul_arms2(1)/StateChart/CompoundState/idle" to="ghoul_arms2(1)/StateChart/CompoundState/idle/idle" method="_on_idle_state_processing"]
 [connection signal="state_entered" from="ghoul_arms2(1)/StateChart/CompoundState/swing" to="ghoul_arms2(1)/StateChart/CompoundState/swing/swing" method="_on_swing_state_entered"]
 [connection signal="state_exited" from="ghoul_arms2(1)/StateChart/CompoundState/swing" to="ghoul_arms2(1)/StateChart/CompoundState/swing/swing" method="_on_swing_state_exited"]
 [connection signal="state_input" from="ghoul_arms2(1)/StateChart/CompoundState/swing" to="ghoul_arms2(1)/StateChart/CompoundState/swing/swing" method="_on_swing_state_input"]
@@ -887,6 +937,11 @@ bus = &"SFX"
 [connection signal="state_physics_processing" from="ghoul_arms2(1)/StateChart/CompoundState/swing3" to="ghoul_arms2(1)/StateChart/CompoundState/swing3/swing" method="_on_swing_3_state_physics_processing"]
 [connection signal="timeout" from="ghoul_arms2(1)/StateChart/CompoundState/swing3/inputBuffer" to="ghoul_arms2(1)/StateChart/CompoundState/swing3/swing" method="_on_input_buffer_timeout"]
 [connection signal="timeout" from="ghoul_arms2(1)/StateChart/CompoundState/swing3/endTimer" to="ghoul_arms2(1)/StateChart/CompoundState/swing3/swing" method="_on_end_timer_timeout"]
+[connection signal="state_entered" from="ghoul_arms2(1)/StateChart/CompoundState/heavySwing" to="ghoul_arms2(1)/StateChart/CompoundState/heavySwing/heavy" method="_on_heavy_swing_state_entered"]
+[connection signal="state_exited" from="ghoul_arms2(1)/StateChart/CompoundState/heavySwing" to="ghoul_arms2(1)/StateChart/CompoundState/heavySwing/heavy" method="_on_heavy_swing_state_exited"]
+[connection signal="state_input" from="ghoul_arms2(1)/StateChart/CompoundState/heavySwing" to="ghoul_arms2(1)/StateChart/CompoundState/heavySwing/heavy" method="_on_heavy_swing_state_input"]
+[connection signal="state_physics_processing" from="ghoul_arms2(1)/StateChart/CompoundState/heavySwing" to="ghoul_arms2(1)/StateChart/CompoundState/heavySwing/heavy" method="_on_heavy_swing_state_physics_processing"]
+[connection signal="timeout" from="ghoul_arms2(1)/StateChart/CompoundState/heavySwing/endTimer" to="ghoul_arms2(1)/StateChart/CompoundState/heavySwing/heavy" method="_on_end_timer_timeout"]
 [connection signal="state_entered" from="ghoul_arms2(1)/StateChart/CompoundState/mainhandBlock" to="ghoul_arms2(1)/StateChart/CompoundState/mainhandBlock/block" method="_on_block_state_entered"]
 [connection signal="state_exited" from="ghoul_arms2(1)/StateChart/CompoundState/mainhandBlock" to="ghoul_arms2(1)/StateChart/CompoundState/mainhandBlock/block" method="_on_block_state_exited"]
 [connection signal="state_physics_processing" from="ghoul_arms2(1)/StateChart/CompoundState/mainhandBlock" to="ghoul_arms2(1)/StateChart/CompoundState/mainhandBlock/block" method="_on_block_state_physics_processing"]

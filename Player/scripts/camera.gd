@@ -1,4 +1,6 @@
 extends Camera3D
+
+@export var target_camera: Camera3D
 @export var randomStrength: float = 0.05
 @export var shakeFade: float = 5.0
 @export var hurtbox: hurtbox_component
@@ -18,6 +20,8 @@ func _ready() -> void:
 		hurtbox.connect("damage_taken", _on_hurtbox_component_damage_taken)
 
 func _process(delta: float) -> void:
+	self.rotation_degrees = target_camera.rotation_degrees
+	self.fov = target_camera.fov
 	if PlayerConfig.get_config("GameSettings", "CameraShake", true):
 		if shake_strength > 0:
 			shake_strength = lerpf(shake_strength,0,shakeFade * delta)

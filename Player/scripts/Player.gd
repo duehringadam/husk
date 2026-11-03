@@ -135,10 +135,8 @@ var can_kick: bool = true
 
 func _ready() -> void:
 	if Engine.is_editor_hint(): return
-	SignalBus.connect("primary_active", _animate_camera_swing)
 	SignalBus.connect("primary_active", _set_weapon_active)
 	SignalBus.connect("secondary_active", _set_weapon_active)
-	SignalBus.connect("kick_active", _animate_camera_swing)
 	SignalBus.connect("player_lookat_cutscene", cutscene)
 	Global.camera_fov = base_fov
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -146,10 +144,6 @@ func _ready() -> void:
 	SignalBus.emit_signal("player_ready")
 	SignalBus.emit_signal("player_resists_changed", hurtbox.damage_resistances)
 	SignalBus.emit_signal("player_status_resists_changed", hurtbox.status_resistances)
-
-func _animate_camera_swing(value: bool):
-	if value:
-		camera_animation_player.play("swing_left")
 	
 func _set_weapon_active(value: bool):
 	can_kick = !value
@@ -374,16 +368,16 @@ func handle_movement(delta: float) -> void:
 	if is_on_floor():
 		if direction:
 			if AppSettings.get_head_bob_from_config():
-				camera.rotation_degrees.z = lerpf(camera.rotation_degrees.z,clampf((camera.rotation_degrees.z-input_dir.x),-1,1),4*delta)
+				head.rotation_degrees.z = lerpf(head.rotation_degrees.z,clampf((head.rotation_degrees.z-input_dir.x),-1,1),4*delta)
 			velocity.x = direction.x * speed
 			velocity.z = direction.z * speed
 			handle_fov_change(delta)
 		else:
-			camera.rotation_degrees.z = lerpf(camera.rotation_degrees.z,0,1*delta)
+			head.rotation_degrees.z = lerpf(head.rotation_degrees.z,0,1*delta)
 			velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
 			velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
 	else:
-		camera.rotation_degrees.z = lerpf(camera.rotation_degrees.z,0,1*delta)
+		head.rotation_degrees.z = lerpf(head.rotation_degrees.z,0,1*delta)
 		velocity.x = lerp(velocity.x, direction.x * speed, delta * 3.0)
 		velocity.z = lerp(velocity.z, direction.z * speed, delta * 3.0)
 
@@ -391,7 +385,7 @@ func handle_movement(delta: float) -> void:
 func handle_head_bob(delta: float) -> void:
 	if PlayerConfig.get_config("GameSettings", "HeadBob", 0):
 		if !lock_camera:
-			camera.rotation_degrees.z = lerpf(camera.rotation_degrees.z,clampf((camera.rotation_degrees.z-mouse_movement.x),-1,1),4*delta)
+			head.rotation_degrees.z = lerpf(head.rotation_degrees.z,clampf((head.rotation_degrees.z-mouse_movement.x),-1,1),4*delta)
 		bob_time += delta * velocity.length() * float(is_on_floor())
 		var pos: Vector3 = Vector3.ZERO
 		pos.y = sin(bob_time * BOB_FREQ) * head_bob_strength

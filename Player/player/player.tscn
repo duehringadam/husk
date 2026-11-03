@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cvm1x6igaprq3"]
 
 [ext_resource type="Script" uid="uid://ba1l1kqe7yxt6" path="res://Player/scripts/Player.gd" id="1_cyojo"]
+[ext_resource type="Script" uid="uid://c43ri6rkww00v" path="res://Player/scripts/camera.gd" id="2_yjj6r"]
 [ext_resource type="PackedScene" uid="uid://bj4hhphu33n38" path="res://Player/player/player_body.tscn" id="3_tio5b"]
 [ext_resource type="Script" uid="uid://csps0dnf2gf2n" path="res://components/player_hurtbox_component.gd" id="5_eon52"]
 [ext_resource type="PackedScene" uid="uid://bkk0g5jmn4jpj" path="res://Player/player/player_arms_non_directional.tscn" id="5_spsvl"]
@@ -20,7 +21,12 @@
 [ext_resource type="AudioStream" uid="uid://dk0ftcdtucymv" path="res://sfx/damage/fall_damage.ogg" id="16_paiqy"]
 [ext_resource type="Script" uid="uid://dlxjuoak62wbv" path="res://Player/player/player_status_effect_component.gd" id="18_ubocy"]
 [ext_resource type="Script" uid="uid://bxoydk8unigg3" path="res://Player/scripts/player_hud.gd" id="21_ujn18"]
+[ext_resource type="Texture2D" uid="uid://j6cqewu4o2xi" path="res://item/icons/potions/chemical.svg/icons/ffffff/000000/1x1/lorc/droplets.svg" id="22_rebnn"]
+[ext_resource type="Theme" uid="uid://ctn68w4yfl5oa" path="res://Player/UI/UI_Theme.tres" id="23_rkxts"]
+[ext_resource type="Texture2D" uid="uid://b5esdvtqwvepd" path="res://item/icons/magic/explosion.svg/icons/ffffff/000000/1x1/lorc/burning-blobs.svg" id="24_rkxts"]
+[ext_resource type="Texture2D" uid="uid://bh3o1vr7j4qnr" path="res://item/icons/potions/chemical.svg/icons/ffffff/000000/1x1/lorc/poison-bottle.svg" id="25_yjj6r"]
 [ext_resource type="Shader" uid="uid://bl7r0kant66md" path="res://shaders/player_shaders/shaders/screen_burn.gdshader" id="26_018ip"]
+[ext_resource type="Texture2D" uid="uid://s1hxxmnvrn41" path="res://item/icons/sleepy.svg" id="26_ewpwe"]
 [ext_resource type="Script" uid="uid://1l23v6jds28n" path="res://Player/player/player_screen_burning.gd" id="27_018ip"]
 [ext_resource type="Shader" uid="uid://dn324eo1sre1n" path="res://shaders/player_shaders/shaders/death.gdshader" id="29_f81pb"]
 [ext_resource type="Script" uid="uid://dfk5ps1jbvd5a" path="res://Player/player/modular_healthbar.gd" id="29_rkxts"]
@@ -42,14 +48,12 @@
 [ext_resource type="PackedScene" uid="uid://4ggo1b35btnu" path="res://Player/UI/hud.tscn" id="38_4ay6w"]
 [ext_resource type="PackedScene" uid="uid://l2q2on8dxrq5" path="res://Player/UI/inventory/inventory.tscn" id="38_6havu"]
 [ext_resource type="Script" uid="uid://d1e0ibnl3nxau" path="res://Player/player/player_status_list.gd" id="38_56h8e"]
-[ext_resource type="Texture2D" uid="uid://c8lw074r2lnd6" path="res://icon.svg" id="38_kmb8e"]
 [ext_resource type="Script" uid="uid://x336a4ypdit5" path="res://components/stamina_component.gd" id="38_v5tlk"]
 [ext_resource type="Script" uid="uid://cvtlc2d4aaybe" path="res://components/mana_component.gd" id="39_6havu"]
 [ext_resource type="Script" uid="uid://ch6mtuu0umfie" path="res://Player/player/player_status_list_bar.gd" id="40_56h8e"]
 [ext_resource type="PackedScene" uid="uid://bmphfd5h5ant7" path="res://Player/UI/quick select/selection_wheel.tscn" id="40_avbty"]
 [ext_resource type="Script" uid="uid://brwpqkgj3ix5i" path="res://Player/scripts/stable_ground_detector.gd" id="42_jng3h"]
 [ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_menus_template/base/scripts/pause_menu_controller.gd" id="44_rkxts"]
-[ext_resource type="Material" uid="uid://cq6qjkpjhmbw8" path="res://status_effects/burning/burning_particle_process_material.tres" id="45_jonee"]
 [ext_resource type="PackedScene" uid="uid://cndau4qyl56kx" path="res://scenes/menus/overlaid_menus/pause_menu.tscn" id="45_yjj6r"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xc2g5"]
@@ -186,6 +190,18 @@ tracks/9/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("%Camera3D:fov")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [75.0]
+}
 
 [sub_resource type="Animation" id="Animation_hqsyx"]
 resource_name = "death"
@@ -302,6 +318,54 @@ tracks/8/keys = {
 "args": [],
 "method": &"respawn"
 }]
+}
+
+[sub_resource type="Animation" id="Animation_rkxts"]
+resource_name = "heavy_swing"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Neck/Camera3D:rotation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, 0, 0, 0.023466667, 0, 0.0052359877, -0.058, 0, 0.058, 0, 0.0052359877, -0.058, 0, 0.058, 0, 0, 0, 0, 0.023466667, 0, -0.017453292, -0.029600002, 0.0016087238, 0.029600002, -0.0016087238),
+"times": PackedFloat32Array(0, 0.4544, 0.78353345, 0.92085373, 0.99125373)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Neck/Camera3D:rotation:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, 0, 0, 0.023466667, 0, 0.0034906585, -0.16586667, 0, 0.07733333, 0, 0.0034906585, -0.16586667, 0, 0.07733333, 0, 0, 0, 0, 0.023466667, 0, -0.008726646, -0.023466667, 0, 0.16586667, 0),
+"times": PackedFloat32Array(0, 0.4544, 0.78353345, 0.92085373, 0.99125373)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Neck/Camera3D:rotation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(2, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, 0, 0, 0.023466667, 0, -0.0017453292, -0.16586667, 0, 0.07733333, 0, -0.0017453292, -0.16586667, 0, 0.07733333, 0, 0, 0, 0, 0.023466667, 0, 0.0034906585, -0.023466667, 0, 0.16586667, 0),
+"times": PackedFloat32Array(0, 0.4544, 0.78353345, 0.92085373, 0.99125373)
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%Camera3D:fov")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.93333334, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [75.0, 85.0, 85.0, 75.0]
 }
 
 [sub_resource type="Animation" id="Animation_kgtn1"]
@@ -452,6 +516,7 @@ tracks/1/keys = {
 _data = {
 &"RESET": SubResource("Animation_by45h"),
 &"death": SubResource("Animation_hqsyx"),
+&"heavy_swing": SubResource("Animation_rkxts"),
 &"jump": SubResource("Animation_kgtn1"),
 &"land": SubResource("Animation_n47sy"),
 &"land_damage": SubResource("Animation_paiqy"),
@@ -814,12 +879,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 [node name="Neck" type="Node3D" parent="Head" unique_id=1052294383]
 unique_name_in_owner = true
 
-[node name="Camera3D" type="Camera3D" parent="Head/Neck" unique_id=1569056309]
+[node name="Camera3D" type="Camera3D" parent="Head/Neck" unique_id=1569056309 node_paths=PackedStringArray("target_camera")]
 unique_name_in_owner = true
 transform = Transform3D(0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0, 1, 0, 0, 0)
 cull_mask = 524285
 current = true
 far = 6000.0
+script = ExtResource("2_yjj6r")
+target_camera = NodePath("playerHands/ghoul_arms2(1)/Camera")
 
 [node name="RayCast3D" type="RayCast3D" parent="Head/Neck/Camera3D" unique_id=1535880187]
 unique_name_in_owner = true
@@ -842,6 +909,15 @@ visible = false
 
 [node name="playerHands" parent="Head/Neck/Camera3D" unique_id=1178015951 instance=ExtResource("5_spsvl")]
 unique_name_in_owner = true
+
+[node name="Skeleton3D" parent="Head/Neck/Camera3D/playerHands/ghoul_arms2(1)/Armature" parent_id_path=PackedInt32Array(1178015951, 1078713948) index="0" unique_id=2092613228]
+bones/26/scale = Vector3(1.0000001, 1.0000001, 1)
+
+[node name="leftBoneAttach" parent="Head/Neck/Camera3D/playerHands/ghoul_arms2(1)/Armature/Skeleton3D" index="2" unique_id=175715778]
+transform = Transform3D(0.5863443, 0.8018198, 0.11525059, 0.0006418551, -0.14273348, 0.9897602, 0.8100592, -0.58026665, -0.08420699, -0.61138284, -1.454851, 0.61573094)
+
+[node name="AnimationTree" parent="Head/Neck/Camera3D/playerHands/ghoul_arms2(1)" parent_id_path=PackedInt32Array(1178015951, 264221670) index="3" unique_id=1330822349]
+parameters/heavyAttackBlendTree/offhandBlend/blend_amount = 0.0
 
 [node name="CameraAnimationPlayer" type="AnimationPlayer" parent="Head" unique_id=2090545160]
 unique_name_in_owner = true
@@ -941,13 +1017,12 @@ unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_3br5i")
 autoplay = &"footsteps"
 
-[node name="hurtbox_component" type="Area3D" parent="." unique_id=802643040 node_paths=PackedStringArray("player_camera", "stamina_component", "health_component", "status_component", "source")]
+[node name="hurtbox_component" type="Area3D" parent="." unique_id=802643040 node_paths=PackedStringArray("player_camera", "stamina_component", "health_component", "source")]
 collision_mask = 13
 script = ExtResource("5_eon52")
 player_camera = NodePath("../Head/Neck/Camera3D")
 stamina_component = NodePath("../StaminaComponent")
 health_component = NodePath("../HealthComponent")
-status_component = NodePath("../status_effect_component")
 hit_sound = ExtResource("8_jux4o")
 source = NodePath("..")
 metadata/_custom_type_script = "uid://c2i6qdosp0h2"
@@ -956,9 +1031,8 @@ metadata/_custom_type_script = "uid://c2i6qdosp0h2"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9914551, 0)
 shape = SubResource("CapsuleShape3D_wydro")
 
-[node name="status_effect_component" type="GPUParticles3D" parent="." unique_id=1465415421 node_paths=PackedStringArray("hurtbox", "health_component")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
-process_material = ExtResource("45_jonee")
+[node name="status_effect_component" type="Node3D" parent="." unique_id=1353995164 node_paths=PackedStringArray("hurtbox", "mesh_to_affect", "health_component")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8000001, 0)
 script = ExtResource("18_ubocy")
 available_statuses = Dictionary[int, float]({
 0: 0.0,
@@ -967,8 +1041,8 @@ available_statuses = Dictionary[int, float]({
 3: 0.0
 })
 hurtbox = NodePath("../hurtbox_component")
+mesh_to_affect = NodePath("../Head/Neck/Camera3D/playerHands/ghoul_arms2(1)/Armature/Skeleton3D/Hands")
 health_component = NodePath("../HealthComponent")
-metadata/_custom_type_script = "uid://dql5v81gqvdat"
 
 [node name="hud" type="Control" parent="." unique_id=89617392]
 z_index = 1
@@ -1007,7 +1081,7 @@ layout_mode = 2
 [node name="TextureRect" type="TextureRect" parent="hud/interactionContainer/statusList/bleedingContainer" unique_id=2020232849]
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("38_kmb8e")
+texture = ExtResource("22_rebnn")
 expand_mode = 2
 
 [node name="bleeding" type="ProgressBar" parent="hud/interactionContainer/statusList/bleedingContainer" unique_id=1020985661]
@@ -1015,6 +1089,7 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("23_rkxts")
 max_value = 1.0
 script = ExtResource("40_56h8e")
 
@@ -1024,7 +1099,7 @@ layout_mode = 2
 [node name="TextureRect" type="TextureRect" parent="hud/interactionContainer/statusList/burningContainer" unique_id=2132153453]
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("38_kmb8e")
+texture = ExtResource("24_rkxts")
 expand_mode = 2
 
 [node name="burning" type="ProgressBar" parent="hud/interactionContainer/statusList/burningContainer" unique_id=1843075060]
@@ -1032,6 +1107,7 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("23_rkxts")
 max_value = 1.0
 script = ExtResource("40_56h8e")
 
@@ -1041,7 +1117,7 @@ layout_mode = 2
 [node name="TextureRect" type="TextureRect" parent="hud/interactionContainer/statusList/poisonedContainer" unique_id=1534594668]
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("38_kmb8e")
+texture = ExtResource("25_yjj6r")
 expand_mode = 2
 
 [node name="poison" type="ProgressBar" parent="hud/interactionContainer/statusList/poisonedContainer" unique_id=672209197]
@@ -1049,6 +1125,7 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("23_rkxts")
 max_value = 1.0
 script = ExtResource("40_56h8e")
 
@@ -1058,7 +1135,7 @@ layout_mode = 2
 [node name="TextureRect" type="TextureRect" parent="hud/interactionContainer/statusList/sleepContainer" unique_id=989652198]
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("38_kmb8e")
+texture = ExtResource("26_ewpwe")
 expand_mode = 2
 
 [node name="sleep" type="ProgressBar" parent="hud/interactionContainer/statusList/sleepContainer" unique_id=189833958]
@@ -1066,6 +1143,7 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("23_rkxts")
 max_value = 1.0
 script = ExtResource("40_56h8e")
 
@@ -1401,6 +1479,7 @@ debug_color = Color(1, 0, 0, 1)
 [connection signal="stamina_changed" from="StaminaComponent" to="hud/healthbarBack/staminaMask/playerStamina" method="_on_health_changed"]
 [connection signal="timeout" from="stableGroundDetector/savePositionTimer" to="stableGroundDetector" method="_on_save_position_timer_timeout"]
 
+[editable path="Head/Neck/Camera3D/playerHands"]
 [editable path="hud/healthbarBack/MarginContainer/healthMask/playerHealth"]
 [editable path="hud/healthbarBack/manaMask/playerMana"]
 [editable path="hud/healthbarBack/staminaMask/playerStamina"]

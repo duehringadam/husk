@@ -5,6 +5,8 @@
 [ext_resource type="Shader" uid="uid://cba8frjri8tvn" path="res://shaders/player_shaders/shaders/first_person_arms.gdshader" id="2_obilp"]
 [ext_resource type="Texture2D" uid="uid://hqnc" path="res://item/weapons/shield/wooden_kite_shield/SM_Kite_Wood_Shield/T_Kite_Wood_Shield_C.png" id="3_ferha"]
 [ext_resource type="Texture2D" uid="uid://hqna" path="res://item/weapons/shield/wooden_kite_shield/SM_Kite_Wood_Shield/T_Kite_Wood_Shield_N.png" id="4_dcbq7"]
+[ext_resource type="Texture2D" uid="uid://bj1w7n4xjv6xj" path="res://scenes/VFX/textures/T_Decal_BloodSplatter45ki_N.png" id="4_opjm4"]
+[ext_resource type="Texture2D" uid="uid://c8ih8gkcbv510" path="res://scenes/VFX/textures/T_Decal_BloodSplatter45k.png" id="5_suj77"]
 [ext_resource type="AudioStream" uid="uid://dnk7ycpa3ttsr" path="res://sfx/weapons/shield/shield_raise.ogg" id="6_w6uds"]
 [ext_resource type="AudioStream" uid="uid://dln8cj8m3uwyo" path="res://sfx/weapons/shield/shield_equip.ogg" id="7_mdu3e"]
 [ext_resource type="AudioStream" uid="uid://dhtnv1kdswd6x" path="res://sfx/weapons/shield/Fantasy_Game_Weapons_Wood Shield_1_Block_Defend_Buckler_Deflect.wav" id="8_torsg"]
@@ -27,8 +29,16 @@ shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(0, 0, 0)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
 shader_parameter/FOV = 75.0
-shader_parameter/progress = 0.0
-shader_parameter/noise_softness = 0.05
+shader_parameter/BlendTexture = ExtResource("5_suj77")
+shader_parameter/BlendColor = Color(0.9, 0, 0, 1)
+shader_parameter/blend_uv_scale = Vector2(1, 1)
+shader_parameter/blend_uv_offset = Vector2(0, 0)
+shader_parameter/BlendNormal = ExtResource("4_opjm4")
+shader_parameter/blend_normal_scale = 1.0
+shader_parameter/blend_roughness = 0.30400001444
+shader_parameter/blend_offset = -1.0
+shader_parameter/blend_smoothness = 0.00999999977648
+shader_parameter/invert_blend_direction = true
 
 [node name="KiteShield" type="Node3D" unique_id=1468510221 node_paths=PackedStringArray("activate_sound", "block_sound", "equip_sound")]
 script = ExtResource("1_obilp")

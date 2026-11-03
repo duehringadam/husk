@@ -35,7 +35,6 @@ func hold_attack():
 	timer.start()
 	
 func attack():
-	
 	timer.paused = true
 	if damage_component:
 		for i in damage_component.damage_types:

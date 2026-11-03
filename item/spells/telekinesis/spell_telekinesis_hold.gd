@@ -8,7 +8,6 @@ extends Node
 var timer = Timer.new()
 
 func _ready() -> void:
-	
 	timer.wait_time = .25
 	timer.one_shot = true
 	add_child(timer)

@@ -1,5 +1,6 @@
 extends status_effect_component
 
+@export var decay_time: float = 5.0
 signal statuses_increased(statuses: Dictionary[int,float])
 
 
@@ -12,8 +13,12 @@ func _ready() -> void:
 			health_component.connect("died", _on_death)
 	resistance_timer = Timer.new()
 	add_child(resistance_timer)
+	add_child(decay_timer)
+	decay_timer.one_shot = true
+	decay_timer.wait_time = 5.0
 	resistance_timer.one_shot = true
 	resistance_timer.timeout.connect(func(): times_applied = 1)
+	decay_timer.timeout.connect(status_decay)
 
 func _on_status_increment(status_type: Global.STATUS_TYPE, application_amount: float):
 	if !available_statuses.keys().has(status_type):
@@ -23,47 +28,45 @@ func _on_status_increment(status_type: Global.STATUS_TYPE, application_amount: f
 			available_statuses[status_type] += (application_amount/times_applied)
 			resistance_timer.wait_time = 10 * times_applied
 			resistance_timer.start()
+			decay_timer.start()
+			if decay_tween:
+				decay_tween.kill()
 			statuses_increased.emit(available_statuses)
 			if available_statuses[status_type] >= 1.0:
 				if !statuses.keys().has(status_type):
-					emitting = true
 					statuses[status_type] = check_status_type(status_type)
 					_apply_statuses(statuses.values())
 					times_applied += 1
 
 func _apply_statuses(effects: Array[status_effect]):
-	#mesh_to_affect.get_surface_override_material(0).next_pass = null
 	if effects.size() == 0:
 		return
 	status_activated.emit(effects)
-	if effects.size() > 1:
-		for i in effects:
-			var additional_particles = GPUParticles3D.new()
-			add_child(additional_particles)
-			additional_particles.emitting = true
-			additional_particles.draw_pass_1 = i.status_effect_mesh
-			additional_particles.process_material = i.particle_processor
+	if effects.size() > 0:
+		for i: status_effect in effects:
 			if i.damage_component_scene != null:
 				child_damage_component = i.damage_component_scene.instantiate()
 				add_child(child_damage_component)
-				child_damage_component.connect("increment_shader",increment_shader)
-			if i.shader_buildup_max > 0:
-				status_buildup_progress_clamp = i.shader_buildup_max
-	else:
-		for i in effects:
-			self.draw_pass_1 = i.status_effect_mesh
-			self.process_material = i.particle_processor.duplicate()
-			if mesh_to_affect != null:
-				if i.affected_target_next_pass != null:
-					if mesh_to_affect.get_surface_override_material(0).next_pass == null:
-						mesh_to_affect.get_surface_override_material(0).next_pass = i.affected_target_next_pass.duplicate(true)
-			if i.damage_component_scene != null:
-				child_damage_component = i.damage_component_scene.instantiate()
-				add_child(child_damage_component)
-				if !health_component.is_connected("health_changed", increment_shader):
-					health_component.connect("health_changed", increment_shader)
-			if i.shader_buildup_max > 0:
-				status_buildup_progress_clamp = i.shader_buildup_max
+				child_damage_component.owner = self.owner
+			var material_overlay = mesh_to_affect.material_overlay
+			material_overlay["shader_parameter/ember_core"] = i.ember_core
+			material_overlay["shader_parameter/ember_mid"] = i.ember_mid
+			material_overlay["shader_parameter/ember_edge"] = i.ember_edge
+			material_overlay["shader_parameter/char_color"] = i.char_color
+			material_overlay["shader_parameter/progress"] = i.progress
+			material_overlay["shader_parameter/wave_density"] = i.wave_density
+			material_overlay["shader_parameter/wave_speed"] = i.wave_speed
+			material_overlay["shader_parameter/wave_amplitude"] = i.wave_amplitude
+			material_overlay["shader_parameter/ember_brightness"] = i.ember_brightness
+			material_overlay["shader_parameter/noise_scale"] = i.noise_scale
+			material_overlay["shader_parameter/edge_sharpness"] = i.edge_sharpness
+			material_overlay["shader_parameter/char_opacity"] = i.char_opacity
+			material_overlay["shader_parameter/turbulence"] = i.turbulence
+			material_overlay["shader_parameter/flicker_speed"] = i.flicker_speed
+			material_overlay["shader_parameter/time_scale_noise_slow"] = i.time_scale_noise_slow
+			material_overlay["shader_parameter/time_scale_noise_fast"] = i.time_scale_noise_fast
+			material_overlay["shader_parameter/time_scale_turbulence"] = i.time_scale_turbulence
+			material_overlay["shader_parameter/time_scale_flicker"] = i.time_scale_flicker
 
 
 func check_status_type(status: Global.STATUS_TYPE) -> status_effect:
@@ -84,20 +87,24 @@ func check_status_type(status: Global.STATUS_TYPE) -> status_effect:
 		_:
 			return burning_preload
 
+func status_decay():
+	if decay_tween:
+		decay_tween.kill()
 
-func increment_shader(_amount: float, new_value: float):
-	if not mesh_to_affect: return
-	if mesh_to_affect.get_surface_override_material(0).next_pass:
-		if health_component != null:
-			if new_value <= 0:
-				var material = mesh_to_affect.get_surface_override_material(0).next_pass
-				var tween = get_tree().create_tween()
-				tween.tween_property(material, "shader_parameter/progress",clampf(material["shader_parameter/progress"]+1,0,status_buildup_progress_clamp),.5)
-			else:
-				var ratio = 1-(health_component.current_health/health_component.max_health)
-				var material = mesh_to_affect.get_surface_override_material(0).next_pass
-				var tween = get_tree().create_tween()
-				tween.tween_property(material, "shader_parameter/progress",clampf(material["shader_parameter/progress"]+ratio,0,status_buildup_progress_clamp),.5)
+	decay_tween = create_tween()
+	decay_tween.set_parallel()
+	
+	for i in available_statuses:
+		var start_value = available_statuses[i]
+		
+		decay_tween.tween_method(
+			func(v: float)->void:
+				statuses_increased.emit(available_statuses)
+				available_statuses[i] = v,
+			start_value,
+			0.0,
+			decay_time
+		)
 
 func _on_death():
 	for i in statuses.values():
@@ -112,7 +119,3 @@ func reduce_resistances(amount: float, duration: float):
 	await get_tree().create_timer(duration).timeout
 	for i in stored_resists:
 		hurtbox.damage_resistances[i] = stored_resists[i]
-
-
-func _on_health_component_died() -> void:
-	pass # Replace with function body.

@@ -1,0 +1,38 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bk7oxt2jf8qrj"]
+
+[ext_resource type="Shader" uid="uid://coosqjp0daha1" path="res://scenes/VFX/fire/Flamethrowers/BurningSurfaceShader/burning_surface_overlay.gdshader" id="1_7met5"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3no7l"]
+frequency = 0.036
+fractal_octaves = 2
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_yydja"]
+width = 128
+height = 128
+depth = 128
+noise = SubResource("FastNoiseLite_3no7l")
+seamless = true
+
+[resource]
+resource_local_to_scene = true
+render_priority = 1
+shader = ExtResource("1_7met5")
+shader_parameter/ember_core = Color(0.57925403, 1.0348111e-06, 3.85046e-07, 1)
+shader_parameter/ember_mid = Color(0.5803922, 0, 0, 1)
+shader_parameter/ember_edge = Color(0.5803922, 0, 0, 1)
+shader_parameter/char_color = Color(0.12, 0.08, 0.05, 1)
+shader_parameter/progress = 0.0
+shader_parameter/wave_density = 32.276001485609996
+shader_parameter/wave_speed = 0.0
+shader_parameter/wave_amplitude = 0.0
+shader_parameter/ember_brightness = 0.10000000475
+shader_parameter/noise_scale = 2.00000009430148
+shader_parameter/edge_sharpness = 0.00999999977648
+shader_parameter/char_opacity = 0.0
+shader_parameter/turbulence = 2.0
+shader_parameter/flicker_speed = 0.0
+shader_parameter/time_scale_noise_slow = 0.0
+shader_parameter/time_scale_noise_fast = 0.0
+shader_parameter/time_scale_turbulence = 0.0
+shader_parameter/time_scale_flicker = 1.0
+shader_parameter/noise_texture = SubResource("NoiseTexture3D_yydja")

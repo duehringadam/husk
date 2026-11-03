@@ -2,6 +2,7 @@ class_name ItemStat
 extends Resource
 
 @export var damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float]
+@export var status_types: Dictionary[Global.STATUS_TYPE, float]
 
 @export_range(0.0,1.0) var stance_damage: float
 

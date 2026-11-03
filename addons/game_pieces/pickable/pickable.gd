@@ -103,7 +103,6 @@ func _input(event: InputEvent) -> void:
 
 
 func _while_grabbed(controller: InteractionController) -> void:
-	
 	if _interaction_controller != null: return
 	# Again cool down to avoid player flying off
 	damage_component.collision_mask = 12
@@ -116,7 +115,6 @@ func _while_grabbed(controller: InteractionController) -> void:
 	_initial_basis = reference_node.global_transform.basis.inverse() * global_transform.basis
 	_initial_position = reference_node.to_local(global_position)
 	InteractionContainer.from(self).enable(interaction_context_when_grabbed)
-	#set_transparency(self, 0.35)
 	
 	$PickupSound.play()
 	# Bring it closer to reference node but with a delay to avoid player flying off
@@ -138,7 +136,6 @@ func telekinesis_grab(controller: InteractionController):
 	_initial_basis = reference_node.global_transform.basis.inverse() * global_transform.basis
 	_initial_position = reference_node.to_local(global_position)
 	InteractionContainer.from(self).enable(interaction_context_when_grabbed)
-	#set_transparency(self, 0.35)
 	
 	$PickupSound.play()
 	# Bring it closer to reference node but with a delay to avoid player flying off

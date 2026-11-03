@@ -4,7 +4,9 @@
 [ext_resource type="Shader" uid="uid://cba8frjri8tvn" path="res://shaders/player_shaders/shaders/first_person_arms.gdshader" id="2_2hbki"]
 [ext_resource type="Script" uid="uid://1gqpr75ri7ke" path="res://components/kick_damage_component.gd" id="2_3s51s"]
 [ext_resource type="Texture2D" uid="uid://d1ifjeke4twp1" path="res://Player/hands/Iron_Armor_Set/player_legs.jpg" id="2_cyivd"]
+[ext_resource type="Texture2D" uid="uid://bj1w7n4xjv6xj" path="res://scenes/VFX/textures/T_Decal_BloodSplatter45ki_N.png" id="3_6wr7t"]
 [ext_resource type="Texture2D" uid="uid://b0lcij7d02pla" path="res://Player/hands/Iron_Armor_Set/ironarmor_bump_512x512.jpg" id="4_1dbwf"]
+[ext_resource type="Texture2D" uid="uid://c8ih8gkcbv510" path="res://scenes/VFX/textures/T_Decal_BloodSplatter45k.png" id="4_ebnxs"]
 [ext_resource type="AudioStream" uid="uid://dcv2w0otyprn3" path="res://sfx/damage/kick.ogg" id="5_cyivd"]
 [ext_resource type="Animation" uid="uid://bs3hg1sgxa4cg" path="res://Player/hands/animations/body/kick_new.tres" id="6_cyivd"]
 
@@ -281,8 +283,16 @@ shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(0, 0, 0)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
 shader_parameter/FOV = 75.0
-shader_parameter/progress = 0.0
-shader_parameter/noise_softness = 0.05
+shader_parameter/BlendTexture = ExtResource("4_ebnxs")
+shader_parameter/BlendColor = Color(0.9, 0, 0, 1)
+shader_parameter/blend_uv_scale = Vector2(2, 2)
+shader_parameter/blend_uv_offset = Vector2(0, 0)
+shader_parameter/BlendNormal = ExtResource("3_6wr7t")
+shader_parameter/blend_normal_scale = 1.0
+shader_parameter/blend_roughness = 0.5
+shader_parameter/blend_offset = -1.0
+shader_parameter/blend_smoothness = 0.00999999977648
+shader_parameter/invert_blend_direction = true
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_yok5q"]
 resource_name = "guardia_medieval_2_male1591_004"
@@ -322,8 +332,16 @@ shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(0, 0, 0)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
 shader_parameter/FOV = 75.0
-shader_parameter/progress = 0.0
-shader_parameter/noise_softness = 0.05
+shader_parameter/BlendTexture = ExtResource("4_ebnxs")
+shader_parameter/BlendColor = Color(0.9, 0, 0, 1)
+shader_parameter/blend_uv_scale = Vector2(2, 2)
+shader_parameter/blend_uv_offset = Vector2(-0.855, 0.465)
+shader_parameter/BlendNormal = ExtResource("3_6wr7t")
+shader_parameter/blend_normal_scale = 1.0
+shader_parameter/blend_roughness = 0.22400001064
+shader_parameter/blend_offset = -1.0
+shader_parameter/blend_smoothness = 0.00999999977648
+shader_parameter/invert_blend_direction = true
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xg154"]
 radius = 0.15
@@ -21867,7 +21885,7 @@ transform = Transform3D(0.46467146, 0.87546974, -0.13278958, -0.017884104, 0.159
 transform = Transform3D(0.035707187, -0.003662018, 0.06585277, 0.065547064, 0.010281255, -0.034969684, -0.007319857, 0.07420165, 0.00809532, 0, 0, 0)
 
 [node name="varsoi_male" type="Node3D" parent="Root/Standing Melee Attack Kick Ver_ 1" unique_id=85423772]
-transform = Transform3D(14.289506, 0.27168205, 0.4757552, -0.43046856, -2.1137493, 14.136366, 0.33889687, -14.140308, -2.1040194, 0.12347473, -0.8484094, 5.0997753)
+transform = Transform3D(14.289507, 0.27168205, 0.4757552, -0.4304686, -2.1137493, 14.136366, 0.3388969, -14.140308, -2.1040194, 0.12347473, -0.8484094, 5.0997753)
 
 [node name="Skeleton3D" type="Skeleton3D" parent="Root/Standing Melee Attack Kick Ver_ 1/varsoi_male" unique_id=1167163448]
 bones/0/name = "root"
