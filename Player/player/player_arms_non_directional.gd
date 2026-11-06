@@ -33,6 +33,7 @@ signal equip_item(_weapon: item)
 
 var space_state
 var can_attack = true
+
 var cam_basis: Basis
 var cam_pos : Vector3
 var camera: Camera3D
@@ -59,6 +60,10 @@ var telekinesis_hold_bool: bool = false
 @export var block_idle: AnimationNodeAnimation
 @export var block_hit: AnimationNodeAnimation
 @export var block_stun: AnimationNodeAnimation
+
+@export_subgroup("mainhand ranged")
+@export var mainhand_ranged_aim: AnimationNodeAnimation
+@export var mainhand_ranged_shoot: AnimationNodeAnimation
 
 @export_subgroup("offhand")
 @export var offhand_equip: AnimationNodeAnimation
@@ -166,27 +171,48 @@ func equip_mainhand(new_item: item):
 
 func set_mainhand_animations():
 	if mainhand_weapon != null:
-		idle.animation = mainhand_animation_resources.idle
-		equip.animation = mainhand_animation_resources.equip
-		attack_1.animation = mainhand_animation_resources.attack_1
-		attack_2.animation = mainhand_animation_resources.attack_2
-		attack_3.animation = mainhand_animation_resources.attack_3
-		block_start.animation = mainhand_animation_resources.block_start
-		block_hit.animation = mainhand_animation_resources.block_hit
-		block_stun.animation = mainhand_animation_resources.block_stun
-		mainhand_lower.animation = mainhand_animation_resources.mainhand_lower
-		heavy_attack.animation = mainhand_animation_resources.heavy_attack
+		if mainhand_weapon.item_category == ItemEquippableType.ITEM_WEAPON_CATEGORY.RANGED_WEAPON:
+			idle.animation = mainhand_animation_resources.idle
+			equip.animation = mainhand_animation_resources.equip
+			mainhand_ranged_aim.animation = mainhand_animation_resources.mainhand_ranged_aim
+			mainhand_ranged_shoot.animation = mainhand_animation_resources.mainhand_ranged_shoot
+		else:
+			idle.animation = mainhand_animation_resources.idle
+			equip.animation = mainhand_animation_resources.equip
+			attack_1.animation = mainhand_animation_resources.attack_1
+			attack_2.animation = mainhand_animation_resources.attack_2
+			attack_3.animation = mainhand_animation_resources.attack_3
+			block_start.animation = mainhand_animation_resources.block_start
+			block_hit.animation = mainhand_animation_resources.block_hit
+			block_stun.animation = mainhand_animation_resources.block_stun
+			block_idle.animation = mainhand_animation_resources.block_start
+			mainhand_lower.animation = mainhand_animation_resources.mainhand_lower
+			heavy_attack.animation = mainhand_animation_resources.heavy_attack
 		
 		if mainhand_weapon.two_handed:
 			twohand_equip.animation = mainhand_animation_resources.equip
 			animation_tree.set("parameters/attackBlendTree/offhandBlend/blend_amount", 0.0)
 			animation_tree.set("parameters/heavyAttackBlendTree/offhandBlend/blend_amount", 0.0)
 			animation_tree.set("parameters/mainhandBlockBlendTree/Blend2/blend_amount", 0.0)
+			animation_tree.set("parameters/stunBlendTree/Blend2/blend_amount", 0.0)
+			animation_tree.set("parameters/idle/Blend2/blend_amount", 0.0)
 		else:
 			animation_tree.set("parameters/attackBlendTree/offhandBlend/blend_amount", 1.0)
 			animation_tree.set("parameters/heavyAttackBlendTree/offhandBlend/blend_amount", 1.0)
 			animation_tree.set("parameters/mainhandBlockBlendTree/Blend2/blend_amount", 1.0)
+			animation_tree.set("parameters/stunBlendTree/Blend2/blend_amount", 1.0)
+			animation_tree.set("parameters/idle/Blend2/blend_amount", 1.0)
 			
+	if offhand_weapon == null:
+		offhand_equip.animation = &"offhand_empty"
+		offhand_idle.animation = &"offhand_empty"
+		offhand_lower.animation = &"offhand_empty"
+		activate.animation = &"offhand_empty"
+		deactivate.animation = &"offhand_empty"
+		offhand_block_idle.animation = &"offhand_empty"
+		offhand_block_stun.animation = &"offhand_empty"
+		offhand_cant_use.animation = &"offhand_empty"
+	
 	if mainhand_weapon == null:
 		idle.animation = &"mainhand_empty"
 		equip.animation = &"mainhand_empty"
@@ -209,15 +235,22 @@ func set_offhand_animations():
 		offhand_block_idle.animation = offhand_animation_resources.offhand_block_idle
 		offhand_block_stun.animation = offhand_animation_resources.offhand_block_stun
 		offhand_cant_use.animation = offhand_animation_resources.offhand_cant_use
+		
+		animation_tree.set("parameters/attackBlendTree/offhandBlend/blend_amount", 1.0)
+		animation_tree.set("parameters/heavyAttackBlendTree/offhandBlend/blend_amount", 1.0)
+		animation_tree.set("parameters/mainhandBlockBlendTree/Blend2/blend_amount", 1.0)
+		animation_tree.set("parameters/stunBlendTree/Blend2/blend_amount", 1.0)
+		animation_tree.set("parameters/idle/Blend2/blend_amount", 1.0)
+		
 	if offhand_weapon == null:
 		offhand_equip.animation = &"offhand_empty"
 		offhand_idle.animation = &"offhand_empty"
 		offhand_lower.animation = &"offhand_empty"
 		activate.animation = &"offhand_empty"
 		deactivate.animation = &"offhand_empty"
-		#offhand_block_idle.animation = &"offhand_empty"
-		#offhand_block_stun.animation = &"offhand_empty"
-		#offhand_cant_use.animation = &"offhand_empty"
+		offhand_block_idle.animation = &"offhand_empty"
+		offhand_block_stun.animation = &"offhand_empty"
+		offhand_cant_use.animation = &"offhand_empty"
 
 func equip_offhand(new_item: item):
 	if animation_tree.active:
@@ -270,17 +303,22 @@ func _on_damage_dealt(target: hurtbox_component) -> void:
 	if !target.can_bleed:
 		return
 	var material = bone_attachment.get_child(0).weapon_mesh.material_override
+	
 	if material["shader_parameter/invert_blend_direction"]:
 		material["shader_parameter/blend_offset"] += 0.075
+		if material["shader_parameter/blend_offset"] > 0:
+			bone_attachment.get_child(0).blood_drip.emitting = true
+			bone_attachment.get_child(0).bloodtimer.start()
 	else:
 		material["shader_parameter/blend_offset"] -= 0.075
+		if material["shader_parameter/blend_offset"] < .5:
+			bone_attachment.get_child(0).blood_drip.emitting = true
+			bone_attachment.get_child(0).bloodtimer.start()
 	
 	var hands_material = hands.material_override
 	hands_material["shader_parameter/blend_offset"] += 0.075
 	
-	if material["shader_parameter/blend_offset"] > 0:
-		bone_attachment.get_child(0).blood_drip.emitting = true
-		bone_attachment.get_child(0).bloodtimer.start()
+
 
 func remove_blood():
 	bone_attachment.get_child(0).blood_drip.emitting = false
@@ -432,9 +470,6 @@ func _update_hits(types: Dictionary, actual: float, stance_damage: float, target
 	_on_damage_dealt(target)
 	await get_tree().create_timer(.1).timeout
 	animation_tree.process_mode = Node.PROCESS_MODE_INHERIT
-
-func _on_swing_state_exited() -> void:
-	hits.clear()
 
 func disable():
 	can_attack = false

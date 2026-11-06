@@ -90,9 +90,10 @@ size = Vector2(0.02, 0.05)
 radius = 0.109079
 height = 1.2121903
 
-[node name="SM_HeavySword" type="Node3D" unique_id=775150427 node_paths=PackedStringArray("swing_sound", "block_sound", "equip_sound", "damage_component", "blood_drip", "bloodtimer", "weapon_mesh", "trail")]
+[node name="SM_HeavySword" type="Node3D" unique_id=775150427 node_paths=PackedStringArray("damage_sound", "swing_sound", "block_sound", "equip_sound", "damage_component", "blood_drip", "bloodtimer", "weapon_mesh", "trail")]
 transform = Transform3D(5.6824824e-08, -4.9677775e-15, 1.2999991, -1.1364965e-07, -1.2999988, 0, 1.3000004, -1.136495e-07, -5.6824767e-08, 0, 0, 0)
 script = ExtResource("1_cqegf")
+damage_sound = NodePath("hit")
 swing_sound = NodePath("swing")
 block_sound = NodePath("block")
 equip_sound = NodePath("equip")
@@ -103,21 +104,21 @@ weapon_mesh = NodePath("SM_HeavySword1")
 trail = NodePath("SM_HeavySword1/GPUTrail3D")
 
 [node name="SM_HeavySword1" type="MeshInstance3D" parent="." unique_id=1497619174]
+material_override = ExtResource("3_ngdjl")
 mesh = ExtResource("2_2thsq")
-surface_material_override/0 = ExtResource("3_ngdjl")
 
 [node name="GPUTrail3D" type="GPUParticles3D" parent="SM_HeavySword1" unique_id=1796579117]
 transform = Transform3D(0.33499977, 2.842171e-14, 2.220446e-14, -8.881784e-15, 0.5684819, 1.9058241e-21, -8.881784e-16, 8.4703295e-22, 0.33499986, 0, -1, 0)
 visible = false
-amount = 18
-lifetime = 18.0
+amount = 17
+lifetime = 17.0
 explosiveness = 1.0
 fixed_fps = 164
 process_material = SubResource("ShaderMaterial_a6ibg")
 draw_pass_1 = SubResource("QuadMesh_o5fo3")
 script = ExtResource("8_sdarg")
-length = 18
-length_seconds = 0.10975609756097561
+length = 17
+length_seconds = 0.10365853658536585
 texture = SubResource("NoiseTexture2D_gn0as")
 color_ramp = SubResource("GradientTexture1D_5vffw")
 curve = SubResource("CurveTexture_bn6q3")

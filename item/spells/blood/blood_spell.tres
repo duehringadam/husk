@@ -1,9 +1,35 @@
 [gd_resource type="Resource" script_class="item" format=3 uid="uid://b2anxjkr7f46w"]
 
+[ext_resource type="Script" uid="uid://vqsnjxr1425q" path="res://item/scripts/item_animations.gd" id="1_7l5qq"]
 [ext_resource type="PackedScene" uid="uid://ctfq2toui1ut" path="res://item/spells/blood/spell_blood.tscn" id="2_f7vag"]
 [ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/scripts/item_stat.gd" id="2_jb7se"]
+[ext_resource type="AnimationLibrary" uid="uid://brptxm7won7ul" path="res://Player/hands/animations/hands/non_directional_hands/non_directional_hands.res" id="2_thnlf"]
 [ext_resource type="Texture2D" uid="uid://luj8w7njrmqe" path="res://item/icons/magic/explosion.svg/icons/ffffff/000000/1x1/lorc/gooey-molecule.svg" id="2_wec87"]
 [ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/scripts/item.gd" id="3_f7vag"]
+
+[sub_resource type="Resource" id="Resource_kur6e"]
+script = ExtResource("1_7l5qq")
+target_libraries = Array[AnimationLibrary]([ExtResource("2_thnlf")])
+idle = ""
+equip = ""
+mainhand_lower = ""
+attack_1 = ""
+attack_2 = ""
+attack_3 = ""
+heavy_attack = ""
+block_start = ""
+block_hit = ""
+block_stun = ""
+activate = "blood_activate"
+deactivate = "blood_deactivate"
+offhand_idle = "blood_idle"
+offhand_equip = "blood_TO"
+offhand_block_hit = ""
+offhand_block_idle = ""
+offhand_block_stun = ""
+offhand_cant_use = ""
+offhand_lower = "spell_lower"
+metadata/_custom_type_script = "uid://vqsnjxr1425q"
 
 [sub_resource type="Resource" id="Resource_kl4sx"]
 script = ExtResource("2_jb7se")
@@ -24,6 +50,7 @@ item_required_stats = Dictionary[int, int]({
 })
 item_scene = ExtResource("2_f7vag")
 can_be_dropped = false
+animations = SubResource("Resource_kur6e")
 position = Vector3(0.155, 0.086, 0.064)
 rotation = Vector3(-53.5, -142.9, -163.8)
 metadata/_custom_type_script = "uid://dcfd18dx8x1bm"

@@ -1,9 +1,35 @@
 [gd_resource type="Resource" script_class="item" format=3 uid="uid://dmv7he43amthj"]
 
+[ext_resource type="Script" uid="uid://vqsnjxr1425q" path="res://item/scripts/item_animations.gd" id="1_kic7e"]
 [ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/scripts/item_stat.gd" id="2_8o8e1"]
+[ext_resource type="AnimationLibrary" uid="uid://brptxm7won7ul" path="res://Player/hands/animations/hands/non_directional_hands/non_directional_hands.res" id="2_j4fgc"]
 [ext_resource type="Texture2D" uid="uid://wxc1pjls0xw1" path="res://item/weapons/two hand/mace_2_hand/mace.svg" id="2_kugdb"]
 [ext_resource type="PackedScene" uid="uid://b3g3uwvhyvey7" path="res://item/weapons/two hand/mace_2_hand/heavy_mace_redo.tscn" id="2_yff1m"]
 [ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/scripts/item.gd" id="3_yff1m"]
+
+[sub_resource type="Resource" id="Resource_bxduv"]
+script = ExtResource("1_kic7e")
+target_libraries = Array[AnimationLibrary]([ExtResource("2_j4fgc")])
+idle = "polearm_idle"
+equip = "polearm_TO"
+mainhand_lower = "polearm_lower"
+attack_1 = "polearm_swing_1"
+attack_2 = "polearm_swing_2"
+attack_3 = "polearm_swing_3"
+heavy_attack = "polearm_heavy"
+block_start = "mace_block"
+block_hit = "mace_two_handed_block_hit"
+block_stun = "mace_blockSTUN"
+activate = ""
+deactivate = ""
+offhand_idle = ""
+offhand_equip = ""
+offhand_block_hit = ""
+offhand_block_idle = ""
+offhand_block_stun = ""
+offhand_cant_use = ""
+offhand_lower = ""
+metadata/_custom_type_script = "uid://vqsnjxr1425q"
 
 [sub_resource type="Resource" id="Resource_pmu86"]
 script = ExtResource("2_8o8e1")
@@ -22,8 +48,9 @@ item_name = "Morning Star"
 item_description = "A hefty wrought iron mace with crude spikes."
 item_icon = ExtResource("2_kugdb")
 item_stats = SubResource("Resource_pmu86")
-charge_time = 1.25
+charge_time = 0.8
 item_scene = ExtResource("2_yff1m")
 two_handed = true
-position = Vector3(0.009, -0.395, -0.003)
+animations = SubResource("Resource_bxduv")
+position = Vector3(0.01883471, -0.38016, 0.00704363)
 metadata/_custom_type_script = "uid://dcfd18dx8x1bm"

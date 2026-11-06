@@ -15,6 +15,10 @@ func activate():
 	animation_player.play("draw")
 	draw.play()
 	hold.play()
+	
+func deactivate():
+	animation_player.play("end_draw")
+	draw.play()
 
 func shoot():
 	var camera = Global.player.camera

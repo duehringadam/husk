@@ -37,3 +37,9 @@ func _on_bloodtimer_timeout() -> void:
 
 func remove_blood():
 	blood_drip.emitting = false
+	var blend_dir: bool = weapon_mesh["shader_parameter/invert_blend_direction"]
+	var tween = get_tree().create_tween()
+	if blend_dir:
+		tween.tween_property(weapon_mesh, "shader_parameter/blend_offset", -1.5, 60)
+	else:
+		tween.tween_property(weapon_mesh, "shader_parameter/blend_offset", 1.0, 75)

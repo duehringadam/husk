@@ -25,9 +25,8 @@ uniform vec3 uv2_offset;
 
 global uniform float FOV : hint_range(20, 120) = 75;
 
-// --- Blend Texture & Color Uniforms ---
 uniform sampler2D BlendTexture : filter_nearest_mipmap_anisotropic, repeat_enable;
-uniform vec4 BlendColor : source_color = vec4(0.9, 0.0, 0.0, 1.0);
+global uniform vec4 BlendColor : source_color = vec4(0.9, 0.0, 0.0, 1.0);
 
 // --- Blend UV Adjustments (Repeating & Offsets) ---
 uniform vec2 blend_uv_scale = vec2(1.0, 1.0);
@@ -41,14 +40,17 @@ uniform float blend_normal_scale : hint_range(-16.0, 16.0) = 1.0;
 uniform float blend_roughness : hint_range(0.0, 1.0) = 0.5;
 
 // --- Vertical Blend Controls ---
-uniform float blend_offset : hint_range(-1, 1.0, 0.05) = -.5;
+uniform float blend_offset : hint_range(-1.5, 1.0, 0.05) = -0.5;
 uniform float blend_smoothness : hint_range(0.01, 5.0, 0.05) = 0.5;
 uniform bool invert_blend_direction = false;
 
-varying float local_y;
+// Changed to a vec2 to pass both the local Y and the scale factor
+varying vec2 local_y_and_scale;
 
 void vertex() {
-	local_y = VERTEX.y;
+	// Extract the absolute Y-scale factor from the model's transformation matrix
+	float y_scale = length(MODEL_MATRIX[1].xyz);
+	local_y_and_scale = vec2(VERTEX.y, y_scale);
 
 	// Custom camera projection calculation
 	float scale = 1.0 / tan(FOV * 0.5 * PI / -180.0);
@@ -70,8 +72,11 @@ void fragment() {
 	vec3 blend_rgb = blend_tex.rgb * BlendColor.rgb;
 	float blend_alpha = blend_tex.a * BlendColor.a;
 
-	// 3. Calculate the vertical height mask
-	float vertical_mask = smoothstep(blend_offset - blend_smoothness, blend_offset + blend_smoothness, local_y);
+	// --- FIX HERE: Divide local_y by the extracted y_scale ---
+	float normalized_y = local_y_and_scale.x / local_y_and_scale.y;
+
+	// 3. Calculate the vertical height mask using the normalized coordinate
+	float vertical_mask = smoothstep(blend_offset - blend_smoothness, blend_offset + blend_smoothness, normalized_y);
 
 	// 4. Handle direction inversion if selected
 	if (invert_blend_direction) {

@@ -1,7 +1,8 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://dvekiata1ymvd"]
 
 [ext_resource type="Shader" uid="uid://cba8frjri8tvn" path="res://shaders/player_shaders/shaders/first_person_arms.gdshader" id="1_5fure"]
-[ext_resource type="Texture2D" uid="uid://tj2xrbtj0eqr" path="res://shaders/blood vfx shaders/blood_buildup_noise_2.tres" id="2_yr3cq"]
+[ext_resource type="Texture2D" uid="uid://bxpohr0jdwsy5" path="res://scenes/VFX/textures/T_Decal_Blood651aas_N.png" id="2_yr3cq"]
+[ext_resource type="Texture2D" uid="uid://4aq0cvyrocvb" path="res://scenes/VFX/textures/T_Decal_Blood651aas.png" id="3_3y5di"]
 [ext_resource type="Texture2D" uid="uid://hqq7" path="res://item/weapons/two hand/zweihander/SM_HeavySword/T_HeavySword_C.png" id="3_w1duo"]
 [ext_resource type="Texture2D" uid="uid://hqq5" path="res://item/weapons/two hand/zweihander/SM_HeavySword/T_HeavySword_N.png" id="4_3y5di"]
 
@@ -22,7 +23,13 @@ shader_parameter/uv1_scale = Vector3(0, 0, 0)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(0, 0, 0)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/FOV = 75.0
-shader_parameter/noise_texture = ExtResource("2_yr3cq")
-shader_parameter/progress = 0.0
-shader_parameter/noise_softness = 0.05
+shader_parameter/BlendTexture = ExtResource("3_3y5di")
+shader_parameter/BlendColor = Color(0.9, 0, 0, 1)
+shader_parameter/blend_uv_scale = Vector2(2, 2)
+shader_parameter/blend_uv_offset = Vector2(0, 0)
+shader_parameter/BlendNormal = ExtResource("2_yr3cq")
+shader_parameter/blend_normal_scale = 1.0
+shader_parameter/blend_roughness = 0.5
+shader_parameter/blend_offset = -1.5
+shader_parameter/blend_smoothness = 0.00999999977648
+shader_parameter/invert_blend_direction = true

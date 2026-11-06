@@ -63,21 +63,21 @@ interpolation_mode = 2
 offsets = PackedFloat32Array(0.191589, 0.523364)
 colors = PackedColorArray(1, 1, 1, 1, 0.366595, 0.366595, 0.366595, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_mqupt"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hofhg"]
 gradient = SubResource("Gradient_37c5c")
 
 [sub_resource type="Gradient" id="Gradient_qf0bv"]
 offsets = PackedFloat32Array(0, 0.560748)
 colors = PackedColorArray(0.42, 0.042, 0.0482999, 1, 0.91, 0.2002, 0.22386, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_yupo6"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mqupt"]
 gradient = SubResource("Gradient_qf0bv")
 
 [sub_resource type="Gradient" id="Gradient_buev4"]
 offsets = PackedFloat32Array(0.205607, 0.509346, 0.752336, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0.215902, 0.215902, 0.215902, 1, 1, 1, 1, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_dpe55"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yupo6"]
 gradient = SubResource("Gradient_buev4")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tm5be"]
@@ -86,14 +86,14 @@ shader = ExtResource("8_8pwv3")
 shader_parameter/Scale = Vector2(1, 1)
 shader_parameter/Speed_XY = Vector2(0, 0)
 shader_parameter/Disolver_Texture = ExtResource("9_hofhg")
-shader_parameter/Color_1D_Gradient = SubResource("GradientTexture1D_yupo6")
+shader_parameter/Color_1D_Gradient = SubResource("GradientTexture1D_mqupt")
 shader_parameter/Metallic_Texture = ExtResource("10_mqupt")
 shader_parameter/Texture_Roughtness = ExtResource("12_dpe55")
-shader_parameter/Roughtness_1D_Gradient = SubResource("GradientTexture1D_dpe55")
+shader_parameter/Roughtness_1D_Gradient = SubResource("GradientTexture1D_yupo6")
 shader_parameter/Normal_Texture = ExtResource("11_yupo6")
 shader_parameter/Normal_Map_Depth = 1.0
 shader_parameter/Color_Intensity = 1.0
-shader_parameter/ColorTime_1D_Gradient = SubResource("GradientTexture1D_mqupt")
+shader_parameter/ColorTime_1D_Gradient = SubResource("GradientTexture1D_hofhg")
 shader_parameter/subuv_grid = Vector2i(2, 2)
 shader_parameter/use_subuv = true
 
@@ -101,7 +101,7 @@ shader_parameter/use_subuv = true
 _data = [Vector2(0, 0), 0.0, 0.5080472, 0, 0, Vector2(1, 0.32584274), -0.15492655, -0.15492655, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_0w2mj"]
+[sub_resource type="CurveTexture" id="CurveTexture_dpe55"]
 texture_mode = 1
 curve = SubResource("Curve_4jope")
 
@@ -109,7 +109,7 @@ curve = SubResource("Curve_4jope")
 _data = [Vector2(0, 1), 0.0, 0.528277, 0, 0, Vector2(1, 0), -0.052317, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_3yt4p"]
+[sub_resource type="CurveTexture" id="CurveTexture_0w2mj"]
 curve = SubResource("Curve_kwvjp")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8pwv3"]
@@ -125,8 +125,8 @@ angular_velocity_min = -1.60933e-05
 angular_velocity_max = -1.60933e-05
 gravity = Vector3(0, -4, 0)
 scale_min = 0.5
-scale_curve = SubResource("CurveTexture_3yt4p")
-alpha_curve = SubResource("CurveTexture_0w2mj")
+scale_curve = SubResource("CurveTexture_0w2mj")
+alpha_curve = SubResource("CurveTexture_dpe55")
 anim_speed_min = 1.0
 anim_speed_max = 1.0
 
@@ -142,10 +142,9 @@ stream_2/stream = ExtResource("11_hf718")
 stream_3/stream = ExtResource("12_tb07w")
 stream_4/stream = ExtResource("13_8pwv3")
 
-[node name="sword_viewmodel" type="Node3D" unique_id=1229960457 node_paths=PackedStringArray("hit_particles_add", "damage_sound", "swing_sound", "block_sound", "equip_sound", "damage_component", "blood_drip", "bloodtimer", "weapon_mesh", "trail")]
+[node name="sword_viewmodel" type="Node3D" unique_id=1229960457 node_paths=PackedStringArray("damage_sound", "swing_sound", "block_sound", "equip_sound", "damage_component", "blood_drip", "bloodtimer", "weapon_mesh", "trail")]
 transform = Transform3D(-5.4639237e-08, 0, -1.25, 0, 1.25, 0, 1.25, 0, -5.4639237e-08, 0, 0, 0)
 script = ExtResource("1_2kl34")
-hit_particles_add = NodePath("")
 damage_sound = NodePath("hit")
 swing_sound = NodePath("swing")
 block_sound = NodePath("block")
@@ -219,7 +218,6 @@ bus = &"SFX"
 stream = ExtResource("13_8suhy")
 volume_db = 6.0
 max_db = 6.0
-autoplay = true
 bus = &"SFX"
 
 [node name="block" type="AudioStreamPlayer3D" parent="." unique_id=642075814]

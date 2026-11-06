@@ -64,6 +64,17 @@ tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 0, -0.2, 0, 0.5, 1, 0, -1, 0)
 
+[sub_resource type="Animation" id="Animation_b2rc1"]
+resource_name = "end_draw"
+length = 0.3
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bow(1)/Armature/Skeleton3D:String")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, -1, 0, 0.3, 1, 0, -0.2, 0)
+
 [sub_resource type="Animation" id="Animation_yttj6"]
 resource_name = "shoot"
 length = 0.1
@@ -79,6 +90,7 @@ tracks/0/keys = PackedFloat32Array(0, 1, 0, -1, 0, 0.1, 1, 0, -0.2, 0)
 _data = {
 &"RESET": SubResource("Animation_wrwlr"),
 &"draw": SubResource("Animation_jo1or"),
+&"end_draw": SubResource("Animation_b2rc1"),
 &"shoot": SubResource("Animation_yttj6")
 }
 

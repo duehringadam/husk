@@ -27,20 +27,25 @@ func _on_idle_state_exited() -> void:
 	weapon.can_attack = false
 
 func _on_idle_state_input(event: InputEvent) -> void:
-	if event.is_action_pressed("attack_secondary") && weapon.offhand_weapon && weapon.can_attack:
-		state_chart.send_event("offhand")
-	elif event.is_action_pressed("attack_secondary") && !weapon.offhand_weapon && weapon.can_attack:
-		state_chart.send_event("block")
+	if weapon.mainhand_weapon && weapon.mainhand_weapon.item_category != ItemEquippableType.ITEM_WEAPON_CATEGORY.RANGED_WEAPON:
+		if event.is_action_pressed("attack_secondary") && weapon.offhand_weapon && weapon.can_attack:
+			state_chart.send_event("offhand")
+		elif event.is_action_pressed("attack_secondary") && !weapon.offhand_weapon && weapon.can_attack:
+			state_chart.send_event("block")
 
 
 func _on_idle_state_processing(delta: float) -> void:
 	if weapon.mainhand_weapon && weapon.can_attack && Global.player.can_attack:
-		if Input.is_action_pressed("attack_primary"):
-			current_held_duration += delta
-			SignalBus.emit_signal("primary_active", true)
-			animation_tree.set("parameters/conditions/attack",true)
-		if Input.is_action_just_released("attack_primary") && current_held_duration < hold_duration:
-			animation_tree.set("parameters/conditions/attack",true)
-			state_chart.send_event("swing")
-		if current_held_duration >= hold_duration:
-			state_chart.send_event("heavy")
+		if weapon.mainhand_weapon.item_category == ItemEquippableType.ITEM_WEAPON_CATEGORY.RANGED_WEAPON:
+			if Input.is_action_pressed("attack_secondary"):
+				state_chart.send_event("aim")
+		else:
+			if Input.is_action_pressed("attack_primary"):
+				current_held_duration += delta
+				SignalBus.emit_signal("primary_active", true)
+				animation_tree.set("parameters/conditions/attack",true)
+			if Input.is_action_just_released("attack_primary") && current_held_duration < hold_duration:
+				animation_tree.set("parameters/conditions/attack",true)
+				state_chart.send_event("swing")
+			if current_held_duration >= hold_duration:
+				state_chart.send_event("heavy")

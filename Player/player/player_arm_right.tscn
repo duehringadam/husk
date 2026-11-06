@@ -4,6 +4,7 @@
 [ext_resource type="Material" uid="uid://ccjem4uniqo0n" path="res://Player/hands/art/arms.tres" id="3_w1sxo"]
 [ext_resource type="Material" uid="uid://d0p82r0xbudbp" path="res://Player/hands/first_person_arms.tres" id="4_rnyv4"]
 [ext_resource type="Animation" uid="uid://bqlbw8iljjccc" path="res://Player/hands/animations/hands/demon_SD_test.tres" id="5_aqnnl"]
+[ext_resource type="PackedScene" uid="uid://cnjmlyrrq0jxc" path="res://item/weapons/two hand/zweihander/zweihander.tscn" id="5_tt0uf"]
 [ext_resource type="Animation" uid="uid://bbeyl3oepvl6b" path="res://Player/hands/animations/hands/mace_two_handed_block_hit.tres" id="5_uqleb"]
 [ext_resource type="Animation" uid="uid://ds4qjj7kj440f" path="res://Player/hands/animations/hands/demon_cleaver/demon_TO.tres" id="6_aqnnl"]
 [ext_resource type="Animation" uid="uid://bjnsd5fcng6sj" path="res://Player/hands/animations/hands/two_handed_sword/twohanded_TO.tres" id="8_8kes2"]
@@ -61470,7 +61471,7 @@ bones/26/rest = Transform3D(1, -1.493868e-07, 2.384187e-07, 1.493868e-07, 1, 2.3
 bones/26/enabled = true
 bones/26/position = Vector3(4.531385e-09, 0.47012398, 1.0887968e-08)
 bones/26/rotation = Quaternion(5.5878226e-09, 1.11758766e-07, 5.513563e-08, 1)
-bones/26/scale = Vector3(1, 0.99999994, 0.9999999)
+bones/26/scale = Vector3(0.99999994, 1, 1.0000001)
 bones/27/name = "segment3.L"
 bones/27/parent = 26
 bones/27/rest = Transform3D(1, 1.3577231e-07, -1.2370789e-07, -1.3922967e-07, 0.99959683, -0.028390123, 1.1980343e-07, 0.02839012, 0.9995969, -1.5249171e-09, 0.08228908, 1.4464391e-08)
@@ -61634,12 +61635,15 @@ skeleton = NodePath("..")
 surface_material_override/0 = ExtResource("4_rnyv4")
 
 [node name="rightBoneAttach" type="BoneAttachment3D" parent="ghoul_arms2(1)/Armature/Skeleton3D" unique_id=1069817460]
-transform = Transform3D(0.49435222, 0.86925375, -0.0035746496, -0.28987023, 0.16872576, 0.9420756, 0.8195058, -0.46468094, 0.33538112, 0.41380873, -1.4322226, -0.3027838)
+transform = Transform3D(0.8782747, 0.37874565, 0.29186356, -0.40127033, 0.9157588, 0.019138873, -0.26002818, -0.13392559, 0.9562683, 0.31612754, -0.36194354, -1.0270063)
 bone_name = "weapons.R"
 bone_idx = 24
 
+[node name="SM_HeavySword" parent="ghoul_arms2(1)/Armature/Skeleton3D/rightBoneAttach" unique_id=775150427 instance=ExtResource("5_tt0uf")]
+transform = Transform3D(1.5716068e-08, 9.313226e-10, 1.2999991, -1.2293458e-07, -1.2999988, -1.8626451e-09, 1.3000003, -1.15484e-07, -4.2142347e-08, 0.0034227073, 0.14767402, 0.009099439)
+
 [node name="leftBoneAttach" type="BoneAttachment3D" parent="ghoul_arms2(1)/Armature/Skeleton3D" unique_id=175715778]
-transform = Transform3D(0.13352068, 0.98599344, -0.09993906, -0.18704821, 0.12410179, 0.9744801, 0.97323364, -0.11141957, 0.2009986, -0.49195865, -1.6087842, 0.109026715)
+transform = Transform3D(0.49748707, -0.12158625, 0.8589078, -0.12554425, -0.9897951, -0.06739799, 0.85833824, -0.07430147, -0.50767547, 0.34861052, -0.17323206, -1.0191094)
 bone_name = "weapons.L"
 bone_idx = 48
 

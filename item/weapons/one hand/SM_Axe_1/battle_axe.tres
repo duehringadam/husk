@@ -1,0 +1,62 @@
+[gd_resource type="Resource" script_class="item" format=3 uid="uid://brqwx03twkndg"]
+
+[ext_resource type="Script" uid="uid://vqsnjxr1425q" path="res://item/scripts/item_animations.gd" id="1_y0v8s"]
+[ext_resource type="AnimationLibrary" uid="uid://brptxm7won7ul" path="res://Player/hands/animations/hands/non_directional_hands/non_directional_hands.res" id="2_2gmvc"]
+[ext_resource type="Texture2D" uid="uid://bfrwxro6lfb8l" path="res://item/icons/blade/blade.svg/icons/ffffff/000000/1x1/lorc/meat-cleaver.svg" id="3_ad6gt"]
+[ext_resource type="PackedScene" uid="uid://bccu17pjcik3f" path="res://item/weapons/one hand/SM_Axe_1/battle_axe.tscn" id="4_66a5e"]
+[ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/scripts/item_stat.gd" id="5_vlmqf"]
+[ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/scripts/item.gd" id="6_8iiy1"]
+
+[sub_resource type="Resource" id="Resource_gi4cx"]
+script = ExtResource("1_y0v8s")
+target_libraries = Array[AnimationLibrary]([ExtResource("2_2gmvc")])
+idle = "one_handed_sword_idle"
+equip = "brokenS_TO"
+mainhand_lower = "one_handed_sword_lower"
+attack_1 = "brokensword_swing1"
+attack_2 = "brokensword_swing2"
+attack_3 = "one_handed_sword_swing3_overhead"
+heavy_attack = "one_handed_sword_heavy_attack"
+mainhand_ranged_aim = ""
+mainhand_ranged_shoot = ""
+block_start = "one_handed_sword_block"
+block_hit = "one_handed_sword_block_hit"
+block_stun = "brokenS_blockSTUN"
+activate = ""
+deactivate = ""
+offhand_idle = ""
+offhand_equip = ""
+offhand_block_hit = ""
+offhand_block_idle = ""
+offhand_block_stun = ""
+offhand_cant_use = ""
+offhand_lower = ""
+metadata/_custom_type_script = "uid://vqsnjxr1425q"
+
+[sub_resource type="Resource" id="Resource_rh6kp"]
+script = ExtResource("5_vlmqf")
+damage_types = Dictionary[int, float]({
+1: 25.0
+})
+stance_damage = 0.33
+strength_scale = 0.25
+dex_scale = 0.25
+range = 2.0
+metadata/_custom_type_script = "uid://bbtfrupllo3w6"
+
+[resource]
+script = ExtResource("6_8iiy1")
+item_name = "Battle Axe"
+item_description = "a battle axe"
+item_icon = ExtResource("3_ad6gt")
+item_stats = SubResource("Resource_rh6kp")
+item_required_stats = Dictionary[int, int]({
+0: 10
+})
+charge_time = 0.65
+item_scene = ExtResource("4_66a5e")
+animations = SubResource("Resource_gi4cx")
+position = Vector3(0.0026064515, 0.09357497, 0.020176947)
+rotation = Vector3(-1.4, -88.7, 6.3)
+left_position = Vector3(0.005004555, 0.10258198, 0.019703597)
+metadata/_custom_type_script = "uid://dcfd18dx8x1bm"

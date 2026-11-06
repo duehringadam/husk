@@ -42,8 +42,7 @@ func _on_sprint_disable_requested(enable: bool) -> void:
 	disable_sprint = enable
 
 func _on_slow_player(value: float):
-	walk_speed -= value
-	sprint_speed -= value
+	slow_speed = value
 
 func _on_attack_lock_requested(enable: bool)->void:
 	can_attack = !enable

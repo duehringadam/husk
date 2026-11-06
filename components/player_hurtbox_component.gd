@@ -37,6 +37,7 @@ func take_damage(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float], stat
 			
 			if stamina_component.current_stamina <= 0:
 				stance_broken.emit()
+			%sparks.emitting = true
 			emit_signal("blocked_attack")
 		return 0 
 	# invulnerability on damage
@@ -61,12 +62,20 @@ func take_damage(damage_types: Dictionary[DamageTypes.DAMAGE_TYPES, float], stat
 func is_facing(source: DamageComponent) -> bool:
 	if source.source == Global.player: 
 		return false
-	var player_forward = -Global.player.camera.global_transform.basis.z 
-	var target_direction = (source.source.global_transform.origin - Global.player.camera.global_transform.origin).normalized()
-	var dot_product = player_forward.dot(target_direction)
-	var angle_to_target = acos(dot_product)
-	if angle_to_target <= deg_to_rad(75):
-		return true
+	if source.source:
+		var player_forward = -Global.player.camera.global_transform.basis.z 
+		var target_direction = (source.source.global_transform.origin - Global.player.camera.global_transform.origin).normalized()
+		var dot_product = player_forward.dot(target_direction)
+		var angle_to_target = acos(dot_product)
+		if angle_to_target <= deg_to_rad(75):
+			return true
+	elif source:
+		var player_forward = -Global.player.camera.global_transform.basis.z 
+		var target_direction = (source.global_transform.origin - Global.player.camera.global_transform.origin).normalized()
+		var dot_product = player_forward.dot(target_direction)
+		var angle_to_target = acos(dot_product)
+		if angle_to_target <= deg_to_rad(75):
+			return true
 	return false
 
 

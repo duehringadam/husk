@@ -9,6 +9,8 @@ var attack_2: String = ""
 var attack_3: String = ""
 var heavy_attack: String = ""
 var mainhand_lower: String = ""
+var mainhand_ranged_aim: String = ""
+var mainhand_ranged_shoot: String = ""
 
 var block_start: String = ""
 var block_hit: String = ""
@@ -64,6 +66,12 @@ func _get_property_list() -> Array[Dictionary]:
 	properties.append({ "name": "attack_2", "type": TYPE_STRING, "hint": PROPERTY_HINT_ENUM, "hint_string": anim_hint_string })
 	properties.append({ "name": "attack_3", "type": TYPE_STRING, "hint": PROPERTY_HINT_ENUM, "hint_string": anim_hint_string })
 	properties.append({ "name": "heavy_attack", "type": TYPE_STRING, "hint": PROPERTY_HINT_ENUM, "hint_string": anim_hint_string })
+	
+	#ranged
+	properties.append({ "name": "Ranged Mainhand Animations", "type": TYPE_NIL, "usage": PROPERTY_USAGE_SUBGROUP, "hint_string": "Mainhand Animations_" })
+	properties.append({ "name": "mainhand_ranged_aim", "type": TYPE_STRING, "hint": PROPERTY_HINT_ENUM, "hint_string": anim_hint_string })
+	properties.append({ "name": "mainhand_ranged_shoot", "type": TYPE_STRING, "hint": PROPERTY_HINT_ENUM, "hint_string": anim_hint_string })
+	
 	
 	# Mainhand Blocking Subgroup
 	properties.append({ "name": "Mainhand Blocking", "type": TYPE_NIL, "usage": PROPERTY_USAGE_SUBGROUP, "hint_string": "Mainhand Animations_" })

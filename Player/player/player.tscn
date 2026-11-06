@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://csps0dnf2gf2n" path="res://components/player_hurtbox_component.gd" id="5_eon52"]
 [ext_resource type="PackedScene" uid="uid://bkk0g5jmn4jpj" path="res://Player/player/player_arms_non_directional.tscn" id="5_spsvl"]
 [ext_resource type="Script" uid="uid://brvxqhk8jpiq2" path="res://Player/scripts/health_detect.gd" id="6_5fkmn"]
+[ext_resource type="Shader" uid="uid://dhgepkj4rvjrd" path="res://scenes/VFX/fire/Flamethrowers/BurningSurfaceShader/burning_surface_overlay_first_person.gdshader" id="7_yjj6r"]
 [ext_resource type="AudioStream" uid="uid://b4ajsd7gilmx" path="res://sfx/UI/huskdeathlongerlouder.wav" id="8_jaogv"]
 [ext_resource type="AudioStream" uid="uid://df2b8w21sb3xf" path="res://sfx/damage/hit-rock-03-266305.mp3" id="8_jux4o"]
 [ext_resource type="Shader" uid="uid://dgt3e85o3avu2" path="res://shaders/player_shaders/shaders/damage.gdshader" id="9_4ng6s"]
@@ -70,6 +71,87 @@ slide_on_slope = true
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2m5xu"]
 radius = 0.25
 height = 3.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3no7l"]
+frequency = 0.036
+fractal_octaves = 2
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_yydja"]
+width = 128
+height = 128
+depth = 128
+noise = SubResource("FastNoiseLite_3no7l")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yjj6r"]
+resource_local_to_scene = true
+render_priority = 1
+shader = ExtResource("7_yjj6r")
+shader_parameter/ember_core = Color(0.57925403, 1.0348111e-06, 3.85046e-07, 1)
+shader_parameter/ember_mid = Color(0.5803922, 0, 0, 1)
+shader_parameter/ember_edge = Color(0.5803922, 0, 0, 1)
+shader_parameter/char_color = Color(0.12, 0.08, 0.05, 1)
+shader_parameter/progress = 0.0
+shader_parameter/wave_density = 32.276001485609996
+shader_parameter/wave_speed = 0.0
+shader_parameter/wave_amplitude = 0.0
+shader_parameter/ember_brightness = 0.10000000475
+shader_parameter/noise_scale = 2.00000009430148
+shader_parameter/edge_sharpness = 0.00999999977648
+shader_parameter/char_opacity = 0.0
+shader_parameter/turbulence = 2.0
+shader_parameter/flicker_speed = 0.0
+shader_parameter/time_scale_noise_slow = 0.0
+shader_parameter/time_scale_noise_fast = 0.0
+shader_parameter/time_scale_turbulence = 0.0
+shader_parameter/time_scale_flicker = 1.0
+shader_parameter/noise_texture = SubResource("NoiseTexture3D_yydja")
+
+[sub_resource type="Curve" id="Curve_4hpt6"]
+_data = [Vector2(0, 0), 0.0, 6.71383, 0, 0, Vector2(0.494253, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -4.95378, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_6uf0i"]
+curve = SubResource("Curve_4hpt6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_42isk"]
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+emission_shape_offset = Vector3(0, 0.1, 0)
+emission_shape_scale = Vector3(1, 2, 1)
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 3.0
+radial_velocity_min = -2.23517e-05
+radial_velocity_max = 0.999978
+gravity = Vector3(0, 0, 0)
+tangential_accel_min = -5.0
+tangential_accel_max = 5.0
+damping_min = 1.0
+damping_max = 10.0
+scale_min = 0.1
+scale_curve = SubResource("CurveTexture_6uf0i")
+
+[sub_resource type="PointMesh" id="PointMesh_4hpt6"]
+
+[sub_resource type="Curve" id="Curve_0777l"]
+_data = [Vector2(0, 0), 0.0, 4.43392, 0, 0, Vector2(0.505119, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.9739, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i3rgu"]
+emission_enabled = true
+emission = Color(1, 0.32549, 0, 1)
+emission_energy_multiplier = 5.0
+use_particle_trails = true
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_uh1iw"]
+material = SubResource("StandardMaterial3D_i3rgu")
+radius = 0.002
+radial_steps = 3
+sections = 2
+cap_top = false
+cap_bottom = false
+curve = SubResource("Curve_0777l")
 
 [sub_resource type="Animation" id="Animation_by45h"]
 length = 0.001
@@ -911,13 +993,41 @@ visible = false
 unique_name_in_owner = true
 
 [node name="Skeleton3D" parent="Head/Neck/Camera3D/playerHands/ghoul_arms2(1)/Armature" parent_id_path=PackedInt32Array(1178015951, 1078713948) index="0" unique_id=2092613228]
-bones/26/scale = Vector3(1.0000001, 1.0000001, 1)
+bones/0/scale = Vector3(0.99999976, 1, 1.0000001)
+
+[node name="Hands" parent="Head/Neck/Camera3D/playerHands/ghoul_arms2(1)/Armature/Skeleton3D" index="0" unique_id=239782853]
+material_overlay = SubResource("ShaderMaterial_yjj6r")
+
+[node name="rightBoneAttach" parent="Head/Neck/Camera3D/playerHands/ghoul_arms2(1)/Armature/Skeleton3D" index="1" unique_id=1069817460]
+transform = Transform3D(-5.6022685e-08, -0.9999931, 0.004389607, 2.8218602e-07, 0.004389594, 0.99998796, -0.999997, 5.726929e-08, 2.8193733e-07, 0.42589125, -1.5634501, 0.23740922)
 
 [node name="leftBoneAttach" parent="Head/Neck/Camera3D/playerHands/ghoul_arms2(1)/Armature/Skeleton3D" index="2" unique_id=175715778]
-transform = Transform3D(0.5863443, 0.8018198, 0.11525059, 0.0006418551, -0.14273348, 0.9897602, 0.8100592, -0.58026665, -0.08420699, -0.61138284, -1.454851, 0.61573094)
+transform = Transform3D(0.5863446, 0.80181986, 0.11525062, 0.0006420917, -0.14273366, 0.98976016, 0.81005967, -0.5802667, -0.084206715, -0.61138296, -1.4548509, 0.61573076)
+
+[node name="rope_bow_viewmodel" parent="Head/Neck/Camera3D/playerHands/ghoul_arms2(1)/Armature/Skeleton3D/leftBoneAttach" index="0" unique_id=1831362017]
+transform = Transform3D(-0.9879149, -0.1318617, -0.08148764, -0.12335565, 0.9871244, -0.1018451, 0.09386771, -0.090562284, -0.99145913, 0.01534754, 0.26218015, 0.064358234)
 
 [node name="AnimationTree" parent="Head/Neck/Camera3D/playerHands/ghoul_arms2(1)" parent_id_path=PackedInt32Array(1178015951, 264221670) index="3" unique_id=1330822349]
 parameters/heavyAttackBlendTree/offhandBlend/blend_amount = 0.0
+parameters/rangedBlendTree/Transition/current_state = ""
+parameters/rangedBlendTree/Transition/current_index = -1
+parameters/stunBlendTree/Blend2/blend_amount = 0.0
+
+[node name="sparks" type="GPUParticles3D" parent="Head/Neck/Camera3D" unique_id=1556459282]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.065, -0.100000024, -0.5)
+emitting = false
+amount = 16
+lifetime = 0.25
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+trail_enabled = true
+trail_lifetime = 0.1
+process_material = SubResource("ParticleProcessMaterial_42isk")
+draw_passes = 2
+draw_pass_1 = SubResource("PointMesh_4hpt6")
+draw_pass_2 = SubResource("TubeTrailMesh_uh1iw")
 
 [node name="CameraAnimationPlayer" type="AnimationPlayer" parent="Head" unique_id=2090545160]
 unique_name_in_owner = true

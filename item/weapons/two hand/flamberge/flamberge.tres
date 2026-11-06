@@ -1,9 +1,37 @@
 [gd_resource type="Resource" script_class="item" format=3 uid="uid://c8ah63xefaug"]
 
+[ext_resource type="Script" uid="uid://vqsnjxr1425q" path="res://item/scripts/item_animations.gd" id="1_aluro"]
+[ext_resource type="AnimationLibrary" uid="uid://brptxm7won7ul" path="res://Player/hands/animations/hands/non_directional_hands/non_directional_hands.res" id="2_2d41y"]
 [ext_resource type="Texture2D" uid="uid://vm0bvxu73rfj" path="res://item/icons/blade/blade.svg/icons/ffffff/000000/1x1/lorc/pointy-sword.svg" id="2_aluro"]
 [ext_resource type="PackedScene" uid="uid://blyqrh07cvkyy" path="res://item/weapons/two hand/flamberge/sm_flamberge.tscn" id="3_2d41y"]
 [ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/scripts/item_stat.gd" id="4_2qen6"]
 [ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/scripts/item.gd" id="5_euwsp"]
+
+[sub_resource type="Resource" id="Resource_2qen6"]
+script = ExtResource("1_aluro")
+target_libraries = Array[AnimationLibrary]([ExtResource("2_2d41y")])
+idle = "two_handed_idle"
+equip = "twohanded_TO"
+mainhand_lower = "one_handed_sword_lower"
+attack_1 = "two_handed_swing_1"
+attack_2 = "two_handed_sword_swing_2"
+attack_3 = "two_handed_sword_swing_3"
+heavy_attack = "two_handed_sword_heavy"
+mainhand_ranged_aim = ""
+mainhand_ranged_shoot = ""
+block_start = "twohanded_sword_block"
+block_hit = "twohanded_sword_block_hit"
+block_stun = "twohanded_sword_block_hit"
+activate = ""
+deactivate = ""
+offhand_idle = ""
+offhand_equip = ""
+offhand_block_hit = ""
+offhand_block_idle = ""
+offhand_block_stun = ""
+offhand_cant_use = ""
+offhand_lower = ""
+metadata/_custom_type_script = "uid://vqsnjxr1425q"
 
 [sub_resource type="Resource" id="Resource_2e86q"]
 script = ExtResource("4_2qen6")
@@ -24,6 +52,7 @@ item_stats = SubResource("Resource_2e86q")
 charge_time = 0.75
 item_scene = ExtResource("3_2d41y")
 two_handed = true
+animations = SubResource("Resource_2qen6")
 position = Vector3(0.001, 0.231, -0.004)
 rotation = Vector3(4.4, 89.5, 175.2)
 metadata/_custom_type_script = "uid://dcfd18dx8x1bm"

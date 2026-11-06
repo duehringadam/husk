@@ -62,7 +62,8 @@ func _apply_statuses(effects: Array[status_effect]):
 			if i.damage_component_scene != null:
 				child_damage_component = i.damage_component_scene.instantiate()
 				add_child(child_damage_component)
-				child_damage_component.owner = self.owner
+				if i.effect_type == Global.STATUS_TYPE.BLEEDING:
+					child_damage_component.owner = self.owner
 			var material_overlay = mesh_to_affect.material_overlay
 			material_overlay["shader_parameter/ember_core"] = i.ember_core
 			material_overlay["shader_parameter/ember_mid"] = i.ember_mid

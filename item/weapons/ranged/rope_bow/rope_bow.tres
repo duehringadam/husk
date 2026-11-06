@@ -1,10 +1,38 @@
 [gd_resource type="Resource" script_class="item" format=3 uid="uid://d2eebovadb1ap"]
 
 [ext_resource type="Script" uid="uid://dcfd18dx8x1bm" path="res://item/scripts/item.gd" id="1_6elbx"]
+[ext_resource type="Script" uid="uid://vqsnjxr1425q" path="res://item/scripts/item_animations.gd" id="1_7nb5a"]
 [ext_resource type="PackedScene" uid="uid://b3wxg7nmabvak" path="res://item/weapons/ranged/rope_bow/rope_bow_viewmodel.tscn" id="1_av6qt"]
 [ext_resource type="PackedScene" uid="uid://dq8lwiea6fmgn" path="res://item/weapons/ranged/Arrows/arrow_viewmodel.tscn" id="2_32ifv"]
 [ext_resource type="Texture2D" uid="uid://damb7ge0qem22" path="res://item/icons/bow/arrow.svg/icons/ffffff/000000/1x1/lorc/pocket-bow.svg" id="2_kgm22"]
+[ext_resource type="AnimationLibrary" uid="uid://brptxm7won7ul" path="res://Player/hands/animations/hands/non_directional_hands/non_directional_hands.res" id="2_m4w6k"]
 [ext_resource type="Script" uid="uid://bbtfrupllo3w6" path="res://item/scripts/item_stat.gd" id="4_kgm22"]
+
+[sub_resource type="Resource" id="Resource_41v41"]
+script = ExtResource("1_7nb5a")
+target_libraries = Array[AnimationLibrary]([ExtResource("2_m4w6k")])
+idle = "bow_idle"
+equip = "bow_TO"
+mainhand_lower = ""
+attack_1 = ""
+attack_2 = ""
+attack_3 = ""
+heavy_attack = ""
+mainhand_ranged_aim = "bow_aim"
+mainhand_ranged_shoot = "bow_shoot"
+block_start = ""
+block_hit = ""
+block_stun = ""
+activate = ""
+deactivate = ""
+offhand_idle = ""
+offhand_equip = ""
+offhand_block_hit = ""
+offhand_block_idle = ""
+offhand_block_stun = ""
+offhand_cant_use = ""
+offhand_lower = ""
+metadata/_custom_type_script = "uid://vqsnjxr1425q"
 
 [sub_resource type="Resource" id="Resource_7nb5a"]
 script = ExtResource("4_kgm22")
@@ -15,6 +43,7 @@ script = ExtResource("1_6elbx")
 item_name = "Rope Bow"
 item_description = "When fired into wooden surfaces, it will create climbable ropes"
 item_icon = ExtResource("2_kgm22")
+item_category = 10
 item_stats = SubResource("Resource_7nb5a")
 item_required_stats = Dictionary[int, int]({
 1: 5
@@ -22,8 +51,9 @@ item_required_stats = Dictionary[int, int]({
 item_scene = ExtResource("2_32ifv")
 item_left_scene = ExtResource("1_av6qt")
 two_handed = true
-position = Vector3(0.032525048, 0.10547142, -0.43646145)
+animations = SubResource("Resource_41v41")
+position = Vector3(0.034192614, 0.16965398, -0.42278507)
 rotation = Vector3(1.4, 79.9, 8.3)
-left_position = Vector3(-0.0039833784, 0.21185565, 0.02989003)
-left_rotation = Vector3(12.7, 177, -8)
+left_position = Vector3(0.01534754, 0.26218015, 0.064358234)
+left_rotation = Vector3(3.5, 178.2, -0.5)
 metadata/_custom_type_script = "uid://dcfd18dx8x1bm"
