@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://cj2mptxe1drpv"]
+
+[ext_resource type="Script" uid="uid://1j6adky4avis" path="res://Player/UI/checkpoint/checkpoint_screen.gd" id="1_0p2vd"]
+[ext_resource type="Shader" uid="uid://211yn521kpxn" path="res://shaders/texture_edge_fade.gdshader" id="2_pbgxi"]
+[ext_resource type="Theme" uid="uid://ctn68w4yfl5oa" path="res://Player/UI/UI_Theme.tres" id="3_v7dpx"]
+[ext_resource type="Script" uid="uid://cli02o73iy55p" path="res://Player/UI/checkpoint/hexagon_ui.gd" id="4_801ju"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ushjy"]
+noise_type = 2
+frequency = 0.0768
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_heia8"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_ushjy")
+in_3d_space = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_25y1c"]
+shader = ExtResource("2_pbgxi")
+shader_parameter/textureNoise = SubResource("NoiseTexture2D_heia8")
+shader_parameter/radius = 0.4150000197125
+shader_parameter/effectControl = 0.022000001045
+shader_parameter/burnSpeed = 0.010000000475
+shader_parameter/shape = 1.0
+shader_parameter/my_color = Color(0.5729879, 0.5729884, 0.57298815, 1)
+shader_parameter/feather = 0.0110000005225
+shader_parameter/radius_scale = 0.10000000149012
+shader_parameter/rounded_corner_top_left = true
+shader_parameter/rounded_corner_top_right = true
+shader_parameter/rounded_corner_bottom_left = true
+shader_parameter/rounded_corner_bottom_right = true
+shader_parameter/width = 0.635
+shader_parameter/height = 0.3
+
+[node name="CheckpointScreen" type="Control" unique_id=1210704415]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0p2vd")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1573236080]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.82600003)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1248372782]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 80
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=1368324709]
+material = SubResource("ShaderMaterial_25y1c")
+custom_minimum_size = Vector2(300, 600)
+custom_maximum_size = Vector2(600, 1200)
+layout_mode = 2
+size_flags_horizontal = 3
+offset_transform_enabled = true
+theme = ExtResource("3_v7dpx")
+
+[node name="Polygon2D" type="Polygon2D" parent="MarginContainer/PanelContainer" unique_id=1923092422]
+script = ExtResource("4_801ju")
